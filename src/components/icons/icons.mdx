@@ -1,0 +1,40 @@
+---
+name: Icons
+---
+
+import { Playground, Props } from 'docz'
+
+import More from './more'
+import Notifcations from './notifications'
+import Add from './add'
+import Phone from './Phone'
+
+# Icons
+
+SVG icons for common actions and items.
+
+## Props
+
+<Props of={More} />
+
+## Usage
+
+<Playground>
+  <More/>
+  <Notifcations />
+  <Add />
+  <Phone />
+</Playground>
+
+## Colors
+
+<Playground>
+  <More/>
+  <Notifcations color="#ffa400" />
+  <Add color="#ed7470"/>
+</Playground>
+
+## Buttons
+<Playground>
+  <Add color="#fff" onClick={() => alert('Clicked!')}/>
+</Playground>
