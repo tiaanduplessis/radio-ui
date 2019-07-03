@@ -1,10 +1,8 @@
-import Button from './components/button'
-import Card from './components/card'
-import Checkbox from './components/checkbox'
-import Icons from './components/icons'
-
-export default {
-  Button,
-  Card,
-  Checkbox,
-}
+export { default as theme } from './config/theme'
+export { default as Button } from './components/button'
+export { default as Card } from './components/card'
+export { default as Checkbox } from './components/checkbox'
+export { default as icons } from './components/icons'
+export { default as Input } from './components/input'
+export { default as Pill } from './components/pill'
+export { default as Toggle } from './components/toggle'
