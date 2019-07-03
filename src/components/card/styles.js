@@ -31,7 +31,7 @@ export const StyledCardTitle = styled.h2`
   padding: 0 0.5em;
   text-transform: uppercase;
   letter-spacing: ${letterSpacing.tight};
-  color: ${colors.darkGray};
+  color: ${colors.grayExtraDark};
   margin: 1em;
 `
 

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import theme from '../../config/theme'
 
-const { colors, borderRadius, fonts, fontSizes } = theme
+const { colors, borderRadius, fonts, fontSizes, lineHeight } = theme
 
 const StyledInput = styled.input.attrs({
   type: 'checkbox',
@@ -37,10 +37,12 @@ const StyledInput = styled.input.attrs({
     transition: transform 0s, opacity 0s;
   }
 
+  /* eslint-disable-next-line no-use-before-define */
   &:active + ${StyledSpan}::before {
     border-color: ${colors.primary};
   }
 
+  /* eslint-disable-next-line no-use-before-define */
   &:checked:active + ${StyledSpan}::before {
     border-color: transparent;
     background-color: rgba(0, 0, 0, 0.6);
@@ -50,11 +52,13 @@ const StyledInput = styled.input.attrs({
     opacity: 0;
   }
 
+  /* eslint-disable-next-line no-use-before-define */
   &:disabled + ${StyledSpan} {
     color: rgba(0, 0, 0, 0.3);
     cursor: initial;
   }
 
+  /* eslint-disable-next-line no-use-before-define */
   &:disabled + ${StyledSpan}::before {
     border-color: rgba(0, 0, 0, 0.3);
   }
@@ -67,7 +71,7 @@ const StyledLabel = styled.label`
   color: rgba(0, 0, 0, 0.87);
   font-family: ${fonts.OpenSans};
   font-size: ${fontSizes.medium};
-  line-height: 1.5;
+  line-height: ${lineHeight.normal};
 
   &:hover > ${StyledInput} {
     opacity: 0.04;
@@ -90,7 +94,7 @@ const StyledSpan = styled.span`
     margin: 3px 11px 3px 1px;
     border: solid 2px; /* Safari */
     border-color: rgba(0, 0, 0, 0.6);
-    border-radius: 2px;
+    border-radius: ${borderRadius.xsmall};
     width: 18px;
     height: 18px;
     vertical-align: top;

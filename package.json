@@ -1,19 +1,46 @@
 {
-  "name": "schoolbus",
+  "name": "@lessondesk/schoolbus",
   "version": "0.1.0",
-  "description": "Lesson Desk component library",
-  "main": "src/index.js",
+  "description": "🚌 Lesson Desk component library",
+  "main": "dist/index.js",
   "repository": "https://github.com/fullfacing/schoolbus",
-  "author": "Full Facing",
+  "contributors": [
+    "Tiaan du Plessis (https://tiaan.dev)"
+  ],
   "license": "MIT",
+  "browserslist": {
+    "production": [
+      ">0.1%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "scripts": {
-    "lint": "eslint --fix src/**/*.js",
-    "format": "prettier-eslint --write \"src/**/*.js\"",
-    "dev": "docz dev",
-    "build": "docz build"
+    "lint:js": "eslint --fix src",
+    "lint:styles": "stylelint --fix src/**/*.js",
+    "lint": "yarn lint:js && yarn lint:styles",
+    "fmt": "prettier-eslint --write \"src/**/*.js\"",
+    "build": "babel src -d dist",
+    "dev:docs": "docz dev",
+    "build:docs": "docz build",
+    "test": "jest"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.2",
+    "babel-jest": "^24.8.0",
+    "babel-plugin-styled-components": "^1.10.6",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "eslint": "5.16.0",
@@ -25,18 +52,23 @@
     "eslint-plugin-react": "^7.14.2",
     "eslint-plugin-react-hooks": "^1.6.1",
     "formik": "^1.5.4",
+    "jest": "^24.8.0",
     "prettier": "^1.18.2",
     "prettier-eslint-cli": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "stylelint": "^10.1.0",
+    "stylelint-config-recommended": "^2.2.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.8.0"
   },
   "peerDependencies": {
     "formik": "^1.5.4",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "prop-types": "^15.7.2",
     "styled-components": "^4.3.2"
   }
 }

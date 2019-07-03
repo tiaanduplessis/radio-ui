@@ -31,7 +31,7 @@ class Card extends React.PureComponent {
   static Content = StyledContent
 
   render() {
-    const { title, description, renderHeader, children } = this.props
+    const { title, description, renderHeader, children, ...props } = this.props
 
     return (
       <StyledCard {...props}>

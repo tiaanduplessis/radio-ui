@@ -25,9 +25,9 @@ export const StyledInputContainer = styled.div`
 
 export const StyledInput = styled.input`
   background-color: ${props =>
-    props.disabled ? colors.transparent : colors.offWhite};
+    props.disabled ? colors.transparent : colors.grayExtraLight};
   border: 1px solid
-    ${props => (props.disabled ? colors.mercury : colors.offWhite)};
+    ${props => (props.disabled ? colors.gray : colors.grayExtraLight)};
   font-family: inherit;
   font-size: ${fontSizes.small};
   padding: 0.5em 1em;
@@ -36,7 +36,7 @@ export const StyledInput = styled.input`
   width: 100%;
 
   ::placeholder {
-    color: ${colors.placeholderGray};
+    color: ${colors.grayDark};
   }
 
   ::-webkit-inner-spin-button,

@@ -16,7 +16,7 @@ const StyledPill = styled.button.attrs({
 })`
   background-color: ${colors.transparent};
   color: ${props =>
-    props.variant === VARIANTS.active ? '#faa221' : colors.darkGray};
+    props.variant === VARIANTS.active ? '#faa221' : colors.grayExtraDark};
   padding: 1em;
   min-width: 80px;
   border-radius: ${borderRadius.large};

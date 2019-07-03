@@ -1,4 +1,10 @@
-export default {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
   colors: {
     primary: '#ffa400',
     primaryLight: '#fff8eb',
@@ -11,27 +17,11 @@ export default {
     dark: '#47494B',
     black: '#333',
     transparent: 'transparent',
-    red: '#ed7470',
+    red: '#ed7470'
   },
   fonts: {
-    Montserrat: `'Montserrat', -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen-Sans,
-    Ubuntu,
-    Cantarell,
-    "Helvetica Neue",
-    sans-serif`,
-    OpenSans: `'Open Sans', -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen-Sans,
-    Ubuntu,
-    Cantarell,
-    "Helvetica Neue",
-    sans-serif`,
+    Montserrat: "'Montserrat', -apple-system,\n    BlinkMacSystemFont,\n    \"Segoe UI\",\n    Roboto,\n    Oxygen-Sans,\n    Ubuntu,\n    Cantarell,\n    \"Helvetica Neue\",\n    sans-serif",
+    OpenSans: "'Open Sans', -apple-system,\n    BlinkMacSystemFont,\n    \"Segoe UI\",\n    Roboto,\n    Oxygen-Sans,\n    Ubuntu,\n    Cantarell,\n    \"Helvetica Neue\",\n    sans-serif"
   },
   fontWeights: {
     hairline: 100,
@@ -40,7 +30,7 @@ export default {
     medium: 400,
     semi: 500,
     bold: 600,
-    extrabold: 700,
+    extrabold: 700
   },
   fontSizes: {
     xxsmall: '10px',
@@ -49,7 +39,7 @@ export default {
     medium: '16px',
     large: '20px',
     xlarge: '24px',
-    xxlarge: '32px',
+    xxlarge: '32px'
   },
   spacing: {
     px: '1px',
@@ -70,7 +60,7 @@ export default {
     '40': '10rem',
     '48': '12rem',
     '56': '14rem',
-    '64': '16rem',
+    '64': '16rem'
   },
   lineHeight: {
     none: '1',
@@ -78,7 +68,7 @@ export default {
     snug: '1.375',
     normal: '1.5',
     relaxed: '1.625',
-    loose: '2',
+    loose: '2'
   },
   letterSpacing: {
     tighter: '-0.05em',
@@ -86,7 +76,7 @@ export default {
     normal: '0',
     wide: '0.025em',
     wider: '0.05em',
-    widest: '0.1em',
+    widest: '0.1em'
   },
   borderRadius: {
     none: '0',
@@ -94,6 +84,7 @@ export default {
     small: '5px',
     default: '15px',
     large: '20px',
-    full: '9999px',
-  },
-}
+    full: '9999px'
+  }
+};
+exports.default = _default;

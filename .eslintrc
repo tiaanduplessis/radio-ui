@@ -1,3 +1,11 @@
 {
-  "extends": "nitpicky/react"
+  "extends": "nitpicky/react",
+  "rules": {
+    "no-use-before-define": "off"
+  },
+    "settings": {
+    "react": {
+      "version": "detect"
+      }
+    }
 }

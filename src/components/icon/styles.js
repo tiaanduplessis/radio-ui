@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import theme from '../../../config/theme'
+import theme from '../../config/theme'
 
 const { colors, borderRadius } = theme
 
@@ -10,7 +10,7 @@ export const VARIANTS = {
   disabled: 'disabled',
 }
 
-const Button = styled.button.attrs({
+export const Button = styled.button.attrs({
   type: 'button',
 })`
   display: flex;
@@ -37,5 +37,3 @@ const Button = styled.button.attrs({
   cursor: pointer;
   min-width: 38px;
 `
-
-export default Button

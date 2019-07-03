@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import PropTypes from 'prop-types'
 
 import { connect } from 'formik'
@@ -49,15 +49,23 @@ class Input extends React.PureComponent {
 
     return (
       <StyledInputContainer style={containerStyle} width={width}>
-        {!!label.length && <StyledLabel htmlFor={id}>{label}</StyledLabel>}
+        {!!label.length && (
+          <StyledLabel htmlFor={id} required={otherProps.required}>
+            {label}
+          </StyledLabel>
+        )}
         <StyledInput
+          aria-label={label}
+          aria-required={otherProps.required}
           placeholder={placeholder || label}
           name={name}
           {...inputDefaults}
           {...otherProps}
         />
         {errorText && (
-          <StyledErrorText>{errorTextOverride || errorText}</StyledErrorText>
+          <StyledErrorText style={errorStyle}>
+            {errorTextOverride || errorText}
+          </StyledErrorText>
         )}
       </StyledInputContainer>
     )

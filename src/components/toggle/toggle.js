@@ -22,7 +22,7 @@ const ToggleLabel = styled.label`
   cursor: pointer;
   position: relative;
   height: 40px;
-  background-color: ${colors.darkGray};
+  background-color: ${colors.grayExtraDark};
 
   ::before {
     background: ${colors.gray};
@@ -37,7 +37,7 @@ const ToggleLabel = styled.label`
   }
 
   ::after {
-    background: ${colors.darkGray};
+    background: ${colors.grayExtraDark};
     border-radius: 16px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
     content: '';
