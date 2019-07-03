@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import withIcon from './hoc/with-icon'
 
-const Add = ({ color }) => (
+const Settings = ({ color }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -17,4 +17,4 @@ const Add = ({ color }) => (
   </svg>
 )
 
-export default withIcon(Add)
+export default withIcon(Settings)

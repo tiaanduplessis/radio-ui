@@ -9,7 +9,8 @@ const { colors } = theme
 
 const DEFAULT_ICON_SIZE = 24
 
-const withIcon = SVG => class Icon extends React.PureComponent {
+const withIcon = SVG =>
+  class Icon extends React.PureComponent {
     static propTypes = {
       variant: PropTypes.oneOf(Object.keys(VARIANTS)),
       color: PropTypes.string,
@@ -34,6 +35,6 @@ const withIcon = SVG => class Icon extends React.PureComponent {
 
       return <SVG color={color} size={DEFAULT_ICON_SIZE} />
     }
-}
+  }
 
 export default withIcon

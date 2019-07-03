@@ -1,6 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
+import theme from '../../config/theme'
+
+const { colors, borderRadius, fonts, fontSizes } = theme
+
 const StyledInput = styled.input.attrs({
   type: 'checkbox',
 })`
@@ -11,10 +15,10 @@ const StyledInput = styled.input.attrs({
   top: -8px;
   display: block;
   margin: 0;
-  border-radius: 50%;
+  border-radius: ${borderRadius.full};
   width: 40px;
   height: 40px;
-  background-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   box-shadow: none;
   outline: none;
   opacity: 0;
@@ -24,7 +28,7 @@ const StyledInput = styled.input.attrs({
 
   &:checked,
   &:indeterminate {
-    background-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+    background-color: ${colors.primary};
   }
 
   &:active {
@@ -34,12 +38,12 @@ const StyledInput = styled.input.attrs({
   }
 
   &:active + ${StyledSpan}::before {
-    border-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+    border-color: ${colors.primary};
   }
 
   &:checked:active + ${StyledSpan}::before {
     border-color: transparent;
-    background-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
   }
 
   &:disabled {
@@ -47,20 +51,12 @@ const StyledInput = styled.input.attrs({
   }
 
   &:disabled + ${StyledSpan} {
-    color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
+    color: rgba(0, 0, 0, 0.3);
     cursor: initial;
   }
 
   &:disabled + ${StyledSpan}::before {
-    border-color: currentColor;
-  }
-
-  &:checked:disabled
-    + ${StyledSpan}::before,
-    &:indeterminate:disabled
-    + ${StyledSpan}::before {
-    border-color: transparent;
-    background-color: currentColor;
+    border-color: rgba(0, 0, 0, 0.3);
   }
 `
 
@@ -68,10 +64,9 @@ const StyledLabel = styled.label`
   z-index: 0;
   position: relative;
   display: inline-block;
-  color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.87);
-  font-family: 'Roboto', 'Segoe UI', BlinkMacSystemFont, system-ui,
-    -apple-system;
-  font-size: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: ${fonts.OpenSans};
+  font-size: ${fontSizes.medium};
   line-height: 1.5;
 
   &:hover > ${StyledInput} {
@@ -94,7 +89,7 @@ const StyledSpan = styled.span`
     box-sizing: border-box;
     margin: 3px 11px 3px 1px;
     border: solid 2px; /* Safari */
-    border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+    border-color: rgba(0, 0, 0, 0.6);
     border-radius: 2px;
     width: 18px;
     height: 18px;
@@ -118,8 +113,8 @@ const StyledSpan = styled.span`
 
   ${StyledInput}:checked + &::before,
   ${StyledInput}:indeterminate + &::before {
-    border-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
-    background-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+    border-color: ${colors.primary};
+    background-color: ${colors.primary};
   }
 
   ${StyledInput}:checked + &::after,

@@ -65,25 +65,17 @@ const ToggleLabel = styled.label`
 
 class Toggle extends React.PureComponent {
   static defaultProps = {
-    value: false,
+    checked: false,
   }
 
   static propTypes = {
-    value: PropTypes.bool,
+    checked: PropTypes.bool,
   }
 
   render() {
-    const otherProps = {}
-
-    if (!this.props.onChange) {
-      otherProps.defaultChecked = this.props.value
-    } else {
-      otherProps.checked = this.props.value
-    }
-
     return (
       <ToggleContainer>
-        <ToggleInput type="checkbox" {...this.props} {...otherProps} />
+        <ToggleInput type="checkbox" {...this.props} />
         <ToggleLabel htmlFor={this.props.id} />
       </ToggleContainer>
     )
