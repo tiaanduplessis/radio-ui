@@ -1,0 +1,14 @@
+{
+  "name": "@lessondesk/schoolbus-docs",
+  "scripts": {
+    "dev": "docz dev",
+    "build": "docz build"
+  },
+  "dependencies": {
+    "@lessondesk/schoolbus": "^0.1.1"
+  },
+  "devDependencies": {
+    "docz": "^1.2.0",
+    "docz-theme-default": "^1.2.0"
+  }
+}
