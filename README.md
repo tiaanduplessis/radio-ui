@@ -4,11 +4,9 @@
 
 > Lesson Desk Design System
 
-## Install
+## About
 
-```sh
-npm install @lessondesk/schoolbus
-```
+School Bus is a Design System which provides developers with the easiest possible way of building [Lesson Desk](https://www.lessondesk.com/)’s products.
 
 ## Motivation
 
@@ -20,6 +18,24 @@ In order to create a great experience for our users, the design system is intent
 - Speed up design and development velocity.
 - Improve overall quality of the codebase.
 - Provide a base set of components that can be reused in many contexts.
+
+## Install
+
+The following peer dependencies are required:
+
+- [React](https://www.npmjs.com/package/react)
+- [React DOM](https://www.npmjs.com/package/react-dom)
+- [Formik](https://www.npmjs.com/package/formik)
+- [PropTypes](https://www.npmjs.com/package/prop-types)
+- [Styled Components](https://www.npmjs.com/package/styled-components)
+
+Afterwards, you can install the library:
+
+```sh
+npm install @lessondesk/schoolbus
+# OR
+yarn add @lessondesk/schoolbus
+```
 
 ## Contributing
 

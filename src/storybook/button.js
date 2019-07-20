@@ -2,7 +2,14 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { Button } from '../'
 
+import ButtonReadme from '../docs/button.md'
+
 storiesOf('Button', module)
+  .addParameters({
+    readme: {
+      sidebar: ButtonReadme,
+    },
+  })
   .add('Variants', () => (
     <>
       <Button>Default</Button>

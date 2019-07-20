@@ -1,10 +1,3 @@
----
-name: Card
----
-
-import { Playground, Props } from 'docz'
-import { Card } from '@lessondesk/schoolbus'
-
 # Card
 
 The card component provides a flexible and extensible content container with multiple variants and options.
@@ -15,15 +8,3 @@ The card component provides a flexible and extensible content container with mul
 |---|---|---|---|
 | title | String | Title of the card. | "" |
 | description | String | Description of the card. | "" |
-
-## Usage
-
-<Playground>
-  <Card title="Example">
-    content
-  </Card>
-
-  <Card title="Example" description="This is a example description">
-      content
-    </Card>
-</Playground>

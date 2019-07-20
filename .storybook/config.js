@@ -1,8 +1,8 @@
 import React from 'react'
 import { configure, addDecorator } from '@storybook/react'
-import { withA11y } from '@storybook/addon-a11y';
-import { withKnobs } from '@storybook/addon-knobs';
-
+import { withA11y } from '@storybook/addon-a11y'
+import { withKnobs } from '@storybook/addon-knobs'
+import { addReadme } from 'storybook-readme'
 
 import { ThemeProvider, Box, Normalize } from '../src'
 
@@ -17,6 +17,7 @@ addDecorator(story => (
 
 addDecorator(withA11y)
 addDecorator(withKnobs)
+addDecorator(addReadme)
 
 const req = require.context('../src/storybook', true, /[\w\d\s]+\.js$/)
 
