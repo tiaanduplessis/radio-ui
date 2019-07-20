@@ -60,22 +60,22 @@ storiesOf('Box', module)
   ))
   .add('Directional margin', () => (
     <Box p={3}>
-      <Box mt={3} color="white" bg="blue">
+      <Box mt={3} color="white" bg="primary">
         Margin Top
       </Box>
-      <Box mr={3} color="white" bg="blue">
+      <Box mr={3} color="white" bg="primary">
         Margin Right
       </Box>
-      <Box mb={3} color="white" bg="blue">
+      <Box mb={3} color="white" bg="primary">
         Margin Bottom
       </Box>
-      <Box ml={3} color="white" bg="blue">
+      <Box ml={3} color="white" bg="primary">
         Margin Left
       </Box>
-      <Box mx={3} color="white" bg="blue">
+      <Box mx={3} color="white" bg="primary">
         Margin X-Axis
       </Box>
-      <Box my={3} color="white" bg="blue">
+      <Box my={3} color="white" bg="primary">
         Margin Y-Axis
       </Box>
     </Box>

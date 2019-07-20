@@ -41,9 +41,21 @@ export const colors = {
   gray: ['#f4f3f4', '#dfdfdf', '#d0d0d0', '#777879', '#80g8080', '#47494B'],
   black: '#333',
   transparent: 'transparent',
-  blue: '#00abeb',
+  blue: [
+    '#80dcff',
+    '#4dceff',
+    '#00abeb',
+    '#0082b3',
+    '#005d80'
+  ],
   green: '#37b049',
-  red: '#ed7470',
+  red: [
+    '#f6bdbb',
+    '#ed7470',
+    '#e53933',
+    '#9f1814',
+    '#71110e'
+  ],
   yellow: '#f8b31c',
   orange: ['#fff8eb', '#ffa400'],
 }
@@ -158,7 +170,7 @@ const buttons = {
   },
   danger: {
     color: colors.white,
-    backgroundColor: colors.red,
+    backgroundColor: colors.red[1],
     boxShadow: shadows[2],
     fontWeight: fontWeights[5],
   },

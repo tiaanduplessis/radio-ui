@@ -88,7 +88,7 @@ const StyledAlertText = styled.span.attrs({
   right: 0;
   font-size: ${props => props.theme.fontSizes.xsmall};
   font-style: italic;
-  color: ${props => props.theme.colors.red};
+  color: ${props => props.theme.colors.red[1]};
   font-weight: ${props => props.theme.fontWeights.bold};
 `
 
