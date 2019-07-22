@@ -1,108 +1,18 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { layout, space } from 'styled-system'
-
 import { connect } from 'formik'
 
+import StyledInput from './styled-input'
+import InputWrapper from './input-wrapper'
 import theme from './theme'
+import defaultPropTypes from '../config/prop-types'
+import createDefaultInputProps from '../utils/create-input-defaults'
 
 import { errorForField } from './utils'
 
-function createDefaultInputProps({ formik, name, onBlur, value, onChange }) {
-  const hasFormik = formik && Object.values(formik).length > 0
-  return {
-    onBlur: hasFormik ? formik.handleBlur : onBlur,
-    value: hasFormik ? formik.values[name] : value,
-    onChange: hasFormik
-      ? ({ target }) => formik.setFieldValue(name, target.value)
-      : onChange,
-    alertText: hasFormik
-      ? errorForField(formik.errors, formik.touched, name)
-      : '',
-  }
-}
-
-const StyledLabel = styled.label`
-  display: block;
-  font-family: inherit;
-  color: ${props => props.theme.colors.gray.xxdark};
-  font-weight: ${props => props.theme.fontWeights.bold};
-  font-size: ${props => props.theme.fontSizes.xsmall};
-  margin-bottom: 0.4em;
-`
-
-StyledLabel.displayName = 'InputLabel'
-
-const StyledInputContainer = styled.div`
-  min-width: 300px;
-  width: 45%;
-  margin-bottom: 1.5em;
-  position: relative;
-  @media (max-width: 990px) {
-    width: 100%;
-  }
-
-  ${space}
-  ${layout}
-`
-
-StyledInputContainer.displayName = 'InputContainer'
-
-const StyledInput = styled.input`
-  background-color: ${props =>
-    props.disabled
-      ? props.theme.colors.transparent
-      : props.theme.colors.gray.xlight};
-  border: 1px solid
-    ${props =>
-    props.disabled
-      ? props.theme.colors.gray.default
-      : props.theme.colors.gray.xlight};
-  font-family: inherit;
-  font-size: ${props => props.theme.fontSizes.small};
-  padding: 0.5em 1em;
-  height: 35px;
-  border-radius: ${props => props.theme.radii.small};
-  width: 100%;
-
-  ::placeholder {
-    color: ${props => props.theme.colors.gray.xxdark};
-  }
-
-  ::-webkit-inner-spin-button,
-  ::-webkit-outer-spin-button {
-    /* stylelint-disable-next-line property-no-vendor-prefix */
-    -webkit-appearance: none;
-    margin: 0;
-  }
-`
-
-StyledInput.displayName = 'Input'
-
-const StyledAlertText = styled.span.attrs({
-  role: 'alert',
-})`
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: ${props => props.theme.fontSizes.xsmall};
-  font-style: italic;
-  color: ${props => props.theme.colors.red[1]};
-  font-weight: ${props => props.theme.fontWeights.bold};
-`
-
 class Input extends React.PureComponent {
-  static propTypes = {
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    label: PropTypes.string,
-    placeholder: PropTypes.string,
-    alertText: PropTypes.string,
-    inputStyle: PropTypes.object,
-    ...layout.propTypes,
-    ...space.propTypes,
-  }
+  static propTypes = defaultPropTypes
 
   static defaultProps = {
     label: '',
@@ -112,12 +22,6 @@ class Input extends React.PureComponent {
 
   render() {
     const {
-      id,
-      label,
-      placeholder,
-      inputStyle,
-      alertStyle,
-      name,
       formik,
       alertText: alertTextOverride,
       disabled,
@@ -128,6 +32,14 @@ class Input extends React.PureComponent {
       ...otherProps
     } = this.props
 
+    const {
+      id,
+      label,
+      placeholder,
+      inputStyle,
+      name
+    } = otherProps
+
     const { alertText, ...inputDefaults } = createDefaultInputProps({
       value,
       onBlur,
@@ -137,17 +49,7 @@ class Input extends React.PureComponent {
     })
 
     return (
-      <StyledInputContainer theme={theme} {...otherProps}>
-        {!!label.length && (
-          <StyledLabel
-            theme={theme}
-            htmlFor={id}
-            required={otherProps.required}
-          >
-            {label}
-          </StyledLabel>
-        )}
-
+      <InputWrapper alertText={alertTextOverride || alertText} {...otherProps}>
         <StyledInput
           theme={theme}
           style={inputStyle}
@@ -158,13 +60,7 @@ class Input extends React.PureComponent {
           name={name}
           {...inputDefaults}
         />
-        {alertText ||
-          (alertTextOverride && (
-            <StyledAlertText style={alertStyle}>
-              {alertText || alertTextOverride}
-            </StyledAlertText>
-          ))}
-      </StyledInputContainer>
+      </InputWrapper>
     )
   }
 }
