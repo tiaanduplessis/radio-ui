@@ -28,12 +28,12 @@ var fontSizeAliases = ['xxxsmall', 'xxsmall', 'xsmall', 'small', 'medium', 'larg
 addAliases(fontSizes, fontSizeAliases);
 var colors = {
   white: '#fff',
-  gray: ['#f4f3f4', '#dfdfdf', '#d0d0d0', '#777879', '#80g8080', '#47494B'],
+  gray: ['#f4f3f4', '#dfdfdf', '#d0d0d0', '#777879', '#808080', '#47494B'],
   black: '#333',
   transparent: 'transparent',
-  blue: '#00abeb',
+  blue: ['#80dcff', '#4dceff', '#00abeb', '#0082b3', '#005d80'],
   green: '#37b049',
-  red: '#ed7470',
+  red: ['#f6bdbb', '#ed7470', '#e53933', '#9f1814', '#71110e'],
   yellow: '#f8b31c',
   orange: ['#fff8eb', '#ffa400']
 };
@@ -96,7 +96,7 @@ var buttons = {
   },
   danger: {
     color: colors.white,
-    backgroundColor: colors.red,
+    backgroundColor: colors.red[1],
     boxShadow: shadows[2],
     fontWeight: fontWeights[5]
   }
@@ -1780,7 +1780,7 @@ var StyledAlertText = styled__default.span.attrs({
 })(_templateObject4$1(), function (props) {
   return props.theme.fontSizes.xsmall;
 }, function (props) {
-  return props.theme.colors.red;
+  return props.theme.colors.red[1];
 }, function (props) {
   return props.theme.fontWeights.bold;
 });
@@ -1994,12 +1994,52 @@ BackgroundImage.propTypes = _objectSpread$9({
 }, styledSystem.space.propTypes, {}, styledSystem.background.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.flexbox.propTypes);
 BackgroundImage.displayName = 'BackgroundImage';
 
+function _templateObject$d() {
+  var data = taggedTemplateLiteral(["\n  text-align: center;\n  margin: 2em 0 0;\n  color: ", ";\n  font-size: ", ";\n  font-family: ", ";\n  font-weight: ", ";\n"]);
+
+  _templateObject$d = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var CopyrightText = styled__default.p(_templateObject$d(), function (props) {
+  return props.theme.colors.gray[3];
+}, function (props) {
+  return props.theme.fontSizes.xsmall;
+}, function (props) {
+  return props.theme.fonts[0];
+}, function (props) {
+  return props.theme.fontWeights.bold;
+});
+CopyrightText.displayName = 'CopyrightText';
+
+var Footer = function Footer(_ref) {
+  var copyright = _ref.copyright,
+      theme = _ref.theme,
+      children = _ref.children,
+      props = objectWithoutProperties(_ref, ["copyright", "theme", "children"]);
+
+  return React.createElement(Box, _extends_1({
+    theme: theme
+  }, props), children, React.createElement(CopyrightText, {
+    theme: theme
+  }, copyright));
+};
+
+Footer.defaultProps = {
+  copyright: '2019 Lesson Desk (Pty) Ltd. All rights reserved.',
+  theme: theme
+};
+Footer.displayName = 'Footer';
+
 exports.BackgroundImage = BackgroundImage;
 exports.Box = Box;
 exports.Button = Button;
 exports.Card = Card;
 exports.Checkbox = Checkbox;
 exports.Flex = Flex;
+exports.Footer = Footer;
 exports.Image = Image;
 exports.Input = input;
 exports.Normalize = Normalize;
