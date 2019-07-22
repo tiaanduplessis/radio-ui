@@ -4,10 +4,10 @@ import styled from 'styled-components'
 import { connect } from 'formik'
 
 import 'react-datepicker/dist/react-datepicker.css'
-// import './styles.css'
+import './styles.css'
 
-import InputWrapper from './input-wrapper'
-import createDefaultInputProps from '../utils/create-input-defaults'
+import InputWrapper from '../input-wrapper'
+import createDefaultInputProps from '../../utils/create-input-defaults'
 
 const StyledDatePicker = styled(DatePicker)`
   background-color: ${props =>
@@ -22,7 +22,7 @@ const StyledDatePicker = styled(DatePicker)`
   width: 100%;
 
   ::placeholder {
-    color: ${colors.grayDark};
+    color: ${props => props.theme.colors.gray.dark};
   }
 `
 
@@ -78,7 +78,7 @@ const DateInput = props => {
         disabled={disabled}
         name={name}
       />
-      <Icon name='calender_today' style={iconStyles} />
+      {/*<Icon name='calender_today' style={iconStyles} />*/}
     </InputWrapper>
   )
 }
