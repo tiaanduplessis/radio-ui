@@ -34,7 +34,7 @@ const iconStyles = {
 }
 
 function getDateString (value) {
-  return value.toDateString()
+  return value instanceof Date ? value.toDateString() : value
 }
 
 const DateInput = props => {
@@ -46,16 +46,19 @@ const DateInput = props => {
     value,
     onBlur,
     onChange,
+    placeholder,
+    inputProps,
     alertText: alertTextOverride,
+    dateFormatter = getDateString,
     ...otherProps
   } = props
 
   const {
-    id,
+    id = otherProps.name,
     label,
-    placeholder,
     inputStyle,
-    name
+    name,
+    required
   } = otherProps
 
   const { alertText, ...inputDefaults } = createDefaultInputProps({
@@ -64,19 +67,26 @@ const DateInput = props => {
     onChange,
     name,
     formik,
+    alertText: alertTextOverride
   })
+  const { hasFormik } = inputDefaults
+  const defaultChangeHandler = hasFormik && (value => formik.setFieldValue(name, value))
+  const defaultValue = hasFormik
 
   return (
     <InputWrapper alertText={alertTextOverride || alertText} {...otherProps}>
       <StyledDatePicker
         {...inputDefaults}
-        theme={theme}
+        onChange={onChange ? onChange : defaultChangeHandler}
+        value={dateFormatter(value || inputDefaults.value)}
+        
         style={inputStyle}
         aria-label={label}
-        aria-required={otherProps.required}
-        placeholder={placeholder || label}
+        aria-required={required}
+        placeholderText={placeholder || label}
         disabled={disabled}
         name={name}
+        {...inputProps}
       />
       {/*<Icon name='calender_today' style={iconStyles} />*/}
     </InputWrapper>

@@ -9,3 +9,28 @@
 .react-datepicker__day--keyboard-selected {
   background-color: #FFA400;
 }
+
+.react-datepicker__header {
+  background-color: #FFA400;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-names > * {
+    color: #FFF;
+}
+
+.react-datepicker__triangle::before {
+  border-bottom-color: #FFA400;
+}
+
+.react-datepicker__navigation--next {
+  border-left-color: #FFF;
+}
+
+.react-datepicker__navigation--previous {
+  border-right-color: #FFF;
+}
+
+.react-datepicker__day--outside-month {
+    color: #6f6f6f;
+}

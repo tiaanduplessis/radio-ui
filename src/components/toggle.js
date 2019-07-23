@@ -89,17 +89,16 @@ class Toggle extends React.PureComponent {
     } = this.props
 
     return (
-      <ToggleContainer theme={theme} {...otherProps}>
+      <ToggleContainer {...otherProps}>
         <ToggleInput
           style={inputStyle}
           checked={checked}
           onChange={onChange}
           onBlur={onBlur}
           id={id}
-          theme={theme}
           type="checkbox"
         />
-        <ToggleLabel theme={theme} htmlFor={this.props.id} />
+        <ToggleLabel  htmlFor={this.props.id} />
       </ToggleContainer>
     )
   }

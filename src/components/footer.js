@@ -17,9 +17,9 @@ const CopyrightText = styled.p`
 CopyrightText.displayName = 'CopyrightText'
 
 const Footer = ({ copyright, theme, children, ...props }) => (
-  <Box theme={theme} {...props}>
+  <Box  {...props}>
     {children}
-    <CopyrightText theme={theme}>{copyright}</CopyrightText>
+    <CopyrightText >{copyright}</CopyrightText>
   </Box>
 )
 

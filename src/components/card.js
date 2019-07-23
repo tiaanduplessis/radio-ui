@@ -81,18 +81,18 @@ class Card extends React.PureComponent {
     } = this.props
 
     return (
-      <StyledCard theme={theme} {...props}>
+      <StyledCard  {...props}>
         {typeof renderHeader === 'function' ? (
           renderHeader({ title, description })
         ) : (
-          <Card.Header theme={theme}>
-            <Card.Title theme={theme}>{title}</Card.Title>
+          <Card.Header>
+            <Card.Title>{title}</Card.Title>
             {description.length > 0 && (
-              <Card.Description theme={theme}>{description}</Card.Description>
+              <Card.Description>{description}</Card.Description>
             )}
           </Card.Header>
         )}
-        <Card.Content theme={theme}>{children}</Card.Content>
+        <Card.Content>{children}</Card.Content>
       </StyledCard>
     )
   }

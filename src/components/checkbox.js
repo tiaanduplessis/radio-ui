@@ -139,14 +139,13 @@ class Checkbox extends React.PureComponent {
   render() {
     const { children, theme, onChange, value, onBlur, ...props } = this.props
     return (
-      <StyledLabel theme={theme} {...props}>
+      <StyledLabel {...props}>
         <StyledInput
-          theme={theme}
           onChange={onChange}
           onBlur={onBlur}
           checked={value}
         />
-        <StyledSpan theme={theme}>{children}</StyledSpan>
+        <StyledSpan >{children}</StyledSpan>
       </StyledLabel>
     )
   }

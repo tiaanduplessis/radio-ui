@@ -9,8 +9,6 @@ import theme from './theme'
 import defaultPropTypes from '../config/prop-types'
 import createDefaultInputProps from '../utils/create-input-defaults'
 
-import { errorForField } from './utils'
-
 class Input extends React.PureComponent {
   static propTypes = defaultPropTypes
 
@@ -29,11 +27,12 @@ class Input extends React.PureComponent {
       value,
       onBlur,
       onChange,
+      inputProps,
       ...otherProps
     } = this.props
 
     const {
-      id,
+      id = otherProps.name,
       label,
       placeholder,
       inputStyle,
@@ -51,14 +50,14 @@ class Input extends React.PureComponent {
     return (
       <InputWrapper alertText={alertTextOverride || alertText} {...otherProps}>
         <StyledInput
-          theme={theme}
+          {...inputDefaults}
           style={inputStyle}
           aria-label={label}
           aria-required={otherProps.required}
           placeholder={placeholder || label}
           disabled={disabled}
           name={name}
-          {...inputDefaults}
+          {...inputProps}
         />
       </InputWrapper>
     )

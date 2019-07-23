@@ -57,9 +57,8 @@ const InputWrapper = ({
   ...otherProps
 }) => {
   return (
-    <StyledInputContainer style={containerStyle} theme={theme} {...otherProps}>
+    <StyledInputContainer style={containerStyle} {...otherProps}>
       <StyledLabel
-        theme={theme}
         htmlFor={id}
         required={required}
         style={labelStyle}
