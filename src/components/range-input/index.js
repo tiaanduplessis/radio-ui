@@ -54,7 +54,7 @@ const RangeInput = ({
       {...otherProps}
     >
       <Container>
-        <Value position={rangeValues[0] / max}>
+        <Value>
           {metric}
           {rangeValues[0]}
         </Value>
@@ -62,6 +62,7 @@ const RangeInput = ({
           {...inputDefaults}
           onChange={onChange || defaultOnChange}
           name={name}
+          id={id}
           pushable
           value={rangeValues}
           width={'70%'}
@@ -69,7 +70,7 @@ const RangeInput = ({
           max={max}
           {...inputProps}
         />
-        <Value position={rangeValues[1] / max}>
+        <Value>
           {metric}
           {rangeValues[1]}
         </Value>
