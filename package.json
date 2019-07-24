@@ -24,8 +24,7 @@
     "lint": "yarn lint:js && yarn lint:styles",
     "fmt": "prettier-eslint --write \"src/**/*.js\"",
     "build": "rollup --config",
-    "test": "jest",
-    "prepublish": "yarn build"
+    "test": "jest"
   },
   "files": [
     "dist"
@@ -87,7 +86,7 @@
     "url-loader": "^2.1.0"
   },
   "peerDependencies": {
-    "@lessondesk/material-icons": "^1.0.1",
+    "@lessondesk/material-icons": "^1.0.2",
     "formik": "^1.5.4",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
