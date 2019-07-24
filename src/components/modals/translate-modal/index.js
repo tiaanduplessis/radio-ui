@@ -45,9 +45,7 @@ class TranslateModal extends Component {
   }
 
   static getDerivedStateFromProps (props, state) {
-    console.log('will receive props', props)
     const { values: formikLanguageSets } = props
-    console.log('updated language sets', updateLanguageSets(formikLanguageSets, state))
     return formikLanguageSets ? updateLanguageSets(formikLanguageSets, state) : null
   }
 
@@ -70,7 +68,6 @@ class TranslateModal extends Component {
       languages
     } = this.props
     const { languageSets } = this.state
-    console.log('render sets', languageSets)
 
     return (
       <Container>

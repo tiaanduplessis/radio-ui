@@ -88,8 +88,6 @@ class TranslationInput extends Component {
       formik,
     })
 
-    console.log(formik.values[name])
-
     return (
       <InputWrapper alertText={alertTextOverride || alertText} {...otherProps}>
         <Container>

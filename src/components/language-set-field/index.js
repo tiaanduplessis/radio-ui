@@ -19,11 +19,9 @@ const LanguageSetField = ({
   onBlur,
   ...otherProps
 }) => {
-  console.log(languages, locale)
   const language = languages.find(
     ({ code }) => code === locale
   )
-  console.log(language)
 
   return (
     <Container id={containerId} {...otherProps}>
