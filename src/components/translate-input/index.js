@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 // import toast from 'just-toasty'
 import { connect } from 'formik'
+import { Bomb } from '@lessondesk/material-icons'
 
 import InputWrapper from '../input-wrapper'
 import StyledInput from '../styled-input'
@@ -87,6 +88,8 @@ class TranslationInput extends Component {
       formik,
     })
 
+    console.log(formik.values[name])
+
     return (
       <InputWrapper alertText={alertTextOverride || alertText} {...otherProps}>
         <Container>
@@ -100,7 +103,7 @@ class TranslationInput extends Component {
             {...inputProps}
           />
           <TranslateIconContainer onClick={this.toggleModal}>
-             {/* <Icon name='translate' /> TODO: Add back when @tiaan adds an icon */}
+             <Bomb />
           </TranslateIconContainer>
           <ModalWrapper isOpen={showModal} onRequestClose={this.toggleModal}>
             <TranslateModal

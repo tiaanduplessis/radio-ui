@@ -1595,6 +1595,11 @@
   resolved "https://registry.yarnpkg.com/@lessondesk/eslint-config/-/eslint-config-1.2.0.tgz#aa70ad52a9ecb3ebb5841030245bf0f7afe908da"
   integrity sha512-VCgeRe9VUzXgQ/DiXNNyxJ09UCCt+D9hauqN525CAKnc/FvQ6LkckFb6cNZ2O8q8w67wTF0IEZCzmktOwaup5A==
 
+"@lessondesk/material-icons@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@lessondesk/material-icons/-/material-icons-1.0.0.tgz#94901f1771831ac840b393bcaf2cdb63c01b5bc9"
+  integrity sha512-H0BsUl3MKNV7w8hlR9P8ymVRBHHfoQLqsKrMtZ4e44USYvwF1A1C2tnbByK8v/RImOy7Myxf9CunyOepYGbfWw==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"

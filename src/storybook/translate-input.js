@@ -23,7 +23,11 @@ storiesOf('Translate Input', module)
         languages={[
           {
             value: 'English',
-            locale: 'en-ZA',
+            code: 'en-ZA',
+          },
+          {
+            value: 'Afrikaans',
+            code: 'af'
           }
         ]}
       />}

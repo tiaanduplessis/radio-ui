@@ -11,6 +11,23 @@ import {
   Actions
 } from './styles'
 
+function updateLanguageSets (formikLanguageSets, state) {
+  const { languageSets: currentLanguageSets } = state
+  const newLanguageSets = formikLanguageSets.reduce((acc, set, i) => {
+    const currentSet = currentLanguageSets[i]
+
+    if (currentSet && currentSet.locale === set.locale) {
+      return acc.concat(currentSet)
+    }
+    return acc.concat(Object.assign({}, set))
+  }, [])
+
+  return {
+    ...state,
+    languageSets: newLanguageSets
+  }
+}
+
 class TranslateModal extends Component {
   static defaultProps = {
     values: [],
@@ -27,27 +44,11 @@ class TranslateModal extends Component {
     this.setState({ languageSets: clonedObjects })
   }
 
-  componentWillReceiveProps (props) {
+  static getDerivedStateFromProps (props, state) {
+    console.log('will receive props', props)
     const { values: formikLanguageSets } = props
-    if (formikLanguageSets) {
-      this.updateLanguageSets(formikLanguageSets)
-    }
-  }
-
-  updateLanguageSets (formikLanguageSets) {
-    const { languageSets: currentLanguageSets } = this.state
-    const newLanguageSets = formikLanguageSets.reduce((acc, set, i) => {
-      const currentSet = currentLanguageSets[i]
-
-      if (currentSet && currentSet.locale === set.locale) {
-        return acc.concat(currentSet)
-      }
-      return acc.concat(Object.assign({}, set))
-    }, [])
-
-    this.setState({
-      languageSets: newLanguageSets
-    })
+    console.log('updated language sets', updateLanguageSets(formikLanguageSets, state))
+    return formikLanguageSets ? updateLanguageSets(formikLanguageSets, state) : null
   }
 
   handleValueChange = (i, value) => {
@@ -69,6 +70,7 @@ class TranslateModal extends Component {
       languages
     } = this.props
     const { languageSets } = this.state
+    console.log('render sets', languageSets)
 
     return (
       <Container>
@@ -92,8 +94,8 @@ class TranslateModal extends Component {
           </EditTextContainer>
 
           <Button
-            primary
-            raised
+            variant="primary"
+            m={2}
             onClick={() => onSubmit(languageSets)}
             disabled={disabled}
           >
