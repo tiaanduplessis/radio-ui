@@ -3,9 +3,11 @@ import { configure, addDecorator } from '@storybook/react'
 import { withA11y } from '@storybook/addon-a11y'
 import { withKnobs } from '@storybook/addon-knobs'
 import { addReadme } from 'storybook-readme'
+import { jsxDecorator } from 'storybook-addon-jsx'
 
 import { ThemeProvider, Box, Normalize } from '../src'
 
+addDecorator(jsxDecorator)
 addDecorator(story => (
   <ThemeProvider>
     <>
