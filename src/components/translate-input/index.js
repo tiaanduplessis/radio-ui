@@ -9,6 +9,7 @@ import TranslateModal from '../modals/translate-modal'
 import ModalWrapper from '../modals/modal-wrapper'
 
 import createDefaultInputProps from '../../utils/create-input-defaults'
+import theme from '../theme.js'
 
 import { Container, TranslateIconContainer } from './styles'
 
@@ -101,7 +102,7 @@ class TranslationInput extends Component {
             {...inputProps}
           />
           <TranslateIconContainer onClick={this.toggleModal}>
-             <Translate />
+             <Translate size={theme.fontSizes.normal} color={theme.colors.gray.default}/>
           </TranslateIconContainer>
           <ModalWrapper isOpen={showModal} onRequestClose={this.toggleModal}>
             <TranslateModal

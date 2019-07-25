@@ -3,8 +3,7 @@ import React, { Component } from 'react'
 import { ContainerAlt, InputAlt } from './styles'
 import { SearchWeb } from '@lessondesk/material-icons'
 
-// TODO: Please note I created an alternative (..Alt) expanding search input to match designs better
-// If this breaks functionality somewhere else remove the Alt from each tag name
+import theme from '../theme.js'
 
 const IconAltStyling = {
   position: 'absolute',
@@ -52,6 +51,7 @@ class ExpandingSearchInput extends Component {
           onClick={this.toggleExpanded}
           style={IconAltStyling}
           bg={'white'}
+          size={theme.fontSizes.normal}
         />
       </ContainerAlt>
     )
