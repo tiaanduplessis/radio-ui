@@ -2,6 +2,7 @@ const resolve = require('rollup-plugin-node-resolve')
 const babel = require('rollup-plugin-babel')
 const commonjs = require('rollup-plugin-commonjs')
 const fileSize = require('rollup-plugin-filesize')
+const css = require('rollup-plugin-css-only')
 
 module.exports = {
   input: 'src/index.js',
@@ -16,15 +17,20 @@ module.exports = {
       exclude: 'node_modules/**',
       runtimeHelpers: true
     }),
+    css({ output: 'dist/index.css' }),
     commonjs(),
-    resolve(),
+    resolve({
+      dedupe: ['react', 'react-dom', 'styled-system', 'styled-components'],
+    }),
     fileSize()
   ],
   external: [
-    'styled-components',
-    'react',
+    "@lessondesk/material-icons",
+    "formik",
+    "prop-types",
+    "react",
     'react-dom',
-    'prop-types',
     'styled-system',
+    "styled-components"
   ]
 }

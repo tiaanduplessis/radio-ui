@@ -79,7 +79,7 @@ const DateInput = props => {
         {...inputDefaults}
         onChange={onChange ? onChange : defaultChangeHandler}
         value={dateFormatter(value || inputDefaults.value)}
-        
+
         style={inputStyle}
         aria-label={label}
         aria-required={required}
