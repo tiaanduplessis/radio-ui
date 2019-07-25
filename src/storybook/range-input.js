@@ -6,7 +6,7 @@ import { Formik } from 'formik'
 storiesOf('Input | Range Input', module)
   .add('Default', () => (
     <RangeInput
-      label='Price (per learner)'
+      label='Price'
       name='price'
       metric='R'
     />
@@ -18,7 +18,7 @@ storiesOf('Input | Range Input', module)
       }}
     >
       <RangeInput
-        label='Price (per learner)'
+        label='Price'
         name='price'
         metric='R'
       />
