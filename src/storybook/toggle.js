@@ -4,7 +4,7 @@ import { Toggle } from '../'
 
 import toggleReadme from '../docs/toggle.md'
 
-storiesOf('Toggle', module)
+storiesOf('Input | Toggle', module)
   .addParameters({
     readme: {
       sidebar: toggleReadme,

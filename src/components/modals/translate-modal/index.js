@@ -63,7 +63,6 @@ class TranslateModal extends Component {
       onSubmit,
       languagesContainer,
       onLanguagesChange,
-      type,
       disabled,
       languages
     } = this.props
@@ -86,7 +85,7 @@ class TranslateModal extends Component {
           <EditTextContainer>
             <EditButton onClick={onLanguagesChange}>Edit</EditButton>
             <EditText>
-              &nbsp; {`language preferences for this ${type}.`}
+              &nbsp; {`language preferences.`}
             </EditText>
           </EditTextContainer>
 

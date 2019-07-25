@@ -4,7 +4,7 @@ import { Checkbox } from '../'
 
 import checkboxReadme from '../docs/checkbox.md'
 
-storiesOf('Checkbox', module)
+storiesOf('Input | Checkbox', module)
   .addParameters({
     readme: {
       sidebar: checkboxReadme,

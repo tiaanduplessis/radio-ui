@@ -4,7 +4,7 @@ import { Button } from '../'
 
 import ButtonReadme from '../docs/button.md'
 
-storiesOf('Button', module)
+storiesOf('Input | Button', module)
   .addParameters({
     readme: {
       sidebar: ButtonReadme,

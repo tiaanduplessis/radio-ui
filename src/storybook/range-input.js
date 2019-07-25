@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { RangeInput } from '../'
 import { Formik } from 'formik'
 
-storiesOf('Range Input', module)
+storiesOf('Input | Range Input', module)
   .add('Default', () => (
     <RangeInput
       label='Price (per learner)'

@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { TranslateInput } from '../'
 import { Formik } from 'formik'
 
-storiesOf('Translate Input', module)
+storiesOf('Input | Translate Input', module)
   .add('With Formik', () => (
     <Formik
       initialValues={{

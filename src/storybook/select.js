@@ -8,7 +8,7 @@ const options = [
   {label: 'option 2', value: '2'},
 ]
 
-storiesOf('Select', module)
+storiesOf('Input | Select', module)
   .add('Empty', () => (
     <Select name='1' placeholder='Empty' />
   ))

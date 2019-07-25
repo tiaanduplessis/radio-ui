@@ -8,7 +8,7 @@ const options = [
   {label: 'option 2', value: '2'},
 ]
 
-storiesOf('Type Input', module)
+storiesOf('Input | Type Input', module)
   .add('Default', () => <TypeInput options={options} label='Label' name='2' />)
   .add('With Formik', () =>
     <Formik>
