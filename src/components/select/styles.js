@@ -1,13 +1,11 @@
 import styled from 'styled-components'
 
-import fonts from '../../../config/fonts'
 
 export const Label = styled.label`
   display: block;
-  font-weight: ${fonts.weights.bold};
-  font-family: ${fonts.primaryFamily};
-  color: #525252;
-  font-size: ${fonts.sizes.xsmall};
+  font-weight: ${props => props.theme.fontWeights.bold};
+  color: ${props => props.theme.colors.gray.xxxdark};
+  font-size: ${props => props.theme.fontSizes.xsmall};
   margin-bottom: 0.4em;
 `
 

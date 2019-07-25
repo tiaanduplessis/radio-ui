@@ -47,7 +47,7 @@ const TelInput = props => {
   const defaultValue = hasFormik && formik.values[name]
 
   return (
-    <InputWrapper alertText={alertTextOverride || alertText} {...otherProps}>
+    <InputWrapper alertText={alertText} {...otherProps}>
       <ReactPhoneInput
         {...inputDefaults}
         onChange={onChange ? onChange : defaultOnChange}

@@ -17,8 +17,8 @@ StyledLabel.displayName = 'InputLabel'
 
 
 const StyledInputContainer = styled.div`
-  min-width: 300px;
-  width: 45%;
+  min-width: ${({ minWidth }) => minWidth || '300px'};
+  width: ${({ width }) => width || '45%'};
   margin-bottom: 1.5em;
   position: relative;
   @media (max-width: 990px) {

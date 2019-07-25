@@ -3,13 +3,10 @@ import ReactSelect from 'react-select'
 import { connect } from 'formik'
 
 import { Label, InputContainer } from './styles'
-import S from '../../../styled'
+import InputWrapper from '../input-wrapper'
 
-import createDefaultInputProperties from '../../../utils/create-default-input-properties'
-
-import theme from '../../../config/theme'
-
-const { colors, fonts, fontSizes } = theme
+import createDefaultInputProps from '../../utils/create-input-defaults'
+import theme from '../theme'
 
 const styleOverride = ({ fontSize, width, rounded, isWhite, bordered }) => {
   return {
@@ -19,47 +16,47 @@ const styleOverride = ({ fontSize, width, rounded, isWhite, bordered }) => {
     control: (provided, state) => {
       // TODO: use variant instead of isWhite
       const backgroundColor =
-        state.isDisabled || isWhite ? colors.white : colors.grayExtraLight
+        state.isDisabled || isWhite ? theme.colors.white : theme.colors.gray.xlight
 
       return {
         ...provided,
         backgroundColor: backgroundColor,
-        border: state.isDisabled ? 'border: 1px solid #E8E8E8' : 'none',
-        fontFamily: fonts.Montserrat,
-        fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
+        border: state.isDisabled ? `border: 1px solid ${theme.colors.gray.xlight}` : 'none',
+        fontFamily: theme.fonts.Montserrat,
+        fontSize: fontSize ? theme.fontSizes[fontSize] : theme.fontSizes.small,
         borderRadius: rounded ? '2.5em' : '0.2em',
         width: width || '100%',
         boxShadow: rounded ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
         padding: '0 0.8em',
         overflow: 'hidden',
         ...(bordered && {
-          border: `solid 1px ${colors.lightGray}`
+          border: `solid 1px ${theme.colors.gray.light}`
         })
       }
     },
 
     placeholder: (provided, state) => ({
-      color: '#aaa'
+      color: theme.colors.gray.default
     }),
     singleValue: () => ({
-      color: '#545454'
+      color: theme.colors.gray.xxdark
     }),
     indicatorsContainer: (provided, state) => ({
       display: state.isDisabled ? 'none' : 'flex'
     }),
     option: (defaultStyles, { isSelected, isFocused }) => {
-      let color = colors.white
-      if (isFocused) color = colors.grayExtraLight
-      if (isSelected) color = '#e1e1e1'
+      let color = theme.colors.white
+      if (isFocused) color = theme.colors.xlight
+      if (isSelected) color = theme.colors.gray.light
 
       return {
         ...defaultStyles,
-        fontSize: fontSizes.small,
-        color: colors.black,
+        fontSize: theme.fontSizes.small,
+        color: theme.colors.black,
         backgroundColor: color,
         ':active': {
           ...defaultStyles[':active'],
-          backgroundColor: colors.grayExtraLight
+          backgroundColor:theme.colors.gray.xlight
         }
       }
     }
@@ -68,41 +65,48 @@ const styleOverride = ({ fontSize, width, rounded, isWhite, bordered }) => {
 
 const Select = ({
   containerStyle,
-  id,
-  label,
   rounded,
-  noLabel,
   isWhite,
-  name,
   disabled,
   disableEmpty,
   options,
   formik,
+  value,
+  onBlur,
+  onChange,
   placeholder,
-  width,
-  minWidth,
   fontSize,
   bordered,
   multiple,
-  errorText: errorTextOverride,
+  alertText: alertTextOverride,
   ...otherProps
 }) => {
-  const { errorText, ...inputDefaults } = createDefaultInputProperties({
+  const {
+    id = otherProps.name,
+    label,
+    inputStyle,
+    name
+  } = otherProps
+
+  const { alertText, hasFormik, ...inputDefaults } = createDefaultInputProps({
+    alertText: alertTextOverride,
+    value,
+    onBlur,
+    onChange,
     name,
-    formik
+    formik,
   })
 
+  const defaultOnChange = hasFormik && (value => formik.setFieldValue(name, value))
+  const defaultValue = hasFormik && formik.values[name]
+
   return (
-    <InputContainer
-      width={width}
-      minWidth={minWidth}
-      style={containerStyle}
-      disabled={disabled}
-    >
-      {noLabel ? '' : <Label htmlFor={id}>{label}</Label>}
+    <InputWrapper alertText={alertText} {...otherProps}>
       <ReactSelect
         {...inputDefaults}
         {...otherProps}
+        onChange={onChange || defaultOnChange}
+        value={value}
         placeholder={placeholder || label}
         styles={styleOverride({ rounded, isWhite, fontSize, bordered })}
         name={name}
@@ -110,8 +114,7 @@ const Select = ({
         isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
         isMulti={multiple}
       />
-      {errorText && <S.ErrorText>{errorTextOverride || errorText}</S.ErrorText>}
-    </InputContainer>
+    </InputWrapper>
   )
 }
 

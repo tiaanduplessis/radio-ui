@@ -9,9 +9,6 @@ import InputWrapper from '../input-wrapper'
 import { Container, Value } from './styles'
 
 const RangeInput = ({
-  width,
-  minWidth,
-  containerStyle,
   min = 0,
   max = 100,
   value,
@@ -45,14 +42,7 @@ const RangeInput = ({
   const defaultOnChange = hasFormik && (value => formik.setFieldValue(name, value))
 
   return (
-    <InputWrapper
-      label={label}
-      width={width}
-      minWidth={minWidth}
-      containerStyle={containerStyle}
-      errorText={alertText}
-      {...otherProps}
-    >
+    <InputWrapper alertText={alertText} {...otherProps}>
       <Container>
         <Value>
           {metric}
