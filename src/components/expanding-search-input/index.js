@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 
 import { ContainerAlt, InputAlt } from './styles'
-import { SearchWeb } from '@lessondesk/material-icons'
+import { Magnify } from '@lessondesk/material-icons'
 
 import theme from '../theme.js'
 
 const IconAltStyling = {
   position: 'absolute',
-  right: '15px',
-  height: '40px',
-  width: '40px',
-  borderRadius: '100%'
+  right: '14px',
+  borderRadius: '100%',
+  padding: '9px',
+  fontSize: '32px',
+  boxShadow: '0px 0px 16px 0px rgba(0, 0, 0, 0.09)'
 }
 
 class ExpandingSearchInput extends Component {
@@ -47,11 +48,12 @@ class ExpandingSearchInput extends Component {
           }}
           {...this.props}
         />
-        <SearchWeb
+        <Magnify
           onClick={this.toggleExpanded}
           style={IconAltStyling}
           bg={'white'}
-          size={theme.fontSizes.normal}
+          size={theme.fontSizes.large}
+          color={theme.colors.gray.dark}
         />
       </ContainerAlt>
     )

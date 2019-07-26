@@ -13,12 +13,9 @@ storiesOf('Input | Select', module)
     <Select name='1' placeholder='Empty' />
   ))
   .add('With options', () => <Select options={options} label='Label' name='2' />)
-  .add('White', () => (
-      <Select isWhite options={options} label='Label' name='2' />
-  ))
   .add('White + Bordered', () => (
-      <Select bordered isWhite options={options} label='Label' name='2' />
+      <Select bordered isWhite options={options} />
   ))
   .add('White + Rounded', () => (
-      <Select rounded isWhite options={options} label='Label' name='2' />
+      <Select rounded isWhite options={options} />
   ))

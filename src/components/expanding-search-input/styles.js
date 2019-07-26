@@ -17,7 +17,6 @@ export const ContainerAlt = styled.div`
 export const Input = styled.input`
   border: none;
   background: transparent;
-  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.09);
   border-radius: 10em;
   padding: 0.6em;
   margin-right: 1em;
@@ -33,7 +32,6 @@ export const InputAlt = styled.input`
   border: none;
   background: #f0f0f0;
   color: #999;
-  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.09);
   border-radius: 10em;
   padding: 0.6em 1em;
   margin-right: 1em;
