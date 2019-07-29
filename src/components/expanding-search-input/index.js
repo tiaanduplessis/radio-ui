@@ -11,6 +11,9 @@ const IconAltStyling = {
   borderRadius: '100%',
   padding: '9px',
   fontSize: '32px',
+}
+
+const ExpandedIconStyles = {
   boxShadow: '0px 0px 16px 0px rgba(0, 0, 0, 0.09)'
 }
 
@@ -50,7 +53,10 @@ class ExpandingSearchInput extends Component {
         />
         <Magnify
           onClick={this.toggleExpanded}
-          style={IconAltStyling}
+          style={{
+            ...IconAltStyling,
+            ...(expanded && ExpandedIconStyles)
+          }}
           bg={'white'}
           size={theme.fontSizes.large}
           color={theme.colors.gray.dark}
