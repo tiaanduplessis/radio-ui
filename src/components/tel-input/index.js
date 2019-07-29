@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'formik'
+import styled from 'styled-components'
 import ReactPhoneInput from 'react-phone-input-2'
 
 import 'react-phone-input-2/dist/style.css'
