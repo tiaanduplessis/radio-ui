@@ -1399,7 +1399,7 @@ function ownKeys$7(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$7(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$7(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$7(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var defaultPropTypes = _objectSpread$7({
-  id: PropTypes$2.string.isRequired,
+  id: PropTypes$2.string,
   name: PropTypes$2.string.isRequired,
   label: PropTypes$2.string,
   placeholder: PropTypes$2.string,
