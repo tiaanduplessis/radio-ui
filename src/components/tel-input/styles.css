@@ -1,13 +1,13 @@
 .react-tel-input > input.form-control {
-  background-color: #f4f3f4;
-  border: none;
-  height: 38px;
-  width: 100%;
+  background-color: #f4f3f4 !important;
+  border: none !important;
+  height: 38px !important;
+  width: 100% !important;
 }
 
 .react-tel-input > input.form-control:disabled {
-  background-color: #fff;
-  border: 1px solid #E8E8E8;
+  background-color: #fff !important;
+  border: 1px solid #E8E8E8 !important;
 }
 
 .react-tel-input .flag-dropdown.open-dropdown .selected-flag,
@@ -15,11 +15,11 @@
 .react-tel-input .flag-dropdown.open-dropdown,
 .react-tel-input > .flag-dropdown,
 .react-tel-input .selected-flag {
-  background-color: transparent;
-  border: none;
-  z-index: inherit;
+  background-color: transparent !important;
+  border: none !important;
+  z-index: inherit !important;
 }
 
 .react-tel-input .selected-flag {
-  padding-left: 12px;
+  padding-left: 12px !important;
 }
