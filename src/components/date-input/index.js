@@ -1,6 +1,7 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
 import styled from 'styled-components'
+import {CalendarToday} from '@lessondesk/material-icons'
 import { connect } from 'formik'
 
 import 'react-datepicker/dist/react-datepicker.css'
@@ -79,7 +80,6 @@ const DateInput = props => {
         {...inputDefaults}
         onChange={onChange ? onChange : defaultChangeHandler}
         value={dateFormatter(value || inputDefaults.value)}
-
         style={inputStyle}
         aria-label={label}
         aria-required={required}
@@ -88,7 +88,7 @@ const DateInput = props => {
         name={name}
         {...inputProps}
       />
-      {/*<Icon name='calender_today' style={iconStyles} />*/}
+      <CalendarToday style={iconStyles} />
     </InputWrapper>
   )
 }

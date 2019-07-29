@@ -2,15 +2,15 @@
 
 [![lessondesk-code-style](https://img.shields.io/badge/code%20style-lessondesk-ffa400.svg?style=flat-square)](https://github.com/lessondesk/eslint-config)
 
-> Lesson Desk Design System
+> Lesson Desk Component Library
 
 ## About
 
-School Bus is a Design System which provides developers with the easiest possible way of building [Lesson Desk](https://www.lessondesk.com/)’s products.
+School Bus is a Component Library which provides developers with the easiest possible way of building [Lesson Desk](https://www.lessondesk.com/)’s products.
 
 ## Motivation
 
-In order to create a great experience for our users, the design system is intented to be a single source of truth for all stakeholders.
+In order to create a great experience for our users, the component library is intented to be a single source of truth for all stakeholders.
 
 ## Goals
 
@@ -28,6 +28,7 @@ The following peer dependencies are required:
 - [Formik](https://www.npmjs.com/package/formik)
 - [PropTypes](https://www.npmjs.com/package/prop-types)
 - [Styled Components](https://www.npmjs.com/package/styled-components)
+- [@lessondesk/material-icons](https://www.npmjs.com/package/@lessondesk/material-icons)
 
 Afterwards, you can install the library:
 
@@ -46,7 +47,7 @@ For all contributors, please be sure to read the
 
 ## Credits
 
-This design system was heavily inspired by the excellent [Priceline.com Design System](https://github.com/pricelinelabs/design-system).
+This component library was heavily inspired by the excellent [Priceline.com Design System](https://github.com/pricelinelabs/design-system).
 
 ## License
 
