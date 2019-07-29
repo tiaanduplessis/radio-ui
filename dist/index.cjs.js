@@ -14,7 +14,6 @@ var formik = require('formik');
 var ReactDOM = require('react-dom');
 var ReactDOM__default = _interopDefault(ReactDOM);
 var materialIcons = require('@lessondesk/material-icons');
-var indexof = _interopDefault(require('indexof'));
 
 var addAliases = function addAliases(arr, aliases) {
   return aliases.forEach(function (key, i) {
@@ -32466,6 +32465,16 @@ var TransitionEvents = {
       removeEventListener(node, endEvent, eventListener);
     });
   }
+};
+
+var indexOf = [].indexOf;
+
+var indexof = function(arr, obj){
+  if (indexOf) return arr.indexOf(obj);
+  for (var i = 0; i < arr.length; ++i) {
+    if (arr[i] === obj) return i;
+  }
+  return -1;
 };
 
 var componentIndexof = function(arr, obj){
