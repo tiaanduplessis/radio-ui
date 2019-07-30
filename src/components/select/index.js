@@ -109,7 +109,7 @@ const Select = ({
         {...inputDefaults}
         {...otherProps}
         onChange={onChange || defaultOnChange}
-        value={value}
+        value={defaultValue || value}
         placeholder={placeholder || label}
         styles={styleOverride({ rounded, isWhite, fontSize, bordered })}
         name={name}

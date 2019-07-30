@@ -14,11 +14,20 @@ storiesOf('Input | Select', module)
   ))
   .add('With options', () => <Select options={options} label='Label' name='2' />)
   .add('White + Bordered', () => (
-      <Select bordered isWhite options={options} />
+    <Select bordered isWhite options={options} />
   ))
   .add('White + Rounded', () => (
-      <Select rounded isWhite options={options} />
+    <Select rounded isWhite options={options} />
   ))
   .add('Disabled', () => (
-      <Select disabled options={options} />
+    <Select disabled options={options} />
+  ))
+  .add('Value', () => (
+    <Formik
+      initialValues={{
+        option: options[0]
+      }}
+    >
+      <Select name='option' options={options} />
+    </Formik>
   ))
