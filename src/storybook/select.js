@@ -19,3 +19,6 @@ storiesOf('Input | Select', module)
   .add('White + Rounded', () => (
       <Select rounded isWhite options={options} />
   ))
+  .add('Disabled', () => (
+      <Select disabled options={options} />
+  ))

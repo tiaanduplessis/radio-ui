@@ -15,3 +15,11 @@ storiesOf('Input | Tel Input', module)
       />
     </Formik>
   ))
+  .add('Disabled', () => (
+    <Formik>
+      <TelInput
+        name='test'
+        disabled
+      />
+    </Formik>
+  ))

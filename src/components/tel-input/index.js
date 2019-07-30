@@ -24,6 +24,7 @@ const TelInput = props => {
     placeholder,
     defaultCountry = 'za',
     inputProps,
+    disabled,
     alertText: alertTextOverride,
     ...otherProps
   } = props
@@ -48,12 +49,13 @@ const TelInput = props => {
   const defaultValue = hasFormik && formik.values[name]
 
   return (
-    <InputWrapper alertText={alertText} {...otherProps}>
+    <InputWrapper disabled={disabled} alertText={alertText} {...otherProps}>
       <ReactPhoneInput
         {...inputDefaults}
         onChange={onChange ? onChange : defaultOnChange}
         value={value || defaultValue || ''}
         defaultCountry={defaultCountry}
+        disabled={disabled}
         name={name}
         countryCodeEditable={false}
         masks={masks || defaultMasks}
