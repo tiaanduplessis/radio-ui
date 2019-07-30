@@ -59,7 +59,6 @@ class TranslationInput extends Component {
     const {
       inputProps,
       containerStyle,
-      width,
       type,
       formik,
       value,
@@ -102,7 +101,7 @@ class TranslationInput extends Component {
             {...inputProps}
           />
           <TranslateIconContainer onClick={this.toggleModal}>
-             <Translate size={theme.fontSizes.normal} color={theme.colors.gray.default}/>
+             <Translate size={theme.fontSizes.normal} color={theme.colors.gray.dark}/>
           </TranslateIconContainer>
           <ModalWrapper isOpen={showModal} onRequestClose={this.toggleModal}>
             <TranslateModal
