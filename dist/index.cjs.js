@@ -23914,7 +23914,7 @@ var Select$1 = function Select(_ref3) {
     alertText: alertText
   }, otherProps), React__default.createElement(index$1$1, _extends_1({}, inputDefaults, otherProps, {
     onChange: onChange || defaultOnChange,
-    value: value,
+    value: defaultValue || value,
     placeholder: placeholder || label,
     styles: styleOverride({
       rounded: rounded,
