@@ -87,7 +87,7 @@ var buttons = {
     boxShadow: shadows[2],
     fontWeight: fontWeights[5]
   },
-  ternary: {
+  tertiary: {
     color: colors.gray[5],
     backgroundColor: colors.white,
     boxShadow: shadows[2],
@@ -561,8 +561,7 @@ function (_React$PureComponent) {
           description = _this$props.description,
           renderHeader = _this$props.renderHeader,
           children = _this$props.children,
-          theme = _this$props.theme,
-          props = objectWithoutProperties(_this$props, ["title", "description", "renderHeader", "children", "theme"]);
+          props = objectWithoutProperties(_this$props, ["title", "description", "renderHeader", "children"]);
 
       return React.createElement(StyledCard, props, typeof renderHeader === 'function' ? renderHeader({
         title: title,
@@ -576,8 +575,7 @@ function (_React$PureComponent) {
 
 defineProperty(Card, "defaultProps", {
   title: '',
-  description: '',
-  theme: theme
+  description: ''
 });
 
 defineProperty(Card, "propTypes", _objectSpread$2({
@@ -1252,26 +1250,23 @@ function (_React$PureComponent) {
     value: function render() {
       var _this$props = this.props,
           children = _this$props.children,
-          theme = _this$props.theme,
           onChange = _this$props.onChange,
           value = _this$props.value,
           onBlur = _this$props.onBlur,
-          props = objectWithoutProperties(_this$props, ["children", "theme", "onChange", "value", "onBlur"]);
+          disabled = _this$props.disabled,
+          props = objectWithoutProperties(_this$props, ["children", "onChange", "value", "onBlur", "disabled"]);
 
       return React.createElement(StyledLabel, props, React.createElement(StyledInput, {
         onChange: onChange,
         onBlur: onBlur,
-        checked: value
+        checked: value,
+        disabled: disabled
       }), React.createElement(StyledSpan, null, children));
     }
   }]);
 
   return Checkbox;
 }(React.PureComponent);
-
-defineProperty(Checkbox, "defaultProps", {
-  theme: theme
-});
 
 var _extends_1 = createCommonjsModule(function (module) {
 function _extends() {
@@ -1392,7 +1387,7 @@ var InputWrapper = function InputWrapper(_ref3) {
     style: labelStyle
   }, label), children, alertText && React__default.createElement(StyledAlertText, {
     style: alertStyle
-  }, alertText || alertTextOverride));
+  }, alertText));
 };
 
 function ownKeys$7(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -1445,12 +1440,11 @@ function (_React$PureComponent) {
           formik = _this$props.formik,
           alertTextOverride = _this$props.alertText,
           disabled = _this$props.disabled,
-          theme = _this$props.theme,
           value = _this$props.value,
           onBlur = _this$props.onBlur,
           onChange = _this$props.onChange,
           inputProps = _this$props.inputProps,
-          otherProps = objectWithoutProperties(_this$props, ["formik", "alertText", "disabled", "theme", "value", "onBlur", "onChange", "inputProps"]);
+          otherProps = objectWithoutProperties(_this$props, ["formik", "alertText", "disabled", "value", "onBlur", "onChange", "inputProps"]);
 
       var _otherProps$id = otherProps.id,
           id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
@@ -1471,7 +1465,9 @@ function (_React$PureComponent) {
 
       return React.createElement(InputWrapper, _extends_1({
         alertText: alertTextOverride || alertText
-      }, otherProps), React.createElement(StyledInput$1, _extends_1({}, inputDefaults, {
+      }, otherProps), React.createElement(StyledInput$1, _extends_1({
+        id: id
+      }, inputDefaults, {
         style: inputStyle,
         "aria-label": label,
         "aria-required": otherProps.required,
@@ -14848,10 +14844,8 @@ function getDateString(value) {
 }
 
 var DateInput = function DateInput(props) {
-  var dateFormat = props.dateFormat,
-      formik = props.formik,
+  var formik = props.formik,
       disabled = props.disabled,
-      theme = props.theme,
       value = props.value,
       onBlur = props.onBlur,
       onChange = props.onChange,
@@ -14860,7 +14854,7 @@ var DateInput = function DateInput(props) {
       alertTextOverride = props.alertText,
       _props$dateFormatter = props.dateFormatter,
       dateFormatter = _props$dateFormatter === void 0 ? getDateString : _props$dateFormatter,
-      otherProps = objectWithoutProperties(props, ["dateFormat", "formik", "disabled", "theme", "value", "onBlur", "onChange", "placeholder", "inputProps", "alertText", "dateFormatter"]);
+      otherProps = objectWithoutProperties(props, ["formik", "disabled", "value", "onBlur", "onChange", "placeholder", "inputProps", "alertText", "dateFormatter"]);
 
   var _otherProps$id = otherProps.id,
       id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
@@ -14885,6 +14879,7 @@ var DateInput = function DateInput(props) {
   var defaultChangeHandler = hasFormik && function (value) {
     return formik.setFieldValue(name, value);
   };
+
   return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || alertText
   }, otherProps), React__default.createElement(StyledDatePicker, _extends_1({}, inputDefaults, {
@@ -14893,11 +14888,13 @@ var DateInput = function DateInput(props) {
     style: inputStyle,
     "aria-label": label,
     "aria-required": required,
+    id: id,
     placeholderText: placeholder || label,
     disabled: disabled,
     name: name
   }, inputProps)), React__default.createElement(materialIcons.CalendarToday, {
-    style: iconStyles
+    style: iconStyles,
+    color: colors.gray.dark
   }));
 };
 
@@ -14948,7 +14945,6 @@ var TelInput = function TelInput(props) {
   var _otherProps$id = otherProps.id,
       id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
       label = otherProps.label,
-      inputStyle = otherProps.inputStyle,
       name = otherProps.name;
 
   var _createDefaultInputPr = createDefaultInputProps({
@@ -23762,49 +23758,9 @@ var index$3 = index$2(makeAnimated, exportedEqual);
 
 var index$1$1 = manageState(Select);
 
-function _templateObject2$3() {
-  var data = taggedTemplateLiteral(["\n  min-width: ", ";\n  width: ", ";\n  margin-bottom: 1.5em;\n  position: relative;\n  cursor: ", ";\n  @media (max-width: 990px) {\n    width: 100%;\n  }\n"]);
-
-  _templateObject2$3 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject$d() {
-  var data = taggedTemplateLiteral(["\n  display: block;\n  font-weight: ", ";\n  color: ", ";\n  font-size: ", ";\n  margin-bottom: 0.4em;\n"]);
-
-  _templateObject$d = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-var Label = styled__default.label(_templateObject$d(), function (props) {
-  return props.theme.fontWeights.bold;
-}, function (props) {
-  return props.theme.colors.gray.xxxdark;
-}, function (props) {
-  return props.theme.fontSizes.xsmall;
-});
-var InputContainer = styled__default.div(_templateObject2$3(), function (_ref) {
-  var minWidth = _ref.minWidth;
-  return minWidth || '300px';
-}, function (_ref2) {
-  var width = _ref2.width;
-  return width || '48%';
-}, function (props) {
-  return props.disabled ? 'not-allowed' : 'unset';
-});
-
 function ownKeys$9(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$a(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$9(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$9(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-var colors$2 = theme.colors,
-    radii$1 = theme.radii,
-    fontSizes$1 = theme.fontSizes,
-    fonts$1 = theme.fonts;
 
 var styleOverride = function styleOverride(_ref) {
   var fontSize = _ref.fontSize,
@@ -23813,37 +23769,37 @@ var styleOverride = function styleOverride(_ref) {
       isWhite = _ref.isWhite,
       bordered = _ref.bordered;
   return {
-    indicatorSeparator: function indicatorSeparator(provided, state) {
+    indicatorSeparator: function indicatorSeparator() {
       return {
         display: 'none'
       };
     },
     control: function control(provided, state) {
       // TODO: use variant instead of isWhite
-      var backgroundColor = state.isDisabled || isWhite ? colors$2.white : colors$2.gray.xlight;
+      var backgroundColor = state.isDisabled || isWhite ? colors.white : colors.gray.xlight;
       return _objectSpread$a({}, provided, {
         backgroundColor: backgroundColor,
-        border: state.isDisabled ? "border: 1px solid ".concat(colors$2.gray.default) : 'none',
-        borderColor: state.isDisabled ? colors$2.gray.default : null,
-        fontFamily: fonts$1.Montserrat,
-        fontSize: fontSize ? fontSizes$1[fontSize] : fontSizes$1.small,
-        borderRadius: rounded ? radii$1.full : radii$1.small,
+        border: state.isDisabled ? "border: 1px solid ".concat(colors.gray.default) : 'none',
+        borderColor: state.isDisabled ? colors.gray.default : null,
+        fontFamily: fonts.Montserrat,
+        fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
+        borderRadius: rounded ? radii.full : radii.small,
         width: width || '100%',
         boxShadow: rounded ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
         padding: '0 0.8em',
         overflow: 'hidden'
       }, bordered && {
-        border: "solid 1px ".concat(colors$2.gray.default)
+        border: "solid 1px ".concat(colors.gray.default)
       });
     },
-    placeholder: function placeholder(provided, state) {
+    placeholder: function placeholder() {
       return {
-        color: colors$2.gray.default
+        color: colors.gray.default
       };
     },
     singleValue: function singleValue() {
       return {
-        color: colors$2.gray.xxdark
+        color: colors.gray.xxdark
       };
     },
     indicatorsContainer: function indicatorsContainer(provided, state) {
@@ -23854,15 +23810,22 @@ var styleOverride = function styleOverride(_ref) {
     option: function option(defaultStyles, _ref2) {
       var isSelected = _ref2.isSelected,
           isFocused = _ref2.isFocused;
-      var color = colors$2.white;
-      if (isFocused) color = colors$2.xlight;
-      if (isSelected) color = colors$2.gray.light;
+      var color = colors.white;
+
+      if (isFocused) {
+        color = colors.xlight;
+      }
+
+      if (isSelected) {
+        color = colors.gray.light;
+      }
+
       return _objectSpread$a({}, defaultStyles, {
-        fontSize: fontSizes$1.small,
-        color: colors$2.black,
+        fontSize: fontSizes.small,
+        color: colors.black,
         backgroundColor: color,
         ':active': _objectSpread$a({}, defaultStyles[':active'], {
-          backgroundColor: colors$2.gray.xlight
+          backgroundColor: colors.gray.xlight
         })
       });
     }
@@ -23870,8 +23833,7 @@ var styleOverride = function styleOverride(_ref) {
 };
 
 var Select$1 = function Select(_ref3) {
-  var containerStyle = _ref3.containerStyle,
-      rounded = _ref3.rounded,
+  var rounded = _ref3.rounded,
       isWhite = _ref3.isWhite,
       disabled = _ref3.disabled,
       disableEmpty = _ref3.disableEmpty,
@@ -23885,13 +23847,8 @@ var Select$1 = function Select(_ref3) {
       bordered = _ref3.bordered,
       multiple = _ref3.multiple,
       alertTextOverride = _ref3.alertText,
-      otherProps = objectWithoutProperties(_ref3, ["containerStyle", "rounded", "isWhite", "disabled", "disableEmpty", "options", "formik", "value", "onBlur", "onChange", "placeholder", "fontSize", "bordered", "multiple", "alertText"]);
-
-  var _otherProps$id = otherProps.id,
-      id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
-      label = otherProps.label,
-      inputStyle = otherProps.inputStyle,
-      name = otherProps.name;
+      name = _ref3.name,
+      otherProps = objectWithoutProperties(_ref3, ["rounded", "isWhite", "disabled", "disableEmpty", "options", "formik", "value", "onBlur", "onChange", "placeholder", "fontSize", "bordered", "multiple", "alertText", "name"]);
 
   var _createDefaultInputPr = createDefaultInputProps({
     alertText: alertTextOverride,
@@ -23915,7 +23872,7 @@ var Select$1 = function Select(_ref3) {
   }, otherProps), React__default.createElement(index$1$1, _extends_1({}, inputDefaults, otherProps, {
     onChange: onChange || defaultOnChange,
     value: defaultValue || value,
-    placeholder: placeholder || label,
+    placeholder: placeholder,
     styles: styleOverride({
       rounded: rounded,
       isWhite: isWhite,
@@ -23934,29 +23891,39 @@ Select$1.defaultProps = {
 };
 var index$4 = formik.connect(Select$1);
 
-function _templateObject2$4() {
+function _templateObject2$3() {
   var data = taggedTemplateLiteral(["\n  padding: 0.3em 1em;\n  margin-right: 1em;\n  font-size: 1em;\n  border-radius: 1.1em;\n  border: none;\n  cursor: pointer;\n\n  ", "\n"]);
 
-  _templateObject2$4 = function _templateObject2() {
+  _templateObject2$3 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$e() {
+function _templateObject$d() {
   var data = taggedTemplateLiteral(["\n  height: 38px;\n  display: flex;\n  align-items: center;\n"]);
 
-  _templateObject$e = function _templateObject() {
+  _templateObject$d = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Container = styled__default.div(_templateObject$e());
-var Value = styled__default.button(_templateObject2$4(), function (_ref) {
+var Container = styled__default.div(_templateObject$d());
+var Value = styled__default.button(_templateObject2$3(), function (_ref) {
   var selected = _ref.selected;
-  return selected ? "\n    color: ".concat(theme.colors.black, ";\n    background-color: ").concat(theme.colors.white, ";\n    box-shadow: 0 0 1em 0 ").concat(theme.colors.gray.default, ";\n  ") : "\n    color: ".concat(theme.colors.gray.dark, ";\n    background-color: ").concat(theme.colors.gray.xlight, ";\n  ");
+  return selected ? "\n    color: ".concat(function (props) {
+    return props.theme.colors.black;
+  }, ";\n    background-color: ").concat(function (props) {
+    return props.theme.colors.white;
+  }, ";\n    box-shadow: 0 0 1em 0 ").concat(function (props) {
+    return props.theme.colors.gray.default;
+  }, ";\n  ") : "\n    color: ".concat(function (props) {
+    return props.theme.colors.gray.dark;
+  }, ";\n    background-color: ").concat(function (props) {
+    return props.theme.colors.gray.xlight;
+  }, ";\n  ");
 });
 
 function formikChangeHandler(formik, name, value) {
@@ -23970,22 +23937,14 @@ function formikChangeHandler(formik, name, value) {
 }
 
 var TypeInput = function TypeInput(_ref) {
-  var containerStyle = _ref.containerStyle,
-      options = _ref.options,
+  var options = _ref.options,
       selected = _ref.selected,
       value = _ref.value,
       formik = _ref.formik,
-      placeholder = _ref.placeholder,
       onToggle = _ref.onToggle,
-      onLanguagesChange = _ref.onLanguagesChange,
       alertTextOverride = _ref.alertText,
-      otherProps = objectWithoutProperties(_ref, ["containerStyle", "options", "selected", "value", "formik", "placeholder", "onToggle", "onLanguagesChange", "alertText"]);
-
-  var _otherProps$id = otherProps.id,
-      id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
-      label = otherProps.label,
-      inputStyle = otherProps.inputStyle,
-      name = otherProps.name;
+      name = _ref.name,
+      otherProps = objectWithoutProperties(_ref, ["options", "selected", "value", "formik", "onToggle", "alertText", "name"]);
 
   var _createDefaultInputPr = createDefaultInputProps({
     alertText: alertTextOverride,
@@ -24003,8 +23962,7 @@ var TypeInput = function TypeInput(_ref) {
     alertText: alertText
   }, otherProps), React__default.createElement(Container, null, options && options.map(function (_ref2) {
     var label = _ref2.label,
-        value = _ref2.value,
-        selected = _ref2.selected;
+        value = _ref2.value;
     return React__default.createElement(Value, {
       key: value,
       selected: Array.isArray(selectedValues) && selectedValues.includes(value),
@@ -24775,16 +24733,16 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
-function _templateObject$f() {
+function _templateObject$e() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  > * {\n    display: inline-block;\n    margin: 0.4em 0;\n  }\n"]);
 
-  _templateObject$f = function _templateObject() {
+  _templateObject$e = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var SettingsContainer = styled__default.div(_templateObject$f());
+var SettingsContainer = styled__default.div(_templateObject$e());
 
 var OverflowMenu = function OverflowMenu(_ref) {
   var position = _ref.position,
@@ -24798,18 +24756,20 @@ var OverflowMenu = function OverflowMenu(_ref) {
       animation: '200ms fade-in ease-in'
     },
     trigger: React__default.createElement(materialIcons.DotsVertical, {
-      color: theme.colors.gray.dark
+      color: colors.gray.dark
     }),
     position: position || 'left center',
     arrow: false
   }, function (closePopup) {
-    return React__default.createElement(SettingsContainer, null, React__default.Children.map(children, function (child, i) {
+    return React__default.createElement(SettingsContainer, null, React__default.Children.map(children, function (child) {
       return React__default.cloneElement(child, {
         closePopup: closePopup
       });
     }));
   });
 };
+
+function t(t,e){void 0===e&&(e={}),Object.keys(e).forEach(function(o){t.style[o]=e[o];});}function toast(e,o){var i;void 0===e&&(e=""),void 0===o&&(o={});var n="number"==typeof o?{duration:o}:o,r=n.className;void 0===r&&(r="");var a=n.duration;void 0===a&&(a=function(t){return 1e3*function(t){void 0===t&&(t="");var e=document.implementation.createHTMLDocument("New").body;return e.innerHTML=t,e.textContent||e.innerText||""}(t).split(" ").length/1.6}(e));var d=n.target;void 0===d&&(d="body");var c=n.offset;void 0===c&&(c=15);var s=n.styles;void 0===s&&(s={});var u=n.selector;void 0===u&&(u="just-toasty");var v=n.role;void 0===v&&(v="alert");var l=n.cb;void 0===l&&(l=function(){});var f=["top","right"],m=f[0],p=f[1],y=document.querySelector(d),b=document.createElement("div");b.setAttribute("role",v),b.classList.add(u),r&&b.classList.add(r),b.innerHTML=e,t(b,Object.assign(((i={})[p]="15px",i.opacity=1,i.padding="1em 1.5em",i.zIndex=9999,i.color="#fff",i.background="rgba(0,0,10,0.8)",i.display="inline-block",i.position="fixed",i.borderRadius=".2em",i.top="-100px",i.fontFamily="inherit",i.transition="all 0.4s ease-out",i),s)),y.insertBefore(b,y.firstChild);var x=c;return document.querySelectorAll("."+u).forEach(function(e){var o,i=e.clientHeight;t(e,((o={})[m]=x+"px",o)),x+=i+c;}),setTimeout(function(){var e;t(b,((e={})[p]="-"+b.offsetWidth+"px",e.opacity=0,e)),setTimeout(function(){b.remove(),l();},1e3);},a),b}
 
 function _templateObject5$1() {
   var data = taggedTemplateLiteral(["\n  padding-left: 0.5em;\n  font-size: 0.7em;\n"]);
@@ -24841,29 +24801,29 @@ function _templateObject3$3() {
   return data;
 }
 
-function _templateObject2$5() {
+function _templateObject2$4() {
   var data = taggedTemplateLiteral(["\n  width: 14em;\n  border: solid 1px ", ";\n  border-radius: 0.5em;\n  background-color: ", ";\n  height: 100%;\n  display: flex;\n  align-items: center;\n  padding: 0 1em;\n"]);
 
-  _templateObject2$5 = function _templateObject2() {
+  _templateObject2$4 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$g() {
+function _templateObject$f() {
   var data = taggedTemplateLiteral(["\n  width: 100%;\n  height: 2.7em;\n  display: flex;\n  align-items: center;\n  border-radius: 0.5em;\n  background-color: ", ";\n  margin-bottom: 1em;\n"]);
 
-  _templateObject$g = function _templateObject() {
+  _templateObject$f = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Container$1 = styled__default.div(_templateObject$g(), function (props) {
+var Container$1 = styled__default.div(_templateObject$f(), function (props) {
   return props.theme.colors.gray.xlight;
 });
-var Inner = styled__default.div(_templateObject2$5(), function (props) {
+var Inner = styled__default.div(_templateObject2$4(), function (props) {
   return props.theme.colors.gray.light;
 }, function (props) {
   return props.theme.colors.white;
@@ -24880,8 +24840,7 @@ var LanguageSetField = function LanguageSetField(_ref) {
       inputProps = _ref.inputProps,
       value = _ref.value,
       onChange = _ref.onChange,
-      onBlur = _ref.onBlur,
-      otherProps = objectWithoutProperties(_ref, ["locale", "default", "containerId", "languages", "inputProps", "value", "onChange", "onBlur"]);
+      otherProps = objectWithoutProperties(_ref, ["locale", "default", "containerId", "languages", "inputProps", "value", "onChange"]);
 
   var language = languages.find(function (_ref2) {
     var code = _ref2.code;
@@ -24930,27 +24889,27 @@ function _templateObject3$4() {
   return data;
 }
 
-function _templateObject2$6() {
+function _templateObject2$5() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  font-size: ", ";\n"]);
 
-  _templateObject2$6 = function _templateObject2() {
+  _templateObject2$5 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$h() {
+function _templateObject$g() {
   var data = taggedTemplateLiteral(["\n  width: 43em;\n"]);
 
-  _templateObject$h = function _templateObject() {
+  _templateObject$g = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Container$2 = styled__default.div(_templateObject$h());
-var EditTextContainer = styled__default.div(_templateObject2$6(), function (props) {
+var Container$2 = styled__default.div(_templateObject$g());
+var EditTextContainer = styled__default.div(_templateObject2$5(), function (props) {
   return props.theme.fontSizes.small;
 });
 var EditText = styled__default.div(_templateObject3$4(), function (props) {
@@ -25039,7 +24998,6 @@ function (_Component) {
       var _this$props = this.props,
           placeholder = _this$props.placeholder,
           onSubmit = _this$props.onSubmit,
-          languagesContainer = _this$props.languagesContainer,
           onLanguagesChange = _this$props.onLanguagesChange,
           disabled = _this$props.disabled,
           languages = _this$props.languages;
@@ -26345,27 +26303,27 @@ ModalWrapper.defaultProps = {
 };
 ReactModal.setAppElement('body');
 
-function _templateObject2$7() {
+function _templateObject2$6() {
   var data = taggedTemplateLiteral(["\n  position: absolute;\n  right: 0.8em;\n  cursor: pointer;\n  line-height: 0;\n"]);
 
-  _templateObject2$7 = function _templateObject2() {
+  _templateObject2$6 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$i() {
+function _templateObject$h() {
   var data = taggedTemplateLiteral(["\n  position: relative;\n  display: flex;\n  align-items: center;\n"]);
 
-  _templateObject$i = function _templateObject() {
+  _templateObject$h = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Container$3 = styled__default.div(_templateObject$i());
-var TranslateIconContainer = styled__default.div(_templateObject2$7());
+var Container$3 = styled__default.div(_templateObject$h());
+var TranslateIconContainer = styled__default.div(_templateObject2$6());
 
 var TranslationInput =
 /*#__PURE__*/
@@ -26404,7 +26362,7 @@ function (_Component) {
       });
 
       if (hasEmptySet) {
-        // toast('Oops! Please add all required translations.')
+        toast('Oops! Please add all required translations.');
         return;
       }
 
@@ -26446,8 +26404,6 @@ function (_Component) {
 
       var _this$props3 = this.props,
           inputProps = _this$props3.inputProps,
-          containerStyle = _this$props3.containerStyle,
-          width = _this$props3.width,
           type = _this$props3.type,
           formik = _this$props3.formik,
           value = _this$props3.value,
@@ -26458,12 +26414,11 @@ function (_Component) {
           alertTextOverride = _this$props3.alertText,
           disabled = _this$props3.disabled,
           languages = _this$props3.languages,
-          otherProps = objectWithoutProperties(_this$props3, ["inputProps", "containerStyle", "width", "type", "formik", "value", "onBlur", "onChange", "placeholder", "onLanguagesChange", "alertText", "disabled", "languages"]);
+          otherProps = objectWithoutProperties(_this$props3, ["inputProps", "type", "formik", "value", "onBlur", "onChange", "placeholder", "onLanguagesChange", "alertText", "disabled", "languages"]);
 
       var _otherProps$id = otherProps.id,
           id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
           label = otherProps.label,
-          inputStyle = otherProps.inputStyle,
           name = otherProps.name;
 
       var _createDefaultInputPr = createDefaultInputProps({
@@ -26475,11 +26430,12 @@ function (_Component) {
         formik: formik
       }),
           alertText = _createDefaultInputPr.alertText,
-          inputDefaults = objectWithoutProperties(_createDefaultInputPr, ["alertText", "hasFormik"]);
+          inputDefaults = objectWithoutProperties(_createDefaultInputPr, ["alertText"]);
 
       return React__default.createElement(InputWrapper, _extends_1({
         alertText: alertTextOverride || alertText
       }, otherProps), React__default.createElement(Container$3, null, React__default.createElement(StyledInput$1, _extends_1({}, inputDefaults, {
+        id: id,
         value: formik.values[name][0].value,
         onChange: function onChange(_ref) {
           var target = _ref.target;
@@ -26491,8 +26447,8 @@ function (_Component) {
       }, inputProps)), React__default.createElement(TranslateIconContainer, {
         onClick: this.toggleModal
       }, React__default.createElement(materialIcons.Translate, {
-        size: theme.fontSizes.normal,
-        color: theme.colors.gray.default
+        size: fontSizes.normal,
+        color: colors.gray.dark
       })), React__default.createElement(ModalWrapper, {
         isOpen: showModal,
         onRequestClose: this.toggleModal
@@ -34790,33 +34746,33 @@ Slider$1.Range = Range$1;
 Slider$1.Handle = Handle;
 Slider$1.createSliderWithTooltip = createSliderWithTooltip;
 
-function _templateObject2$8() {
+function _templateObject2$7() {
   var data = taggedTemplateLiteral(["\n  width: 3.5em;\n  text-align: center;\n"]);
 
-  _templateObject2$8 = function _templateObject2() {
+  _templateObject2$7 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$j() {
+function _templateObject$i() {
   var data = taggedTemplateLiteral(["\n  min-height: 38px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n  & .rc-slider {\n    margin: 0 1em;\n  }\n\n  & .rc-slider-handle {\n    background-color: ", ";\n    border: solid 2px ", ";\n    box-shadow: 0 0 0.4em 0 rgba(0, 0, 0, 0.3);\n  }\n\n  & .rc-slider-track {\n    background-color: ", ";\n  }\n"]);
 
-  _templateObject$j = function _templateObject() {
+  _templateObject$i = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Container$4 = styled__default.div(_templateObject$j(), function (props) {
+var Container$4 = styled__default.div(_templateObject$i(), function (props) {
   return props.theme.colors.primary;
 }, function (props) {
   return props.theme.colors.white;
 }, function (props) {
   return props.theme.colors.primary;
 });
-var Value$1 = styled__default.div(_templateObject2$8());
+var Value$1 = styled__default.div(_templateObject2$7());
 
 var RangeInput = function RangeInput(_ref) {
   var _ref$min = _ref.min,
@@ -34827,17 +34783,13 @@ var RangeInput = function RangeInput(_ref) {
       onBlur = _ref.onBlur,
       onChange = _ref.onChange,
       formik = _ref.formik,
-      placeholder = _ref.placeholder,
       metric = _ref.metric,
-      onLanguagesChange = _ref.onLanguagesChange,
       alertTextOverride = _ref.alertText,
       inputProps = _ref.inputProps,
-      otherProps = objectWithoutProperties(_ref, ["min", "max", "value", "onBlur", "onChange", "formik", "placeholder", "metric", "onLanguagesChange", "alertText", "inputProps"]);
+      otherProps = objectWithoutProperties(_ref, ["min", "max", "value", "onBlur", "onChange", "formik", "metric", "alertText", "inputProps"]);
 
   var _otherProps$id = otherProps.id,
       id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
-      label = otherProps.label,
-      inputStyle = otherProps.inputStyle,
       name = otherProps.name;
 
   var _createDefaultInputPr = createDefaultInputProps({
@@ -34894,27 +34846,27 @@ function _templateObject3$5() {
   return data;
 }
 
-function _templateObject2$9() {
+function _templateObject2$8() {
   var data = taggedTemplateLiteral(["\n  position: relative;\n  height: 40px;\n  display: flex;\n  align-items: center;\n  width: auto;\n  min-width: 250px;\n"]);
 
-  _templateObject2$9 = function _templateObject2() {
+  _templateObject2$8 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$k() {
+function _templateObject$j() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n"]);
 
-  _templateObject$k = function _templateObject() {
+  _templateObject$j = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Container$5 = styled__default.div(_templateObject$k());
-var ContainerAlt = styled__default.div(_templateObject2$9());
+var Container$5 = styled__default.div(_templateObject$j());
+var ContainerAlt = styled__default.div(_templateObject2$8());
 var Input$3 = styled__default.input(_templateObject3$5(), function (props) {
   return props.expanded ? 'scaleX(1)' : 'scaleX(0)';
 }, function (props) {
@@ -35007,8 +34959,8 @@ function (_Component) {
         onClick: this.toggleExpanded,
         style: _objectSpread$d({}, IconAltStyling, {}, expanded && ExpandedIconStyles),
         bg: 'white',
-        size: theme.fontSizes.large,
-        color: theme.colors.gray.dark
+        size: fontSizes.large,
+        color: colors.gray.dark
       }));
     }
   }]);
@@ -35030,27 +34982,27 @@ function _templateObject3$6() {
   return data;
 }
 
-function _templateObject2$a() {
+function _templateObject2$9() {
   var data = taggedTemplateLiteral(["\n  display: none;\n"]);
 
-  _templateObject2$a = function _templateObject2() {
+  _templateObject2$9 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$l() {
+function _templateObject$k() {
   var data = taggedTemplateLiteral(["\n  display: block;\n  padding-bottom: 3px;\n  width: 60px;\n  height: 40px;\n  position: relative;\n  ", "\n  ", "\n"]);
 
-  _templateObject$l = function _templateObject() {
+  _templateObject$k = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var ToggleContainer = styled__default.div(_templateObject$l(), styledSystem.space, styledSystem.layout);
-var ToggleInput = styled__default.input(_templateObject2$a());
+var ToggleContainer = styled__default.div(_templateObject$k(), styledSystem.space, styledSystem.layout);
+var ToggleInput = styled__default.input(_templateObject2$9());
 var ToggleLabel = styled__default.label(_templateObject3$6(), function (props) {
   return props.theme.colors.gray.xdark;
 }, function (props) {
@@ -35080,13 +35032,12 @@ function (_React$PureComponent) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          theme = _this$props.theme,
           id = _this$props.id,
           onBlur = _this$props.onBlur,
           onChange = _this$props.onChange,
           inputStyle = _this$props.inputStyle,
           checked = _this$props.checked,
-          otherProps = objectWithoutProperties(_this$props, ["theme", "id", "onBlur", "onChange", "inputStyle", "checked"]);
+          otherProps = objectWithoutProperties(_this$props, ["id", "onBlur", "onChange", "inputStyle", "checked"]);
 
       return React.createElement(ToggleContainer, otherProps, React.createElement(ToggleInput, {
         style: inputStyle,
@@ -35106,8 +35057,7 @@ function (_React$PureComponent) {
 
 defineProperty(Toggle, "defaultProps", {
   checked: false,
-  inputStyle: {},
-  theme: theme
+  inputStyle: {}
 });
 
 defineProperty(Toggle, "propTypes", _objectSpread$e({
@@ -35118,10 +35068,10 @@ function ownKeys$e(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$f(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$e(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$e(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _templateObject$m() {
+function _templateObject$l() {
   var data = taggedTemplateLiteral(["\n  background-position: center;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-image: ", ";\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
 
-  _templateObject$m = function _templateObject() {
+  _templateObject$l = function _templateObject() {
     return data;
   };
 
@@ -35132,7 +35082,7 @@ var image = function image(props) {
   return "url(".concat(props.source, ")");
 };
 
-var BackgroundImage = styled__default.div(_templateObject$m(), image, styledSystem.space, styledSystem.background, styledSystem.layout, styledSystem.flexbox);
+var BackgroundImage = styled__default.div(_templateObject$l(), image, styledSystem.space, styledSystem.background, styledSystem.layout, styledSystem.flexbox);
 BackgroundImage.defaultProps = {
   theme: theme
 };
@@ -35141,16 +35091,16 @@ BackgroundImage.propTypes = _objectSpread$f({
 }, styledSystem.space.propTypes, {}, styledSystem.background.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.flexbox.propTypes);
 BackgroundImage.displayName = 'BackgroundImage';
 
-function _templateObject$n() {
+function _templateObject$m() {
   var data = taggedTemplateLiteral(["\n  text-align: center;\n  margin: 2em 0 0;\n  color: ", ";\n  font-size: ", ";\n  font-family: ", ";\n  font-weight: ", ";\n"]);
 
-  _templateObject$n = function _templateObject() {
+  _templateObject$m = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var CopyrightText = styled__default.p(_templateObject$n(), function (props) {
+var CopyrightText = styled__default.p(_templateObject$m(), function (props) {
   return props.theme.colors.gray[3];
 }, function (props) {
   return props.theme.fontSizes.xsmall;
@@ -35163,16 +35113,14 @@ CopyrightText.displayName = 'CopyrightText';
 
 var Footer = function Footer(_ref) {
   var copyright = _ref.copyright,
-      theme = _ref.theme,
       children = _ref.children,
-      props = objectWithoutProperties(_ref, ["copyright", "theme", "children"]);
+      props = objectWithoutProperties(_ref, ["copyright", "children"]);
 
   return React.createElement(Box, props, children, React.createElement(CopyrightText, null, copyright));
 };
 
 Footer.defaultProps = {
-  copyright: '2019 Lesson Desk (Pty) Ltd. All rights reserved.',
-  theme: theme
+  copyright: '2019 Lesson Desk (Pty) Ltd. All rights reserved.'
 };
 Footer.displayName = 'Footer';
 
