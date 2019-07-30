@@ -7,14 +7,14 @@ const ModalWrapper = ({
   onRequestClose,
   closeTimeoutMS,
   style,
-  children
+  children,
 }) => {
   const modalStyleOverride = {
     overlay: {
       backgroundColor: 'rgba(0, 0, 0, .3)',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
     content: {
       top: 'unset',
@@ -24,8 +24,8 @@ const ModalWrapper = ({
       borderRadius: '1em',
       padding: '2em',
       overflow: 'visible',
-      ...style
-    }
+      ...style,
+    },
   }
 
   return (
@@ -46,7 +46,7 @@ ModalWrapper.defaultProps = {
   contentLabel: '',
   onRequestClose: () => {},
   closeTimeoutMS: 300,
-  style: {}
+  style: {},
 }
 
 ReactModal.setAppElement('body')

@@ -3,8 +3,6 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { space, layout } from 'styled-system'
 
-import theme from './theme'
-
 const StyledInput = styled.input.attrs({
   type: 'checkbox',
 })`
@@ -132,20 +130,17 @@ const StyledSpan = styled.span`
 `
 
 class Checkbox extends React.PureComponent {
-  static defaultProps = {
-    theme: theme,
-  }
-
   render() {
-    const { children, theme, onChange, value, onBlur, ...props } = this.props
+    const { children, onChange, value, onBlur, disabled, ...props } = this.props
     return (
       <StyledLabel {...props}>
         <StyledInput
           onChange={onChange}
           onBlur={onBlur}
           checked={value}
+          disabled={disabled}
         />
-        <StyledSpan >{children}</StyledSpan>
+        <StyledSpan>{children}</StyledSpan>
       </StyledLabel>
     )
   }

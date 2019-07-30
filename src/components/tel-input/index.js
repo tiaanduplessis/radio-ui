@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'formik'
-import styled from 'styled-components'
 import ReactPhoneInput from 'react-phone-input-2'
 
 import 'react-phone-input-2/dist/style.css'
@@ -11,7 +10,7 @@ import createDefaultInputProps from '../../utils/create-input-defaults'
 import InputWrapper from '../input-wrapper'
 
 const defaultMasks = {
-  za: '+.. .. ... ....'
+  za: '+.. .. ... ....',
 }
 
 const TelInput = props => {
@@ -29,12 +28,7 @@ const TelInput = props => {
     ...otherProps
   } = props
 
-  const {
-    id = otherProps.name,
-    label,
-    inputStyle,
-    name
-  } = otherProps
+  const { id = otherProps.name, label, name } = otherProps
 
   const { alertText, hasFormik, ...inputDefaults } = createDefaultInputProps({
     alertText: alertTextOverride,
@@ -45,7 +39,8 @@ const TelInput = props => {
     formik,
   })
 
-  const defaultOnChange = hasFormik && (value => formik.setFieldValue(name, value))
+  const defaultOnChange =
+    hasFormik && (value => formik.setFieldValue(name, value))
   const defaultValue = hasFormik && formik.values[name]
 
   return (
@@ -62,7 +57,7 @@ const TelInput = props => {
         inputExtraProps={{
           ...inputProps,
           id,
-          name
+          name,
         }}
         placeholder={placeholder || label}
       />

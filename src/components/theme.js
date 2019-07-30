@@ -109,7 +109,6 @@ const letterSpacingsAliases = [
   'widest',
 ]
 addAliases(letterSpacings, letterSpacingsAliases)
-
 const shadowColor = 'rgba(0, 0, 0, 0.12)'
 const baseShadow = '0 0 2px 0 rgba(0,0,0,.0625),'
 export const shadows = [
@@ -145,7 +144,7 @@ const buttons = {
     boxShadow: shadows[2],
     fontWeight: fontWeights[5],
   },
-  ternary: {
+  tertiary: {
     color: colors.gray[5],
     backgroundColor: colors.white,
     boxShadow: shadows[2],

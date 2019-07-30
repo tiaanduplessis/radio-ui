@@ -20,7 +20,9 @@ export { default as TypeInput } from './components/type-input/index'
 export { default as OverflowMenu } from './components/overflow-menu'
 export { default as TranslateInput } from './components/translate-input/index'
 export { default as RangeInput } from './components/range-input/index'
-export { default as ExpandingSearchInput } from './components/expanding-search-input/index'
+export {
+  default as ExpandingSearchInput,
+} from './components/expanding-search-input/index'
 export { default as Toggle } from './components/toggle'
 export { default as BackgroundImage } from './components/background-image'
 export { default as Footer } from './components/footer'

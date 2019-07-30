@@ -1,6 +1,13 @@
 import { errorForField } from '../components/utils'
 
-export default function createDefaultInputProps({ formik, name, onBlur, value, onChange, alertText }) {
+export default function createDefaultInputProps({
+  formik,
+  name,
+  onBlur,
+  value,
+  onChange,
+  alertText,
+}) {
   const hasFormik = formik && Object.values(formik).length > 0
   return {
     hasFormik,
@@ -11,6 +18,6 @@ export default function createDefaultInputProps({ formik, name, onBlur, value, o
       : hasFormik && (({ target }) => formik.setFieldValue(name, target.value)),
     alertText: alertText
       ? alertText
-      : hasFormik && errorForField(formik.errors, formik.touched, name)
+      : hasFormik && errorForField(formik.errors, formik.touched, name),
   }
 }

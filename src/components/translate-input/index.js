@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import toast from 'just-toasty'
+import toast from 'just-toasty'
 import { connect } from 'formik'
 import { Translate } from '@lessondesk/material-icons'
 
@@ -9,17 +9,17 @@ import TranslateModal from '../modals/translate-modal'
 import ModalWrapper from '../modals/modal-wrapper'
 
 import createDefaultInputProps from '../../utils/create-input-defaults'
-import theme from '../theme.js'
+import { fontSizes, colors } from '../theme.js'
 
 import { Container, TranslateIconContainer } from './styles'
 
 class TranslationInput extends Component {
   static defaultProps = {
-    type: 'lesson'
+    type: 'lesson',
   }
 
   state = {
-    showModal: false
+    showModal: false,
   }
 
   componentDidMount() {
@@ -37,7 +37,7 @@ class TranslationInput extends Component {
     const { formik, name } = this.props
     const hasEmptySet = languageSets.some(languageSet => !languageSet.value)
     if (hasEmptySet) {
-      // toast('Oops! Please add all required translations.')
+      toast('Oops! Please add all required translations.')
       return
     }
     formik.setFieldValue(name, languageSets)
@@ -53,12 +53,11 @@ class TranslationInput extends Component {
     return setFieldValue(name, currentValue)
   }
 
-  render () {
+  render() {
     const { showModal } = this.state
 
     const {
       inputProps,
-      containerStyle,
       type,
       formik,
       value,
@@ -72,14 +71,9 @@ class TranslationInput extends Component {
       ...otherProps
     } = this.props
 
-    const {
-      id = otherProps.name,
-      label,
-      inputStyle,
-      name
-    } = otherProps
+    const { id = otherProps.name, label, name } = otherProps
 
-    const { alertText, hasFormik, ...inputDefaults } = createDefaultInputProps({
+    const { alertText, ...inputDefaults } = createDefaultInputProps({
       alertText: alertTextOverride,
       value,
       onBlur,
@@ -93,6 +87,7 @@ class TranslationInput extends Component {
         <Container>
           <StyledInput
             {...inputDefaults}
+            id={id}
             value={formik.values[name][0].value}
             onChange={({ target }) => this.updateDefaultValue(target.value)}
             name={name}
@@ -101,7 +96,7 @@ class TranslationInput extends Component {
             {...inputProps}
           />
           <TranslateIconContainer onClick={this.toggleModal}>
-             <Translate size={theme.fontSizes.normal} color={theme.colors.gray.dark}/>
+            <Translate size={fontSizes.normal} color={colors.gray.dark} />
           </TranslateIconContainer>
           <ModalWrapper isOpen={showModal} onRequestClose={this.toggleModal}>
             <TranslateModal

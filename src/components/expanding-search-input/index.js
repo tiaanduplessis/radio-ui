@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { ContainerAlt, InputAlt } from './styles'
 import { Magnify } from '@lessondesk/material-icons'
 
-import theme from '../theme.js'
+import { fontSizes, colors } from '../theme.js'
 
 const IconAltStyling = {
   position: 'absolute',
@@ -14,20 +14,20 @@ const IconAltStyling = {
 }
 
 const ExpandedIconStyles = {
-  boxShadow: '0px 0px 16px 0px rgba(0, 0, 0, 0.09)'
+  boxShadow: '0px 0px 16px 0px rgba(0, 0, 0, 0.09)',
 }
 
 class ExpandingSearchInput extends Component {
   state = {
     expanded: false,
-    value: ''
+    value: '',
   }
 
   toggleExpanded = () => {
     const { expanded, value } = this.state
     this.setState({
       expanded: !expanded,
-      value: expanded ? value : ''
+      value: expanded ? value : '',
     })
 
     if (!expanded) {
@@ -35,13 +35,13 @@ class ExpandingSearchInput extends Component {
     }
   }
 
-  render () {
+  render() {
     const { expanded } = this.state
     return (
       <ContainerAlt>
         <InputAlt
           style={{ padding: '0 1em' }}
-          placeholder='Search...'
+          placeholder="Search..."
           expanded={expanded}
           ref={input => (this.input = input)}
           onBlur={e => {
@@ -55,11 +55,11 @@ class ExpandingSearchInput extends Component {
           onClick={this.toggleExpanded}
           style={{
             ...IconAltStyling,
-            ...(expanded && ExpandedIconStyles)
+            ...(expanded && ExpandedIconStyles),
           }}
           bg={'white'}
-          size={theme.fontSizes.large}
-          color={theme.colors.gray.dark}
+          size={fontSizes.large}
+          color={colors.gray.dark}
         />
       </ContainerAlt>
     )

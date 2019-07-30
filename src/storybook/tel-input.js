@@ -4,22 +4,14 @@ import { TelInput } from '../'
 import { Formik } from 'formik'
 
 storiesOf('Input | Tel Input', module)
-  .add('Default', () => (
-    <TelInput id='1' name='1' label='Default' />
-  ))
+  .add('Default', () => <TelInput id="1" name="1" label="Default" />)
   .add('With Formik', () => (
     <Formik>
-      <TelInput
-        label='With Formik'
-        name='test'
-      />
+      <TelInput label="With Formik" name="test" />
     </Formik>
   ))
   .add('Disabled', () => (
     <Formik>
-      <TelInput
-        name='test'
-        disabled
-      />
+      <TelInput name="test" disabled />
     </Formik>
   ))

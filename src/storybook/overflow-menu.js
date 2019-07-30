@@ -4,13 +4,13 @@ import { OverflowMenu } from '../'
 
 storiesOf('Overflow Menu', module)
   .add('Position Right', () => (
-    <OverflowMenu position='right'>
+    <OverflowMenu position="right">
       <h1>Item 1</h1>
       <h1>Item 2</h1>
     </OverflowMenu>
   ))
   .add('Bottom', () => (
-    <OverflowMenu position='bottom'>
+    <OverflowMenu position="bottom">
       <h1>Item 1</h1>
       <h1>Item 2</h1>
     </OverflowMenu>
