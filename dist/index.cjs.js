@@ -14941,8 +14941,9 @@ var TelInput = function TelInput(props) {
       _props$defaultCountry = props.defaultCountry,
       defaultCountry = _props$defaultCountry === void 0 ? 'za' : _props$defaultCountry,
       inputProps = props.inputProps,
+      disabled = props.disabled,
       alertTextOverride = props.alertText,
-      otherProps = objectWithoutProperties(props, ["formik", "masks", "value", "onBlur", "onChange", "placeholder", "defaultCountry", "inputProps", "alertText"]);
+      otherProps = objectWithoutProperties(props, ["formik", "masks", "value", "onBlur", "onChange", "placeholder", "defaultCountry", "inputProps", "disabled", "alertText"]);
 
   var _otherProps$id = otherProps.id,
       id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
@@ -14968,11 +14969,13 @@ var TelInput = function TelInput(props) {
 
   var defaultValue = hasFormik && formik.values[name];
   return React__default.createElement(InputWrapper, _extends_1({
+    disabled: disabled,
     alertText: alertText
   }, otherProps), React__default.createElement(ReactPhoneInput, _extends_1({}, inputDefaults, {
     onChange: onChange ? onChange : defaultOnChange,
     value: value || defaultValue || '',
     defaultCountry: defaultCountry,
+    disabled: disabled,
     name: name,
     countryCodeEditable: false,
     masks: masks || defaultMasks,
@@ -23798,6 +23801,10 @@ var InputContainer = styled__default.div(_templateObject2$3(), function (_ref) {
 function ownKeys$9(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$a(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$9(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$9(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var colors$2 = theme.colors,
+    radii$1 = theme.radii,
+    fontSizes$1 = theme.fontSizes,
+    fonts$1 = theme.fonts;
 
 var styleOverride = function styleOverride(_ref) {
   var fontSize = _ref.fontSize,
@@ -23813,29 +23820,30 @@ var styleOverride = function styleOverride(_ref) {
     },
     control: function control(provided, state) {
       // TODO: use variant instead of isWhite
-      var backgroundColor = state.isDisabled || isWhite ? theme.colors.white : theme.colors.gray.xlight;
+      var backgroundColor = state.isDisabled || isWhite ? colors$2.white : colors$2.gray.xlight;
       return _objectSpread$a({}, provided, {
         backgroundColor: backgroundColor,
-        border: state.isDisabled ? "border: 1px solid ".concat(theme.colors.gray.xlight) : 'none',
-        fontFamily: theme.fonts.Montserrat,
-        fontSize: fontSize ? theme.fontSizes[fontSize] : theme.fontSizes.small,
-        borderRadius: rounded ? '2.5em' : '0.2em',
+        border: state.isDisabled ? "border: 1px solid ".concat(colors$2.gray.default) : 'none',
+        borderColor: state.isDisabled ? colors$2.gray.default : null,
+        fontFamily: fonts$1.Montserrat,
+        fontSize: fontSize ? fontSizes$1[fontSize] : fontSizes$1.small,
+        borderRadius: rounded ? radii$1.full : radii$1.small,
         width: width || '100%',
         boxShadow: rounded ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
         padding: '0 0.8em',
         overflow: 'hidden'
       }, bordered && {
-        border: "solid 1px ".concat(theme.colors.gray.light)
+        border: "solid 1px ".concat(colors$2.gray.default)
       });
     },
     placeholder: function placeholder(provided, state) {
       return {
-        color: theme.colors.gray.default
+        color: colors$2.gray.default
       };
     },
     singleValue: function singleValue() {
       return {
-        color: theme.colors.gray.xxdark
+        color: colors$2.gray.xxdark
       };
     },
     indicatorsContainer: function indicatorsContainer(provided, state) {
@@ -23846,15 +23854,15 @@ var styleOverride = function styleOverride(_ref) {
     option: function option(defaultStyles, _ref2) {
       var isSelected = _ref2.isSelected,
           isFocused = _ref2.isFocused;
-      var color = theme.colors.white;
-      if (isFocused) color = theme.colors.xlight;
-      if (isSelected) color = theme.colors.gray.light;
+      var color = colors$2.white;
+      if (isFocused) color = colors$2.xlight;
+      if (isSelected) color = colors$2.gray.light;
       return _objectSpread$a({}, defaultStyles, {
-        fontSize: theme.fontSizes.small,
-        color: theme.colors.black,
+        fontSize: fontSizes$1.small,
+        color: colors$2.black,
         backgroundColor: color,
         ':active': _objectSpread$a({}, defaultStyles[':active'], {
-          backgroundColor: theme.colors.gray.xlight
+          backgroundColor: colors$2.gray.xlight
         })
       });
     }
