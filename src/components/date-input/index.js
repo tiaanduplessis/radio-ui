@@ -9,6 +9,7 @@ import './styles.css'
 
 import InputWrapper from '../input-wrapper'
 import createDefaultInputProps from '../../utils/create-input-defaults'
+import theme from '../theme'
 
 const StyledDatePicker = styled(DatePicker)`
   background-color: ${props =>
@@ -43,7 +44,6 @@ const DateInput = props => {
     dateFormat,
     formik,
     disabled,
-    theme,
     value,
     onBlur,
     onChange,
@@ -88,7 +88,10 @@ const DateInput = props => {
         name={name}
         {...inputProps}
       />
-      <CalendarToday style={iconStyles} />
+      <CalendarToday
+        style={iconStyles}
+        color={theme.colors.gray.dark}
+      />
     </InputWrapper>
   )
 }
