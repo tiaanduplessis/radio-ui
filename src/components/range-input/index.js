@@ -15,20 +15,12 @@ const RangeInput = ({
   onBlur,
   onChange,
   formik,
-  placeholder,
   metric,
-  onLanguagesChange,
   alertText: alertTextOverride,
   inputProps,
   ...otherProps
 }) => {
-
-  const {
-    id = otherProps.name,
-    label,
-    inputStyle,
-    name
-  } = otherProps
+  const { id = otherProps.name, name } = otherProps
 
   const { alertText, hasFormik, ...inputDefaults } = createDefaultInputProps({
     alertText: alertTextOverride,
@@ -39,7 +31,8 @@ const RangeInput = ({
     formik,
   })
   const rangeValues = inputDefaults.value || value || [min, max]
-  const defaultOnChange = hasFormik && (value => formik.setFieldValue(name, value))
+  const defaultOnChange =
+    hasFormik && (value => formik.setFieldValue(name, value))
 
   return (
     <InputWrapper alertText={alertText} {...otherProps}>

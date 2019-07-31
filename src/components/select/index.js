@@ -2,72 +2,72 @@ import React from 'react'
 import ReactSelect from 'react-select'
 import { connect } from 'formik'
 
-import { Label, InputContainer } from './styles'
 import InputWrapper from '../input-wrapper'
 
 import createDefaultInputProps from '../../utils/create-input-defaults'
-import theme from '../theme'
+import { colors, radii, fontSizes, fonts } from '../theme'
 
-const { colors, radii, fontSizes, fontWeights, fonts } = theme
+const styleOverride = ({ fontSize, width, rounded, isWhite, bordered }) => ({
+  indicatorSeparator: () => ({
+    display: 'none',
+  }),
+  control: (provided, state) => {
+    // TODO: use variant instead of isWhite
+    const backgroundColor =
+      state.isDisabled || isWhite ? colors.white : colors.gray.xlight
 
-const styleOverride = ({ fontSize, width, rounded, isWhite, bordered }) => {
-  return {
-    indicatorSeparator: (provided, state) => ({
-      display: 'none'
-    }),
-    control: (provided, state) => {
-      // TODO: use variant instead of isWhite
-      const backgroundColor =
-        state.isDisabled || isWhite ? colors.white : colors.gray.xlight
-
-      return {
-        ...provided,
-        backgroundColor: backgroundColor,
-        border: state.isDisabled ? `border: 1px solid ${colors.gray.default}` : 'none',
-        borderColor: state.isDisabled ? colors.gray.default : null,
-        fontFamily: fonts.Montserrat,
-        fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
-        borderRadius: rounded ? radii.full : radii.small,
-        width: width || '100%',
-        boxShadow: rounded ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
-        padding: '0 0.8em',
-        overflow: 'hidden',
-        ...(bordered && {
-          border: `solid 1px ${colors.gray.default}`
-        })
-      }
-    },
-
-    placeholder: (provided, state) => ({
-      color: colors.gray.default
-    }),
-    singleValue: () => ({
-      color: colors.gray.xxdark
-    }),
-    indicatorsContainer: (provided, state) => ({
-      display: state.isDisabled ? 'none' : 'flex'
-    }),
-    option: (defaultStyles, { isSelected, isFocused }) => {
-      let color = colors.white
-      if (isFocused) color = colors.xlight
-      if (isSelected) color = colors.gray.light
-
-      return {
-        ...defaultStyles,
-        fontSize: fontSizes.small,
-        color: colors.black,
-        backgroundColor: color,
-        ':active': {
-          ...defaultStyles[':active'],
-          backgroundColor:colors.gray.xlight
-        }
-      }
+    return {
+      ...provided,
+      backgroundColor: backgroundColor,
+      border: state.isDisabled
+        ? `border: 1px solid ${colors.gray.default}`
+        : 'none',
+      borderColor: state.isDisabled ? colors.gray.default : null,
+      fontFamily: fonts.Montserrat,
+      fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
+      borderRadius: rounded ? radii.full : radii.small,
+      width: width || '100%',
+      boxShadow: rounded ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
+      padding: '0 0.8em',
+      overflow: 'hidden',
+      ...(bordered && {
+        border: `solid 1px ${colors.gray.default}`,
+      }),
     }
-  }
-}
+  },
+
+  placeholder: () => ({
+    color: colors.gray.default,
+  }),
+  singleValue: () => ({
+    color: colors.gray.xxdark,
+  }),
+  indicatorsContainer: (provided, state) => ({
+    display: state.isDisabled ? 'none' : 'flex',
+  }),
+  option: (defaultStyles, { isSelected, isFocused }) => {
+    let color = colors.white
+    if (isFocused) {
+      color = colors.xlight
+    }
+    if (isSelected) {
+      color = colors.gray.light
+    }
+
+    return {
+      ...defaultStyles,
+      fontSize: fontSizes.small,
+      color: colors.black,
+      backgroundColor: color,
+      ':active': {
+        ...defaultStyles[':active'],
+        backgroundColor: colors.gray.xlight,
+      },
+    }
+  },
+})
 
 const Select = ({
-  containerStyle,
   rounded,
   isWhite,
   disabled,
@@ -82,15 +82,9 @@ const Select = ({
   bordered,
   multiple,
   alertText: alertTextOverride,
+  name,
   ...otherProps
 }) => {
-  const {
-    id = otherProps.name,
-    label,
-    inputStyle,
-    name
-  } = otherProps
-
   const { alertText, hasFormik, ...inputDefaults } = createDefaultInputProps({
     alertText: alertTextOverride,
     value,
@@ -100,7 +94,8 @@ const Select = ({
     formik,
   })
 
-  const defaultOnChange = hasFormik && (value => formik.setFieldValue(name, value))
+  const defaultOnChange =
+    hasFormik && (value => formik.setFieldValue(name, value))
   const defaultValue = hasFormik && formik.values[name]
 
   return (
@@ -110,7 +105,7 @@ const Select = ({
         {...otherProps}
         onChange={onChange || defaultOnChange}
         value={defaultValue || value}
-        placeholder={placeholder || label}
+        placeholder={placeholder}
         styles={styleOverride({ rounded, isWhite, fontSize, bordered })}
         name={name}
         options={options}
@@ -122,7 +117,7 @@ const Select = ({
 }
 
 Select.defaultProps = {
-  containerStyle: {}
+  containerStyle: {},
 }
 
 export default connect(Select)

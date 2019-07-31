@@ -2,7 +2,7 @@ import React from 'react'
 import Popup from 'reactjs-popup'
 import styled from 'styled-components'
 import { DotsVertical } from '@lessondesk/material-icons'
-import theme from './theme'
+import { colors } from './theme'
 
 const SettingsContainer = styled.div`
   display: flex;
@@ -20,19 +20,19 @@ const OverflowMenu = ({ position, children }) => (
       padding: '0.5em 2em 0.5em 1em',
       borderRadius: '.4em',
       border: 'none',
-      animation: '200ms fade-in ease-in'
+      animation: '200ms fade-in ease-in',
     }}
-    trigger={<DotsVertical color={theme.colors.gray.dark} />}
+    trigger={<DotsVertical color={colors.gray.dark} />}
     position={position || 'left center'}
     arrow={false}
   >
     {closePopup => (
       <SettingsContainer>
-        {React.Children.map(children, (child, i) => {
-          return React.cloneElement(child, {
-            closePopup
+        {React.Children.map(children, child =>
+          React.cloneElement(child, {
+            closePopup,
           })
-        })}
+        )}
       </SettingsContainer>
     )}
   </Popup>

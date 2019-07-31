@@ -4,23 +4,13 @@ import { RangeInput } from '../'
 import { Formik } from 'formik'
 
 storiesOf('Input | Range Input', module)
-  .add('Default', () => (
-    <RangeInput
-      label='Price'
-      name='price'
-      metric='R'
-    />
-  ))
+  .add('Default', () => <RangeInput label="Price" name="price" metric="R" />)
   .add('With Formik', () => (
     <Formik
       initialValues={{
-        price: [0, 0]
+        price: [0, 0],
       }}
     >
-      <RangeInput
-        label='Price'
-        name='price'
-        metric='R'
-      />
+      <RangeInput label="Price" name="price" metric="R" />
     </Formik>
   ))

@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import theme from '../theme'
 
 export const Container = styled.div`
   height: 38px;
@@ -18,12 +17,12 @@ export const Value = styled.button`
   ${({ selected }) =>
     selected
       ? `
-    color: ${theme.colors.black};
-    background-color: ${theme.colors.white};
-    box-shadow: 0 0 1em 0 ${theme.colors.gray.default};
+    color: ${props => props.theme.colors.black};
+    background-color: ${props => props.theme.colors.white};
+    box-shadow: 0 0 1em 0 ${props => props.theme.colors.gray.default};
   `
       : `
-    color: ${theme.colors.gray.dark};
-    background-color: ${theme.colors.gray.xlight};
+    color: ${props => props.theme.colors.gray.dark};
+    background-color: ${props => props.theme.colors.gray.xlight};
   `}
 `

@@ -2,8 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { layout, space } from 'styled-system'
 
-import theme from './theme'
-
 const StyledLabel = styled.label`
   display: block;
   font-family: inherit;
@@ -14,7 +12,6 @@ const StyledLabel = styled.label`
 `
 
 StyledLabel.displayName = 'InputLabel'
-
 
 const StyledInputContainer = styled.div`
   min-width: ${({ minWidth }) => minWidth || '300px'};
@@ -55,24 +52,16 @@ const InputWrapper = ({
   labelStyle,
   required,
   ...otherProps
-}) => {
-  return (
-    <StyledInputContainer style={containerStyle} {...otherProps}>
-      <StyledLabel
-        htmlFor={id}
-        required={required}
-        style={labelStyle}
-      >
-        {label}
-      </StyledLabel>
-      {children}
-      {alertText && (
-        <StyledAlertText style={alertStyle}>
-          {alertText || alertTextOverride}
-        </StyledAlertText>
-      )}
-    </StyledInputContainer>
-  )
-}
+}) => (
+  <StyledInputContainer style={containerStyle} {...otherProps}>
+    <StyledLabel htmlFor={id} required={required} style={labelStyle}>
+      {label}
+    </StyledLabel>
+    {children}
+    {alertText && (
+      <StyledAlertText style={alertStyle}>{alertText}</StyledAlertText>
+    )}
+  </StyledInputContainer>
+)
 
 export default InputWrapper

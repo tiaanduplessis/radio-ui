@@ -1,6 +1,4 @@
 import * as React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { connect } from 'formik'
 
 import StyledInput from './styled-input'
@@ -23,7 +21,6 @@ class Input extends React.PureComponent {
       formik,
       alertText: alertTextOverride,
       disabled,
-      theme,
       value,
       onBlur,
       onChange,
@@ -36,7 +33,7 @@ class Input extends React.PureComponent {
       label,
       placeholder,
       inputStyle,
-      name
+      name,
     } = otherProps
 
     const { alertText, ...inputDefaults } = createDefaultInputProps({
@@ -50,6 +47,7 @@ class Input extends React.PureComponent {
     return (
       <InputWrapper alertText={alertTextOverride || alertText} {...otherProps}>
         <StyledInput
+          id={id}
           {...inputDefaults}
           style={inputStyle}
           aria-label={label}

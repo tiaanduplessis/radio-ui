@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { space, layout } from 'styled-system'
 
-import theme from './theme'
-
 const ToggleContainer = styled.div`
   display: block;
   padding-bottom: 3px;
@@ -68,7 +66,6 @@ class Toggle extends React.PureComponent {
   static defaultProps = {
     checked: false,
     inputStyle: {},
-    theme: theme,
   }
 
   static propTypes = {
@@ -79,7 +76,6 @@ class Toggle extends React.PureComponent {
 
   render() {
     const {
-      theme,
       id,
       onBlur,
       onChange,
@@ -98,7 +94,7 @@ class Toggle extends React.PureComponent {
           id={id}
           type="checkbox"
         />
-        <ToggleLabel  htmlFor={this.props.id} />
+        <ToggleLabel htmlFor={this.props.id} />
       </ToggleContainer>
     )
   }

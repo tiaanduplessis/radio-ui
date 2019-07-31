@@ -3,8 +3,6 @@ import styled from 'styled-components'
 
 import Box from './box'
 
-import theme from './theme'
-
 const CopyrightText = styled.p`
   text-align: center;
   margin: 2em 0 0;
@@ -16,16 +14,15 @@ const CopyrightText = styled.p`
 
 CopyrightText.displayName = 'CopyrightText'
 
-const Footer = ({ copyright, theme, children, ...props }) => (
-  <Box  {...props}>
+const Footer = ({ copyright, children, ...props }) => (
+  <Box {...props}>
     {children}
-    <CopyrightText >{copyright}</CopyrightText>
+    <CopyrightText>{copyright}</CopyrightText>
   </Box>
 )
 
 Footer.defaultProps = {
   copyright: '2019 Lesson Desk (Pty) Ltd. All rights reserved.',
-  theme: theme,
 }
 
 Footer.displayName = 'Footer'

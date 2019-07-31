@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { space, layout, flexbox } from 'styled-system'
 
-import theme from './theme'
-
 const StyledCard = styled.section`
   background-color: ${props => props.theme.colors.white};
   border-radius: ${props => props.theme.radii.large};
@@ -51,7 +49,6 @@ class Card extends React.PureComponent {
   static defaultProps = {
     title: '',
     description: '',
-    theme: theme,
   }
 
   static propTypes = {
@@ -71,17 +68,10 @@ class Card extends React.PureComponent {
   static Content = StyledContent
 
   render() {
-    const {
-      title,
-      description,
-      renderHeader,
-      children,
-      theme,
-      ...props
-    } = this.props
+    const { title, description, renderHeader, children, ...props } = this.props
 
     return (
-      <StyledCard  {...props}>
+      <StyledCard {...props}>
         {typeof renderHeader === 'function' ? (
           renderHeader({ title, description })
         ) : (

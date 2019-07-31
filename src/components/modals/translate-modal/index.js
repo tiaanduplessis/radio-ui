@@ -8,10 +8,10 @@ import {
   EditTextContainer,
   EditText,
   EditButton,
-  Actions
+  Actions,
 } from './styles'
 
-function updateLanguageSets (formikLanguageSets, state) {
+function updateLanguageSets(formikLanguageSets, state) {
   const { languageSets: currentLanguageSets } = state
   const newLanguageSets = formikLanguageSets.reduce((acc, set, i) => {
     const currentSet = currentLanguageSets[i]
@@ -24,29 +24,31 @@ function updateLanguageSets (formikLanguageSets, state) {
 
   return {
     ...state,
-    languageSets: newLanguageSets
+    languageSets: newLanguageSets,
   }
 }
 
 class TranslateModal extends Component {
   static defaultProps = {
     values: [],
-    maxTranslationLength: 120
+    maxTranslationLength: 120,
   }
 
   state = {
-    languageSets: []
+    languageSets: [],
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const { values } = this.props
     const clonedObjects = values.map(obj => Object.assign({}, obj))
     this.setState({ languageSets: clonedObjects })
   }
 
-  static getDerivedStateFromProps (props, state) {
+  static getDerivedStateFromProps(props, state) {
     const { values: formikLanguageSets } = props
-    return formikLanguageSets ? updateLanguageSets(formikLanguageSets, state) : null
+    return formikLanguageSets
+      ? updateLanguageSets(formikLanguageSets, state)
+      : null
   }
 
   handleValueChange = (i, value) => {
@@ -57,14 +59,13 @@ class TranslateModal extends Component {
     this.setState({ languageSets })
   }
 
-  render () {
+  render() {
     const {
       placeholder,
       onSubmit,
-      languagesContainer,
       onLanguagesChange,
       disabled,
-      languages
+      languages,
     } = this.props
     const { languageSets } = this.state
 
@@ -84,9 +85,7 @@ class TranslateModal extends Component {
         <Actions>
           <EditTextContainer>
             <EditButton onClick={onLanguagesChange}>Edit</EditButton>
-            <EditText>
-              &nbsp; {`language preferences.`}
-            </EditText>
+            <EditText>&nbsp; {`language preferences.`}</EditText>
           </EditTextContainer>
 
           <Button
