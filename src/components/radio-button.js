@@ -15,43 +15,7 @@ const StyledLabel = styled.label`
 `
 
 const StyledSpan = styled.span`
-  margin-left: 1em;
-`
-
-const Icon = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 1.4em;
-  height: 1.4em;
-  padding: 0.2em;
-  border: solid 0.1em;
-  border-radius: ${props => props.theme.radii.full};
-
-  &::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    width: 100%;
-    height: 100%;
-    background-color: ${props => props.theme.colors.primary};
-  }
-
-  ${({ checked }) => checked ? `
-    border-color: ${props => props.theme.colors.primary};
-
-    &::after {
-      width: 100%;
-      height: 100%;
-    }
-  ` : `
-    border-color: ${props => props.theme.colors.gray.dark};
-  `}
-
-  &::after {
-
-  }
+  margin-left: 0.5em;
 `
 
 class RadioButton extends React.PureComponent {
