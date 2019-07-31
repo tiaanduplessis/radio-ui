@@ -88,7 +88,7 @@ const StyledSpan = styled.span`
     content: '';
     display: inline-block;
     box-sizing: border-box;
-    margin: 3px 11px 3px 1px;
+    margin: ${({ hasChildren }) => hasChildren ? '3px 1px' : '3px 11px 3px 1px'};
     border: solid 2px; /* Safari */
     border-color: rgba(0, 0, 0, 0.6);
     border-radius: ${props => props.theme.radii.xsmall};
@@ -131,10 +131,11 @@ const StyledSpan = styled.span`
 
 class Checkbox extends React.PureComponent {
   render() {
-    const { children, onChange, value, onBlur, disabled, ...props } = this.props
+    const { children, onClick, onChange, value, onBlur, disabled, ...props } = this.props
     return (
-      <StyledLabel {...props}>
+      <StyledLabel hasLabel={!!children} {...props}>
         <StyledInput
+          onClick={onClick}
           onChange={onChange}
           onBlur={onBlur}
           checked={value}

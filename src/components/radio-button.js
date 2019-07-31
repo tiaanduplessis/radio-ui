@@ -9,6 +9,7 @@ import theme from './theme'
 const StyledLabel = styled.label`
   display: flex;
   align-items: center;
+  cursor: pointer;
   font-family: ${props => props.theme.fonts[0]};
   font-size: ${props => props.theme.fontSizes.medium};
   line-height: ${props => props.theme.lineHeights.normal};
@@ -41,7 +42,7 @@ class RadioButton extends React.PureComponent {
     return (
       <StyledLabel disabled={disabled} {...otherProps}>
         <Icon
-          onChange={onChange}
+          onClick={onChange}
           checked={checked}
           color={checked ? theme.colors.primary : theme.colors.gray.dark}
           {...inputProps}
