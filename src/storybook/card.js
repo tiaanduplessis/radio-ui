@@ -17,3 +17,22 @@ storiesOf('Card', module)
       content
     </Card>
   ))
+  .add('With onAdd', () => (
+    <Card
+      title="Example"
+      description="This is a example description"
+      onAdd={() => console.log('adding')}
+    >
+      content
+    </Card>
+  ))
+  .add('View state hiding description and actions.', () => (
+    <Card
+      viewState
+      title="Example"
+      description="This is a example description"
+      onAdd={() => console.log('adding')}
+    >
+      content
+    </Card>
+  ))

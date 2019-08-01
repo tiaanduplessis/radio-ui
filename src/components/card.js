@@ -1,6 +1,8 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
+import { Plus } from '@lessondesk/material-icons'
 import styled from 'styled-components'
+import theme from './theme'
 import { space, layout, flexbox } from 'styled-system'
 
 const StyledCard = styled.section`
@@ -28,7 +30,6 @@ const StyledCardTitle = styled.h2`
   text-transform: uppercase;
   letter-spacing: ${props => props.theme.letterSpacings.tight};
   color: ${props => props.theme.colors.gray[4]};
-  margin: 1em;
 `
 
 const StyledCardDescription = styled.p`
@@ -43,6 +44,32 @@ const StyledCardDescription = styled.p`
 
 const StyledContent = styled.div`
   margin: 1em;
+`
+
+const StyledButton = styled.button`
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  width: 3.6em;
+  height: 3.6em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${props => props.theme.colors.primary};
+`
+
+const TitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 1em;
+`
+
+const ActionsContainer = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-item: center;
 `
 
 class Card extends React.PureComponent {
@@ -67,8 +94,19 @@ class Card extends React.PureComponent {
 
   static Content = StyledContent
 
+  static AddButton = StyledButton
+
   render() {
-    const { title, description, renderHeader, children, ...props } = this.props
+    const {
+      title,
+      description,
+      onAdd,
+      actions = [],
+      viewState,
+      renderHeader,
+      children,
+      ...props
+    } = this.props
 
     return (
       <StyledCard {...props}>
@@ -76,8 +114,18 @@ class Card extends React.PureComponent {
           renderHeader({ title, description })
         ) : (
           <Card.Header>
-            <Card.Title>{title}</Card.Title>
-            {description.length > 0 && (
+            <TitleContainer>
+              <Card.Title>{title}</Card.Title>
+              <ActionsContainer>
+                {actions}
+                {onAdd && !viewState && (
+                  <Card.AddButton onClick={onAdd}>
+                    <Plus color={theme.colors.white}/>
+                  </Card.AddButton>
+                )}
+              </ActionsContainer>
+            </TitleContainer>
+            {description.length > 0 && !viewState && (
               <Card.Description>{description}</Card.Description>
             )}
           </Card.Header>
