@@ -461,6 +461,36 @@ function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
+function _templateObject8() {
+  var data = taggedTemplateLiteral(["\n  position: absolute;\n  top: 0;\n  right: 0;\n  display: flex;\n  align-item: center;\n"]);
+
+  _templateObject8 = function _templateObject8() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject7() {
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  margin: 1em;\n"]);
+
+  _templateObject7 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject6() {
+  var data = taggedTemplateLiteral(["\n  border: none;\n  outline: none;\n  border-radius: 50%;\n  width: 3.6em;\n  height: 3.6em;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: ", ";\n"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject5() {
   var data = taggedTemplateLiteral(["\n  margin: 1em;\n"]);
 
@@ -482,7 +512,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-family: ", ";\n  border-left: 5px solid ", ";\n  font-weight: ", ";\n  padding: 0 0.5em;\n  text-transform: uppercase;\n  letter-spacing: ", ";\n  color: ", ";\n  margin: 1em;\n"]);
+  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-family: ", ";\n  border-left: 5px solid ", ";\n  font-weight: ", ";\n  padding: 0 0.5em;\n  text-transform: uppercase;\n  letter-spacing: ", ";\n  color: ", ";\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -541,6 +571,11 @@ var StyledCardDescription = styled__default.p(_templateObject4(), function (prop
   return props.theme.fontSizes.small;
 });
 var StyledContent = styled__default.div(_templateObject5());
+var StyledButton$1 = styled__default.button(_templateObject6(), function (props) {
+  return props.theme.colors.primary;
+});
+var TitleContainer = styled__default.div(_templateObject7());
+var ActionsContainer = styled__default.div(_templateObject8());
 
 var Card =
 /*#__PURE__*/
@@ -559,14 +594,22 @@ function (_React$PureComponent) {
       var _this$props = this.props,
           title = _this$props.title,
           description = _this$props.description,
+          onAdd = _this$props.onAdd,
+          _this$props$actions = _this$props.actions,
+          actions = _this$props$actions === void 0 ? [] : _this$props$actions,
+          viewState = _this$props.viewState,
           renderHeader = _this$props.renderHeader,
           children = _this$props.children,
-          props = objectWithoutProperties(_this$props, ["title", "description", "renderHeader", "children"]);
+          props = objectWithoutProperties(_this$props, ["title", "description", "onAdd", "actions", "viewState", "renderHeader", "children"]);
 
       return React.createElement(StyledCard, props, typeof renderHeader === 'function' ? renderHeader({
         title: title,
         description: description
-      }) : React.createElement(Card.Header, null, React.createElement(Card.Title, null, title), description.length > 0 && React.createElement(Card.Description, null, description)), React.createElement(Card.Content, null, children));
+      }) : React.createElement(Card.Header, null, React.createElement(TitleContainer, null, React.createElement(Card.Title, null, title), React.createElement(ActionsContainer, null, actions, onAdd && !viewState && React.createElement(Card.AddButton, {
+        onClick: onAdd
+      }, React.createElement(materialIcons.Plus, {
+        color: theme.colors.white
+      })))), description.length > 0 && !viewState && React.createElement(Card.Description, null, description)), React.createElement(Card.Content, null, children));
     }
   }]);
 
@@ -590,6 +633,8 @@ defineProperty(Card, "Title", StyledCardTitle);
 defineProperty(Card, "Description", StyledCardDescription);
 
 defineProperty(Card, "Content", StyledContent);
+
+defineProperty(Card, "AddButton", StyledButton$1);
 
 function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
