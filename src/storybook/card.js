@@ -26,7 +26,7 @@ storiesOf('Card', module)
       content
     </Card>
   ))
-  .add('View state hiding description and actions.', () => (
+  .add('viewstate hiding description and actions.', () => (
     <Card
       viewState
       title="Example"
