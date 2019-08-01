@@ -1167,8 +1167,30 @@ Flex.defaultProps = {
 Flex.propTypes = _objectSpread$6({}, styledSystem.space.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.color.propTypes, {}, styledSystem.alignItems.propTypes, {}, styledSystem.justifyContent.propTypes, {}, styledSystem.flexWrap.propTypes, {}, styledSystem.flexDirection.propTypes);
 Flex.displayName = 'Flex';
 
+var _extends_1 = createCommonjsModule(function (module) {
+function _extends() {
+  module.exports = _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+module.exports = _extends;
+});
+
 function _templateObject3$1() {
-  var data = taggedTemplateLiteral(["\n  display: inline-block;\n  width: 100%;\n  cursor: pointer;\n\n  &::before {\n    content: '';\n    display: inline-block;\n    box-sizing: border-box;\n    margin: 3px 11px 3px 1px;\n    border: solid 2px; /* Safari */\n    border-color: rgba(0, 0, 0, 0.6);\n    border-radius: ", ";\n    width: 18px;\n    height: 18px;\n    vertical-align: top;\n    transition: border-color 0.2s, background-color 0.2s;\n  }\n\n  &::after {\n    content: '';\n    display: block;\n    position: absolute;\n    top: 4px;\n    left: 2px;\n    width: 10px;\n    height: 5px;\n    border: solid 2px transparent;\n    border-right: none;\n    border-top: none;\n    transform: translate(3px, 4px) rotate(-45deg);\n  }\n\n  ", ":checked + &::before,\n  ", ":indeterminate + &::before {\n    border-color: ", ";\n    background-color: ", ";\n  }\n\n  ", ":checked + &::after,\n  ", ":indeterminate + &::after {\n    border-color: rgb(255, 255, 255);\n  }\n\n  ", ":indeterminate + &::after {\n    border-left: none;\n    transform: translate(4px, 3px);\n  }\n"]);
+  var data = taggedTemplateLiteral(["\n  display: inline-block;\n  width: 100%;\n  cursor: pointer;\n\n  &::before {\n    content: '';\n    display: inline-block;\n    box-sizing: border-box;\n    margin: ", ";\n    border: solid 2px; /* Safari */\n    border-color: rgba(0, 0, 0, 0.6);\n    border-radius: ", ";\n    width: 18px;\n    height: 18px;\n    vertical-align: top;\n    transition: border-color 0.2s, background-color 0.2s;\n  }\n\n  &::after {\n    content: '';\n    display: block;\n    position: absolute;\n    top: 4px;\n    left: 2px;\n    width: 10px;\n    height: 5px;\n    border: solid 2px transparent;\n    border-right: none;\n    border-top: none;\n    transform: translate(3px, 4px) rotate(-45deg);\n  }\n\n  ", ":checked + &::before,\n  ", ":indeterminate + &::before {\n    border-color: ", ";\n    background-color: ", ";\n  }\n\n  ", ":checked + &::after,\n  ", ":indeterminate + &::after {\n    border-color: rgb(255, 255, 255);\n  }\n\n  ", ":indeterminate + &::after {\n    border-left: none;\n    transform: translate(4px, 3px);\n  }\n"]);
 
   _templateObject3$1 = function _templateObject3() {
     return data;
@@ -1216,7 +1238,10 @@ var StyledLabel = styled__default.label(_templateObject2$1(), function (props) {
 StyledInput,
 /* sc-selector */
 StyledInput, styledSystem.space, styledSystem.layout);
-var StyledSpan = styled__default.span(_templateObject3$1(), function (props) {
+var StyledSpan = styled__default.span(_templateObject3$1(), function (_ref) {
+  var hasChildren = _ref.hasChildren;
+  return hasChildren ? '3px 1px' : '3px 11px 3px 1px';
+}, function (props) {
   return props.theme.radii.xsmall;
 },
 /* sc-selector */
@@ -1251,15 +1276,17 @@ function (_React$PureComponent) {
       var _this$props = this.props,
           children = _this$props.children,
           onChange = _this$props.onChange,
-          value = _this$props.value,
+          checked = _this$props.checked,
           onBlur = _this$props.onBlur,
           disabled = _this$props.disabled,
-          props = objectWithoutProperties(_this$props, ["children", "onChange", "value", "onBlur", "disabled"]);
+          props = objectWithoutProperties(_this$props, ["children", "onChange", "checked", "onBlur", "disabled"]);
 
-      return React.createElement(StyledLabel, props, React.createElement(StyledInput, {
+      return React.createElement(StyledLabel, _extends_1({
+        hasLabel: !!children
+      }, props), React.createElement(StyledInput, {
         onChange: onChange,
         onBlur: onBlur,
-        checked: value,
+        checked: checked,
         disabled: disabled
       }), React.createElement(StyledSpan, null, children));
     }
@@ -1267,28 +1294,6 @@ function (_React$PureComponent) {
 
   return Checkbox;
 }(React.PureComponent);
-
-var _extends_1 = createCommonjsModule(function (module) {
-function _extends() {
-  module.exports = _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-module.exports = _extends;
-});
 
 function _templateObject2$2() {
   var data = taggedTemplateLiteral(["\n  margin-left: 0.5em;\n"]);
@@ -1301,7 +1306,7 @@ function _templateObject2$2() {
 }
 
 function _templateObject$a() {
-  var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  font-family: ", ";\n  font-size: ", ";\n  line-height: ", ";\n"]);
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n  font-family: ", ";\n  font-size: ", ";\n  line-height: ", ";\n"]);
 
   _templateObject$a = function _templateObject() {
     return data;
@@ -1347,7 +1352,7 @@ function (_React$PureComponent) {
       return React.createElement(StyledLabel$1, _extends_1({
         disabled: disabled
       }, otherProps), React.createElement(Icon, _extends_1({
-        onChange: onChange,
+        onClick: onChange,
         checked: checked,
         color: checked ? theme.colors.primary : theme.colors.gray.dark
       }, inputProps)), children && React.createElement(StyledSpan$1, labelProps, children));
