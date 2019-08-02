@@ -84,19 +84,21 @@ const StyledSpan = styled.span`
   width: 100%;
   cursor: pointer;
 
-  &::before {
-    content: '';
-    display: inline-block;
-    box-sizing: border-box;
-    margin: ${({ hasChildren }) => hasChildren ? '3px 1px' : '3px 11px 3px 1px'};
-    border: solid 2px; /* Safari */
-    border-color: rgba(0, 0, 0, 0.6);
-    border-radius: ${props => props.theme.radii.xsmall};
-    width: 18px;
-    height: 18px;
-    vertical-align: top;
-    transition: border-color 0.2s, background-color 0.2s;
-  }
+  ${({ labelled }) => `
+    &::before {
+      content: '';
+      display: inline-block;
+      box-sizing: border-box;
+      margin: ${labelled ? '3px 11px 3px 1px' : '3px 1px'};
+      border: solid 2px; /* Safari */
+      border-color: rgba(0, 0, 0, 0.6);
+      border-radius: ${props => props.theme.radii.xsmall};
+      width: 18px;
+      height: 18px;
+      vertical-align: top;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+  `}
 
   &::after {
     content: '';
@@ -132,15 +134,16 @@ const StyledSpan = styled.span`
 class Checkbox extends React.PureComponent {
   render() {
     const { children, onChange, checked, onBlur, disabled, ...props } = this.props
+    console.log(children, !!children)
     return (
-      <StyledLabel hasLabel={!!children} {...props}>
+      <StyledLabel {...props}>
         <StyledInput
           onChange={onChange}
           onBlur={onBlur}
           checked={checked}
           disabled={disabled}
         />
-        <StyledSpan>{children}</StyledSpan>
+        <StyledSpan labelled={children}>{children}</StyledSpan>
       </StyledLabel>
     )
   }
