@@ -1213,7 +1213,7 @@ Flex.propTypes = _objectSpread$6({}, styledSystem.space.propTypes, {}, styledSys
 Flex.displayName = 'Flex';
 
 function _templateObject3$1() {
-  var data = taggedTemplateLiteral(["\n  display: inline-block;\n  width: 100%;\n  cursor: pointer;\n\n  ", "\n\n  &::after {\n    content: '';\n    display: block;\n    position: absolute;\n    top: 4px;\n    left: 2px;\n    width: 10px;\n    height: 5px;\n    border: solid 2px transparent;\n    border-right: none;\n    border-top: none;\n    transform: translate(3px, 4px) rotate(-45deg);\n  }\n\n  ", ":checked + &::before,\n  ", ":indeterminate + &::before {\n    border-color: ", ";\n    background-color: ", ";\n  }\n\n  ", ":checked + &::after,\n  ", ":indeterminate + &::after {\n    border-color: rgb(255, 255, 255);\n  }\n\n  ", ":indeterminate + &::after {\n    border-left: none;\n    transform: translate(4px, 3px);\n  }\n"]);
+  var data = taggedTemplateLiteral(["\n  display: inline-block;\n  width: 100%;\n  cursor: pointer;\n\n  ", "\n\n  &::after {\n    content: '';\n    display: block;\n    position: absolute;\n    box-sizing: border-box;\n    top: 4px;\n    left: 2px;\n    width: 10px;\n    height: 5px;\n    border: solid 2px transparent;\n    border-right: none;\n    border-top: none;\n    transform: translate(3px, 4px) rotate(-45deg);\n  }\n\n  ", ":checked + &::before,\n  ", ":indeterminate + &::before {\n    border-color: ", ";\n    background-color: ", ";\n  }\n\n  ", ":checked + &::after,\n  ", ":indeterminate + &::after {\n    border-color: rgb(255, 255, 255);\n  }\n\n  ", ":indeterminate + &::after {\n    border-left: none;\n    transform: translate(4px, 3px);\n  }\n"]);
 
   _templateObject3$1 = function _templateObject3() {
     return data;
