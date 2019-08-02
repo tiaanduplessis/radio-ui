@@ -104,6 +104,7 @@ const StyledSpan = styled.span`
     content: '';
     display: block;
     position: absolute;
+    box-sizing: border-box;
     top: 4px;
     left: 2px;
     width: 10px;
