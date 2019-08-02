@@ -1590,10 +1590,10 @@
     babel-plugin-transform-react-remove-prop-types "0.4.24"
     babel-plugin-transform-remove-console "^6.9.4"
 
-"@lessondesk/eslint-config@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@lessondesk/eslint-config/-/eslint-config-1.2.0.tgz#aa70ad52a9ecb3ebb5841030245bf0f7afe908da"
-  integrity sha512-VCgeRe9VUzXgQ/DiXNNyxJ09UCCt+D9hauqN525CAKnc/FvQ6LkckFb6cNZ2O8q8w67wTF0IEZCzmktOwaup5A==
+"@lessondesk/eslint-config@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@lessondesk/eslint-config/-/eslint-config-1.4.0.tgz#4e7e40ec2a9073fac9b5a0237425a94b64e6a643"
+  integrity sha512-9KlUrdp5NhBhmsR/pqnyV7F5zKXhbbfYXuRXsfcsRHrP3aqsQbS69gH406NmJ5h98AFeI2RYuHOSPyiRS5M98w==
 
 "@lessondesk/material-icons@1.0.1":
   version "1.0.1"
