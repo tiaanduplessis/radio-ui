@@ -77,7 +77,7 @@
     "rollup-plugin-filesize": "6.1.1",
     "rollup-plugin-node-resolve": "5.2.0",
     "storybook-addon-jsx": "7.1.5",
-    "storybook-readme": "5.0.5",
+    "storybook-readme": "5.0.6",
     "style-loader": "0.23.1",
     "styled-components": "4.3.2",
     "stylelint": "10.1.0",
