@@ -67,7 +67,7 @@ const TitleContainer = styled.div`
 const ActionsContainer = styled.div`
   position: absolute;
   top: 0;
-  right: 0;
+  right: 1em;
   display: flex;
   align-item: center;
 `

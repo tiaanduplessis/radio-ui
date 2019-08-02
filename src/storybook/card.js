@@ -11,6 +11,7 @@ storiesOf('Card', module)
       sidebar: cardReadme,
     },
   })
+  .add('Empty', () => <Card />)
   .add('With title', () => <Card title="Example">content</Card>)
   .add('With description', () => (
     <Card title="Example" description="This is a example description">
