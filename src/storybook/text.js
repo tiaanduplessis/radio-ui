@@ -25,3 +25,16 @@ storiesOf('Text', module)
       <Text fontWeight="extrabold">extrabold</Text>
     </>
   ))
+  .add('Colors', () => (
+    <>
+      <Text color="white">white</Text>
+      <Text color="gray.xlight">gray.xlight</Text>
+      <Text color="gray.light">gray.light</Text>
+      <Text color="gray.default">gray.default</Text>
+      <Text color="gray.dark">gray.dark</Text>
+      <Text color="gray.xdark">gray.xdark</Text>
+      <Text color="gray.xxdark">gray.xxdark</Text>
+      <Text color="black">black</Text>
+      <Text color="primary">primary</Text>
+    </>
+  ))
