@@ -16,7 +16,7 @@ StyledLabel.displayName = 'InputLabel'
 const StyledInputContainer = styled.div`
   min-width: ${({ minWidth }) => minWidth || '300px'};
   width: ${({ width }) => width || '48%'};
-  margin-bottom: 1.5em;
+  ${({ empty }) => !empty && 'margin-bottom: 1.5em;'}
   position: relative;
   @media (max-width: 990px) {
     width: 100%;
@@ -53,7 +53,7 @@ const InputWrapper = ({
   required,
   ...otherProps
 }) => (
-  <StyledInputContainer style={containerStyle} {...otherProps}>
+  <StyledInputContainer empty={!label} style={containerStyle} {...otherProps}>
     <StyledLabel htmlFor={id} required={required} style={labelStyle}>
       {label}
     </StyledLabel>
