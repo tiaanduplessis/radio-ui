@@ -19,6 +19,17 @@ const StyledCard = styled.section`
 
 const StyledCardHeader = styled.header`
   position: relative;
+  border-bottom: ${props => props.hasContent
+    ? `2px solid ${props.theme.colors.gray.xlight}`
+    : 'none'};
+`
+
+const StyledCardDivider = styled.div`
+  height: ${props => props.hasContent ? '1em' : 0};
+  margin: 0 1em;
+  border-bottom: ${props => props.hasContent
+    ? `2px solid ${props.theme.colors.gray.xlight}`
+    : 'none'};
 `
 
 const StyledCardTitle = styled.h2`
@@ -33,9 +44,7 @@ const StyledCardTitle = styled.h2`
 `
 
 const StyledCardDescription = styled.p`
-  margin: 1em 1em 2em;
-  padding-bottom: 2em;
-  border-bottom: 3px solid ${props => props.theme.colors.gray[0]};
+  margin: 1em 1em;
   color: ${props => props.theme.colors.gray[3]};
   font-weight: ${props => props.theme.fontWeights.thin};
   font-size: ${props => props.theme.fontSizes.small};
@@ -93,6 +102,8 @@ class Card extends React.PureComponent {
 
   static Description = StyledCardDescription
 
+  static Divider = StyledCardDivider
+
   static Content = StyledContent
 
   static AddButton = StyledButton
@@ -106,8 +117,11 @@ class Card extends React.PureComponent {
       viewState,
       renderHeader,
       children,
+      emptyContent,
       ...props
     } = this.props
+
+    const hasContent = children && children.length > 0
 
     return (
       <StyledCard {...props}>
@@ -129,6 +143,7 @@ class Card extends React.PureComponent {
             {description.length > 0 && !viewState && (
               <Card.Description>{description}</Card.Description>
             )}
+            <Card.Divider hasContent={hasContent}/>
           </Card.Header>
         )}
         <Card.Content>{children}</Card.Content>
