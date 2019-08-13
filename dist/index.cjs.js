@@ -1445,7 +1445,7 @@ function _templateObject3$2() {
 }
 
 function _templateObject2$3() {
-  var data = taggedTemplateLiteral(["\n  min-width: ", ";\n  width: ", ";\n  margin-bottom: 1.5em;\n  position: relative;\n  @media (max-width: 990px) {\n    width: 100%;\n  }\n\n  ", "\n  ", "\n"]);
+  var data = taggedTemplateLiteral(["\n  min-width: ", ";\n  width: ", ";\n  ", "\n  position: relative;\n  @media (max-width: 990px) {\n    width: 100%;\n  }\n\n  ", "\n  ", "\n"]);
 
   _templateObject2$3 = function _templateObject2() {
     return data;
@@ -1477,6 +1477,9 @@ var StyledInputContainer = styled__default.div(_templateObject2$3(), function (_
 }, function (_ref2) {
   var width = _ref2.width;
   return width || '48%';
+}, function (_ref3) {
+  var empty = _ref3.empty;
+  return !empty && 'margin-bottom: 1.5em;';
 }, styledSystem.space, styledSystem.layout);
 StyledInputContainer.displayName = 'InputContainer';
 var StyledAlertText = styled__default.span.attrs({
@@ -1490,18 +1493,19 @@ var StyledAlertText = styled__default.span.attrs({
 });
 StyledAlertText.displayName = 'StyledAlertText';
 
-var InputWrapper = function InputWrapper(_ref3) {
-  var id = _ref3.id,
-      label = _ref3.label,
-      children = _ref3.children,
-      alertText = _ref3.alertText,
-      alertStyle = _ref3.alertStyle,
-      containerStyle = _ref3.containerStyle,
-      labelStyle = _ref3.labelStyle,
-      required = _ref3.required,
-      otherProps = objectWithoutProperties(_ref3, ["id", "label", "children", "alertText", "alertStyle", "containerStyle", "labelStyle", "required"]);
+var InputWrapper = function InputWrapper(_ref4) {
+  var id = _ref4.id,
+      label = _ref4.label,
+      children = _ref4.children,
+      alertText = _ref4.alertText,
+      alertStyle = _ref4.alertStyle,
+      containerStyle = _ref4.containerStyle,
+      labelStyle = _ref4.labelStyle,
+      required = _ref4.required,
+      otherProps = objectWithoutProperties(_ref4, ["id", "label", "children", "alertText", "alertStyle", "containerStyle", "labelStyle", "required"]);
 
   return React__default.createElement(StyledInputContainer, _extends_1({
+    empty: !label,
     style: containerStyle
   }, otherProps), React__default.createElement(StyledLabel$2, {
     htmlFor: id,
