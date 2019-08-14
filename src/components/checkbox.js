@@ -138,12 +138,7 @@ class Checkbox extends React.PureComponent {
     console.log(children, !!children)
     return (
       <StyledLabel {...props}>
-        <StyledInput
-          onChange={onChange}
-          onBlur={onBlur}
-          checked={checked}
-          disabled={disabled}
-        />
+        <StyledInput onChange={onChange} onBlur={onBlur} checked={checked} disabled={disabled} />
         <StyledSpan labelled={children}>{children}</StyledSpan>
       </StyledLabel>
     )

@@ -12,6 +12,4 @@ storiesOf('Footer', module)
     },
   })
   .add('Default', () => <Footer />)
-  .add('Custom copyright', () => (
-    <Footer copyright="This is a custom copyright" />
-  ))
+  .add('Custom copyright', () => <Footer copyright="This is a custom copyright" />)

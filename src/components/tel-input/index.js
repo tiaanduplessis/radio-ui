@@ -39,8 +39,7 @@ const TelInput = props => {
     formik,
   })
 
-  const defaultOnChange =
-    hasFormik && (value => formik.setFieldValue(name, value))
+  const defaultOnChange = hasFormik && (value => formik.setFieldValue(name, value))
   const defaultValue = hasFormik && formik.values[name]
 
   return (

@@ -17,9 +17,7 @@ const LanguageSetField = ({
   return (
     <Container id={containerId} {...otherProps}>
       <Inner>
-        <LanguageText>
-          {language ? language.value || locale : locale}
-        </LanguageText>
+        <LanguageText>{language ? language.value || locale : locale}</LanguageText>
         {defaultLanguage && <DefaultText>(default)</DefaultText>}
       </Inner>
       <Input value={value} onChange={onChange} {...inputProps} />

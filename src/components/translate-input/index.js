@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import toast from 'just-toasty'
 import { connect } from 'formik'
-import { Translate } from '@lessondesk/material-icons'
+import Translate from '@lessondesk/material-icons/dist/Translate'
 
 import InputWrapper from '../input-wrapper'
 import StyledInput from '../styled-input'

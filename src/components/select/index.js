@@ -13,15 +13,12 @@ const styleOverride = ({ fontSize, width, rounded, isWhite, bordered }) => ({
   }),
   control: (provided, state) => {
     // TODO: use variant instead of isWhite
-    const backgroundColor =
-      state.isDisabled || isWhite ? colors.white : colors.gray.xlight
+    const backgroundColor = state.isDisabled || isWhite ? colors.white : colors.gray.xlight
 
     return {
       ...provided,
       backgroundColor: backgroundColor,
-      border: state.isDisabled
-        ? `border: 1px solid ${colors.gray.default}`
-        : 'none',
+      border: state.isDisabled ? `border: 1px solid ${colors.gray.default}` : 'none',
       borderColor: state.isDisabled ? colors.gray.default : null,
       fontFamily: fonts.Montserrat,
       fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
@@ -94,8 +91,7 @@ const Select = ({
     formik,
   })
 
-  const defaultOnChange =
-    hasFormik && (value => formik.setFieldValue(name, value))
+  const defaultOnChange = hasFormik && (value => formik.setFieldValue(name, value))
   const defaultValue = hasFormik && formik.values[name]
 
   return (

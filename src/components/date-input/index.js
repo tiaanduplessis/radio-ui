@@ -1,7 +1,7 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
 import styled from 'styled-components'
-import { CalendarToday } from '@lessondesk/material-icons'
+import CalendarToday from '@lessondesk/material-icons/dist/CalendarToday'
 import { connect } from 'formik'
 
 import 'react-datepicker/dist/react-datepicker.css'
@@ -13,14 +13,9 @@ import { colors } from '../theme'
 
 const StyledDatePicker = styled(DatePicker)`
   background-color: ${props =>
-    props.disabled
-      ? props.theme.colors.transparent
-      : props.theme.colors.gray.xlight};
+    props.disabled ? props.theme.colors.transparent : props.theme.colors.gray.xlight};
   border: 1px solid
-    ${props =>
-    props.disabled
-      ? props.theme.colors.gray.light
-      : props.theme.colors.gray.xlight};
+    ${props => (props.disabled ? props.theme.colors.gray.light : props.theme.colors.gray.xlight)};
   font-family: inherit;
   font-size: ${props => props.theme.fontSizes.small};
   padding: 0.6em 1em;
@@ -69,8 +64,7 @@ const DateInput = props => {
     alertText: alertTextOverride,
   })
   const { hasFormik } = inputDefaults
-  const defaultChangeHandler =
-    hasFormik && (value => formik.setFieldValue(name, value))
+  const defaultChangeHandler = hasFormik && (value => formik.setFieldValue(name, value))
 
   return (
     <InputWrapper alertText={alertTextOverride || alertText} {...otherProps}>

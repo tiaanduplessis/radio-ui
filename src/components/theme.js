@@ -52,62 +52,24 @@ colors.primary = colors.orange[1]
 const orangeColorAliases = ['primaryLight', 'primary']
 addAliases(colors.orange, orangeColorAliases)
 
-const grayColorAliases = [
-  'xlight',
-  'light',
-  'default',
-  'dark',
-  'xdark',
-  'xxdark',
-]
+const grayColorAliases = ['xlight', 'light', 'default', 'dark', 'xdark', 'xxdark']
 addAliases(colors.gray, grayColorAliases)
 
 const fallbackFontStack = `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif`
-export const fonts = ['Montserrat', 'Open Sans'].map(
-  font => `${font}, ${fallbackFontStack}`
-)
+export const fonts = ['Montserrat', 'Open Sans'].map(font => `${font}, ${fallbackFontStack}`)
 const fontsAliases = ['Montserrat', 'OpenSans']
 addAliases(fonts, fontsAliases)
 
 export const fontWeights = [100, 200, 300, 400, 500, 600, 700]
-const fontWeightsAliases = [
-  'hairline',
-  'thin',
-  'light',
-  'medium',
-  'semi',
-  'bold',
-  'extrabold',
-]
+const fontWeightsAliases = ['hairline', 'thin', 'light', 'medium', 'semi', 'bold', 'extrabold']
 addAliases(fontWeights, fontWeightsAliases)
 
 export const lineHeights = [1, 1.25, 1.375, 1.5, 1.625, 2]
-const lineHeightsAliases = [
-  'none',
-  'tight',
-  'snug',
-  'normal',
-  'relaxed',
-  'loose',
-]
+const lineHeightsAliases = ['none', 'tight', 'snug', 'normal', 'relaxed', 'loose']
 addAliases(lineHeights, lineHeightsAliases)
 
-export const letterSpacings = [
-  '-0.05em',
-  '-0.025em',
-  '0',
-  '0.025em',
-  '0.05em',
-  '0.1em',
-]
-const letterSpacingsAliases = [
-  'tighter',
-  'tight',
-  'normal',
-  'wide',
-  'wider',
-  'widest',
-]
+export const letterSpacings = ['-0.05em', '-0.025em', '0', '0.025em', '0.05em', '0.1em']
+const letterSpacingsAliases = ['tighter', 'tight', 'normal', 'wide', 'wider', 'widest']
 addAliases(letterSpacings, letterSpacingsAliases)
 const shadowColor = 'rgba(0, 0, 0, 0.12)'
 const baseShadow = '0 0 2px 0 rgba(0,0,0,.0625),'
@@ -125,9 +87,7 @@ addAliases(radii, radiiAliases)
 export const zIndices = [1, 2, 3, 4, 5]
 
 export const breakpoints = ['20em', '40em', '52em', '64em', '80em']
-export const mediaQueries = breakpoints.map(
-  val => `@media screen and (min-width: ${val})`
-)
+export const mediaQueries = breakpoints.map(val => `@media screen and (min-width: ${val})`)
 const mediaQueriesAliases = ['xsmall', 'small', 'medium', 'large', 'xlarge']
 addAliases(mediaQueries, mediaQueriesAliases)
 

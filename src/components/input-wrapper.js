@@ -58,9 +58,7 @@ const InputWrapper = ({
       {label}
     </StyledLabel>
     {children}
-    {alertText && (
-      <StyledAlertText style={alertStyle}>{alertText}</StyledAlertText>
-    )}
+    {alertText && <StyledAlertText style={alertStyle}>{alertText}</StyledAlertText>}
   </StyledInputContainer>
 )
 

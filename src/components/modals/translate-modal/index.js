@@ -3,13 +3,7 @@ import React, { Component } from 'react'
 import LanguageSetField from '../../language-set-field'
 import Button from '../../button'
 
-import {
-  Container,
-  EditTextContainer,
-  EditText,
-  EditButton,
-  Actions,
-} from './styles'
+import { Container, EditTextContainer, EditText, EditButton, Actions } from './styles'
 
 function updateLanguageSets(formikLanguageSets, state) {
   const { languageSets: currentLanguageSets } = state
@@ -46,9 +40,7 @@ class TranslateModal extends Component {
 
   static getDerivedStateFromProps(props, state) {
     const { values: formikLanguageSets } = props
-    return formikLanguageSets
-      ? updateLanguageSets(formikLanguageSets, state)
-      : null
+    return formikLanguageSets ? updateLanguageSets(formikLanguageSets, state) : null
   }
 
   handleValueChange = (i, value) => {
@@ -60,13 +52,7 @@ class TranslateModal extends Component {
   }
 
   render() {
-    const {
-      placeholder,
-      onSubmit,
-      onLanguagesChange,
-      disabled,
-      languages,
-    } = this.props
+    const { placeholder, onSubmit, onLanguagesChange, disabled, languages } = this.props
     const { languageSets } = this.state
 
     return (

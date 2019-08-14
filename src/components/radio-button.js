@@ -1,8 +1,9 @@
 /* eslint no-use-before-define: 0 */
 import * as React from 'react'
 import styled from 'styled-components'
-import { space, layout } from 'styled-system'
-import { RadioboxBlank, RadioboxMarked } from '@lessondesk/material-icons'
+
+import RadioboxBlank from '@lessondesk/material-icons/dist/RadioboxBlank'
+import RadioboxMarked from '@lessondesk/material-icons/dist/RadioboxMarked'
 
 import theme from './theme'
 
@@ -30,7 +31,6 @@ class RadioButton extends React.PureComponent {
       theme,
       onChange,
       checked,
-      onBlur,
       inputProps,
       labelProps,
       disabled,
@@ -47,7 +47,7 @@ class RadioButton extends React.PureComponent {
           color={checked ? theme.colors.primary : theme.colors.gray.dark}
           {...inputProps}
         />
-        {children && (<StyledSpan {...labelProps}>{children}</StyledSpan>)}
+        {children && <StyledSpan {...labelProps}>{children}</StyledSpan>}
       </StyledLabel>
     )
   }

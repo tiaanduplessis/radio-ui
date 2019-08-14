@@ -13,11 +13,7 @@ storiesOf('Box', module)
     </Box>
   ))
   .add('Background color', () => (
-    <Box
-      p={3}
-      color={text('Color', 'primary')}
-      bg={text('Background color', 'primary')}
-    >
+    <Box p={3} color={text('Color', 'primary')} bg={text('Background color', 'primary')}>
       Background color
     </Box>
   ))

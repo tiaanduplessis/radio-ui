@@ -1,6 +1,6 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import { Plus } from '@lessondesk/material-icons'
+import Plus from '@lessondesk/material-icons/dist/Plus'
 import styled from 'styled-components'
 import theme from './theme'
 import { space, layout, flexbox } from 'styled-system'
@@ -70,7 +70,7 @@ const ActionsContainer = styled.div`
   top: 0;
   right: 1em;
   display: flex;
-  align-item: center;
+  align-items: center;
 `
 
 class Card extends React.PureComponent {
@@ -121,7 +121,7 @@ class Card extends React.PureComponent {
                 {actions}
                 {onAdd && !viewState && (
                   <Card.AddButton onClick={onAdd}>
-                    <Plus color={theme.colors.white}/>
+                    <Plus color={theme.colors.white} />
                   </Card.AddButton>
                 )}
               </ActionsContainer>

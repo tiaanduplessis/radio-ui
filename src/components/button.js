@@ -19,17 +19,11 @@ const SIZES = {
 }
 
 const radius = props => ({
-  borderRadius:
-    props.shape === SHAPES.rounded
-      ? props.theme.radii.large
-      : props.theme.radii.small,
+  borderRadius: props.shape === SHAPES.rounded ? props.theme.radii.large : props.theme.radii.small,
 })
 
 const size = props => ({
-  fontSize:
-    props.size === SIZES.large
-      ? props.theme.fontSizes.medium
-      : props.theme.fontSizes.small,
+  fontSize: props.size === SIZES.large ? props.theme.fontSizes.medium : props.theme.fontSizes.small,
   padding:
     props.size === SIZES.compact
       ? '5px 10px'
@@ -49,8 +43,7 @@ const StyledButton = styled.button.attrs({
   cursor: pointer;
   transition: transform 0.1s;
   &:active {
-    transform: ${props =>
-    props.shape === SHAPES.block ? 'scale(0.99)' : 'scale(0.95)'};
+    transform: ${props => (props.shape === SHAPES.block ? 'scale(0.99)' : 'scale(0.95)')};
   }
 
   ${buttonStyle}

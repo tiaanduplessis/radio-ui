@@ -31,8 +31,7 @@ const RangeInput = ({
     formik,
   })
   const rangeValues = inputDefaults.value || value || [min, max]
-  const defaultOnChange =
-    hasFormik && (value => formik.setFieldValue(name, value))
+  const defaultOnChange = hasFormik && (value => formik.setFieldValue(name, value))
 
   return (
     <InputWrapper alertText={alertText} {...otherProps}>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { ContainerAlt, InputAlt } from './styles'
-import { Magnify } from '@lessondesk/material-icons'
+import Magnify from '@lessondesk/material-icons/dist/Magnify'
 
 import { fontSizes, colors } from '../theme.js'
 

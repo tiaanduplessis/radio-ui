@@ -75,14 +75,7 @@ class Toggle extends React.PureComponent {
   }
 
   render() {
-    const {
-      id,
-      onBlur,
-      onChange,
-      inputStyle,
-      checked,
-      ...otherProps
-    } = this.props
+    const { id, onBlur, onChange, inputStyle, checked, ...otherProps } = this.props
 
     return (
       <ToggleContainer {...otherProps}>

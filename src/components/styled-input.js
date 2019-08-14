@@ -2,14 +2,9 @@ import styled from 'styled-components'
 
 const StyledInput = styled.input`
   background-color: ${props =>
-    props.disabled
-      ? props.theme.colors.transparent
-      : props.theme.colors.gray.xlight};
+    props.disabled ? props.theme.colors.transparent : props.theme.colors.gray.xlight};
   border: 1px solid
-    ${props =>
-    props.disabled
-      ? props.theme.colors.gray.default
-      : props.theme.colors.gray.xlight};
+    ${props => (props.disabled ? props.theme.colors.gray.default : props.theme.colors.gray.xlight)};
   font-family: inherit;
   font-size: ${props => props.theme.fontSizes.small};
   padding: 0.5em 1em;

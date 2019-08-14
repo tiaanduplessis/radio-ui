@@ -13,9 +13,7 @@ function formikChangeHandler(formik, name, value) {
 
   return setFieldValue(
     name,
-    shouldRemove
-      ? currentValue.filter(v => v !== value)
-      : currentValue.concat(value)
+    shouldRemove ? currentValue.filter(v => v !== value) : currentValue.concat(value)
   )
 }
 
@@ -46,13 +44,9 @@ const TypeInput = ({
           options.map(({ label, value }) => (
             <Value
               key={value}
-              selected={
-                Array.isArray(selectedValues) && selectedValues.includes(value)
-              }
+              selected={Array.isArray(selectedValues) && selectedValues.includes(value)}
               onClick={() =>
-                onToggle
-                  ? onToggle(value)
-                  : hasFormik && formikChangeHandler(formik, name, value)
+                onToggle ? onToggle(value) : hasFormik && formikChangeHandler(formik, name, value)
               }
               value={typeValues}
             >

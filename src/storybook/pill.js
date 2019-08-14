@@ -13,6 +13,4 @@ storiesOf('Pill', module)
     },
   })
   .add('Active', () => <Pill variant={text('Variant', 'active')}>Active</Pill>)
-  .add('Inactive', () => (
-    <Pill variant={text('Variant', 'inactive')}>Inactive</Pill>
-  ))
+  .add('Inactive', () => <Pill variant={text('Variant', 'inactive')}>Inactive</Pill>)

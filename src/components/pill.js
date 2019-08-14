@@ -15,14 +15,11 @@ const StyledPill = styled.button.attrs({
 })`
   background-color: ${props => props.theme.colors.transparent};
   color: ${props =>
-    props.variant === VARIANTS.active
-      ? props.theme.colors.primary
-      : props.theme.colors.gray.xdark};
+    props.variant === VARIANTS.active ? props.theme.colors.primary : props.theme.colors.gray.xdark};
   padding: 1em;
   min-width: 80px;
   border-radius: ${props => props.theme.radii.full};
-  box-shadow: ${props =>
-    props.variant === VARIANTS.active ? props.theme.shadows[1] : 'none'};
+  box-shadow: ${props => (props.variant === VARIANTS.active ? props.theme.shadows[1] : 'none')};
   border: none;
   font-size: ${props => props.theme.fontSizes.small};
   font-weight: ${props => props.theme.fontWeights.bold};

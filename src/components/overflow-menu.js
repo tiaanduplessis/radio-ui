@@ -1,7 +1,7 @@
 import React from 'react'
 import Popup from 'reactjs-popup'
 import styled from 'styled-components'
-import { DotsVertical } from '@lessondesk/material-icons'
+import DotsVertical from '@lessondesk/material-icons/dist/DotsVertical'
 import { colors } from './theme'
 
 const SettingsContainer = styled.div`
