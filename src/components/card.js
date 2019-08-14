@@ -19,15 +19,12 @@ const StyledCard = styled.section`
 
 const StyledCardHeader = styled.header`
   position: relative;
-  border-bottom: ${props => props.hasContent
-    ? `2px solid ${props.theme.colors.gray.xlight}`
-    : 'none'};
 `
 
 const StyledCardDivider = styled.div`
-  height: ${props => props.hasContent ? '1em' : 0};
+  height: ${props => props.showDivider ? '1em' : 0};
   margin: 0 1em;
-  border-bottom: ${props => props.hasContent
+  border-bottom: ${props => props.showDivider
     ? `2px solid ${props.theme.colors.gray.xlight}`
     : 'none'};
 `
@@ -121,7 +118,10 @@ class Card extends React.PureComponent {
       ...props
     } = this.props
 
-    const hasContent = children && children.length > 0
+    const showDivider = !viewState || !!children
+    console.log('showDivider', showDivider)
+    console.log('!viewState', !viewState)
+    console.log('children', children)
 
     return (
       <StyledCard {...props}>
@@ -143,7 +143,7 @@ class Card extends React.PureComponent {
             {description.length > 0 && !viewState && (
               <Card.Description>{description}</Card.Description>
             )}
-            <Card.Divider hasContent={hasContent}/>
+            <Card.Divider showDivider={showDivider}/>
           </Card.Header>
         )}
         <Card.Content>{children}</Card.Content>

@@ -532,7 +532,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = taggedTemplateLiteral(["\n  position: relative;\n  border-bottom: ", ";\n"]);
+  var data = taggedTemplateLiteral(["\n  position: relative;\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -557,13 +557,11 @@ var StyledCard = styled__default.section(_templateObject$4(), function (props) {
 }, function (props) {
   return props.theme.shadows[0];
 }, styledSystem.space, styledSystem.layout, styledSystem.flexbox);
-var StyledCardHeader = styled__default.header(_templateObject2(), function (props) {
-  return props.hasContent ? "2px solid ".concat(props.theme.colors.gray.xlight) : 'none';
-});
+var StyledCardHeader = styled__default.header(_templateObject2());
 var StyledCardDivider = styled__default.div(_templateObject3(), function (props) {
-  return props.hasContent ? '1em' : 0;
+  return props.showDivider ? '1em' : 0;
 }, function (props) {
-  return props.hasContent ? "2px solid ".concat(props.theme.colors.gray.xlight) : 'none';
+  return props.showDivider ? "2px solid ".concat(props.theme.colors.gray.xlight) : 'none';
 });
 var StyledCardTitle = styled__default.h2(_templateObject4(), function (props) {
   return props.theme.fontSizes.small;
@@ -618,7 +616,10 @@ function (_React$PureComponent) {
           emptyContent = _this$props.emptyContent,
           props = objectWithoutProperties(_this$props, ["title", "description", "onAdd", "actions", "viewState", "renderHeader", "children", "emptyContent"]);
 
-      var hasContent = children && children.length > 0;
+      var showDivider = !viewState || !!children;
+      console.log('showDivider', showDivider);
+      console.log('!viewState', !viewState);
+      console.log('children', children);
       return React.createElement(StyledCard, props, typeof renderHeader === 'function' ? renderHeader({
         title: title,
         description: description
@@ -627,7 +628,7 @@ function (_React$PureComponent) {
       }, React.createElement(materialIcons.Plus, {
         color: theme.colors.white
       })))), description.length > 0 && !viewState && React.createElement(Card.Description, null, description), React.createElement(Card.Divider, {
-        hasContent: hasContent
+        showDivider: showDivider
       })), React.createElement(Card.Content, null, children));
     }
   }]);
