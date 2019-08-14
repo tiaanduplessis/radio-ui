@@ -32,6 +32,12 @@
     "dist"
   ],
   "devDependencies": {
+    "@lessondesk/material-icons": "1.0.1",
+    "formik": "1.5.8",
+    "prop-types": "15.7.2",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "styled-components": "4.3.2",
     "@babel/cli": "7.5.5",
     "@babel/core": "7.5.5",
     "@babel/plugin-proposal-class-properties": "7.5.5",
@@ -40,7 +46,10 @@
     "@babel/preset-react": "7.0.0",
     "@lessondesk/babel-preset": "1.0.0",
     "@lessondesk/eslint-config": "1.4.0",
+<<<<<<< HEAD
     "@lessondesk/material-icons": "^1.0.2",
+=======
+>>>>>>> bc33ca8719bec5cd14fb68c202ce67eeb119beb9
     "@storybook/addon-a11y": "5.1.10",
     "@storybook/addon-actions": "5.1.10",
     "@storybook/addon-knobs": "5.1.10",
@@ -61,16 +70,12 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-react": "7.14.3",
     "eslint-plugin-react-hooks": "1.6.1",
-    "formik": "1.5.8",
     "jest": "24.8.0",
     "markdown-loader-jest": "0.1.1",
     "preact-render-to-json": "3.6.6",
     "prettier": "1.18.2",
     "prettier-eslint-cli": "5.0.0",
-    "prop-types": "15.7.2",
-    "react": "16.8.6",
     "react-datepicker": "2.8.0",
-    "react-dom": "16.8.6",
     "react-test-renderer": "16.8.6",
     "rollup": "1.18.0",
     "rollup-plugin-babel": "4.3.3",
@@ -81,7 +86,6 @@
     "storybook-addon-jsx": "7.1.5",
     "storybook-readme": "5.0.6",
     "style-loader": "0.23.1",
-    "styled-components": "4.3.2",
     "stylelint": "10.1.0",
     "stylelint-config-recommended": "2.2.0",
     "stylelint-config-styled-components": "0.1.1",
