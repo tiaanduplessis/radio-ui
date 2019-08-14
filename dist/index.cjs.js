@@ -664,10 +664,7 @@ function (_React$PureComponent) {
           children = _this$props.children,
           props = objectWithoutProperties(_this$props, ["title", "description", "onAdd", "actions", "viewState", "renderHeader", "children"]);
 
-      var showDivider = !viewState || !!children;
-      console.log('showDivider', showDivider);
-      console.log('!viewState', !viewState);
-      console.log('children', children);
+      var showDivider = title && (!viewState || !!children);
       return React.createElement(StyledCard, props, typeof renderHeader === 'function' ? renderHeader({
         title: title,
         description: description
