@@ -13,7 +13,9 @@
   "homepage": "https://github.com/lessondesk/schoolbus#readme",
   "author": "Lesson Desk",
   "contributors": [
-    "Tiaan du Plessis (https://tiaan.dev)"
+    "Tiaan du Plessis (https://tiaan.dev)",
+    "Gary Georgeu",
+    "Kyle Neisius"
   ],
   "license": "MIT",
   "scripts": {
@@ -38,7 +40,7 @@
     "@babel/preset-react": "7.0.0",
     "@lessondesk/babel-preset": "1.0.0",
     "@lessondesk/eslint-config": "1.4.0",
-    "@lessondesk/material-icons": "1.0.1",
+  "@lessondesk/material-icons": "^1.0.2",
     "@storybook/addon-a11y": "5.1.10",
     "@storybook/addon-actions": "5.1.10",
     "@storybook/addon-knobs": "5.1.10",
