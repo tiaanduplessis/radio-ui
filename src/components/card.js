@@ -22,11 +22,10 @@ const StyledCardHeader = styled.header`
 `
 
 const StyledCardDivider = styled.div`
-  height: ${props => props.showDivider ? '1em' : 0};
+  height: ${props => (props.showDivider ? '1em' : 0)};
   margin: 0 1em;
-  border-bottom: ${props => props.showDivider
-    ? `2px solid ${props.theme.colors.gray.xlight}`
-    : 'none'};
+  border-bottom: ${props =>
+    props.showDivider ? `2px solid ${props.theme.colors.gray.xlight}` : 'none'};
 `
 
 const StyledCardTitle = styled.h2`
@@ -114,7 +113,6 @@ class Card extends React.PureComponent {
       viewState,
       renderHeader,
       children,
-      emptyContent,
       ...props
     } = this.props
 
@@ -143,7 +141,7 @@ class Card extends React.PureComponent {
             {description.length > 0 && !viewState && (
               <Card.Description>{description}</Card.Description>
             )}
-            <Card.Divider showDivider={showDivider}/>
+            <Card.Divider showDivider={showDivider} />
           </Card.Header>
         )}
         <Card.Content>{children}</Card.Content>

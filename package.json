@@ -32,7 +32,6 @@
     "dist"
   ],
   "devDependencies": {
-    "@lessondesk/material-icons": "1.0.1",
     "formik": "1.5.8",
     "prop-types": "15.7.2",
     "react": "16.8.6",
@@ -46,10 +45,7 @@
     "@babel/preset-react": "7.0.0",
     "@lessondesk/babel-preset": "1.0.0",
     "@lessondesk/eslint-config": "1.4.0",
-<<<<<<< HEAD
     "@lessondesk/material-icons": "^1.0.2",
-=======
->>>>>>> bc33ca8719bec5cd14fb68c202ce67eeb119beb9
     "@storybook/addon-a11y": "5.1.10",
     "@storybook/addon-actions": "5.1.10",
     "@storybook/addon-knobs": "5.1.10",
