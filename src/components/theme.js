@@ -22,7 +22,6 @@ export const fontSizes = [
   '3em',
   '4em',
   '5em',
-  '',
 ]
 const fontSizeAliases = [
   'xxxsmall',
