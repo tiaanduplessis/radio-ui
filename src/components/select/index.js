@@ -7,7 +7,7 @@ import InputWrapper from '../input-wrapper'
 import createDefaultInputProps from '../../utils/create-input-defaults'
 import { colors, radii, fontSizes, fonts } from '../theme'
 
-const styleOverride = ({ fontSize, width, rounded, isWhite, bordered }) => ({
+const styleOverride = ({ fontSize, width, rounded, isWhite, bordered, hasShadow }) => ({
   indicatorSeparator: () => ({
     display: 'none',
   }),
@@ -24,7 +24,7 @@ const styleOverride = ({ fontSize, width, rounded, isWhite, bordered }) => ({
       fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
       borderRadius: rounded ? radii.full : radii.small,
       width: width || '100%',
-      boxShadow: rounded ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
+      boxShadow: hasShadow ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
       padding: '0 0.8em',
       overflow: 'hidden',
       ...(bordered && {
@@ -67,6 +67,7 @@ const styleOverride = ({ fontSize, width, rounded, isWhite, bordered }) => ({
 const Select = ({
   rounded,
   isWhite,
+  hasShadow,
   disabled,
   disableEmpty,
   options,
@@ -102,7 +103,7 @@ const Select = ({
         onChange={onChange || defaultOnChange}
         value={value || defaultValue}
         placeholder={placeholder}
-        styles={styleOverride({ rounded, isWhite, fontSize, bordered })}
+        styles={styleOverride({ rounded, isWhite, fontSize, bordered, hasShadow })}
         name={name}
         options={options}
         isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
