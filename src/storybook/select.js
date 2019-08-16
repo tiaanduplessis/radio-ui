@@ -9,7 +9,8 @@ storiesOf('Input | Select', module)
   .add('Empty', () => <Select name="1" placeholder="Empty" />)
   .add('With options', () => <Select options={options} label="Label" name="2" />)
   .add('White + Bordered', () => <Select bordered isWhite options={options} />)
-  .add('White + Rounded', () => <Select rounded isWhite options={options} />)
+  .add('White + Rounded', () => <Select rounded isWhite hasShadow options={options} />)
+  .add('With Box Shadow + Rounded', () => <Select rounded options={options} />)
   .add('Disabled', () => <Select disabled options={options} />)
   .add('Value', () => (
     <Formik
