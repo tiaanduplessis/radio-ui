@@ -571,7 +571,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = taggedTemplateLiteral(["\n  height: ", ";\n  margin: 0 1em 1em;\n  border-bottom: ", ";\n"]);
+  var data = taggedTemplateLiteral(["\n  height: ", ";\n  margin: 0 1em 2em;\n  border-bottom: ", ";\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
