@@ -23,7 +23,7 @@ const StyledCardHeader = styled.header`
 
 const StyledCardDivider = styled.div`
   height: ${props => (props.showDivider ? '1em' : 0)};
-  margin: 0 1em 2em;
+  margin: ${props => (props.showDivider ? '0 1em 2em' : 0)};
   border-bottom: ${props =>
     props.showDivider ? `2px solid ${props.theme.colors.gray.xlight}` : 'none'};
 `

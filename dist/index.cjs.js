@@ -571,7 +571,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = taggedTemplateLiteral(["\n  height: ", ";\n  margin: 0 1em 2em;\n  border-bottom: ", ";\n"]);
+  var data = taggedTemplateLiteral(["\n  height: ", ";\n  margin: ", ";\n  border-bottom: ", ";\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -609,6 +609,8 @@ var StyledCard = styled__default.section(_templateObject$4(), function (props) {
 var StyledCardHeader = styled__default.header(_templateObject2());
 var StyledCardDivider = styled__default.div(_templateObject3(), function (props) {
   return props.showDivider ? '1em' : 0;
+}, function (props) {
+  return props.showDivider ? '0 1em 2em' : 0;
 }, function (props) {
   return props.showDivider ? "2px solid ".concat(props.theme.colors.gray.xlight) : 'none';
 });
