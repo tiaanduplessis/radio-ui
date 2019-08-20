@@ -113,10 +113,11 @@ class Card extends React.PureComponent {
       viewState,
       renderHeader,
       children,
+      hideDivider,
       ...props
     } = this.props
 
-    const showDivider = title && (!viewState || !!children)
+    const showDivider = !hideDivider && title && (!viewState || !!children)
 
     return (
       <StyledCard {...props}>

@@ -370,6 +370,12 @@ var size = function size(props) {
   };
 };
 
+var getWidth = function getWidth(props) {
+  if (props.shape === SHAPES.block) return '100%';
+  if (props.width) return props.width;
+  return 'auto';
+};
+
 var StyledButton = styled__default.button.attrs({
   type: 'button'
 })(_templateObject$3(), function (props) {
@@ -377,7 +383,7 @@ var StyledButton = styled__default.button.attrs({
 }, function (props) {
   return props.theme.fonts[0];
 }, function (props) {
-  return props.shape === SHAPES.block ? '100%' : 'auto';
+  return getWidth(props);
 }, function (props) {
   return props.shape === SHAPES.block ? 'scale(0.99)' : 'scale(0.95)';
 }, styledSystem.buttonStyle, radius, size, styledSystem.space, styledSystem.layout, styledSystem.typography);
@@ -664,9 +670,10 @@ function (_React$PureComponent) {
           viewState = _this$props.viewState,
           renderHeader = _this$props.renderHeader,
           children = _this$props.children,
-          props = objectWithoutProperties(_this$props, ["title", "description", "onAdd", "actions", "viewState", "renderHeader", "children"]);
+          hideDivider = _this$props.hideDivider,
+          props = objectWithoutProperties(_this$props, ["title", "description", "onAdd", "actions", "viewState", "renderHeader", "children", "hideDivider"]);
 
-      var showDivider = title && (!viewState || !!children);
+      var showDivider = !hideDivider && title && (!viewState || !!children);
       return React.createElement(StyledCard, props, typeof renderHeader === 'function' ? renderHeader({
         title: title,
         description: description

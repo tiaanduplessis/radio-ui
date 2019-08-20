@@ -32,13 +32,20 @@ const size = props => ({
         : '15px 40px',
 })
 
+const getWidth = props => {
+  if (props.shape === SHAPES.block) return '100%'
+  if (props.width) return props.width
+
+  return 'auto'
+}
+
 const StyledButton = styled.button.attrs({
   type: 'button',
 })`
   font-weight: ${props => props.theme.fontWeights.bold};
   font-family: ${props => props.theme.fonts[0]};
   min-width: 120px;
-  width: ${props => (props.shape === SHAPES.block ? '100%' : 'auto')};
+  width: ${props => getWidth(props)};
   border: none;
   cursor: pointer;
   transition: transform 0.1s;
