@@ -12,7 +12,7 @@ storiesOf('Card', module)
     },
   })
   .add('Empty', () => <Card />)
-  .add('With title', () => <Card title="Example"></Card>)
+  .add('With title', () => <Card title="Example" viewState></Card>)
   .add('With description', () => (
     <Card title="Example" description="This is a example description">
       content
