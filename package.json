@@ -1,10 +1,6 @@
 {
   "name": "@lessondesk/schoolbus",
-<<<<<<< HEAD
   "version": "0.1.34",
-=======
-  "version": "0.1.33",
->>>>>>> c9d0ae9fdf6ca46b5e8650659dd12cd4ed121aaf
   "description": "🚌 Lesson Desk Component Library",
   "main": "dist/index.cjs.js",
   "repository": {
