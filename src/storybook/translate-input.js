@@ -2,9 +2,24 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { TranslateInput } from '../'
 import { Formik } from 'formik'
+import * as yup from 'yup'
+
+const schema = yup.object().shape({
+  test: yup.array().of(
+    yup.object().shape({
+      value: yup
+        .string()
+        .trim()
+        .min(2)
+        .max(80)
+        .required(),
+    })
+  ),
+})
 
 storiesOf('Input | Translate Input', module).add('With Formik', () => (
   <Formik
+    validationSchema={schema}
     initialValues={{
       test: [
         {

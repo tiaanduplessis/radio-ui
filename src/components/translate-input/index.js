@@ -53,6 +53,14 @@ class TranslationInput extends Component {
     return setFieldValue(name, currentValue)
   }
 
+  getAlertMessage = (message = '') => {
+    if (Array.isArray(message)) {
+      return message[0].value
+    }
+
+    return message
+  }
+
   render() {
     const { showModal } = this.state
 
@@ -83,7 +91,7 @@ class TranslationInput extends Component {
     })
 
     return (
-      <InputWrapper alertText={alertTextOverride || alertText} {...otherProps}>
+      <InputWrapper alertText={this.getAlertMessage(alertText)} {...otherProps}>
         <Container>
           <StyledInput
             {...inputDefaults}

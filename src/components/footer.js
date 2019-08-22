@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Box from './box'
 
 const CopyrightText = styled.p.attrs({
-  role: 'contentinfo'
+  role: 'contentinfo',
 })`
   text-align: center;
   margin: 2em 0 0;

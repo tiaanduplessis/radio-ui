@@ -9,6 +9,7 @@ export default function createDefaultInputProps({
   alertText,
 }) {
   const hasFormik = formik && Object.values(formik).length > 0
+
   return {
     hasFormik,
     onBlur: onBlur ? onBlur : hasFormik && formik.handleBlur,
