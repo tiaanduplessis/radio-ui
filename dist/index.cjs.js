@@ -371,8 +371,14 @@ var size = function size(props) {
 };
 
 var getWidth = function getWidth(props) {
-  if (props.shape === SHAPES.block) return '100%';
-  if (props.width) return props.width;
+  if (props.shape === SHAPES.block) {
+    return '100%';
+  }
+
+  if (props.width) {
+    return props.width;
+  }
+
   return 'auto';
 };
 
@@ -26831,6 +26837,16 @@ function (_Component) {
       return setFieldValue(name, currentValue);
     });
 
+    defineProperty(assertThisInitialized(_this), "getAlertMessage", function () {
+      var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+      if (Array.isArray(message)) {
+        return message[0].value;
+      }
+
+      return message;
+    });
+
     return _this;
   }
 
@@ -26882,7 +26898,7 @@ function (_Component) {
           inputDefaults = objectWithoutProperties(_createDefaultInputPr, ["alertText"]);
 
       return React__default.createElement(InputWrapper, _extends_1({
-        alertText: alertTextOverride || alertText
+        alertText: this.getAlertMessage(alertText)
       }, otherProps), React__default.createElement(Container$3, null, React__default.createElement(StyledInput$1, _extends_1({}, inputDefaults, {
         id: id,
         value: formik.values[name][0].value,
@@ -35598,7 +35614,9 @@ function _templateObject$n() {
 
   return data;
 }
-var CopyrightText = styled__default.p(_templateObject$n(), function (props) {
+var CopyrightText = styled__default.p.attrs({
+  role: 'contentinfo'
+})(_templateObject$n(), function (props) {
   return props.theme.colors.gray[3];
 }, function (props) {
   return props.theme.fontSizes.xsmall;
