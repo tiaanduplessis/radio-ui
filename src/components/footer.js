@@ -3,7 +3,9 @@ import styled from 'styled-components'
 
 import Box from './box'
 
-const CopyrightText = styled.p`
+const CopyrightText = styled.p.attrs({
+  role: 'contentinfo'
+})`
   text-align: center;
   margin: 2em 0 0;
   color: ${props => props.theme.colors.gray[3]};
