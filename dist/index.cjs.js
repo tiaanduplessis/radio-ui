@@ -22243,9 +22243,8 @@ function _objectSpread$a(target) { for (var i = 1; i < arguments.length; i++) { 
 var styleOverride = function styleOverride(_ref) {
   var fontSize = _ref.fontSize,
       width = _ref.width,
-      rounded = _ref.rounded,
-      isWhite = _ref.isWhite,
-      bordered = _ref.bordered,
+      shape = _ref.shape,
+      variant = _ref.variant,
       hasShadow = _ref.hasShadow;
   return {
     indicatorSeparator: function indicatorSeparator() {
@@ -22254,20 +22253,19 @@ var styleOverride = function styleOverride(_ref) {
       };
     },
     control: function control(provided, state) {
-      // TODO: use variant instead of isWhite
-      var backgroundColor = state.isDisabled || isWhite ? colors.white : colors.gray.xlight;
+      var backgroundColor = state.isDisabled || variant === 'light' ? colors.white : colors.gray.xlight;
       return _objectSpread$a({}, provided, {
         backgroundColor: backgroundColor,
         border: state.isDisabled && !hasShadow ? "border: 1px solid ".concat(colors.gray.default) : 'none',
         borderColor: state.isDisabled ? colors.gray.default : null,
         fontFamily: fonts.Montserrat,
         fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
-        borderRadius: rounded ? radii.full : radii.small,
+        borderRadius: shape === 'rounded' ? radii.full : radii.small,
         width: width || '100%',
         boxShadow: hasShadow ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
         padding: '0 0.8em',
         overflow: 'hidden'
-      }, bordered && {
+      }, variant === 'light' && {
         border: "solid 1px ".concat(colors.gray.default)
       });
     },
@@ -22312,8 +22310,8 @@ var styleOverride = function styleOverride(_ref) {
 };
 
 var Select$1 = function Select(_ref3) {
-  var rounded = _ref3.rounded,
-      isWhite = _ref3.isWhite,
+  var shape = _ref3.shape,
+      variant = _ref3.variant,
       hasShadow = _ref3.hasShadow,
       disabled = _ref3.disabled,
       disableEmpty = _ref3.disableEmpty,
@@ -22328,7 +22326,7 @@ var Select$1 = function Select(_ref3) {
       multiple = _ref3.multiple,
       alertTextOverride = _ref3.alertText,
       name = _ref3.name,
-      otherProps = objectWithoutProperties(_ref3, ["rounded", "isWhite", "hasShadow", "disabled", "disableEmpty", "options", "formik", "value", "onBlur", "onChange", "placeholder", "fontSize", "bordered", "multiple", "alertText", "name"]);
+      otherProps = objectWithoutProperties(_ref3, ["shape", "variant", "hasShadow", "disabled", "disableEmpty", "options", "formik", "value", "onBlur", "onChange", "placeholder", "fontSize", "bordered", "multiple", "alertText", "name"]);
 
   var _createDefaultInputPr = createDefaultInputProps({
     alertText: alertTextOverride,
@@ -22354,8 +22352,8 @@ var Select$1 = function Select(_ref3) {
     value: value || defaultValue,
     placeholder: placeholder,
     styles: styleOverride({
-      rounded: rounded,
-      isWhite: isWhite,
+      shape: shape,
+      variant: variant,
       fontSize: fontSize,
       bordered: bordered,
       hasShadow: hasShadow
