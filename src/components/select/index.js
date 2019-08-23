@@ -7,13 +7,12 @@ import InputWrapper from '../input-wrapper'
 import createDefaultInputProps from '../../utils/create-input-defaults'
 import { colors, radii, fontSizes, fonts } from '../theme'
 
-const styleOverride = ({ fontSize, width, rounded, isWhite, bordered, hasShadow }) => ({
+const styleOverride = ({ fontSize, width, shape, variant, hasShadow }) => ({
   indicatorSeparator: () => ({
     display: 'none',
   }),
   control: (provided, state) => {
-    // TODO: use variant instead of isWhite
-    const backgroundColor = state.isDisabled || isWhite ? colors.white : colors.gray.xlight
+    const backgroundColor = state.isDisabled || variant === 'light' ? colors.white : colors.gray.xlight
 
     return {
       ...provided,
@@ -22,12 +21,12 @@ const styleOverride = ({ fontSize, width, rounded, isWhite, bordered, hasShadow 
       borderColor: state.isDisabled ? colors.gray.default : null,
       fontFamily: fonts.Montserrat,
       fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
-      borderRadius: rounded ? radii.full : radii.small,
+      borderRadius: shape === 'rounded' ? radii.full : radii.small,
       width: width || '100%',
       boxShadow: hasShadow ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
       padding: '0 0.8em',
       overflow: 'hidden',
-      ...(bordered && {
+      ...(variant === 'light' && {
         border: `solid 1px ${colors.gray.default}`,
       }),
     }
@@ -65,8 +64,8 @@ const styleOverride = ({ fontSize, width, rounded, isWhite, bordered, hasShadow 
 })
 
 const Select = ({
-  rounded,
-  isWhite,
+  shape,
+  variant,
   hasShadow,
   disabled,
   disableEmpty,
@@ -103,7 +102,7 @@ const Select = ({
         onChange={onChange || defaultOnChange}
         value={value || defaultValue}
         placeholder={placeholder}
-        styles={styleOverride({ rounded, isWhite, fontSize, bordered, hasShadow })}
+        styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
         name={name}
         options={options}
         isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
