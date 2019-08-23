@@ -10,9 +10,9 @@ module.exports = async ({ config }) => {
       ),
         'styled-system': path.join(__dirname, '../node_modules/styled-system'),
     'prop-types': path.join(__dirname, '../node_modules/prop-types'),
-      '@lessondesk/material-icons': path.join(__dirname, '../node_modules/@lessondesk/material-icons/'),
-        '@babel/runtime': path.join(__dirname, '../node_modules/@babel/runtime'),
-          '@lessondesk/schoolbus': path.join(__dirname, '../src'),
+    '@lessondesk/material-icons': path.join(__dirname, '../node_modules/@lessondesk/material-icons/'),
+    '@babel/runtime': path.join(__dirname, '../node_modules/@babel/runtime'),
+    '@lessondesk/schoolbus': path.join(__dirname, '../src'),
     }
   }
 
@@ -23,7 +23,7 @@ module.exports = async ({ config }) => {
   },
 
   // NOTE: Override loader
-  config.module.rules[2] = {
+  config.module.rules[5] = {
         test: /\.css$/,
         use: [
           {

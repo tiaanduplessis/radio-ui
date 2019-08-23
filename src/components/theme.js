@@ -38,7 +38,7 @@ addAliases(fontSizes, fontSizeAliases)
 export const colors = {
   white: '#fff',
   gray: ['#f4f3f4', '#dfdfdf', '#d0d0d0', '#777879', '#808080', '#47494B'],
-  black: '#333',
+  black: '#212325',
   transparent: 'transparent',
   blue: ['#80dcff', '#4dceff', '#00abeb', '#0082b3', '#005d80'],
   green: '#37b049',

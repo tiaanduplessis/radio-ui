@@ -4,13 +4,12 @@ import { text } from '@storybook/addon-knobs'
 
 import { Pill } from '../'
 
-import pillReadme from '../docs/pill.md'
+import mdx from '../docs/pill.mdx'
 
 storiesOf('Pill', module)
   .addParameters({
-    readme: {
-      sidebar: pillReadme,
-    },
+    component: Pill,
+    docs: mdx,
   })
   .add('Active', () => <Pill variant={text('Variant', 'active')}>Active</Pill>)
   .add('Inactive', () => <Pill variant={text('Variant', 'inactive')}>Inactive</Pill>)

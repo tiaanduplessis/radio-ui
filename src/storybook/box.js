@@ -5,6 +5,7 @@ import { number, text } from '@storybook/addon-knobs'
 import { Box } from '../'
 
 storiesOf('Box', module)
+  .addParameters({ component: Box })
   .add('Padding', () => <Box p={number('Padding', 3)}>With padding</Box>)
   .add('Margin', () => <Box m={number('Margin', 3)}>With margin</Box>)
   .add('Color', () => (

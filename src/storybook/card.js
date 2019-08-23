@@ -3,13 +3,12 @@ import { storiesOf } from '@storybook/react'
 
 import { Card } from '../'
 
-import cardReadme from '../docs/card.md'
+import mdx from '../docs/card.mdx'
 
 storiesOf('Card', module)
   .addParameters({
-    readme: {
-      sidebar: cardReadme,
-    },
+    docs: mdx,
+    component: Card,
   })
   .add('Empty', () => <Card />)
   .add('With title', () => <Card title="Example" viewState></Card>)

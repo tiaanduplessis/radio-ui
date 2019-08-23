@@ -6,6 +6,7 @@ import { Select } from '../'
 const options = [{ label: 'option 1', value: '1' }, { label: 'option 2', value: '2' }]
 
 storiesOf('Input | Select', module)
+  .addParameters({ component: Select })
   .add('Empty', () => <Select name="1" placeholder="Empty" />)
   .add('With options', () => <Select options={options} label="Label" name="2" />)
   .add('White + Bordered', () => <Select bordered isWhite options={options} />)

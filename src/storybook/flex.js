@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { Flex, Box } from '../'
 
 storiesOf('Flex', module)
+  .addParameters({ component: Flex })
   .add('Center', () => (
     <Flex justify="center" align="center" bg="gray.1">
       <Box p={3} m={1} width={1 / 2} color="white" bg="primary">

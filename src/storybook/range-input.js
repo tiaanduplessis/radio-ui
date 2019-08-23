@@ -4,7 +4,8 @@ import { RangeInput } from '../'
 import { Formik } from 'formik'
 
 storiesOf('Input | Range Input', module)
-  .add('Default', () => <RangeInput label="Price" name="price" metric="R" />)
+  .addParameters({ component: RangeInput })
+  .add('Basic', () => <RangeInput label="Price" name="price" metric="R" />)
   .add('With Formik', () => (
     <Formik
       initialValues={{

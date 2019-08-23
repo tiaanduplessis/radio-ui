@@ -3,13 +3,12 @@ import { storiesOf } from '@storybook/react'
 
 import { Footer } from '../'
 
-import footerReadme from '../docs/footer.md'
+import mdx from '../docs/footer.mdx'
 
 storiesOf('Footer', module)
   .addParameters({
-    readme: {
-      sidebar: footerReadme,
-    },
+    component: Footer,
+    docs: mdx,
   })
-  .add('Default', () => <Footer />)
+  .add('Basic', () => <Footer />)
   .add('Custom copyright', () => <Footer copyright="This is a custom copyright" />)

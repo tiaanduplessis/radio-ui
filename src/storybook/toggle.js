@@ -2,13 +2,12 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { Toggle } from '../'
 
-import toggleReadme from '../docs/toggle.md'
+import mdx from '../docs/toggle.mdx'
 
 storiesOf('Input | Toggle', module)
   .addParameters({
-    readme: {
-      sidebar: toggleReadme,
-    },
+    component: Toggle,
+    docs: mdx,
   })
   .add('Unchecked', () => <Toggle />)
   .add('Checked', () => <Toggle checked={true} />)

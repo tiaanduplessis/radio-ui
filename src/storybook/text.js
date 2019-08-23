@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { Text } from '../'
 
 storiesOf('Text', module)
+  .addParameters({ component: Text })
   .add('Font sizes', () => (
     <>
       <Text fontSize="xxsmall">xxsmall</Text>

@@ -2,13 +2,12 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { Button } from '../'
 
-import ButtonReadme from '../docs/button.md'
+import mdx from '../docs/button.mdx'
 
 storiesOf('Input | Button', module)
   .addParameters({
-    readme: {
-      sidebar: ButtonReadme,
-    },
+    docs: mdx,
+    component: Button,
   })
   .add('Variants', () => (
     <>

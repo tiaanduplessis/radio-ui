@@ -2,13 +2,12 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { Checkbox } from '../'
 
-import checkboxReadme from '../docs/checkbox.md'
+import mdx from '../docs/checkbox.mdx'
 
 storiesOf('Input | Checkbox', module)
   .addParameters({
-    readme: {
-      sidebar: checkboxReadme,
-    },
+    component: Checkbox,
+    docs: mdx,
   })
   .add('Without label', () => <Checkbox />)
   .add('With Label', () => <Checkbox>With Label</Checkbox>)

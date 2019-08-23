@@ -33,8 +33,12 @@ const size = props => ({
 })
 
 const getWidth = props => {
-  if (props.shape === SHAPES.block) {return '100%'}
-  if (props.width) {return props.width}
+  if (props.shape === SHAPES.block) {
+    return '100%'
+  }
+  if (props.width) {
+    return props.width
+  }
 
   return 'auto'
 }

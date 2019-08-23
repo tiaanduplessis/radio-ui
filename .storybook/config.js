@@ -1,11 +1,18 @@
 import React from 'react'
-import { configure, addDecorator } from '@storybook/react'
+import { configure, addDecorator, addParameters } from '@storybook/react'
 import { withA11y } from '@storybook/addon-a11y'
 import { withKnobs } from '@storybook/addon-knobs'
-import { addReadme } from 'storybook-readme'
 import { jsxDecorator } from 'storybook-addon-jsx'
 
 import { ThemeProvider, Box, Normalize } from '../src'
+
+import theme from './theme'
+
+addParameters({
+  options: {
+    theme,
+  },
+})
 
 addDecorator(jsxDecorator)
 addDecorator(story => (
@@ -19,9 +26,8 @@ addDecorator(story => (
 
 addDecorator(withA11y)
 addDecorator(withKnobs)
-addDecorator(addReadme)
 
-const req = require.context('../src/storybook', true, /[\w\d\s]+\.js$/)
+const req = require.context('../src/storybook', true, /[\w\d\s]+\.(js|mdx)$/)
 
 const load = () => {
   req.keys().forEach(key => {

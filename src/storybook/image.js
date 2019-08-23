@@ -3,7 +3,8 @@ import { storiesOf } from '@storybook/react'
 import { Image } from '../'
 
 storiesOf('Image', module)
-  .add('Default', () => (
+  .addParameters({ component: Image })
+  .add('Basic', () => (
     <Image src="https://www.lessondesk.com/assets/images/lessondesk/Icon.png" size="300px" />
   ))
   .add('Rounded', () => (
