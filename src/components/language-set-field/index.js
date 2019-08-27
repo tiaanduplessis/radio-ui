@@ -8,11 +8,14 @@ const LanguageSetField = ({
   containerId,
   languages,
   inputProps,
+  placeholder,
   value,
   onChange,
+  language,
+  name,
   ...otherProps
 }) => {
-  const language = languages.find(({ code }) => code === locale)
+  language = language || languages.find(({ code }) => code === locale)
 
   return (
     <Container id={containerId} {...otherProps}>
@@ -20,7 +23,13 @@ const LanguageSetField = ({
         <LanguageText>{language ? language.value || locale : locale}</LanguageText>
         {defaultLanguage && <DefaultText>(default)</DefaultText>}
       </Inner>
-      <Input value={value} onChange={onChange} {...inputProps} />
+      <Input
+        placeholder={placeholder}
+        name={name}
+        value={value}
+        onChange={onChange}
+        {...inputProps}
+      />
     </Container>
   )
 }
