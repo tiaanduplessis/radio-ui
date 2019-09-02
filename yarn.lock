@@ -313,6 +313,14 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-syntax-optional-catch-binding" "^7.2.0"
 
+"@babel/plugin-proposal-optional-chaining@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-optional-chaining/-/plugin-proposal-optional-chaining-7.2.0.tgz#ae454f4c21c6c2ce8cb2397dc332ae8b420c5441"
+  integrity sha512-ea3Q6edZC/55wEBVZAEz42v528VulyO0eir+7uky/sT4XRcdkWJcFi1aPtitTlwUzGnECWJNExWww1SStt+yWw==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+    "@babel/plugin-syntax-optional-chaining" "^7.2.0"
+
 "@babel/plugin-proposal-unicode-property-regex@^7.4.4":
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-unicode-property-regex/-/plugin-proposal-unicode-property-regex-7.4.4.tgz#501ffd9826c0b91da22690720722ac7cb1ca9c78"
@@ -375,6 +383,13 @@
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-optional-catch-binding/-/plugin-syntax-optional-catch-binding-7.2.0.tgz#a94013d6eda8908dfe6a477e7f9eda85656ecf5c"
   integrity sha512-bDe4xKNhb0LI7IvZHiA13kff0KEfaGX/Hv4lMA9+7TEc63hMNvfKo6ZFpXhKuEp+II/q35Gc4NoMeDZyaUbj9w==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+
+"@babel/plugin-syntax-optional-chaining@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-optional-chaining/-/plugin-syntax-optional-chaining-7.2.0.tgz#a59d6ae8c167e7608eaa443fda9fa8fa6bf21dff"
+  integrity sha512-HtGCtvp5Uq/jH/WNUPkK6b7rufnCPLLlDAFN7cmACoIjaOOiXxUt3SswU5loHqrhtqTsa/WoLQ1OQ1AGuZqaWA==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
 
@@ -1103,29 +1118,6 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@lessondesk/babel-preset@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@lessondesk/babel-preset/-/babel-preset-1.0.0.tgz#63d9d8c37983fea3a58186cda0b386b802457abb"
-  integrity sha512-mgPYFBx6PCuI2Z6Up+BJp/LaA/kISA9r8BgzTH6lFwS1NSsauc7+4w35y1tY6/hqLLOpKA/Ijs3ItGaI8Qhbeg==
-  dependencies:
-    "@babel/core" "^7.5.0"
-    "@babel/plugin-proposal-class-properties" "^7.5.0"
-    "@babel/plugin-proposal-object-rest-spread" "^7.5.1"
-    "@babel/plugin-syntax-dynamic-import" "^7.2.0"
-    "@babel/plugin-transform-react-constant-elements" "^7.5.0"
-    "@babel/plugin-transform-runtime" "^7.5.0"
-    "@babel/preset-env" "^7.5.0"
-    "@babel/preset-react" "^7.0.0"
-    "@babel/runtime" "^7.5.1"
-    babel-plugin-react-require "^3.1.1"
-    babel-plugin-transform-react-remove-prop-types "0.4.24"
-    babel-plugin-transform-remove-console "^6.9.4"
-
-"@lessondesk/eslint-config@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@lessondesk/eslint-config/-/eslint-config-1.4.0.tgz#4e7e40ec2a9073fac9b5a0237425a94b64e6a643"
-  integrity sha512-9KlUrdp5NhBhmsR/pqnyV7F5zKXhbbfYXuRXsfcsRHrP3aqsQbS69gH406NmJ5h98AFeI2RYuHOSPyiRS5M98w==
-
 "@lessondesk/material-icons@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@lessondesk/material-icons/-/material-icons-1.0.2.tgz#383fe6cd95bdc8726e135be95169f19199ac90c3"
@@ -1186,6 +1178,30 @@
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
+
+"@radio-retail/babel-preset@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@radio-retail/babel-preset/-/babel-preset-1.0.0.tgz#9c52ee1103385912bad37dd6f0b6773e00ea79f9"
+  integrity sha512-TvQOp84EHMDLiGiR0s8tzk0yqkapn+uRGu0yHJROR4COSekitd+4nwYamX9kRMUnYuMXPjBzYj92H66jNMlSkg==
+  dependencies:
+    "@babel/core" "^7.5.0"
+    "@babel/plugin-proposal-class-properties" "^7.5.0"
+    "@babel/plugin-proposal-object-rest-spread" "^7.5.1"
+    "@babel/plugin-proposal-optional-chaining" "^7.2.0"
+    "@babel/plugin-syntax-dynamic-import" "^7.2.0"
+    "@babel/plugin-transform-react-constant-elements" "^7.5.0"
+    "@babel/plugin-transform-runtime" "^7.5.0"
+    "@babel/preset-env" "^7.5.0"
+    "@babel/preset-react" "^7.0.0"
+    "@babel/runtime" "^7.5.1"
+    babel-plugin-react-require "^3.1.1"
+    babel-plugin-transform-react-remove-prop-types "0.4.24"
+    babel-plugin-transform-remove-console "^6.9.4"
+
+"@radio-retail/eslint-config@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@radio-retail/eslint-config/-/eslint-config-1.0.0.tgz#dd3cac57ecfca8c7695f9dee4a242e82fe52484a"
+  integrity sha512-5NTvoQQu2QtHbrJ2LmXPXEvyPnZGQIFV+/EYpJVYDNiDa+WOa7/1LMVjlgJeYRLuCpXgHeyQbenkTXVwLS1nMg==
 
 "@reach/router@^1.2.1":
   version "1.2.1"

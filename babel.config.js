@@ -24,7 +24,7 @@ module.exports = api => {
   }
 
   return {
-    "presets": ["@lessondesk/babel-preset"],
+    "presets": ["@radio-retail/babel-preset"],
     plugins: [
       "babel-plugin-styled-components"
     ]

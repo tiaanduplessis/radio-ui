@@ -1,5 +1,7 @@
 const addAliases = (arr, aliases) =>
+
   aliases.forEach((key, i) =>
+    console.log(arr, key) ||
     Object.defineProperty(arr, key, {
       enumerable: false,
       get() {
@@ -37,26 +39,35 @@ addAliases(fontSizes, fontSizeAliases)
 
 export const colors = {
   white: '#fff',
-  gray: ['#f4f3f4', '#dfdfdf', '#d0d0d0', '#777879', '#808080', '#47494B'],
+  gray: [
+    '#EEF2F4',
+    '#E7EDF3',
+    '#B9C4CF',
+    '#B0BBC7',
+    '#9FACB9',
+    '#6B7B8C',
+    '#5C6C7F',
+    '#4A5B6D'
+  ],
   black: '#212325',
   transparent: 'transparent',
-  blue: ['#80dcff', '#4dceff', '#00abeb', '#0082b3', '#005d80'],
-  green: '#37b049',
+  blue: ['#459BBA', '#379CC1'],
+  pink: ['#FF5AB6'],
   red: ['#f6bdbb', '#ed7470', '#e53933', '#9f1814', '#71110e'],
-  yellow: '#f8b31c',
-  orange: ['#fff8eb', '#ffa400'],
+  purple: ['#A168FF']
 }
 
-colors.primary = colors.orange[1]
-const orangeColorAliases = ['primaryLight', 'primary']
-addAliases(colors.orange, orangeColorAliases)
+colors.primary = colors.blue[1]
+colors.secondary = colors.pink[0]
+const blueColorAliases = ['primaryLight', 'primary']
+addAliases(colors.blue, blueColorAliases)
 
-const grayColorAliases = ['xlight', 'light', 'default', 'dark', 'xdark', 'xxdark']
+const grayColorAliases = ['xxlight', 'xlight', 'light', 'default', 'dark', 'xdark', 'xxdark', 'xxxdark']
 addAliases(colors.gray, grayColorAliases)
 
 const fallbackFontStack = `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif`
-export const fonts = ['Montserrat', 'Open Sans'].map(font => `${font}, ${fallbackFontStack}`)
-const fontsAliases = ['Montserrat', 'OpenSans']
+export const fonts = ['Roboto'].map(font => `${font}, ${fallbackFontStack}`)
+const fontsAliases = ['Roboto']
 addAliases(fonts, fontsAliases)
 
 export const fontWeights = [100, 200, 300, 400, 500, 600, 700]
@@ -93,7 +104,7 @@ addAliases(mediaQueries, mediaQueriesAliases)
 const buttons = {
   primary: {
     color: colors.white,
-    backgroundColor: colors.orange[1],
+    backgroundColor: colors.primary,
     boxShadow: shadows[2],
     fontWeight: fontWeights[5],
   },
@@ -110,7 +121,7 @@ const buttons = {
     fontWeight: fontWeights[5],
   },
   minimal: {
-    color: colors.orange[1],
+    color: colors.primary,
     backgroundColor: colors.transparent,
     fontWeight: fontWeights[5],
   },

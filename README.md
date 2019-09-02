@@ -1,12 +1,12 @@
-# 🚌 School Bus
+# Radio UI
 
 [![lessondesk-code-style](https://img.shields.io/badge/code%20style-lessondesk-ffa400.svg?style=flat-square)](https://github.com/lessondesk/eslint-config) [![Netlify Status](https://api.netlify.com/api/v1/badges/ac33875c-2ca3-43c6-9a63-34cc4b626101/deploy-status)](https://app.netlify.com/sites/schoolbus/deploys) [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://schoolbus.netlify.com)
 
-> Lesson Desk Component Library
+> Radio Retail Component Library
 
 ## About
 
-School Bus is a Component Library which provides developers with the easiest possible way of building [Lesson Desk](https://www.lessondesk.com/)’s products.
+Radio UI is a Component Library which provides developers with the easiest possible way of building [Radio Retail](http://www.zapop.com/service/radioretail/)’s products.
 
 ## Motivation
 
@@ -33,9 +33,9 @@ The following peer dependencies are required:
 Afterwards, you can install the library:
 
 ```sh
-npm install @lessondesk/schoolbus
+npm install @radio-retail/ui
 # OR
-yarn add @lessondesk/schoolbus
+yarn add @radio-retail/ui
 ```
 
 ## Contributing

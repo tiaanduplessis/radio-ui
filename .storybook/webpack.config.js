@@ -12,7 +12,7 @@ module.exports = async ({ config }) => {
     'prop-types': path.join(__dirname, '../node_modules/prop-types'),
     '@lessondesk/material-icons': path.join(__dirname, '../node_modules/@lessondesk/material-icons/'),
     '@babel/runtime': path.join(__dirname, '../node_modules/@babel/runtime'),
-    '@lessondesk/schoolbus': path.join(__dirname, '../src'),
+    '@radio-retail/radio-ui': path.join(__dirname, '../src'),
     }
   }
 
