@@ -1118,7 +1118,7 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@lessondesk/material-icons@^1.0.2":
+"@lessondesk/material-icons@1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@lessondesk/material-icons/-/material-icons-1.0.2.tgz#383fe6cd95bdc8726e135be95169f19199ac90c3"
   integrity sha512-vqIQOmEn5tWtfZatLZrP9s/C/l4AG3cwReVG9aTC9qMGRQuXf2VAC7dccRhg6GnI2vptvHZYK9iNKaHmNhfFTQ==
@@ -1257,7 +1257,7 @@
     react-inspector "^3.0.2"
     uuid "^3.3.2"
 
-"@storybook/addon-docs@^5.2.0-beta.39":
+"@storybook/addon-docs@5.2.0-beta.40":
   version "5.2.0-beta.40"
   resolved "https://registry.yarnpkg.com/@storybook/addon-docs/-/addon-docs-5.2.0-beta.40.tgz#6c662663505b5b5ac127438a961c46cc616fb58b"
   integrity sha512-TyPm/mEtShNQBcgmrUjQViJUL8fz7hdXSlHE4vcZbXDrjB2bxhEnaEtKI59svPL5I5hNJ28LD3O/iZauQvVqrw==
@@ -1483,7 +1483,7 @@
   dependencies:
     core-js "^3.0.1"
 
-"@storybook/codemod@^5.1.11":
+"@storybook/codemod@5.1.11":
   version "5.1.11"
   resolved "https://registry.yarnpkg.com/@storybook/codemod/-/codemod-5.1.11.tgz#0b17660a60d25464560fae63ac827ef860e13e1c"
   integrity sha512-Z71wQpI2HXH4jnr2JCIVWENwV8vYJY+uF6EzeMdWVne+cWdUQBkktCkGvz33juYx7dRl5Adwy4lbwfmL5GmYUQ==
@@ -7321,7 +7321,7 @@ jsbn@~0.1.0:
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
   integrity sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
 
-jscodeshift@^0.6.3, jscodeshift@^0.6.4:
+jscodeshift@0.6.4, jscodeshift@^0.6.3:
   version "0.6.4"
   resolved "https://registry.yarnpkg.com/jscodeshift/-/jscodeshift-0.6.4.tgz#e19ab86214edac86a75c4557fc88b3937d558a8e"
   integrity sha512-+NF/tlNbc2WEhXUuc4WEJLsJumF84tnaMUZW2hyJw3jThKKRvsPX4sPJVgO1lPE28z0gNL+gwniLG9d8mYvQCQ==
@@ -12698,7 +12698,7 @@ yauzl@2.4.1:
   dependencies:
     fd-slicer "~1.0.1"
 
-yup@^0.27.0:
+yup@0.27.0:
   version "0.27.0"
   resolved "https://registry.yarnpkg.com/yup/-/yup-0.27.0.tgz#f8cb198c8e7dd2124beddc2457571329096b06e7"
   integrity sha512-v1yFnE4+u9za42gG/b/081E7uNW9mUj3qtkmelLbW5YPROZzSH/KUUyJu9Wt8vxFJcT9otL/eZopS0YK1L5yPQ==
