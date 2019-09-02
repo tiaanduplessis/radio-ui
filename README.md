@@ -1,6 +1,6 @@
 # Radio UI
 
-[![lessondesk-code-style](https://img.shields.io/badge/code%20style-lessondesk-ffa400.svg?style=flat-square)](https://github.com/lessondesk/eslint-config) [![Netlify Status](https://api.netlify.com/api/v1/badges/ac33875c-2ca3-43c6-9a63-34cc4b626101/deploy-status)](https://app.netlify.com/sites/schoolbus/deploys) [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://schoolbus.netlify.com)
+[![radio-retail-code-style](https://img.shields.io/badge/style-radio%20retail-379CC1.svg?style=flat-square)](https://github.com/radio-retail/eslint-config) [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://schoolbus.netlify.com)
 
 > Radio Retail Component Library
 

@@ -1,9 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { typography, layout, space, buttonStyle } from 'styled-system'
+import { isMap, byTheme} from 'styled-funcs'
 import PropTypes from 'prop-types'
-
-import theme from './theme'
 
 const SHAPES = {
   square: 'square',
@@ -18,75 +17,70 @@ const SIZES = {
   large: 'large',
 }
 
-const radius = props => ({
-  borderRadius: props.shape === SHAPES.rounded ? props.theme.radii.large : props.theme.radii.small,
-})
-
-const size = props => ({
-  fontSize: props.size === SIZES.large ? props.theme.fontSizes.medium : props.theme.fontSizes.small,
-  padding:
-    props.size === SIZES.compact
-      ? '5px 10px'
-      : props.size === SIZES.default
-        ? '10px 20px'
-        : '15px 40px',
-})
-
-const getWidth = props => {
-  if (props.shape === SHAPES.block) {
-    return '100%'
-  }
-  if (props.width) {
-    return props.width
-  }
-
-  return 'auto'
-}
-
 const StyledButton = styled.button.attrs({
   type: 'button',
 })`
-  font-weight: ${props => props.theme.fontWeights.bold};
-  font-family: ${props => props.theme.fonts[0]};
+  font-weight: ${byTheme('fontWeights.bold')};
+  font-family: ${byTheme('fonts[0]')};
   min-width: 120px;
-  width: ${props => getWidth(props)};
   border: none;
   cursor: pointer;
-  transition: transform 0.1s;
+  transition: transform 100ms;
+  ${buttonStyle};
+  border-radius: ${props => isMap('shape', {
+    [SHAPES.round]: props.theme.radii.full,
+    [SHAPES.rounded]: props.theme.radii.large,
+    default: props.theme.radii.small
+  })(props)};
+  font-size: ${props => isMap('size', {
+    [SIZES.large]: props.theme.fontSizes.medium,
+    default: props.theme.fontSizes.small
+  })(props)};
+  width: ${isMap('shape', {
+    [SHAPES.block]: '100%',
+    default: 'auto'
+  })};
+  padding: ${isMap('size', {
+    [SIZES.compact]: '5px 10px',
+    [SIZES.default]: '10px 20px',
+    [SIZES.large]: '15px 40px'
+  })};
+
   &:active {
     transform: ${props => (props.shape === SHAPES.block ? 'scale(0.99)' : 'scale(0.95)')};
   }
 
-  ${buttonStyle}
-  ${radius}
-  ${size}
+  &:disabled {
+    pointer-events: none;
+    background-color: ${byTheme('colors.gray[0]')};
+    color: ${byTheme('colors.gray[4]')};
+    box-shadow: none;
+  }
+
   ${space}
   ${layout}
   ${typography}
 `
 
-class Button extends React.PureComponent {
-  static SHAPES = SHAPES
-  static SIZES = SIZES
+const Button = ({ children, ...props }) => <StyledButton {...props}>{children}</StyledButton>
 
-  static propTypes = {
-    onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
-    shape: PropTypes.oneOf(Object.keys(SHAPES)),
-    size: PropTypes.oneOf(Object.keys(SIZES)),
-    ...space.propTypes,
-    ...layout.propTypes,
-    ...typography.propTypes,
-  }
-
-  static defaultProps = {
-    shape: this.SHAPES.square,
-    size: this.SIZES.default,
-    theme: theme,
-  }
-
-  render() {
-    return <StyledButton {...this.props}>{this.props.children}</StyledButton>
-  }
+Button.propTypes = {
+  onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
+  shape: PropTypes.oneOf(Object.keys(SHAPES)),
+  size: PropTypes.oneOf(Object.keys(SIZES)),
+  ...space.propTypes,
+  ...layout.propTypes,
+  ...typography.propTypes,
 }
 
-export default Button
+Button.defaultProps = {
+  shape: SHAPES.square,
+  size: SIZES.default,
+}
+
+Button.SHAPES = SHAPES
+Button.SIZES = SIZES
+
+Button.displayName = 'Button'
+
+export default React.memo(Button)

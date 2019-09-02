@@ -10,7 +10,7 @@ const addAliases = (arr, aliases) =>
     })
   )
 
-export const space = [0, 4, 8, 16, 32, 64, 128, 256, 512]
+export const space = [0, '4px', '8px', '16px', '32px', '64px', '128px', '256px', '512px']
 
 export const fontSizes = [
   '0.5em',
@@ -51,7 +51,7 @@ export const colors = {
   ],
   black: '#212325',
   transparent: 'transparent',
-  blue: ['#459BBA', '#379CC1'],
+  blue: ['#E2F0F5', '#379CC1'],
   pink: ['#FF5AB6'],
   red: ['#f6bdbb', '#ed7470', '#e53933', '#9f1814', '#71110e'],
   purple: ['#A168FF']
@@ -90,7 +90,7 @@ export const shadows = [
   `${baseShadow}0 24px 24px 0 ${shadowColor}`,
 ]
 
-export const radii = [0, '2px', '5px', '15px', '20px', '30px', '9999px']
+export const radii = [0, '2px', '5px', '12px', '20px', '30px', '9999px']
 const radiiAliases = ['none', 'xsmall', 'small', 'large', 'xlarge', 'xxlarge', 'full']
 addAliases(radii, radiiAliases)
 
@@ -109,17 +109,12 @@ const buttons = {
     fontWeight: fontWeights[5],
   },
   secondary: {
-    color: colors.white,
-    backgroundColor: colors.gray[2],
+    color: colors.primary,
+    backgroundColor: colors.blue[0],
     boxShadow: shadows[2],
     fontWeight: fontWeights[5],
   },
-  tertiary: {
-    color: colors.gray[5],
-    backgroundColor: colors.white,
-    boxShadow: shadows[2],
-    fontWeight: fontWeights[5],
-  },
+
   minimal: {
     color: colors.primary,
     backgroundColor: colors.transparent,
@@ -127,7 +122,7 @@ const buttons = {
   },
   danger: {
     color: colors.white,
-    backgroundColor: colors.red[1],
+    backgroundColor: colors.secondary,
     boxShadow: shadows[2],
     fontWeight: fontWeights[5],
   },

@@ -18,26 +18,27 @@ storiesOf('Input | Button', module)
       <Button variant="secondary" m={2}>
         Secondary
       </Button>
-      <Button variant="tertiary" m={2}>
-        Tertiary
-      </Button>
+
       <Button variant="minimal" m={2}>
         Minimal
       </Button>
       <Button variant="danger" m={2}>
         Danger
       </Button>
+      <Button variant="primary" m={2} disabled={true}>
+        Disabled
+      </Button>
     </>
   ))
   .add('Sizes', () => (
     <>
-      <Button variant="tertiary" size="compact" m={2}>
+      <Button variant="primary" size="compact" m={2}>
         Compact
       </Button>
-      <Button variant="tertiary" size="default" m={2}>
+      <Button variant="primary" size="default" m={2}>
         Default
       </Button>
-      <Button variant="tertiary" size="large" m={2}>
+      <Button variant="primary" size="large" m={2}>
         Large
       </Button>
     </>

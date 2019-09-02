@@ -1,96 +1,119 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { space, layout } from 'styled-system'
+import {byTheme} from 'styled-funcs'
 
-const ToggleContainer = styled.div`
-  display: block;
-  padding-bottom: 3px;
-  width: 60px;
-  height: 40px;
-  position: relative;
-  ${space}
-  ${layout}
-`
-
-const ToggleInput = styled.input`
-  display: none;
-`
-
-const ToggleLabel = styled.label`
+const Container = styled.div`
   cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
   position: relative;
-  height: 40px;
-  background-color: ${props => props.theme.colors.gray.xdark};
+  text-align: left;
+  width: 100px;
+  height: 32px;
+  border-radius: 30px;
+  line-height: ${byTheme('lineHeights.tight')};
+  font-size: ${byTheme('fontSizes.xsmall')};
+  font-family: ${byTheme('fonts[0]')};
+`
 
-  ::before {
-    background: ${props => props.theme.colors.gray.default};
-    border-radius: 8px;
-    content: '';
-    height: 15px;
-    margin-top: 15px;
-    position: absolute;
-    opacity: 0.3;
-    transition: all 0.4s ease-in-out;
-    width: 40px;
+const Input = styled.input.attrs({
+  type: 'checkbox'
+})`
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100px;
+	height: 32px;
+	padding: ${byTheme('space[0]')};
+	margin: ${byTheme('space[0]')};
+	opacity: 0;
+	z-index: ${byTheme('zIndices[1]')};
+	cursor: pointer;
+`
+
+const Animate = styled.div`
+    position: relative;
+    width: 100px;
+    height: 32px;
+    background-color: ${byTheme('colors.secondary')};
+    transition: background 0.25s ease-out 0s;
+
+  &:before {
+    content: "";
+	display: block;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	background-color: ${byTheme('colors.white')};
+	top: 6px;
+	left: 6px;
+	transition: left 0.3s ease-out 0s;
+	z-index: ${byTheme('zIndices[1]')};
   }
 
-  ::after {
-    background: ${props => props.theme.colors.gray.xdark};
-    border-radius: 16px;
-    box-shadow: ${props => props.theme.shadows[0]};
-    content: '';
-    height: 24px;
-    left: 0px;
-    margin-top: 13px;
-    position: absolute;
-    top: -3px;
-    transition: all 0.3s ease-in-out;
-    width: 24px;
+  ${Input}:checked + & {
+    	background-color: ${byTheme('colors.primary')};
   }
 
-  /* stylelint-disable-next-line selector-type-no-unknown */
-  ${ToggleInput}:checked + &::before {
-    background: ${props => props.theme.colors.gray.default};
-    opacity: 0.5;
-  }
-
-  /* stylelint-disable-next-line selector-type-no-unknown */
-  ${ToggleInput}:checked + &::after {
-    background: ${props => props.theme.colors.primary};
-    left: 20px;
+  ${Input}:checked + &:before {
+    left: 75px;
+    background-color: ${byTheme('colors.white')};
   }
 `
 
-class Toggle extends React.PureComponent {
-  static defaultProps = {
-    checked: false,
-    inputStyle: {},
-  }
+const CheckboxState = styled.div`
+	float: left;
+	color: ${byTheme('colors.white')};
+	font-weight: ${byTheme('fontWeights.bold')};
+	padding-top: ${byTheme('space[2]')};
+  transition: all 0.3s ease-out 0s;
+`
 
-  static propTypes = {
-    checked: PropTypes.bool,
-    ...layout.propTypes,
-    ...space.propTypes,
-  }
+const CheckboxOff = styled(CheckboxState)`
+	margin-left: 45px;
+  opacity: 1;
 
-  render() {
-    const { id, onBlur, onChange, inputStyle, checked, ...otherProps } = this.props
-
-    return (
-      <ToggleContainer {...otherProps}>
-        <ToggleInput
-          style={inputStyle}
-          checked={checked}
-          onChange={onChange}
-          onBlur={onBlur}
-          id={id}
-          type="checkbox"
-        />
-        <ToggleLabel htmlFor={this.props.id} />
-      </ToggleContainer>
-    )
+  ${Input}:checked + ${Animate} & {
+    display: none;
+    opacity: 0;
   }
+`
+
+const CheckboxOn = styled(CheckboxState)`
+	display: none;
+	float: right;
+	margin-right: 45px;
+  opacity: 0;
+
+  ${Input}:checked + ${Animate} & {
+   	display: block;
+    opacity: 1;
+  }
+`
+
+const Toggle = ({label, offText, onText,  containerStyle, ...props}) => {
+  return <Container style={containerStyle}>
+    <Input aria-label={label}{...props} />
+    <Animate>
+      <CheckboxOff>{offText}</CheckboxOff>
+      <CheckboxOn>{onText}</CheckboxOn>
+    </Animate>
+  </Container>
+}
+
+Toggle.defaultProps = {
+  offText: 'Closed',
+  onText: 'Open',
+  containerStyle: {}
+}
+
+Toggle.propTypes = {
+  offText: PropTypes.string,
+  onText: PropTypes.string,
+  containerStyle: PropTypes.object,
+  label: PropTypes.string.isRequired
 }
 
 export default Toggle

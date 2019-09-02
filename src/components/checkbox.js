@@ -1,7 +1,8 @@
 /* eslint no-use-before-define: 0 */
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import { space, layout } from 'styled-system'
+import { byTheme } from 'styled-funcs'
 
 const StyledInput = styled.input.attrs({
   type: 'checkbox',
@@ -13,10 +14,9 @@ const StyledInput = styled.input.attrs({
   top: -8px;
   display: block;
   margin: 0;
-  border-radius: ${props => props.theme.radii.full};
+  border-radius: ${byTheme('radii.full')};
   width: 40px;
   height: 40px;
-  background-color: rgba(0, 0, 0, 0.6);
   box-shadow: none;
   outline: none;
   opacity: 0;
@@ -26,7 +26,7 @@ const StyledInput = styled.input.attrs({
 
   &:checked,
   &:indeterminate {
-    background-color: ${props => props.theme.colors.primary};
+    background-color: ${byTheme('colors.primary')};
   }
 
   &:active {
@@ -36,12 +36,12 @@ const StyledInput = styled.input.attrs({
   }
 
   &:active + span::before {
-    border-color: ${props => props.theme.colors.primary};
+    border-color: ${byTheme('colors.primary')};
   }
 
   &:checked:active + span::before {
     border-color: transparent;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: ${byTheme('colors.gray[6]')};
   }
 
   &:disabled {
@@ -62,10 +62,10 @@ const StyledLabel = styled.label`
   z-index: 0;
   position: relative;
   display: inline-block;
-  color: rgba(0, 0, 0, 0.87);
-  font-family: ${props => props.theme.fonts[0]};
-  font-size: ${props => props.theme.fontSizes.medium};
-  line-height: ${props => props.theme.lineHeights.normal};
+  color: ${byTheme('colors.gray[4]')};
+  font-family: ${byTheme('fonts[0]')};
+  font-size: ${byTheme('fontSizes.medium')};
+  line-height: ${byTheme('lineHeights.normal')};
 
   &:hover > ${/* sc-selector */ StyledInput} {
     opacity: 0.04;
@@ -84,15 +84,16 @@ const StyledSpan = styled.span`
   width: 100%;
   cursor: pointer;
 
-  ${({ labelled }) => `
+  ${({ labelled }) => css`
     &::before {
       content: '';
+      border-radius: 2px;
       display: inline-block;
       box-sizing: border-box;
-      margin: ${labelled ? '3px 11px 3px 1px' : '3px 1px'};
+      margin: ${labelled ? '3px 14px 3px 1px' : '3px 1px'};
       border: solid 2px; /* Safari */
       border-color: rgba(0, 0, 0, 0.6);
-      border-radius: ${props => props.theme.radii.xsmall};
+      border-radius: ${byTheme('radii.xsmall')};
       width: 18px;
       height: 18px;
       vertical-align: top;
@@ -117,13 +118,13 @@ const StyledSpan = styled.span`
 
   ${/* sc-selector */ StyledInput}:checked + &::before,
   ${/* sc-selector */ StyledInput}:indeterminate + &::before {
-    border-color: ${props => props.theme.colors.primary};
-    background-color: ${props => props.theme.colors.primary};
+    border-color: ${byTheme('colors.white')};
+    background-color: ${byTheme('colors.white')};
   }
 
   ${/* sc-selector */ StyledInput}:checked + &::after,
   ${/* sc-selector */ StyledInput}:indeterminate + &::after {
-    border-color: rgb(255, 255, 255);
+    border-color: ${byTheme('colors.primary')};
   }
 
   ${/* sc-selector */ StyledInput}:indeterminate + &::after {
@@ -132,17 +133,11 @@ const StyledSpan = styled.span`
   }
 `
 
-class Checkbox extends React.PureComponent {
-  render() {
-    const { children, onChange, checked, onBlur, disabled, ...props } = this.props
-    console.log(children, !!children)
-    return (
-      <StyledLabel {...props}>
-        <StyledInput onChange={onChange} onBlur={onBlur} checked={checked} disabled={disabled} />
-        <StyledSpan labelled={children}>{children}</StyledSpan>
-      </StyledLabel>
-    )
-  }
-}
+const Checkbox = ({ children, onChange, checked, onBlur, disabled, ...props }) => (
+  <StyledLabel {...props}>
+    <StyledInput onChange={onChange} onBlur={onBlur} checked={checked} disabled={disabled} />
+    <StyledSpan labelled={children}>{children}</StyledSpan>
+  </StyledLabel>
+)
 
 export default Checkbox

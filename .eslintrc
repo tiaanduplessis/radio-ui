@@ -1,3 +1,3 @@
 {
-  "extends": "@lessondesk/eslint-config/react"
+  "extends": "@radio-retail/eslint-config/react"
 }

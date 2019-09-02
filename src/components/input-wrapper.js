@@ -1,23 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
 import { layout, space } from 'styled-system'
+import {byTheme} from 'styled-funcs'
 
 const StyledLabel = styled.label`
   display: block;
   font-family: inherit;
-  color: ${props => props.theme.colors.gray.xxdark};
-  font-weight: ${props => props.theme.fontWeights.bold};
-  font-size: ${props => props.theme.fontSizes.xsmall};
-  margin-bottom: 0.4em;
+  color: ${byTheme('colors.gray.xxdark')};
+  font-weight: ${byTheme('fontWeights.bold')};
+  font-size: ${byTheme('fontSizes.xsmall')};
+  margin-bottom: ${byTheme('space[1]')};
 `
 
-StyledLabel.displayName = 'InputLabel'
-
 const StyledInputContainer = styled.div`
-  min-width: ${({ minWidth }) => minWidth || '300px'};
-  width: ${({ width }) => width || '48%'};
+  min-width: 300px;
+  width: 45%;
   ${({ empty }) => !empty && 'margin-bottom: 1.5em;'}
   position: relative;
+
   @media (max-width: 990px) {
     width: 100%;
   }
@@ -34,13 +34,17 @@ const StyledAlertText = styled.span.attrs({
   position: absolute;
   top: 0;
   right: 0;
-  font-size: ${props => props.theme.fontSizes.xsmall};
+  font-size: ${byTheme('fontSizes.xsmall')};
   font-style: italic;
-  color: ${props => props.theme.colors.red[1]};
-  font-weight: ${props => props.theme.fontWeights.bold};
+  color: ${byTheme('colors.red[1]')};
+  font-weight: ${byTheme('fontWeights.bold')};
 `
 
-StyledAlertText.displayName = 'StyledAlertText'
+const Required = styled.span`
+  margin-left: ${byTheme('space[1]')};
+  color: ${byTheme('colors.red[1]')};
+  font-weight: ${byTheme('fontWeights.bold')};
+`
 
 const InputWrapper = ({
   id,
@@ -56,6 +60,7 @@ const InputWrapper = ({
   <StyledInputContainer empty={!label} style={containerStyle} {...otherProps}>
     <StyledLabel htmlFor={id} required={required} style={labelStyle}>
       {label}
+        {required && <Required aria-label="required">*</Required>}
     </StyledLabel>
     {children}
     {alertText && <StyledAlertText style={alertStyle}>{alertText}</StyledAlertText>}

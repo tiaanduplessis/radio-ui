@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 import { typography, space, color } from 'styled-system'
+import {byTheme} from 'styled-funcs'
 
 import theme from './theme'
 
 const Text = styled.p`
-  color: ${props => props.theme.colors.gray.xxdark};
+  color: ${byTheme('colors.gray.xxdark')};
   ${typography}
   ${space}
   ${color}

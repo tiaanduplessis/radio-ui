@@ -1,21 +1,19 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
 import styled from 'styled-components'
-import CalendarToday from '@lessondesk/material-icons/dist/CalendarToday'
 import { connect } from 'formik'
+
+import InputWrapper from '../input-wrapper'
+import createDefaultInputProps from '../../utils/create-input-defaults'
 
 import 'react-datepicker/dist/react-datepicker.css'
 import './styles.css'
 
-import InputWrapper from '../input-wrapper'
-import createDefaultInputProps from '../../utils/create-input-defaults'
-import { colors } from '../theme'
-
 const StyledDatePicker = styled(DatePicker)`
   background-color: ${props =>
-    props.disabled ? props.theme.colors.transparent : props.theme.colors.gray.xlight};
+    props.disabled ? props.theme.colors.transparent : props.theme.colors.gray[0]};
   border: 1px solid
-    ${props => (props.disabled ? props.theme.colors.gray.light : props.theme.colors.gray.xlight)};
+    ${props => (props.disabled ? props.theme.colors.gray.light : props.theme.colors.gray[0])};
   font-family: inherit;
   font-size: ${props => props.theme.fontSizes.small};
   padding: 0.6em 1em;
@@ -24,16 +22,9 @@ const StyledDatePicker = styled(DatePicker)`
   width: 100%;
 
   ::placeholder {
-    color: ${props => props.theme.colors.gray.dark};
+    color: ${props => props.theme.colors.gray.xdark};
   }
 `
-
-const iconStyles = {
-  position: 'absolute',
-  right: 10,
-  bottom: 7,
-  pointerEvents: 'none',
-}
 
 function getDateString(value) {
   return value instanceof Date ? value.toDateString() : value
@@ -81,7 +72,6 @@ const DateInput = props => {
         name={name}
         {...inputProps}
       />
-      <CalendarToday style={iconStyles} color={colors.gray.dark} />
     </InputWrapper>
   )
 }

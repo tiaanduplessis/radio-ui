@@ -19,8 +19,15 @@ module.exports = async ({ config }) => {
   // NOTE: Let babel compile @lessondesk/material-icons by overriding excludes rule
   config.module.rules[0].exclude = function (modulePath) {
     return /node_modules/.test(modulePath) &&
-      !/node_modules\/@lessondesk\/material-icons/.test(modulePath);
+      !/node_modules\/@lessondesk\/material-icons/.test(modulePath)
   },
+
+    config.module.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: "javascript/auto",
+    });
+  config.resolve.extensions.push(".mjs");
 
   // NOTE: Override loader
   config.module.rules[5] = {
