@@ -1,6 +1,6 @@
 /* eslint no-use-before-define: 0 */
 import * as React from 'react'
-import styled, {css} from 'styled-components'
+import styled, { css } from 'styled-components'
 import { space, layout } from 'styled-system'
 import { byTheme } from 'styled-funcs'
 

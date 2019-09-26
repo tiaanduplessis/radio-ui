@@ -1,13 +1,13 @@
 const addAliases = (arr, aliases) =>
-
-  aliases.forEach((key, i) =>
-    console.log(arr, key) ||
-    Object.defineProperty(arr, key, {
-      enumerable: false,
-      get() {
-        return this[i]
-      },
-    })
+  aliases.forEach(
+    (key, i) =>
+      console.log(arr, key) ||
+      Object.defineProperty(arr, key, {
+        enumerable: false,
+        get() {
+          return this[i]
+        },
+      })
   )
 
 export const space = [0, '4px', '8px', '16px', '32px', '64px', '128px', '256px', '512px']
@@ -39,22 +39,13 @@ addAliases(fontSizes, fontSizeAliases)
 
 export const colors = {
   white: '#fff',
-  gray: [
-    '#EEF2F4',
-    '#E7EDF3',
-    '#B9C4CF',
-    '#B0BBC7',
-    '#9FACB9',
-    '#6B7B8C',
-    '#5C6C7F',
-    '#4A5B6D'
-  ],
+  gray: ['#EEF2F4', '#E7EDF3', '#B9C4CF', '#B0BBC7', '#9FACB9', '#6B7B8C', '#5C6C7F', '#4A5B6D'],
   black: '#212325',
   transparent: 'transparent',
   blue: ['#E2F0F5', '#379CC1'],
   pink: ['#FF5AB6'],
   red: ['#f6bdbb', '#ed7470', '#e53933', '#9f1814', '#71110e'],
-  purple: ['#A168FF']
+  purple: ['#A168FF'],
 }
 
 colors.primary = colors.blue[1]
@@ -62,7 +53,16 @@ colors.secondary = colors.pink[0]
 const blueColorAliases = ['primaryLight', 'primary']
 addAliases(colors.blue, blueColorAliases)
 
-const grayColorAliases = ['xxlight', 'xlight', 'light', 'default', 'dark', 'xdark', 'xxdark', 'xxxdark']
+const grayColorAliases = [
+  'xxlight',
+  'xlight',
+  'light',
+  'default',
+  'dark',
+  'xdark',
+  'xxdark',
+  'xxxdark',
+]
 addAliases(colors.gray, grayColorAliases)
 
 const fallbackFontStack = `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif`

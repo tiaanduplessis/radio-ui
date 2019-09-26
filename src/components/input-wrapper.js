@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { layout, space } from 'styled-system'
-import {byTheme} from 'styled-funcs'
+import { byTheme } from 'styled-funcs'
 
 const StyledLabel = styled.label`
   display: block;
@@ -60,7 +60,7 @@ const InputWrapper = ({
   <StyledInputContainer empty={!label} style={containerStyle} {...otherProps}>
     <StyledLabel htmlFor={id} required={required} style={labelStyle}>
       {label}
-        {required && <Required aria-label="required">*</Required>}
+      {required && <Required aria-label="required">*</Required>}
     </StyledLabel>
     {children}
     {alertText && <StyledAlertText style={alertStyle}>{alertText}</StyledAlertText>}

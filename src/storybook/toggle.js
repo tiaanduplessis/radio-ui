@@ -9,5 +9,5 @@ storiesOf('Input | Toggle', module)
     component: Toggle,
     docs: mdx,
   })
-  .add('Unchecked', () => <Toggle label="Closed"/>)
+  .add('Unchecked', () => <Toggle label="Closed" />)
   .add('Checked', () => <Toggle label="Closed" checked={true} />)

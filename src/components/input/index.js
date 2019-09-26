@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'formik'
 
-import {StyledInput} from './styles'
+import { StyledInput } from './styles'
 import InputWrapper from '../input-wrapper'
 import theme from '../theme'
 import defaultPropTypes from '../../config/prop-types'

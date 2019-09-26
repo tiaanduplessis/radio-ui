@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { space, layout, flexbox } from 'styled-system'
 import { byTheme } from 'styled-funcs'
 
-import {flexCenter} from '../../utils/mixins'
+import { flexCenter } from '../../utils/mixins'
 
 export const StyledCard = styled.section`
   background-color: ${byTheme('colors.white')};
@@ -35,7 +35,7 @@ export const StyledCardTitle = styled.h3`
   font-weight: ${byTheme('fontWeights.extrabold')};
   text-transform: uppercase;
   letter-spacing: ${byTheme('letterSpacings.tight')};
-  color: ${byTheme('colors.gray[5]')}
+  color: ${byTheme('colors.gray[5]')};
 `
 
 export const StyledContent = styled.div`

@@ -17,11 +17,12 @@ const Image = styled.img.attrs({
   display: block;
   max-width: 100%;
   height: auto;
-  border-radius: ${props => isMap('shapde', {
-    [SHAPES.round]: props.theme.radii.full,
-    [SHAPES.rounded]: props.theme.radii.large,
-    default: props.theme.radii.none
-  })(props)};
+  border-radius: ${props =>
+    isMap('shapde', {
+      [SHAPES.round]: props.theme.radii.full,
+      [SHAPES.rounded]: props.theme.radii.large,
+      default: props.theme.radii.none,
+    })(props)};
   ${layout}
   ${shadow}
 `

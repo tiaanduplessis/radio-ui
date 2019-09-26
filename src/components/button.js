@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { typography, layout, space, buttonStyle } from 'styled-system'
-import { isMap, byTheme} from 'styled-funcs'
+import { isMap, byTheme } from 'styled-funcs'
 import PropTypes from 'prop-types'
 
 const SHAPES = {
@@ -27,23 +27,25 @@ const StyledButton = styled.button.attrs({
   cursor: pointer;
   transition: transform 100ms;
   ${buttonStyle};
-  border-radius: ${props => isMap('shape', {
-    [SHAPES.round]: props.theme.radii.full,
-    [SHAPES.rounded]: props.theme.radii.large,
-    default: props.theme.radii.small
-  })(props)};
-  font-size: ${props => isMap('size', {
-    [SIZES.large]: props.theme.fontSizes.medium,
-    default: props.theme.fontSizes.small
-  })(props)};
+  border-radius: ${props =>
+    isMap('shape', {
+      [SHAPES.round]: props.theme.radii.full,
+      [SHAPES.rounded]: props.theme.radii.large,
+      default: props.theme.radii.small,
+    })(props)};
+  font-size: ${props =>
+    isMap('size', {
+      [SIZES.large]: props.theme.fontSizes.medium,
+      default: props.theme.fontSizes.small,
+    })(props)};
   width: ${isMap('shape', {
     [SHAPES.block]: '100%',
-    default: 'auto'
+    default: 'auto',
   })};
   padding: ${isMap('size', {
     [SIZES.compact]: '5px 10px',
     [SIZES.default]: '10px 20px',
-    [SIZES.large]: '15px 40px'
+    [SIZES.large]: '15px 40px',
   })};
 
   &:active {
