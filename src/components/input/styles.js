@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import {byTheme} from 'styled-funcs'
+import { byTheme } from 'styled-funcs'
 
 export const StyledInput = styled.input.attrs({
-  type: 'text'
+  type: 'text',
 })`
   background-color: ${byTheme('colors.gray[0]')};
   border: 1px solid ${byTheme('colors.gray[0]')};
@@ -16,7 +16,7 @@ export const StyledInput = styled.input.attrs({
 
   &:disabled {
     background-color: ${byTheme('colors.transparent')};
-    border: 1px solid ${byTheme('colors.gray.default')}
+    border: 1px solid ${byTheme('colors.gray.default')};
   }
 
   ::placeholder {

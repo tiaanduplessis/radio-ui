@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { typography, space, color } from 'styled-system'
-import {byTheme} from 'styled-funcs'
+import { byTheme } from 'styled-funcs'
 
 import theme from './theme'
 
