@@ -36,6 +36,7 @@ export const StyledCardTitle = styled.h3`
   text-transform: uppercase;
   letter-spacing: ${byTheme('letterSpacings.tight')};
   color: ${byTheme('colors.gray[5]')};
+  
 `
 
 export const StyledContent = styled.div`
@@ -48,7 +49,8 @@ export const TitleContainer = styled.div`
 
 export const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  align-items: baseline;
+  flex-direction: column;
   margin: ${byTheme('space[3]')};
 `
 
@@ -58,4 +60,32 @@ export const ActionsContainer = styled.div`
   right: 1em;
   display: flex;
   align-items: center;
+`
+
+export const StyledCardDivider = styled.div`
+  height: ${props => (props.showDivider ? '1em' : 0)};
+  margin: ${props => (props.showDivider ? '0 1em 2em' : 0)};
+  border-bottom: ${props =>
+    props.showDivider ? `2px solid ${props.theme.colors.gray.xlight}` : 'none'};
+`
+
+export const StyledCardDescription = styled.p`
+  margin: 1em 1em 1em 0em;
+  color: ${props => props.theme.colors.gray[3]};
+  font-weight: ${props => props.theme.fontWeights.thin};
+  font-size: ${props => props.theme.fontSizes.small};
+  padding-right: 5em;
+`
+
+export const StyledButton = styled.button`
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  width: 3.6em;
+  height: 3.6em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: ${props => props.theme.colors.primary};
 `

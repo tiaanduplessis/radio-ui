@@ -4,7 +4,7 @@ import { byTheme } from 'styled-funcs'
 export const StyledInput = styled.input.attrs({
   type: 'text',
 })`
-  background-color: ${byTheme('colors.gray[0]')};
+  background-color: ${byTheme('colors.white')};
   border: 1px solid ${byTheme('colors.gray[0]')};
   font-family: inherit;
   font-size: ${byTheme('fontSizes.small')};

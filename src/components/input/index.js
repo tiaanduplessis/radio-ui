@@ -27,7 +27,6 @@ class Input extends React.PureComponent {
       inputProps,
       ...otherProps
     } = this.props
-
     const { id = otherProps.name, label, placeholder, inputStyle, name } = otherProps
 
     const { alertText, ...inputDefaults } = createDefaultInputProps({
