@@ -1,6 +1,8 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import { space, layout, flexbox } from 'styled-system'
+import Plus from '@lessondesk/material-icons/dist/Plus'
+import { byTheme } from 'styled-funcs'
 
 import {
   StyledCardHeader,
@@ -8,9 +10,12 @@ import {
   StyledContent,
   StyledCard,
   StyledIndicator,
+  StyledCardDivider,
   TitleContainer,
   Container,
   ActionsContainer,
+  StyledCardDescription,
+  StyledButton
 } from './styles'
 
 class Card extends React.PureComponent {
@@ -27,32 +32,41 @@ class Card extends React.PureComponent {
     ...flexbox.propTypes,
   }
 
-  static Header = StyledCardHeader
-  static Title = StyledCardTitle
-  static Content = StyledContent
-
   render() {
-    const { title, actions, renderHeader, children, ...props } = this.props
+    const { title, actions, renderHeader, viewState, children, onAdd, description, ...props } = this.props
 
+    // const showDivider = !hideDivider && title && (!viewState || !!children)
     return (
       <StyledCard {...props}>
         {typeof renderHeader === 'function'
           ? renderHeader({ title })
           : title && (
-            <Card.Header>
+            <StyledCardHeader>
               <Container>
                 <TitleContainer>
                   <StyledIndicator />
-                  <Card.Title>{title}</Card.Title>
+                  <StyledCardTitle>{title}</StyledCardTitle>
                 </TitleContainer>
-                <ActionsContainer>{actions}</ActionsContainer>
+                {description && !viewState && (
+                  <StyledCardDescription>{description}</StyledCardDescription>
+                )}
+                <ActionsContainer>
+                  {actions}
+                  {onAdd && !viewState && (
+                    <StyledButton onClick={onAdd} type='button'>
+                      <Plus color={byTheme('colors.white')} />
+                    </StyledButton>
+                  )}
+                </ActionsContainer>
               </Container>
-            </Card.Header>
+              {/* <StyledCardDivider showDivider={showDivider} /> */}
+            </StyledCardHeader>
           )}
-        <Card.Content>{children}</Card.Content>
+        <StyledContent>{children}</StyledContent>
       </StyledCard>
     )
   }
 }
 
 export default Card
+
