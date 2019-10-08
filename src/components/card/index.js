@@ -2,7 +2,6 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import { space, layout, flexbox } from 'styled-system'
 import Plus from '@lessondesk/material-icons/dist/Plus'
-import { byTheme } from 'styled-funcs'
 
 import {
   StyledCardHeader,
@@ -54,7 +53,7 @@ class Card extends React.PureComponent {
                   {actions}
                   {onAdd && !viewState && (
                     <StyledButton onClick={onAdd} type='button'>
-                      <Plus color={byTheme('colors.white')} />
+                      <Plus />
                     </StyledButton>
                   )}
                 </ActionsContainer>
