@@ -246,7 +246,26 @@ function _objectWithoutProperties(source, excluded) {
 
 var objectWithoutProperties = _objectWithoutProperties;
 
-var n=Object.freeze(["",""]),t=function(r,n){return n.split(".").reduce(function(r,n){var t=n.match(/(.*?)\[(\d*)\]/);return t&&null!==r&&null!==r[t[1]]?r[t[1]][+t[2]]:null===r?r:r[n]},r)},u=function(r,n){return function(e){return e.theme?t(e.theme,r):n}},f=function(r){return void 0===r&&(r=[]),r.reduce(function(r,n,t){return r[t]=n,r},{})},c=function(r,n){return void 0===r&&(r=""),void 0===n&&(n={}),function(t){if(Array.isArray(n)&&(n=f(n)),t[r]){for(var e=Object.keys(n),u=0;u<e.length;u++){var i=e[u];if(i===t[r])return n[i]}if(n.default)return n.default}}};
+var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+function unwrapExports (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var dist = createCommonjsModule(function (module, exports) {
+var r=styled__default,n=Object.freeze(["",""]),t=function(r,n){return n.split(".").reduce(function(r,n){var t=n.match(/(.*?)\[(\d*)\]/);return t&&null!==r&&null!==r[t[1]]?r[t[1]][+t[2]]:null===r?r:r[n]},r)},e=function(r){return void 0===r&&(r=[]),r.reduce(function(r,n,t){return r[t]=n,r},{})};exports.by=function(r,n){return function(e){return t(e,r)||n}},exports.byTheme=function(r,n){return function(e){return e.theme?t(e.theme,r):n}},exports.is=function(t,e){return void 0===e&&(e=""),function(u){return !0===u[t]?r.css(n,e):""}},exports.map=function(r){return void 0===r&&(r={}),function(n){Array.isArray(r)&&(r=e(r));for(var t=Object.keys(r),u=0;u<t.length;u++){var i=t[u];if(void 0!==n[i])return n[i]}if(r.default)return r.default}},exports.isMap=function(r,n){return void 0===r&&(r=""),void 0===n&&(n={}),function(t){if(Array.isArray(n)&&(n=e(n)),t[r]){for(var u=Object.keys(n),i=0;i<u.length;i++){var o=u[i];if(o===t[r])return n[o]}if(n.default)return n.default}}},exports.withProp=function(r){return void 0===r&&(r=""),function(n){var t;return n[r]?((t={})[r]=n[r],t):""}};
+
+});
+var dist_1 = dist.by;
+var dist_2 = dist.byTheme;
+var dist_3 = dist.is;
+var dist_4 = dist.map;
+var dist_5 = dist.isMap;
+var dist_6 = dist.withProp;
 
 var _isMap3, _isMap4;
 
@@ -276,17 +295,17 @@ var SIZES = {
 };
 var StyledButton = styled__default.button.attrs({
   type: 'button'
-})(_templateObject$3(), u('fontWeights.bold'), u('fonts[0]'), styledSystem.buttonStyle, function (props) {
+})(_templateObject$3(), dist_2('fontWeights.bold'), dist_2('fonts[0]'), styledSystem.buttonStyle, function (props) {
   var _isMap;
 
-  return c('shape', (_isMap = {}, defineProperty(_isMap, SHAPES.round, props.theme.radii.full), defineProperty(_isMap, SHAPES.rounded, props.theme.radii.large), defineProperty(_isMap, "default", props.theme.radii.small), _isMap))(props);
+  return dist_5('shape', (_isMap = {}, defineProperty(_isMap, SHAPES.round, props.theme.radii.full), defineProperty(_isMap, SHAPES.rounded, props.theme.radii.large), defineProperty(_isMap, "default", props.theme.radii.small), _isMap))(props);
 }, function (props) {
   var _isMap2;
 
-  return c('size', (_isMap2 = {}, defineProperty(_isMap2, SIZES.large, props.theme.fontSizes.medium), defineProperty(_isMap2, "default", props.theme.fontSizes.small), _isMap2))(props);
-}, c('shape', (_isMap3 = {}, defineProperty(_isMap3, SHAPES.block, '100%'), defineProperty(_isMap3, "default", 'auto'), _isMap3)), c('size', (_isMap4 = {}, defineProperty(_isMap4, SIZES.compact, '5px 10px'), defineProperty(_isMap4, SIZES.default, '10px 20px'), defineProperty(_isMap4, SIZES.large, '15px 40px'), _isMap4)), function (props) {
+  return dist_5('size', (_isMap2 = {}, defineProperty(_isMap2, SIZES.large, props.theme.fontSizes.medium), defineProperty(_isMap2, "default", props.theme.fontSizes.small), _isMap2))(props);
+}, dist_5('shape', (_isMap3 = {}, defineProperty(_isMap3, SHAPES.block, '100%'), defineProperty(_isMap3, "default", 'auto'), _isMap3)), dist_5('size', (_isMap4 = {}, defineProperty(_isMap4, SIZES.compact, '5px 10px'), defineProperty(_isMap4, SIZES.default, '10px 20px'), defineProperty(_isMap4, SIZES.large, '15px 40px'), _isMap4)), function (props) {
   return props.shape === SHAPES.block ? 'scale(0.99)' : 'scale(0.95)';
-}, u('colors.gray[0]'), u('colors.gray[4]'), styledSystem.space, styledSystem.layout, styledSystem.typography);
+}, dist_2('colors.gray[0]'), dist_2('colors.gray[4]'), styledSystem.space, styledSystem.layout, styledSystem.typography);
 
 var Button = function Button(_ref) {
   var children = _ref.children,
@@ -334,16 +353,6 @@ function _createClass(Constructor, protoProps, staticProps) {
 }
 
 var createClass = _createClass;
-
-var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-function unwrapExports (x) {
-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
-}
-
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
 
 var _typeof_1 = createCommonjsModule(function (module) {
 function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
@@ -426,8 +435,87 @@ function _inherits(subClass, superClass) {
 
 var inherits = _inherits;
 
+var Plus = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _react = _interopRequireDefault(e__default);
+
+var _styledComponents = _interopRequireDefault(styled__default);
+
+
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+var Svg = (0, _styledComponents["default"])('svg')({
+  flex: 'none'
+}, styledSystem__default.space, styledSystem__default.color);
+
+var PlusIcon = function PlusIcon(_ref) {
+  var size = _ref.size,
+      props = _objectWithoutProperties(_ref, ["size"]);
+
+  return _react["default"].createElement(Svg, _extends({}, props, {
+    viewBox: "0 0 24 24",
+    width: size,
+    height: size,
+    fill: "currentcolor"
+  }), _react["default"].createElement("path", {
+    d: "M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
+  }));
+};
+
+PlusIcon.displayName = 'PlusIcon';
+PlusIcon.defaultProps = {
+  size: 24
+};
+var _default = PlusIcon;
+exports["default"] = _default;
+});
+
+var Plus$1 = unwrapExports(Plus);
+
 var flexCenter = styled.css(["display:flex;justify-content:center;align-items:center;"]);
 var flexBetween = styled.css(["display:flex;justify-content:space-between;align-items:center;"]);
+
+function _templateObject11() {
+  var data = taggedTemplateLiteral(["\n  border: none;\n  outline: none;\n  border-radius: 0.6em;\n  width: 3.6em;\n  height: 3.6em;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n  box-shadow: -4px 8px 6px #d6dadf;\n  color: ", ";\n  background-color: ", ";\n"]);
+
+  _templateObject11 = function _templateObject11() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject10() {
+  var data = taggedTemplateLiteral(["\n  margin: 1em 1em 1em 0em;\n  color: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  padding-right: 5em;\n"]);
+
+  _templateObject10 = function _templateObject10() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject9() {
+  var data = taggedTemplateLiteral(["\n  height: ", ";\n  margin: ", ";\n  border-bottom: ", ";\n"]);
+
+  _templateObject9 = function _templateObject9() {
+    return data;
+  };
+
+  return data;
+}
 
 function _templateObject8() {
   var data = taggedTemplateLiteral(["\n  position: absolute;\n  top: 0;\n  right: 1em;\n  display: flex;\n  align-items: center;\n"]);
@@ -440,7 +528,7 @@ function _templateObject8() {
 }
 
 function _templateObject7() {
-  var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  margin: ", ";\n"]);
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: baseline;\n  flex-direction: column;\n  margin: ", ";\n"]);
 
   _templateObject7 = function _templateObject7() {
     return data;
@@ -470,7 +558,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-family: ", ";\n  font-weight: ", ";\n  text-transform: uppercase;\n  letter-spacing: ", ";\n  color: ", "\n"]);
+  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-family: ", ";\n  font-weight: ", ";\n  text-transform: uppercase;\n  letter-spacing: ", ";\n  color: ", ";\n  \n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -508,14 +596,33 @@ function _templateObject$4() {
 
   return data;
 }
-var StyledCard = styled__default.section(_templateObject$4(), u('colors.white'), u('radii.large'), u('colors.gray.xlight'), u('space[3]'), u('space[3]'), u('shadows[0]'), styledSystem.space, styledSystem.layout, styledSystem.flexbox);
+var StyledCard = styled__default.section(_templateObject$4(), dist_2('colors.white'), dist_2('radii.large'), dist_2('colors.gray.xlight'), dist_2('space[3]'), dist_2('space[3]'), dist_2('shadows[0]'), styledSystem.space, styledSystem.layout, styledSystem.flexbox);
 var StyledCardHeader = styled__default.header(_templateObject2());
-var StyledIndicator = styled__default.div(_templateObject3(), u('colors.primary'), u('space[2]'));
-var StyledCardTitle = styled__default.h3(_templateObject4(), u('fontSizes.small'), u('fonts[0]'), u('fontWeights.extrabold'), u('letterSpacings.tight'), u('colors.gray[5]'));
-var StyledContent = styled__default.div(_templateObject5(), u('space[2]'));
+var StyledIndicator = styled__default.div(_templateObject3(), dist_2('colors.primary'), dist_2('space[2]'));
+var StyledCardTitle = styled__default.h3(_templateObject4(), dist_2('fontSizes.small'), dist_2('fonts[0]'), dist_2('fontWeights.extrabold'), dist_2('letterSpacings.tight'), dist_2('colors.gray[5]'));
+var StyledContent = styled__default.div(_templateObject5(), dist_2('space[2]'));
 var TitleContainer = styled__default.div(_templateObject6(), flexCenter);
-var Container = styled__default.div(_templateObject7(), u('space[3]'));
+var Container = styled__default.div(_templateObject7(), dist_2('space[3]'));
 var ActionsContainer = styled__default.div(_templateObject8());
+var StyledCardDivider = styled__default.div(_templateObject9(), function (props) {
+  return props.showDivider ? '1em' : 0;
+}, function (props) {
+  return props.showDivider ? '0 1em 2em' : 0;
+}, function (props) {
+  return props.showDivider ? "2px solid ".concat(props.theme.colors.gray.xlight) : 'none';
+});
+var StyledCardDescription = styled__default.p(_templateObject10(), function (props) {
+  return props.theme.colors.gray[3];
+}, function (props) {
+  return props.theme.fontWeights.thin;
+}, function (props) {
+  return props.theme.fontSizes.small;
+});
+var StyledButton$1 = styled__default.button(_templateObject11(), function (props) {
+  return props.theme.colors.primary;
+}, function (props) {
+  return props.theme.colors.blue[0];
+});
 
 function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -539,12 +646,19 @@ function (_React$PureComponent) {
           title = _this$props.title,
           actions = _this$props.actions,
           renderHeader = _this$props.renderHeader,
+          viewState = _this$props.viewState,
           children = _this$props.children,
-          props = objectWithoutProperties(_this$props, ["title", "actions", "renderHeader", "children"]);
+          onAdd = _this$props.onAdd,
+          description = _this$props.description,
+          props = objectWithoutProperties(_this$props, ["title", "actions", "renderHeader", "viewState", "children", "onAdd", "description"]); // const showDivider = !hideDivider && title && (!viewState || !!children)
+
 
       return e.createElement(StyledCard, props, typeof renderHeader === 'function' ? renderHeader({
         title: title
-      }) : title && e.createElement(Card.Header, null, e.createElement(Container, null, e.createElement(TitleContainer, null, e.createElement(StyledIndicator, null), e.createElement(Card.Title, null, title)), e.createElement(ActionsContainer, null, actions))), e.createElement(Card.Content, null, children));
+      }) : title && e.createElement(StyledCardHeader, null, e.createElement(Container, null, e.createElement(TitleContainer, null, e.createElement(StyledIndicator, null), e.createElement(StyledCardTitle, null, title)), description && !viewState && e.createElement(StyledCardDescription, null, description), e.createElement(ActionsContainer, null, actions, onAdd && !viewState && e.createElement(StyledButton$1, {
+        onClick: onAdd,
+        type: "button"
+      }, e.createElement(Plus$1, null))))), e.createElement(StyledContent, null, children));
     }
   }]);
 
@@ -561,12 +675,6 @@ defineProperty(Card, "propTypes", _objectSpread$2({
   actions: PropTypes$1.array
 }, styledSystem.space.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.flexbox.propTypes));
 
-defineProperty(Card, "Header", StyledCardHeader);
-
-defineProperty(Card, "Title", StyledCardTitle);
-
-defineProperty(Card, "Content", StyledContent);
-
 function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -580,7 +688,7 @@ function _templateObject$5() {
 
   return data;
 }
-var Text = styled__default.p(_templateObject$5(), u('colors.gray.xxdark'), styledSystem.typography, styledSystem.space, styledSystem.color);
+var Text = styled__default.p(_templateObject$5(), dist_2('colors.gray.xxdark'), styledSystem.typography, styledSystem.space, styledSystem.color);
 Text.defaultProps = {
   theme: theme
 };
@@ -610,7 +718,7 @@ var Image = styled__default.img.attrs({
 })(_templateObject$6(), function (props) {
   var _isMap;
 
-  return c('shapde', (_isMap = {}, defineProperty(_isMap, SHAPES$1.round, props.theme.radii.full), defineProperty(_isMap, SHAPES$1.rounded, props.theme.radii.large), defineProperty(_isMap, "default", props.theme.radii.none), _isMap))(props);
+  return dist_5('shapde', (_isMap = {}, defineProperty(_isMap, SHAPES$1.round, props.theme.radii.full), defineProperty(_isMap, SHAPES$1.rounded, props.theme.radii.large), defineProperty(_isMap, "default", props.theme.radii.none), _isMap))(props);
 }, styledSystem.layout, styledSystem.shadow);
 Image.displayName = 'Image';
 Image.propTypes = _objectSpread$4({}, styledSystem.layout.propTypes, {}, styledSystem.shadow.propTypes, {
@@ -625,10 +733,10 @@ Image.SHAPES = SHAPES$1;
 var reactIs_production_min = createCommonjsModule(function (module, exports) {
 Object.defineProperty(exports,"__esModule",{value:!0});
 var b="function"===typeof Symbol&&Symbol.for,c=b?Symbol.for("react.element"):60103,d=b?Symbol.for("react.portal"):60106,e=b?Symbol.for("react.fragment"):60107,f=b?Symbol.for("react.strict_mode"):60108,g=b?Symbol.for("react.profiler"):60114,h=b?Symbol.for("react.provider"):60109,k=b?Symbol.for("react.context"):60110,l=b?Symbol.for("react.async_mode"):60111,m=b?Symbol.for("react.concurrent_mode"):60111,n=b?Symbol.for("react.forward_ref"):60112,p=b?Symbol.for("react.suspense"):60113,q=b?Symbol.for("react.suspense_list"):
-60120,r=b?Symbol.for("react.memo"):60115,t=b?Symbol.for("react.lazy"):60116,v=b?Symbol.for("react.fundamental"):60117,w=b?Symbol.for("react.responder"):60118;function x(a){if("object"===typeof a&&null!==a){var u=a.$$typeof;switch(u){case c:switch(a=a.type,a){case l:case m:case e:case g:case f:case p:return a;default:switch(a=a&&a.$$typeof,a){case k:case n:case h:return a;default:return u}}case t:case r:case d:return u}}}function y(a){return x(a)===m}exports.typeOf=x;exports.AsyncMode=l;
-exports.ConcurrentMode=m;exports.ContextConsumer=k;exports.ContextProvider=h;exports.Element=c;exports.ForwardRef=n;exports.Fragment=e;exports.Lazy=t;exports.Memo=r;exports.Portal=d;exports.Profiler=g;exports.StrictMode=f;exports.Suspense=p;
-exports.isValidElementType=function(a){return "string"===typeof a||"function"===typeof a||a===e||a===m||a===g||a===f||a===p||a===q||"object"===typeof a&&null!==a&&(a.$$typeof===t||a.$$typeof===r||a.$$typeof===h||a.$$typeof===k||a.$$typeof===n||a.$$typeof===v||a.$$typeof===w)};exports.isAsyncMode=function(a){return y(a)||x(a)===l};exports.isConcurrentMode=y;exports.isContextConsumer=function(a){return x(a)===k};exports.isContextProvider=function(a){return x(a)===h};
-exports.isElement=function(a){return "object"===typeof a&&null!==a&&a.$$typeof===c};exports.isForwardRef=function(a){return x(a)===n};exports.isFragment=function(a){return x(a)===e};exports.isLazy=function(a){return x(a)===t};exports.isMemo=function(a){return x(a)===r};exports.isPortal=function(a){return x(a)===d};exports.isProfiler=function(a){return x(a)===g};exports.isStrictMode=function(a){return x(a)===f};exports.isSuspense=function(a){return x(a)===p};
+60120,r=b?Symbol.for("react.memo"):60115,t=b?Symbol.for("react.lazy"):60116,v=b?Symbol.for("react.fundamental"):60117,w=b?Symbol.for("react.responder"):60118,x=b?Symbol.for("react.scope"):60119;function y(a){if("object"===typeof a&&null!==a){var u=a.$$typeof;switch(u){case c:switch(a=a.type,a){case l:case m:case e:case g:case f:case p:return a;default:switch(a=a&&a.$$typeof,a){case k:case n:case h:return a;default:return u}}case t:case r:case d:return u}}}function z(a){return y(a)===m}
+exports.typeOf=y;exports.AsyncMode=l;exports.ConcurrentMode=m;exports.ContextConsumer=k;exports.ContextProvider=h;exports.Element=c;exports.ForwardRef=n;exports.Fragment=e;exports.Lazy=t;exports.Memo=r;exports.Portal=d;exports.Profiler=g;exports.StrictMode=f;exports.Suspense=p;
+exports.isValidElementType=function(a){return "string"===typeof a||"function"===typeof a||a===e||a===m||a===g||a===f||a===p||a===q||"object"===typeof a&&null!==a&&(a.$$typeof===t||a.$$typeof===r||a.$$typeof===h||a.$$typeof===k||a.$$typeof===n||a.$$typeof===v||a.$$typeof===w||a.$$typeof===x)};exports.isAsyncMode=function(a){return z(a)||y(a)===l};exports.isConcurrentMode=z;exports.isContextConsumer=function(a){return y(a)===k};exports.isContextProvider=function(a){return y(a)===h};
+exports.isElement=function(a){return "object"===typeof a&&null!==a&&a.$$typeof===c};exports.isForwardRef=function(a){return y(a)===n};exports.isFragment=function(a){return y(a)===e};exports.isLazy=function(a){return y(a)===t};exports.isMemo=function(a){return y(a)===r};exports.isPortal=function(a){return y(a)===d};exports.isProfiler=function(a){return y(a)===g};exports.isStrictMode=function(a){return y(a)===f};exports.isSuspense=function(a){return y(a)===p};
 });
 
 unwrapExports(reactIs_production_min);
@@ -673,16 +781,15 @@ Object.defineProperty(exports, '__esModule', { value: true });
 // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
 var hasSymbol = typeof Symbol === 'function' && Symbol.for;
-
 var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
 var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
 var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
 var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
 var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
 var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace;
-// TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
 // (unstable) APIs that have been removed. Can we remove the symbols?
+
 var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
 var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
 var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
@@ -692,11 +799,11 @@ var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
 var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
 var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
 var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
 
 function isValidElementType(type) {
-  return typeof type === 'string' || typeof type === 'function' ||
-  // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE);
+  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE);
 }
 
 /**
@@ -712,12 +819,11 @@ function isValidElementType(type) {
  * paths. Removing the logging code for production environments will keep the
  * same logic and follow the same code paths.
  */
-
-var lowPriorityWarning = function () {};
+var lowPriorityWarningWithoutStack = function () {};
 
 {
   var printWarning = function (format) {
-    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       args[_key - 1] = arguments[_key];
     }
 
@@ -725,9 +831,11 @@ var lowPriorityWarning = function () {};
     var message = 'Warning: ' + format.replace(/%s/g, function () {
       return args[argIndex++];
     });
+
     if (typeof console !== 'undefined') {
       console.warn(message);
     }
+
     try {
       // --- Welcome to debugging React ---
       // This error was thrown as a convenience so that you can use this stack
@@ -736,25 +844,27 @@ var lowPriorityWarning = function () {};
     } catch (x) {}
   };
 
-  lowPriorityWarning = function (condition, format) {
+  lowPriorityWarningWithoutStack = function (condition, format) {
     if (format === undefined) {
-      throw new Error('`lowPriorityWarning(condition, format, ...args)` requires a warning ' + 'message argument');
+      throw new Error('`lowPriorityWarningWithoutStack(condition, format, ...args)` requires a warning ' + 'message argument');
     }
+
     if (!condition) {
-      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+      for (var _len2 = arguments.length, args = new Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
         args[_key2 - 2] = arguments[_key2];
       }
 
-      printWarning.apply(undefined, [format].concat(args));
+      printWarning.apply(void 0, [format].concat(args));
     }
   };
 }
 
-var lowPriorityWarning$1 = lowPriorityWarning;
+var lowPriorityWarningWithoutStack$1 = lowPriorityWarningWithoutStack;
 
 function typeOf(object) {
   if (typeof object === 'object' && object !== null) {
     var $$typeof = object.$$typeof;
+
     switch ($$typeof) {
       case REACT_ELEMENT_TYPE:
         var type = object.type;
@@ -767,6 +877,7 @@ function typeOf(object) {
           case REACT_STRICT_MODE_TYPE:
           case REACT_SUSPENSE_TYPE:
             return type;
+
           default:
             var $$typeofType = type && type.$$typeof;
 
@@ -775,10 +886,13 @@ function typeOf(object) {
               case REACT_FORWARD_REF_TYPE:
               case REACT_PROVIDER_TYPE:
                 return $$typeofType;
+
               default:
                 return $$typeof;
             }
+
         }
+
       case REACT_LAZY_TYPE:
       case REACT_MEMO_TYPE:
       case REACT_PORTAL_TYPE:
@@ -787,9 +901,8 @@ function typeOf(object) {
   }
 
   return undefined;
-}
+} // AsyncMode is deprecated along with isAsyncMode
 
-// AsyncMode is deprecated along with isAsyncMode
 var AsyncMode = REACT_ASYNC_MODE_TYPE;
 var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
 var ContextConsumer = REACT_CONTEXT_TYPE;
@@ -803,17 +916,16 @@ var Portal = REACT_PORTAL_TYPE;
 var Profiler = REACT_PROFILER_TYPE;
 var StrictMode = REACT_STRICT_MODE_TYPE;
 var Suspense = REACT_SUSPENSE_TYPE;
+var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
 
-var hasWarnedAboutDeprecatedIsAsyncMode = false;
-
-// AsyncMode should be deprecated
 function isAsyncMode(object) {
   {
     if (!hasWarnedAboutDeprecatedIsAsyncMode) {
       hasWarnedAboutDeprecatedIsAsyncMode = true;
-      lowPriorityWarning$1(false, 'The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
+      lowPriorityWarningWithoutStack$1(false, 'The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
     }
   }
+
   return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
 }
 function isConcurrentMode(object) {
@@ -1099,24 +1211,24 @@ function _templateObject$8() {
 }
 var StyledInput = styled__default.input.attrs({
   type: 'checkbox'
-})(_templateObject$8(), u('radii.full'), u('colors.primary'), u('colors.primary'), u('colors.gray[6]'));
-var StyledLabel = styled__default.label(_templateObject2$1(), u('colors.gray[4]'), u('fonts[0]'), u('fontSizes.medium'), u('lineHeights.normal'),
+})(_templateObject$8(), dist_2('radii.full'), dist_2('colors.primary'), dist_2('colors.primary'), dist_2('colors.gray[6]'));
+var StyledLabel = styled__default.label(_templateObject2$1(), dist_2('colors.gray[4]'), dist_2('fonts[0]'), dist_2('fontSizes.medium'), dist_2('lineHeights.normal'),
 /* sc-selector */
 StyledInput,
 /* sc-selector */
 StyledInput, styledSystem.space, styledSystem.layout);
 var StyledSpan = styled__default.span(_templateObject3$1(), function (_ref) {
   var labelled = _ref.labelled;
-  return styled.css(["&::before{content:'';border-radius:2px;display:inline-block;box-sizing:border-box;margin:", ";border:solid 2px;border-color:rgba(0,0,0,0.6);border-radius:", ";width:18px;height:18px;vertical-align:top;transition:border-color 0.2s,background-color 0.2s;}"], labelled ? '3px 14px 3px 1px' : '3px 1px', u('radii.xsmall'));
+  return styled.css(["&::before{content:'';border-radius:2px;display:inline-block;box-sizing:border-box;margin:", ";border:solid 2px;border-color:rgba(0,0,0,0.6);border-radius:", ";width:18px;height:18px;vertical-align:top;transition:border-color 0.2s,background-color 0.2s;}"], labelled ? '3px 14px 3px 1px' : '3px 1px', dist_2('radii.xsmall'));
 },
 /* sc-selector */
 StyledInput,
 /* sc-selector */
-StyledInput, u('colors.white'), u('colors.white'),
+StyledInput, dist_2('colors.white'), dist_2('colors.white'),
 /* sc-selector */
 StyledInput,
 /* sc-selector */
-StyledInput, u('colors.primary'),
+StyledInput, dist_2('colors.primary'),
 /* sc-selector */
 StyledInput);
 
@@ -1329,7 +1441,7 @@ defineProperty(RadioButton, "defaultProps", {
 });
 
 function _templateObject$a() {
-  var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid ", ";\n  font-family: inherit;\n  font-size: ", ";\n  padding: ", " ", ";\n  height: 35px;\n  color: ", ";\n  border-radius: ", ";\n  width: 100%;\n\n  &:disabled {\n    background-color: ", ";\n    border: 1px solid ", "\n  }\n\n  ::placeholder {\n    color: ", ";\n  }\n\n  ::-webkit-inner-spin-button,\n  ::-webkit-outer-spin-button {\n    /* stylelint-disable-next-line property-no-vendor-prefix */\n    -webkit-appearance: none;\n    margin: 0;\n  }\n"]);
+  var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid ", ";\n  font-family: inherit;\n  font-size: ", ";\n  padding: ", " ", ";\n  height: 35px;\n  color: ", ";\n  border-radius: ", ";\n  width: 100%;\n\n  &:disabled {\n    background-color: ", ";\n    border: 1px solid ", ";\n  }\n\n  ::placeholder {\n    color: ", ";\n  }\n\n  ::-webkit-inner-spin-button,\n  ::-webkit-outer-spin-button {\n    /* stylelint-disable-next-line property-no-vendor-prefix */\n    -webkit-appearance: none;\n    margin: 0;\n  }\n"]);
 
   _templateObject$a = function _templateObject() {
     return data;
@@ -1339,7 +1451,7 @@ function _templateObject$a() {
 }
 var StyledInput$1 = styled__default.input.attrs({
   type: 'text'
-})(_templateObject$a(), u('colors.gray[0]'), u('colors.gray[0]'), u('fontSizes.small'), u('space[1]'), u('space[2]'), u('colors.gray[7]'), u('radii.small'), u('colors.transparent'), u('colors.gray.default'), u('colors.gray[5]'));
+})(_templateObject$a(), dist_2('colors.white'), dist_2('colors.gray[0]'), dist_2('fontSizes.small'), dist_2('space[1]'), dist_2('space[2]'), dist_2('colors.gray[7]'), dist_2('radii.small'), dist_2('colors.transparent'), dist_2('colors.gray.default'), dist_2('colors.gray[5]'));
 
 function _templateObject4$1() {
   var data = taggedTemplateLiteral(["\n  margin-left: ", ";\n  color: ", ";\n  font-weight: ", ";\n"]);
@@ -1380,7 +1492,7 @@ function _templateObject$b() {
 
   return data;
 }
-var StyledLabel$2 = styled__default.label(_templateObject$b(), u('colors.gray.xxdark'), u('fontWeights.bold'), u('fontSizes.xsmall'), u('space[1]'));
+var StyledLabel$2 = styled__default.label(_templateObject$b(), dist_2('colors.gray.xxdark'), dist_2('fontWeights.bold'), dist_2('fontSizes.xsmall'), dist_2('space[1]'));
 var StyledInputContainer = styled__default.div(_templateObject2$3(), function (_ref) {
   var empty = _ref.empty;
   return !empty && 'margin-bottom: 1.5em;';
@@ -1388,8 +1500,8 @@ var StyledInputContainer = styled__default.div(_templateObject2$3(), function (_
 StyledInputContainer.displayName = 'InputContainer';
 var StyledAlertText = styled__default.span.attrs({
   role: 'alert'
-})(_templateObject3$2(), u('fontSizes.xsmall'), u('colors.red[1]'), u('fontWeights.bold'));
-var Required = styled__default.span(_templateObject4$1(), u('space[1]'), u('colors.red[1]'), u('fontWeights.bold'));
+})(_templateObject3$2(), dist_2('fontSizes.xsmall'), dist_2('colors.red[1]'), dist_2('fontWeights.bold'));
+var Required = styled__default.span(_templateObject4$1(), dist_2('space[1]'), dist_2('colors.red[1]'), dist_2('fontWeights.bold'));
 
 var InputWrapper = function InputWrapper(_ref2) {
   var id = _ref2.id,
@@ -7993,9 +8105,15 @@ function parseISO(argument, dirtyOptions) {
     var fullTimeDate = new Date(fullTime);
     offset = getTimezoneOffsetInMilliseconds(fullTimeDate); // Adjust time when it's coming from DST
 
-    var fullTimeDateNextDay = new Date(fullTime);
-    fullTimeDateNextDay.setDate(fullTimeDate.getDate() + 1);
-    var offsetDiff = getTimezoneOffsetInMilliseconds(fullTimeDateNextDay) - offset;
+    var fullTimeDateDiffDay = new Date(fullTime);
+
+    if (offset > 0) {
+      fullTimeDateDiffDay.setDate(fullTimeDate.getDate() + 1);
+    } else {
+      fullTimeDateDiffDay.setDate(fullTimeDate.getDate() - 1);
+    }
+
+    var offsetDiff = getTimezoneOffsetInMilliseconds(fullTimeDateDiffDay) - offset;
 
     if (offsetDiff > 0) {
       offset += offsetDiff;
@@ -19720,7 +19838,7 @@ var OverflowMenu = function OverflowMenu(_ref) {
 };
 
 function _templateObject6$1() {
-  var data = taggedTemplateLiteral(["\n\tdisplay: none;\n\tfloat: right;\n\tmargin-right: 45px;\n  opacity: 0;\n\n  ", ":checked + ", " & {\n   \tdisplay: block;\n    opacity: 1;\n  }\n"]);
+  var data = taggedTemplateLiteral(["\n  display: none;\n  float: right;\n  margin-right: 45px;\n  opacity: 0;\n\n  ", ":checked + ", " & {\n    display: block;\n    opacity: 1;\n  }\n"]);
 
   _templateObject6$1 = function _templateObject6() {
     return data;
@@ -19730,7 +19848,7 @@ function _templateObject6$1() {
 }
 
 function _templateObject5$1() {
-  var data = taggedTemplateLiteral(["\n\tmargin-left: 45px;\n  opacity: 1;\n\n  ", ":checked + ", " & {\n    display: none;\n    opacity: 0;\n  }\n"]);
+  var data = taggedTemplateLiteral(["\n  margin-left: 45px;\n  opacity: 1;\n\n  ", ":checked + ", " & {\n    display: none;\n    opacity: 0;\n  }\n"]);
 
   _templateObject5$1 = function _templateObject5() {
     return data;
@@ -19740,7 +19858,7 @@ function _templateObject5$1() {
 }
 
 function _templateObject4$2() {
-  var data = taggedTemplateLiteral(["\n\tfloat: left;\n\tcolor: ", ";\n\tfont-weight: ", ";\n\tpadding-top: ", ";\n  transition: all 0.3s ease-out 0s;\n"]);
+  var data = taggedTemplateLiteral(["\n  float: left;\n  color: ", ";\n  font-weight: ", ";\n  padding-top: ", ";\n  transition: all 0.3s ease-out 0s;\n"]);
 
   _templateObject4$2 = function _templateObject4() {
     return data;
@@ -19750,7 +19868,7 @@ function _templateObject4$2() {
 }
 
 function _templateObject3$3() {
-  var data = taggedTemplateLiteral(["\n    position: relative;\n    width: 100px;\n    height: 32px;\n    background-color: ", ";\n    transition: background 0.25s ease-out 0s;\n\n  &:before {\n    content: \"\";\n\tdisplay: block;\n\tposition: absolute;\n\twidth: 20px;\n\theight: 20px;\n\tborder-radius: 10px;\n\tbackground-color: ", ";\n\ttop: 6px;\n\tleft: 6px;\n\ttransition: left 0.3s ease-out 0s;\n\tz-index: ", ";\n  }\n\n  ", ":checked + & {\n    \tbackground-color: ", ";\n  }\n\n  ", ":checked + &:before {\n    left: 75px;\n    background-color: ", ";\n  }\n"]);
+  var data = taggedTemplateLiteral(["\n  position: relative;\n  width: 100px;\n  height: 32px;\n  background-color: ", ";\n  transition: background 0.25s ease-out 0s;\n\n  &:before {\n    content: '';\n    display: block;\n    position: absolute;\n    width: 20px;\n    height: 20px;\n    border-radius: 10px;\n    background-color: ", ";\n    top: 6px;\n    left: 6px;\n    transition: left 0.3s ease-out 0s;\n    z-index: ", ";\n  }\n\n  ", ":checked + & {\n    background-color: ", ";\n  }\n\n  ", ":checked + &:before {\n    left: 75px;\n    background-color: ", ";\n  }\n"]);
 
   _templateObject3$3 = function _templateObject3() {
     return data;
@@ -19760,7 +19878,7 @@ function _templateObject3$3() {
 }
 
 function _templateObject2$4() {
-  var data = taggedTemplateLiteral(["\n\tposition: absolute;\n\tleft: 0;\n\ttop: 0;\n\twidth: 100px;\n\theight: 32px;\n\tpadding: ", ";\n\tmargin: ", ";\n\topacity: 0;\n\tz-index: ", ";\n\tcursor: pointer;\n"]);
+  var data = taggedTemplateLiteral(["\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100px;\n  height: 32px;\n  padding: ", ";\n  margin: ", ";\n  opacity: 0;\n  z-index: ", ";\n  cursor: pointer;\n"]);
 
   _templateObject2$4 = function _templateObject2() {
     return data;
@@ -19778,12 +19896,12 @@ function _templateObject$f() {
 
   return data;
 }
-var Container$1 = styled__default.div(_templateObject$f(), u('lineHeights.tight'), u('fontSizes.xsmall'), u('fonts[0]'));
+var Container$1 = styled__default.div(_templateObject$f(), dist_2('lineHeights.tight'), dist_2('fontSizes.xsmall'), dist_2('fonts[0]'));
 var Input$2 = styled__default.input.attrs({
   type: 'checkbox'
-})(_templateObject2$4(), u('space[0]'), u('space[0]'), u('zIndices[1]'));
-var Animate = styled__default.div(_templateObject3$3(), u('colors.secondary'), u('colors.white'), u('zIndices[1]'), Input$2, u('colors.primary'), Input$2, u('colors.white'));
-var CheckboxState = styled__default.div(_templateObject4$2(), u('colors.white'), u('fontWeights.bold'), u('space[2]'));
+})(_templateObject2$4(), dist_2('space[0]'), dist_2('space[0]'), dist_2('zIndices[1]'));
+var Animate = styled__default.div(_templateObject3$3(), dist_2('colors.secondary'), dist_2('colors.white'), dist_2('zIndices[1]'), Input$2, dist_2('colors.primary'), Input$2, dist_2('colors.white'));
+var CheckboxState = styled__default.div(_templateObject4$2(), dist_2('colors.white'), dist_2('fontWeights.bold'), dist_2('space[2]'));
 var CheckboxOff = styled__default(CheckboxState)(_templateObject5$1(), Input$2, Animate);
 var CheckboxOn = styled__default(CheckboxState)(_templateObject6$1(), Input$2, Animate);
 
@@ -20564,7 +20682,7 @@ exports.default = '.__react_component_tooltip{border-radius:3px;display:inline-b
 
 unwrapExports(style);
 
-var dist = createCommonjsModule(function (module) {
+var dist$1 = createCommonjsModule(function (module) {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -21300,7 +21418,7 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
 module.exports = ReactTooltip;
 });
 
-var ReactTooltip = unwrapExports(dist);
+var ReactTooltip = unwrapExports(dist$1);
 
 var Tooltip = ReactTooltip;
 
@@ -21354,7 +21472,7 @@ exports["default"] = _default;
 var Close$1 = unwrapExports(Close);
 
 function _templateObject3$4() {
-  var data = taggedTemplateLiteral(["\n  color: ", ";\n  background: ", "\n"]);
+  var data = taggedTemplateLiteral(["\n  color: ", ";\n  background: ", ";\n"]);
 
   _templateObject3$4 = function _templateObject3() {
     return data;
@@ -21364,7 +21482,7 @@ function _templateObject3$4() {
 }
 
 function _templateObject2$5() {
-  var data = taggedTemplateLiteral(["\n  font-weight: ", "\n"]);
+  var data = taggedTemplateLiteral(["\n  font-weight: ", ";\n"]);
 
   _templateObject2$5 = function _templateObject2() {
     return data;
@@ -21382,9 +21500,9 @@ function _templateObject$h() {
 
   return data;
 }
-var Container$2 = styled__default.div(_templateObject$h(), flexBetween, u('colors.gray[0]'), u('radii.full'), u('colors.gray[7]'), u('colors.gray[3]'), u('space[3]'));
-var Name = styled__default.span(_templateObject2$5(), u('fontWeights.semi'));
-var CloseButton = styled__default.button(_templateObject3$4(), u('colors.gray[7]'), u('colors.transparent'));
+var Container$2 = styled__default.div(_templateObject$h(), flexBetween, dist_2('colors.gray[0]'), dist_2('radii.full'), dist_2('colors.gray[7]'), dist_2('colors.gray[3]'), dist_2('space[3]'));
+var Name = styled__default.span(_templateObject2$5(), dist_2('fontWeights.semi'));
+var CloseButton = styled__default.button(_templateObject3$4(), dist_2('colors.gray[7]'), dist_2('colors.transparent'));
 
 var Tag = function Tag(_ref) {
   var name = _ref.name,

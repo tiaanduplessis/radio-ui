@@ -32,9 +32,8 @@ class Card extends React.PureComponent {
   }
 
   render() {
-    const { title, actions, renderHeader, viewState, children, onAdd, description, ...props } = this.props
+    const { title, actions, renderHeader, viewState, children, onAdd, description, showDivider, ...props } = this.props
 
-    // const showDivider = !hideDivider && title && (!viewState || !!children)
     return (
       <StyledCard {...props}>
         {typeof renderHeader === 'function'
@@ -58,7 +57,7 @@ class Card extends React.PureComponent {
                   )}
                 </ActionsContainer>
               </Container>
-              {/* <StyledCardDivider showDivider={showDivider} /> */}
+              <StyledCardDivider showDivider={showDivider} />
             </StyledCardHeader>
           )}
         <StyledContent>{children}</StyledContent>
