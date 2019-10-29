@@ -80,12 +80,14 @@ export const StyledCardDescription = styled.p`
 export const StyledButton = styled.button`
   border: none;
   outline: none;
-  border-radius: 50%;
+  border-radius: 0.6em;
   width: 3.6em;
   height: 3.6em;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  background-color: ${props => props.theme.colors.primary};
+  box-shadow: -4px 8px 6px #d6dadf;
+  color: ${props => props.theme.colors.primary};
+  background-color: ${props => props.theme.colors.blue[0]};
 `

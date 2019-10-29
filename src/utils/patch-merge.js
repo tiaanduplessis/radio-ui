@@ -1,18 +1,18 @@
 const isObj = val => val && typeof val === 'object'
 
-function getType(val) {
+function getType (val) {
   return Array.isArray(val) ? 'array' : typeof val
 }
 
-function getLength(val) {
+function getLength (val) {
   return getType(val) === 'array' ? val.length : Object.keys(val).length
 }
 
-function typeArrayOrObject(type) {
+function typeArrayOrObject (type) {
   return ['array', 'object'].includes(type)
 }
 
-function isEqual(value, other) {
+function isEqual (value, other) {
   const type = getType(value)
   if (type !== getType(other)) return false
 
