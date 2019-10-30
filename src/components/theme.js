@@ -1,7 +1,6 @@
 const addAliases = (arr, aliases) =>
   aliases.forEach(
     (key, i) =>
-      console.log(arr, key) ||
       Object.defineProperty(arr, key, {
         enumerable: false,
         get() {
