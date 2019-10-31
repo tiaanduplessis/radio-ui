@@ -6,6 +6,7 @@ import { byTheme } from 'styled-funcs'
 const StyledLabel = styled.label`
   display: block;
   font-family: inherit;
+  height: 1em;
   color: ${byTheme('colors.gray.xxdark')};
   font-weight: ${byTheme('fontWeights.bold')};
   font-size: ${byTheme('fontSizes.xsmall')};

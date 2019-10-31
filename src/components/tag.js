@@ -15,6 +15,7 @@ const Container = styled.div`
   color: ${byTheme('colors.gray[7]')};
   border: 1px solid ${byTheme('colors.gray[3]')};
   padding: 0 ${byTheme('space[3]')};
+  margin: 0 ${byTheme('space[2]')} 0 0;
 `
 
 const Name = styled.span`
@@ -22,6 +23,8 @@ const Name = styled.span`
 `
 
 const CloseButton = styled.button`
+  cursor: pointer;
+  border: none;
   color: ${byTheme('colors.gray[7]')};
   background: ${byTheme('colors.transparent')};
 `
@@ -34,7 +37,7 @@ const Tag = ({ name, value, onClose }) => (
         {`: ${value}`}
       </span>
       {onClose && (
-        <CloseButton type="button" aria-label="Close">
+        <CloseButton type="button" aria-label="Close" onClick={onClose}>
           <Close color="inherit" />
         </CloseButton>
       )}
