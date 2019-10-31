@@ -1,11 +1,9 @@
 import React from 'react'
 import { connect } from 'formik'
-import ReactPhoneInput from 'react-phone-input-2'
-
-import 'react-phone-input-2/dist/style.css'
 import './styles.css'
-
-import createDefaultInputProps from '../../utils/create-input-defaults'
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
+ import createDefaultInputProps from '../../utils/create-input-defaults'
 
 import InputWrapper from '../input-wrapper'
 
@@ -44,7 +42,7 @@ const TelInput = props => {
 
   return (
     <InputWrapper disabled={disabled} alertText={alertText} {...otherProps}>
-      <ReactPhoneInput
+      <PhoneInput
         {...inputDefaults}
         onChange={onChange ? onChange : defaultOnChange}
         value={value || defaultValue || ''}
@@ -60,8 +58,7 @@ const TelInput = props => {
         }}
         placeholder={placeholder || label}
       />
-    </InputWrapper>
-  )
+    </InputWrapper>  )
 }
 
 export default connect(TelInput)
