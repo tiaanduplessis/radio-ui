@@ -1,10 +1,7 @@
 import React from 'react'
+import { useFormContext } from 'react-hook-form'
 import ReactSelect from 'react-select'
-import { connect } from 'formik'
-
 import InputWrapper from '../input-wrapper'
-
-import createDefaultInputProps from '../../utils/create-input-defaults'
 import { colors, radii, fontSizes, fonts } from '../theme'
 
 const styleOverride = ({ fontSize, width, shape, variant, hasShadow }) => ({
@@ -71,7 +68,6 @@ const Select = ({
   disabled,
   disableEmpty,
   options,
-  formik,
   value,
   onBlur,
   onChange,
@@ -81,33 +77,29 @@ const Select = ({
   multiple,
   alertText: alertTextOverride,
   name,
+  required,
   ...otherProps
 }) => {
-  const { alertText, hasFormik, ...inputDefaults } = createDefaultInputProps({
-    alertText: alertTextOverride,
-    value,
-    onBlur,
-    onChange,
-    name,
-    formik,
-  })
-
-  const defaultOnChange = hasFormik && (value => formik.setFieldValue(name, value))
-  const defaultValue = hasFormik && formik.values[name]
+  const { register, errors, setValue, getValues } = useFormContext()
 
   return (
-    <InputWrapper alertText={alertText} {...otherProps}>
+    <InputWrapper alertText={alertTextOverride || errors[name] ? errors[name].message : ''} required={required} {...otherProps}>
       <ReactSelect
-        {...inputDefaults}
-        {...otherProps}
-        onChange={onChange || defaultOnChange}
-        value={value || defaultValue}
+        onChange={({ value }) => {
+          setValue(name, value)
+          onChange({ value })
+          const values = getValues()
+          console.log(value, values)
+        }}
         placeholder={placeholder}
         styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
         name={name}
         options={options}
         isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
         isMulti={multiple}
+        required={required}
+        ref={register({ name })}
+        {...otherProps}
       />
     </InputWrapper>
   )
@@ -115,6 +107,7 @@ const Select = ({
 
 Select.defaultProps = {
   containerStyle: {},
+  onChange: () => {}
 }
 
-export default connect(Select)
+export default Select

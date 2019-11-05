@@ -1,58 +1,47 @@
-import * as React from 'react'
-import { connect } from 'formik'
-
+import React from 'react'
+import { useFormContext } from 'react-hook-form'
 import { StyledInput } from './styles'
 import InputWrapper from '../input-wrapper'
 import theme from '../theme'
 import defaultPropTypes from '../../config/prop-types'
-import createDefaultInputProps from '../../utils/create-input-defaults'
 
-class Input extends React.PureComponent {
-  static propTypes = defaultPropTypes
+const Input = ({
+  alertText: alertTextOverride,
+  disabled,
+  value,
+  onBlur,
+  onChange,
+  inputProps,
+  required,
+  ...otherProps
+}) => {
+  const { id = otherProps.name, label, placeholder, inputStyle, name } = otherProps
+  const { register, errors } = useFormContext()
 
-  static defaultProps = {
-    label: '',
-    inputStyle: {},
-    theme: theme,
-  }
-
-  render() {
-    const {
-      formik,
-      alertText: alertTextOverride,
-      disabled,
-      value,
-      onBlur,
-      onChange,
-      inputProps,
-      ...otherProps
-    } = this.props
-    const { id = otherProps.name, label, placeholder, inputStyle, name } = otherProps
-
-    const { alertText, ...inputDefaults } = createDefaultInputProps({
-      value,
-      onBlur,
-      onChange,
-      name,
-      formik,
-    })
-
-    return (
-      <InputWrapper alertText={alertTextOverride || alertText} {...otherProps}>
-        <StyledInput
-          id={id}
-          {...inputDefaults}
-          style={inputStyle}
-          aria-label={label}
-          aria-required={otherProps.required}
-          placeholder={placeholder || label}
-          disabled={disabled}
-          name={name}
-          {...inputProps}
-        />
-      </InputWrapper>
-    )
-  }
+  return (
+    <InputWrapper alertText={alertTextOverride || errors[name] ? errors[name].message : ''} required={required} {...otherProps}>
+      <StyledInput
+        id={id}
+        style={inputStyle}
+        aria-label={label}
+        aria-required={required}
+        placeholder={placeholder || label}
+        disabled={disabled}
+        name={name}
+        onChange={onChange}
+        ref={register}
+        {...inputProps}
+      />
+    </InputWrapper>
+  )
 }
 
-export default connect(Input)
+Input.propTypes = defaultPropTypes
+
+Input.defaultProps = {
+  label: '',
+  inputStyle: {},
+  theme: theme,
+}
+
+export default Input

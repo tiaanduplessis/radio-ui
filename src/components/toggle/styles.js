@@ -1,9 +1,7 @@
-import * as React from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 import { byTheme } from 'styled-funcs'
 
-const Container = styled.div`
+export const Container = styled.div`
   cursor: pointer;
   display: inline-block;
   overflow: hidden;
@@ -17,7 +15,7 @@ const Container = styled.div`
   font-family: ${byTheme('fonts[0]')};
 `
 
-const Input = styled.input.attrs({
+export const Input = styled.input.attrs({
   type: 'checkbox',
 })`
   position: absolute;
@@ -32,7 +30,7 @@ const Input = styled.input.attrs({
   cursor: pointer;
 `
 
-const Animate = styled.div`
+export const Animate = styled.div`
   position: relative;
   width: 100px;
   height: 32px;
@@ -71,7 +69,7 @@ const CheckboxState = styled.div`
   transition: all 0.3s ease-out 0s;
 `
 
-const CheckboxOff = styled(CheckboxState)`
+export const CheckboxOff = styled(CheckboxState)`
   margin-left: 45px;
   opacity: 1;
 
@@ -81,7 +79,7 @@ const CheckboxOff = styled(CheckboxState)`
   }
 `
 
-const CheckboxOn = styled(CheckboxState)`
+export const CheckboxOn = styled(CheckboxState)`
   display: none;
   float: right;
   margin-right: 45px;
@@ -92,28 +90,3 @@ const CheckboxOn = styled(CheckboxState)`
     opacity: 1;
   }
 `
-
-const Toggle = ({ label, offText, onText, containerStyle, ...props }) => (
-  <Container style={containerStyle}>
-    <Input aria-label={label} {...props} />
-    <Animate>
-      <CheckboxOff>{offText}</CheckboxOff>
-      <CheckboxOn>{onText}</CheckboxOn>
-    </Animate>
-  </Container>
-)
-
-Toggle.defaultProps = {
-  offText: 'Closed',
-  onText: 'Open',
-  containerStyle: {},
-}
-
-Toggle.propTypes = {
-  offText: PropTypes.string,
-  onText: PropTypes.string,
-  containerStyle: PropTypes.object,
-  label: PropTypes.string.isRequired,
-}
-
-export default Toggle

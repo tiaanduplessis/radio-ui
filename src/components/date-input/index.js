@@ -1,10 +1,9 @@
 import React from 'react'
+import { useFormContext } from 'react-hook-form'
 import DatePicker from 'react-datepicker'
 import styled from 'styled-components'
-import { connect } from 'formik'
 
 import InputWrapper from '../input-wrapper'
-import createDefaultInputProps from '../../utils/create-input-defaults'
 
 import 'react-datepicker/dist/react-datepicker.css'
 import './styles.css'
@@ -32,7 +31,6 @@ function getDateString(value) {
 
 const DateInput = props => {
   const {
-    formik,
     disabled,
     value,
     onBlur,
@@ -45,24 +43,12 @@ const DateInput = props => {
   } = props
 
   const { id = otherProps.name, label, inputStyle, name, required } = otherProps
-
-  const { alertText, ...inputDefaults } = createDefaultInputProps({
-    value,
-    onBlur,
-    onChange,
-    name,
-    formik,
-    alertText: alertTextOverride,
-  })
-  const { hasFormik } = inputDefaults
-  const defaultChangeHandler = hasFormik && (value => formik.setFieldValue(name, value))
+  const { register, errors } = useFormContext()
 
   return (
-    <InputWrapper alertText={alertTextOverride || alertText} {...otherProps}>
+    <InputWrapper alertText={alertTextOverride || errors[name] ? errors[name].message : ''} {...otherProps}>
       <StyledDatePicker
-        {...inputDefaults}
-        onChange={onChange ? onChange : defaultChangeHandler}
-        value={dateFormatter(value || inputDefaults.value)}
+        onChange={onChange}
         style={inputStyle}
         aria-label={label}
         aria-required={required}
@@ -70,6 +56,7 @@ const DateInput = props => {
         placeholderText={placeholder || label}
         disabled={disabled}
         name={name}
+        ref={register}
         {...inputProps}
       />
     </InputWrapper>
@@ -78,6 +65,7 @@ const DateInput = props => {
 
 DateInput.defaultProps = {
   dateFormat: 'dd/MM/yyyy',
+  onChange: () => {}
 }
 
-export default connect(DateInput)
+export default DateInput

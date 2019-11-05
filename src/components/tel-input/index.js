@@ -1,9 +1,8 @@
 import React from 'react'
-import { connect } from 'formik'
+import { useFormContext } from 'react-hook-form'
 import './styles.css'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
- import createDefaultInputProps from '../../utils/create-input-defaults'
 
 import InputWrapper from '../input-wrapper'
 
@@ -13,7 +12,6 @@ const defaultMasks = {
 
 const TelInput = props => {
   const {
-    formik,
     masks,
     value,
     onBlur,
@@ -27,38 +25,24 @@ const TelInput = props => {
   } = props
 
   const { id = otherProps.name, label, name } = otherProps
-
-  const { alertText, hasFormik, ...inputDefaults } = createDefaultInputProps({
-    alertText: alertTextOverride,
-    value,
-    onBlur,
-    onChange,
-    name,
-    formik,
-  })
-
-  const defaultOnChange = hasFormik && (value => formik.setFieldValue(name, value))
-  const defaultValue = hasFormik && formik.values[name]
+  const { register, errors } = useFormContext()
 
   return (
-    <InputWrapper disabled={disabled} alertText={alertText} {...otherProps}>
+    <InputWrapper disabled={disabled} alertText={alertTextOverride || errors[name] ? errors[name].message : ''} {...otherProps}>
       <PhoneInput
-        {...inputDefaults}
-        onChange={onChange ? onChange : defaultOnChange}
-        value={value || defaultValue || ''}
-        defaultCountry={defaultCountry}
+        onChange={onChange}
         disabled={disabled}
         name={name}
-        countryCodeEditable={false}
         masks={masks || defaultMasks}
-        inputExtraProps={{
-          ...inputProps,
-          id,
-          name,
-        }}
         placeholder={placeholder || label}
+        ref={register}
       />
-    </InputWrapper>  )
+    </InputWrapper>
+  )
 }
 
-export default connect(TelInput)
+TelInput.defaultProps = {
+  onChange: () => {}
+}
+
+export default TelInput
