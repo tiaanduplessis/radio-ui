@@ -80,17 +80,21 @@ const Select = ({
   required,
   ...otherProps
 }) => {
-  const { register, errors, setValue, getValues } = useFormContext()
+  const { register, errors, setValue, getValues, triggerValidation } = useFormContext()
 
   return (
     <InputWrapper alertText={alertTextOverride || errors[name] ? errors[name].message : ''} required={required} {...otherProps}>
       <ReactSelect
-        onChange={({ value }) => {
+        onChange={async ({ value }) => {
           setValue(name, value)
+          await triggerValidation({ name })
           onChange({ value })
+
+          //TODO: remove this
           const values = getValues()
           console.log(value, values)
         }}
+        onBlur={async () => await triggerValidation({ name })}
         placeholder={placeholder}
         styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
         name={name}

@@ -16,7 +16,7 @@ const Input = ({
   ...otherProps
 }) => {
   const { id = otherProps.name, label, placeholder, inputStyle, name } = otherProps
-  const { register, errors } = useFormContext()
+  const { register, errors, triggerValidation } = useFormContext()
 
   return (
     <InputWrapper alertText={alertTextOverride || errors[name] ? errors[name].message : ''} required={required} {...otherProps}>
@@ -29,6 +29,7 @@ const Input = ({
         disabled={disabled}
         name={name}
         onChange={onChange}
+        onBlur={async () => await triggerValidation({ name })}
         ref={register}
         {...inputProps}
       />
