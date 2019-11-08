@@ -22,6 +22,7 @@ const TimeInput = ({
     <InputWrapper alertText={alertTextOverride || errors[name] ? errors[name].message : ''} required={required} {...otherProps}>
       <StyledInput
         id={id}
+        step="1"
         style={inputStyle}
         aria-label={label}
         aria-required={required}

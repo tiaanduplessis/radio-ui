@@ -17,7 +17,7 @@ const TelInput = props => {
     onBlur,
     onChange,
     placeholder,
-    defaultCountry = 'za',
+    defaultCountry = 'ZA',
     inputProps,
     disabled,
     alertText: alertTextOverride,
@@ -25,24 +25,26 @@ const TelInput = props => {
   } = props
 
   const { id = otherProps.name, label, name } = otherProps
-  const { register, errors } = useFormContext()
-
+  const { register, errors, setValue, triggerValidation } = useFormContext()
   return (
     <InputWrapper disabled={disabled} alertText={alertTextOverride || errors[name] ? errors[name].message : ''} {...otherProps}>
       <PhoneInput
-        onChange={onChange}
+        id={id}
+        onChange={value => setValue(name, value)}
         disabled={disabled}
         name={name}
+        country={defaultCountry}
+        onBlur={async () => await triggerValidation({ name })}
         masks={masks || defaultMasks}
         placeholder={placeholder || label}
-        ref={register}
+        ref={register({ name })}
       />
     </InputWrapper>
   )
 }
 
 TelInput.defaultProps = {
-  onChange: () => {}
+  onChange: () => { }
 }
 
 export default TelInput
