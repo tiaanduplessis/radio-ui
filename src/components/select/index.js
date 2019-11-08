@@ -80,7 +80,7 @@ const Select = ({
   required,
   ...otherProps
 }) => {
-  const { register, errors, setValue, getValues, triggerValidation } = useFormContext()
+  const { register, errors, setValue, triggerValidation } = useFormContext()
   return (
     <InputWrapper alertText={alertTextOverride || errors[name] ? errors[name].message : ''} required={required} {...otherProps}>
       <ReactSelect

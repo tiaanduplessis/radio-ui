@@ -32,7 +32,7 @@ class Card extends React.PureComponent {
   }
 
   render() {
-    const { title, actions, renderHeader, viewState, children, onAdd, description, showDivider, ...props } = this.props
+    const { title, actions, renderHeader, viewState, children, onAdd, description, showDivider, hideIndicator, ...props } = this.props
 
     return (
       <StyledCard {...props}>
@@ -42,7 +42,7 @@ class Card extends React.PureComponent {
             <StyledCardHeader>
               <Container>
                 <TitleContainer>
-                  <StyledIndicator />
+                  {!hideIndicator && <StyledIndicator />}
                   <StyledCardTitle>{title}</StyledCardTitle>
                 </TitleContainer>
                 {description && !viewState && (
