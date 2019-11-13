@@ -9,14 +9,13 @@ const styleOverride = ({ fontSize, width, shape, variant, hasShadow }) => ({
     display: 'none',
   }),
   control: (provided, state) => {
-    const backgroundColor =
-      state.isDisabled || variant === 'light' ? colors.white : colors.gray.xlight
+    const backgroundColor = colors.white
 
     return {
       ...provided,
       backgroundColor: backgroundColor,
-      border: state.isDisabled && !hasShadow ? `border: 1px solid ${colors.gray.default}` : 'none',
-      borderColor: state.isDisabled ? colors.gray.default : null,
+      border: state.isDisabled && !hasShadow ? `border: 1px solid ${colors.gray.default}` : `border: 1px solid ${colors.gray.xlight}`,
+      borderColor: state.isDisabled ? colors.gray.default : colors.gray.xlight,
       fontFamily: fonts.Montserrat,
       fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
       borderRadius: shape === 'rounded' ? radii.full : radii.small,
@@ -24,7 +23,7 @@ const styleOverride = ({ fontSize, width, shape, variant, hasShadow }) => ({
       boxShadow: hasShadow ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
       padding: '0 0.8em',
       overflow: 'hidden',
-      ...(variant === 'light' && {
+      ...(variant === 'dark' && {
         border: `solid 1px ${colors.gray.default}`,
       }),
     }
@@ -93,7 +92,7 @@ const Select = ({
         placeholder={placeholder}
         styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
         name={name}
-        options={options}
+        options={options.length ? options : []}
         isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
         isMulti={multiple}
         required={required}
