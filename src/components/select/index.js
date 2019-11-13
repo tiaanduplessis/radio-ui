@@ -83,10 +83,10 @@ const Select = ({
   return (
     <InputWrapper alertText={alertTextOverride || errors[name] ? errors[name].message : ''} required={required} {...otherProps}>
       <ReactSelect
-        onChange={async ({ value }) => {
+        onChange={async ({ value, label }) => {
           setValue(name, value)
           await triggerValidation({ name })
-          onChange({ value })
+          onChange({ value, label })
         }}
         onBlur={async () => await triggerValidation({ name })}
         placeholder={placeholder}
