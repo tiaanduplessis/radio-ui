@@ -20,7 +20,7 @@ export const StyledInput = styled.input.attrs({
   }
 
   ::placeholder {
-    color: ${byTheme('colors.gray[5]')};
+    color: ${byTheme('colors.gray[4]')};
   }
 
   ::-webkit-inner-spin-button,
