@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import ReactSelect from 'react-select'
 import InputWrapper from '../input-wrapper'
@@ -66,7 +66,7 @@ const Select = ({
   hasShadow,
   disabled,
   disableEmpty,
-  options,
+  options = [],
   value,
   onBlur,
   onChange,
@@ -79,7 +79,9 @@ const Select = ({
   required,
   ...otherProps
 }) => {
-  const { register, errors, setValue, triggerValidation } = useFormContext()
+  const { register, errors, setValue, getValues, triggerValidation } = useFormContext()
+  const getLabel = () => options.find(({ value }) => value === getValues()[name])
+
   return (
     <InputWrapper alertText={alertTextOverride || errors[name] ? errors[name].message : ''} required={required} {...otherProps}>
       <ReactSelect
@@ -97,6 +99,7 @@ const Select = ({
         isMulti={multiple}
         required={required}
         ref={register({ name })}
+        value={{ value: getValues()[name], label: options.length && getLabel() ? getLabel().label : getValues()[name]}}
         {...otherProps}
       />
     </InputWrapper>
