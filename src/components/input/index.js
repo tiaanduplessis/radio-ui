@@ -22,7 +22,7 @@ const Input = ({
       <StyledInput
         id={id}
         style={inputStyle}
-        aria-label={label}
+        aria-label={label.toString()}
         aria-required={required}
         placeholder={placeholder || label}
         disabled={disabled}
