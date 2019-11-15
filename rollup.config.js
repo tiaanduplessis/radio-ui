@@ -26,7 +26,7 @@ module.exports = {
         },
     }),
     resolve({
-      dedupe: ['react', 'react-dom', 'styled-system', 'styled-components'],
+      dedupe: ['react', 'react-dom', 'styled-system', 'styled-components', 'react-hook-form'],
     }),
     fileSize()
   ],
@@ -37,6 +37,7 @@ module.exports = {
     "react",
     'react-dom',
     'styled-system',
-    "styled-components"
+    "styled-components",
+    "react-hook-form"
   ]
 }

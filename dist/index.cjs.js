@@ -11,6 +11,7 @@ var styled = require('styled-components');
 var styled__default = _interopDefault(styled);
 var styledSystem = require('styled-system');
 var styledSystem__default = _interopDefault(styledSystem);
+var reactHookForm = require('react-hook-form');
 var reactDom = require('react-dom');
 
 var addAliases = function addAliases(arr, aliases) {
@@ -2211,11 +2212,6 @@ function _asyncToGenerator(fn) {
 
 var asyncToGenerator = _asyncToGenerator;
 
-const FormGlobalContext = e.createContext(null);
-function useFormContext() {
-    return e.useContext(FormGlobalContext);
-}
-
 function _templateObject$a() {
   var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid ", ";\n  font-family: inherit;\n  font-size: ", ";\n  padding: ", " ", ";\n  height: 35px;\n  color: ", ";\n  border-radius: ", ";\n  width: 100%;\n\n  &:disabled {\n    background-color: ", ";\n    border: 1px solid ", ";\n  }\n\n  ::placeholder {\n    color: ", ";\n  }\n\n  ::-webkit-inner-spin-button,\n  ::-webkit-outer-spin-button {\n    /* stylelint-disable-next-line property-no-vendor-prefix */\n    -webkit-appearance: none;\n    margin: 0;\n  }\n"]);
 
@@ -2331,7 +2327,7 @@ var Input = function Input(_ref) {
       inputStyle = otherProps.inputStyle,
       name = otherProps.name;
 
-  var _useFormContext = useFormContext(),
+  var _useFormContext = reactHookForm.useFormContext(),
       register = _useFormContext.register,
       errors = _useFormContext.errors,
       triggerValidation = _useFormContext.triggerValidation;
@@ -2411,7 +2407,7 @@ var TimeInput = function TimeInput(_ref) {
       inputStyle = otherProps.inputStyle,
       name = otherProps.name;
 
-  var _useFormContext = useFormContext(),
+  var _useFormContext = reactHookForm.useFormContext(),
       register = _useFormContext.register,
       errors = _useFormContext.errors,
       triggerValidation = _useFormContext.triggerValidation;
@@ -12731,7 +12727,7 @@ var DateInput = function DateInput(props) {
       name = otherProps.name,
       required = otherProps.required;
 
-  var _useFormContext = useFormContext(),
+  var _useFormContext = reactHookForm.useFormContext(),
       register = _useFormContext.register,
       errors = _useFormContext.errors;
 
@@ -30075,7 +30071,7 @@ var TelInput = function TelInput(props) {
       label = otherProps.label,
       name = otherProps.name;
 
-  var _useFormContext = useFormContext(),
+  var _useFormContext = reactHookForm.useFormContext(),
       register = _useFormContext.register,
       errors = _useFormContext.errors,
       setValue = _useFormContext.setValue,
@@ -36998,7 +36994,7 @@ var Select$1 = function Select(_ref3) {
       required = _ref3.required,
       otherProps = objectWithoutProperties(_ref3, ["shape", "variant", "hasShadow", "disabled", "disableEmpty", "options", "onChange", "placeholder", "fontSize", "bordered", "multiple", "alertText", "name", "required"]);
 
-  var _useFormContext = useFormContext(),
+  var _useFormContext = reactHookForm.useFormContext(),
       register = _useFormContext.register,
       errors = _useFormContext.errors,
       setValue = _useFormContext.setValue,
@@ -37997,7 +37993,7 @@ var Toggle = function Toggle(_ref) {
       disabled = _ref.disabled,
       otherProps = objectWithoutProperties(_ref, ["id", "label", "offText", "onText", "containerStyle", "name", "required", "onChange", "disabled"]);
 
-  var _useFormContext = useFormContext(),
+  var _useFormContext = reactHookForm.useFormContext(),
       register = _useFormContext.register;
 
   return e__default.createElement(Container$1, {

@@ -25,7 +25,7 @@ The following peer dependencies are required:
 
 - [React](https://www.npmjs.com/package/react)
 - [React DOM](https://www.npmjs.com/package/react-dom)
-- [Formik](https://www.npmjs.com/package/formik)
+- [react-hook-form](https://www.npmjs.com/package/react-hook-form)
 - [PropTypes](https://www.npmjs.com/package/prop-types)
 - [Styled Components](https://www.npmjs.com/package/styled-components)
 - [@lessondesk/material-icons](https://www.npmjs.com/package/@lessondesk/material-icons)
