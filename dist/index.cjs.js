@@ -6,17 +6,16 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var e = require('react');
 var e__default = _interopDefault(e);
-var PropTypes$1 = _interopDefault(require('prop-types'));
+var PropTypes$2 = _interopDefault(require('prop-types'));
 var styled = require('styled-components');
 var styled__default = _interopDefault(styled);
 var styledSystem = require('styled-system');
 var styledSystem__default = _interopDefault(styledSystem);
-var formik = require('formik');
 var reactDom = require('react-dom');
 
 var addAliases = function addAliases(arr, aliases) {
   return aliases.forEach(function (key, i) {
-    return console.log(arr, key) || Object.defineProperty(arr, key, {
+    return Object.defineProperty(arr, key, {
       enumerable: false,
       get: function get() {
         return this[i];
@@ -122,7 +121,7 @@ var ThemeProvider = function ThemeProvider(_ref) {
 };
 
 ThemeProvider.propTypes = {
-  theme: PropTypes$1.object
+  theme: PropTypes$2.object
 };
 var themeProvider = e.memo(ThemeProvider);
 
@@ -256,6 +255,10 @@ function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
 
+function getCjsExportFromNamespace (n) {
+	return n && n['default'] || n;
+}
+
 var dist = createCommonjsModule(function (module, exports) {
 var r=styled__default,n=Object.freeze(["",""]),t=function(r,n){return n.split(".").reduce(function(r,n){var t=n.match(/(.*?)\[(\d*)\]/);return t&&null!==r&&null!==r[t[1]]?r[t[1]][+t[2]]:null===r?r:r[n]},r)},e=function(r){return void 0===r&&(r=[]),r.reduce(function(r,n,t){return r[t]=n,r},{})};exports.by=function(r,n){return function(e){return t(e,r)||n}},exports.byTheme=function(r,n){return function(e){return e.theme?t(e.theme,r):n}},exports.is=function(t,e){return void 0===e&&(e=""),function(u){return !0===u[t]?r.css(n,e):""}},exports.map=function(r){return void 0===r&&(r={}),function(n){Array.isArray(r)&&(r=e(r));for(var t=Object.keys(r),u=0;u<t.length;u++){var i=t[u];if(void 0!==n[i])return n[i]}if(r.default)return r.default}},exports.isMap=function(r,n){return void 0===r&&(r=""),void 0===n&&(n={}),function(t){if(Array.isArray(n)&&(n=e(n)),t[r]){for(var u=Object.keys(n),i=0;i<u.length;i++){var o=u[i];if(o===t[r])return n[o]}if(n.default)return n.default}}},exports.withProp=function(r){return void 0===r&&(r=""),function(n){var t;return n[r]?((t={})[r]=n[r],t):""}};
 
@@ -315,9 +318,9 @@ var Button = function Button(_ref) {
 };
 
 Button.propTypes = _objectSpread$1({
-  onClick: PropTypes$1.oneOfType([PropTypes$1.func, PropTypes$1.string]).isRequired,
-  shape: PropTypes$1.oneOf(Object.keys(SHAPES)),
-  size: PropTypes$1.oneOf(Object.keys(SIZES))
+  onClick: PropTypes$2.oneOfType([PropTypes$2.func, PropTypes$2.string]).isRequired,
+  shape: PropTypes$2.oneOf(Object.keys(SHAPES)),
+  size: PropTypes$2.oneOf(Object.keys(SIZES))
 }, styledSystem.space.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.typography.propTypes);
 Button.defaultProps = {
   shape: SHAPES.square,
@@ -558,7 +561,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-family: ", ";\n  font-weight: ", ";\n  text-transform: uppercase;\n  letter-spacing: ", ";\n  color: ", ";\n  \n"]);
+  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-family: ", ";\n  font-weight: ", ";\n  text-transform: uppercase;\n  letter-spacing: ", ";\n  color: ", ";\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -650,15 +653,18 @@ function (_React$PureComponent) {
           children = _this$props.children,
           onAdd = _this$props.onAdd,
           description = _this$props.description,
-          props = objectWithoutProperties(_this$props, ["title", "actions", "renderHeader", "viewState", "children", "onAdd", "description"]); // const showDivider = !hideDivider && title && (!viewState || !!children)
-
+          showDivider = _this$props.showDivider,
+          hideIndicator = _this$props.hideIndicator,
+          props = objectWithoutProperties(_this$props, ["title", "actions", "renderHeader", "viewState", "children", "onAdd", "description", "showDivider", "hideIndicator"]);
 
       return e.createElement(StyledCard, props, typeof renderHeader === 'function' ? renderHeader({
         title: title
-      }) : title && e.createElement(StyledCardHeader, null, e.createElement(Container, null, e.createElement(TitleContainer, null, e.createElement(StyledIndicator, null), e.createElement(StyledCardTitle, null, title)), description && !viewState && e.createElement(StyledCardDescription, null, description), e.createElement(ActionsContainer, null, actions, onAdd && !viewState && e.createElement(StyledButton$1, {
+      }) : title && e.createElement(StyledCardHeader, null, e.createElement(Container, null, e.createElement(TitleContainer, null, !hideIndicator && e.createElement(StyledIndicator, null), e.createElement(StyledCardTitle, null, title)), description && !viewState && e.createElement(StyledCardDescription, null, description), e.createElement(ActionsContainer, null, actions, onAdd && !viewState && e.createElement(StyledButton$1, {
         onClick: onAdd,
         type: "button"
-      }, e.createElement(Plus$1, null))))), e.createElement(StyledContent, null, children));
+      }, e.createElement(Plus$1, null)))), e.createElement(StyledCardDivider, {
+        showDivider: showDivider
+      })), e.createElement(StyledContent, null, children));
     }
   }]);
 
@@ -671,8 +677,8 @@ defineProperty(Card, "defaultProps", {
 });
 
 defineProperty(Card, "propTypes", _objectSpread$2({
-  title: PropTypes$1.string.isRequired,
-  actions: PropTypes$1.array
+  title: PropTypes$2.string.isRequired,
+  actions: PropTypes$2.array
 }, styledSystem.space.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.flexbox.propTypes));
 
 function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -722,7 +728,7 @@ var Image = styled__default.img.attrs({
 }, styledSystem.layout, styledSystem.shadow);
 Image.displayName = 'Image';
 Image.propTypes = _objectSpread$4({}, styledSystem.layout.propTypes, {}, styledSystem.shadow.propTypes, {
-  shape: PropTypes$1.oneOf(Object.keys(SHAPES$1))
+  shape: PropTypes$2.oneOf(Object.keys(SHAPES$1))
 });
 Image.defaultProps = {
   theme: theme,
@@ -1145,9 +1151,6 @@ var mapProps = function mapProps(map) {
     }, Component);
   };
 };
-var errorForField = function errorForField(errors, touched, fieldname) {
-  return errors[fieldname] && touched[fieldname] ? errors[fieldname] : '';
-};
 
 function _templateObject$7() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
@@ -1440,6 +1443,779 @@ defineProperty(RadioButton, "defaultProps", {
   theme: theme
 });
 
+var runtime_1 = createCommonjsModule(function (module) {
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var runtime = (function (exports) {
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined$1; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  exports.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  exports.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  exports.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  exports.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  exports.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  exports.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return exports.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined$1) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        // Note: ["return"] must be used for ES3 parsing compatibility.
+        if (delegate.iterator["return"]) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined$1;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined$1;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  exports.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined$1;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  exports.values = values;
+
+  function doneResult() {
+    return { value: undefined$1, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined$1;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined$1;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined$1;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined$1;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined$1;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+
+  // Regardless of whether this script is executing as a CommonJS module
+  // or not, return the runtime object so that we can declare the variable
+  // regeneratorRuntime in the outer scope, which allows this module to be
+  // injected easily by `bin/regenerator --include-runtime script.js`.
+  return exports;
+
+}(
+  // If this script is executing as a CommonJS module, use module.exports
+  // as the regeneratorRuntime namespace. Otherwise create a new empty
+  // object. Either way, the resulting object will be used to initialize
+  // the regeneratorRuntime variable at the top of this file.
+   module.exports 
+));
+
+try {
+  regeneratorRuntime = runtime;
+} catch (accidentalStrictMode) {
+  // This module should not be running in strict mode, so the above
+  // assignment should always work unless something is misconfigured. Just
+  // in case runtime.js accidentally runs in strict mode, we can escape
+  // strict mode using a global Function call. This could conceivably fail
+  // if a Content Security Policy forbids using Function, but in that case
+  // the proper solution is to fix the accidental strict mode problem. If
+  // you've misconfigured your bundler to force strict mode and applied a
+  // CSP to forbid Function, and you're not willing to fix either of those
+  // problems, please detail your unique predicament in a GitHub issue.
+  Function("r", "regeneratorRuntime = r")(runtime);
+}
+});
+
+var regenerator = runtime_1;
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+        args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+
+      _next(undefined);
+    });
+  };
+}
+
+var asyncToGenerator = _asyncToGenerator;
+
+const FormGlobalContext = e.createContext(null);
+function useFormContext() {
+    return e.useContext(FormGlobalContext);
+}
+
 function _templateObject$a() {
   var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid ", ";\n  font-family: inherit;\n  font-size: ", ";\n  padding: ", " ", ";\n  height: 35px;\n  color: ", ";\n  border-radius: ", ";\n  width: 100%;\n\n  &:disabled {\n    background-color: ", ";\n    border: 1px solid ", ";\n  }\n\n  ::placeholder {\n    color: ", ";\n  }\n\n  ::-webkit-inner-spin-button,\n  ::-webkit-outer-spin-button {\n    /* stylelint-disable-next-line property-no-vendor-prefix */\n    -webkit-appearance: none;\n    margin: 0;\n  }\n"]);
 
@@ -1451,7 +2227,7 @@ function _templateObject$a() {
 }
 var StyledInput$1 = styled__default.input.attrs({
   type: 'text'
-})(_templateObject$a(), dist_2('colors.white'), dist_2('colors.gray[0]'), dist_2('fontSizes.small'), dist_2('space[1]'), dist_2('space[2]'), dist_2('colors.gray[7]'), dist_2('radii.small'), dist_2('colors.transparent'), dist_2('colors.gray.default'), dist_2('colors.gray[5]'));
+})(_templateObject$a(), dist_2('colors.white'), dist_2('colors.gray[0]'), dist_2('fontSizes.small'), dist_2('space[1]'), dist_2('space[2]'), dist_2('colors.gray[7]'), dist_2('radii.small'), dist_2('colors.transparent'), dist_2('colors.gray.default'), dist_2('colors.gray[4]'));
 
 function _templateObject4$1() {
   var data = taggedTemplateLiteral(["\n  margin-left: ", ";\n  color: ", ";\n  font-weight: ", ";\n"]);
@@ -1484,7 +2260,7 @@ function _templateObject2$3() {
 }
 
 function _templateObject$b() {
-  var data = taggedTemplateLiteral(["\n  display: block;\n  font-family: inherit;\n  color: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  margin-bottom: ", ";\n"]);
+  var data = taggedTemplateLiteral(["\n  display: block;\n  font-family: inherit;\n  height: 1em;\n  color: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  margin-bottom: ", ";\n"]);
 
   _templateObject$b = function _templateObject() {
     return data;
@@ -1532,102 +2308,161 @@ function ownKeys$6(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$6(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$6(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$6(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var defaultPropTypes = _objectSpread$6({
-  id: PropTypes$1.string,
-  name: PropTypes$1.string.isRequired,
-  label: PropTypes$1.string,
-  placeholder: PropTypes$1.string,
-  alertText: PropTypes$1.string,
-  inputStyle: PropTypes$1.object
+  id: PropTypes$2.string,
+  name: PropTypes$2.string.isRequired,
+  label: PropTypes$2.string,
+  placeholder: PropTypes$2.string,
+  alertText: PropTypes$2.string,
+  inputStyle: PropTypes$2.object
 }, styledSystem.layout.propTypes, {}, styledSystem.space.propTypes);
 
-function createDefaultInputProps(_ref) {
-  var formik = _ref.formik,
-      name = _ref.name,
-      onBlur = _ref.onBlur,
-      value = _ref.value,
+var Input = function Input(_ref) {
+  var alertTextOverride = _ref.alertText,
+      disabled = _ref.disabled,
       onChange = _ref.onChange,
-      alertText = _ref.alertText;
-  var hasFormik = formik && Object.values(formik).length > 0;
-  return {
-    hasFormik: hasFormik,
-    onBlur: onBlur ? onBlur : hasFormik && formik.handleBlur,
-    value: value ? value : hasFormik && formik.values[name],
-    onChange: onChange ? onChange : hasFormik && function (_ref2) {
-      var target = _ref2.target;
-      return formik.setFieldValue(name, target.value);
-    },
-    alertText: alertText ? alertText : hasFormik && errorForField(formik.errors, formik.touched, name)
-  };
-}
+      inputProps = _ref.inputProps,
+      required = _ref.required,
+      otherProps = objectWithoutProperties(_ref, ["alertText", "disabled", "onChange", "inputProps", "required"]);
 
-var Input =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  inherits(Input, _React$PureComponent);
+  var _otherProps$id = otherProps.id,
+      id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
+      label = otherProps.label,
+      placeholder = otherProps.placeholder,
+      inputStyle = otherProps.inputStyle,
+      name = otherProps.name;
 
-  function Input() {
-    classCallCheck(this, Input);
+  var _useFormContext = useFormContext(),
+      register = _useFormContext.register,
+      errors = _useFormContext.errors,
+      triggerValidation = _useFormContext.triggerValidation;
 
-    return possibleConstructorReturn(this, getPrototypeOf(Input).apply(this, arguments));
-  }
+  return e__default.createElement(InputWrapper, _extends_1({
+    alertText: alertTextOverride || errors[name] ? errors[name].message : '',
+    required: required
+  }, otherProps), e__default.createElement(StyledInput$1, _extends_1({
+    id: id,
+    style: inputStyle,
+    "aria-label": label.toString(),
+    "aria-required": required,
+    placeholder: placeholder || label,
+    disabled: disabled,
+    name: name,
+    onChange: onChange,
+    onBlur:
+    /*#__PURE__*/
+    asyncToGenerator(
+    /*#__PURE__*/
+    regenerator.mark(function _callee() {
+      return regenerator.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return triggerValidation({
+                name: name
+              });
 
-  createClass(Input, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          formik = _this$props.formik,
-          alertTextOverride = _this$props.alertText,
-          disabled = _this$props.disabled,
-          value = _this$props.value,
-          onBlur = _this$props.onBlur,
-          onChange = _this$props.onChange,
-          inputProps = _this$props.inputProps,
-          otherProps = objectWithoutProperties(_this$props, ["formik", "alertText", "disabled", "value", "onBlur", "onChange", "inputProps"]);
+            case 2:
+              return _context.abrupt("return", _context.sent);
 
-      var _otherProps$id = otherProps.id,
-          id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
-          label = otherProps.label,
-          placeholder = otherProps.placeholder,
-          inputStyle = otherProps.inputStyle,
-          name = otherProps.name;
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    })),
+    ref: register
+  }, inputProps)));
+};
 
-      var _createDefaultInputPr = createDefaultInputProps({
-        value: value,
-        onBlur: onBlur,
-        onChange: onChange,
-        name: name,
-        formik: formik
-      }),
-          alertText = _createDefaultInputPr.alertText,
-          inputDefaults = objectWithoutProperties(_createDefaultInputPr, ["alertText"]);
-
-      return e.createElement(InputWrapper, _extends_1({
-        alertText: alertTextOverride || alertText
-      }, otherProps), e.createElement(StyledInput$1, _extends_1({
-        id: id
-      }, inputDefaults, {
-        style: inputStyle,
-        "aria-label": label,
-        "aria-required": otherProps.required,
-        placeholder: placeholder || label,
-        disabled: disabled,
-        name: name
-      }, inputProps)));
-    }
-  }]);
-
-  return Input;
-}(e.PureComponent);
-
-defineProperty(Input, "propTypes", defaultPropTypes);
-
-defineProperty(Input, "defaultProps", {
+Input.propTypes = defaultPropTypes;
+Input.defaultProps = {
   label: '',
   inputStyle: {},
   theme: theme
-});
+};
 
-var index = formik.connect(Input);
+function _templateObject$c() {
+  var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid ", ";\n  font-family: inherit;\n  font-size: ", ";\n  padding: ", " ", ";\n  height: 35px;\n  color: ", ";\n  border-radius: ", ";\n  width: 100%;\n\n  &:disabled {\n    background-color: ", ";\n    border: 1px solid ", ";\n  }\n\n  ::placeholder {\n    color: ", ";\n  }\n\n  ::-webkit-inner-spin-button,\n  ::-webkit-outer-spin-button {\n    /* stylelint-disable-next-line property-no-vendor-prefix */\n    -webkit-appearance: none;\n    margin: 0;\n  }\n"]);
+
+  _templateObject$c = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var StyledInput$2 = styled__default.input.attrs({
+  type: 'time'
+})(_templateObject$c(), dist_2('colors.white'), dist_2('colors.gray[0]'), dist_2('fontSizes.small'), dist_2('space[1]'), dist_2('space[2]'), dist_2('colors.gray[7]'), dist_2('radii.small'), dist_2('colors.transparent'), dist_2('colors.gray.default'), dist_2('colors.gray[5]'));
+
+var TimeInput = function TimeInput(_ref) {
+  var alertTextOverride = _ref.alertText,
+      disabled = _ref.disabled,
+      onChange = _ref.onChange,
+      inputProps = _ref.inputProps,
+      required = _ref.required,
+      otherProps = objectWithoutProperties(_ref, ["alertText", "disabled", "onChange", "inputProps", "required"]);
+
+  var _otherProps$id = otherProps.id,
+      id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
+      label = otherProps.label,
+      placeholder = otherProps.placeholder,
+      inputStyle = otherProps.inputStyle,
+      name = otherProps.name;
+
+  var _useFormContext = useFormContext(),
+      register = _useFormContext.register,
+      errors = _useFormContext.errors,
+      triggerValidation = _useFormContext.triggerValidation;
+
+  return e__default.createElement(InputWrapper, _extends_1({
+    alertText: alertTextOverride || errors[name] ? errors[name].message : '',
+    required: required
+  }, otherProps), e__default.createElement(StyledInput$2, _extends_1({
+    id: id,
+    step: "1",
+    style: inputStyle,
+    "aria-label": label,
+    "aria-required": required,
+    placeholder: placeholder || label,
+    disabled: disabled,
+    name: name,
+    onChange: onChange,
+    onBlur:
+    /*#__PURE__*/
+    asyncToGenerator(
+    /*#__PURE__*/
+    regenerator.mark(function _callee() {
+      return regenerator.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return triggerValidation({
+                name: name
+              });
+
+            case 2:
+              return _context.abrupt("return", _context.sent);
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    })),
+    ref: register
+  }, inputProps)));
+};
+
+TimeInput.propTypes = defaultPropTypes;
+TimeInput.defaultProps = {
+  label: '',
+  inputStyle: {},
+  theme: theme
+};
 
 var classnames = createCommonjsModule(function (module) {
 /*!
@@ -1805,7 +2640,7 @@ function toDate(argument) {
  *   | `new Date('')`            | `false`       | `false`       |
  *   | `new Date(1488370835081)` | `true`        | `true`        |
  *   | `new Date(NaN)`           | `false`       | `false`       |
- *   | `'2016-01-01'`            | `TypeError`   | `true`        |
+ *   | `'2016-01-01'`            | `TypeError`   | `false`       |
  *   | `''`                      | `TypeError`   | `false`       |
  *   | `1488370835081`           | `TypeError`   | `true`        |
  *   | `NaN`                     | `TypeError`   | `false`       |
@@ -2189,7 +3024,7 @@ function buildMatchFn(args) {
     var value;
 
     if (Object.prototype.toString.call(parsePatterns) === '[object Array]') {
-      value = parsePatterns.findIndex(function (pattern) {
+      value = findIndex(parsePatterns, function (pattern) {
         return pattern.test(string);
       });
     } else {
@@ -2210,6 +3045,14 @@ function buildMatchFn(args) {
 function findKey(object, predicate) {
   for (var key in object) {
     if (object.hasOwnProperty(key) && predicate(object[key])) {
+      return key;
+    }
+  }
+}
+
+function findIndex(array, predicate) {
+  for (var key = 0; key < array.length; key++) {
+    if (predicate(array[key])) {
       return key;
     }
   }
@@ -2322,6 +3165,7 @@ var match = {
  */
 
 var locale = {
+  code: 'en-US',
   formatDistance: formatDistance,
   formatLong: formatLong,
   formatRelative: formatRelative,
@@ -8648,7 +9492,7 @@ var inheritsLoose = _inheritsLoose$1;
 
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.15.0
+ * @version 1.16.0
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
@@ -8670,16 +9514,17 @@ var inheritsLoose = _inheritsLoose$1;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
+var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined' && typeof navigator !== 'undefined';
 
-var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
-var timeoutDuration = 0;
-for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
-  if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
-    timeoutDuration = 1;
-    break;
+var timeoutDuration = function () {
+  var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
+  for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
+    if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
+      return 1;
+    }
   }
-}
+  return 0;
+}();
 
 function microtaskDebounce(fn) {
   var called = false;
@@ -8797,6 +9642,17 @@ function getScrollParent(element) {
   }
 
   return getScrollParent(getParentNode(element));
+}
+
+/**
+ * Returns the reference node of the reference object, or the reference object itself.
+ * @method
+ * @memberof Popper.Utils
+ * @param {Element|Object} reference - the reference element (the popper will be relative to this)
+ * @returns {Element} parent
+ */
+function getReferenceNode(reference) {
+  return reference && reference.referenceNode ? reference.referenceNode : reference;
 }
 
 var isIE11 = isBrowser && !!(window.MSInputMethodContext && document.documentMode);
@@ -9107,8 +9963,8 @@ function getBoundingClientRect(element) {
 
   // subtract scrollbar size from sizes
   var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
-  var width = sizes.width || element.clientWidth || result.right - result.left;
-  var height = sizes.height || element.clientHeight || result.bottom - result.top;
+  var width = sizes.width || element.clientWidth || result.width;
+  var height = sizes.height || element.clientHeight || result.height;
 
   var horizScrollbar = element.offsetWidth - width;
   var vertScrollbar = element.offsetHeight - height;
@@ -9260,7 +10116,7 @@ function getBoundaries(popper, reference, padding, boundariesElement) {
   // NOTE: 1 DOM access here
 
   var boundaries = { top: 0, left: 0 };
-  var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+  var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, getReferenceNode(reference));
 
   // Handle viewport case
   if (boundariesElement === 'viewport') {
@@ -9388,7 +10244,7 @@ function computeAutoPlacement(placement, refRect, popper, reference, boundariesE
 function getReferenceOffsets(state, popper, reference) {
   var fixedPosition = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
 
-  var commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+  var commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, getReferenceNode(reference));
   return getOffsetRectRelativeToArbitraryNode(reference, commonOffsetParent, fixedPosition);
 }
 
@@ -9492,7 +10348,7 @@ function find(arr, check) {
  * @argument value
  * @returns index or -1
  */
-function findIndex(arr, prop, value) {
+function findIndex$1(arr, prop, value) {
   // use native findIndex if supported
   if (Array.prototype.findIndex) {
     return arr.findIndex(function (cur) {
@@ -9518,7 +10374,7 @@ function findIndex(arr, prop, value) {
  * @returns {dataObject}
  */
 function runModifiers(modifiers, data, ends) {
-  var modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, 'name', ends));
+  var modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex$1(modifiers, 'name', ends));
 
   modifiersToRun.forEach(function (modifier) {
     if (modifier['function']) {
@@ -9650,7 +10506,7 @@ function destroy() {
 
   this.disableEventListeners();
 
-  // remove the popper if user explicity asked for the deletion on destroy
+  // remove the popper if user explicitly asked for the deletion on destroy
   // do not use `remove` because IE11 doesn't support it
   if (this.options.removeOnDestroy) {
     this.popper.parentNode.removeChild(this.popper);
@@ -11325,7 +12181,7 @@ var _react2 = _interopRequireDefault(e__default);
 
 
 
-var _propTypes2 = _interopRequireDefault(PropTypes$1);
+var _propTypes2 = _interopRequireDefault(PropTypes$2);
 
 
 
@@ -11839,16 +12695,16 @@ function Reference(props) {
 
 function ne(e){return (ne="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function oe(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function ae(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n);}}function se(e,t,r){return t&&ae(e.prototype,t),r&&ae(e,r),e}function pe(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function ie(){return (ie=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n]);}return e}).apply(this,arguments)}function ce(e,t){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter(function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable})),r.push.apply(r,n);}return r}function le(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&ue(e,t);}function de(e){return (de=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function ue(e,t){return (ue=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function he(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function me(e,t){return !t||"object"!=typeof t&&"function"!=typeof t?he(e):t}var fe,ve=function(e,t){return e(t={exports:{}},t.exports),t.exports}(function(e,t){function r(e,t){switch(e){case"P":return t.date({width:"short"});case"PP":return t.date({width:"medium"});case"PPP":return t.date({width:"long"});case"PPPP":default:return t.date({width:"full"})}}function n(e,t){switch(e){case"p":return t.time({width:"short"});case"pp":return t.time({width:"medium"});case"ppp":return t.time({width:"long"});case"pppp":default:return t.time({width:"full"})}}Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var o={p:n,P:function(e,t){var o,a=e.match(/(P+)(p+)?/),s=a[1],p=a[2];if(!p)return r(e,t);switch(s){case"P":o=t.dateTime({width:"short"});break;case"PP":o=t.dateTime({width:"medium"});break;case"PPP":o=t.dateTime({width:"long"});break;case"PPPP":default:o=t.dateTime({width:"full"});}return o.replace("{{date}}",r(s,t)).replace("{{time}}",n(p,t))}};t.default=o,e.exports=t.default;}),ye=(fe=ve)&&fe.__esModule&&Object.prototype.hasOwnProperty.call(fe,"default")?fe.default:fe,De=/P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;function ge(e){var t=e?"string"==typeof e||e instanceof String?parseISO(e):toDate(e):new Date;return we(t)?t:null}function ke(e,t,r,n){var a=null,s=Le(r)||Ie(),p=!0;return Array.isArray(t)?(t.forEach(function(t){var r=parse(e,t,new Date,{locale:s});n&&(p=we(r)&&e===format(r,t,{awareOfUnicodeTokens:!0})),we(r)&&p&&(a=r);}),a):(a=parse(e,t,new Date,{locale:s}),n?p=we(a)&&e===format(a,t,{awareOfUnicodeTokens:!0}):we(a)||(t=t.match(De).map(function(e){var t=e[0];if("p"===t||"P"===t){var r=ye[t];return s?r(e,s.formatLong):t}return e}).join(""),e.length>0&&(a=parse(e,t.slice(0,e.length),new Date)),we(a)||(a=new Date(e))),we(a)&&p?a:null)}function we(e){return isValid(e)&&isAfter(e,new Date("1/1/1000"))}function _e(e,t,r){if("en"===r)return format(e,t,{awareOfUnicodeTokens:!0});var n=Le(r);return r&&!n&&console.warn('A locale object was not found for the provided string ["'.concat(r,'"].')),!n&&Ie()&&Le(Ie())&&(n=Le(Ie())),format(e,t,{locale:n||null,awareOfUnicodeTokens:!0})}function Ce(e,t){var r=t.hour,n=void 0===r?0:r,o=t.minute,a=void 0===o?0:o,s=t.second;return setHours(setMinutes(setSeconds(e,void 0===s?0:s),a),n)}function be(e,t){var r=Le(t||Ie());return startOfWeek(e,{locale:r})}function Se(e){return startOfMonth(e)}function Me(e,t){return e&&t?isSameYear(e,t):!e&&!t}function Ee(e,t){return e&&t?isSameMonth(e,t):!e&&!t}function Ne(e,t){return e&&t?isSameQuarter(e,t):!e&&!t}function Oe(e,t){return e&&t?isSameDay(e,t):!e&&!t}function Pe(e,t){return e&&t?isEqual(e,t):!e&&!t}function Te(e,t,r){var n,o=startOfDay(t),a=endOfDay(r);try{n=isWithinInterval(e,{start:o,end:a});}catch(e){n=!1;}return n}function Ie(){return ("undefined"!=typeof window?window:global).__localeId__}function Le(e){if("string"==typeof e){var t="undefined"!=typeof window?window:global;return t.__localeData__?t.__localeData__[e]:null}return e}function Fe(e,t){return _e(setMonth(ge(),e),"LLL",t)}function We(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return Qe(e,{minDate:r,maxDate:n})||o&&o.some(function(t){return Oe(e,t)})||a&&!a.some(function(t){return Oe(e,t)})||s&&!s(ge(e))||!1}function Be(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return Qe(e,{minDate:r,maxDate:n})||o&&o.some(function(t){return Ee(e,t)})||a&&!a.some(function(t){return Ee(e,t)})||s&&!s(ge(e))||!1}function je(e,t,r,n){var o=getYear(e),a=getMonth(e),s=getYear(t),p=getMonth(t),i=getYear(n);return o===s&&o===i?a<=r&&r<=p:o<s?i===o&&a<=r||i===s&&p>=r||i<s&&i>o:void 0}function Re(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return Qe(e,{minDate:r,maxDate:n})||o&&o.some(function(t){return Ne(e,t)})||a&&!a.some(function(t){return Ne(e,t)})||s&&!s(ge(e))||!1}function He(e,t,r,n){var o=getYear(e),a=getQuarter(e),s=getYear(t),p=getQuarter(t),i=getYear(n);return o===s&&o===i?a<=r&&r<=p:o<s?i===o&&a<=r||i===s&&p>=r||i<s&&i>o:void 0}function Qe(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate;return r&&differenceInCalendarDays(e,r)<0||n&&differenceInCalendarDays(e,n)>0}function Ve(e,t){for(var r=t.length,n=0;n<r;n++)if(getHours(t[n])===getHours(e)&&getMinutes(t[n])===getMinutes(e))return !0;return !1}function Ae(e,t){var r=t.minTime,n=t.maxTime;if(!r||!n)throw new Error("Both minTime and maxTime props required");var o,a=ge(),s=setHours(setMinutes(a,getMinutes(e)),getHours(e)),p=setHours(setMinutes(a,getMinutes(r)),getHours(r)),i=setHours(setMinutes(a,getMinutes(n)),getHours(n));try{o=!isWithinInterval(s,{start:p,end:i});}catch(e){o=!1;}return o}function Ke(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.includeDates,o=subMonths(e,1);return r&&differenceInCalendarMonths(r,o)>0||n&&n.every(function(e){return differenceInCalendarMonths(e,o)>0})||!1}function qe(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.maxDate,n=t.includeDates,o=addMonths(e,1);return r&&differenceInCalendarMonths(o,r)>0||n&&n.every(function(e){return differenceInCalendarMonths(o,e)>0})||!1}function Ue(e){var t=e.minDate,r=e.includeDates;if(r&&t){var n=r.filter(function(e){return differenceInCalendarDays(e,t)>=0});return min(n)}return r?min(r):t}function $e(e){var t=e.maxDate,r=e.includeDates;if(r&&t){var n=r.filter(function(e){return differenceInCalendarDays(e,t)<=0});return max(n)}return r?max(r):t}function ze(){for(var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"react-datepicker__day--highlighted",n=new Map,o=0,a=e.length;o<a;o++){var s=e[o];if(isDate(s)){var p=_e(s,"MM.dd.yyyy"),i=n.get(p)||[];i.includes(t)||(i.push(t),n.set(p,i));}else if("object"===ne(s)){var c=Object.keys(s),l=c[0],d=s[c[0]];if("string"==typeof l&&d.constructor===Array)for(var u=0,h=d.length;u<h;u++){var m=_e(d[u],"MM.dd.yyyy"),f=n.get(m)||[];f.includes(l)||(f.push(l),n.set(m,f));}}}return n}function Ge(e,t,r,n,o){for(var p=o.length,i=[],c=0;c<p;c++){var l=addMinutes(addHours(e,getHours(o[c])),getMinutes(o[c])),d=addMinutes(e,(r+1)*n);isAfter(l,t)&&isBefore(l,d)&&i.push(o[c]);}return i}function Je(e){return e<10?"0".concat(e):"".concat(e)}function Xe(e,t,r,n){for(var o=[],a=0;a<2*t+1;a++){var s=e+t-a,p=!0;r&&(p=getYear(r)<=s),n&&p&&(p=getYear(n)>=s),p&&o.push(s);}return o}var Ze=onClickOutsideHOC(function(r){function n(t){var r;oe(this,n),pe(he(r=me(this,de(n).call(this,t))),"renderOptions",function(){var t=r.props.year,n=r.state.yearsList.map(function(n){return e__default.createElement("div",{className:t===n?"react-datepicker__year-option react-datepicker__year-option--selected_year":"react-datepicker__year-option",key:n,ref:n,onClick:r.onChange.bind(he(r),n)},t===n?e__default.createElement("span",{className:"react-datepicker__year-option--selected"},"✓"):"",n)}),o=r.props.minDate?getYear(r.props.minDate):null,a=r.props.maxDate?getYear(r.props.maxDate):null;return a&&r.state.yearsList.find(function(e){return e===a})||n.unshift(e__default.createElement("div",{className:"react-datepicker__year-option",ref:"upcoming",key:"upcoming",onClick:r.incrementYears},e__default.createElement("a",{className:"react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-upcoming"}))),o&&r.state.yearsList.find(function(e){return e===o})||n.push(e__default.createElement("div",{className:"react-datepicker__year-option",ref:"previous",key:"previous",onClick:r.decrementYears},e__default.createElement("a",{className:"react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-previous"}))),n}),pe(he(r),"onChange",function(e){r.props.onChange(e);}),pe(he(r),"handleClickOutside",function(){r.props.onCancel();}),pe(he(r),"shiftYears",function(e){var t=r.state.yearsList.map(function(t){return t+e});r.setState({yearsList:t});}),pe(he(r),"incrementYears",function(){return r.shiftYears(1)}),pe(he(r),"decrementYears",function(){return r.shiftYears(-1)});var o=t.yearDropdownItemNumber,a=t.scrollableYearDropdown,s=o||(a?10:5);return r.state={yearsList:Xe(r.props.year,s,r.props.minDate,r.props.maxDate)},r}return le(n,e__default.Component),se(n,[{key:"render",value:function(){var r=classnames({"react-datepicker__year-dropdown":!0,"react-datepicker__year-dropdown--scrollable":this.props.scrollableYearDropdown});return e__default.createElement("div",{className:r},this.renderOptions())}}]),n}()),et=function(t){function r(){var t,n;oe(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return pe(he(n=me(this,(t=de(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),pe(he(n),"renderSelectOptions",function(){for(var t=n.props.minDate?getYear(n.props.minDate):1900,r=n.props.maxDate?getYear(n.props.maxDate):2100,o=[],a=t;a<=r;a++)o.push(e__default.createElement("option",{key:a,value:a},a));return o}),pe(he(n),"onSelectChange",function(e){n.onChange(e.target.value);}),pe(he(n),"renderSelectMode",function(){return e__default.createElement("select",{value:n.props.year,className:"react-datepicker__year-select",onChange:n.onSelectChange},n.renderSelectOptions())}),pe(he(n),"renderReadView",function(t){return e__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__year-read-view",onClick:function(e){return n.toggleDropdown(e)}},e__default.createElement("span",{className:"react-datepicker__year-read-view--down-arrow"}),e__default.createElement("span",{className:"react-datepicker__year-read-view--selected-year"},n.props.year))}),pe(he(n),"renderDropdown",function(){return e__default.createElement(Ze,{key:"dropdown",ref:"options",year:n.props.year,onChange:n.onChange,onCancel:n.toggleDropdown,minDate:n.props.minDate,maxDate:n.props.maxDate,scrollableYearDropdown:n.props.scrollableYearDropdown,yearDropdownItemNumber:n.props.yearDropdownItemNumber})}),pe(he(n),"renderScrollMode",function(){var e=n.state.dropdownVisible,t=[n.renderReadView(!e)];return e&&t.unshift(n.renderDropdown()),t}),pe(he(n),"onChange",function(e){n.toggleDropdown(),e!==n.props.year&&n.props.onChange(e);}),pe(he(n),"toggleDropdown",function(e){n.setState({dropdownVisible:!n.state.dropdownVisible},function(){n.props.adjustDateOnChange&&n.handleYearChange(n.props.date,e);});}),pe(he(n),"handleYearChange",function(e,t){n.onSelect(e,t),n.setOpen();}),pe(he(n),"onSelect",function(e,t){n.props.onSelect&&n.props.onSelect(e,t);}),pe(he(n),"setOpen",function(){n.props.setOpen&&n.props.setOpen(!0);}),n}return le(r,e__default.Component),se(r,[{key:"render",value:function(){var t;switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode();break;case"select":t=this.renderSelectMode();}return e__default.createElement("div",{className:"react-datepicker__year-dropdown-container react-datepicker__year-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}(),tt=onClickOutsideHOC(function(t){function r(){var t,n;oe(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return pe(he(n=me(this,(t=de(r)).call.apply(t,[this].concat(a)))),"renderOptions",function(){return n.props.monthNames.map(function(t,r){return e__default.createElement("div",{className:n.props.month===r?"react-datepicker__month-option --selected_month":"react-datepicker__month-option",key:t,ref:t,onClick:n.onChange.bind(he(n),r)},n.props.month===r?e__default.createElement("span",{className:"react-datepicker__month-option--selected"},"✓"):"",t)})}),pe(he(n),"onChange",function(e){return n.props.onChange(e)}),pe(he(n),"handleClickOutside",function(){return n.props.onCancel()}),n}return le(r,e__default.Component),se(r,[{key:"render",value:function(){return e__default.createElement("div",{className:"react-datepicker__month-dropdown"},this.renderOptions())}}]),r}()),rt=function(t){function r(){var t,n;oe(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return pe(he(n=me(this,(t=de(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),pe(he(n),"renderSelectOptions",function(t){return t.map(function(t,r){return e__default.createElement("option",{key:r,value:r},t)})}),pe(he(n),"renderSelectMode",function(t){return e__default.createElement("select",{value:n.props.month,className:"react-datepicker__month-select",onChange:function(e){return n.onChange(e.target.value)}},n.renderSelectOptions(t))}),pe(he(n),"renderReadView",function(t,r){return e__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__month-read-view",onClick:n.toggleDropdown},e__default.createElement("span",{className:"react-datepicker__month-read-view--down-arrow"}),e__default.createElement("span",{className:"react-datepicker__month-read-view--selected-month"},r[n.props.month]))}),pe(he(n),"renderDropdown",function(t){return e__default.createElement(tt,{key:"dropdown",ref:"options",month:n.props.month,monthNames:t,onChange:n.onChange,onCancel:n.toggleDropdown})}),pe(he(n),"renderScrollMode",function(e){var t=n.state.dropdownVisible,r=[n.renderReadView(!t,e)];return t&&r.unshift(n.renderDropdown(e)),r}),pe(he(n),"onChange",function(e){n.toggleDropdown(),e!==n.props.month&&n.props.onChange(e);}),pe(he(n),"toggleDropdown",function(){return n.setState({dropdownVisible:!n.state.dropdownVisible})}),n}return le(r,e__default.Component),se(r,[{key:"render",value:function(){var t,r=this,n=[0,1,2,3,4,5,6,7,8,9,10,11].map(this.props.useShortMonthInDropdown?function(e){return Fe(e,r.props.locale)}:function(e){return t=e,n=r.props.locale,_e(setMonth(ge(),t),"LLLL",n);var t,n;});switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode(n);break;case"select":t=this.renderSelectMode(n);}return e__default.createElement("div",{className:"react-datepicker__month-dropdown-container react-datepicker__month-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}();function nt(e,t){for(var r=[],n=Se(e),o=Se(t);!isAfter(n,o);)r.push(ge(n)),n=addMonths(n,1);return r}var ot=onClickOutsideHOC(function(r){function n(t){var r;return oe(this,n),pe(he(r=me(this,de(n).call(this,t))),"renderOptions",function(){return r.state.monthYearsList.map(function(t){var n=getTime(t),o=Me(r.props.date,t)&&Ee(r.props.date,t);return e__default.createElement("div",{className:o?"react-datepicker__month-year-option --selected_month-year":"react-datepicker__month-year-option",key:n,ref:n,onClick:r.onChange.bind(he(r),n)},o?e__default.createElement("span",{className:"react-datepicker__month-year-option--selected"},"✓"):"",_e(t,r.props.dateFormat))})}),pe(he(r),"onChange",function(e){return r.props.onChange(e)}),pe(he(r),"handleClickOutside",function(){r.props.onCancel();}),r.state={monthYearsList:nt(r.props.minDate,r.props.maxDate)},r}return le(n,e__default.Component),se(n,[{key:"render",value:function(){var r=classnames({"react-datepicker__month-year-dropdown":!0,"react-datepicker__month-year-dropdown--scrollable":this.props.scrollableMonthYearDropdown});return e__default.createElement("div",{className:r},this.renderOptions())}}]),n}()),at=function(t){function r(){var t,n;oe(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return pe(he(n=me(this,(t=de(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),pe(he(n),"renderSelectOptions",function(){for(var t=Se(n.props.minDate),r=Se(n.props.maxDate),o=[];!isAfter(t,r);){var a=getTime(t);o.push(e__default.createElement("option",{key:a,value:a},_e(t,n.props.dateFormat,n.props.locale))),t=addMonths(t,1);}return o}),pe(he(n),"onSelectChange",function(e){n.onChange(e.target.value);}),pe(he(n),"renderSelectMode",function(){return e__default.createElement("select",{value:getTime(Se(n.props.date)),className:"react-datepicker__month-year-select",onChange:n.onSelectChange},n.renderSelectOptions())}),pe(he(n),"renderReadView",function(t){var r=_e(n.props.date,n.props.dateFormat,n.props.locale);return e__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__month-year-read-view",onClick:function(e){return n.toggleDropdown(e)}},e__default.createElement("span",{className:"react-datepicker__month-year-read-view--down-arrow"}),e__default.createElement("span",{className:"react-datepicker__month-year-read-view--selected-month-year"},r))}),pe(he(n),"renderDropdown",function(){return e__default.createElement(ot,{key:"dropdown",ref:"options",date:n.props.date,dateFormat:n.props.dateFormat,onChange:n.onChange,onCancel:n.toggleDropdown,minDate:n.props.minDate,maxDate:n.props.maxDate,scrollableMonthYearDropdown:n.props.scrollableMonthYearDropdown})}),pe(he(n),"renderScrollMode",function(){var e=n.state.dropdownVisible,t=[n.renderReadView(!e)];return e&&t.unshift(n.renderDropdown()),t}),pe(he(n),"onChange",function(e){n.toggleDropdown();var t=ge(parseInt(e));Me(n.props.date,t)&&Ee(n.props.date,t)||n.props.onChange(t);}),pe(he(n),"toggleDropdown",function(){return n.setState({dropdownVisible:!n.state.dropdownVisible})}),n}return le(r,e__default.Component),se(r,[{key:"render",value:function(){var t;switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode();break;case"select":t=this.renderSelectMode();}return e__default.createElement("div",{className:"react-datepicker__month-year-dropdown-container react-datepicker__month-year-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}(),st=function(r){function n(){var e,r;oe(this,n);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return pe(he(r=me(this,(e=de(n)).call.apply(e,[this].concat(a)))),"handleClick",function(e){!r.isDisabled()&&r.props.onClick&&r.props.onClick(e);}),pe(he(r),"handleMouseEnter",function(e){!r.isDisabled()&&r.props.onMouseEnter&&r.props.onMouseEnter(e);}),pe(he(r),"isSameDay",function(e){return Oe(r.props.day,e)}),pe(he(r),"isKeyboardSelected",function(){return !r.props.disabledKeyboardNavigation&&!r.props.inline&&!r.isSameDay(r.props.selected)&&r.isSameDay(r.props.preSelection)}),pe(he(r),"isDisabled",function(){return We(r.props.day,r.props)}),pe(he(r),"isExcluded",function(){return function(e){var t=(arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}).excludeDates;return t&&t.some(function(t){return Oe(e,t)})||!1}(r.props.day,r.props)}),pe(he(r),"getHighLightedClass",function(e){var t=r.props,n=t.day,o=t.highlightDates;if(!o)return !1;var a=_e(n,"MM.dd.yyyy");return o.get(a)}),pe(he(r),"isInRange",function(){var e=r.props,t=e.day,n=e.startDate,o=e.endDate;return !(!n||!o)&&Te(t,n,o)}),pe(he(r),"isInSelectingRange",function(){var e=r.props,t=e.day,n=e.selectsStart,o=e.selectsEnd,a=e.selectingDate,s=e.startDate,p=e.endDate;return !(!n&&!o||!a||r.isDisabled())&&(n&&p&&(isBefore(a,p)||Pe(a,p))?Te(t,a,p):!(!o||!s||!isAfter(a,s)&&!Pe(a,s))&&Te(t,s,a))}),pe(he(r),"isSelectingRangeStart",function(){if(!r.isInSelectingRange())return !1;var e=r.props,t=e.day,n=e.selectingDate,o=e.startDate;return Oe(t,e.selectsStart?n:o)}),pe(he(r),"isSelectingRangeEnd",function(){if(!r.isInSelectingRange())return !1;var e=r.props,t=e.day,n=e.selectingDate,o=e.endDate;return Oe(t,e.selectsEnd?n:o)}),pe(he(r),"isRangeStart",function(){var e=r.props,t=e.day,n=e.startDate,o=e.endDate;return !(!n||!o)&&Oe(n,t)}),pe(he(r),"isRangeEnd",function(){var e=r.props,t=e.day,n=e.startDate,o=e.endDate;return !(!n||!o)&&Oe(o,t)}),pe(he(r),"isWeekend",function(){var e=getDay(r.props.day);return 0===e||6===e}),pe(he(r),"isOutsideMonth",function(){return void 0!==r.props.month&&r.props.month!==getMonth(r.props.day)}),pe(he(r),"getClassNames",function(e){var n,o=r.props.dayClassName?r.props.dayClassName(e):void 0;return classnames("react-datepicker__day",o,"react-datepicker__day--"+_e(r.props.day,"ddd",n),{"react-datepicker__day--disabled":r.isDisabled(),"react-datepicker__day--excluded":r.isExcluded(),"react-datepicker__day--selected":r.isSameDay(r.props.selected),"react-datepicker__day--keyboard-selected":r.isKeyboardSelected(),"react-datepicker__day--range-start":r.isRangeStart(),"react-datepicker__day--range-end":r.isRangeEnd(),"react-datepicker__day--in-range":r.isInRange(),"react-datepicker__day--in-selecting-range":r.isInSelectingRange(),"react-datepicker__day--selecting-range-start":r.isSelectingRangeStart(),"react-datepicker__day--selecting-range-end":r.isSelectingRangeEnd(),"react-datepicker__day--today":r.isSameDay(ge()),"react-datepicker__day--weekend":r.isWeekend(),"react-datepicker__day--outside-month":r.isOutsideMonth()},r.getHighLightedClass("react-datepicker__day--highlighted"))}),r}return le(n,e__default.Component),se(n,[{key:"render",value:function(){return e__default.createElement("div",{className:this.getClassNames(this.props.day),onClick:this.handleClick,onMouseEnter:this.handleMouseEnter,"aria-label":"day-".concat(getDate(this.props.day)),role:"option","aria-disabled":this.isDisabled()},this.props.renderDayContents?this.props.renderDayContents(getDate(this.props.day),this.props.day):getDate(this.props.day))}}]),n}(),pt=function(r){function n(){var e,t;oe(this,n);for(var r=arguments.length,o=new Array(r),a=0;a<r;a++)o[a]=arguments[a];return pe(he(t=me(this,(e=de(n)).call.apply(e,[this].concat(o)))),"handleClick",function(e){t.props.onClick&&t.props.onClick(e);}),t}return le(n,e__default.Component),se(n,[{key:"render",value:function(){var r={"react-datepicker__week-number":!0,"react-datepicker__week-number--clickable":!!this.props.onClick};return e__default.createElement("div",{className:classnames(r),"aria-label":"week-".concat(this.props.weekNumber),onClick:this.handleClick},this.props.weekNumber)}}]),n}(),it=function(t){function r(){var t,n;oe(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return pe(he(n=me(this,(t=de(r)).call.apply(t,[this].concat(a)))),"handleDayClick",function(e,t){n.props.onDayClick&&n.props.onDayClick(e,t);}),pe(he(n),"handleDayMouseEnter",function(e){n.props.onDayMouseEnter&&n.props.onDayMouseEnter(e);}),pe(he(n),"handleWeekClick",function(e,t,r){"function"==typeof n.props.onWeekSelect&&n.props.onWeekSelect(e,t,r),n.props.shouldCloseOnSelect&&n.props.setOpen(!1);}),pe(he(n),"formatWeekNumber",function(e){return n.props.formatWeekNumber?n.props.formatWeekNumber(e):function(e){return Me(endOfWeek(e),e)?differenceInCalendarWeeks(e,startOfYear(e))+1:1}(e)}),pe(he(n),"renderDays",function(){var t=be(n.props.day,n.props.locale),r=[],o=n.formatWeekNumber(t);if(n.props.showWeekNumber){var a=n.props.onWeekSelect?n.handleWeekClick.bind(he(n),t,o):void 0;r.push(e__default.createElement(pt,{key:"W",weekNumber:o,onClick:a}));}return r.concat([0,1,2,3,4,5,6].map(function(r){var o=addDays(t,r);return e__default.createElement(st,{key:r,day:o,month:n.props.month,onClick:n.handleDayClick.bind(he(n),o),onMouseEnter:n.handleDayMouseEnter.bind(he(n),o),minDate:n.props.minDate,maxDate:n.props.maxDate,excludeDates:n.props.excludeDates,includeDates:n.props.includeDates,inline:n.props.inline,highlightDates:n.props.highlightDates,selectingDate:n.props.selectingDate,filterDate:n.props.filterDate,preSelection:n.props.preSelection,selected:n.props.selected,selectsStart:n.props.selectsStart,selectsEnd:n.props.selectsEnd,startDate:n.props.startDate,endDate:n.props.endDate,dayClassName:n.props.dayClassName,renderDayContents:n.props.renderDayContents,disabledKeyboardNavigation:n.props.disabledKeyboardNavigation})}))}),n}return le(r,e__default.Component),se(r,[{key:"render",value:function(){return e__default.createElement("div",{className:"react-datepicker__week"},this.renderDays())}}],[{key:"defaultProps",get:function(){return {shouldCloseOnSelect:!0}}}]),r}(),ct=6,lt=function(r){function n(){var r,o;oe(this,n);for(var a=arguments.length,s=new Array(a),c=0;c<a;c++)s[c]=arguments[c];return pe(he(o=me(this,(r=de(n)).call.apply(r,[this].concat(s)))),"handleDayClick",function(e,t){o.props.onDayClick&&o.props.onDayClick(e,t,o.props.orderInDisplay);}),pe(he(o),"handleDayMouseEnter",function(e){o.props.onDayMouseEnter&&o.props.onDayMouseEnter(e);}),pe(he(o),"handleMouseLeave",function(){o.props.onMouseLeave&&o.props.onMouseLeave();}),pe(he(o),"isRangeStartMonth",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Ee(setMonth(r,e),n)}),pe(he(o),"isRangeStartQuarter",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Ne(setQuarter(r,e),n)}),pe(he(o),"isRangeEndMonth",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Ee(setMonth(r,e),a)}),pe(he(o),"isRangeEndQuarter",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Ne(setQuarter(r,e),a)}),pe(he(o),"isWeekInMonth",function(e){var t=o.props.day,r=addDays(e,6);return Ee(e,t)||Ee(r,t)}),pe(he(o),"renderWeeks",function(){for(var t=[],r=o.props.fixedHeight,n=be(Se(o.props.day),o.props.locale),a=0,s=!1;t.push(e__default.createElement(it,{key:a,day:n,month:getMonth(o.props.day),onDayClick:o.handleDayClick,onDayMouseEnter:o.handleDayMouseEnter,onWeekSelect:o.props.onWeekSelect,formatWeekNumber:o.props.formatWeekNumber,locale:o.props.locale,minDate:o.props.minDate,maxDate:o.props.maxDate,excludeDates:o.props.excludeDates,includeDates:o.props.includeDates,inline:o.props.inline,highlightDates:o.props.highlightDates,selectingDate:o.props.selectingDate,filterDate:o.props.filterDate,preSelection:o.props.preSelection,selected:o.props.selected,selectsStart:o.props.selectsStart,selectsEnd:o.props.selectsEnd,showWeekNumber:o.props.showWeekNumbers,startDate:o.props.startDate,endDate:o.props.endDate,dayClassName:o.props.dayClassName,setOpen:o.props.setOpen,shouldCloseOnSelect:o.props.shouldCloseOnSelect,disabledKeyboardNavigation:o.props.disabledKeyboardNavigation,renderDayContents:o.props.renderDayContents})),!s;){a++,n=addWeeks(n,1);var p=r&&a>=ct,c=!r&&!o.isWeekInMonth(n);if(p||c){if(!o.props.peekNextMonth)break;s=!0;}}return t}),pe(he(o),"onMonthClick",function(e,t){o.handleDayClick(Se(setMonth(o.props.day,t)),e);}),pe(he(o),"onQuarterClick",function(e,t){var r;o.handleDayClick((r=setQuarter(o.props.day,t),startOfQuarter(r)),e);}),pe(he(o),"getMonthClassNames",function(e){var r=o.props,n=r.day,a=r.startDate,s=r.endDate,p=r.selected,i=r.minDate,c=r.maxDate;return classnames("react-datepicker__month-text","react-datepicker__month-".concat(e),{"react-datepicker__month--disabled":(i||c)&&Be(setMonth(n,e),o.props),"react-datepicker__month--selected":getMonth(n)===e&&getYear(n)===getYear(p),"react-datepicker__month--in-range":je(a,s,e,n),"react-datepicker__month--range-start":o.isRangeStartMonth(e),"react-datepicker__month--range-end":o.isRangeEndMonth(e)})}),pe(he(o),"getQuarterClassNames",function(e){var r=o.props,n=r.day,a=r.startDate,s=r.endDate,p=r.selected,i=r.minDate,c=r.maxDate;return classnames("react-datepicker__quarter-text","react-datepicker__quarter-".concat(e),{"react-datepicker__quarter--disabled":(i||c)&&Re(setQuarter(n,e),o.props),"react-datepicker__quarter--selected":getQuarter(n)===e&&getYear(n)===getYear(p),"react-datepicker__quarter--in-range":He(a,s,e,n),"react-datepicker__quarter--range-start":o.isRangeStartQuarter(e),"react-datepicker__quarter--range-end":o.isRangeEndQuarter(e)})}),pe(he(o),"renderMonths",function(){return [[0,1,2],[3,4,5],[6,7,8],[9,10,11]].map(function(t,r){return e__default.createElement("div",{className:"react-datepicker__month-wrapper",key:r},t.map(function(t,r){return e__default.createElement("div",{key:r,onClick:function(e){o.onMonthClick(e,t);},className:o.getMonthClassNames(t)},Fe(t,o.props.locale))}))})}),pe(he(o),"renderQuarters",function(){return e__default.createElement("div",{className:"react-datepicker__quarter-wrapper"},[1,2,3,4].map(function(t,r){return e__default.createElement("div",{key:r,onClick:function(e){o.onQuarterClick(e,t);},className:o.getQuarterClassNames(t)},(n=t,a=o.props.locale,_e(setQuarter(ge(),n),"QQQ",a)));var n,a;}))}),pe(he(o),"getClassNames",function(){var e=o.props,r=e.selectingDate,n=e.selectsStart,a=e.selectsEnd,s=e.showMonthYearPicker,p=e.showQuarterYearPicker;return classnames("react-datepicker__month",{"react-datepicker__month--selecting-range":r&&(n||a)},{"react-datepicker__monthPicker":s},{"react-datepicker__quarterPicker":p})}),o}return le(n,e__default.Component),se(n,[{key:"render",value:function(){var t=this.props,r=t.showMonthYearPicker,n=t.showQuarterYearPicker;return e__default.createElement("div",{className:this.getClassNames(),onMouseLeave:this.handleMouseLeave,role:"listbox","aria-label":"month-"+_e(this.props.day,"yyyy-MM")},r?this.renderMonths():n?this.renderQuarters():this.renderWeeks())}}]),n}(),dt=function(t){function r(){var t,n;oe(this,r);for(var o=arguments.length,s=new Array(o),p=0;p<o;p++)s[p]=arguments[p];return pe(he(n=me(this,(t=de(r)).call.apply(t,[this].concat(s)))),"state",{height:null}),pe(he(n),"handleClick",function(e){(n.props.minTime||n.props.maxTime)&&Ae(e,n.props)||n.props.excludeTimes&&Ve(e,n.props.excludeTimes)||n.props.includeTimes&&!Ve(e,n.props.includeTimes)||n.props.onChange(e);}),pe(he(n),"liClasses",function(e,t,r){var o=["react-datepicker__time-list-item"];return t===getHours(e)&&r===getMinutes(e)&&o.push("react-datepicker__time-list-item--selected"),((n.props.minTime||n.props.maxTime)&&Ae(e,n.props)||n.props.excludeTimes&&Ve(e,n.props.excludeTimes)||n.props.includeTimes&&!Ve(e,n.props.includeTimes))&&o.push("react-datepicker__time-list-item--disabled"),n.props.injectTimes&&(60*getHours(e)+getMinutes(e))%n.props.intervals!=0&&o.push("react-datepicker__time-list-item--injected"),o.join(" ")}),pe(he(n),"renderTimes",function(){for(var t,r=[],o=n.props.format?n.props.format:"p",s=n.props.intervals,p=n.props.selected?n.props.selected:ge(),i=getHours(p),c=getMinutes(p),l=(t=ge(),startOfDay(t)),d=1440/s,u=n.props.injectTimes&&n.props.injectTimes.sort(function(e,t){return e-t}),h=0;h<d;h++){var m=addMinutes(l,h*s);if(r.push(m),u){var f=Ge(l,m,h,s,u);r=r.concat(f);}}return r.map(function(t,r){return e__default.createElement("li",{key:r,onClick:n.handleClick.bind(he(n),t),className:n.liClasses(t,i,c),ref:function(e){(i===getHours(t)&&c===getMinutes(t)||i===getHours(t)&&!n.centerLi)&&(n.centerLi=e);}},_e(t,o,n.props.locale))})}),n}return le(r,e__default.Component),se(r,[{key:"componentDidMount",value:function(){this.list.scrollTop=r.calcCenterPosition(this.props.monthRef?this.props.monthRef.clientHeight-this.header.clientHeight:this.list.clientHeight,this.centerLi),this.props.monthRef&&this.header&&this.setState({height:this.props.monthRef.clientHeight-this.header.clientHeight});}},{key:"render",value:function(){var t=this,r=this.state.height;return e__default.createElement("div",{className:"react-datepicker__time-container ".concat(this.props.todayButton?"react-datepicker__time-container--with-today-button":"")},e__default.createElement("div",{className:"react-datepicker__header react-datepicker__header--time",ref:function(e){t.header=e;}},e__default.createElement("div",{className:"react-datepicker-time__header"},this.props.timeCaption)),e__default.createElement("div",{className:"react-datepicker__time"},e__default.createElement("div",{className:"react-datepicker__time-box"},e__default.createElement("ul",{className:"react-datepicker__time-list",ref:function(e){t.list=e;},style:r?{height:r}:{}},this.renderTimes()))))}}],[{key:"defaultProps",get:function(){return {intervals:30,onTimeChange:function(){},todayButton:null,timeCaption:"Time"}}}]),r}();pe(dt,"calcCenterPosition",function(e,t){return t.offsetTop-(e/2-t.clientHeight/2)});var ut=function(t){function r(e){var t;return oe(this,r),pe(he(t=me(this,de(r).call(this,e))),"onTimeChange",function(e){t.setState({time:e});var r=new Date;r.setHours(e.split(":")[0]),r.setMinutes(e.split(":")[1]),t.props.onChange(r);}),t.state={time:t.props.timeString},t}return le(r,e__default.Component),se(r,[{key:"render",value:function(){var t=this,r=this.state.time,n=this.props.timeString;return e__default.createElement("div",{className:"react-datepicker__input-time-container"},e__default.createElement("div",{className:"react-datepicker-time__caption"},this.props.timeInputLabel),e__default.createElement("div",{className:"react-datepicker-time__input-container"},e__default.createElement("div",{className:"react-datepicker-time__input"},e__default.createElement("input",{type:"time",className:"react-datepicker-time__input",placeholder:"Time",name:"time-input",required:!0,value:r,onChange:function(e){t.onTimeChange(e.target.value||n);}}))))}}]),r}();function ht(t){var r=t.className,n=t.children,o=t.arrowProps,a=void 0===o?{}:o;return e__default.createElement("div",{className:r},e__default.createElement("div",ie({className:"react-datepicker__triangle"},a)),n)}var mt=["react-datepicker__year-select","react-datepicker__month-select","react-datepicker__month-year-select"],ft=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=(e.className||"").split(/\s+/);return mt.some(function(e){return t.indexOf(e)>=0})},vt=function(r){function n(t){var r;return oe(this,n),pe(he(r=me(this,de(n).call(this,t))),"handleClickOutside",function(e){r.props.onClickOutside(e);}),pe(he(r),"setClickOutsideRef",function(){return r.containerRef.current}),pe(he(r),"handleDropdownFocus",function(e){ft(e.target)&&r.props.onDropdownFocus();}),pe(he(r),"getDateInView",function(){var e=r.props,t=e.preSelection,n=e.selected,o=e.openToDate,a=Ue(r.props),s=$e(r.props),p=ge(),i=o||n||t;return i||(a&&isBefore(p,a)?a:s&&isAfter(p,s)?s:p)}),pe(he(r),"increaseMonth",function(){r.setState(function(e){var t=e.date;return {date:addMonths(t,1)}},function(){return r.handleMonthChange(r.state.date)});}),pe(he(r),"decreaseMonth",function(){r.setState(function(e){var t=e.date;return {date:subMonths(t,1)}},function(){return r.handleMonthChange(r.state.date)});}),pe(he(r),"handleDayClick",function(e,t,n){return r.props.onSelect(e,t,n)}),pe(he(r),"handleDayMouseEnter",function(e){r.setState({selectingDate:e}),r.props.onDayMouseEnter&&r.props.onDayMouseEnter(e);}),pe(he(r),"handleMonthMouseLeave",function(){r.setState({selectingDate:null}),r.props.onMonthMouseLeave&&r.props.onMonthMouseLeave();}),pe(he(r),"handleYearChange",function(e){r.props.onYearChange&&r.props.onYearChange(e);}),pe(he(r),"handleMonthChange",function(e){r.props.onMonthChange&&r.props.onMonthChange(e),r.props.adjustDateOnChange&&(r.props.onSelect&&r.props.onSelect(e),r.props.setOpen&&r.props.setOpen(!0));}),pe(he(r),"handleMonthYearChange",function(e){r.handleYearChange(e),r.handleMonthChange(e);}),pe(he(r),"changeYear",function(e){r.setState(function(t){var r=t.date;return {date:setYear(r,e)}},function(){return r.handleYearChange(r.state.date)});}),pe(he(r),"changeMonth",function(e){r.setState(function(t){var r=t.date;return {date:setMonth(r,e)}},function(){return r.handleMonthChange(r.state.date)});}),pe(he(r),"changeMonthYear",function(e){r.setState(function(t){var r=t.date;return {date:setYear(setMonth(r,getMonth(e)),getYear(e))}},function(){return r.handleMonthYearChange(r.state.date)});}),pe(he(r),"header",function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:r.state.date,n=be(t,r.props.locale),o=[];return r.props.showWeekNumbers&&o.push(e__default.createElement("div",{key:"W",className:"react-datepicker__day-name"},r.props.weekLabel||"#")),o.concat([0,1,2,3,4,5,6].map(function(t){var o=addDays(n,t),a=r.formatWeekday(o,r.props.locale);return e__default.createElement("div",{key:t,className:"react-datepicker__day-name"},a)}))}),pe(he(r),"formatWeekday",function(e,t){return r.props.formatWeekDay?function(e,t,r){return t(_e(e,"EEEE",r))}(e,r.props.formatWeekDay,t):r.props.useWeekdaysShort?function(e,t){return _e(e,"EEE",t)}(e,t):function(e,t){return _e(e,"EEEEEE",t)}(e,t)}),pe(he(r),"decreaseYear",function(){r.setState(function(e){var t=e.date;return {date:subYears(t,1)}},function(){return r.handleYearChange(r.state.date)});}),pe(he(r),"renderPreviousButton",function(){if(!r.props.renderCustomHeader){var t=Ke(r.state.date,r.props);if((r.props.forceShowMonthNavigation||r.props.showDisabledMonthNavigation||!t)&&!r.props.showTimeSelectOnly){var n=["react-datepicker__navigation","react-datepicker__navigation--previous"],o=r.decreaseMonth;return (r.props.showMonthYearPicker||r.props.showQuarterYearPicker)&&(o=r.decreaseYear),t&&r.props.showDisabledMonthNavigation&&(n.push("react-datepicker__navigation--previous--disabled"),o=null),e__default.createElement("button",{type:"button",className:n.join(" "),onClick:o},r.props.showMonthYearPicker||r.props.showQuarterYearPicker?r.props.previousYearButtonLabel:r.props.previousMonthButtonLabel)}}}),pe(he(r),"increaseYear",function(){r.setState(function(e){var t=e.date;return {date:addYears(t,1)}},function(){return r.handleYearChange(r.state.date)});}),pe(he(r),"renderNextButton",function(){if(!r.props.renderCustomHeader){var t=qe(r.state.date,r.props);if((r.props.forceShowMonthNavigation||r.props.showDisabledMonthNavigation||!t)&&!r.props.showTimeSelectOnly){var n=["react-datepicker__navigation","react-datepicker__navigation--next"];r.props.showTimeSelect&&n.push("react-datepicker__navigation--next--with-time"),r.props.todayButton&&n.push("react-datepicker__navigation--next--with-today-button");var o=r.increaseMonth;return (r.props.showMonthYearPicker||r.props.showQuarterYearPicker)&&(o=r.increaseYear),t&&r.props.showDisabledMonthNavigation&&(n.push("react-datepicker__navigation--next--disabled"),o=null),e__default.createElement("button",{type:"button",className:n.join(" "),onClick:o},r.props.showMonthYearPicker||r.props.showQuarterYearPicker?r.props.nextYearButtonLabel:r.props.nextMonthButtonLabel)}}}),pe(he(r),"renderCurrentMonth",function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:r.state.date,n=["react-datepicker__current-month"];return r.props.showYearDropdown&&n.push("react-datepicker__current-month--hasYearDropdown"),r.props.showMonthDropdown&&n.push("react-datepicker__current-month--hasMonthDropdown"),r.props.showMonthYearDropdown&&n.push("react-datepicker__current-month--hasMonthYearDropdown"),e__default.createElement("div",{className:n.join(" ")},_e(t,r.props.dateFormat,r.props.locale))}),pe(he(r),"renderYearDropdown",function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showYearDropdown&&!t)return e__default.createElement(et,{adjustDateOnChange:r.props.adjustDateOnChange,date:r.state.date,onSelect:r.props.onSelect,setOpen:r.props.setOpen,dropdownMode:r.props.dropdownMode,onChange:r.changeYear,minDate:r.props.minDate,maxDate:r.props.maxDate,year:getYear(r.state.date),scrollableYearDropdown:r.props.scrollableYearDropdown,yearDropdownItemNumber:r.props.yearDropdownItemNumber})}),pe(he(r),"renderMonthDropdown",function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showMonthDropdown&&!t)return e__default.createElement(rt,{dropdownMode:r.props.dropdownMode,locale:r.props.locale,onChange:r.changeMonth,month:getMonth(r.state.date),useShortMonthInDropdown:r.props.useShortMonthInDropdown})}),pe(he(r),"renderMonthYearDropdown",function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showMonthYearDropdown&&!t)return e__default.createElement(at,{dropdownMode:r.props.dropdownMode,locale:r.props.locale,dateFormat:r.props.dateFormat,onChange:r.changeMonthYear,minDate:r.props.minDate,maxDate:r.props.maxDate,date:r.state.date,scrollableMonthYearDropdown:r.props.scrollableMonthYearDropdown})}),pe(he(r),"renderTodayButton",function(){if(r.props.todayButton&&!r.props.showTimeSelectOnly)return e__default.createElement("div",{className:"react-datepicker__today-button",onClick:function(e){return r.props.onSelect(startOfDay(ge()),e)}},r.props.todayButton)}),pe(he(r),"renderDefaultHeader",function(t){var n=t.monthDate,o=t.i;return e__default.createElement("div",{className:"react-datepicker__header"},r.renderCurrentMonth(n),e__default.createElement("div",{className:"react-datepicker__header__dropdown react-datepicker__header__dropdown--".concat(r.props.dropdownMode),onFocus:r.handleDropdownFocus},r.renderMonthDropdown(0!==o),r.renderMonthYearDropdown(0!==o),r.renderYearDropdown(0!==o)),e__default.createElement("div",{className:"react-datepicker__day-names"},r.header(n)))}),pe(he(r),"renderCustomHeader",function(t){var n=t.monthDate;if(0!==t.i)return null;var o=Ke(r.state.date,r.props),a=qe(r.state.date,r.props);return e__default.createElement("div",{className:"react-datepicker__header react-datepicker__header--custom",onFocus:r.props.onDropdownFocus},r.props.renderCustomHeader(function(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{};t%2?ce(r,!0).forEach(function(t){pe(e,t,r[t]);}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):ce(r).forEach(function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(r,t));});}return e}({},r.state,{changeMonth:r.changeMonth,changeYear:r.changeYear,decreaseMonth:r.decreaseMonth,increaseMonth:r.increaseMonth,prevMonthButtonDisabled:o,nextMonthButtonDisabled:a})),e__default.createElement("div",{className:"react-datepicker__day-names"},r.header(n)))}),pe(he(r),"renderYearHeader",function(){return e__default.createElement("div",{className:"react-datepicker__header react-datepicker-year-header"},getYear(r.state.date))}),pe(he(r),"renderMonths",function(){if(!r.props.showTimeSelectOnly){for(var t=[],n=0;n<r.props.monthsShown;++n){var o=n-r.props.monthSelectedIn,a=addMonths(r.state.date,o),s="month-".concat(n);t.push(e__default.createElement("div",{key:s,ref:function(e){r.monthContainer=e;},className:"react-datepicker__month-container"},r.props.showMonthYearPicker||r.props.showQuarterYearPicker?r.renderYearHeader({monthDate:a,i:n}):r.props.renderCustomHeader?r.renderCustomHeader({monthDate:a,i:n}):r.renderDefaultHeader({monthDate:a,i:n}),e__default.createElement(lt,{onChange:r.changeMonthYear,day:a,dayClassName:r.props.dayClassName,onDayClick:r.handleDayClick,onDayMouseEnter:r.handleDayMouseEnter,onMouseLeave:r.handleMonthMouseLeave,onWeekSelect:r.props.onWeekSelect,orderInDisplay:n,formatWeekNumber:r.props.formatWeekNumber,locale:r.props.locale,minDate:r.props.minDate,maxDate:r.props.maxDate,excludeDates:r.props.excludeDates,highlightDates:r.props.highlightDates,selectingDate:r.state.selectingDate,includeDates:r.props.includeDates,inline:r.props.inline,fixedHeight:r.props.fixedHeight,filterDate:r.props.filterDate,preSelection:r.props.preSelection,selected:r.props.selected,selectsStart:r.props.selectsStart,selectsEnd:r.props.selectsEnd,showWeekNumbers:r.props.showWeekNumbers,startDate:r.props.startDate,endDate:r.props.endDate,peekNextMonth:r.props.peekNextMonth,setOpen:r.props.setOpen,shouldCloseOnSelect:r.props.shouldCloseOnSelect,renderDayContents:r.props.renderDayContents,disabledKeyboardNavigation:r.props.disabledKeyboardNavigation,showMonthYearPicker:r.props.showMonthYearPicker,showQuarterYearPicker:r.props.showQuarterYearPicker})));}return t}}),pe(he(r),"renderTimeSection",function(){if(r.props.showTimeSelect&&(r.state.monthContainer||r.props.showTimeSelectOnly))return e__default.createElement(dt,{selected:r.props.selected,onChange:r.props.onTimeChange,format:r.props.timeFormat,includeTimes:r.props.includeTimes,intervals:r.props.timeIntervals,minTime:r.props.minTime,maxTime:r.props.maxTime,excludeTimes:r.props.excludeTimes,timeCaption:r.props.timeCaption,todayButton:r.props.todayButton,showMonthDropdown:r.props.showMonthDropdown,showMonthYearDropdown:r.props.showMonthYearDropdown,showYearDropdown:r.props.showYearDropdown,withPortal:r.props.withPortal,monthRef:r.state.monthContainer,injectTimes:r.props.injectTimes,locale:r.props.locale})}),pe(he(r),"renderInputTimeSection",function(){var t=new Date(r.props.selected),n="".concat(Je(t.getHours()),":").concat(Je(t.getMinutes()));if(r.props.showTimeInput)return e__default.createElement(ut,{timeString:n,timeInputLabel:r.props.timeInputLabel,onChange:r.props.onTimeChange})}),r.containerRef=e__default.createRef(),r.state={date:r.getDateInView(),selectingDate:null,monthContainer:null},r}return le(n,e__default.Component),se(n,null,[{key:"defaultProps",get:function(){return {onDropdownFocus:function(){},monthsShown:1,monthSelectedIn:0,forceShowMonthNavigation:!1,timeCaption:"Time",previousYearButtonLabel:"Previous Year",nextYearButtonLabel:"Next Year",previousMonthButtonLabel:"Previous Month",nextMonthButtonLabel:"Next Month"}}}]),se(n,[{key:"componentDidMount",value:function(){var e=this;this.props.showTimeSelect&&(this.assignMonthContainer=void e.setState({monthContainer:e.monthContainer}));}},{key:"componentDidUpdate",value:function(e){this.props.preSelection&&!Oe(this.props.preSelection,e.preSelection)?this.setState({date:this.props.preSelection}):this.props.openToDate&&!Oe(this.props.openToDate,e.openToDate)&&this.setState({date:this.props.openToDate});}},{key:"render",value:function(){var r=this.props.container||ht;return e__default.createElement("div",{ref:this.containerRef},e__default.createElement(r,{className:classnames("react-datepicker",this.props.className,{"react-datepicker--time-only":this.props.showTimeSelectOnly})},this.renderPreviousButton(),this.renderNextButton(),this.renderMonths(),this.renderTodayButton(),this.renderTimeSection(),this.renderInputTimeSection(),this.props.children))}}]),n}(),yt=function(r){function n(){return oe(this,n),me(this,de(n).apply(this,arguments))}return le(n,e__default.Component),se(n,[{key:"render",value:function(){var r,n=this.props,o=n.className,a=n.wrapperClassName,s=n.hidePopper,p=n.popperComponent,i=n.popperModifiers,c=n.popperPlacement,l=n.popperProps,d=n.targetComponent;if(!s){var u=classnames("react-datepicker-popper",o);r=e__default.createElement(Popper$1,ie({modifiers:i,placement:c},l),function(t){var r=t.ref,n=t.style,o=t.placement,a=t.arrowProps;return e__default.createElement("div",ie({ref:r,style:n},{className:u,"data-placement":o}),e__default.cloneElement(p,{arrowProps:a}))});}this.props.popperContainer&&(r=e__default.createElement(this.props.popperContainer,{},r));var h=classnames("react-datepicker-wrapper",a);return e__default.createElement(Manager,null,e__default.createElement(Reference,null,function(t){var r=t.ref;return e__default.createElement("div",{ref:r,className:h},d)}),r)}}],[{key:"defaultProps",get:function(){return {hidePopper:!0,popperModifiers:{preventOverflow:{enabled:!0,escapeWithReference:!0,boundariesElement:"viewport"}},popperProps:{},popperPlacement:"bottom-start"}}}]),n}(),Dt="react-datepicker-ignore-onclickoutside",gt=onClickOutsideHOC(vt);var kt="Date input not valid.",wt=function(n){function o(n){var a;return oe(this,o),pe(he(a=me(this,de(o).call(this,n))),"getPreSelection",function(){return a.props.openToDate?a.props.openToDate:a.props.selectsEnd&&a.props.startDate?a.props.startDate:a.props.selectsStart&&a.props.endDate?a.props.endDate:ge()}),pe(he(a),"calcInitialState",function(){var e=a.getPreSelection(),t=Ue(a.props),r=$e(a.props),n=t&&isBefore(e,t)?t:r&&isAfter(e,r)?r:e;return {open:a.props.startOpen||!1,preventFocus:!1,preSelection:a.props.selected?a.props.selected:n,highlightDates:ze(a.props.highlightDates),focused:!1}}),pe(he(a),"clearPreventFocusTimeout",function(){a.preventFocusTimeout&&clearTimeout(a.preventFocusTimeout);}),pe(he(a),"setFocus",function(){a.input&&a.input.focus&&a.input.focus();}),pe(he(a),"setBlur",function(){a.input&&a.input.blur&&a.input.blur(),a.cancelFocusInput();}),pe(he(a),"setOpen",function(e){var t=arguments.length>1&&void 0!==arguments[1]&&arguments[1];a.setState({open:e,preSelection:e&&a.state.open?a.state.preSelection:a.calcInitialState().preSelection,lastPreSelectChange:Ct},function(){e||a.setState(function(e){return {focused:!!t&&e.focused}},function(){!t&&a.setBlur(),a.setState({inputValue:null});});});}),pe(he(a),"inputOk",function(){return isDate(a.state.preSelection)}),pe(he(a),"isCalendarOpen",function(){return void 0===a.props.open?a.state.open&&!a.props.disabled&&!a.props.readOnly:a.props.open}),pe(he(a),"handleFocus",function(e){a.state.preventFocus||(a.props.onFocus(e),a.props.preventOpenOnFocus||a.props.readOnly||a.setOpen(!0)),a.setState({focused:!0});}),pe(he(a),"cancelFocusInput",function(){clearTimeout(a.inputFocusTimeout),a.inputFocusTimeout=null;}),pe(he(a),"deferFocusInput",function(){a.cancelFocusInput(),a.inputFocusTimeout=setTimeout(function(){return a.setFocus()},1);}),pe(he(a),"handleDropdownFocus",function(){a.cancelFocusInput();}),pe(he(a),"handleBlur",function(e){!a.state.open||a.props.withPortal||a.props.showTimeInput?a.props.onBlur(e):a.deferFocusInput(),a.setState({focused:!1});}),pe(he(a),"handleCalendarClickOutside",function(e){a.props.inline||a.setOpen(!1),a.props.onClickOutside(e),a.props.withPortal&&e.preventDefault();}),pe(he(a),"handleChange",function(){for(var e=arguments.length,t=new Array(e),r=0;r<e;r++)t[r]=arguments[r];var n=t[0];if(!a.props.onChangeRaw||(a.props.onChangeRaw.apply(he(a),t),"function"==typeof n.isDefaultPrevented&&!n.isDefaultPrevented())){a.setState({inputValue:n.target.value,lastPreSelectChange:_t});var o=ke(n.target.value,a.props.dateFormat,a.props.locale,a.props.strictParsing);!o&&n.target.value||a.setSelected(o,n,!0);}}),pe(he(a),"handleSelect",function(e,t,r){a.setState({preventFocus:!0},function(){return a.preventFocusTimeout=setTimeout(function(){return a.setState({preventFocus:!1})},50),a.preventFocusTimeout}),a.setSelected(e,t,void 0,r),!a.props.shouldCloseOnSelect||a.props.showTimeSelect?a.setPreSelection(e):a.props.inline||a.setOpen(!1);}),pe(he(a),"setSelected",function(e,t,r,n){var o=e;if(null===o||!We(o,a.props)){if(!Pe(a.props.selected,o)||a.props.allowSameDay){if(null!==o){if(a.props.selected){var s=a.props.selected;r&&(s=ge(o)),o=Ce(o,{hour:getHours(s),minute:getMinutes(s),second:getSeconds(s)});}a.props.inline||a.setState({preSelection:o}),a.props.inline&&a.props.monthsShown>1&&!a.props.inlineFocusSelectedMonth&&a.setState({monthSelectedIn:n});}a.props.onChange(o,t);}a.props.onSelect(o,t),r||a.setState({inputValue:null});}}),pe(he(a),"setPreSelection",function(e){var t=void 0!==a.props.minDate,r=void 0!==a.props.maxDate,n=!0;e&&(t&&r?n=Te(e,a.props.minDate,a.props.maxDate):t?n=isAfter(e,a.props.minDate):r&&(n=isBefore(e,a.props.maxDate))),n&&a.setState({preSelection:e});}),pe(he(a),"handleTimeChange",function(e){var t=Ce(a.props.selected?a.props.selected:a.getPreSelection(),{hour:getHours(e),minute:getMinutes(e)});a.setState({preSelection:t}),a.props.onChange(t),a.props.shouldCloseOnSelect&&a.setOpen(!1),a.props.showTimeInput&&a.setOpen(!0),a.setState({inputValue:null});}),pe(he(a),"onInputClick",function(){a.props.disabled||a.props.readOnly||a.setOpen(!0),a.props.onInputClick();}),pe(he(a),"onInputKeyDown",function(e){a.props.onKeyDown(e);var t=e.key;if(a.state.open||a.props.inline||a.props.preventOpenOnFocus){var r=ge(a.state.preSelection);if("Enter"===t)e.preventDefault(),a.inputOk()&&a.state.lastPreSelectChange===Ct?(a.handleSelect(r,e),!a.props.shouldCloseOnSelect&&a.setPreSelection(r)):a.setOpen(!1);else if("Escape"===t)e.preventDefault(),a.setOpen(!1),a.inputOk()||a.props.onInputError({code:1,msg:kt});else if("Tab"===t)a.setOpen(!1,!0);else if(!a.props.disabledKeyboardNavigation){var n;switch(t){case"ArrowLeft":n=subDays(r,1);break;case"ArrowRight":n=addDays(r,1);break;case"ArrowUp":n=subWeeks(r,1);break;case"ArrowDown":n=addWeeks(r,1);break;case"PageUp":n=subMonths(r,1);break;case"PageDown":n=addMonths(r,1);break;case"Home":n=subYears(r,1);break;case"End":n=addYears(r,1);}if(!n)return void(a.props.onInputError&&a.props.onInputError({code:1,msg:kt}));e.preventDefault(),a.setState({lastPreSelectChange:Ct}),a.props.adjustDateOnChange&&a.setSelected(n),a.setPreSelection(n);}}else"ArrowDown"!==t&&"ArrowUp"!==t||a.onInputClick();}),pe(he(a),"onClearClick",function(e){e&&e.preventDefault&&e.preventDefault(),a.props.onChange(null,e),a.setState({inputValue:null});}),pe(he(a),"clear",function(){a.onClearClick();}),pe(he(a),"renderCalendar",function(){return a.props.inline||a.isCalendarOpen()?e__default.createElement(gt,{ref:function(e){a.calendar=e;},locale:a.props.locale,adjustDateOnChange:a.props.adjustDateOnChange,setOpen:a.setOpen,shouldCloseOnSelect:a.props.shouldCloseOnSelect,dateFormat:a.props.dateFormatCalendar,useWeekdaysShort:a.props.useWeekdaysShort,formatWeekDay:a.props.formatWeekDay,dropdownMode:a.props.dropdownMode,selected:a.props.selected,preSelection:a.state.preSelection,onSelect:a.handleSelect,onWeekSelect:a.props.onWeekSelect,openToDate:a.props.openToDate,minDate:a.props.minDate,maxDate:a.props.maxDate,selectsStart:a.props.selectsStart,selectsEnd:a.props.selectsEnd,startDate:a.props.startDate,endDate:a.props.endDate,excludeDates:a.props.excludeDates,filterDate:a.props.filterDate,onClickOutside:a.handleCalendarClickOutside,formatWeekNumber:a.props.formatWeekNumber,highlightDates:a.state.highlightDates,includeDates:a.props.includeDates,includeTimes:a.props.includeTimes,injectTimes:a.props.injectTimes,inline:a.props.inline,peekNextMonth:a.props.peekNextMonth,showMonthDropdown:a.props.showMonthDropdown,useShortMonthInDropdown:a.props.useShortMonthInDropdown,showMonthYearDropdown:a.props.showMonthYearDropdown,showWeekNumbers:a.props.showWeekNumbers,showYearDropdown:a.props.showYearDropdown,withPortal:a.props.withPortal,forceShowMonthNavigation:a.props.forceShowMonthNavigation,showDisabledMonthNavigation:a.props.showDisabledMonthNavigation,scrollableYearDropdown:a.props.scrollableYearDropdown,scrollableMonthYearDropdown:a.props.scrollableMonthYearDropdown,todayButton:a.props.todayButton,weekLabel:a.props.weekLabel,outsideClickIgnoreClass:Dt,fixedHeight:a.props.fixedHeight,monthsShown:a.props.monthsShown,monthSelectedIn:a.state.monthSelectedIn,onDropdownFocus:a.handleDropdownFocus,onMonthChange:a.props.onMonthChange,onYearChange:a.props.onYearChange,dayClassName:a.props.dayClassName,showTimeSelect:a.props.showTimeSelect,showTimeSelectOnly:a.props.showTimeSelectOnly,onTimeChange:a.handleTimeChange,timeFormat:a.props.timeFormat,timeIntervals:a.props.timeIntervals,minTime:a.props.minTime,maxTime:a.props.maxTime,excludeTimes:a.props.excludeTimes,timeCaption:a.props.timeCaption,className:a.props.calendarClassName,container:a.props.calendarContainer,yearDropdownItemNumber:a.props.yearDropdownItemNumber,previousMonthButtonLabel:a.props.previousMonthButtonLabel,nextMonthButtonLabel:a.props.nextMonthButtonLabel,previousYearButtonLabel:a.props.previousYearButtonLabel,nextYearButtonLabel:a.props.nextYearButtonLabel,timeInputLabel:a.props.timeInputLabel,disabledKeyboardNavigation:a.props.disabledKeyboardNavigation,renderCustomHeader:a.props.renderCustomHeader,popperProps:a.props.popperProps,renderDayContents:a.props.renderDayContents,onDayMouseEnter:a.props.onDayMouseEnter,onMonthMouseLeave:a.props.onMonthMouseLeave,showTimeInput:a.props.showTimeInput,showMonthYearPicker:a.props.showMonthYearPicker,showQuarterYearPicker:a.props.showQuarterYearPicker},a.props.children):null}),pe(he(a),"renderDateInput",function(){var r,n,o,s,p,i=classnames(a.props.className,pe({},Dt,a.state.open)),c=a.props.customInput||e__default.createElement("input",{type:"text"}),l=a.props.customInputRef||"ref",d="string"==typeof a.props.value?a.props.value:"string"==typeof a.state.inputValue?a.state.inputValue:(n=a.props.selected,o=a.props,s=o.dateFormat,p=o.locale,n&&_e(n,Array.isArray(s)?s[0]:s,p)||"");return e__default.cloneElement(c,(pe(r={},l,function(e){a.input=e;}),pe(r,"value",d),pe(r,"onBlur",a.handleBlur),pe(r,"onChange",a.handleChange),pe(r,"onClick",a.onInputClick),pe(r,"onFocus",a.handleFocus),pe(r,"onKeyDown",a.onInputKeyDown),pe(r,"id",a.props.id),pe(r,"name",a.props.name),pe(r,"autoFocus",a.props.autoFocus),pe(r,"placeholder",a.props.placeholderText),pe(r,"disabled",a.props.disabled),pe(r,"autoComplete",a.props.autoComplete),pe(r,"className",classnames(c.props.className,i)),pe(r,"title",a.props.title),pe(r,"readOnly",a.props.readOnly),pe(r,"required",a.props.required),pe(r,"tabIndex",a.props.tabIndex),r))}),pe(he(a),"renderClearButton",function(){return a.props.isClearable&&null!=a.props.selected?e__default.createElement("button",{type:"button",className:"react-datepicker__close-icon","aria-label":"Close",onClick:a.onClearClick,title:a.props.clearButtonTitle,tabIndex:-1}):null}),a.state=a.calcInitialState(),a}return le(o,e__default.Component),se(o,null,[{key:"defaultProps",get:function(){return {allowSameDay:!1,dateFormat:"MM/dd/yyyy",dateFormatCalendar:"LLLL yyyy",onChange:function(){},disabled:!1,disabledKeyboardNavigation:!1,dropdownMode:"scroll",onFocus:function(){},onBlur:function(){},onKeyDown:function(){},onInputClick:function(){},onSelect:function(){},onClickOutside:function(){},onMonthChange:function(){},preventOpenOnFocus:!1,onYearChange:function(){},onInputError:function(){},monthsShown:1,readOnly:!1,withPortal:!1,shouldCloseOnSelect:!0,showTimeSelect:!1,showTimeInput:!1,showMonthYearPicker:!1,showQuarterYearPicker:!1,strictParsing:!1,timeIntervals:30,timeCaption:"Time",previousMonthButtonLabel:"Previous Month",nextMonthButtonLabel:"Next Month",previousYearButtonLabel:"Previous Year",nextYearButtonLabel:"Next Year",timeInputLabel:"Time",renderDayContents:function(e){return e},inlineFocusSelectedMonth:!1}}}]),se(o,[{key:"componentDidUpdate",value:function(e,t){var r,n;e.inline&&(r=e.selected,n=this.props.selected,r&&n?getMonth(r)!==getMonth(n)||getYear(r)!==getYear(n):r!==n)&&this.setPreSelection(this.props.selected),void 0!==this.state.monthSelectedIn&&e.monthsShown!==this.props.monthsShown&&this.setState({monthSelectedIn:0}),e.highlightDates!==this.props.highlightDates&&this.setState({highlightDates:ze(this.props.highlightDates)}),t.focused||Pe(e.selected,this.props.selected)||this.setState({inputValue:null});}},{key:"componentWillUnmount",value:function(){this.clearPreventFocusTimeout();}},{key:"render",value:function(){var t=this.renderCalendar();return this.props.inline&&!this.props.withPortal?t:this.props.withPortal?e__default.createElement("div",null,this.props.inline?null:e__default.createElement("div",{className:"react-datepicker__input-container"},this.renderDateInput(),this.renderClearButton()),this.state.open||this.props.inline?e__default.createElement("div",{className:"react-datepicker__portal"},t):null):e__default.createElement(yt,{className:this.props.popperClassName,wrapperClassName:this.props.wrapperClassName,hidePopper:!this.isCalendarOpen(),popperModifiers:this.props.popperModifiers,targetComponent:e__default.createElement("div",{className:"react-datepicker__input-container"},this.renderDateInput(),this.renderClearButton()),popperContainer:this.props.popperContainer,popperComponent:t,popperPlacement:this.props.popperPlacement,popperProps:this.props.popperProps})}}]),o}(),_t="input",Ct="navigate";
 
-function _templateObject$c() {
+function _templateObject$d() {
   var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid\n    ", ";\n  font-family: inherit;\n  font-size: ", ";\n  padding: 0.6em 1em;\n  height: 38px;\n  border-radius: ", ";\n  width: 100%;\n\n  ::placeholder {\n    color: ", ";\n  }\n"]);
 
-  _templateObject$c = function _templateObject() {
+  _templateObject$d = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var StyledDatePicker = styled__default(wt)(_templateObject$c(), function (props) {
+var StyledDatePicker = styled__default(wt)(_templateObject$d(), function (props) {
   return props.disabled ? props.theme.colors.transparent : props.theme.colors.gray[0];
 }, function (props) {
   return props.disabled ? props.theme.colors.gray.light : props.theme.colors.gray[0];
@@ -11860,22 +12716,13 @@ var StyledDatePicker = styled__default(wt)(_templateObject$c(), function (props)
   return props.theme.colors.gray.xdark;
 });
 
-function getDateString(value) {
-  return value instanceof Date ? value.toDateString() : value;
-}
-
 var DateInput = function DateInput(props) {
-  var formik = props.formik,
-      disabled = props.disabled,
-      value = props.value,
-      onBlur = props.onBlur,
+  var disabled = props.disabled,
       onChange = props.onChange,
       placeholder = props.placeholder,
       inputProps = props.inputProps,
       alertTextOverride = props.alertText,
-      _props$dateFormatter = props.dateFormatter,
-      dateFormatter = _props$dateFormatter === void 0 ? getDateString : _props$dateFormatter,
-      otherProps = objectWithoutProperties(props, ["formik", "disabled", "value", "onBlur", "onChange", "placeholder", "inputProps", "alertText", "dateFormatter"]);
+      otherProps = objectWithoutProperties(props, ["disabled", "onChange", "placeholder", "inputProps", "alertText"]);
 
   var _otherProps$id = otherProps.id,
       id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
@@ -11884,118 +12731,17402 @@ var DateInput = function DateInput(props) {
       name = otherProps.name,
       required = otherProps.required;
 
-  var _createDefaultInputPr = createDefaultInputProps({
-    value: value,
-    onBlur: onBlur,
-    onChange: onChange,
-    name: name,
-    formik: formik,
-    alertText: alertTextOverride
-  }),
-      alertText = _createDefaultInputPr.alertText,
-      inputDefaults = objectWithoutProperties(_createDefaultInputPr, ["alertText"]);
-
-  var hasFormik = inputDefaults.hasFormik;
-
-  var defaultChangeHandler = hasFormik && function (value) {
-    return formik.setFieldValue(name, value);
-  };
+  var _useFormContext = useFormContext(),
+      register = _useFormContext.register,
+      errors = _useFormContext.errors;
 
   return e__default.createElement(InputWrapper, _extends_1({
-    alertText: alertTextOverride || alertText
-  }, otherProps), e__default.createElement(StyledDatePicker, _extends_1({}, inputDefaults, {
-    onChange: onChange ? onChange : defaultChangeHandler,
-    value: dateFormatter(value || inputDefaults.value),
+    alertText: alertTextOverride || errors[name] ? errors[name].message : ''
+  }, otherProps), e__default.createElement(StyledDatePicker, _extends_1({
+    onChange: onChange,
     style: inputStyle,
     "aria-label": label,
     "aria-required": required,
     id: id,
     placeholderText: placeholder || label,
     disabled: disabled,
-    name: name
+    name: name,
+    ref: register
   }, inputProps)));
 };
 
 DateInput.defaultProps = {
-  dateFormat: 'dd/MM/yyyy'
+  dateFormat: 'dd/MM/yyyy',
+  onChange: function onChange() {}
 };
-var index$1 = formik.connect(DateInput);
 
-var lib$1 = createCommonjsModule(function (module, exports) {
-!function(e,t){module.exports=t(e__default);}(commonjsGlobal,(function(e){return function(e){var t={};function r(n){if(t[n])return t[n].exports;var a=t[n]={i:n,l:!1,exports:{}};return e[n].call(a.exports,a,a.exports,r),a.l=!0,a.exports}return r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n});},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0});},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var a in e)r.d(n,a,function(t){return e[t]}.bind(null,a));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=9)}([function(t,r){t.exports=e;},function(e,t,r){var n;
-/*!
-  Copyright (c) 2017 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/!function(){var r={}.hasOwnProperty;function a(){for(var e=[],t=0;t<arguments.length;t++){var n=arguments[t];if(n){var o=typeof n;if("string"===o||"number"===o)e.push(n);else if(Array.isArray(n)&&n.length){var i=a.apply(null,n);i&&e.push(i);}else if("object"===o)for(var u in n)r.call(n,u)&&n[u]&&e.push(u);}}return e.join(" ")}e.exports?(a.default=a,e.exports=a):void 0===(n=function(){return a}.apply(t,[]))||(e.exports=n);}();},function(e,t,r){(function(t){var r=1/0,n=17976931348623157e292,a=NaN,o="[object Symbol]",i=/^\s+|\s+$/g,u=/^[-+]0x[0-9a-f]+$/i,c=/^0b[01]+$/i,s=/^0o[0-7]+$/i,l=parseInt,f="object"==typeof t&&t&&t.Object===Object&&t,d="object"==typeof self&&self&&self.Object===Object&&self,p=f||d||Function("return this")(),h=Object.prototype.toString,m=p.Symbol,y=m?m.prototype:void 0,g=y?y.toString:void 0;function b(e){if("string"==typeof e)return e;if(C(e))return g?g.call(e):"";var t=e+"";return "0"==t&&1/e==-r?"-0":t}function v(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}function C(e){return "symbol"==typeof e||function(e){return !!e&&"object"==typeof e}(e)&&h.call(e)==o}function _(e){return e?(e=function(e){if("number"==typeof e)return e;if(C(e))return a;if(v(e)){var t="function"==typeof e.valueOf?e.valueOf():e;e=v(t)?t+"":t;}if("string"!=typeof e)return 0===e?e:+e;e=e.replace(i,"");var r=c.test(e);return r||s.test(e)?l(e.slice(2),r?2:8):u.test(e)?a:+e}(e))===r||e===-r?(e<0?-1:1)*n:e==e?e:0:0===e?e:0}e.exports=function(e,t,r){var n,a,o,i;return e=null==(n=e)?"":b(n),a=function(e){var t=_(e),r=t%1;return t==t?r?t-r:t:0}(r),o=0,i=e.length,a==a&&(void 0!==i&&(a=a<=i?a:i),void 0!==o&&(a=a>=o?a:o)),r=a,t=b(t),e.slice(r,r+t.length)==t};}).call(this,r(3));},function(e,t){var r;r=function(){return this}();try{r=r||new Function("return this")();}catch(e){"object"==typeof window&&(r=window);}e.exports=r;},function(e,t,r){(function(t){var r="Expected a function",n="__lodash_hash_undefined__",a="[object Function]",o="[object GeneratorFunction]",i=/^\[object .+?Constructor\]$/,u="object"==typeof t&&t&&t.Object===Object&&t,c="object"==typeof self&&self&&self.Object===Object&&self,s=u||c||Function("return this")();var l,f=Array.prototype,d=Function.prototype,p=Object.prototype,h=s["__core-js_shared__"],m=(l=/[^.]+$/.exec(h&&h.keys&&h.keys.IE_PROTO||""))?"Symbol(src)_1."+l:"",y=d.toString,g=p.hasOwnProperty,b=p.toString,v=RegExp("^"+y.call(g).replace(/[\\^$.*+?()[\]{}|]/g,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$"),C=f.splice,_=N(s,"Map"),w=N(Object,"create");function S(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function j(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function x(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function O(e,t){for(var r,n,a=e.length;a--;)if((r=e[a][0])===(n=t)||r!=r&&n!=n)return a;return -1}function k(e){return !(!T(e)||(t=e,m&&m in t))&&(function(e){var t=T(e)?b.call(e):"";return t==a||t==o}(e)||function(e){var t=!1;if(null!=e&&"function"!=typeof e.toString)try{t=!!(e+"");}catch(e){}return t}(e)?v:i).test(function(e){if(null!=e){try{return y.call(e)}catch(e){}try{return e+""}catch(e){}}return ""}(e));var t;}function E(e,t){var r,n,a=e.__data__;return ("string"==(n=typeof(r=t))||"number"==n||"symbol"==n||"boolean"==n?"__proto__"!==r:null===r)?a["string"==typeof t?"string":"hash"]:a.map}function N(e,t){var r=function(e,t){return null==e?void 0:e[t]}(e,t);return k(r)?r:void 0}function I(e,t){if("function"!=typeof e||t&&"function"!=typeof t)throw new TypeError(r);var n=function(){var r=arguments,a=t?t.apply(this,r):r[0],o=n.cache;if(o.has(a))return o.get(a);var i=e.apply(this,r);return n.cache=o.set(a,i),i};return n.cache=new(I.Cache||x),n}function T(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}S.prototype.clear=function(){this.__data__=w?w(null):{};},S.prototype.delete=function(e){return this.has(e)&&delete this.__data__[e]},S.prototype.get=function(e){var t=this.__data__;if(w){var r=t[e];return r===n?void 0:r}return g.call(t,e)?t[e]:void 0},S.prototype.has=function(e){var t=this.__data__;return w?void 0!==t[e]:g.call(t,e)},S.prototype.set=function(e,t){return this.__data__[e]=w&&void 0===t?n:t,this},j.prototype.clear=function(){this.__data__=[];},j.prototype.delete=function(e){var t=this.__data__,r=O(t,e);return !(r<0)&&(r==t.length-1?t.pop():C.call(t,r,1),!0)},j.prototype.get=function(e){var t=this.__data__,r=O(t,e);return r<0?void 0:t[r][1]},j.prototype.has=function(e){return O(this.__data__,e)>-1},j.prototype.set=function(e,t){var r=this.__data__,n=O(r,e);return n<0?r.push([e,t]):r[n][1]=t,this},x.prototype.clear=function(){this.__data__={hash:new S,map:new(_||j),string:new S};},x.prototype.delete=function(e){return E(this,e).delete(e)},x.prototype.get=function(e){return E(this,e).get(e)},x.prototype.has=function(e){return E(this,e).has(e)},x.prototype.set=function(e,t){return E(this,e).set(e,t),this},I.Cache=x,e.exports=I;}).call(this,r(3));},function(e,t,r){(function(t){var r="Expected a function",n=NaN,a="[object Symbol]",o=/^\s+|\s+$/g,i=/^[-+]0x[0-9a-f]+$/i,u=/^0b[01]+$/i,c=/^0o[0-7]+$/i,s=parseInt,l="object"==typeof t&&t&&t.Object===Object&&t,f="object"==typeof self&&self&&self.Object===Object&&self,d=l||f||Function("return this")(),p=Object.prototype.toString,h=Math.max,m=Math.min,y=function(){return d.Date.now()};function g(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}function b(e){if("number"==typeof e)return e;if(function(e){return "symbol"==typeof e||function(e){return !!e&&"object"==typeof e}(e)&&p.call(e)==a}(e))return n;if(g(e)){var t="function"==typeof e.valueOf?e.valueOf():e;e=g(t)?t+"":t;}if("string"!=typeof e)return 0===e?e:+e;e=e.replace(o,"");var r=u.test(e);return r||c.test(e)?s(e.slice(2),r?2:8):i.test(e)?n:+e}e.exports=function(e,t,n){var a,o,i,u,c,s,l=0,f=!1,d=!1,p=!0;if("function"!=typeof e)throw new TypeError(r);function v(t){var r=a,n=o;return a=o=void 0,l=t,u=e.apply(n,r)}function C(e){var r=e-s;return void 0===s||r>=t||r<0||d&&e-l>=i}function _(){var e=y();if(C(e))return w(e);c=setTimeout(_,function(e){var r=t-(e-s);return d?m(r,i-(e-l)):r}(e));}function w(e){return c=void 0,p&&a?v(e):(a=o=void 0,u)}function S(){var e=y(),r=C(e);if(a=arguments,o=this,s=e,r){if(void 0===c)return function(e){return l=e,c=setTimeout(_,t),f?v(e):u}(s);if(d)return c=setTimeout(_,t),v(s)}return void 0===c&&(c=setTimeout(_,t)),u}return t=b(t)||0,g(n)&&(f=!!n.leading,i=(d="maxWait"in n)?h(b(n.maxWait)||0,t):i,p="trailing"in n?!!n.trailing:p),S.cancel=function(){void 0!==c&&clearTimeout(c),l=0,a=s=o=c=void 0;},S.flush=function(){return void 0===c?u:w(y())},S};}).call(this,r(3));},function(e,t,r){(function(e,r){var n=200,a="Expected a function",o="__lodash_hash_undefined__",i=1,u=2,c=1/0,s=9007199254740991,l="[object Arguments]",f="[object Array]",d="[object Boolean]",p="[object Date]",h="[object Error]",m="[object Function]",y="[object GeneratorFunction]",g="[object Map]",b="[object Number]",v="[object Object]",C="[object RegExp]",_="[object Set]",w="[object String]",S="[object Symbol]",j="[object ArrayBuffer]",x="[object DataView]",O=/\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,k=/^\w*$/,E=/^\./,N=/[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,I=/\\(\\)?/g,T=/^\[object .+?Constructor\]$/,A=/^(?:0|[1-9]\d*)$/,D={};D["[object Float32Array]"]=D["[object Float64Array]"]=D["[object Int8Array]"]=D["[object Int16Array]"]=D["[object Int32Array]"]=D["[object Uint8Array]"]=D["[object Uint8ClampedArray]"]=D["[object Uint16Array]"]=D["[object Uint32Array]"]=!0,D[l]=D[f]=D[j]=D[d]=D[x]=D[p]=D[h]=D[m]=D[g]=D[b]=D[v]=D[C]=D[_]=D[w]=D["[object WeakMap]"]=!1;var P="object"==typeof e&&e&&e.Object===Object&&e,F="object"==typeof self&&self&&self.Object===Object&&self,R=P||F||Function("return this")(),M=t&&!t.nodeType&&t,z=M&&"object"==typeof r&&r&&!r.nodeType&&r,L=z&&z.exports===M&&P.process,B=function(){try{return L&&L.binding("util")}catch(e){}}(),$=B&&B.isTypedArray;function G(e,t,r,n){var a=-1,o=e?e.length:0;for(n&&o&&(r=e[++a]);++a<o;)r=t(r,e[a],a,e);return r}function K(e,t){for(var r=-1,n=e?e.length:0;++r<n;)if(t(e[r],r,e))return !0;return !1}function U(e,t,r,n,a){return a(e,(function(e,a,o){r=n?(n=!1,e):t(r,e,a,o);})),r}function V(e){var t=!1;if(null!=e&&"function"!=typeof e.toString)try{t=!!(e+"");}catch(e){}return t}function q(e){var t=-1,r=Array(e.size);return e.forEach((function(e,n){r[++t]=[n,e];})),r}function W(e){var t=-1,r=Array(e.size);return e.forEach((function(e){r[++t]=e;})),r}var H,J,Z,Q=Array.prototype,Y=Function.prototype,X=Object.prototype,ee=R["__core-js_shared__"],te=(H=/[^.]+$/.exec(ee&&ee.keys&&ee.keys.IE_PROTO||""))?"Symbol(src)_1."+H:"",re=Y.toString,ne=X.hasOwnProperty,ae=X.toString,oe=RegExp("^"+re.call(ne).replace(/[\\^$.*+?()[\]{}|]/g,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$"),ie=R.Symbol,ue=R.Uint8Array,ce=X.propertyIsEnumerable,se=Q.splice,le=(J=Object.keys,Z=Object,function(e){return J(Z(e))}),fe=Ve(R,"DataView"),de=Ve(R,"Map"),pe=Ve(R,"Promise"),he=Ve(R,"Set"),me=Ve(R,"WeakMap"),ye=Ve(Object,"create"),ge=Xe(fe),be=Xe(de),ve=Xe(pe),Ce=Xe(he),_e=Xe(me),we=ie?ie.prototype:void 0,Se=we?we.valueOf:void 0,je=we?we.toString:void 0;function xe(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function Oe(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function ke(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function Ee(e){var t=-1,r=e?e.length:0;for(this.__data__=new ke;++t<r;)this.add(e[t]);}function Ne(e){this.__data__=new Oe(e);}function Ie(e,t){var r=nt(e)||rt(e)?function(e,t){for(var r=-1,n=Array(e);++r<e;)n[r]=t(r);return n}(e.length,String):[],n=r.length,a=!!n;for(var o in e)!t&&!ne.call(e,o)||a&&("length"==o||We(o,n))||r.push(o);return r}function Te(e,t){for(var r=e.length;r--;)if(tt(e[r][0],t))return r;return -1}xe.prototype.clear=function(){this.__data__=ye?ye(null):{};},xe.prototype.delete=function(e){return this.has(e)&&delete this.__data__[e]},xe.prototype.get=function(e){var t=this.__data__;if(ye){var r=t[e];return r===o?void 0:r}return ne.call(t,e)?t[e]:void 0},xe.prototype.has=function(e){var t=this.__data__;return ye?void 0!==t[e]:ne.call(t,e)},xe.prototype.set=function(e,t){return this.__data__[e]=ye&&void 0===t?o:t,this},Oe.prototype.clear=function(){this.__data__=[];},Oe.prototype.delete=function(e){var t=this.__data__,r=Te(t,e);return !(r<0)&&(r==t.length-1?t.pop():se.call(t,r,1),!0)},Oe.prototype.get=function(e){var t=this.__data__,r=Te(t,e);return r<0?void 0:t[r][1]},Oe.prototype.has=function(e){return Te(this.__data__,e)>-1},Oe.prototype.set=function(e,t){var r=this.__data__,n=Te(r,e);return n<0?r.push([e,t]):r[n][1]=t,this},ke.prototype.clear=function(){this.__data__={hash:new xe,map:new(de||Oe),string:new xe};},ke.prototype.delete=function(e){return Ue(this,e).delete(e)},ke.prototype.get=function(e){return Ue(this,e).get(e)},ke.prototype.has=function(e){return Ue(this,e).has(e)},ke.prototype.set=function(e,t){return Ue(this,e).set(e,t),this},Ee.prototype.add=Ee.prototype.push=function(e){return this.__data__.set(e,o),this},Ee.prototype.has=function(e){return this.__data__.has(e)},Ne.prototype.clear=function(){this.__data__=new Oe;},Ne.prototype.delete=function(e){return this.__data__.delete(e)},Ne.prototype.get=function(e){return this.__data__.get(e)},Ne.prototype.has=function(e){return this.__data__.has(e)},Ne.prototype.set=function(e,t){var r=this.__data__;if(r instanceof Oe){var a=r.__data__;if(!de||a.length<n-1)return a.push([e,t]),this;r=this.__data__=new ke(a);}return r.set(e,t),this};var Ae,Pe=(Ae=function(e,t){return e&&Fe(e,t,ft)},function(e,t){if(null==e)return e;if(!at(e))return Ae(e,t);for(var r=e.length,n=-1,a=Object(e);(++n<r)&&!1!==t(a[n],n,a););return e}),Fe=function(e){return function(t,r,n){for(var a=-1,o=Object(t),i=n(t),u=i.length;u--;){var c=i[e?u:++a];if(!1===r(o[c],c,o))break}return t}}();function Re(e,t){for(var r=0,n=(t=He(t,e)?[t]:Ge(t)).length;null!=e&&r<n;)e=e[Ye(t[r++])];return r&&r==n?e:void 0}function Me(e,t){return null!=e&&t in Object(e)}function ze(e,t,r,n,a){return e===t||(null==e||null==t||!ut(e)&&!ct(t)?e!=e&&t!=t:function(e,t,r,n,a,o){var c=nt(e),s=nt(t),m=f,y=f;c||(m=(m=qe(e))==l?v:m);s||(y=(y=qe(t))==l?v:y);var O=m==v&&!V(e),k=y==v&&!V(t),E=m==y;if(E&&!O)return o||(o=new Ne),c||lt(e)?Ke(e,t,r,n,a,o):function(e,t,r,n,a,o,c){switch(r){case x:if(e.byteLength!=t.byteLength||e.byteOffset!=t.byteOffset)return !1;e=e.buffer,t=t.buffer;case j:return !(e.byteLength!=t.byteLength||!n(new ue(e),new ue(t)));case d:case p:case b:return tt(+e,+t);case h:return e.name==t.name&&e.message==t.message;case C:case w:return e==t+"";case g:var s=q;case _:var l=o&u;if(s||(s=W),e.size!=t.size&&!l)return !1;var f=c.get(e);if(f)return f==t;o|=i,c.set(e,t);var m=Ke(s(e),s(t),n,a,o,c);return c.delete(e),m;case S:if(Se)return Se.call(e)==Se.call(t)}return !1}(e,t,m,r,n,a,o);if(!(a&u)){var N=O&&ne.call(e,"__wrapped__"),I=k&&ne.call(t,"__wrapped__");if(N||I){var T=N?e.value():e,A=I?t.value():t;return o||(o=new Ne),r(T,A,n,a,o)}}if(!E)return !1;return o||(o=new Ne),function(e,t,r,n,a,o){var i=a&u,c=ft(e),s=c.length,l=ft(t).length;if(s!=l&&!i)return !1;var f=s;for(;f--;){var d=c[f];if(!(i?d in t:ne.call(t,d)))return !1}var p=o.get(e);if(p&&o.get(t))return p==t;var h=!0;o.set(e,t),o.set(t,e);var m=i;for(;++f<s;){d=c[f];var y=e[d],g=t[d];if(n)var b=i?n(g,y,d,t,e,o):n(y,g,d,e,t,o);if(!(void 0===b?y===g||r(y,g,n,a,o):b)){h=!1;break}m||(m="constructor"==d);}if(h&&!m){var v=e.constructor,C=t.constructor;v!=C&&"constructor"in e&&"constructor"in t&&!("function"==typeof v&&v instanceof v&&"function"==typeof C&&C instanceof C)&&(h=!1);}return o.delete(e),o.delete(t),h}(e,t,r,n,a,o)}(e,t,ze,r,n,a))}function Le(e){return !(!ut(e)||function(e){return !!te&&te in e}(e))&&(ot(e)||V(e)?oe:T).test(Xe(e))}function Be(e){return "function"==typeof e?e:null==e?dt:"object"==typeof e?nt(e)?function(e,t){if(He(e)&&Je(t))return Ze(Ye(e),t);return function(r){var n=function(e,t,r){var n=null==e?void 0:Re(e,t);return void 0===n?r:n}(r,e);return void 0===n&&n===t?function(e,t){return null!=e&&function(e,t,r){t=He(t,e)?[t]:Ge(t);var n,a=-1,o=t.length;for(;++a<o;){var i=Ye(t[a]);if(!(n=null!=e&&r(e,i)))break;e=e[i];}if(n)return n;return !!(o=e?e.length:0)&&it(o)&&We(i,o)&&(nt(e)||rt(e))}(e,t,Me)}(r,e):ze(t,n,void 0,i|u)}}(e[0],e[1]):function(e){var t=function(e){var t=ft(e),r=t.length;for(;r--;){var n=t[r],a=e[n];t[r]=[n,a,Je(a)];}return t}(e);if(1==t.length&&t[0][2])return Ze(t[0][0],t[0][1]);return function(r){return r===e||function(e,t,r,n){var a=r.length,o=a,c=!n;if(null==e)return !o;for(e=Object(e);a--;){var s=r[a];if(c&&s[2]?s[1]!==e[s[0]]:!(s[0]in e))return !1}for(;++a<o;){var l=(s=r[a])[0],f=e[l],d=s[1];if(c&&s[2]){if(void 0===f&&!(l in e))return !1}else{var p=new Ne;if(n)var h=n(f,d,l,e,t,p);if(!(void 0===h?ze(d,f,n,i|u,p):h))return !1}}return !0}(r,e,t)}}(e):He(t=e)?(r=Ye(t),function(e){return null==e?void 0:e[r]}):function(e){return function(t){return Re(t,e)}}(t);var t,r;}function $e(e){if(r=(t=e)&&t.constructor,n="function"==typeof r&&r.prototype||X,t!==n)return le(e);var t,r,n,a=[];for(var o in Object(e))ne.call(e,o)&&"constructor"!=o&&a.push(o);return a}function Ge(e){return nt(e)?e:Qe(e)}function Ke(e,t,r,n,a,o){var c=a&u,s=e.length,l=t.length;if(s!=l&&!(c&&l>s))return !1;var f=o.get(e);if(f&&o.get(t))return f==t;var d=-1,p=!0,h=a&i?new Ee:void 0;for(o.set(e,t),o.set(t,e);++d<s;){var m=e[d],y=t[d];if(n)var g=c?n(y,m,d,t,e,o):n(m,y,d,e,t,o);if(void 0!==g){if(g)continue;p=!1;break}if(h){if(!K(t,(function(e,t){if(!h.has(t)&&(m===e||r(m,e,n,a,o)))return h.add(t)}))){p=!1;break}}else if(m!==y&&!r(m,y,n,a,o)){p=!1;break}}return o.delete(e),o.delete(t),p}function Ue(e,t){var r,n,a=e.__data__;return ("string"==(n=typeof(r=t))||"number"==n||"symbol"==n||"boolean"==n?"__proto__"!==r:null===r)?a["string"==typeof t?"string":"hash"]:a.map}function Ve(e,t){var r=function(e,t){return null==e?void 0:e[t]}(e,t);return Le(r)?r:void 0}var qe=function(e){return ae.call(e)};function We(e,t){return !!(t=null==t?s:t)&&("number"==typeof e||A.test(e))&&e>-1&&e%1==0&&e<t}function He(e,t){if(nt(e))return !1;var r=typeof e;return !("number"!=r&&"symbol"!=r&&"boolean"!=r&&null!=e&&!st(e))||(k.test(e)||!O.test(e)||null!=t&&e in Object(t))}function Je(e){return e==e&&!ut(e)}function Ze(e,t){return function(r){return null!=r&&(r[e]===t&&(void 0!==t||e in Object(r)))}}(fe&&qe(new fe(new ArrayBuffer(1)))!=x||de&&qe(new de)!=g||pe&&"[object Promise]"!=qe(pe.resolve())||he&&qe(new he)!=_||me&&"[object WeakMap]"!=qe(new me))&&(qe=function(e){var t=ae.call(e),r=t==v?e.constructor:void 0,n=r?Xe(r):void 0;if(n)switch(n){case ge:return x;case be:return g;case ve:return "[object Promise]";case Ce:return _;case _e:return "[object WeakMap]"}return t});var Qe=et((function(e){var t;e=null==(t=e)?"":function(e){if("string"==typeof e)return e;if(st(e))return je?je.call(e):"";var t=e+"";return "0"==t&&1/e==-c?"-0":t}(t);var r=[];return E.test(e)&&r.push(""),e.replace(N,(function(e,t,n,a){r.push(n?a.replace(I,"$1"):t||e);})),r}));function Ye(e){if("string"==typeof e||st(e))return e;var t=e+"";return "0"==t&&1/e==-c?"-0":t}function Xe(e){if(null!=e){try{return re.call(e)}catch(e){}try{return e+""}catch(e){}}return ""}function et(e,t){if("function"!=typeof e||t&&"function"!=typeof t)throw new TypeError(a);var r=function(){var n=arguments,a=t?t.apply(this,n):n[0],o=r.cache;if(o.has(a))return o.get(a);var i=e.apply(this,n);return r.cache=o.set(a,i),i};return r.cache=new(et.Cache||ke),r}function tt(e,t){return e===t||e!=e&&t!=t}function rt(e){return function(e){return ct(e)&&at(e)}(e)&&ne.call(e,"callee")&&(!ce.call(e,"callee")||ae.call(e)==l)}et.Cache=ke;var nt=Array.isArray;function at(e){return null!=e&&it(e.length)&&!ot(e)}function ot(e){var t=ut(e)?ae.call(e):"";return t==m||t==y}function it(e){return "number"==typeof e&&e>-1&&e%1==0&&e<=s}function ut(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}function ct(e){return !!e&&"object"==typeof e}function st(e){return "symbol"==typeof e||ct(e)&&ae.call(e)==S}var lt=$?function(e){return function(t){return e(t)}}($):function(e){return ct(e)&&it(e.length)&&!!D[ae.call(e)]};function ft(e){return at(e)?Ie(e):$e(e)}function dt(e){return e}r.exports=function(e,t,r){var n=nt(e)?G:U,a=arguments.length<3;return n(e,Be(t),r,a,Pe)};}).call(this,r(3),r(7)(e));},function(e,t){e.exports=function(e){return e.webpackPolyfill||(e.deprecate=function(){},e.paths=[],e.children||(e.children=[]),Object.defineProperty(e,"loaded",{enumerable:!0,get:function(){return e.l}}),Object.defineProperty(e,"id",{enumerable:!0,get:function(){return e.i}}),e.webpackPolyfill=1),e};},function(e,t,r){},function(e,t,r){function n(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function a(e){if(Symbol.iterator in Object(e)||"[object Arguments]"===Object.prototype.toString.call(e))return Array.from(e)}function o(e){return function(e){if(Array.isArray(e)){for(var t=0,r=new Array(e.length);t<e.length;t++)r[t]=e[t];return r}}(e)||a(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}()}function i(e){return function(e){if(Array.isArray(e))return e}(e)||a(e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance")}()}function u(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n);}}function c(e){return (c="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function s(e){return (s="function"==typeof Symbol&&"symbol"===c(Symbol.iterator)?function(e){return c(e)}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":c(e)})(e)}function l(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function f(e){return (f=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function d(e,t){return (d=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}r.r(t);var p,h=r(0),m=r.n(h),y=r(5),g=r.n(y),b=r(4),v=r.n(b),C=r(6),_=r.n(C),w=r(2),S=r.n(w),j=r(1),x=r.n(j);var O={};function k(e,t,r){t in O||(O[t]=[]);var n=r||0;O[t][n]=e;}var E={allCountries:(p=[]).concat.apply(p,o([["Afghanistan",["asia"],"af","93"],["Albania",["europe"],"al","355"],["Algeria",["africa","north-africa"],"dz","213"],["American Samoa",["oceania"],"as","1684"],["Andorra",["europe"],"ad","376"],["Angola",["africa"],"ao","244"],["Anguilla",["america","carribean"],"ai","1264"],["Antigua and Barbuda",["america","carribean"],"ag","1268"],["Argentina",["america","south-america"],"ar","54","+.. (..) ........"],["Armenia",["asia","ex-ussr"],"am","374"],["Aruba",["america","carribean"],"aw","297"],["Australia",["oceania"],"au","61","+.. ... ... ..."],["Austria",["europe","european-union"],"at","43"],["Azerbaijan",["asia","ex-ussr"],"az","994"],["Bahamas",["america","carribean"],"bs","1242"],["Bahrain",["middle-east"],"bh","973"],["Bangladesh",["asia"],"bd","880"],["Barbados",["america","carribean"],"bb","1246"],["Belarus",["europe","ex-ussr"],"by","375","+... (..) ... .. .."],["Belgium",["europe","european-union"],"be","32","+.. ... .. .. .."],["Belize",["america","central-america"],"bz","501"],["Benin",["africa"],"bj","229"],["Bermuda",["america","north-america"],"bm","1441"],["Bhutan",["asia"],"bt","975"],["Bolivia",["america","south-america"],"bo","591"],["Bosnia and Herzegovina",["europe"],"ba","387"],["Botswana",["africa"],"bw","267"],["Brazil",["america","south-america"],"br","55","+.. (..) ........."],["British Indian Ocean Territory",["asia"],"io","246"],["British Virgin Islands",["america","carribean"],"vg","1284"],["Brunei",["asia"],"bn","673"],["Bulgaria",["europe","european-union"],"bg","359"],["Burkina Faso",["africa"],"bf","226"],["Burundi",["africa"],"bi","257"],["Cambodia",["asia"],"kh","855"],["Cameroon",["africa"],"cm","237"],["Canada",["america","north-america"],"ca","1","+. (...) ...-....",1,["204","226","236","249","250","289","306","343","365","387","403","416","418","431","437","438","450","506","514","519","548","579","581","587","604","613","639","647","672","705","709","742","778","780","782","807","819","825","867","873","902","905"]],["Cape Verde",["africa"],"cv","238"],["Caribbean Netherlands",["america","carribean"],"bq","599","",1],["Cayman Islands",["america","carribean"],"ky","1345"],["Central African Republic",["africa"],"cf","236"],["Chad",["africa"],"td","235"],["Chile",["america","south-america"],"cl","56"],["China",["asia"],"cn","86","+.. ..-........."],["Colombia",["america","south-america"],"co","57"],["Comoros",["africa"],"km","269"],["Congo",["africa"],"cd","243"],["Congo",["africa"],"cg","242"],["Cook Islands",["oceania"],"ck","682"],["Costa Rica",["america","central-america"],"cr","506","+... ....-...."],["Côte d’Ivoire",["africa"],"ci","225"],["Croatia",["europe","european-union"],"hr","385"],["Cuba",["america","carribean"],"cu","53"],["Curaçao",["america","carribean"],"cw","599","",0],["Cyprus",["europe","european-union"],"cy","357","+... .. ......"],["Czech Republic",["europe","european-union"],"cz","420"],["Denmark",["europe","european-union"],"dk","45","+.. .. .. .. .."],["Djibouti",["africa"],"dj","253"],["Dominica",["america","carribean"],"dm","1767"],["Dominican Republic",["america","carribean"],"do","1","",2,["809","829","849"]],["Ecuador",["america","south-america"],"ec","593"],["Egypt",["africa","north-africa"],"eg","20"],["El Salvador",["america","central-america"],"sv","503","+... ....-...."],["Equatorial Guinea",["africa"],"gq","240"],["Eritrea",["africa"],"er","291"],["Estonia",["europe","european-union","ex-ussr"],"ee","372","+... .... ......"],["Ethiopia",["africa"],"et","251"],["Falkland Islands",["america","south-america"],"fk","500"],["Faroe Islands",["europe"],"fo","298"],["Fiji",["oceania"],"fj","679"],["Finland",["europe","european-union"],"fi","358","+... .. ... .. .."],["France",["europe","european-union"],"fr","33","+.. . .. .. .. .."],["French Guiana",["america","south-america"],"gf","594"],["French Polynesia",["oceania"],"pf","689"],["Gabon",["africa"],"ga","241"],["Gambia",["africa"],"gm","220"],["Georgia",["asia","ex-ussr"],"ge","995"],["Germany",["europe","european-union"],"de","49","+.. .... ........"],["Ghana",["africa"],"gh","233"],["Gibraltar",["europe"],"gi","350"],["Greece",["europe","european-union"],"gr","30"],["Greenland",["america"],"gl","299"],["Grenada",["america","carribean"],"gd","1473"],["Guadeloupe",["america","carribean"],"gp","590","",0],["Guam",["oceania"],"gu","1671"],["Guatemala",["america","central-america"],"gt","502","+... ....-...."],["Guinea",["africa"],"gn","224"],["Guinea-Bissau",["africa"],"gw","245"],["Guyana",["america","south-america"],"gy","592"],["Haiti",["america","carribean"],"ht","509","+... ....-...."],["Honduras",["america","central-america"],"hn","504"],["Hong Kong",["asia"],"hk","852","+... .... ...."],["Hungary",["europe","european-union"],"hu","36"],["Iceland",["europe"],"is","354","+... ... ...."],["India",["asia"],"in","91","+.. .....-....."],["Indonesia",["asia"],"id","62"],["Iran",["middle-east"],"ir","98"],["Iraq",["middle-east"],"iq","964"],["Ireland",["europe","european-union"],"ie","353","+... .. ......."],["Israel",["middle-east"],"il","972","+... ... ... ...."],["Italy",["europe","european-union"],"it","39","+.. ... .......",0],["Jamaica",["america","carribean"],"jm","1876"],["Japan",["asia"],"jp","81","+.. .. .... ...."],["Jordan",["middle-east"],"jo","962"],["Kazakhstan",["asia","ex-ussr"],"kz","7","+. ... ...-..-..",1,["310","311","312","313","315","318","321","324","325","326","327","336","7172","73622"]],["Kenya",["africa"],"ke","254"],["Kiribati",["oceania"],"ki","686"],["Kuwait",["middle-east"],"kw","965"],["Kyrgyzstan",["asia","ex-ussr"],"kg","996"],["Laos",["asia"],"la","856"],["Latvia",["europe","european-union","ex-ussr"],"lv","371"],["Lebanon",["middle-east"],"lb","961"],["Lesotho",["africa"],"ls","266"],["Liberia",["africa"],"lr","231"],["Libya",["africa","north-africa"],"ly","218"],["Liechtenstein",["europe"],"li","423"],["Lithuania",["europe","european-union","ex-ussr"],"lt","370"],["Luxembourg",["europe","european-union"],"lu","352"],["Macau",["asia"],"mo","853"],["Macedonia",["europe"],"mk","389"],["Madagascar",["africa"],"mg","261"],["Malawi",["africa"],"mw","265"],["Malaysia",["asia"],"my","60","+.. ..-....-...."],["Maldives",["asia"],"mv","960"],["Mali",["africa"],"ml","223"],["Malta",["europe","european-union"],"mt","356"],["Marshall Islands",["oceania"],"mh","692"],["Martinique",["america","carribean"],"mq","596"],["Mauritania",["africa"],"mr","222"],["Mauritius",["africa"],"mu","230"],["Mexico",["america","central-america"],"mx","52"],["Micronesia",["oceania"],"fm","691"],["Moldova",["europe"],"md","373","+... (..) ..-..-.."],["Monaco",["europe"],"mc","377"],["Mongolia",["asia"],"mn","976"],["Montenegro",["europe"],"me","382"],["Montserrat",["america","carribean"],"ms","1664"],["Morocco",["africa","north-africa"],"ma","212"],["Mozambique",["africa"],"mz","258"],["Myanmar",["asia"],"mm","95"],["Namibia",["africa"],"na","264"],["Nauru",["africa"],"nr","674"],["Nepal",["asia"],"np","977"],["Netherlands",["europe","european-union"],"nl","31","+.. .. ........"],["New Caledonia",["oceania"],"nc","687"],["New Zealand",["oceania"],"nz","64","+.. ...-...-...."],["Nicaragua",["america","central-america"],"ni","505"],["Niger",["africa"],"ne","227"],["Nigeria",["africa"],"ng","234"],["Niue",["asia"],"nu","683"],["Norfolk Island",["oceania"],"nf","672"],["North Korea",["asia"],"kp","850"],["Northern Mariana Islands",["oceania"],"mp","1670"],["Norway",["europe"],"no","47","+.. ... .. ..."],["Oman",["middle-east"],"om","968"],["Pakistan",["asia"],"pk","92","+.. ...-......."],["Palau",["oceania"],"pw","680"],["Palestine",["middle-east"],"ps","970"],["Panama",["america","central-america"],"pa","507"],["Papua New Guinea",["oceania"],"pg","675"],["Paraguay",["america","south-america"],"py","595"],["Peru",["america","south-america"],"pe","51"],["Philippines",["asia"],"ph","63","+.. .... ......."],["Poland",["europe","european-union"],"pl","48","+.. ...-...-..."],["Portugal",["europe","european-union"],"pt","351"],["Puerto Rico",["america","carribean"],"pr","1","",3,["787","939"]],["Qatar",["middle-east"],"qa","974"],["Réunion",["africa"],"re","262"],["Romania",["europe","european-union"],"ro","40"],["Russia",["europe","asia","ex-ussr"],"ru","7","+. (...) ...-..-..",0],["Rwanda",["africa"],"rw","250"],["Saint Barthélemy",["america","carribean"],"bl","590","",1],["Saint Helena",["africa"],"sh","290"],["Saint Kitts and Nevis",["america","carribean"],"kn","1869"],["Saint Lucia",["america","carribean"],"lc","1758"],["Saint Martin",["america","carribean"],"mf","590","",2],["Saint Pierre and Miquelon",["america","north-america"],"pm","508"],["Saint Vincent and the Grenadines",["america","carribean"],"vc","1784"],["Samoa",["oceania"],"ws","685"],["San Marino",["europe"],"sm","378"],["São Tomé and Príncipe",["africa"],"st","239"],["Saudi Arabia",["middle-east"],"sa","966"],["Senegal",["africa"],"sn","221"],["Serbia",["europe"],"rs","381"],["Seychelles",["africa"],"sc","248"],["Sierra Leone",["africa"],"sl","232"],["Singapore",["asia"],"sg","65","+.. ....-...."],["Sint Maarten",["america","carribean"],"sx","1721"],["Slovakia",["europe","european-union"],"sk","421"],["Slovenia",["europe","european-union"],"si","386"],["Solomon Islands",["oceania"],"sb","677"],["Somalia",["africa"],"so","252"],["South Africa",["africa"],"za","27"],["South Korea",["asia"],"kr","82","+.. ... .... ...."],["South Sudan",["africa","north-africa"],"ss","211"],["Spain",["europe","european-union"],"es","34","+.. ... ... ..."],["Sri Lanka",["asia"],"lk","94"],["Sudan",["africa"],"sd","249"],["Suriname",["america","south-america"],"sr","597"],["Swaziland",["africa"],"sz","268"],["Sweden",["europe","european-union"],"se","46","+.. (...) ...-..."],["Switzerland",["europe"],"ch","41","+.. .. ... .. .."],["Syria",["middle-east"],"sy","963"],["Taiwan",["asia"],"tw","886"],["Tajikistan",["asia","ex-ussr"],"tj","992"],["Tanzania",["africa"],"tz","255"],["Thailand",["asia"],"th","66"],["Timor-Leste",["asia"],"tl","670"],["Togo",["africa"],"tg","228"],["Tokelau",["oceania"],"tk","690"],["Tonga",["oceania"],"to","676"],["Trinidad and Tobago",["america","carribean"],"tt","1868"],["Tunisia",["africa","north-africa"],"tn","216"],["Turkey",["europe"],"tr","90","+.. ... ... .. .."],["Turkmenistan",["asia","ex-ussr"],"tm","993"],["Turks and Caicos Islands",["america","carribean"],"tc","1649"],["Tuvalu",["asia"],"tv","688"],["U.S. Virgin Islands",["america","carribean"],"vi","1340"],["Uganda",["africa"],"ug","256"],["Ukraine",["europe","ex-ussr"],"ua","380","+... (..) ... .. .."],["United Arab Emirates",["middle-east"],"ae","971"],["United Kingdom",["europe","european-union"],"gb","44","+.. .... ......"],["United States",["america","north-america"],"us","1","+. (...) ...-....",0,["907","205","251","256","334","479","501","870","480","520","602","623","928","209","213","310","323","408","415","510","530","559","562","619","626","650","661","707","714","760","805","818","831","858","909","916","925","949","951","303","719","970","203","860","202","302","239","305","321","352","386","407","561","727","772","813","850","863","904","941","954","229","404","478","706","770","912","808","319","515","563","641","712","208","217","309","312","618","630","708","773","815","847","219","260","317","574","765","812","316","620","785","913","270","502","606","859","225","318","337","504","985","413","508","617","781","978","301","410","207","231","248","269","313","517","586","616","734","810","906","989","218","320","507","612","651","763","952","314","417","573","636","660","816","228","601","662","406","252","336","704","828","910","919","701","308","402","603","201","609","732","856","908","973","505","575","702","775","212","315","516","518","585","607","631","716","718","845","914","216","330","419","440","513","614","740","937","405","580","918","503","541","215","412","570","610","717","724","814","401","803","843","864","605","423","615","731","865","901","931","210","214","254","281","325","361","409","432","512","713","806","817","830","903","915","936","940","956","972","979","435","801","276","434","540","703","757","804","802","206","253","360","425","509","262","414","608","715","920","304","307"]],["Uruguay",["america","south-america"],"uy","598"],["Uzbekistan",["asia","ex-ussr"],"uz","998"],["Vanuatu",["oceania"],"vu","678"],["Vatican City",["europe"],"va","39","+.. .. .... ....",1],["Venezuela",["america","south-america"],"ve","58"],["Vietnam",["asia"],"vn","84"],["Wallis and Futuna",["oceania"],"wf","681"],["Yemen",["middle-east"],"ye","967"],["Zambia",["africa"],"zm","260"],["Zimbabwe",["africa"],"zw","263"]].map((function(e){var t={name:e[0],regions:e[1],iso2:e[2],dialCode:e[3],format:e[4]||void 0,priority:e[5]||0,hasAreaCodes:!!e[6]},r=[];return e[6]&&e[6].map((function(a){var o=function(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{},a=Object.keys(r);"function"==typeof Object.getOwnPropertySymbols&&(a=a.concat(Object.getOwnPropertySymbols(r).filter((function(e){return Object.getOwnPropertyDescriptor(r,e).enumerable})))),a.forEach((function(t){n(e,t,r[t]);}));}return e}({},t);o.regions=e[1],o.dialCode=e[3]+a,o.isAreaCode=!0,r.push(o),k(e[2],o.dialCode);})),k(t.iso2,t.dialCode,t.hasAreaCodes),r.length>0?(t.mainCode=!0,[t].concat(r)):[t]})))),allCountryCodes:O},N=(r(8),function(e){function t(e){var r;!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),(r=function(e,t){return !t||"object"!==s(t)&&"function"!=typeof t?l(e):t}(this,f(t).call(this,e))).deleteAreaCodes=function(e){return e.filter((function(e){return !0!==e.isAreaCode}))},r.filterRegions=function(e,t){if("string"==typeof e){var r=e;return t.filter((function(e){return e.regions.some((function(e){return e===r}))}))}return t.filter((function(t){return e.map((function(e){return t.regions.some((function(t){return t===e}))})).some((function(e){return e}))}))},r.getFilteredCountryList=function(e,t,n){return 0===e.length?r.extendCountries(t):(a=n?e.map((function(e){var r=t.find((function(t){return t.iso2===e}));if(r)return r})).filter((function(e){return e})):t.filter((function(t){return e.some((function(e){return e===t.iso2}))})),r.extendCountries(a));var a;},r.extendCountries=function(e){for(var t=r.props,n=t.localization,a=t.masks,o=t.areaCodes,i=0;i<e.length;i++)void 0!==n[e[i].iso2]?e[i].localName=n[e[i].iso2]:void 0!==n[e[i].name]&&(e[i].localName=n[e[i].name]),void 0!==a[e[i].iso2]?e[i].format=a[e[i].iso2]:void 0!==a[e[i].name]&&(e[i].format=a[e[i].name]);if(Object.keys(o).length>0){var u=function(){for(var t=[],n=null,a=0;a<e.length;a++)if(t.push(e[a]),void 0!==o[e[a].iso2]){if(n||(n=e[a]),e[a+1]&&e[a+1].iso2===n.iso2)continue;r.getCustomAreas(n,o[e[a].iso2]).forEach((function(e){t.push(e);})),n=null;}else if(void 0!==o[e[a].name]){if(n||(n=e[a]),e[a+1]&&e[a+1].iso2===n.iso2)continue;r.getCustomAreas(n,o[e[a].name]).forEach((function(e){t.push(e);})),n=null;}return {v:t}}();if("object"==typeof u)return u.v}return e},r.getCustomAreas=function(e,t){for(var r=[],n=0;n<t.length;n++){var a=JSON.parse(JSON.stringify(e));a.dialCode+=t[n],r.push(a);}return r},r.excludeCountries=function(e,t){return 0===t.length?e:e.filter((function(e){return !t.includes(e.iso2)}))},r.getProbableCandidate=v()((function(e){return e&&0!==e.length?r.state.onlyCountries.filter((function(t){return S()(t.name.toLowerCase(),e.toLowerCase())}),l(l(r)))[0]:null})),r.guessSelectedCountry=v()((function(e,t,n){var a=t.find((function(e){return e.iso2==n}))||{};if(""===e.trim())return a;var o=t.reduce((function(t,r){if(S()(e,r.dialCode)){if(r.dialCode.length>t.dialCode.length)return r;if(r.dialCode.length===t.dialCode.length&&r.priority<t.priority)return r}return t}),{dialCode:"",priority:10001},l(l(r)));return o.name?o:a})),r.updateDefaultCountry=function(e){var t=r.state.onlyCountries.find((function(t){return t.iso2==e}));r.setState({defaultCountry:e,selectedCountry:t,formattedNumber:r.props.disableCountryCode?"":"+"+t.dialCode});},r.scrollTo=function(e,t){if(e){var n=r.dropdownRef;if(n&&document.body){var a=n.offsetHeight,o=n.getBoundingClientRect().top+document.body.scrollTop,i=o+a,u=e,c=u.getBoundingClientRect(),s=u.offsetHeight,l=c.top+document.body.scrollTop,f=l+s,d=l-o+n.scrollTop,p=a/2-s/2;if(r.props.enableSearchField?l<o+32:l<o)t&&(d-=p),n.scrollTop=d;else if(f>i){t&&(d+=p);var h=a-s;n.scrollTop=d-h;}}}},r.formatNumber=function(e,t){var n,a=r.props,o=a.disableCountryCode,u=a.enableLongNumbers,c=a.autoFormat;if(o&&t?((n=t.split(" ")).shift(),n=n.join(" ")):n=t,!e||0===e.length)return o?"":"+";if(e&&e.length<2||!n||!c)return o?e:"+".concat(e);var s,l=_()(n,(function(e,t){if(0===e.remainingText.length)return e;if("."!==t)return {formattedText:e.formattedText+t,remainingText:e.remainingText};var r=i(e.remainingText),n=r[0],a=r.slice(1);return {formattedText:e.formattedText+n,remainingText:a}}),{formattedText:"",remainingText:e.split("")});return (s=u?l.formattedText+l.remainingText.join(""):l.formattedText).includes("(")&&!s.includes(")")&&(s+=")"),s},r.cursorToEnd=function(){var e=r.numberInputRef;e.focus();var t=e.value.length;e.setSelectionRange(t,t);},r.getElement=function(e){return r["flag_no_".concat(e)]},r.getCountryData=function(){return r.state.selectedCountry?{name:r.state.selectedCountry.name||"",dialCode:r.state.selectedCountry.dialCode||"",countryCode:r.state.selectedCountry.iso2||""}:{}},r.handleFlagDropdownClick=function(){if(r.state.showDropdown||!r.props.disabled)if(r.state.preferredCountries.includes(r.state.selectedCountry))r.setState({showDropdown:!r.state.showDropdown,highlightCountryIndex:r.state.preferredCountries.findIndex((function(e){return e==r.state.selectedCountry}))},(function(){r.state.showDropdown&&r.scrollTo(r.getElement(r.state.highlightCountryIndex));}));else{var e=r.props.disableAreaCodes?r.deleteAreaCodes(r.state.onlyCountries):r.state.onlyCountries;r.setState({showDropdown:!r.state.showDropdown,highlightCountryIndex:r.props.disableAreaCodes?e.findIndex((function(e){return e.iso2==r.state.selectedCountry.iso2})):e.findIndex((function(e){return e==r.state.selectedCountry}))},(function(){r.state.showDropdown&&r.scrollTo(r.getElement(r.state.highlightCountryIndex+r.state.preferredCountries.length));}));}},r.handleInput=function(e){var t=r.props.disableCountryCode?"":"+",n=r.state.selectedCountry,a=r.state.freezeSelection;if(!r.props.countryCodeEditable){var o="+"+(n.hasAreaCodes?r.state.onlyCountries.find((function(e){return e.iso2===n.iso2&&e.mainCode})).dialCode:n.dialCode);if(e.target.value.length<o.length)return}if(!(e.target.value.replace(/\D/g,"").length>15)&&e.target.value!==r.state.formattedNumber){if(e.preventDefault?e.preventDefault():e.returnValue=!1,e.target.value.length>0){var i=e.target.value.replace(/\D/g,"");(!r.state.freezeSelection||r.state.selectedCountry.dialCode.length>i.length)&&(n=r.guessSelectedCountry(i.substring(0,6),r.state.onlyCountries,r.state.defaultCountry),a=!1),t=r.formatNumber(i,n.format),n=n.dialCode?n:r.state.selectedCountry;}var u=e.target.selectionStart,c=r.state.formattedNumber,s=t.length-c.length;r.setState({formattedNumber:t,freezeSelection:a,selectedCountry:n},(function(){s>0&&(u-=s),")"==t.charAt(t.length-1)?r.numberInputRef.setSelectionRange(t.length-1,t.length-1):u>0&&c.length>=t.length&&r.numberInputRef.setSelectionRange(u,u),r.props.onChange&&r.props.onChange(r.state.formattedNumber,r.getCountryData());}));}},r.handleInputClick=function(e){r.setState({showDropdown:!1}),r.props.onClick&&r.props.onClick(e,r.getCountryData());},r.handleFlagItemClick=function(e){var t=r.state.selectedCountry,n=r.state.onlyCountries.find((function(t){return t==e}));if(n){var a=r.state.formattedNumber.replace(" ","").replace("(","").replace(")","").replace("-",""),o=a.length>1?a.replace(t.dialCode,n.dialCode):n.dialCode,i=r.formatNumber(o.replace(/\D/g,""),n.format);r.setState({showDropdown:!1,selectedCountry:n,freezeSelection:!0,formattedNumber:i},(function(){r.cursorToEnd(),r.props.onChange&&r.props.onChange(i.replace(/[^0-9]+/g,""),r.getCountryData());}));}},r.handleInputFocus=function(e){r.numberInputRef&&"+"===r.numberInputRef.value&&r.state.selectedCountry&&!r.props.disableCountryCode&&r.setState({formattedNumber:"+"+r.state.selectedCountry.dialCode},(function(){return setTimeout(r.cursorToEnd,10)})),r.setState({placeholder:""}),r.props.onFocus&&r.props.onFocus(e,r.getCountryData()),setTimeout(r.cursorToEnd,10);},r.handleInputBlur=function(e){e.target.value||r.setState({placeholder:r.props.placeholder}),r.props.onBlur&&r.props.onBlur(e,r.getCountryData());},r.getHighlightCountryIndex=function(e){var t=r.state.highlightCountryIndex+e;return t<0||t>=r.state.onlyCountries.length+r.state.preferredCountries.length?t-e:r.props.enableSearchField&&t>r.getSearchFilteredCountries().length?0:t},r.searchCountry=function(){var e=r.getProbableCandidate(r.state.queryString)||r.state.onlyCountries[0],t=r.state.onlyCountries.findIndex((function(t){return t==e}))+r.state.preferredCountries.length;r.scrollTo(r.getElement(t),!0),r.setState({queryString:"",highlightCountryIndex:t});},r.handleKeydown=function(e){var t=r.props.keys,n=e.target.id;if("flag-dropdown"===n&&e.which===t.ENTER&&!r.state.showDropdown)return r.handleFlagDropdownClick();if("phone-form-control"===n&&(e.which===t.ENTER||e.which===t.ESC))return e.target.blur();if(r.state.showDropdown&&!r.props.disabled&&("search-box"!==n||e.which===t.UP||e.which===t.DOWN||e.which===t.ENTER||e.which===t.ESC&&""===e.target.value)){e.preventDefault?e.preventDefault():e.returnValue=!1;var a=function(e){r.setState({highlightCountryIndex:r.getHighlightCountryIndex(e)},(function(){r.scrollTo(r.getElement(r.state.highlightCountryIndex+r.state.preferredCountries.length),!0);}));};switch(e.which){case t.DOWN:a(1);break;case t.UP:a(-1);break;case t.ENTER:r.props.enableSearchField?r.handleFlagItemClick(r.getSearchFilteredCountries()[r.state.highlightCountryIndex],e):r.handleFlagItemClick(r.state.onlyCountries[r.state.highlightCountryIndex],e);break;case t.ESC:r.setState({showDropdown:!1},r.cursorToEnd);break;default:(e.which>=t.A&&e.which<=t.Z||e.which===t.SPACE)&&r.setState({queryString:r.state.queryString+String.fromCharCode(e.which)},r.state.debouncedQueryStingSearcher);}}},r.handleInputKeyDown=function(e){var t=r.props.keys;e.which===t.ENTER&&r.props.onEnterKeyPress(e),r.props.onKeyDown&&r.props.onKeyDown(e);},r.handleClickOutside=function(e){r.dropdownRef&&!r.dropdownContainerRef.contains(e.target)&&r.state.showDropdown&&r.setState({showDropdown:!1});},r.handleSearchChange=function(e){var t=e.currentTarget.value;r.setState({searchValue:t});},r.getDropdownCountryName=function(e){return e.localName||e.name},r.getSearchFilteredCountries=function(){var e=r.state,t=e.preferredCountries,n=e.onlyCountries,a=e.searchValue,i=r.props.enableSearchField,u=t.concat(n),c=a.trim().toLowerCase(),s=i&&c?o(new Set(u.filter((function(e){var t=e.name,r=e.localName,n=e.iso2,a=e.dialCode;return ["".concat(t),"".concat(r),"".concat(n),"+".concat(a)].some((function(e){return e.toLowerCase().includes(c)}))})))):u;return r.props.disableAreaCodes&&(s=r.deleteAreaCodes(s)),s},r.getCountryDropdownList=function(){var e,t=r.state,a=t.preferredCountries,o=t.highlightCountryIndex,i=t.showDropdown,u=t.searchValue,c=r.props,s=c.enableSearchField,l=c.disableSearchIcon,f=c.searchClass,d=c.searchStyle,p=c.searchPlaceholder,h=r.state.preferredCountries.includes(r.state.selectedCountry),y=r.getSearchFilteredCountries().map((function(e,t){var n=x()({country:!0,preferred:"us"===e.iso2||"gb"===e.iso2,active:"us"===e.iso2,highlight:h?o===t:o===t-a.length}),i="flag ".concat(e.iso2);return m.a.createElement("li",{ref:function(e){return r["flag_no_".concat(t)]=e},key:"flag_no_".concat(t),"data-flag-key":"flag_no_".concat(t),className:n,"data-dial-code":"1",tabIndex:"0","data-country-code":e.iso2,onClick:function(){return r.handleFlagItemClick(e)}},m.a.createElement("div",{className:i}),m.a.createElement("span",{className:"country-name"},r.getDropdownCountryName(e)),m.a.createElement("span",{className:"dial-code"},"+"+e.dialCode))})),g=m.a.createElement("li",{key:"dashes",className:"divider"});a.length>0&&y.splice(a.length,0,g);var b=x()((n(e={},r.props.dropdownClass,!0),n(e,"country-list",!0),n(e,"hide",!i),e));return m.a.createElement("ul",{ref:function(e){return r.dropdownRef=e},className:b,style:r.props.dropdownStyle},s&&m.a.createElement("li",{className:x()(n({search:!0},f,f))},!l&&m.a.createElement("span",{className:x()(n({"search-emoji":!0},"".concat(f,"-emoji"),f)),role:"img","aria-label":"Magnifying glass"},"🔎"),m.a.createElement("input",{className:x()(n({"search-box":!0},"".concat(f,"-box"),f)),style:d,id:"search-box",type:"search",placeholder:p,autoFocus:!0,value:u,onChange:r.handleSearchChange})),y.length>0?y:m.a.createElement("li",{className:"no-entries-message"},m.a.createElement("span",null,"No entries to show.")))};var a=E.allCountries;e.regions&&(a=r.filterRegions(e.regions,a));var u,c=r.excludeCountries(r.getFilteredCountryList(e.onlyCountries,a,e.preserveOrder.includes("onlyCountries")),e.excludeCountries),d=0===e.preferredCountries.length?[]:r.getFilteredCountryList(e.preferredCountries,a,e.preserveOrder.includes("preferredCountries")),p=e.value.replace(/[^0-9\.]+/g,"")||"";u=p.length>1?r.guessSelectedCountry(p.substring(0,6),c,e.defaultCountry)||0:e.defaultCountry&&c.find((function(t){return t.iso2==e.defaultCountry}))||0;var h,y=p.length<2&&u&&!S()(p.replace(/\D/g,""),u.dialCode)?u.dialCode:"";h=""===p&&0===u?"":r.formatNumber((e.disableCountryCode?"":y)+p.replace(/\D/g,""),u.name?u.format:void 0);var b=a.findIndex((function(e){return e==u}));return r.state={formattedNumber:h,onlyCountries:c,preferredCountries:d,defaultCountry:e.defaultCountry,selectedCountry:u,highlightCountryIndex:b,queryString:"",showDropdown:!1,freezeSelection:!1,debouncedQueryStingSearcher:g()(r.searchCountry,250),searchValue:""},r}var r,a;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&d(e,t);}(t,e),r=t,(a=[{key:"componentDidMount",value:function(){document.addEventListener&&document.addEventListener("mousedown",this.handleClickOutside);}},{key:"componentWillUnmount",value:function(){document.removeEventListener&&document.removeEventListener("mousedown",this.handleClickOutside);}},{key:"UNSAFE_componentWillReceiveProps",value:function(e){e.defaultCountry&&e.defaultCountry!==this.state.defaultCountry?this.updateDefaultCountry(e.defaultCountry):e.value!==this.state.formattedNumber&&this.updateFormattedNumber(e.value);}},{key:"updateFormattedNumber",value:function(e){var t,r=this.state,n=r.onlyCountries,a=r.defaultCountry,o=e,i=e;if(S()(o,"+"))o=o.replace(/\D/g,""),t=this.guessSelectedCountry(o.substring(0,6),n,a),i=this.formatNumber(o,t.format);else{var u=(t=this.state.selectedCountry||n.find((function(e){return e.iso2==a})))&&!S()(o.replace(/\D/g,""),t.dialCode)?t.dialCode:"";i=this.formatNumber((this.props.disableCountryCode?"":u)+o.replace(/\D/g,""),t?t.format:void 0);}this.setState({selectedCountry:t,formattedNumber:i});}},{key:"render",value:function(){var e,t,r=this,a=this.state,o=a.selectedCountry,i=a.showDropdown,u=a.formattedNumber,c=this.props,s=c.disableDropdown,l=c.renderStringAsFlag,f=x()({arrow:!0,up:i}),d=x()((n(e={},this.props.inputClass,!0),n(e,"form-control",!0),n(e,"invalid-number",!this.props.isValid(u.replace(/\D/g,""))),e)),p=x()((n(t={},this.props.buttonClass,!0),n(t,"flag-dropdown",!0),n(t,"open-dropdown",i),t)),h="flag ".concat(o&&o.iso2);return m.a.createElement("div",{className:this.props.containerClass,style:this.props.containerStyle,onKeyDown:this.handleKeydown},m.a.createElement("input",Object.assign({className:d,id:"phone-form-control",style:this.props.inputStyle,onChange:this.handleInput,onClick:this.handleInputClick,onFocus:this.handleInputFocus,onBlur:this.handleInputBlur,value:u,ref:function(e){return r.numberInputRef=e},onKeyDown:this.handleInputKeyDown,placeholder:this.props.placeholder,disabled:this.props.disabled,type:"tel"},this.props.inputExtraProps)),m.a.createElement("div",{className:p,id:"flag-dropdown",style:this.props.buttonStyle,ref:function(e){return r.dropdownContainerRef=e},tabIndex:"0",role:"button"},l?m.a.createElement("div",{className:"selected-flag"},l):m.a.createElement("div",{onClick:s?void 0:this.handleFlagDropdownClick,className:"selected-flag",title:o?"".concat(o.name,": + ").concat(o.dialCode):""},m.a.createElement("div",{className:h},!s&&m.a.createElement("div",{className:f}))),i&&this.getCountryDropdownList()))}}])&&u(r.prototype,a),t}(m.a.Component));N.defaultProps={excludeCountries:[],onlyCountries:[],preferredCountries:[],defaultCountry:"",value:"",placeholder:"+1 (702) 123-4567",searchPlaceholder:"search",flagsImagePath:"./flags.png",disabled:!1,containerStyle:{},inputStyle:{},buttonStyle:{},dropdownStyle:{},searchStyle:{},containerClass:"react-tel-input",inputClass:"",buttonClass:"",dropdownClass:"",searchClass:"",autoFormat:!0,disableAreaCodes:!1,isValid:function(e){return E.allCountries.some((function(t){return S()(e,t.dialCode)||S()(t.dialCode,e)}))},disableCountryCode:!1,disableDropdown:!1,enableLongNumbers:!1,countryCodeEditable:!0,enableSearchField:!1,disableSearchIcon:!1,regions:"",inputExtraProps:{},localization:{},masks:{},areaCodes:{},preserveOrder:[],renderStringAsFlag:"",onEnterKeyPress:function(){},keys:{UP:38,DOWN:40,RIGHT:39,LEFT:37,ENTER:13,ESC:27,PLUS:43,A:65,Z:90,SPACE:32}};t.default=N;}])}));
+var version = "1.7.26";
+var country_calling_codes = {
+	"1": [
+		"US",
+		"AG",
+		"AI",
+		"AS",
+		"BB",
+		"BM",
+		"BS",
+		"CA",
+		"DM",
+		"DO",
+		"GD",
+		"GU",
+		"JM",
+		"KN",
+		"KY",
+		"LC",
+		"MP",
+		"MS",
+		"PR",
+		"SX",
+		"TC",
+		"TT",
+		"VC",
+		"VG",
+		"VI"
+	],
+	"7": [
+		"RU",
+		"KZ"
+	],
+	"20": [
+		"EG"
+	],
+	"27": [
+		"ZA"
+	],
+	"30": [
+		"GR"
+	],
+	"31": [
+		"NL"
+	],
+	"32": [
+		"BE"
+	],
+	"33": [
+		"FR"
+	],
+	"34": [
+		"ES"
+	],
+	"36": [
+		"HU"
+	],
+	"39": [
+		"IT",
+		"VA"
+	],
+	"40": [
+		"RO"
+	],
+	"41": [
+		"CH"
+	],
+	"43": [
+		"AT"
+	],
+	"44": [
+		"GB",
+		"GG",
+		"IM",
+		"JE"
+	],
+	"45": [
+		"DK"
+	],
+	"46": [
+		"SE"
+	],
+	"47": [
+		"NO",
+		"SJ"
+	],
+	"48": [
+		"PL"
+	],
+	"49": [
+		"DE"
+	],
+	"51": [
+		"PE"
+	],
+	"52": [
+		"MX"
+	],
+	"53": [
+		"CU"
+	],
+	"54": [
+		"AR"
+	],
+	"55": [
+		"BR"
+	],
+	"56": [
+		"CL"
+	],
+	"57": [
+		"CO"
+	],
+	"58": [
+		"VE"
+	],
+	"60": [
+		"MY"
+	],
+	"61": [
+		"AU",
+		"CC",
+		"CX"
+	],
+	"62": [
+		"ID"
+	],
+	"63": [
+		"PH"
+	],
+	"64": [
+		"NZ"
+	],
+	"65": [
+		"SG"
+	],
+	"66": [
+		"TH"
+	],
+	"81": [
+		"JP"
+	],
+	"82": [
+		"KR"
+	],
+	"84": [
+		"VN"
+	],
+	"86": [
+		"CN"
+	],
+	"90": [
+		"TR"
+	],
+	"91": [
+		"IN"
+	],
+	"92": [
+		"PK"
+	],
+	"93": [
+		"AF"
+	],
+	"94": [
+		"LK"
+	],
+	"95": [
+		"MM"
+	],
+	"98": [
+		"IR"
+	],
+	"211": [
+		"SS"
+	],
+	"212": [
+		"MA",
+		"EH"
+	],
+	"213": [
+		"DZ"
+	],
+	"216": [
+		"TN"
+	],
+	"218": [
+		"LY"
+	],
+	"220": [
+		"GM"
+	],
+	"221": [
+		"SN"
+	],
+	"222": [
+		"MR"
+	],
+	"223": [
+		"ML"
+	],
+	"224": [
+		"GN"
+	],
+	"225": [
+		"CI"
+	],
+	"226": [
+		"BF"
+	],
+	"227": [
+		"NE"
+	],
+	"228": [
+		"TG"
+	],
+	"229": [
+		"BJ"
+	],
+	"230": [
+		"MU"
+	],
+	"231": [
+		"LR"
+	],
+	"232": [
+		"SL"
+	],
+	"233": [
+		"GH"
+	],
+	"234": [
+		"NG"
+	],
+	"235": [
+		"TD"
+	],
+	"236": [
+		"CF"
+	],
+	"237": [
+		"CM"
+	],
+	"238": [
+		"CV"
+	],
+	"239": [
+		"ST"
+	],
+	"240": [
+		"GQ"
+	],
+	"241": [
+		"GA"
+	],
+	"242": [
+		"CG"
+	],
+	"243": [
+		"CD"
+	],
+	"244": [
+		"AO"
+	],
+	"245": [
+		"GW"
+	],
+	"246": [
+		"IO"
+	],
+	"247": [
+		"AC"
+	],
+	"248": [
+		"SC"
+	],
+	"249": [
+		"SD"
+	],
+	"250": [
+		"RW"
+	],
+	"251": [
+		"ET"
+	],
+	"252": [
+		"SO"
+	],
+	"253": [
+		"DJ"
+	],
+	"254": [
+		"KE"
+	],
+	"255": [
+		"TZ"
+	],
+	"256": [
+		"UG"
+	],
+	"257": [
+		"BI"
+	],
+	"258": [
+		"MZ"
+	],
+	"260": [
+		"ZM"
+	],
+	"261": [
+		"MG"
+	],
+	"262": [
+		"RE",
+		"YT"
+	],
+	"263": [
+		"ZW"
+	],
+	"264": [
+		"NA"
+	],
+	"265": [
+		"MW"
+	],
+	"266": [
+		"LS"
+	],
+	"267": [
+		"BW"
+	],
+	"268": [
+		"SZ"
+	],
+	"269": [
+		"KM"
+	],
+	"290": [
+		"SH",
+		"TA"
+	],
+	"291": [
+		"ER"
+	],
+	"297": [
+		"AW"
+	],
+	"298": [
+		"FO"
+	],
+	"299": [
+		"GL"
+	],
+	"350": [
+		"GI"
+	],
+	"351": [
+		"PT"
+	],
+	"352": [
+		"LU"
+	],
+	"353": [
+		"IE"
+	],
+	"354": [
+		"IS"
+	],
+	"355": [
+		"AL"
+	],
+	"356": [
+		"MT"
+	],
+	"357": [
+		"CY"
+	],
+	"358": [
+		"FI",
+		"AX"
+	],
+	"359": [
+		"BG"
+	],
+	"370": [
+		"LT"
+	],
+	"371": [
+		"LV"
+	],
+	"372": [
+		"EE"
+	],
+	"373": [
+		"MD"
+	],
+	"374": [
+		"AM"
+	],
+	"375": [
+		"BY"
+	],
+	"376": [
+		"AD"
+	],
+	"377": [
+		"MC"
+	],
+	"378": [
+		"SM"
+	],
+	"380": [
+		"UA"
+	],
+	"381": [
+		"RS"
+	],
+	"382": [
+		"ME"
+	],
+	"383": [
+		"XK"
+	],
+	"385": [
+		"HR"
+	],
+	"386": [
+		"SI"
+	],
+	"387": [
+		"BA"
+	],
+	"389": [
+		"MK"
+	],
+	"420": [
+		"CZ"
+	],
+	"421": [
+		"SK"
+	],
+	"423": [
+		"LI"
+	],
+	"500": [
+		"FK"
+	],
+	"501": [
+		"BZ"
+	],
+	"502": [
+		"GT"
+	],
+	"503": [
+		"SV"
+	],
+	"504": [
+		"HN"
+	],
+	"505": [
+		"NI"
+	],
+	"506": [
+		"CR"
+	],
+	"507": [
+		"PA"
+	],
+	"508": [
+		"PM"
+	],
+	"509": [
+		"HT"
+	],
+	"590": [
+		"GP",
+		"BL",
+		"MF"
+	],
+	"591": [
+		"BO"
+	],
+	"592": [
+		"GY"
+	],
+	"593": [
+		"EC"
+	],
+	"594": [
+		"GF"
+	],
+	"595": [
+		"PY"
+	],
+	"596": [
+		"MQ"
+	],
+	"597": [
+		"SR"
+	],
+	"598": [
+		"UY"
+	],
+	"599": [
+		"CW",
+		"BQ"
+	],
+	"670": [
+		"TL"
+	],
+	"672": [
+		"NF"
+	],
+	"673": [
+		"BN"
+	],
+	"674": [
+		"NR"
+	],
+	"675": [
+		"PG"
+	],
+	"676": [
+		"TO"
+	],
+	"677": [
+		"SB"
+	],
+	"678": [
+		"VU"
+	],
+	"679": [
+		"FJ"
+	],
+	"680": [
+		"PW"
+	],
+	"681": [
+		"WF"
+	],
+	"682": [
+		"CK"
+	],
+	"683": [
+		"NU"
+	],
+	"685": [
+		"WS"
+	],
+	"686": [
+		"KI"
+	],
+	"687": [
+		"NC"
+	],
+	"688": [
+		"TV"
+	],
+	"689": [
+		"PF"
+	],
+	"690": [
+		"TK"
+	],
+	"691": [
+		"FM"
+	],
+	"692": [
+		"MH"
+	],
+	"800": [
+		"001"
+	],
+	"808": [
+		"001"
+	],
+	"850": [
+		"KP"
+	],
+	"852": [
+		"HK"
+	],
+	"853": [
+		"MO"
+	],
+	"855": [
+		"KH"
+	],
+	"856": [
+		"LA"
+	],
+	"870": [
+		"001"
+	],
+	"878": [
+		"001"
+	],
+	"880": [
+		"BD"
+	],
+	"881": [
+		"001"
+	],
+	"882": [
+		"001"
+	],
+	"883": [
+		"001"
+	],
+	"886": [
+		"TW"
+	],
+	"888": [
+		"001"
+	],
+	"960": [
+		"MV"
+	],
+	"961": [
+		"LB"
+	],
+	"962": [
+		"JO"
+	],
+	"963": [
+		"SY"
+	],
+	"964": [
+		"IQ"
+	],
+	"965": [
+		"KW"
+	],
+	"966": [
+		"SA"
+	],
+	"967": [
+		"YE"
+	],
+	"968": [
+		"OM"
+	],
+	"970": [
+		"PS"
+	],
+	"971": [
+		"AE"
+	],
+	"972": [
+		"IL"
+	],
+	"973": [
+		"BH"
+	],
+	"974": [
+		"QA"
+	],
+	"975": [
+		"BT"
+	],
+	"976": [
+		"MN"
+	],
+	"977": [
+		"NP"
+	],
+	"979": [
+		"001"
+	],
+	"992": [
+		"TJ"
+	],
+	"993": [
+		"TM"
+	],
+	"994": [
+		"AZ"
+	],
+	"995": [
+		"GE"
+	],
+	"996": [
+		"KG"
+	],
+	"998": [
+		"UZ"
+	]
+};
+var countries = {
+	AC: [
+		"247",
+		"00",
+		"(?:[01589]\\d|[46])\\d{4}",
+		[
+			5,
+			6
+		]
+	],
+	AD: [
+		"376",
+		"00",
+		"(?:1|6\\d)\\d{7}|[136-9]\\d{5}",
+		[
+			6,
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})",
+				"$1 $2",
+				[
+					"[136-9]"
+				]
+			],
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"1"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"6"
+				]
+			]
+		]
+	],
+	AE: [
+		"971",
+		"00",
+		"(?:[4-7]\\d|9[0-689])\\d{7}|800\\d{2,9}|[2-4679]\\d{7}",
+		[
+			5,
+			6,
+			7,
+			8,
+			9,
+			10,
+			11,
+			12
+		],
+		[
+			[
+				"(\\d{3})(\\d{2,9})",
+				"$1 $2",
+				[
+					"60|8"
+				]
+			],
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[236]|[479][2-8]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d)(\\d{5})",
+				"$1 $2 $3",
+				[
+					"[479]"
+				]
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"5"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	AF: [
+		"93",
+		"00",
+		"[2-7]\\d{8}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[2-7]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	AG: [
+		"1",
+		"011",
+		"(?:268|[58]\\d\\d|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([457]\\d{6})$",
+		"268$1",
+		0,
+		"268"
+	],
+	AI: [
+		"1",
+		"011",
+		"(?:264|[58]\\d\\d|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([2457]\\d{6})$",
+		"264$1",
+		0,
+		"264"
+	],
+	AL: [
+		"355",
+		"00",
+		"(?:700\\d\\d|900)\\d{3}|8\\d{5,7}|(?:[2-5]|6\\d)\\d{7}",
+		[
+			6,
+			7,
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{3,4})",
+				"$1 $2",
+				[
+					"80|9"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"4[2-6]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[2358][2-5]|4"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{5})",
+				"$1 $2",
+				[
+					"[23578]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"6"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	AM: [
+		"374",
+		"00",
+		"(?:[1-489]\\d|55|60|77)\\d{6}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[89]0"
+				],
+				"0 $1"
+			],
+			[
+				"(\\d{3})(\\d{5})",
+				"$1 $2",
+				[
+					"2|3[12]"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{2})(\\d{6})",
+				"$1 $2",
+				[
+					"1|47"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{2})(\\d{6})",
+				"$1 $2",
+				[
+					"[3-9]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	AO: [
+		"244",
+		"00",
+		"[29]\\d{8}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[29]"
+				]
+			]
+		]
+	],
+	AR: [
+		"54",
+		"00",
+		"11\\d{8}|(?:[2368]|9\\d)\\d{9}",
+		[
+			10,
+			11
+		],
+		[
+			[
+				"(\\d{4})(\\d{2})(\\d{4})",
+				"$1 $2-$3",
+				[
+					"2(?:2[024-9]|3[0-59]|47|6[245]|9[02-8])|3(?:3[28]|4[03-9]|5[2-46-8]|7[1-578]|8[2-9])",
+					"2(?:[23]02|6(?:[25]|4[6-8])|9(?:[02356]|4[02568]|72|8[23]))|3(?:3[28]|4(?:[04679]|3[5-8]|5[4-68]|8[2379])|5(?:[2467]|3[237]|8[2-5])|7[1-578]|8(?:[2469]|3[2578]|5[4-8]|7[36-8]|8[5-8]))|2(?:2[24-9]|3[1-59]|47)",
+					"2(?:[23]02|6(?:[25]|4(?:64|[78]))|9(?:[02356]|4(?:[0268]|5[2-6])|72|8[23]))|3(?:3[28]|4(?:[04679]|3[78]|5(?:4[46]|8)|8[2379])|5(?:[2467]|3[237]|8[23])|7[1-578]|8(?:[2469]|3[278]|5[56][46]|86[3-6]))|2(?:2[24-9]|3[1-59]|47)|38(?:[58][78]|7[378])|3(?:4[35][56]|58[45]|8(?:[38]5|54|76))[4-6]",
+					"2(?:[23]02|6(?:[25]|4(?:64|[78]))|9(?:[02356]|4(?:[0268]|5(?:[24-6]|3[2-5]))|72|8[23]))|3(?:3[28]|4(?:[04679]|3(?:5(?:4[0-25689]|[56])|[78])|58|8[2379])|5(?:[2467]|3[237]|8(?:[23]|4(?:[45]|60)|5(?:4[0-39]|5|64)))|7[1-578]|8(?:[2469]|3[278]|54(?:4|5[13-7]|6[89])|86[3-6]))|2(?:2[24-9]|3[1-59]|47)|38(?:[58][78]|7[378])|3(?:454|85[56])[46]|3(?:4(?:36|5[56])|8(?:[38]5|76))[4-6]"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{2})(\\d{4})(\\d{4})",
+				"$1 $2-$3",
+				[
+					"1"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2-$3",
+				[
+					"[23]"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"[68]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{4})(\\d{2})(\\d{4})",
+				"$2 15-$3-$4",
+				[
+					"9(?:2[2-469]|3[3-578])",
+					"9(?:2(?:2[024-9]|3[0-59]|47|6[245]|9[02-8])|3(?:3[28]|4[03-9]|5[2-46-8]|7[1-578]|8[2-9]))",
+					"9(?:2(?:[23]02|6(?:[25]|4[6-8])|9(?:[02356]|4[02568]|72|8[23]))|3(?:3[28]|4(?:[04679]|3[5-8]|5[4-68]|8[2379])|5(?:[2467]|3[237]|8[2-5])|7[1-578]|8(?:[2469]|3[2578]|5[4-8]|7[36-8]|8[5-8])))|92(?:2[24-9]|3[1-59]|47)",
+					"9(?:2(?:[23]02|6(?:[25]|4(?:64|[78]))|9(?:[02356]|4(?:[0268]|5[2-6])|72|8[23]))|3(?:3[28]|4(?:[04679]|3[78]|5(?:4[46]|8)|8[2379])|5(?:[2467]|3[237]|8[23])|7[1-578]|8(?:[2469]|3[278]|5(?:[56][46]|[78])|7[378]|8(?:6[3-6]|[78]))))|92(?:2[24-9]|3[1-59]|47)|93(?:4[35][56]|58[45]|8(?:[38]5|54|76))[4-6]",
+					"9(?:2(?:[23]02|6(?:[25]|4(?:64|[78]))|9(?:[02356]|4(?:[0268]|5(?:[24-6]|3[2-5]))|72|8[23]))|3(?:3[28]|4(?:[04679]|3(?:5(?:4[0-25689]|[56])|[78])|5(?:4[46]|8)|8[2379])|5(?:[2467]|3[237]|8(?:[23]|4(?:[45]|60)|5(?:4[0-39]|5|64)))|7[1-578]|8(?:[2469]|3[278]|5(?:4(?:4|5[13-7]|6[89])|[56][46]|[78])|7[378]|8(?:6[3-6]|[78]))))|92(?:2[24-9]|3[1-59]|47)|93(?:4(?:36|5[56])|8(?:[38]5|76))[4-6]"
+				],
+				"0$1",
+				0,
+				"$1 $2 $3-$4"
+			],
+			[
+				"(\\d)(\\d{2})(\\d{4})(\\d{4})",
+				"$2 15-$3-$4",
+				[
+					"91"
+				],
+				"0$1",
+				0,
+				"$1 $2 $3-$4"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{3})(\\d{4})",
+				"$2 15-$3-$4",
+				[
+					"9"
+				],
+				"0$1",
+				0,
+				"$1 $2 $3-$4"
+			]
+		],
+		"0",
+		0,
+		"0?(?:(11|2(?:2(?:02?|[13]|2[13-79]|4[1-6]|5[2457]|6[124-8]|7[1-4]|8[13-6]|9[1267])|3(?:02?|1[467]|2[03-6]|3[13-8]|[49][2-6]|5[2-8]|[67])|4(?:7[3-578]|9)|6(?:[0136]|2[24-6]|4[6-8]?|5[15-8])|80|9(?:0[1-3]|[19]|2\\d|3[1-6]|4[02568]?|5[2-4]|6[2-46]|72?|8[23]?))|3(?:3(?:2[79]|6|8[2578])|4(?:0[0-24-9]|[12]|3[5-8]?|4[24-7]|5[4-68]?|6[02-9]|7[126]|8[2379]?|9[1-36-8])|5(?:1|2[1245]|3[237]?|4[1-46-9]|6[2-4]|7[1-6]|8[2-5]?)|6[24]|7(?:[069]|1[1568]|2[15]|3[145]|4[13]|5[14-8]|7[2-57]|8[126])|8(?:[01]|2[15-7]|3[2578]?|4[13-6]|5[4-8]?|6[1-357-9]|7[36-8]?|8[5-8]?|9[124])))15)?",
+		"9$1"
+	],
+	AS: [
+		"1",
+		"011",
+		"(?:[58]\\d\\d|684|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([267]\\d{6})$",
+		"684$1",
+		0,
+		"684"
+	],
+	AT: [
+		"43",
+		"00",
+		"1\\d{3,12}|2\\d{6,12}|43(?:(?:0\\d|5[02-9])\\d{3,9}|2\\d{4,5}|[3467]\\d{4}|8\\d{4,6}|9\\d{4,7})|5\\d{4,12}|8\\d{7,12}|9\\d{8,12}|(?:[367]\\d|4[0-24-9])\\d{4,11}",
+		[
+			4,
+			5,
+			6,
+			7,
+			8,
+			9,
+			10,
+			11,
+			12,
+			13
+		],
+		[
+			[
+				"(\\d)(\\d{3,12})",
+				"$1 $2",
+				[
+					"1(?:11|[2-9])"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{2})",
+				"$1 $2",
+				[
+					"517"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3,5})",
+				"$1 $2",
+				[
+					"5[079]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3,10})",
+				"$1 $2",
+				[
+					"(?:31|4)6|51|6(?:5[0-3579]|[6-9])|7(?:20|32|8)|[89]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{3,9})",
+				"$1 $2",
+				[
+					"[2-467]|5[2-6]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"5"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{4})(\\d{4,7})",
+				"$1 $2 $3",
+				[
+					"5"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	AU: [
+		"61",
+		"001[14-689]|14(?:1[14]|34|4[17]|[56]6|7[47]|88)0011",
+		"1(?:[0-79]\\d{7,8}|8[0-24-9]\\d{7})|(?:[2-478]\\d\\d|550)\\d{6}|1\\d{4,7}",
+		[
+			5,
+			6,
+			7,
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{2})(\\d{3,4})",
+				"$1 $2",
+				[
+					"16"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2,4})",
+				"$1 $2 $3",
+				[
+					"16"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"14|[45]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[2378]"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"1(?:30|[89])"
+				]
+			]
+		],
+		"0",
+		0,
+		"0|(183[12])",
+		0,
+		0,
+		0,
+		[
+			[
+				"(?:[237]\\d{5}|8(?:51(?:0(?:0[03-9]|[1247]\\d|3[2-9]|5[0-8]|6[1-9]|8[0-6])|1(?:1[69]|[23]\\d|4[0-4]))|(?:[6-8]\\d{3}|9(?:[02-9]\\d\\d|1(?:[0-57-9]\\d|6[0135-9])))\\d))\\d{3}",
+				[
+					9
+				]
+			],
+			[
+				"483[0-3]\\d{5}|4(?:[0-3]\\d|4[047-9]|5[0-25-9]|6[06-9]|7[02-9]|8[0-2457-9]|9[0-27-9])\\d{6}",
+				[
+					9
+				]
+			],
+			[
+				"180(?:0\\d{3}|2)\\d{3}",
+				[
+					7,
+					10
+				]
+			],
+			[
+				"190[0-26]\\d{6}",
+				[
+					10
+				]
+			],
+			0,
+			0,
+			0,
+			[
+				"16\\d{3,7}",
+				[
+					5,
+					6,
+					7,
+					8,
+					9
+				]
+			],
+			[
+				"(?:14(?:5(?:1[0458]|[23][458])|71\\d)|550\\d\\d)\\d{4}",
+				[
+					9
+				]
+			],
+			[
+				"13(?:00\\d{3}|45[0-4])\\d{3}|13\\d{4}",
+				[
+					6,
+					8,
+					10
+				]
+			]
+		],
+		"0011"
+	],
+	AW: [
+		"297",
+		"00",
+		"(?:[25-79]\\d\\d|800)\\d{4}",
+		[
+			7
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[25-9]"
+				]
+			]
+		]
+	],
+	AX: [
+		"358",
+		"00|99(?:[01469]|5(?:[14]1|3[23]|5[59]|77|88|9[09]))",
+		"2\\d{4,9}|35\\d{4,5}|(?:60\\d\\d|800)\\d{4,6}|(?:[147]\\d|3[0-46-9]|50)\\d{4,8}",
+		[
+			5,
+			6,
+			7,
+			8,
+			9,
+			10
+		],
+		0,
+		"0",
+		0,
+		0,
+		0,
+		0,
+		"18",
+		0,
+		"00"
+	],
+	AZ: [
+		"994",
+		"00",
+		"(?:365\\d{3}|900200)\\d{3}|(?:[12457]\\d|60|88)\\d{7}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"9"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[12]|365",
+					"[12]|365",
+					"[12]|365(?:[0-46-9]|5[0-35-9])"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[3-8]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	BA: [
+		"387",
+		"00",
+		"6\\d{8}|(?:[35689]\\d|49|70)\\d{6}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"6[1-356]|[7-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2-$3",
+				[
+					"[3-5]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{3})",
+				"$1 $2 $3 $4",
+				[
+					"6"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	BB: [
+		"1",
+		"011",
+		"(?:246|[58]\\d\\d|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([2-9]\\d{6})$",
+		"246$1",
+		0,
+		"246"
+	],
+	BD: [
+		"880",
+		"00",
+		"[13469]\\d{9}|8[0-79]\\d{7,8}|[2-7]\\d{8}|[2-9]\\d{7}|[3-689]\\d{6}|[57-9]\\d{5}",
+		[
+			6,
+			7,
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{2})(\\d{4,6})",
+				"$1-$2",
+				[
+					"31[5-7]|[459]1"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3,7})",
+				"$1-$2",
+				[
+					"3(?:[67]|8[013-9])|4(?:6[168]|7|[89][18])|5(?:6[128]|9)|6(?:28|4[14]|5)|7[2-589]|8(?:0[014-9]|[12])|9[358]|(?:3[2-5]|4[235]|5[2-578]|6[0389]|76|8[3-7]|9[24])1|(?:44|66)[01346-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{3,6})",
+				"$1-$2",
+				[
+					"[13-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{7,8})",
+				"$1-$2",
+				[
+					"2"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	BE: [
+		"32",
+		"00",
+		"4\\d{8}|[1-9]\\d{7}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"(?:80|9)0"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[239]|4[23]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[15-8]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"4"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	BF: [
+		"226",
+		"00",
+		"[025-7]\\d{7}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[025-7]"
+				]
+			]
+		]
+	],
+	BG: [
+		"359",
+		"00",
+		"[2-7]\\d{6,7}|[89]\\d{6,8}|2\\d{5}",
+		[
+			6,
+			7,
+			8,
+			9
+		],
+		[
+			[
+				"(\\d)(\\d)(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"2"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"43[1-6]|70[1-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"2"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2,3})",
+				"$1 $2 $3",
+				[
+					"[356]|4[124-7]|7[1-9]|8[1-6]|9[1-7]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"(?:70|8)0"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{2})",
+				"$1 $2 $3",
+				[
+					"43[1-7]|7"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[48]|9[08]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"9"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	BH: [
+		"973",
+		"00",
+		"[136-9]\\d{7}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[13679]|8[047]"
+				]
+			]
+		]
+	],
+	BI: [
+		"257",
+		"00",
+		"(?:[267]\\d|31)\\d{6}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[2367]"
+				]
+			]
+		]
+	],
+	BJ: [
+		"229",
+		"00",
+		"[2689]\\d{7}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[2689]"
+				]
+			]
+		]
+	],
+	BL: [
+		"590",
+		"00",
+		"(?:590|69\\d)\\d{6}",
+		[
+			9
+		],
+		0,
+		"0",
+		0,
+		0,
+		0,
+		0,
+		0,
+		[
+			[
+				"590(?:2[7-9]|5[12]|87)\\d{4}"
+			],
+			[
+				"69(?:0\\d\\d|1(?:2[29]|3[0-5]))\\d{4}"
+			]
+		]
+	],
+	BM: [
+		"1",
+		"011",
+		"(?:441|[58]\\d\\d|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([2-8]\\d{6})$",
+		"441$1",
+		0,
+		"441"
+	],
+	BN: [
+		"673",
+		"00",
+		"[2-578]\\d{6}",
+		[
+			7
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[2-578]"
+				]
+			]
+		]
+	],
+	BO: [
+		"591",
+		"00(?:1\\d)?",
+		"(?:[2-467]\\d\\d|8001)\\d{5}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d)(\\d{7})",
+				"$1 $2",
+				[
+					"[23]|4[46]"
+				]
+			],
+			[
+				"(\\d{8})",
+				"$1",
+				[
+					"[67]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"8"
+				]
+			]
+		],
+		"0",
+		0,
+		"0(1\\d)?"
+	],
+	BQ: [
+		"599",
+		"00",
+		"(?:[34]1|7\\d)\\d{5}",
+		[
+			7
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"[347]"
+	],
+	BR: [
+		"55",
+		"00(?:1[245]|2[1-35]|31|4[13]|[56]5|99)",
+		"(?:[1-46-9]\\d\\d|5(?:[0-46-9]\\d|5[0-24679]))\\d{8}|[1-9]\\d{9}|[3589]\\d{8}|[34]\\d{7}",
+		[
+			8,
+			9,
+			10,
+			11
+		],
+		[
+			[
+				"(\\d{4})(\\d{4})",
+				"$1-$2",
+				[
+					"300|4(?:0[02]|37)",
+					"4(?:02|37)0|[34]00"
+				]
+			],
+			[
+				"(\\d{3})(\\d{2,3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"(?:[358]|90)0"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{4})(\\d{4})",
+				"$1 $2-$3",
+				[
+					"(?:[14689][1-9]|2[12478]|3[1-578]|5[13-5]|7[13-579])[2-57]"
+				],
+				"($1)"
+			],
+			[
+				"(\\d{2})(\\d{5})(\\d{4})",
+				"$1 $2-$3",
+				[
+					"[16][1-9]|[2-57-9]"
+				],
+				"($1)"
+			]
+		],
+		"0",
+		0,
+		"0(?:(1[245]|2[1-35]|31|4[13]|[56]5|99)(\\d{10,11}))?",
+		"$2"
+	],
+	BS: [
+		"1",
+		"011",
+		"(?:242|[58]\\d\\d|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([3-8]\\d{6})$",
+		"242$1",
+		0,
+		"242"
+	],
+	BT: [
+		"975",
+		"00",
+		"[17]\\d{7}|[2-8]\\d{6}",
+		[
+			7,
+			8
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[2-68]|7[246]"
+				]
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"1[67]|7"
+				]
+			]
+		]
+	],
+	BW: [
+		"267",
+		"00",
+		"90\\d{5}|(?:[2-6]|7\\d)\\d{6}",
+		[
+			7,
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{5})",
+				"$1 $2",
+				[
+					"90"
+				]
+			],
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[2-6]"
+				]
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"7"
+				]
+			]
+		]
+	],
+	BY: [
+		"375",
+		"810",
+		"(?:[12]\\d|33|44|902)\\d{7}|8(?:0[0-79]\\d{5,7}|[1-7]\\d{9})|8(?:1[0-489]|[5-79]\\d)\\d{7}|8[1-79]\\d{6,7}|8[0-79]\\d{5}|8\\d{5}",
+		[
+			6,
+			7,
+			8,
+			9,
+			10,
+			11
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})",
+				"$1 $2",
+				[
+					"800"
+				],
+				"8 $1"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{2,4})",
+				"$1 $2 $3",
+				[
+					"800"
+				],
+				"8 $1"
+			],
+			[
+				"(\\d{4})(\\d{2})(\\d{3})",
+				"$1 $2-$3",
+				[
+					"1(?:5[169]|6[3-5]|7[179])|2(?:1[35]|2[34]|3[3-5])",
+					"1(?:5[169]|6(?:3[1-3]|4|5[125])|7(?:1[3-9]|7[0-24-6]|9[2-7]))|2(?:1[35]|2[34]|3[3-5])"
+				],
+				"8 0$1"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2-$3-$4",
+				[
+					"1(?:[56]|7[467])|2[1-3]"
+				],
+				"8 0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2-$3-$4",
+				[
+					"[1-4]"
+				],
+				"8 0$1"
+			],
+			[
+				"(\\d{3})(\\d{3,4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[89]"
+				],
+				"8 $1"
+			]
+		],
+		"8",
+		0,
+		"0|80?",
+		0,
+		0,
+		0,
+		0,
+		"8~10"
+	],
+	BZ: [
+		"501",
+		"00",
+		"(?:0800\\d|[2-8])\\d{6}",
+		[
+			7,
+			11
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1-$2",
+				[
+					"[2-8]"
+				]
+			],
+			[
+				"(\\d)(\\d{3})(\\d{4})(\\d{3})",
+				"$1-$2-$3-$4",
+				[
+					"0"
+				]
+			]
+		]
+	],
+	CA: [
+		"1",
+		"011",
+		"(?:[2-8]\\d|90)\\d{8}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		0,
+		0,
+		0,
+		0,
+		[
+			[
+				"(?:2(?:04|[23]6|[48]9|50)|3(?:06|43|65)|4(?:03|1[68]|3[178]|50)|5(?:06|1[49]|48|79|8[17])|6(?:04|13|39|47)|7(?:0[59]|78|8[02])|8(?:[06]7|19|25|73)|90[25])[2-9]\\d{6}"
+			],
+			[
+				""
+			],
+			[
+				"8(?:00|33|44|55|66|77|88)[2-9]\\d{6}"
+			],
+			[
+				"900[2-9]\\d{6}"
+			],
+			[
+				"(?:5(?:00|2[12]|33|44|66|77|88)|622)[2-9]\\d{6}"
+			],
+			0,
+			0,
+			0,
+			[
+				"600[2-9]\\d{6}"
+			]
+		]
+	],
+	CC: [
+		"61",
+		"001[14-689]|14(?:1[14]|34|4[17]|[56]6|7[47]|88)0011",
+		"1(?:[0-79]\\d|8[0-24-9])\\d{7}|(?:[148]\\d\\d|550)\\d{6}|1\\d{5,7}",
+		[
+			6,
+			7,
+			8,
+			9,
+			10
+		],
+		0,
+		"0",
+		0,
+		"0|([59]\\d{7})$",
+		"8$1",
+		0,
+		0,
+		[
+			[
+				"8(?:51(?:0(?:02|31|60)|118)|91(?:0(?:1[0-2]|29)|1(?:[28]2|50|79)|2(?:10|64)|3(?:[06]8|22)|4[29]8|62\\d|70[23]|959))\\d{3}",
+				[
+					9
+				]
+			],
+			[
+				"483[0-3]\\d{5}|4(?:[0-3]\\d|4[047-9]|5[0-25-9]|6[06-9]|7[02-9]|8[0-2457-9]|9[0-27-9])\\d{6}",
+				[
+					9
+				]
+			],
+			[
+				"180(?:0\\d{3}|2)\\d{3}",
+				[
+					7,
+					10
+				]
+			],
+			[
+				"190[0-26]\\d{6}",
+				[
+					10
+				]
+			],
+			0,
+			0,
+			0,
+			0,
+			[
+				"(?:14(?:5(?:1[0458]|[23][458])|71\\d)|550\\d\\d)\\d{4}",
+				[
+					9
+				]
+			],
+			[
+				"13(?:00\\d{3}|45[0-4])\\d{3}|13\\d{4}",
+				[
+					6,
+					8,
+					10
+				]
+			]
+		],
+		"0011"
+	],
+	CD: [
+		"243",
+		"00",
+		"[189]\\d{8}|[1-68]\\d{6}",
+		[
+			7,
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"88"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{5})",
+				"$1 $2",
+				[
+					"[1-6]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"1"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[89]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	CF: [
+		"236",
+		"00",
+		"(?:[27]\\d{3}|8776)\\d{4}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[278]"
+				]
+			]
+		]
+	],
+	CG: [
+		"242",
+		"00",
+		"222\\d{6}|(?:0\\d|80)\\d{7}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"801"
+				]
+			],
+			[
+				"(\\d)(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"8"
+				]
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[02]"
+				]
+			]
+		]
+	],
+	CH: [
+		"41",
+		"00",
+		"8\\d{11}|[2-9]\\d{8}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"8[047]|90"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[2-79]|81"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4 $5",
+				[
+					"8"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	CI: [
+		"225",
+		"00",
+		"[02-9]\\d{7}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[02-9]"
+				]
+			]
+		]
+	],
+	CK: [
+		"682",
+		"00",
+		"[2-8]\\d{4}",
+		[
+			5
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})",
+				"$1 $2",
+				[
+					"[2-8]"
+				]
+			]
+		]
+	],
+	CL: [
+		"56",
+		"(?:0|1(?:1[0-69]|2[0-57]|5[13-58]|69|7[0167]|8[018]))0",
+		"12300\\d{6}|6\\d{9,10}|[2-9]\\d{8}",
+		[
+			9,
+			10,
+			11
+		],
+		[
+			[
+				"(\\d{5})(\\d{4})",
+				"$1 $2",
+				[
+					"21"
+				],
+				"($1)"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"44"
+				]
+			],
+			[
+				"(\\d)(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"2[23]"
+				],
+				"($1)"
+			],
+			[
+				"(\\d)(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"9[2-9]"
+				]
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"3[2-5]|[47]|5[1-3578]|6[13-57]|8(?:0[1-9]|[1-9])"
+				],
+				"($1)"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"60|8"
+				]
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"1"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{2})(\\d{3})",
+				"$1 $2 $3 $4",
+				[
+					"60"
+				]
+			]
+		]
+	],
+	CM: [
+		"237",
+		"00",
+		"(?:[26]\\d\\d|88)\\d{6}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"88"
+				]
+			],
+			[
+				"(\\d)(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4 $5",
+				[
+					"[26]"
+				]
+			]
+		]
+	],
+	CN: [
+		"86",
+		"00|1(?:[12]\\d|79|9[0235-7])\\d\\d00",
+		"1[1279]\\d{8,9}|2\\d{9}(?:\\d{2})?|[12]\\d{6,7}|86\\d{6}|(?:1[03-68]\\d|6)\\d{7,9}|(?:[3-579]\\d|8[0-57-9])\\d{6,9}",
+		[
+			7,
+			8,
+			9,
+			10,
+			11,
+			12
+		],
+		[
+			[
+				"(\\d{2})(\\d{5,6})",
+				"$1 $2",
+				[
+					"(?:10|2[0-57-9])[19]",
+					"(?:10|2[0-57-9])(?:10|9[56])",
+					"(?:10|2[0-57-9])(?:100|9[56])"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{5,6})",
+				"$1 $2",
+				[
+					"3(?:[157]|35|49|9[1-68])|4(?:[17]|2[179]|6[47-9]|8[23])|5(?:[1357]|2[37]|4[36]|6[1-46]|80)|6(?:3[1-5]|6[0238]|9[12])|7(?:01|[1579]|2[248]|3[014-9]|4[3-6]|6[023689])|8(?:1[236-8]|2[5-7]|[37]|8[36-8]|9[1-8])|9(?:0[1-3689]|1[1-79]|[379]|4[13]|5[1-5])|(?:4[35]|59|85)[1-9]",
+					"(?:3(?:[157]\\d|35|49|9[1-68])|4(?:[17]\\d|2[179]|[35][1-9]|6[47-9]|8[23])|5(?:[1357]\\d|2[37]|4[36]|6[1-46]|80|9[1-9])|6(?:3[1-5]|6[0238]|9[12])|7(?:01|[1579]\\d|2[248]|3[014-9]|4[3-6]|6[023689])|8(?:1[236-8]|2[5-7]|[37]\\d|5[1-9]|8[36-8]|9[1-8])|9(?:0[1-3689]|1[1-79]|[379]\\d|4[13]|5[1-5]))[19]",
+					"85[23](?:10|95)|(?:3(?:[157]\\d|35|49|9[1-68])|4(?:[17]\\d|2[179]|[35][1-9]|6[47-9]|8[23])|5(?:[1357]\\d|2[37]|4[36]|6[1-46]|80|9[1-9])|6(?:3[1-5]|6[0238]|9[12])|7(?:01|[1579]\\d|2[248]|3[014-9]|4[3-6]|6[023689])|8(?:1[236-8]|2[5-7]|[37]\\d|5[14-9]|8[36-8]|9[1-8])|9(?:0[1-3689]|1[1-79]|[379]\\d|4[13]|5[1-5]))(?:10|9[56])",
+					"85[23](?:100|95)|(?:3(?:[157]\\d|35|49|9[1-68])|4(?:[17]\\d|2[179]|[35][1-9]|6[47-9]|8[23])|5(?:[1357]\\d|2[37]|4[36]|6[1-46]|80|9[1-9])|6(?:3[1-5]|6[0238]|9[12])|7(?:01|[1579]\\d|2[248]|3[014-9]|4[3-6]|6[023689])|8(?:1[236-8]|2[5-7]|[37]\\d|5[14-9]|8[36-8]|9[1-8])|9(?:0[1-3689]|1[1-79]|[379]\\d|4[13]|5[1-5]))(?:100|9[56])"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"(?:4|80)0"
+				]
+			],
+			[
+				"(\\d{2})(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"10|2(?:[02-57-9]|1[1-9])",
+					"10|2(?:[02-57-9]|1[1-9])",
+					"10[0-79]|2(?:[02-57-9]|1[1-79])|(?:10|21)8(?:0[1-9]|[1-9])"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"3(?:[3-59]|7[02-68])|4(?:[26-8]|3[3-9]|5[2-9])|5(?:3[03-9]|[468]|7[028]|9[2-46-9])|6|7(?:[0-247]|3[04-9]|5[0-4689]|6[2368])|8(?:[1-358]|9[1-7])|9(?:[013479]|5[1-5])|(?:[34]1|55|79|87)[02-9]"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{3})(\\d{7,8})",
+				"$1 $2",
+				[
+					"9"
+				]
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"80"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{3})(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[3-578]"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{3})(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"1[3-9]"
+				]
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3 $4",
+				[
+					"[12]"
+				],
+				"0$1",
+				1
+			]
+		],
+		"0",
+		0,
+		"0|(1(?:[12]\\d|79|9[0235-7])\\d\\d)",
+		0,
+		0,
+		0,
+		0,
+		"00"
+	],
+	CO: [
+		"57",
+		"00(?:4(?:[14]4|56)|[579])",
+		"(?:1\\d|3)\\d{9}|[124-8]\\d{7}",
+		[
+			8,
+			10,
+			11
+		],
+		[
+			[
+				"(\\d)(\\d{7})",
+				"$1 $2",
+				[
+					"1[2-79]|[25-8]|(?:18|4)[2-9]"
+				],
+				"($1)"
+			],
+			[
+				"(\\d{3})(\\d{7})",
+				"$1 $2",
+				[
+					"3"
+				]
+			],
+			[
+				"(\\d)(\\d{3})(\\d{7})",
+				"$1-$2-$3",
+				[
+					"1(?:80|9)",
+					"1(?:800|9)"
+				],
+				"0$1",
+				0,
+				"$1 $2 $3"
+			]
+		],
+		"0",
+		0,
+		"0([3579]|4(?:[14]4|56))?"
+	],
+	CR: [
+		"506",
+		"00",
+		"(?:8\\d|90)\\d{8}|[24-8]\\d{7}",
+		[
+			8,
+			10
+		],
+		[
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[24-7]|8[3-9]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"[89]"
+				]
+			]
+		],
+		0,
+		0,
+		"(19(?:0[0-2468]|1[09]|20|66|77|99))"
+	],
+	CU: [
+		"53",
+		"119",
+		"[27]\\d{6,7}|[34]\\d{5,7}|5\\d{7}",
+		[
+			6,
+			7,
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{4,6})",
+				"$1 $2",
+				[
+					"2[1-4]|[34]"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d)(\\d{6,7})",
+				"$1 $2",
+				[
+					"7"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d)(\\d{7})",
+				"$1 $2",
+				[
+					"5"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	CV: [
+		"238",
+		"0",
+		"[2-59]\\d{6}",
+		[
+			7
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3",
+				[
+					"[2-59]"
+				]
+			]
+		]
+	],
+	CW: [
+		"599",
+		"00",
+		"(?:[34]1|60|(?:7|9\\d)\\d)\\d{5}",
+		[
+			7,
+			8
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[3467]"
+				]
+			],
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"9[4-8]"
+				]
+			]
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		"[69]"
+	],
+	CX: [
+		"61",
+		"001[14-689]|14(?:1[14]|34|4[17]|[56]6|7[47]|88)0011",
+		"1(?:[0-79]\\d|8[0-24-9])\\d{7}|(?:[148]\\d\\d|550)\\d{6}|1\\d{5,7}",
+		[
+			6,
+			7,
+			8,
+			9,
+			10
+		],
+		0,
+		"0",
+		0,
+		"0|([59]\\d{7})$",
+		"8$1",
+		0,
+		0,
+		[
+			[
+				"8(?:51(?:0(?:01|30|59)|117)|91(?:00[6-9]|1(?:[28]1|49|78)|2(?:09|63)|3(?:12|26|75)|4(?:56|97)|64\\d|7(?:0[01]|1[0-2])|958))\\d{3}",
+				[
+					9
+				]
+			],
+			[
+				"483[0-3]\\d{5}|4(?:[0-3]\\d|4[047-9]|5[0-25-9]|6[06-9]|7[02-9]|8[0-2457-9]|9[0-27-9])\\d{6}",
+				[
+					9
+				]
+			],
+			[
+				"180(?:0\\d{3}|2)\\d{3}",
+				[
+					7,
+					10
+				]
+			],
+			[
+				"190[0-26]\\d{6}",
+				[
+					10
+				]
+			],
+			0,
+			0,
+			0,
+			0,
+			[
+				"(?:14(?:5(?:1[0458]|[23][458])|71\\d)|550\\d\\d)\\d{4}",
+				[
+					9
+				]
+			],
+			[
+				"13(?:00\\d{3}|45[0-4])\\d{3}|13\\d{4}",
+				[
+					6,
+					8,
+					10
+				]
+			]
+		],
+		"0011"
+	],
+	CY: [
+		"357",
+		"00",
+		"(?:[279]\\d|[58]0)\\d{6}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{6})",
+				"$1 $2",
+				[
+					"[257-9]"
+				]
+			]
+		]
+	],
+	CZ: [
+		"420",
+		"00",
+		"(?:[2-578]\\d|60)\\d{7}|9\\d{8,11}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[2-8]|9[015-7]"
+				]
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3 $4",
+				[
+					"9"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3 $4",
+				[
+					"9"
+				]
+			]
+		]
+	],
+	DE: [
+		"49",
+		"00",
+		"[2579]\\d{5,14}|49(?:[05]\\d{10}|[46][1-8]\\d{4,9})|49(?:[0-25]\\d|3[1-689]|7[1-7])\\d{4,8}|49(?:[0-2579]\\d|[34][1-9]|6[0-8])\\d{3}|49\\d{3,4}|(?:1|[368]\\d|4[0-8])\\d{3,13}",
+		[
+			4,
+			5,
+			6,
+			7,
+			8,
+			9,
+			10,
+			11,
+			12,
+			13,
+			14,
+			15
+		],
+		[
+			[
+				"(\\d{2})(\\d{3,13})",
+				"$1 $2",
+				[
+					"3[02]|40|[68]9"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3,12})",
+				"$1 $2",
+				[
+					"2(?:0[1-389]|1[124]|2[18]|3[14])|3(?:[35-9][15]|4[015])|906|(?:2[4-9]|4[2-9]|[579][1-9]|[68][1-8])1",
+					"2(?:0[1-389]|12[0-8])|3(?:[35-9][15]|4[015])|906|2(?:[13][14]|2[18])|(?:2[4-9]|4[2-9]|[579][1-9]|[68][1-8])1"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{2,11})",
+				"$1 $2",
+				[
+					"[24-6]|3(?:[3569][02-46-9]|4[2-4679]|7[2-467]|8[2-46-8])|70[2-8]|8(?:0[2-9]|[1-8])|90[7-9]|[79][1-9]",
+					"[24-6]|3(?:3(?:0[1-467]|2[127-9]|3[124578]|7[1257-9]|8[1256]|9[145])|4(?:2[135]|4[13578]|9[1346])|5(?:0[14]|2[1-3589]|6[1-4]|7[13468]|8[13568])|6(?:2[1-489]|3[124-6]|6[13]|7[12579]|8[1-356]|9[135])|7(?:2[1-7]|4[145]|6[1-5]|7[1-4])|8(?:21|3[1468]|6|7[1467]|8[136])|9(?:0[12479]|2[1358]|4[134679]|6[1-9]|7[136]|8[147]|9[1468]))|70[2-8]|8(?:0[2-9]|[1-8])|90[7-9]|[79][1-9]|3[68]4[1347]|3(?:47|60)[1356]|3(?:3[46]|46|5[49])[1246]|3[4579]3[1357]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"138"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{5})(\\d{2,10})",
+				"$1 $2",
+				[
+					"3"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{5,11})",
+				"$1 $2",
+				[
+					"181"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d)(\\d{4,10})",
+				"$1 $2 $3",
+				[
+					"1(?:3|80)|9"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{7,8})",
+				"$1 $2",
+				[
+					"1[67]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{7,12})",
+				"$1 $2",
+				[
+					"8"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{5})(\\d{6})",
+				"$1 $2",
+				[
+					"185",
+					"1850",
+					"18500"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"7"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{7})",
+				"$1 $2",
+				[
+					"18[68]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{5})(\\d{6})",
+				"$1 $2",
+				[
+					"15[0568]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{7})",
+				"$1 $2",
+				[
+					"15[1279]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{8})",
+				"$1 $2",
+				[
+					"18"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{7,8})",
+				"$1 $2 $3",
+				[
+					"1(?:6[023]|7)"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{2})(\\d{7})",
+				"$1 $2 $3",
+				[
+					"15[279]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{8})",
+				"$1 $2 $3",
+				[
+					"15"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	DJ: [
+		"253",
+		"00",
+		"(?:2\\d|77)\\d{6}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[27]"
+				]
+			]
+		]
+	],
+	DK: [
+		"45",
+		"00",
+		"[2-9]\\d{7}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[2-9]"
+				]
+			]
+		]
+	],
+	DM: [
+		"1",
+		"011",
+		"(?:[58]\\d\\d|767|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([2-7]\\d{6})$",
+		"767$1",
+		0,
+		"767|8001"
+	],
+	DO: [
+		"1",
+		"011",
+		"(?:[58]\\d\\d|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		0,
+		0,
+		0,
+		"8[024]9"
+	],
+	DZ: [
+		"213",
+		"00",
+		"(?:[1-4]|[5-79]\\d|80)\\d{7}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[1-4]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"9"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[5-8]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	EC: [
+		"593",
+		"00",
+		"1800\\d{6,7}|(?:[2-7]|9\\d)\\d{7}",
+		[
+			8,
+			9,
+			10,
+			11
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1 $2-$3",
+				[
+					"[2-7]"
+				],
+				"(0$1)",
+				0,
+				"$1-$2-$3"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"9"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"1"
+				]
+			]
+		],
+		"0"
+	],
+	EE: [
+		"372",
+		"00",
+		"8\\d{9}|[4578]\\d{7}|(?:[3-8]\\d\\d|900)\\d{4}",
+		[
+			7,
+			8,
+			10
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[369]|4[3-8]|5(?:[0-2]|5[0-478]|6[45])|7[1-9]",
+					"[369]|4[3-8]|5(?:[02]|1(?:[0-8]|95)|5[0-478]|6(?:4[0-4]|5[1-589]))|7[1-9]"
+				]
+			],
+			[
+				"(\\d{4})(\\d{3,4})",
+				"$1 $2",
+				[
+					"[45]|8(?:00|[1-4])",
+					"[45]|8(?:00[1-9]|[1-4])"
+				]
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"7"
+				]
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"80"
+				]
+			]
+		]
+	],
+	EG: [
+		"20",
+		"00",
+		"[189]\\d{8,9}|[24-6]\\d{8}|[135]\\d{7}",
+		[
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d)(\\d{7,8})",
+				"$1 $2",
+				[
+					"[23]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{6,7})",
+				"$1 $2",
+				[
+					"1[35]|[4-6]|8[2468]|9[235-7]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[189]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	EH: [
+		"212",
+		"00",
+		"[5-8]\\d{8}",
+		[
+			9
+		],
+		0,
+		"0",
+		0,
+		0,
+		0,
+		0,
+		"528[89]"
+	],
+	ER: [
+		"291",
+		"00",
+		"[178]\\d{6}",
+		[
+			7
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[178]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	ES: [
+		"34",
+		"00",
+		"(?:51|[6-9]\\d)\\d{7}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[89]00"
+				]
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[5-9]"
+				]
+			]
+		]
+	],
+	ET: [
+		"251",
+		"00",
+		"(?:11|[2-59]\\d)\\d{7}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[1-59]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	FI: [
+		"358",
+		"00|99(?:[01469]|5(?:[14]1|3[23]|5[59]|77|88|9[09]))",
+		"(?:[124-7]\\d|3[0-46-9])\\d{8}|[1-9]\\d{5,8}|[1-35689]\\d{4}",
+		[
+			5,
+			6,
+			7,
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d)(\\d{4,9})",
+				"$1 $2",
+				[
+					"[2568][1-8]|3(?:0[1-9]|[1-9])|9"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3,7})",
+				"$1 $2",
+				[
+					"(?:[12]0|7)0|[368]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{4,8})",
+				"$1 $2",
+				[
+					"[12457]"
+				],
+				"0$1"
+			]
+		],
+		"0",
+		0,
+		0,
+		0,
+		0,
+		"1[03-79]|[2-9]",
+		0,
+		"00"
+	],
+	FJ: [
+		"679",
+		"0(?:0|52)",
+		"45\\d{5}|(?:0800\\d|[235-9])\\d{6}",
+		[
+			7,
+			11
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[235-9]|45"
+				]
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"0"
+				]
+			]
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"00"
+	],
+	FK: [
+		"500",
+		"00",
+		"[2-7]\\d{4}",
+		[
+			5
+		]
+	],
+	FM: [
+		"691",
+		"00",
+		"[39]\\d{6}",
+		[
+			7
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[39]"
+				]
+			]
+		]
+	],
+	FO: [
+		"298",
+		"00",
+		"(?:[2-8]\\d|90)\\d{4}",
+		[
+			6
+		],
+		[
+			[
+				"(\\d{6})",
+				"$1",
+				[
+					"[2-9]"
+				]
+			]
+		],
+		0,
+		0,
+		"(10(?:01|[12]0|88))"
+	],
+	FR: [
+		"33",
+		"00",
+		"[1-9]\\d{8}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"8"
+				],
+				"0 $1"
+			],
+			[
+				"(\\d)(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4 $5",
+				[
+					"[1-79]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	GA: [
+		"241",
+		"00",
+		"(?:0\\d|[2-7])\\d{6}",
+		[
+			7,
+			8
+		],
+		[
+			[
+				"(\\d)(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[2-7]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"0"
+				]
+			]
+		]
+	],
+	GB: [
+		"44",
+		"00",
+		"[1-357-9]\\d{9}|[18]\\d{8}|8\\d{6}",
+		[
+			7,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"800",
+					"8001",
+					"80011",
+					"800111",
+					"8001111"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3",
+				[
+					"845",
+					"8454",
+					"84546",
+					"845464"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{6})",
+				"$1 $2",
+				[
+					"800"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{5})(\\d{4,5})",
+				"$1 $2",
+				[
+					"1(?:38|5[23]|69|76|94)",
+					"1(?:(?:38|69)7|5(?:24|39)|768|946)",
+					"1(?:3873|5(?:242|39[4-6])|(?:697|768)[347]|9467)"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{5,6})",
+				"$1 $2",
+				[
+					"1(?:[2-69][02-9]|[78])"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[25]|7(?:0|6[024-9])",
+					"[25]|7(?:0|6(?:[04-9]|2[356]))"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{6})",
+				"$1 $2",
+				[
+					"7"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[1389]"
+				],
+				"0$1"
+			]
+		],
+		"0",
+		0,
+		0,
+		0,
+		0,
+		0,
+		[
+			[
+				"(?:1(?:(?:1(?:3[0-58]|4[0-5]|5[0-26-9]|6[0-4]|[78][0-49])|3(?:0\\d|1[0-8]|[25][02-9]|3[02-579]|[468][0-46-9]|7[1-35-79]|9[2-578])|4(?:0[03-9]|[137]\\d|[28][02-57-9]|4[02-69]|5[0-8]|[69][0-79])|5(?:0[1-35-9]|[16]\\d|2[024-9]|3[015689]|4[02-9]|5[03-9]|7[0-35-9]|8[0-468]|9[0-57-9])|6(?:0[034689]|1\\d|2[0-35689]|[38][013-9]|4[1-467]|5[0-69]|6[13-9]|7[0-8]|9[0-24578])|7(?:0[0246-9]|2\\d|3[0236-8]|4[03-9]|5[0-46-9]|6[013-9]|7[0-35-9]|8[024-9]|9[02-9])|8(?:0[35-9]|2[1-57-9]|3[02-578]|4[0-578]|5[124-9]|6[2-69]|7\\d|8[02-9]|9[02569])|9(?:0[02-589]|[18]\\d|2[02-689]|3[1-57-9]|4[2-9]|5[0-579]|6[2-47-9]|7[0-24578]|9[2-57]))\\d\\d|2(?:(?:0[024-9]|2[3-9]|3[3-79]|4[1-689]|[58][02-9]|6[0-47-9]|7[013-9]|9\\d)\\d\\d|1(?:[0-7]\\d\\d|80[04589])))|2(?:0[01378]|3[0189]|4[017]|8[0-46-9]|9[0-2])\\d{3})\\d{4}|1(?:(?:2(?:0(?:46[1-4]|87[2-9])|545[1-79]|76(?:2\\d|3[1-8]|6[1-6])|9(?:7(?:2[0-4]|3[2-5])|8(?:2[2-8]|7[0-47-9]|8[3-5])))|3(?:6(?:38[2-5]|47[23])|8(?:47[04-9]|64[0157-9]))|4(?:044[1-7]|20(?:2[23]|8\\d)|6(?:0(?:30|5[2-57]|6[1-8]|7[2-8])|140)|8(?:052|87[1-3]))|5(?:2(?:4(?:3[2-79]|6\\d)|76\\d)|6(?:26[06-9]|686))|6(?:06(?:4\\d|7[4-79])|295[5-7]|35[34]\\d|47(?:24|61)|59(?:5[08]|6[67]|74)|9(?:55[0-4]|77[23]))|8(?:27[56]\\d|37(?:5[2-5]|8[239])|843[2-58])|9(?:0(?:0(?:6[1-8]|85)|52\\d)|3583|4(?:66[1-8]|9(?:2[01]|81))|63(?:23|3[1-4])|9561))\\d|7(?:(?:26(?:6[13-9]|7[0-7])|442\\d|50(?:2[0-3]|[3-68]2|76))\\d|6888[2-46-8]))\\d\\d",
+				[
+					9,
+					10
+				]
+			],
+			[
+				"7(?:457[0-57-9]|700[01]|911[028])\\d{5}|7(?:[1-3]\\d\\d|4(?:[0-46-9]\\d|5[0-689])|5(?:0[0-8]|[13-9]\\d|2[0-35-9])|7(?:0[1-9]|[1-7]\\d|8[02-9]|9[0-689])|8(?:[014-9]\\d|[23][0-8])|9(?:[024-9]\\d|1[02-9]|3[0-689]))\\d{6}",
+				[
+					10
+				]
+			],
+			[
+				"80[08]\\d{7}|800\\d{6}|8001111"
+			],
+			[
+				"(?:8(?:4[2-5]|7[0-3])|9(?:[01]\\d|8[2-49]))\\d{7}|845464\\d",
+				[
+					7,
+					10
+				]
+			],
+			[
+				"70\\d{8}",
+				[
+					10
+				]
+			],
+			0,
+			[
+				"(?:3[0347]|55)\\d{8}",
+				[
+					10
+				]
+			],
+			[
+				"76(?:0[0-2]|2[356]|4[0134]|5[49]|6[0-369]|77|81|9[39])\\d{6}",
+				[
+					10
+				]
+			],
+			[
+				"56\\d{8}",
+				[
+					10
+				]
+			]
+		],
+		0,
+		" x"
+	],
+	GD: [
+		"1",
+		"011",
+		"(?:473|[58]\\d\\d|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([2-9]\\d{6})$",
+		"473$1",
+		0,
+		"473"
+	],
+	GE: [
+		"995",
+		"00",
+		"(?:[3-57]\\d\\d|800)\\d{6}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"70"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"32"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[57]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[348]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	GF: [
+		"594",
+		"00",
+		"[56]94\\d{6}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[56]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	GG: [
+		"44",
+		"00",
+		"(?:1481|[357-9]\\d{3})\\d{6}|8\\d{6}(?:\\d{2})?",
+		[
+			7,
+			9,
+			10
+		],
+		0,
+		"0",
+		0,
+		"0|([25-9]\\d{5})$",
+		"1481$1",
+		0,
+		0,
+		[
+			[
+				"1481[25-9]\\d{5}",
+				[
+					10
+				]
+			],
+			[
+				"7(?:(?:781|839)\\d|911[17])\\d{5}",
+				[
+					10
+				]
+			],
+			[
+				"80[08]\\d{7}|800\\d{6}|8001111"
+			],
+			[
+				"(?:8(?:4[2-5]|7[0-3])|9(?:[01]\\d|8[0-3]))\\d{7}|845464\\d",
+				[
+					7,
+					10
+				]
+			],
+			[
+				"70\\d{8}",
+				[
+					10
+				]
+			],
+			0,
+			[
+				"(?:3[0347]|55)\\d{8}",
+				[
+					10
+				]
+			],
+			[
+				"76(?:0[0-2]|2[356]|4[0134]|5[49]|6[0-369]|77|81|9[39])\\d{6}",
+				[
+					10
+				]
+			],
+			[
+				"56\\d{8}",
+				[
+					10
+				]
+			]
+		]
+	],
+	GH: [
+		"233",
+		"00",
+		"(?:[235]\\d{3}|800)\\d{5}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{5})",
+				"$1 $2",
+				[
+					"8"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[235]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	GI: [
+		"350",
+		"00",
+		"(?:[25]\\d\\d|629)\\d{5}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{3})(\\d{5})",
+				"$1 $2",
+				[
+					"2"
+				]
+			]
+		]
+	],
+	GL: [
+		"299",
+		"00",
+		"(?:19|[2-689]\\d)\\d{4}",
+		[
+			6
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3",
+				[
+					"19|[2-689]"
+				]
+			]
+		]
+	],
+	GM: [
+		"220",
+		"00",
+		"[2-9]\\d{6}",
+		[
+			7
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[2-9]"
+				]
+			]
+		]
+	],
+	GN: [
+		"224",
+		"00",
+		"(?:30|6\\d\\d|722)\\d{6}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"3"
+				]
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[67]"
+				]
+			]
+		]
+	],
+	GP: [
+		"590",
+		"00",
+		"(?:590|69\\d)\\d{6}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[56]"
+				],
+				"0$1"
+			]
+		],
+		"0",
+		0,
+		0,
+		0,
+		0,
+		0,
+		[
+			[
+				"590(?:0[1-68]|1[0-2]|2[0-68]|3[1289]|4[0-24-9]|5[3-579]|6[0189]|7[08]|8[0-689]|9\\d)\\d{4}"
+			],
+			[
+				"69(?:0\\d\\d|1(?:2[29]|3[0-5]))\\d{4}"
+			]
+		]
+	],
+	GQ: [
+		"240",
+		"00",
+		"222\\d{6}|(?:3\\d|55|[89]0)\\d{7}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[235]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{6})",
+				"$1 $2",
+				[
+					"[89]"
+				]
+			]
+		]
+	],
+	GR: [
+		"30",
+		"00",
+		"(?:[268]\\d|[79]0)\\d{8}",
+		[
+			10
+		],
+		[
+			[
+				"(\\d{2})(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"21|7"
+				]
+			],
+			[
+				"(\\d{4})(\\d{6})",
+				"$1 $2",
+				[
+					"2(?:2|3[2-57-9]|4[2-469]|5[2-59]|6[2-9]|7[2-69]|8[2-49])"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[2689]"
+				]
+			]
+		]
+	],
+	GT: [
+		"502",
+		"00",
+		"(?:1\\d{3}|[2-7])\\d{7}",
+		[
+			8,
+			11
+		],
+		[
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[2-7]"
+				]
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"1"
+				]
+			]
+		]
+	],
+	GU: [
+		"1",
+		"011",
+		"(?:[58]\\d\\d|671|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([3-9]\\d{6})$",
+		"671$1",
+		0,
+		"671"
+	],
+	GW: [
+		"245",
+		"00",
+		"[49]\\d{8}|4\\d{6}",
+		[
+			7,
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"40"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[49]"
+				]
+			]
+		]
+	],
+	GY: [
+		"592",
+		"001",
+		"(?:862\\d|9008)\\d{3}|(?:[2-46]\\d|77)\\d{5}",
+		[
+			7
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[2-46-9]"
+				]
+			]
+		]
+	],
+	HK: [
+		"852",
+		"00(?:30|5[09]|[126-9]?)",
+		"8[0-46-9]\\d{6,7}|9\\d{4}(?:\\d(?:\\d(?:\\d{4})?)?)?|(?:[235-79]\\d|46)\\d{6}",
+		[
+			5,
+			6,
+			7,
+			8,
+			9,
+			11
+		],
+		[
+			[
+				"(\\d{3})(\\d{2,5})",
+				"$1 $2",
+				[
+					"900",
+					"9003"
+				]
+			],
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[2-7]|8[1-4]|9(?:0[1-9]|[1-8])"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"8"
+				]
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3 $4",
+				[
+					"9"
+				]
+			]
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"00"
+	],
+	HN: [
+		"504",
+		"00",
+		"8\\d{10}|[237-9]\\d{7}",
+		[
+			8,
+			11
+		],
+		[
+			[
+				"(\\d{4})(\\d{4})",
+				"$1-$2",
+				[
+					"[237-9]"
+				]
+			]
+		]
+	],
+	HR: [
+		"385",
+		"00",
+		"(?:[24-69]\\d|3[0-79])\\d{7}|80\\d{5,7}|[1-79]\\d{7}|6\\d{5,6}",
+		[
+			6,
+			7,
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2,3})",
+				"$1 $2 $3",
+				[
+					"6[01]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{2,3})",
+				"$1 $2 $3",
+				[
+					"8"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{4})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"1"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[67]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"9"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[2-5]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"8"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	HT: [
+		"509",
+		"00",
+		"[2-489]\\d{7}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[2-489]"
+				]
+			]
+		]
+	],
+	HU: [
+		"36",
+		"00",
+		"[2357]\\d{8}|[1-9]\\d{7}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"1"
+				],
+				"(06 $1)"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[27][2-9]|3[2-7]|4[24-9]|5[2-79]|6|8[2-57-9]|9[2-69]"
+				],
+				"(06 $1)"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[2-57-9]"
+				],
+				"06 $1"
+			]
+		],
+		"06"
+	],
+	ID: [
+		"62",
+		"00[189]",
+		"(?:(?:007803|8\\d{4})\\d|[1-36])\\d{6}|[1-9]\\d{8,10}|[2-9]\\d{7}",
+		[
+			7,
+			8,
+			9,
+			10,
+			11,
+			12,
+			13
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"15"
+				]
+			],
+			[
+				"(\\d{2})(\\d{5,9})",
+				"$1 $2",
+				[
+					"2[124]|[36]1"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{3})(\\d{5,7})",
+				"$1 $2",
+				[
+					"800"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{5,8})",
+				"$1 $2",
+				[
+					"[2-79]"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{3})(\\d{3,4})(\\d{3})",
+				"$1-$2-$3",
+				[
+					"8[1-35-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{6,8})",
+				"$1 $2",
+				[
+					"1"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"804"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d)(\\d{3})(\\d{3})",
+				"$1 $2 $3 $4",
+				[
+					"80"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{4})(\\d{4,5})",
+				"$1-$2-$3",
+				[
+					"8"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	IE: [
+		"353",
+		"00",
+		"(?:1\\d|[2569])\\d{6,8}|4\\d{6,9}|7\\d{8}|8\\d{8,9}",
+		[
+			7,
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{2})(\\d{5})",
+				"$1 $2",
+				[
+					"2[24-9]|47|58|6[237-9]|9[35-9]"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{3})(\\d{5})",
+				"$1 $2",
+				[
+					"[45]0"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d)(\\d{3,4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"1"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[2569]|4[1-69]|7[14]"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"70"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"81"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[78]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"1"
+				]
+			],
+			[
+				"(\\d{2})(\\d)(\\d{3})(\\d{4})",
+				"$1 $2 $3 $4",
+				[
+					"8"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"4"
+				],
+				"(0$1)"
+			]
+		],
+		"0"
+	],
+	IL: [
+		"972",
+		"0(?:0|1[2-9])",
+		"1\\d{6}(?:\\d{3,5})?|[57]\\d{8}|[1-489]\\d{7}",
+		[
+			7,
+			8,
+			9,
+			10,
+			11,
+			12
+		],
+		[
+			[
+				"(\\d{4})(\\d{3})",
+				"$1-$2",
+				[
+					"125"
+				]
+			],
+			[
+				"(\\d{4})(\\d{2})(\\d{2})",
+				"$1-$2-$3",
+				[
+					"121"
+				]
+			],
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"[2-489]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"[57]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{3})",
+				"$1-$2-$3",
+				[
+					"12"
+				]
+			],
+			[
+				"(\\d{4})(\\d{6})",
+				"$1-$2",
+				[
+					"159"
+				]
+			],
+			[
+				"(\\d)(\\d{3})(\\d{3})(\\d{3})",
+				"$1-$2-$3-$4",
+				[
+					"1[7-9]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{1,2})(\\d{3})(\\d{4})",
+				"$1-$2 $3-$4",
+				[
+					"15"
+				]
+			]
+		],
+		"0"
+	],
+	IM: [
+		"44",
+		"00",
+		"1624\\d{6}|(?:[3578]\\d|90)\\d{8}",
+		[
+			10
+		],
+		0,
+		"0",
+		0,
+		"0|([5-8]\\d{5})$",
+		"1624$1",
+		0,
+		"74576|(?:16|7[56])24"
+	],
+	IN: [
+		"91",
+		"00",
+		"(?:00800|[2-9]\\d\\d)\\d{7}|1\\d{7,12}",
+		[
+			8,
+			9,
+			10,
+			11,
+			12,
+			13
+		],
+		[
+			[
+				"(\\d{8})",
+				"$1",
+				[
+					"5(?:0|2[23]|3[03]|[67]1|88)",
+					"5(?:0|2(?:21|3)|3(?:0|3[23])|616|717|888)",
+					"5(?:0|2(?:21|3)|3(?:0|3[23])|616|717|8888)"
+				],
+				0,
+				1
+			],
+			[
+				"(\\d{4})(\\d{4,5})",
+				"$1 $2",
+				[
+					"180",
+					"1800"
+				],
+				0,
+				1
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"140"
+				],
+				0,
+				1
+			],
+			[
+				"(\\d{2})(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"11|2[02]|33|4[04]|79[1-7]|80[2-46]",
+					"11|2[02]|33|4[04]|79(?:[1-6]|7[19])|80(?:[2-4]|6[0-589])",
+					"11|2[02]|33|4[04]|79(?:[124-6]|3(?:[02-9]|1[0-24-9])|7(?:1|9[1-6]))|80(?:[2-4]|6[0-589])"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"1(?:2[0-249]|3[0-25]|4[145]|[68]|7[1257])|2(?:1[257]|3[013]|4[01]|5[0137]|6[0158]|78|8[1568])|3(?:26|4[1-3]|5[34]|6[01489]|7[02-46]|8[159])|4(?:1[36]|2[1-47]|5[12]|6[0-26-9]|7[0-24-9]|8[013-57]|9[014-7])|5(?:1[025]|22|[36][25]|4[28]|5[12]|[78]1)|6(?:12|[2-4]1|5[17]|6[13]|80)|7(?:12|3[134]|4[47]|61|88)|8(?:16|2[014]|3[126]|6[136]|7[078]|8[34]|91)|(?:43|59|75)[15]|(?:1[59]|29|67|72)[14]",
+					"1(?:2[0-24]|3[0-25]|4[145]|[59][14]|6[1-9]|7[1257]|8[1-57-9])|2(?:1[257]|3[013]|4[01]|5[0137]|6[058]|78|8[1568]|9[14])|3(?:26|4[1-3]|5[34]|6[01489]|7[02-46]|8[159])|4(?:1[36]|2[1-47]|3[15]|5[12]|6[0-26-9]|7[0-24-9]|8[013-57]|9[014-7])|5(?:1[025]|22|[36][25]|4[28]|[578]1|9[15])|6(?:[2-4]1|5[17]|6[13]|7[14]|80)|7(?:12|(?:2[14]|3[34]|5[15])[2-6]|61[346]|88[0-8])|8(?:70[2-6]|84[235-7]|91[3-7])|(?:1(?:29|60|8[06])|261|(?:55|61)2|7(?:31|4[47])|8(?:16|2[014]|3[126]|6[136]|7[78]|83))[2-7]",
+					"1(?:2[0-24]|3[0-25]|4[145]|[59][14]|6[1-9]|7[1257]|8[1-57-9])|2(?:1[257]|3[013]|4[01]|5[0137]|6[058]|78|8[1568]|9[14])|3(?:26|4[1-3]|5[34]|6[01489]|7[02-46]|8[159])|4(?:1[36]|2[1-47]|3[15]|5[12]|6[0-26-9]|7[0-24-9]|8[013-57]|9[014-7])|5(?:1[025]|22|[36][25]|4[28]|[578]1|9[15])|6(?:12(?:[2-6]|7[0-8])|[2-4]1|5[17]|6[13]|7[14]|80)|7(?:12|(?:2[14]|5[15])[2-6]|3171|61[346]|88(?:[2-7]|82))|8(?:70[2-6]|84(?:[2356]|7[19])|91(?:[3-6]|7[19]))|73[134][2-6]|(?:1(?:29|60|8[06])|261|552|788[01])[2-7]|(?:74[47]|8(?:16|2[014]|3[126]|6[136]|7[78]|83))(?:[2-6]|7[19])"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"1(?:[2-479]|5[0235-9])|[2-5]|6(?:1[1358]|2[2457-9]|3[2-5]|[4-8])|7(?:1[013-9]|28|3[129]|4[1-35689]|5[29]|6[02-5]|70)|807",
+					"1(?:[2-479]|5[0235-9])|[2-5]|6(?:1[1358]|2(?:[2457]|84|95)|3(?:[2-4]|55)|[4-8])|7(?:1(?:[013-8]|9[6-9])|28[6-8]|3(?:17|2[0-49]|9[2-57])|4(?:1[2-4]|[29][0-7]|3[0-8]|[56]|8[0-24-7])|5(?:2[1-3]|9[0-6])|6(?:0[5689]|2[5-9]|3[02-8]|4|5[0-367])|70[13-7])|807[19]",
+					"1(?:[2-479]|5(?:[0236-9]|5[013-9]))|[2-5]|6(?:1[1358]|2(?:[2457]|84|95)|3(?:[2-4]|55)|[4-8])|7(?:1(?:[013-8]|9[6-9])|3179)|807(?:1|9[1-3])|(?:1552|7(?:28[6-8]|3(?:2[0-49]|9[2-57])|4(?:1[2-4]|[29][0-7]|3[0-8]|[56]\\d|8[0-24-7])|5(?:2[1-3]|9[0-6])|6(?:0[5689]|2[5-9]|3[02-8]|4\\d|5[0-367])|70[13-7]))[2-7]"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{5})(\\d{5})",
+				"$1 $2",
+				[
+					"[6-9]"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{4})(\\d{2,4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"1(?:6|8[06])",
+					"1(?:6|8[06]0)"
+				],
+				0,
+				1
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3 $4",
+				[
+					"18"
+				],
+				0,
+				1
+			]
+		],
+		"0"
+	],
+	IO: [
+		"246",
+		"00",
+		"3\\d{6}",
+		[
+			7
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"3"
+				]
+			]
+		]
+	],
+	IQ: [
+		"964",
+		"00",
+		"(?:1|7\\d\\d)\\d{7}|[2-6]\\d{7,8}",
+		[
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"1"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[2-6]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"7"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	IR: [
+		"98",
+		"00",
+		"[1-9]\\d{9}|(?:[1-8]\\d\\d|9)\\d{3,4}",
+		[
+			4,
+			5,
+			6,
+			7,
+			10
+		],
+		[
+			[
+				"(\\d{4,5})",
+				"$1",
+				[
+					"96"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{4,5})",
+				"$1 $2",
+				[
+					"(?:1[137]|2[13-68]|3[1458]|4[145]|5[1468]|6[16]|7[1467]|8[13467])[12689]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"9"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[1-8]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	IS: [
+		"354",
+		"00|1(?:0(?:01|[12]0)|100)",
+		"(?:38\\d|[4-9])\\d{6}",
+		[
+			7,
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[4-9]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"3"
+				]
+			]
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"00"
+	],
+	IT: [
+		"39",
+		"00",
+		"0\\d{5,10}|3[0-8]\\d{7,10}|55\\d{8}|8\\d{5}(?:\\d{2,4})?|(?:1\\d|39)\\d{7,8}",
+		[
+			6,
+			7,
+			8,
+			9,
+			10,
+			11
+		],
+		[
+			[
+				"(\\d{2})(\\d{4,6})",
+				"$1 $2",
+				[
+					"0[26]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3,6})",
+				"$1 $2",
+				[
+					"0[13-57-9][0159]|8(?:03|4[17]|9[245])",
+					"0[13-57-9][0159]|8(?:03|4[17]|9(?:2|[45][0-4]))"
+				]
+			],
+			[
+				"(\\d{4})(\\d{2,6})",
+				"$1 $2",
+				[
+					"0(?:[13-579][2-46-8]|8[236-8])"
+				]
+			],
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"894"
+				]
+			],
+			[
+				"(\\d{2})(\\d{3,4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"0[26]|5"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"1[4679]|[38]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3,4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"0[13-57-9][0159]"
+				]
+			],
+			[
+				"(\\d{2})(\\d{4})(\\d{5})",
+				"$1 $2 $3",
+				[
+					"0[26]"
+				]
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"0"
+				]
+			],
+			[
+				"(\\d{3})(\\d{4})(\\d{4,5})",
+				"$1 $2 $3",
+				[
+					"3"
+				]
+			]
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		[
+			[
+				"0669[0-79]\\d{1,6}|0(?:1(?:[0159]\\d|[27][1-5]|31|4[1-4]|6[1356]|8[2-57])|2\\d\\d|3(?:[0159]\\d|2[1-4]|3[12]|[48][1-6]|6[2-59]|7[1-7])|4(?:[0159]\\d|[23][1-9]|4[245]|6[1-5]|7[1-4]|81)|5(?:[0159]\\d|2[1-5]|3[2-6]|4[1-79]|6[4-6]|7[1-578]|8[3-8])|6(?:[0-57-9]\\d|6[0-8])|7(?:[0159]\\d|2[12]|3[1-7]|4[2-46]|6[13569]|7[13-6]|8[1-59])|8(?:[0159]\\d|2[3-578]|3[1-356]|[6-8][1-5])|9(?:[0159]\\d|[238][1-5]|4[12]|6[1-8]|7[1-6]))\\d{2,7}"
+			],
+			[
+				"3[1-9]\\d{8}|3[2-9]\\d{7}",
+				[
+					9,
+					10
+				]
+			],
+			[
+				"80(?:0\\d{3}|3)\\d{3}",
+				[
+					6,
+					9
+				]
+			],
+			[
+				"(?:0878\\d\\d|89(?:2|4[5-9]\\d))\\d{3}|89[45][0-4]\\d\\d|(?:1(?:44|6[346])|89(?:5[5-9]|9))\\d{6}",
+				[
+					6,
+					8,
+					9,
+					10
+				]
+			],
+			[
+				"1(?:78\\d|99)\\d{6}",
+				[
+					9,
+					10
+				]
+			],
+			0,
+			0,
+			0,
+			[
+				"55\\d{8}",
+				[
+					10
+				]
+			],
+			[
+				"84(?:[08]\\d{3}|[17])\\d{3}",
+				[
+					6,
+					9
+				]
+			]
+		]
+	],
+	JE: [
+		"44",
+		"00",
+		"1534\\d{6}|(?:[3578]\\d|90)\\d{8}",
+		[
+			10
+		],
+		0,
+		"0",
+		0,
+		"0|([0-24-8]\\d{5})$",
+		"1534$1",
+		0,
+		0,
+		[
+			[
+				"1534[0-24-8]\\d{5}"
+			],
+			[
+				"7(?:(?:(?:50|82)9|937)\\d|7(?:00[378]|97[7-9]))\\d{5}"
+			],
+			[
+				"80(?:07(?:35|81)|8901)\\d{4}"
+			],
+			[
+				"(?:8(?:4(?:4(?:4(?:05|42|69)|703)|5(?:041|800))|7(?:0002|1206))|90(?:066[59]|1810|71(?:07|55)))\\d{4}"
+			],
+			[
+				"701511\\d{4}"
+			],
+			0,
+			[
+				"(?:3(?:0(?:07(?:35|81)|8901)|3\\d{4}|4(?:4(?:4(?:05|42|69)|703)|5(?:041|800))|7(?:0002|1206))|55\\d{4})\\d{4}"
+			],
+			[
+				"76(?:0[0-2]|2[356]|4[0134]|5[49]|6[0-369]|77|81|9[39])\\d{6}"
+			],
+			[
+				"56\\d{8}"
+			]
+		]
+	],
+	JM: [
+		"1",
+		"011",
+		"(?:[58]\\d\\d|658|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		0,
+		0,
+		0,
+		"658|876"
+	],
+	JO: [
+		"962",
+		"00",
+		"900\\d{5}|(?:(?:[268]|7\\d)\\d|32|53)\\d{6}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[2356]|87"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{3})(\\d{5,6})",
+				"$1 $2",
+				[
+					"[89]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{7})",
+				"$1 $2",
+				[
+					"70"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"7"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	JP: [
+		"81",
+		"010",
+		"00[1-9]\\d{6,14}|[257-9]\\d{9}|(?:00|[1-9]\\d\\d)\\d{6}",
+		[
+			8,
+			9,
+			10,
+			11,
+			12,
+			13,
+			14,
+			15,
+			16,
+			17
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1-$2-$3",
+				[
+					"(?:12|57|99)0"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d)(\\d{4})",
+				"$1-$2-$3",
+				[
+					"1(?:26|3[79]|4[56]|5[4-68]|6[3-5])|499|5(?:76|97)|746|8(?:3[89]|47|51|63)|9(?:49|80|9[16])",
+					"1(?:267|3(?:7[247]|9[278])|466|5(?:47|58|64)|6(?:3[245]|48|5[4-68]))|499[2468]|5(?:76|97)9|7468|8(?:3(?:8[78]|96)|477|51[24]|636)|9(?:496|802|9(?:1[23]|69))|1(?:45|58)[67]",
+					"1(?:267|3(?:7[247]|9[278])|466|5(?:47|58|64)|6(?:3[245]|48|5[4-68]))|499[2468]|5(?:769|979[2-69])|7468|8(?:3(?:8[78]|96[2457-9])|477|51[24]|636[2-57-9])|9(?:496|802|9(?:1[23]|69))|1(?:45|58)[67]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"60"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{4})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"[36]|4(?:2[09]|7[01])",
+					"[36]|4(?:2(?:0|9[02-69])|7(?:0[019]|1))"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"1(?:1|5[45]|77|88|9[69])|2(?:2[1-37]|3[0-269]|4[59]|5|6[24]|7[1-358]|8[1369]|9[0-38])|4(?:[28][1-9]|3[0-57]|[45]|6[248]|7[2-579]|9[29])|5(?:2|3[045]|4[0-369]|5[29]|8[02389]|9[0-389])|7(?:2[02-46-9]|34|[58]|6[0249]|7[57]|9[2-6])|8(?:2[124589]|3[279]|49|6[0-24-689]|7[0-468]|8[68]|9[019])|9(?:[23][1-9]|4[15]|5[138]|6[1-3]|7[156]|8[189]|9[1-489])",
+					"1(?:1|5(?:4[018]|5[017])|77|88|9[69])|2(?:2(?:[127]|3[014-9])|3[0-269]|4[59]|5(?:[0468][01]|[1-3]|5[0-69]|9[19])|62|7(?:[1-35]|8[0189])|8(?:[16]|3[0134]|9[0-5])|9(?:[028]|17))|4(?:2(?:[13-79]|2[01]|8[014-6])|3[0-57]|[45]|6[248]|7[2-47]|8[1-9])|5(?:2|3[045]|4[0-369]|8[02389]|9[0-3])|7(?:2[02-46-9]|34|[58]|6[0249]|7[57]|9(?:[23]|4[0-59]|5[01569]|6[0167]))|8(?:2(?:[1258]|4[0-39]|9[0-2469])|49|6(?:[0-24]|5[0-3589]|9[01459])|7[0-468]|8[68])|9(?:[23][1-9]|4[15]|5[138]|6[1-3]|7[156]|8[189]|9(?:[1289]|3[34]|4[0178]))|(?:49|55|83)[29]|(?:264|837)[016-9]|2(?:57|93)[015-9]|(?:47[59]|59[89]|8(?:6[68]|9))[019]",
+					"1(?:1|5(?:4[018]|5[017])|77|88|9[69])|2(?:2[127]|3[0-269]|4[59]|5(?:[0468][01]|[1-3]|5[0-69]|9(?:17|99))|6(?:2|4[016-9])|7(?:[1-35]|8[0189])|8(?:[16]|3[0134]|9[0-5])|9(?:[028]|17))|4(?:2(?:[13-79]|2[01]|8[014-6])|3[0-57]|[45]|6[248]|7[2-47]|9[29])|5(?:2|3[045]|4[0-369]|5[29]|8[02389]|9[0-3])|7(?:2[02-46-9]|34|[58]|6[0249]|7[57]|9(?:[23]|4[0-59]|5[01569]|6[0167]))|8(?:2(?:[1258]|4[0-39]|9[0169])|3(?:[29]|7(?:[017-9]|6[6-8]))|49|6(?:[0-24]|5(?:[0-389]|5[23])|6(?:[01]|9[178])|9[0145])|7[0-468]|8[68])|9(?:4[15]|5[138]|7[156]|8[189]|9(?:[1289]|3(?:31|4[357])|4[0178]))|(?:8294|96)[1-3]|2(?:57|93)[015-9]|(?:223|8699)[014-9]|(?:48|8292|9[23])[1-9]|(?:47[59]|59[89]|8(?:68|9))[019]",
+					"1(?:1|5(?:4[018]|5[017])|77|88|9[69])|2(?:2[127]|3[0-269]|4[59]|5(?:[0468][01]|[1-3]|5[0-69]|7[015-9]|9(?:17|99))|6(?:2|4[016-9])|7(?:[1-35]|8[0189])|8(?:[16]|3[0134]|9[0-5])|9(?:[028]|17|3[015-9]))|4(?:2(?:[13-79]|2[01]|8[014-6])|3[0-57]|[45]|6[248]|7[2-47]|9[29])|5(?:2|3[045]|4[0-369]|5[29]|8[02389]|9[0-3])|7(?:2[02-46-9]|34|[58]|6[0249]|7[57]|9(?:[23]|4[0-59]|5[01569]|6[0167]))|8(?:2(?:[1258]|4[0-39]|9(?:[019]|4[1-3]|6(?:[0-47-9]|5[01346-9])))|3(?:[29]|7(?:[017-9]|6[6-8]))|49|6(?:[0-24]|5(?:[0-389]|5[23])|6(?:[01]|9[178])|9[0145])|7[0-468]|8[68])|9(?:4[15]|5[138]|6[1-3]|7[156]|8[189]|9(?:[1289]|3(?:31|4[357])|4[0178]))|(?:223|8699)[014-9]|(?:48|829(?:2|66)|9[23])[1-9]|(?:47[59]|59[89]|8(?:68|9))[019]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"[14]|[29][2-9]|5[3-9]|7[2-4679]|8(?:[246-9]|3[3-8]|5[2-9])",
+					"[14]|[29][2-9]|5[3-9]|7[2-4679]|8(?:[246-9]|3(?:[3-6][2-9]|7|8[2-5])|5[2-9])"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"800"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{4})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"[2579]|80"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	KE: [
+		"254",
+		"000",
+		"(?:[17]\\d\\d|900)\\d{6}|(?:2|80)0\\d{6,7}|[4-6]\\d{6,8}",
+		[
+			7,
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{2})(\\d{5,7})",
+				"$1 $2",
+				[
+					"[24-6]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{6})",
+				"$1 $2",
+				[
+					"[17]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[89]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	KG: [
+		"996",
+		"00",
+		"8\\d{9}|(?:[235-8]\\d|99)\\d{7}",
+		[
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{4})(\\d{5})",
+				"$1 $2",
+				[
+					"3(?:1[346]|[24-79])"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[235-79]|88"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d)(\\d{2,3})",
+				"$1 $2 $3 $4",
+				[
+					"8"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	KH: [
+		"855",
+		"00[14-9]",
+		"1\\d{9}|[1-9]\\d{7,8}",
+		[
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[1-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"1"
+				]
+			]
+		],
+		"0"
+	],
+	KI: [
+		"686",
+		"00",
+		"(?:[37]\\d|6[0-79])\\d{6}|(?:[2-48]\\d|50)\\d{3}",
+		[
+			5,
+			8
+		],
+		0,
+		"0"
+	],
+	KM: [
+		"269",
+		"00",
+		"[3478]\\d{6}",
+		[
+			7
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3",
+				[
+					"[3478]"
+				]
+			]
+		]
+	],
+	KN: [
+		"1",
+		"011",
+		"(?:[58]\\d\\d|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([2-7]\\d{6})$",
+		"869$1",
+		0,
+		"869"
+	],
+	KP: [
+		"850",
+		"00|99",
+		"85\\d{6}|(?:19\\d|2)\\d{7}",
+		[
+			8,
+			10
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"8"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"2"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"1"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	KR: [
+		"82",
+		"00(?:[125689]|3(?:[46]5|91)|7(?:00|27|3|55|6[126]))",
+		"00[1-9]\\d{8,11}|(?:[12]|5\\d{3})\\d{7}|[13-6]\\d{9}|(?:[1-6]\\d|80)\\d{7}|[3-6]\\d{4,5}|(?:00|7)0\\d{8}",
+		[
+			5,
+			6,
+			8,
+			9,
+			10,
+			11,
+			12,
+			13,
+			14
+		],
+		[
+			[
+				"(\\d{2})(\\d{3,4})",
+				"$1-$2",
+				[
+					"(?:3[1-3]|[46][1-4]|5[1-5])1"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{4})",
+				"$1-$2",
+				[
+					"1"
+				]
+			],
+			[
+				"(\\d)(\\d{3,4})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"2"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"60|8"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3,4})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"[1346]|5[1-5]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{4})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"[57]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{5})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"5"
+				],
+				"0$1"
+			]
+		],
+		"0",
+		0,
+		"0(8(?:[1-46-8]|5\\d\\d))?"
+	],
+	KW: [
+		"965",
+		"00",
+		"(?:18|[2569]\\d\\d)\\d{5}",
+		[
+			7,
+			8
+		],
+		[
+			[
+				"(\\d{4})(\\d{3,4})",
+				"$1 $2",
+				[
+					"[169]|2(?:[235]|4[1-35-9])|52"
+				]
+			],
+			[
+				"(\\d{3})(\\d{5})",
+				"$1 $2",
+				[
+					"[25]"
+				]
+			]
+		]
+	],
+	KY: [
+		"1",
+		"011",
+		"(?:345|[58]\\d\\d|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([2-9]\\d{6})$",
+		"345$1",
+		0,
+		"345"
+	],
+	KZ: [
+		"7",
+		"810",
+		"33622\\d{5}|(?:7\\d|80)\\d{8}",
+		[
+			10
+		],
+		0,
+		"8",
+		0,
+		0,
+		0,
+		0,
+		"33|7",
+		0,
+		"8~10"
+	],
+	LA: [
+		"856",
+		"00",
+		"(?:2\\d|3)\\d{8}|(?:[235-8]\\d|41)\\d{6}",
+		[
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"2[13]|3[14]|[4-8]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{3})",
+				"$1 $2 $3 $4",
+				[
+					"3"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3 $4",
+				[
+					"2"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	LB: [
+		"961",
+		"00",
+		"[7-9]\\d{7}|[13-9]\\d{6}",
+		[
+			7,
+			8
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[13-69]|7(?:[2-57]|62|8[0-7]|9[04-9])|8[02-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[7-9]"
+				]
+			]
+		],
+		"0"
+	],
+	LC: [
+		"1",
+		"011",
+		"(?:[58]\\d\\d|758|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([2-7]\\d{6})$",
+		"758$1",
+		0,
+		"758"
+	],
+	LI: [
+		"423",
+		"00",
+		"90\\d{5}|(?:[2378]|6\\d\\d)\\d{6}",
+		[
+			7,
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3",
+				[
+					"[237-9]"
+				]
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"69"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"6"
+				]
+			]
+		],
+		"0",
+		0,
+		"0|(10(?:01|20|66))"
+	],
+	LK: [
+		"94",
+		"00",
+		"(?:[1-7]\\d|[89]1)\\d{7}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"7"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[1-689]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	LR: [
+		"231",
+		"00",
+		"(?:2|33|5\\d|77|88)\\d{7}|[45]\\d{6}",
+		[
+			7,
+			8,
+			9
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[45]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"2"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[3578]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	LS: [
+		"266",
+		"00",
+		"(?:[256]\\d\\d|800)\\d{5}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[2568]"
+				]
+			]
+		]
+	],
+	LT: [
+		"370",
+		"00",
+		"(?:[3469]\\d|52|[78]0)\\d{6}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"52[0-79]"
+				],
+				"(8-$1)",
+				1
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[7-9]"
+				],
+				"8 $1",
+				1
+			],
+			[
+				"(\\d{2})(\\d{6})",
+				"$1 $2",
+				[
+					"37|4(?:[15]|6[1-8])"
+				],
+				"(8-$1)",
+				1
+			],
+			[
+				"(\\d{3})(\\d{5})",
+				"$1 $2",
+				[
+					"[3-6]"
+				],
+				"(8-$1)",
+				1
+			]
+		],
+		"8",
+		0,
+		"[08]"
+	],
+	LU: [
+		"352",
+		"00",
+		"35[013-9]\\d{4,8}|6\\d{8}|35\\d{2,4}|(?:[2457-9]\\d|3[0-46-9])\\d{2,9}",
+		[
+			4,
+			5,
+			6,
+			7,
+			8,
+			9,
+			10,
+			11
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})",
+				"$1 $2",
+				[
+					"2(?:0[2-689]|[2-9])|[3-57]|8(?:0[2-9]|[13-9])|9(?:0[89]|[2-579])"
+				]
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3",
+				[
+					"2(?:0[2-689]|[2-9])|[3-57]|8(?:0[2-9]|[13-9])|9(?:0[89]|[2-579])"
+				]
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"20[2-689]"
+				]
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{1,2})",
+				"$1 $2 $3 $4",
+				[
+					"2(?:[0367]|4[3-8])"
+				]
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"80[01]|90[015]"
+				]
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{3})",
+				"$1 $2 $3 $4",
+				[
+					"20"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"6"
+				]
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})(\\d{1,2})",
+				"$1 $2 $3 $4 $5",
+				[
+					"2(?:[0367]|4[3-8])"
+				]
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{1,5})",
+				"$1 $2 $3 $4",
+				[
+					"[3-57]|8[13-9]|9(?:0[89]|[2-579])|(?:2|80)[2-9]"
+				]
+			]
+		],
+		0,
+		0,
+		"(15(?:0[06]|1[12]|[35]5|4[04]|6[26]|77|88|99)\\d)"
+	],
+	LV: [
+		"371",
+		"00",
+		"(?:[268]\\d|90)\\d{6}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[269]|8[01]"
+				]
+			]
+		]
+	],
+	LY: [
+		"218",
+		"00",
+		"(?:[2569]\\d|71)\\d{7}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{7})",
+				"$1-$2",
+				[
+					"[25-79]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	MA: [
+		"212",
+		"00",
+		"[5-8]\\d{8}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{5})(\\d{4})",
+				"$1-$2",
+				[
+					"5(?:29|38)",
+					"5(?:29|38)[89]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"5[45]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{5})",
+				"$1-$2",
+				[
+					"5(?:2[2-489]|3[5-9]|9)|892"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{7})",
+				"$1-$2",
+				[
+					"8"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{6})",
+				"$1-$2",
+				[
+					"[5-7]"
+				],
+				"0$1"
+			]
+		],
+		"0",
+		0,
+		0,
+		0,
+		0,
+		0,
+		[
+			[
+				"5(?:29|38)[89]0\\d{4}|5(?:2(?:[015-7]\\d|2[2-9]|3[2-57]|4[2-46-8]|8[235-7]|90)|3(?:[0-4]\\d|[57][2-9]|6[2-8]|80|9[3-9])|(?:4[067]|5[03])\\d)\\d{5}"
+			],
+			[
+				"692[12]\\d{5}|(?:6(?:[0-7]\\d|8[0-247-9]|9[013-9])|7(?:0[06-8]|6[1267]|7[0-27]))\\d{6}"
+			],
+			[
+				"80\\d{7}"
+			],
+			[
+				"89\\d{7}"
+			],
+			0,
+			0,
+			0,
+			0,
+			[
+				"5924[0-2]\\d{4}"
+			]
+		]
+	],
+	MC: [
+		"377",
+		"00",
+		"870\\d{5}|(?:[349]|6\\d)\\d{7}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"4"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[39]"
+				]
+			],
+			[
+				"(\\d)(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4 $5",
+				[
+					"6"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	MD: [
+		"373",
+		"00",
+		"(?:[235-7]\\d|[89]0)\\d{6}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{3})(\\d{5})",
+				"$1 $2",
+				[
+					"[89]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"22|3"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[25-7]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	ME: [
+		"382",
+		"00",
+		"(?:20|[3-79]\\d)\\d{6}|80\\d{6,7}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[2-9]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	MF: [
+		"590",
+		"00",
+		"(?:590|69\\d)\\d{6}",
+		[
+			9
+		],
+		0,
+		"0",
+		0,
+		0,
+		0,
+		0,
+		0,
+		[
+			[
+				"590(?:0[079]|[14]3|[27][79]|30|5[0-268]|87)\\d{4}"
+			],
+			[
+				"69(?:0\\d\\d|1(?:2[29]|3[0-5]))\\d{4}"
+			]
+		]
+	],
+	MG: [
+		"261",
+		"00",
+		"[23]\\d{8}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{3})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[23]"
+				],
+				"0$1"
+			]
+		],
+		"0",
+		0,
+		"0|([24-9]\\d{6})$",
+		"20$1"
+	],
+	MH: [
+		"692",
+		"011",
+		"329\\d{4}|(?:[256]\\d|45)\\d{5}",
+		[
+			7
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1-$2",
+				[
+					"[2-6]"
+				]
+			]
+		],
+		"1"
+	],
+	MK: [
+		"389",
+		"00",
+		"[2-578]\\d{7}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"2"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[347]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d)(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[58]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	ML: [
+		"223",
+		"00",
+		"(?:[246-9]\\d|50)\\d{6}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[24-9]"
+				]
+			]
+		]
+	],
+	MM: [
+		"95",
+		"00",
+		"1\\d{5,7}|95\\d{6}|(?:[4-7]|9[0-46-9])\\d{6,8}|(?:2|8\\d)\\d{5,8}",
+		[
+			6,
+			7,
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d)(\\d{2})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"16|2"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[45]|6(?:0[23]|[1-689]|7[235-7])|7(?:[0-4]|5[2-7])|8[1-6]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[12]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[4-7]|8[1-35]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{4,6})",
+				"$1 $2 $3",
+				[
+					"9(?:2[0-4]|[35-9]|4[137-9])"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"2"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"8"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3 $4",
+				[
+					"92"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{5})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"9"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	MN: [
+		"976",
+		"001",
+		"[12]\\d{7,9}|[57-9]\\d{7}",
+		[
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[12]1"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[57-9]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{5,6})",
+				"$1 $2",
+				[
+					"[12]2[1-3]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{5,6})",
+				"$1 $2",
+				[
+					"[12](?:27|3[2-8]|4[2-68]|5[1-4689])",
+					"[12](?:27|3[2-8]|4[2-68]|5[1-4689])[0-3]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{5})(\\d{4,5})",
+				"$1 $2",
+				[
+					"[12]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	MO: [
+		"853",
+		"00",
+		"(?:28|[68]\\d)\\d{6}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[268]"
+				]
+			]
+		]
+	],
+	MP: [
+		"1",
+		"011",
+		"[58]\\d{9}|(?:67|90)0\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([2-9]\\d{6})$",
+		"670$1",
+		0,
+		"670"
+	],
+	MQ: [
+		"596",
+		"00",
+		"(?:596|69\\d)\\d{6}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[56]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	MR: [
+		"222",
+		"00",
+		"(?:[2-4]\\d\\d|800)\\d{5}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[2-48]"
+				]
+			]
+		]
+	],
+	MS: [
+		"1",
+		"011",
+		"66449\\d{5}|(?:[58]\\d\\d|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|(4\\d{6})$",
+		"664$1",
+		0,
+		"664"
+	],
+	MT: [
+		"356",
+		"00",
+		"3550\\d{4}|(?:[2579]\\d\\d|800)\\d{5}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[2357-9]"
+				]
+			]
+		]
+	],
+	MU: [
+		"230",
+		"0(?:0|[24-7]0|3[03])",
+		"(?:[2-468]|5\\d)\\d{6}",
+		[
+			7,
+			8
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[2-46]|8[013]"
+				]
+			],
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"5"
+				]
+			]
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"020"
+	],
+	MV: [
+		"960",
+		"0(?:0|19)",
+		"(?:800|9[0-57-9]\\d)\\d{7}|[34679]\\d{6}",
+		[
+			7,
+			10
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1-$2",
+				[
+					"[3467]|9[13-9]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[89]"
+				]
+			]
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"00"
+	],
+	MW: [
+		"265",
+		"00",
+		"1\\d{6}(?:\\d{2})?|(?:[23]1|77|88|99)\\d{7}",
+		[
+			7,
+			9
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"1[2-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"2"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"3"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[17-9]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	MX: [
+		"52",
+		"0[09]",
+		"(?:1(?:[01467]\\d|[2359][1-9]|8[1-79])|[2-9]\\d)\\d{8}",
+		[
+			10,
+			11
+		],
+		[
+			[
+				"(\\d{2})(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"33|5[56]|81"
+				],
+				0,
+				1
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[2-9]"
+				],
+				0,
+				1
+			],
+			[
+				"(\\d)(\\d{2})(\\d{4})(\\d{4})",
+				"$2 $3 $4",
+				[
+					"1(?:33|5[56]|81)"
+				],
+				0,
+				1
+			],
+			[
+				"(\\d)(\\d{3})(\\d{3})(\\d{4})",
+				"$2 $3 $4",
+				[
+					"1"
+				],
+				0,
+				1
+			]
+		],
+		"01",
+		0,
+		"0(?:[12]|4[45])|1",
+		0,
+		0,
+		0,
+		0,
+		"00"
+	],
+	MY: [
+		"60",
+		"00",
+		"1\\d{8,9}|(?:3\\d|[4-9])\\d{7}",
+		[
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1-$2 $3",
+				[
+					"[4-79]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1-$2 $3",
+				[
+					"1(?:[02469]|[37][2-9]|8[1-9])|8"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{4})(\\d{4})",
+				"$1-$2 $3",
+				[
+					"3"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{2})(\\d{4})",
+				"$1-$2-$3-$4",
+				[
+					"1[36-8]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1-$2 $3",
+				[
+					"15"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{4})(\\d{4})",
+				"$1-$2 $3",
+				[
+					"1"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	MZ: [
+		"258",
+		"00",
+		"(?:2|8\\d)\\d{7}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"2|8[2-7]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"8"
+				]
+			]
+		]
+	],
+	NA: [
+		"264",
+		"00",
+		"[68]\\d{7,8}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"88"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"6"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"87"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"8"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	NC: [
+		"687",
+		"00",
+		"[2-57-9]\\d{5}",
+		[
+			6
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})",
+				"$1.$2.$3",
+				[
+					"[2-57-9]"
+				]
+			]
+		]
+	],
+	NE: [
+		"227",
+		"00",
+		"[0289]\\d{7}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"08"
+				]
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[089]|2[01]"
+				]
+			]
+		]
+	],
+	NF: [
+		"672",
+		"00",
+		"[13]\\d{5}",
+		[
+			6
+		],
+		[
+			[
+				"(\\d{2})(\\d{4})",
+				"$1 $2",
+				[
+					"1"
+				]
+			],
+			[
+				"(\\d)(\\d{5})",
+				"$1 $2",
+				[
+					"3"
+				]
+			]
+		],
+		0,
+		0,
+		"([0-258]\\d{4})$",
+		"3$1"
+	],
+	NG: [
+		"234",
+		"009",
+		"(?:[124-7]|9\\d{3})\\d{6}|[1-9]\\d{7}|[78]\\d{9,13}",
+		[
+			7,
+			8,
+			10,
+			11,
+			12,
+			13,
+			14
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"78"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[12]|9(?:0[3-9]|[1-9])"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2,3})",
+				"$1 $2 $3",
+				[
+					"[3-7]|8[2-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[7-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{4})(\\d{4,5})",
+				"$1 $2 $3",
+				[
+					"[78]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{5})(\\d{5,6})",
+				"$1 $2 $3",
+				[
+					"[78]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	NI: [
+		"505",
+		"00",
+		"(?:1800|[25-8]\\d{3})\\d{4}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[125-8]"
+				]
+			]
+		]
+	],
+	NL: [
+		"31",
+		"00",
+		"(?:[124-7]\\d\\d|3(?:[02-9]\\d|1[0-8]))\\d{6}|[89]\\d{6,9}|1\\d{4,5}",
+		[
+			5,
+			6,
+			7,
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{3})(\\d{4,7})",
+				"$1 $2",
+				[
+					"[89]0"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{7})",
+				"$1 $2",
+				[
+					"66"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{8})",
+				"$1 $2",
+				[
+					"6"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"1[16-8]|2[259]|3[124]|4[17-9]|5[124679]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[1-57-9]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	NO: [
+		"47",
+		"00",
+		"(?:0|[2-9]\\d{3})\\d{4}",
+		[
+			5,
+			8
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[489]"
+				]
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[235-7]"
+				]
+			]
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		"[02-689]|7[0-8]"
+	],
+	NP: [
+		"977",
+		"00",
+		"9\\d{9}|[1-9]\\d{7}",
+		[
+			8,
+			10
+		],
+		[
+			[
+				"(\\d)(\\d{7})",
+				"$1-$2",
+				[
+					"1[2-6]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{6})",
+				"$1-$2",
+				[
+					"[1-8]|9(?:[1-579]|6[2-6])"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{7})",
+				"$1-$2",
+				[
+					"9"
+				]
+			]
+		],
+		"0"
+	],
+	NR: [
+		"674",
+		"00",
+		"(?:444|55\\d|888)\\d{4}",
+		[
+			7
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[458]"
+				]
+			]
+		]
+	],
+	NU: [
+		"683",
+		"00",
+		"(?:[47]|888\\d)\\d{3}",
+		[
+			4,
+			7
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"8"
+				]
+			]
+		]
+	],
+	NZ: [
+		"64",
+		"0(?:0|161)",
+		"[28]\\d{7,9}|[346]\\d{7}|(?:508|[79]\\d)\\d{6,7}",
+		[
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[89]0"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1-$2 $3",
+				[
+					"24|[346]|7[2-57-9]|9[2-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"2(?:10|74)|[59]|80"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3,4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"2[028]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3,5})",
+				"$1 $2 $3",
+				[
+					"2(?:[169]|7[0-35-9])|7|86"
+				],
+				"0$1"
+			]
+		],
+		"0",
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"00"
+	],
+	OM: [
+		"968",
+		"00",
+		"(?:[279]\\d{3}|500)\\d{4}|8007\\d{4,5}",
+		[
+			7,
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{4,6})",
+				"$1 $2",
+				[
+					"[58]"
+				]
+			],
+			[
+				"(\\d{2})(\\d{6})",
+				"$1 $2",
+				[
+					"2"
+				]
+			],
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[79]"
+				]
+			]
+		]
+	],
+	PA: [
+		"507",
+		"00",
+		"(?:[1-57-9]|6\\d)\\d{6}",
+		[
+			7,
+			8
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1-$2",
+				[
+					"[1-57-9]"
+				]
+			],
+			[
+				"(\\d{4})(\\d{4})",
+				"$1-$2",
+				[
+					"6"
+				]
+			]
+		]
+	],
+	PE: [
+		"51",
+		"19(?:1[124]|77|90)00",
+		"(?:[14-8]|9\\d)\\d{7}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{5})",
+				"$1 $2",
+				[
+					"80"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d)(\\d{7})",
+				"$1 $2",
+				[
+					"1"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{2})(\\d{6})",
+				"$1 $2",
+				[
+					"[4-8]"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"9"
+				]
+			]
+		],
+		"0",
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		" Anexo "
+	],
+	PF: [
+		"689",
+		"00",
+		"[48]\\d{7}|4\\d{5}",
+		[
+			6,
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3",
+				[
+					"44"
+				]
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[48]"
+				]
+			]
+		]
+	],
+	PG: [
+		"675",
+		"00|140[1-3]",
+		"(?:180|[78]\\d{3})\\d{4}|(?:[2-589]\\d|64)\\d{5}",
+		[
+			7,
+			8
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"18|[2-69]|85"
+				]
+			],
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[78]"
+				]
+			]
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"00"
+	],
+	PH: [
+		"63",
+		"00",
+		"1800\\d{7,9}|(?:2|[89]\\d{4})\\d{5}|[2-8]\\d{8}|[28]\\d{7}",
+		[
+			6,
+			8,
+			9,
+			10,
+			11,
+			12,
+			13
+		],
+		[
+			[
+				"(\\d)(\\d{5})",
+				"$1 $2",
+				[
+					"2"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"2"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{4})(\\d{4,6})",
+				"$1 $2",
+				[
+					"3(?:23|39|46)|4(?:2[3-6]|[35]9|4[26]|76)|544|88[245]|(?:52|64|86)2",
+					"3(?:230|397|461)|4(?:2(?:35|[46]4|51)|396|4(?:22|63)|59[347]|76[15])|5(?:221|446)|642[23]|8(?:622|8(?:[24]2|5[13]))"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{5})(\\d{4})",
+				"$1 $2",
+				[
+					"346|4(?:27|9[35])|883",
+					"3469|4(?:279|9(?:30|56))|8834"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d)(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"2"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[3-7]|8[2-8]"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[89]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"1"
+				]
+			],
+			[
+				"(\\d{4})(\\d{1,2})(\\d{3})(\\d{4})",
+				"$1 $2 $3 $4",
+				[
+					"1"
+				]
+			]
+		],
+		"0"
+	],
+	PK: [
+		"92",
+		"00",
+		"122\\d{6}|[24-8]\\d{10,11}|9(?:[013-9]\\d{8,10}|2(?:[01]\\d\\d|2(?:[025-8]\\d|1[01]))\\d{7})|(?:[2-8]\\d{3}|92(?:[0-7]\\d|8[1-9]))\\d{6}|[24-9]\\d{8}|[89]\\d{7}",
+		[
+			8,
+			9,
+			10,
+			11,
+			12
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})(\\d{2})",
+				"$1 $2 $3",
+				[
+					"[89]0"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{5})",
+				"$1 $2",
+				[
+					"1"
+				]
+			],
+			[
+				"(\\d{2})(\\d{7,8})",
+				"$1 $2",
+				[
+					"(?:2[125]|4[0-246-9]|5[1-35-7]|6[1-8]|7[14]|8[16]|91)[2-9]"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{3})(\\d{6,7})",
+				"$1 $2",
+				[
+					"2(?:3[2358]|4[2-4]|9[2-8])|45[3479]|54[2-467]|60[468]|72[236]|8(?:2[2-689]|3[23578]|4[3478]|5[2356])|9(?:2[2-8]|3[27-9]|4[2-6]|6[3569]|9[25-8])",
+					"9(?:2[3-8]|98)|(?:2(?:3[2358]|4[2-4]|9[2-8])|45[3479]|54[2-467]|60[468]|72[236]|8(?:2[2-689]|3[23578]|4[3478]|5[2356])|9(?:22|3[27-9]|4[2-6]|6[3569]|9[25-7]))[2-9]"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{5})(\\d{5})",
+				"$1 $2",
+				[
+					"58"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{3})(\\d{7})",
+				"$1 $2",
+				[
+					"3"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3 $4",
+				[
+					"2[125]|4[0-246-9]|5[1-35-7]|6[1-8]|7[14]|8[16]|91"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3 $4",
+				[
+					"[24-9]"
+				],
+				"(0$1)"
+			]
+		],
+		"0"
+	],
+	PL: [
+		"48",
+		"00",
+		"[1-57-9]\\d{6}(?:\\d{2})?|6\\d{5,8}",
+		[
+			6,
+			7,
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{5})",
+				"$1",
+				[
+					"19"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})",
+				"$1 $2",
+				[
+					"11|64"
+				]
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"(?:1[2-8]|2[2-69]|3[2-4]|4[1-468]|5[24-689]|6[1-3578]|7[14-7]|8[1-79]|9[145])1",
+					"(?:1[2-8]|2[2-69]|3[2-4]|4[1-468]|5[24-689]|6[1-3578]|7[14-7]|8[1-79]|9[145])19"
+				]
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{2,3})",
+				"$1 $2 $3",
+				[
+					"64"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"39|45|5[0137]|6[0469]|7[02389]|8[08]"
+				]
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"1[2-8]|[2-8]|9[145]"
+				]
+			]
+		]
+	],
+	PM: [
+		"508",
+		"00",
+		"[45]\\d{5}",
+		[
+			6
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3",
+				[
+					"[45]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	PR: [
+		"1",
+		"011",
+		"(?:[589]\\d\\d|787)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		0,
+		0,
+		0,
+		"787|939"
+	],
+	PS: [
+		"970",
+		"00",
+		"[2489]2\\d{6}|(?:1\\d|5)\\d{8}",
+		[
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[2489]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"5"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"1"
+				]
+			]
+		],
+		"0"
+	],
+	PT: [
+		"351",
+		"00",
+		"(?:[26-9]\\d|30)\\d{7}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"2[12]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[236-9]"
+				]
+			]
+		]
+	],
+	PW: [
+		"680",
+		"01[12]",
+		"(?:[25-8]\\d\\d|345|488|900)\\d{4}",
+		[
+			7
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[2-9]"
+				]
+			]
+		]
+	],
+	PY: [
+		"595",
+		"00",
+		"59\\d{4,6}|(?:[2-46-9]\\d|5[0-8])\\d{4,7}",
+		[
+			6,
+			7,
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{3,6})",
+				"$1 $2",
+				[
+					"[2-9]0"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{5})",
+				"$1 $2",
+				[
+					"[26]1|3[289]|4[1246-8]|7[1-3]|8[1-36]"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{3})(\\d{4,5})",
+				"$1 $2",
+				[
+					"2[279]|3[13-5]|4[359]|5|6[347]|7[46-8]|85"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[26]1|3[289]|4[1246-8]|7[1-3]|8[1-36]"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"87"
+				]
+			],
+			[
+				"(\\d{3})(\\d{6})",
+				"$1 $2",
+				[
+					"9"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[2-8]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	QA: [
+		"974",
+		"00",
+		"800\\d{4}|(?:2|[3-7]\\d)\\d{6}",
+		[
+			7,
+			8
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"2[126]|8"
+				]
+			],
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[3-7]"
+				]
+			]
+		]
+	],
+	RE: [
+		"262",
+		"00",
+		"(?:26|[68]\\d)\\d{7}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[268]"
+				],
+				"0$1"
+			]
+		],
+		"0",
+		0,
+		0,
+		0,
+		0,
+		"262|69|8"
+	],
+	RO: [
+		"40",
+		"00",
+		"(?:[237]\\d|[89]0)\\d{7}|[23]\\d{5}",
+		[
+			6,
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})",
+				"$1 $2",
+				[
+					"2[3-6]",
+					"2[3-6]\\d9"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{4})",
+				"$1 $2",
+				[
+					"219|31"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[23]1"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[237-9]"
+				],
+				"0$1"
+			]
+		],
+		"0",
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		" int "
+	],
+	RS: [
+		"381",
+		"00",
+		"38[02-9]\\d{6,9}|6\\d{7,9}|90\\d{4,8}|38\\d{5,6}|(?:7\\d\\d|800)\\d{3,9}|(?:[12]\\d|3[0-79])\\d{5,10}",
+		[
+			6,
+			7,
+			8,
+			9,
+			10,
+			11,
+			12
+		],
+		[
+			[
+				"(\\d{3})(\\d{3,9})",
+				"$1 $2",
+				[
+					"(?:2[389]|39)0|[7-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{5,10})",
+				"$1 $2",
+				[
+					"[1-36]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	RU: [
+		"7",
+		"810",
+		"[347-9]\\d{9}",
+		[
+			10
+		],
+		[
+			[
+				"(\\d{4})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"7(?:1[0-8]|2[1-9])",
+					"7(?:1(?:[0-6]2|7|8[27])|2(?:1[23]|[2-9]2))",
+					"7(?:1(?:[0-6]2|7|8[27])|2(?:13[03-69]|62[013-9]))|72[1-57-9]2"
+				],
+				"8 ($1)",
+				1
+			],
+			[
+				"(\\d{5})(\\d)(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"7(?:1[0-68]|2[1-9])",
+					"7(?:1(?:[06][3-6]|[18]|2[35]|[3-5][3-5])|2(?:[13][3-5]|[24-689]|7[457]))",
+					"7(?:1(?:0(?:[356]|4[023])|[18]|2(?:3[013-9]|5)|3[45]|43[013-79]|5(?:3[1-8]|4[1-7]|5)|6(?:3[0-35-9]|[4-6]))|2(?:1(?:3[178]|[45])|[24-689]|3[35]|7[457]))|7(?:14|23)4[0-8]|71(?:33|45)[1-79]"
+				],
+				"8 ($1)",
+				1
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"7"
+				],
+				"8 ($1)",
+				1
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2-$3-$4",
+				[
+					"[3489]"
+				],
+				"8 ($1)",
+				1
+			]
+		],
+		"8",
+		0,
+		0,
+		0,
+		0,
+		"3[04-689]|[489]",
+		0,
+		"8~10"
+	],
+	RW: [
+		"250",
+		"00",
+		"(?:06|[27]\\d\\d|[89]00)\\d{6}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"0"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"2"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[7-9]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	SA: [
+		"966",
+		"00",
+		"92\\d{7}|(?:[15]|8\\d)\\d{8}",
+		[
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{4})(\\d{5})",
+				"$1 $2",
+				[
+					"9"
+				]
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"1"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"5"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"81"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"8"
+				]
+			]
+		],
+		"0"
+	],
+	SB: [
+		"677",
+		"0[01]",
+		"(?:[1-6]|[7-9]\\d\\d)\\d{4}",
+		[
+			5,
+			7
+		],
+		[
+			[
+				"(\\d{2})(\\d{5})",
+				"$1 $2",
+				[
+					"7|8[4-9]|9(?:[1-8]|9[0-8])"
+				]
+			]
+		]
+	],
+	SC: [
+		"248",
+		"010|0[0-2]",
+		"8000\\d{3}|(?:[249]\\d|64)\\d{5}",
+		[
+			7
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[246]"
+				]
+			]
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"00"
+	],
+	SD: [
+		"249",
+		"00",
+		"[19]\\d{8}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[19]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	SE: [
+		"46",
+		"00",
+		"(?:[26]\\d\\d|9)\\d{9}|[1-9]\\d{8}|[1-689]\\d{7}|[1-4689]\\d{6}|2\\d{5}",
+		[
+			6,
+			7,
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{2})(\\d{2,3})(\\d{2})",
+				"$1-$2 $3",
+				[
+					"20"
+				],
+				"0$1",
+				0,
+				"$1 $2 $3"
+			],
+			[
+				"(\\d{3})(\\d{4})",
+				"$1-$2",
+				[
+					"9(?:00|39|44)"
+				],
+				"0$1",
+				0,
+				"$1 $2"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2})",
+				"$1-$2 $3",
+				[
+					"[12][136]|3[356]|4[0246]|6[03]|90[1-9]"
+				],
+				"0$1",
+				0,
+				"$1 $2 $3"
+			],
+			[
+				"(\\d)(\\d{2,3})(\\d{2})(\\d{2})",
+				"$1-$2 $3 $4",
+				[
+					"8"
+				],
+				"0$1",
+				0,
+				"$1 $2 $3 $4"
+			],
+			[
+				"(\\d{3})(\\d{2,3})(\\d{2})",
+				"$1-$2 $3",
+				[
+					"1[2457]|2(?:[247-9]|5[0138])|3[0247-9]|4[1357-9]|5[0-35-9]|6(?:[125689]|4[02-57]|7[0-2])|9(?:[125-8]|3[02-5]|4[0-3])"
+				],
+				"0$1",
+				0,
+				"$1 $2 $3"
+			],
+			[
+				"(\\d{3})(\\d{2,3})(\\d{3})",
+				"$1-$2 $3",
+				[
+					"9(?:00|39|44)"
+				],
+				"0$1",
+				0,
+				"$1 $2 $3"
+			],
+			[
+				"(\\d{2})(\\d{2,3})(\\d{2})(\\d{2})",
+				"$1-$2 $3 $4",
+				[
+					"1[013689]|2[0136]|3[1356]|4[0246]|54|6[03]|90[1-9]"
+				],
+				"0$1",
+				0,
+				"$1 $2 $3 $4"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2})(\\d{2})",
+				"$1-$2 $3 $4",
+				[
+					"7"
+				],
+				"0$1",
+				0,
+				"$1 $2 $3 $4"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{3})(\\d{2})",
+				"$1-$2 $3 $4",
+				[
+					"8"
+				],
+				"0$1",
+				0,
+				"$1 $2 $3 $4"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1-$2 $3 $4",
+				[
+					"[13-5]|2(?:[247-9]|5[0138])|6(?:[124-689]|7[0-2])|9(?:[125-8]|3[02-5]|4[0-3])"
+				],
+				"0$1",
+				0,
+				"$1 $2 $3 $4"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{3})",
+				"$1-$2 $3 $4",
+				[
+					"9"
+				],
+				"0$1",
+				0,
+				"$1 $2 $3 $4"
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{3})(\\d{2})(\\d{2})",
+				"$1-$2 $3 $4 $5",
+				[
+					"[26]"
+				],
+				"0$1",
+				0,
+				"$1 $2 $3 $4 $5"
+			]
+		],
+		"0"
+	],
+	SG: [
+		"65",
+		"0[0-3]\\d",
+		"(?:(?:1\\d|8)\\d\\d|7000)\\d{7}|[3689]\\d{7}",
+		[
+			8,
+			10,
+			11
+		],
+		[
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[369]|8[1-9]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"8"
+				]
+			],
+			[
+				"(\\d{4})(\\d{4})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"7"
+				]
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"1"
+				]
+			]
+		]
+	],
+	SH: [
+		"290",
+		"00",
+		"(?:[256]\\d|8)\\d{3}",
+		[
+			4,
+			5
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"[256]"
+	],
+	SI: [
+		"386",
+		"00|10(?:22|66|88|99)",
+		"[1-7]\\d{7}|8\\d{4,7}|90\\d{4,6}",
+		[
+			5,
+			6,
+			7,
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{3,6})",
+				"$1 $2",
+				[
+					"8[09]|9"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{5})",
+				"$1 $2",
+				[
+					"59|8"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[37][01]|4[0139]|51|6"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[1-57]"
+				],
+				"(0$1)"
+			]
+		],
+		"0",
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"00"
+	],
+	SJ: [
+		"47",
+		"00",
+		"0\\d{4}|(?:[4589]\\d|79)\\d{6}",
+		[
+			5,
+			8
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"79"
+	],
+	SK: [
+		"421",
+		"00",
+		"[2-689]\\d{8}|[2-59]\\d{6}|[2-5]\\d{5}",
+		[
+			6,
+			7,
+			9
+		],
+		[
+			[
+				"(\\d)(\\d{2})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"21"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2,3})",
+				"$1 $2 $3",
+				[
+					"[3-5][1-8]1",
+					"[3-5][1-8]1[67]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{3})(\\d{2})",
+				"$1/$2 $3 $4",
+				[
+					"2"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[689]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2})(\\d{2})",
+				"$1/$2 $3 $4",
+				[
+					"[3-5]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	SL: [
+		"232",
+		"00",
+		"(?:[2378]\\d|99)\\d{6}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{6})",
+				"$1 $2",
+				[
+					"[237-9]"
+				],
+				"(0$1)"
+			]
+		],
+		"0"
+	],
+	SM: [
+		"378",
+		"00",
+		"(?:0549|[5-7]\\d)\\d{6}",
+		[
+			8,
+			10
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[5-7]"
+				]
+			],
+			[
+				"(\\d{4})(\\d{6})",
+				"$1 $2",
+				[
+					"0"
+				]
+			]
+		],
+		0,
+		0,
+		"([89]\\d{5})$",
+		"0549$1"
+	],
+	SN: [
+		"221",
+		"00",
+		"(?:[378]\\d{4}|93330)\\d{4}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"8"
+				]
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[379]"
+				]
+			]
+		]
+	],
+	SO: [
+		"252",
+		"00",
+		"[346-9]\\d{8}|[12679]\\d{7}|(?:[1-4]\\d|59)\\d{5}|[1348]\\d{5}",
+		[
+			6,
+			7,
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{4})",
+				"$1 $2",
+				[
+					"8[125]"
+				]
+			],
+			[
+				"(\\d{6})",
+				"$1",
+				[
+					"[134]"
+				]
+			],
+			[
+				"(\\d)(\\d{6})",
+				"$1 $2",
+				[
+					"1|2[0-79]|3[0-46-8]|4[0-7]|59"
+				]
+			],
+			[
+				"(\\d)(\\d{7})",
+				"$1 $2",
+				[
+					"24|[67]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[348]|64|79[0-8]|90"
+				]
+			],
+			[
+				"(\\d{2})(\\d{5,7})",
+				"$1 $2",
+				[
+					"1|28|6[1-35-9]|799|9[2-9]"
+				]
+			]
+		],
+		"0"
+	],
+	SR: [
+		"597",
+		"00",
+		"(?:[2-5]|68|[78]\\d)\\d{5}",
+		[
+			6,
+			7
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})",
+				"$1-$2-$3",
+				[
+					"56"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3})",
+				"$1-$2",
+				[
+					"[2-5]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{4})",
+				"$1-$2",
+				[
+					"[6-8]"
+				]
+			]
+		]
+	],
+	SS: [
+		"211",
+		"00",
+		"[19]\\d{8}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[19]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	ST: [
+		"239",
+		"00",
+		"(?:22|9\\d)\\d{5}",
+		[
+			7
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[29]"
+				]
+			]
+		]
+	],
+	SV: [
+		"503",
+		"00",
+		"[267]\\d{7}|[89]00\\d{4}(?:\\d{4})?",
+		[
+			7,
+			8,
+			11
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[89]"
+				]
+			],
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[267]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[89]"
+				]
+			]
+		]
+	],
+	SX: [
+		"1",
+		"011",
+		"7215\\d{6}|(?:[58]\\d\\d|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|(5\\d{6})$",
+		"721$1",
+		0,
+		"721"
+	],
+	SY: [
+		"963",
+		"00",
+		"[1-39]\\d{8}|[1-5]\\d{7}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[1-5]"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"9"
+				],
+				"0$1",
+				1
+			]
+		],
+		"0"
+	],
+	SZ: [
+		"268",
+		"00",
+		"0800\\d{4}|(?:[237]\\d|900)\\d{6}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[0237]"
+				]
+			],
+			[
+				"(\\d{5})(\\d{4})",
+				"$1 $2",
+				[
+					"9"
+				]
+			]
+		]
+	],
+	TA: [
+		"290",
+		"00",
+		"8\\d{3}",
+		[
+			4
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"8"
+	],
+	TC: [
+		"1",
+		"011",
+		"(?:[58]\\d\\d|649|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([2-479]\\d{6})$",
+		"649$1",
+		0,
+		"649"
+	],
+	TD: [
+		"235",
+		"00|16",
+		"(?:22|[69]\\d|77)\\d{6}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[2679]"
+				]
+			]
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"00"
+	],
+	TG: [
+		"228",
+		"00",
+		"[279]\\d{7}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[279]"
+				]
+			]
+		]
+	],
+	TH: [
+		"66",
+		"00[1-9]",
+		"1\\d{8,9}|(?:[2-57]|[689]\\d)\\d{7}",
+		[
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"2"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"14|[3-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"1"
+				]
+			]
+		],
+		"0"
+	],
+	TJ: [
+		"992",
+		"810",
+		"(?:00|[3-59]\\d|77|88)\\d{7}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{6})(\\d)(\\d{2})",
+				"$1 $2 $3",
+				[
+					"331",
+					"3317"
+				],
+				0,
+				1
+			],
+			[
+				"(\\d{3})(\\d{2})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[34]7|91[78]"
+				],
+				0,
+				1
+			],
+			[
+				"(\\d{4})(\\d)(\\d{4})",
+				"$1 $2 $3",
+				[
+					"3"
+				],
+				0,
+				1
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[0457-9]"
+				],
+				0,
+				1
+			]
+		],
+		"8",
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"8~10"
+	],
+	TK: [
+		"690",
+		"00",
+		"[2-47]\\d{3,6}",
+		[
+			4,
+			5,
+			6,
+			7
+		]
+	],
+	TL: [
+		"670",
+		"00",
+		"7\\d{7}|(?:[2-47]\\d|[89]0)\\d{5}",
+		[
+			7,
+			8
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[2-489]|70"
+				]
+			],
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"7"
+				]
+			]
+		]
+	],
+	TM: [
+		"993",
+		"810",
+		"[1-6]\\d{7}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2-$3-$4",
+				[
+					"12"
+				],
+				"(8 $1)"
+			],
+			[
+				"(\\d{3})(\\d)(\\d{2})(\\d{2})",
+				"$1 $2-$3-$4",
+				[
+					"[1-5]"
+				],
+				"(8 $1)"
+			],
+			[
+				"(\\d{2})(\\d{6})",
+				"$1 $2",
+				[
+					"6"
+				],
+				"8 $1"
+			]
+		],
+		"8",
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"8~10"
+	],
+	TN: [
+		"216",
+		"00",
+		"[2-57-9]\\d{7}",
+		[
+			8
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[2-57-9]"
+				]
+			]
+		]
+	],
+	TO: [
+		"676",
+		"00",
+		"(?:0800|[5-8]\\d{3})\\d{3}|[2-8]\\d{4}",
+		[
+			5,
+			7
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})",
+				"$1-$2",
+				[
+					"[2-4]|50|6[09]|7[0-24-69]|8[05]"
+				]
+			],
+			[
+				"(\\d{4})(\\d{3})",
+				"$1 $2",
+				[
+					"0"
+				]
+			],
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[5-8]"
+				]
+			]
+		]
+	],
+	TR: [
+		"90",
+		"00",
+		"(?:[2-58]\\d\\d|900)\\d{7}|4\\d{6}",
+		[
+			7,
+			10
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"512|8[0589]|90"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"5(?:[0-59]|61)",
+					"5(?:[0-59]|616)",
+					"5(?:[0-59]|6161)"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[24][1-8]|3[1-9]"
+				],
+				"(0$1)",
+				1
+			]
+		],
+		"0"
+	],
+	TT: [
+		"1",
+		"011",
+		"(?:[58]\\d\\d|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([2-46-8]\\d{6})$",
+		"868$1",
+		0,
+		"868"
+	],
+	TV: [
+		"688",
+		"00",
+		"(?:2|7\\d\\d|90)\\d{4}",
+		[
+			5,
+			6,
+			7
+		]
+	],
+	TW: [
+		"886",
+		"0(?:0[25-79]|19)",
+		"(?:[24589]|7\\d)\\d{8}|[2-8]\\d{7}|2\\d{6}",
+		[
+			7,
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{2})(\\d)(\\d{4})",
+				"$1 $2 $3",
+				[
+					"202"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{3,4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[25][2-8]|[346]|7[1-9]|8[237-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[258]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"9"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"7"
+				],
+				"0$1"
+			]
+		],
+		"0",
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"#"
+	],
+	TZ: [
+		"255",
+		"00[056]",
+		"(?:[26-8]\\d|41|90)\\d{7}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{2})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[89]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[24]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[67]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	UA: [
+		"380",
+		"00",
+		"[89]\\d{9}|[3-9]\\d{8}",
+		[
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"6[12][29]|(?:3[1-8]|4[136-8]|5[12457]|6[49])2|(?:56|65)[24]",
+					"6[12][29]|(?:35|4[1378]|5[12457]|6[49])2|(?:56|65)[24]|(?:3[1-46-8]|46)2[013-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"4[45][0-5]|5(?:0|6[37])|6(?:[12][018]|[36-8])|7|89|9[1-9]|(?:48|57)[0137-9]",
+					"4[45][0-5]|5(?:0|6(?:3[14-7]|7))|6(?:[12][018]|[36-8])|7|89|9[1-9]|(?:48|57)[0137-9]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{5})",
+				"$1 $2",
+				[
+					"[3-6]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[89]"
+				],
+				"0$1"
+			]
+		],
+		"0",
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"0~0"
+	],
+	UG: [
+		"256",
+		"00[057]",
+		"800\\d{6}|(?:[29]0|[347]\\d)\\d{7}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{4})(\\d{5})",
+				"$1 $2",
+				[
+					"202",
+					"2024"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{6})",
+				"$1 $2",
+				[
+					"[27-9]|4(?:6[45]|[7-9])"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{7})",
+				"$1 $2",
+				[
+					"[34]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	US: [
+		"1",
+		"011",
+		"[2-9]\\d{9}",
+		[
+			10
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
+				"($1) $2-$3",
+				[
+					"[2-9]"
+				],
+				0,
+				1,
+				"$1-$2-$3"
+			]
+		],
+		"1",
+		0,
+		0,
+		0,
+		0,
+		0,
+		[
+			[
+				"(?:2(?:0[1-35-9]|1[02-9]|2[03-589]|3[149]|4[08]|5[1-46]|6[0279]|7[0269]|8[13])|3(?:0[1-57-9]|1[02-9]|2[0135]|3[0-24679]|4[167]|5[12]|6[014]|8[056])|4(?:0[124-9]|1[02-579]|2[3-5]|3[0245]|4[0235]|58|6[39]|7[0589]|8[04])|5(?:0[1-57-9]|1[0235-8]|20|3[0149]|4[01]|5[19]|6[1-47]|7[013-5]|8[056])|6(?:0[1-35-9]|1[024-9]|2[03689]|[34][016]|5[017]|6[0-279]|78|8[0-29])|7(?:0[1-46-8]|1[2-9]|2[04-7]|3[1247]|4[037]|5[47]|6[02359]|7[02-59]|8[156])|8(?:0[1-68]|1[02-8]|2[08]|3[0-28]|4[3578]|5[046-9]|6[02-5]|7[028])|9(?:0[1346-9]|1[02-9]|2[0589]|3[0146-8]|4[0179]|5[12469]|7[0-389]|8[04-69]))[2-9]\\d{6}"
+			],
+			[
+				""
+			],
+			[
+				"8(?:00|33|44|55|66|77|88)[2-9]\\d{6}"
+			],
+			[
+				"900[2-9]\\d{6}"
+			],
+			[
+				"5(?:00|2[12]|33|44|66|77|88)[2-9]\\d{6}"
+			],
+			0,
+			[
+				"710[2-9]\\d{6}"
+			]
+		]
+	],
+	UY: [
+		"598",
+		"0(?:0|1[3-9]\\d)",
+		"(?:[249]\\d\\d|80)\\d{5}|9\\d{6}",
+		[
+			7,
+			8
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"8|90"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"9"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{4})",
+				"$1 $2",
+				[
+					"[24]"
+				]
+			]
+		],
+		"0",
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"00",
+		" int. "
+	],
+	UZ: [
+		"998",
+		"810",
+		"[679]\\d{8}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[679]"
+				],
+				"8 $1"
+			]
+		],
+		"8",
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"8~10"
+	],
+	VA: [
+		"39",
+		"00",
+		"0\\d{5,10}|3[0-8]\\d{7,10}|55\\d{8}|8\\d{5}(?:\\d{2,4})?|(?:1\\d|39)\\d{7,8}",
+		[
+			6,
+			7,
+			8,
+			9,
+			10,
+			11
+		],
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		"06698"
+	],
+	VC: [
+		"1",
+		"011",
+		"(?:[58]\\d\\d|784|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([2-7]\\d{6})$",
+		"784$1",
+		0,
+		"784"
+	],
+	VE: [
+		"58",
+		"00",
+		"[89]00\\d{7}|(?:[24]\\d|50)\\d{8}",
+		[
+			10
+		],
+		[
+			[
+				"(\\d{3})(\\d{7})",
+				"$1-$2",
+				[
+					"[24589]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	VG: [
+		"1",
+		"011",
+		"(?:284|[58]\\d\\d|900)\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([2-578]\\d{6})$",
+		"284$1",
+		0,
+		"284"
+	],
+	VI: [
+		"1",
+		"011",
+		"[58]\\d{9}|(?:34|90)0\\d{7}",
+		[
+			10
+		],
+		0,
+		"1",
+		0,
+		"1|([2-9]\\d{6})$",
+		"340$1",
+		0,
+		"340"
+	],
+	VN: [
+		"84",
+		"00",
+		"[12]\\d{9}|[135-9]\\d{8}|[16]\\d{7}|[16-8]\\d{6}",
+		[
+			7,
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{2})(\\d{5})",
+				"$1 $2",
+				[
+					"80"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{4})(\\d{4,6})",
+				"$1 $2",
+				[
+					"1"
+				],
+				0,
+				1
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
+					"[69]"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[3578]"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{2})(\\d{4})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"2[48]"
+				],
+				"0$1",
+				1
+			],
+			[
+				"(\\d{3})(\\d{4})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"2"
+				],
+				"0$1",
+				1
+			]
+		],
+		"0"
+	],
+	VU: [
+		"678",
+		"00",
+		"(?:[23]\\d|[48]8)\\d{3}|(?:[57]\\d|90)\\d{5}",
+		[
+			5,
+			7
+		],
+		[
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"[579]"
+				]
+			]
+		]
+	],
+	WF: [
+		"681",
+		"00",
+		"(?:[45]0|68|72|8\\d)\\d{4}",
+		[
+			6
+		],
+		[
+			[
+				"(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3",
+				[
+					"[4-8]"
+				]
+			]
+		]
+	],
+	WS: [
+		"685",
+		"0",
+		"[2-6]\\d{4}|8\\d{5}(?:\\d{4})?|[78]\\d{6}",
+		[
+			5,
+			6,
+			7,
+			10
+		],
+		[
+			[
+				"(\\d{5})",
+				"$1",
+				[
+					"[2-6]"
+				]
+			],
+			[
+				"(\\d{3})(\\d{3,7})",
+				"$1 $2",
+				[
+					"8"
+				]
+			],
+			[
+				"(\\d{2})(\\d{5})",
+				"$1 $2",
+				[
+					"7"
+				]
+			]
+		]
+	],
+	XK: [
+		"383",
+		"00",
+		"[23]\\d{7,8}|(?:4\\d\\d|[89]00)\\d{5}",
+		[
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{5})",
+				"$1 $2",
+				[
+					"[89]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[2-4]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[23]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	YE: [
+		"967",
+		"00",
+		"(?:1|7\\d)\\d{7}|[1-7]\\d{6}",
+		[
+			7,
+			8,
+			9
+		],
+		[
+			[
+				"(\\d)(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"[1-6]|7[24-68]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"7"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	YT: [
+		"262",
+		"00",
+		"80\\d{7}|(?:26|63)9\\d{6}",
+		[
+			9
+		],
+		0,
+		"0",
+		0,
+		0,
+		0,
+		0,
+		"269|63"
+	],
+	ZA: [
+		"27",
+		"00",
+		"[1-9]\\d{8}|8\\d{4,7}",
+		[
+			5,
+			6,
+			7,
+			8,
+			9
+		],
+		[
+			[
+				"(\\d{2})(\\d{3,4})",
+				"$1 $2",
+				[
+					"8[1-4]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{2,3})",
+				"$1 $2 $3",
+				[
+					"8[1-4]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"860"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"[1-9]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	ZM: [
+		"260",
+		"00",
+		"800\\d{6}|(?:21|76|9\\d)\\d{7}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d{3})(\\d{3})(\\d{3})",
+				"$1 $2 $3",
+				[
+					"[28]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{7})",
+				"$1 $2",
+				[
+					"[79]"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	ZW: [
+		"263",
+		"00",
+		"2(?:[0-57-9]\\d{6,8}|6[0-24-9]\\d{6,7})|[38]\\d{9}|[35-8]\\d{8}|[3-6]\\d{7}|[1-689]\\d{6}|[1-3569]\\d{5}|[1356]\\d{4}",
+		[
+			5,
+			6,
+			7,
+			8,
+			9,
+			10
+		],
+		[
+			[
+				"(\\d{3})(\\d{3,5})",
+				"$1 $2",
+				[
+					"2(?:0[45]|2[278]|[49]8)|3(?:[09]8|17)|6(?:[29]8|37|75)|[23][78]|(?:33|5[15]|6[68])[78]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d)(\\d{3})(\\d{2,4})",
+				"$1 $2 $3",
+				[
+					"[49]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{4})",
+				"$1 $2",
+				[
+					"80"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{7})",
+				"$1 $2",
+				[
+					"24|8[13-59]|(?:2[05-79]|39|5[45]|6[15-8])2",
+					"2(?:02[014]|4|[56]20|[79]2)|392|5(?:42|525)|6(?:[16-8]21|52[013])|8[13-59]"
+				],
+				"(0$1)"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{4})",
+				"$1 $2 $3",
+				[
+					"7"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"2(?:1[39]|2[0157]|[378]|[56][14])|3(?:12|29)",
+					"2(?:1[39]|2[0157]|[378]|[56][14])|3(?:123|29)"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{6})",
+				"$1 $2",
+				[
+					"8"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3,5})",
+				"$1 $2",
+				[
+					"1|2(?:0[0-36-9]|12|29|[56])|3(?:1[0-689]|[24-6])|5(?:[0236-9]|1[2-4])|6(?:[013-59]|7[0-46-9])|(?:33|55|6[68])[0-69]|(?:29|3[09]|62)[0-79]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{3})(\\d{3,4})",
+				"$1 $2 $3",
+				[
+					"29[013-9]|39|54"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{4})(\\d{3,5})",
+				"$1 $2",
+				[
+					"(?:25|54)8",
+					"258|5483"
+				],
+				"0$1"
+			]
+		],
+		"0"
+	],
+	"001": [
+		"979",
+		0,
+		"\\d{9}",
+		[
+			9
+		],
+		[
+			[
+				"(\\d)(\\d{4})(\\d{4})",
+				"$1 $2 $3"
+			]
+		]
+	]
+};
+var metadata_min = {
+	version: version,
+	country_calling_codes: country_calling_codes,
+	countries: countries
+};
+
+var metadata_min$1 = /*#__PURE__*/Object.freeze({
+  version: version,
+  country_calling_codes: country_calling_codes,
+  countries: countries,
+  'default': metadata_min
 });
 
-var ReactPhoneInput = unwrapExports(lib$1);
-var lib_1 = lib$1.ReactPhoneInput;
+var ext = "ext.";
+var country = "Country";
+var phone = "Phone";
+var AB = "Abkhazia";
+var AC = "Ascension Island";
+var AD = "Andorra";
+var AE = "United Arab Emirates (‫الإمارات العربية المتحدة‬‎)";
+var AF = "Afghanistan (‫افغانستان‬‎)";
+var AG = "Antigua and Barbuda";
+var AI = "Anguilla";
+var AL = "Albania (Shqipëri)";
+var AM = "Armenia (Հայաստան)";
+var AO = "Angola";
+var AQ = "Antarctica";
+var AR = "Argentina";
+var AS = "American Samoa (Amerika Sāmoa)";
+var AT = "Austria (Österreich)";
+var AU = "Australia";
+var AW = "Aruba";
+var AX = "Åland Islands";
+var AZ = "Azerbaijan (Azərbaycan)";
+var BA = "Bosnia and Herzegovina";
+var BB = "Barbados";
+var BD = "Bangladesh (বাংলাদেশ)";
+var BE = "Belgium (België)";
+var BF = "Burkina Faso";
+var BG = "Bulgaria (България)";
+var BH = "Bahrain (‫البحرين‬‎)";
+var BI = "Burundi (Uburundi)";
+var BJ = "Benin (Bénin)";
+var BL = "Saint Barthélemy (Saint-Barthélemy)";
+var BM = "Bermuda";
+var BN = "Brunei (Negara Brunei Darussalam)";
+var BO = "Bolivia";
+var BQ = "Caribbean Netherlands";
+var BR = "Brazil (Brasil)";
+var BS = "Bahamas";
+var BT = "Bhutan (འབྲུག)";
+var BV = "Bouvet Island";
+var BW = "Botswana";
+var BY = "Belarus (Беларусь)";
+var BZ = "Belize";
+var CA = "Canada";
+var CC = "Cocos (Keeling) Islands";
+var CD = "Congo (DRC) (Kongo)";
+var CF = "Central African Republic";
+var CG = "Congo (Republic) (Congo-Brazzaville)";
+var CH = "Switzerland (Schweiz)";
+var CI = "Côte d’Ivoire";
+var CK = "Cook Islands";
+var CL = "Chile";
+var CM = "Cameroon (Cameroun)";
+var CN = "China (中国)";
+var CO = "Colombia";
+var CR = "Costa Rica";
+var CU = "Cuba";
+var CV = "Cape Verde (Kabu Verdi)";
+var CW = "Curaçao";
+var CX = "Christmas Island";
+var CY = "Cyprus (Κύπρος)";
+var CZ = "Czech Republic (Česká republika)";
+var DE = "Germany (Deutschland)";
+var DJ = "Djibouti";
+var DK = "Denmark (Danmark)";
+var DM = "Dominica";
+var DO = "Dominican Republic";
+var DZ = "Algeria (‫الجزائر‬‎)";
+var EC = "Ecuador";
+var EE = "Estonia (Eesti)";
+var EG = "Egypt (‫مصر‬‎)";
+var EH = "Western Sahara (‫الصحراء الغربية‬‎)";
+var ER = "Eritrea";
+var ES = "Spain (España)";
+var ET = "Ethiopia";
+var FI = "Finland (Suomi)";
+var FJ = "Fiji (Matanitu Tugalala o Viti)";
+var FK = "Falkland Islands (Islas Malvinas)";
+var FM = "Micronesia";
+var FO = "Faroe Islands (Føroyar)";
+var FR = "France (République française)";
+var GA = "Gabon (République gabonaise)";
+var GB = "United Kingdom";
+var GD = "Grenada";
+var GE = "Georgia (საქართველო)";
+var GF = "French Guiana (Guyane française)";
+var GG = "Guernsey";
+var GH = "Ghana (Gaana)";
+var GI = "Gibraltar";
+var GL = "Greenland (Kalaallit Nunaat)";
+var GM = "Gambia";
+var GN = "Guinea (Guinée)";
+var GP = "Guadeloupe";
+var GQ = "Equatorial Guinea (Guinea Ecuatorial)";
+var GR = "Greece (Ελλάδα)";
+var GS = "South Georgia and the South Sandwich Islands";
+var GT = "Guatemala";
+var GU = "Guam (Guåhån)";
+var GW = "Guinea-Bissau (Guiné Bissau)";
+var GY = "Guyana";
+var HK = "Hong Kong (香港)";
+var HM = "Heard Island and McDonald Islands";
+var HN = "Honduras";
+var HR = "Croatia (Hrvatska)";
+var HT = "Haiti (République d'Haïti)";
+var HU = "Hungary (Magyarország)";
+var ID = "Indonesia";
+var IE = "Ireland";
+var IL = "Israel (‫ישראל‬‎)";
+var IM = "Isle of Man";
+var IN = "India (भारत)";
+var IO = "British Indian Ocean Territory";
+var IQ = "Iraq (‫العراق‬‎)";
+var IR = "Iran (‫ایران‬‎)";
+var IS = "Iceland (Ísland)";
+var IT = "Italy (Italia)";
+var JE = "Jersey";
+var JM = "Jamaica";
+var JO = "Jordan (‫الأردن‬‎)";
+var JP = "Japan (日本)";
+var KE = "Kenya";
+var KG = "Kyrgyzstan (Кыргызстан)";
+var KH = "Cambodia (កម្ពុជា)";
+var KI = "Kiribati";
+var KM = "Comoros (‫جزر القمر‬‎)";
+var KN = "Saint Kitts and Nevis";
+var KP = "North Korea (조선 민주주의 인민 공화국)";
+var KR = "South Korea (대한민국)";
+var KW = "Kuwait (‫الكويت‬‎)";
+var KY = "Cayman Islands";
+var KZ = "Kazakhstan (Казахстан)";
+var LA = "Laos (ລາວ)";
+var LB = "Lebanon (‫لبنان‬‎)";
+var LC = "Saint Lucia";
+var LI = "Liechtenstein";
+var LK = "Sri Lanka (ශ්‍රී ලංකාව)";
+var LR = "Liberia";
+var LS = "Lesotho";
+var LT = "Lithuania (Lietuva)";
+var LU = "Luxembourg (Lëtzebuerg)";
+var LV = "Latvia (Latvija)";
+var LY = "Libya (‫ليبيا‬‎)";
+var MA = "Morocco (‫المغرب‬‎)";
+var MC = "Monaco";
+var MD = "Moldova (Republica Moldova)";
+var ME = "Montenegro (Crna Gora)";
+var MF = "Saint Martin (Saint-Martin)";
+var MG = "Madagascar (Madagasikara)";
+var MH = "Marshall Islands";
+var MK = "Macedonia (FYROM) (Македонија)";
+var ML = "Mali";
+var MM = "Myanmar (Burma) (မြန်မာ)";
+var MN = "Mongolia (Монгол)";
+var MO = "Macau (澳門)";
+var MP = "Northern Mariana Islands";
+var MQ = "Martinique";
+var MR = "Mauritania (‫موريتانيا‬‎)";
+var MS = "Montserrat";
+var MT = "Malta";
+var MU = "Mauritius (Moris)";
+var MV = "Maldives";
+var MW = "Malawi (Malaŵi)";
+var MX = "Mexico (México)";
+var MY = "Malaysia";
+var MZ = "Mozambique (Moçambique)";
+var NA = "Namibia (Namibië)";
+var NC = "New Caledonia (Nouvelle-Calédonie)";
+var NE = "Niger (Nijar)";
+var NF = "Norfolk Island";
+var NG = "Nigeria";
+var NI = "Nicaragua";
+var NL = "Netherlands (Nederland)";
+var NO = "Norway (Norge)";
+var NP = "Nepal (नेपाल)";
+var NR = "Nauru (Repubrikin Naoero)";
+var NU = "Niue (Niuē)";
+var NZ = "New Zealand";
+var OM = "Oman (‫عُمان‬‎)";
+var OS = "South Ossetia";
+var PA = "Panama (Panamá)";
+var PE = "Peru (Perú)";
+var PF = "French Polynesia (Polynésie française)";
+var PG = "Papua New Guinea";
+var PH = "Philippines (Republika ng Pilipinas)";
+var PK = "Pakistan (‫پاکستان‬‎)";
+var PL = "Poland (Polska)";
+var PM = "Saint Pierre and Miquelon";
+var PN = "Pitcairn";
+var PR = "Puerto Rico";
+var PS = "Palestine (‫فلسطين‬‎)";
+var PT = "Portugal (República Portuguesa)";
+var PW = "Palau (Beluu er a Belau)";
+var PY = "Paraguay (Tetã Paraguái)";
+var QA = "Qatar (‫قطر‬‎)";
+var RE = "Réunion (La Réunion)";
+var RO = "Romania (România)";
+var RS = "Serbia (Србија)";
+var RU = "Russia (Россия)";
+var RW = "Rwanda";
+var SA = "Saudi Arabia (‫المملكة العربية السعودية‬‎)";
+var SB = "Solomon Islands";
+var SC = "Seychelles (Repiblik Sesel)";
+var SD = "Sudan (‫السودان‬‎)";
+var SE = "Sweden (Sverige)";
+var SG = "Singapore (Singapura) (新加坡共和国)";
+var SH = "Saint Helena";
+var SI = "Slovenia (Slovenija)";
+var SJ = "Svalbard and Jan Mayen";
+var SK = "Slovakia (Slovensko)";
+var SL = "Sierra Leone";
+var SM = "San Marino";
+var SN = "Senegal (Sénégal)";
+var SO = "Somalia (Soomaaliya)";
+var SR = "Suriname";
+var SS = "South Sudan (‫جنوب السودان‬‎)";
+var ST = "São Tomé and Príncipe";
+var SV = "El Salvador";
+var SX = "Sint Maarten";
+var SY = "Syria (‫سوريا‬‎)";
+var SZ = "Swaziland (Umbuso weSwatini)";
+var TA = "Tristan da Cunha";
+var TC = "Turks and Caicos Islands";
+var TD = "Chad (Tchad)";
+var TF = "French Southern Territories";
+var TG = "Togo (République togolaise)";
+var TH = "Thailand (ไทย)";
+var TJ = "Tajikistan (Ҷумҳурии Тоҷикистон)";
+var TK = "Tokelau";
+var TL = "Timor-Leste (Timór-Leste)";
+var TM = "Turkmenistan (Türkmenistan)";
+var TN = "Tunisia (‫تونس‬‎)";
+var TO = "Tonga";
+var TR = "Turkey (Türkiye)";
+var TT = "Trinidad and Tobago";
+var TV = "Tuvalu";
+var TW = "Taiwan (台灣)";
+var TZ = "Tanzania";
+var UA = "Ukraine (Україна)";
+var UG = "Uganda";
+var UM = "United States Minor Outlying Islands";
+var US = "United States";
+var UY = "Uruguay";
+var UZ = "Uzbekistan (Oʻzbekiston)";
+var VA = "Vatican City (Città del Vaticano)";
+var VC = "Saint Vincent and the Grenadines";
+var VE = "Venezuela";
+var VG = "British Virgin Islands";
+var VI = "U.S. Virgin Islands";
+var VN = "Vietnam (Việt Nam)";
+var VU = "Vanuatu";
+var WF = "Wallis and Futuna (Wallis-et-Futuna)";
+var WS = "Samoa (Sāmoa)";
+var XK = "Kosovo";
+var YE = "Yemen (‫اليمن‬‎)";
+var YT = "Mayotte";
+var ZA = "South Africa";
+var ZM = "Zambia";
+var ZW = "Zimbabwe";
+var ZZ = "International";
+var _default = {
+	ext: ext,
+	country: country,
+	phone: phone,
+	AB: AB,
+	AC: AC,
+	AD: AD,
+	AE: AE,
+	AF: AF,
+	AG: AG,
+	AI: AI,
+	AL: AL,
+	AM: AM,
+	AO: AO,
+	AQ: AQ,
+	AR: AR,
+	AS: AS,
+	AT: AT,
+	AU: AU,
+	AW: AW,
+	AX: AX,
+	AZ: AZ,
+	BA: BA,
+	BB: BB,
+	BD: BD,
+	BE: BE,
+	BF: BF,
+	BG: BG,
+	BH: BH,
+	BI: BI,
+	BJ: BJ,
+	BL: BL,
+	BM: BM,
+	BN: BN,
+	BO: BO,
+	BQ: BQ,
+	BR: BR,
+	BS: BS,
+	BT: BT,
+	BV: BV,
+	BW: BW,
+	BY: BY,
+	BZ: BZ,
+	CA: CA,
+	CC: CC,
+	CD: CD,
+	CF: CF,
+	CG: CG,
+	CH: CH,
+	CI: CI,
+	CK: CK,
+	CL: CL,
+	CM: CM,
+	CN: CN,
+	CO: CO,
+	CR: CR,
+	CU: CU,
+	CV: CV,
+	CW: CW,
+	CX: CX,
+	CY: CY,
+	CZ: CZ,
+	DE: DE,
+	DJ: DJ,
+	DK: DK,
+	DM: DM,
+	DO: DO,
+	DZ: DZ,
+	EC: EC,
+	EE: EE,
+	EG: EG,
+	EH: EH,
+	ER: ER,
+	ES: ES,
+	ET: ET,
+	FI: FI,
+	FJ: FJ,
+	FK: FK,
+	FM: FM,
+	FO: FO,
+	FR: FR,
+	GA: GA,
+	GB: GB,
+	GD: GD,
+	GE: GE,
+	GF: GF,
+	GG: GG,
+	GH: GH,
+	GI: GI,
+	GL: GL,
+	GM: GM,
+	GN: GN,
+	GP: GP,
+	GQ: GQ,
+	GR: GR,
+	GS: GS,
+	GT: GT,
+	GU: GU,
+	GW: GW,
+	GY: GY,
+	HK: HK,
+	HM: HM,
+	HN: HN,
+	HR: HR,
+	HT: HT,
+	HU: HU,
+	ID: ID,
+	IE: IE,
+	IL: IL,
+	IM: IM,
+	IN: IN,
+	IO: IO,
+	IQ: IQ,
+	IR: IR,
+	IS: IS,
+	IT: IT,
+	JE: JE,
+	JM: JM,
+	JO: JO,
+	JP: JP,
+	KE: KE,
+	KG: KG,
+	KH: KH,
+	KI: KI,
+	KM: KM,
+	KN: KN,
+	KP: KP,
+	KR: KR,
+	KW: KW,
+	KY: KY,
+	KZ: KZ,
+	LA: LA,
+	LB: LB,
+	LC: LC,
+	LI: LI,
+	LK: LK,
+	LR: LR,
+	LS: LS,
+	LT: LT,
+	LU: LU,
+	LV: LV,
+	LY: LY,
+	MA: MA,
+	MC: MC,
+	MD: MD,
+	ME: ME,
+	MF: MF,
+	MG: MG,
+	MH: MH,
+	MK: MK,
+	ML: ML,
+	MM: MM,
+	MN: MN,
+	MO: MO,
+	MP: MP,
+	MQ: MQ,
+	MR: MR,
+	MS: MS,
+	MT: MT,
+	MU: MU,
+	MV: MV,
+	MW: MW,
+	MX: MX,
+	MY: MY,
+	MZ: MZ,
+	NA: NA,
+	NC: NC,
+	NE: NE,
+	NF: NF,
+	NG: NG,
+	NI: NI,
+	NL: NL,
+	NO: NO,
+	NP: NP,
+	NR: NR,
+	NU: NU,
+	NZ: NZ,
+	OM: OM,
+	OS: OS,
+	PA: PA,
+	PE: PE,
+	PF: PF,
+	PG: PG,
+	PH: PH,
+	PK: PK,
+	PL: PL,
+	PM: PM,
+	PN: PN,
+	PR: PR,
+	PS: PS,
+	PT: PT,
+	PW: PW,
+	PY: PY,
+	QA: QA,
+	RE: RE,
+	RO: RO,
+	RS: RS,
+	RU: RU,
+	RW: RW,
+	SA: SA,
+	SB: SB,
+	SC: SC,
+	SD: SD,
+	SE: SE,
+	SG: SG,
+	SH: SH,
+	SI: SI,
+	SJ: SJ,
+	SK: SK,
+	SL: SL,
+	SM: SM,
+	SN: SN,
+	SO: SO,
+	SR: SR,
+	SS: SS,
+	ST: ST,
+	SV: SV,
+	SX: SX,
+	SY: SY,
+	SZ: SZ,
+	TA: TA,
+	TC: TC,
+	TD: TD,
+	TF: TF,
+	TG: TG,
+	TH: TH,
+	TJ: TJ,
+	TK: TK,
+	TL: TL,
+	TM: TM,
+	TN: TN,
+	TO: TO,
+	TR: TR,
+	TT: TT,
+	TV: TV,
+	TW: TW,
+	TZ: TZ,
+	UA: UA,
+	UG: UG,
+	UM: UM,
+	US: US,
+	UY: UY,
+	UZ: UZ,
+	VA: VA,
+	VC: VC,
+	VE: VE,
+	VG: VG,
+	VI: VI,
+	VN: VN,
+	VU: VU,
+	WF: WF,
+	WS: WS,
+	XK: XK,
+	YE: YE,
+	YT: YT,
+	ZA: ZA,
+	ZM: ZM,
+	ZW: ZW,
+	ZZ: ZZ
+};
 
-function ownKeys$7(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+var _default$1 = /*#__PURE__*/Object.freeze({
+  ext: ext,
+  country: country,
+  phone: phone,
+  AB: AB,
+  AC: AC,
+  AD: AD,
+  AE: AE,
+  AF: AF,
+  AG: AG,
+  AI: AI,
+  AL: AL,
+  AM: AM,
+  AO: AO,
+  AQ: AQ,
+  AR: AR,
+  AS: AS,
+  AT: AT,
+  AU: AU,
+  AW: AW,
+  AX: AX,
+  AZ: AZ,
+  BA: BA,
+  BB: BB,
+  BD: BD,
+  BE: BE,
+  BF: BF,
+  BG: BG,
+  BH: BH,
+  BI: BI,
+  BJ: BJ,
+  BL: BL,
+  BM: BM,
+  BN: BN,
+  BO: BO,
+  BQ: BQ,
+  BR: BR,
+  BS: BS,
+  BT: BT,
+  BV: BV,
+  BW: BW,
+  BY: BY,
+  BZ: BZ,
+  CA: CA,
+  CC: CC,
+  CD: CD,
+  CF: CF,
+  CG: CG,
+  CH: CH,
+  CI: CI,
+  CK: CK,
+  CL: CL,
+  CM: CM,
+  CN: CN,
+  CO: CO,
+  CR: CR,
+  CU: CU,
+  CV: CV,
+  CW: CW,
+  CX: CX,
+  CY: CY,
+  CZ: CZ,
+  DE: DE,
+  DJ: DJ,
+  DK: DK,
+  DM: DM,
+  DO: DO,
+  DZ: DZ,
+  EC: EC,
+  EE: EE,
+  EG: EG,
+  EH: EH,
+  ER: ER,
+  ES: ES,
+  ET: ET,
+  FI: FI,
+  FJ: FJ,
+  FK: FK,
+  FM: FM,
+  FO: FO,
+  FR: FR,
+  GA: GA,
+  GB: GB,
+  GD: GD,
+  GE: GE,
+  GF: GF,
+  GG: GG,
+  GH: GH,
+  GI: GI,
+  GL: GL,
+  GM: GM,
+  GN: GN,
+  GP: GP,
+  GQ: GQ,
+  GR: GR,
+  GS: GS,
+  GT: GT,
+  GU: GU,
+  GW: GW,
+  GY: GY,
+  HK: HK,
+  HM: HM,
+  HN: HN,
+  HR: HR,
+  HT: HT,
+  HU: HU,
+  ID: ID,
+  IE: IE,
+  IL: IL,
+  IM: IM,
+  IN: IN,
+  IO: IO,
+  IQ: IQ,
+  IR: IR,
+  IS: IS,
+  IT: IT,
+  JE: JE,
+  JM: JM,
+  JO: JO,
+  JP: JP,
+  KE: KE,
+  KG: KG,
+  KH: KH,
+  KI: KI,
+  KM: KM,
+  KN: KN,
+  KP: KP,
+  KR: KR,
+  KW: KW,
+  KY: KY,
+  KZ: KZ,
+  LA: LA,
+  LB: LB,
+  LC: LC,
+  LI: LI,
+  LK: LK,
+  LR: LR,
+  LS: LS,
+  LT: LT,
+  LU: LU,
+  LV: LV,
+  LY: LY,
+  MA: MA,
+  MC: MC,
+  MD: MD,
+  ME: ME,
+  MF: MF,
+  MG: MG,
+  MH: MH,
+  MK: MK,
+  ML: ML,
+  MM: MM,
+  MN: MN,
+  MO: MO,
+  MP: MP,
+  MQ: MQ,
+  MR: MR,
+  MS: MS,
+  MT: MT,
+  MU: MU,
+  MV: MV,
+  MW: MW,
+  MX: MX,
+  MY: MY,
+  MZ: MZ,
+  NA: NA,
+  NC: NC,
+  NE: NE,
+  NF: NF,
+  NG: NG,
+  NI: NI,
+  NL: NL,
+  NO: NO,
+  NP: NP,
+  NR: NR,
+  NU: NU,
+  NZ: NZ,
+  OM: OM,
+  OS: OS,
+  PA: PA,
+  PE: PE,
+  PF: PF,
+  PG: PG,
+  PH: PH,
+  PK: PK,
+  PL: PL,
+  PM: PM,
+  PN: PN,
+  PR: PR,
+  PS: PS,
+  PT: PT,
+  PW: PW,
+  PY: PY,
+  QA: QA,
+  RE: RE,
+  RO: RO,
+  RS: RS,
+  RU: RU,
+  RW: RW,
+  SA: SA,
+  SB: SB,
+  SC: SC,
+  SD: SD,
+  SE: SE,
+  SG: SG,
+  SH: SH,
+  SI: SI,
+  SJ: SJ,
+  SK: SK,
+  SL: SL,
+  SM: SM,
+  SN: SN,
+  SO: SO,
+  SR: SR,
+  SS: SS,
+  ST: ST,
+  SV: SV,
+  SX: SX,
+  SY: SY,
+  SZ: SZ,
+  TA: TA,
+  TC: TC,
+  TD: TD,
+  TF: TF,
+  TG: TG,
+  TH: TH,
+  TJ: TJ,
+  TK: TK,
+  TL: TL,
+  TM: TM,
+  TN: TN,
+  TO: TO,
+  TR: TR,
+  TT: TT,
+  TV: TV,
+  TW: TW,
+  TZ: TZ,
+  UA: UA,
+  UG: UG,
+  UM: UM,
+  US: US,
+  UY: UY,
+  UZ: UZ,
+  VA: VA,
+  VC: VC,
+  VE: VE,
+  VG: VG,
+  VI: VI,
+  VN: VN,
+  VU: VU,
+  WF: WF,
+  WS: WS,
+  XK: XK,
+  YE: YE,
+  YT: YT,
+  ZA: ZA,
+  ZM: ZM,
+  ZW: ZW,
+  ZZ: ZZ,
+  'default': _default
+});
 
-function _objectSpread$7(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$7(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$7(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var InternationalIcon_1 = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = InternationalIcon;
+
+
+
+var _react2 = _interopRequireDefault(e__default);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function InternationalIcon() {
+	return _react2.default.createElement(
+		"svg",
+		{ xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 50 50" },
+		_react2.default.createElement("path", { stroke: "currentColor", fill: "none", strokeWidth: "1.5", strokeLinecap: "round", d: "M8.45,13A21.44,21.44,0,1,1,37.08,41.56" }),
+		_react2.default.createElement("path", { stroke: "currentColor", fill: "none", strokeWidth: "1.5", strokeLinecap: "round", d: "M19.36,35.47a36.9,36.9,0,0,1-2.28-13.24C17.08,10.39,21.88.85,27.8.85s10.72,9.54,10.72,21.38c0,6.48-1.44,12.28-3.71,16.21" }),
+		_react2.default.createElement("path", { stroke: "currentColor", fill: "none", strokeWidth: "1.5", strokeLinecap: "round", d: "M17.41,33.4A39,39,0,0,1,27.8,32.06c6.62,0,12.55,1.5,16.48,3.86" }),
+		_react2.default.createElement("path", { stroke: "currentColor", fill: "none", strokeWidth: "1.5", strokeLinecap: "round", d: "M44.29,8.53c-3.93,2.37-9.86,3.88-16.49,3.88S15.25,10.9,11.31,8.54" }),
+		_react2.default.createElement("line", { stroke: "currentColor", fill: "none", strokeWidth: "1.5", strokeLinecap: "round", x1: "27.8", y1: "0.85", x2: "27.8", y2: "34.61" }),
+		_react2.default.createElement("line", { stroke: "currentColor", fill: "none", strokeWidth: "1.5", strokeLinecap: "round", x1: "15.2", y1: "22.23", x2: "49.15", y2: "22.23" }),
+		_react2.default.createElement("path", { stroke: "transparent", fill: "currentColor", d: "M9.42,26.64c2.22-2.22,4.15-3.59.22-8.49S3.08,17,.93,19.17c-2.49,2.48-.13,11.74,9,20.89s18.41,11.5,20.89,9c2.15-2.15,5.91-4.77,1-8.71s-6.27-2-8.49.22c-1.55,1.55-5.48-1.69-8.86-5.08S7.87,28.19,9.42,26.64Z" })
+	);
+}
+
+});
+
+unwrapExports(InternationalIcon_1);
+
+var PropTypes = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.labels = exports.metadata = undefined;
+
+
+
+var _propTypes2 = _interopRequireDefault(PropTypes$2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var metadata = exports.metadata = _propTypes2.default.shape({
+	country_calling_codes: _propTypes2.default.object.isRequired,
+	countries: _propTypes2.default.object.isRequired
+});
+
+var labels = exports.labels = _propTypes2.default.objectOf(_propTypes2.default.string);
+
+});
+
+unwrapExports(PropTypes);
+var PropTypes_1 = PropTypes.labels;
+var PropTypes_2 = PropTypes.metadata;
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+function componentWillMount() {
+  // Call this.constructor.gDSFP to support sub-classes.
+  var state = this.constructor.getDerivedStateFromProps(this.props, this.state);
+  if (state !== null && state !== undefined) {
+    this.setState(state);
+  }
+}
+
+function componentWillReceiveProps(nextProps) {
+  // Call this.constructor.gDSFP to support sub-classes.
+  // Use the setState() updater to ensure state isn't stale in certain edge cases.
+  function updater(prevState) {
+    var state = this.constructor.getDerivedStateFromProps(nextProps, prevState);
+    return state !== null && state !== undefined ? state : null;
+  }
+  // Binding "this" is important for shallow renderer support.
+  this.setState(updater.bind(this));
+}
+
+function componentWillUpdate(nextProps, nextState) {
+  try {
+    var prevProps = this.props;
+    var prevState = this.state;
+    this.props = nextProps;
+    this.state = nextState;
+    this.__reactInternalSnapshotFlag = true;
+    this.__reactInternalSnapshot = this.getSnapshotBeforeUpdate(
+      prevProps,
+      prevState
+    );
+  } finally {
+    this.props = prevProps;
+    this.state = prevState;
+  }
+}
+
+// React may warn about cWM/cWRP/cWU methods being deprecated.
+// Add a flag to suppress these warnings for this special case.
+componentWillMount.__suppressDeprecationWarning = true;
+componentWillReceiveProps.__suppressDeprecationWarning = true;
+componentWillUpdate.__suppressDeprecationWarning = true;
+
+function polyfill(Component) {
+  var prototype = Component.prototype;
+
+  if (!prototype || !prototype.isReactComponent) {
+    throw new Error('Can only polyfill class components');
+  }
+
+  if (
+    typeof Component.getDerivedStateFromProps !== 'function' &&
+    typeof prototype.getSnapshotBeforeUpdate !== 'function'
+  ) {
+    return Component;
+  }
+
+  // If new component APIs are defined, "unsafe" lifecycles won't be called.
+  // Error if any of these lifecycles are present,
+  // Because they would work differently between older and newer (16.3+) versions of React.
+  var foundWillMountName = null;
+  var foundWillReceivePropsName = null;
+  var foundWillUpdateName = null;
+  if (typeof prototype.componentWillMount === 'function') {
+    foundWillMountName = 'componentWillMount';
+  } else if (typeof prototype.UNSAFE_componentWillMount === 'function') {
+    foundWillMountName = 'UNSAFE_componentWillMount';
+  }
+  if (typeof prototype.componentWillReceiveProps === 'function') {
+    foundWillReceivePropsName = 'componentWillReceiveProps';
+  } else if (typeof prototype.UNSAFE_componentWillReceiveProps === 'function') {
+    foundWillReceivePropsName = 'UNSAFE_componentWillReceiveProps';
+  }
+  if (typeof prototype.componentWillUpdate === 'function') {
+    foundWillUpdateName = 'componentWillUpdate';
+  } else if (typeof prototype.UNSAFE_componentWillUpdate === 'function') {
+    foundWillUpdateName = 'UNSAFE_componentWillUpdate';
+  }
+  if (
+    foundWillMountName !== null ||
+    foundWillReceivePropsName !== null ||
+    foundWillUpdateName !== null
+  ) {
+    var componentName = Component.displayName || Component.name;
+    var newApiName =
+      typeof Component.getDerivedStateFromProps === 'function'
+        ? 'getDerivedStateFromProps()'
+        : 'getSnapshotBeforeUpdate()';
+
+    throw Error(
+      'Unsafe legacy lifecycles will not be called for components using new component APIs.\n\n' +
+        componentName +
+        ' uses ' +
+        newApiName +
+        ' but also contains the following legacy lifecycles:' +
+        (foundWillMountName !== null ? '\n  ' + foundWillMountName : '') +
+        (foundWillReceivePropsName !== null
+          ? '\n  ' + foundWillReceivePropsName
+          : '') +
+        (foundWillUpdateName !== null ? '\n  ' + foundWillUpdateName : '') +
+        '\n\nThe above lifecycles should be removed. Learn more about this warning here:\n' +
+        'https://fb.me/react-async-component-lifecycle-hooks'
+    );
+  }
+
+  // React <= 16.2 does not support static getDerivedStateFromProps.
+  // As a workaround, use cWM and cWRP to invoke the new static lifecycle.
+  // Newer versions of React will ignore these lifecycles if gDSFP exists.
+  if (typeof Component.getDerivedStateFromProps === 'function') {
+    prototype.componentWillMount = componentWillMount;
+    prototype.componentWillReceiveProps = componentWillReceiveProps;
+  }
+
+  // React <= 16.2 does not support getSnapshotBeforeUpdate.
+  // As a workaround, use cWU to invoke the new lifecycle.
+  // Newer versions of React will ignore that lifecycle if gSBU exists.
+  if (typeof prototype.getSnapshotBeforeUpdate === 'function') {
+    if (typeof prototype.componentDidUpdate !== 'function') {
+      throw new Error(
+        'Cannot polyfill getSnapshotBeforeUpdate() for components that do not define componentDidUpdate() on the prototype'
+      );
+    }
+
+    prototype.componentWillUpdate = componentWillUpdate;
+
+    var componentDidUpdate = prototype.componentDidUpdate;
+
+    prototype.componentDidUpdate = function componentDidUpdatePolyfill(
+      prevProps,
+      prevState,
+      maybeSnapshot
+    ) {
+      // 16.3+ will not execute our will-update method;
+      // It will pass a snapshot value to did-update though.
+      // Older versions will require our polyfilled will-update value.
+      // We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
+      // Because for <= 15.x versions this might be a "prevContext" object.
+      // We also can't just check "__reactInternalSnapshot",
+      // Because get-snapshot might return a falsy value.
+      // So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
+      var snapshot = this.__reactInternalSnapshotFlag
+        ? this.__reactInternalSnapshot
+        : maybeSnapshot;
+
+      componentDidUpdate.call(this, prevProps, prevState, snapshot);
+    };
+  }
+
+  return Component;
+}
+
+var reactLifecyclesCompat_es = /*#__PURE__*/Object.freeze({
+  polyfill: polyfill
+});
+
+function _classCallCheck$1(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// https://stackoverflow.com/a/46971044/970769
+var ParseError = function ParseError(code) {
+  _classCallCheck$1(this, ParseError);
+
+  this.name = this.constructor.name;
+  this.message = code;
+  this.stack = new Error(code).stack;
+};
+
+
+ParseError.prototype = Object.create(Error.prototype);
+ParseError.prototype.constructor = ParseError;
+
+// The minimum length of the national significant number.
+var MIN_LENGTH_FOR_NSN = 2;
+
+// The ITU says the maximum length should be 15,
+// but one can find longer numbers in Germany.
+var MAX_LENGTH_FOR_NSN = 17;
+
+// The maximum length of the country calling code.
+var MAX_LENGTH_COUNTRY_CODE = 3;
+
+// Digits accepted in phone numbers
+// (ascii, fullwidth, arabic-indic, and eastern arabic digits).
+var VALID_DIGITS = '0-9\uFF10-\uFF19\u0660-\u0669\u06F0-\u06F9';
+
+// `DASHES` will be right after the opening square bracket of the "character class"
+var DASHES = '-\u2010-\u2015\u2212\u30FC\uFF0D';
+var SLASHES = '\uFF0F/';
+var DOTS = '\uFF0E.';
+var WHITESPACE = ' \xA0\xAD\u200B\u2060\u3000';
+var BRACKETS = '()\uFF08\uFF09\uFF3B\uFF3D\\[\\]';
+// export const OPENING_BRACKETS = '(\uFF08\uFF3B\\\['
+var TILDES = '~\u2053\u223C\uFF5E';
+
+// Regular expression of acceptable punctuation found in phone numbers. This
+// excludes punctuation found as a leading character only. This consists of dash
+// characters, white space characters, full stops, slashes, square brackets,
+// parentheses and tildes. Full-width variants are also present.
+var VALID_PUNCTUATION = '' + DASHES + SLASHES + DOTS + WHITESPACE + BRACKETS + TILDES;
+
+var PLUS_CHARS = '+\uFF0B';
+// const LEADING_PLUS_CHARS_PATTERN = new RegExp('^[' + PLUS_CHARS + ']+')
+
+// Checks whether the entire input sequence can be matched
+// against the regular expression.
+function matchesEntirely() {
+	var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+	var regular_expression = arguments[1];
+
+	return new RegExp('^(?:' + regular_expression + ')$').test(text);
+}
+
+/**
+ * Merges two arrays.
+ * @param  {*} a
+ * @param  {*} b
+ * @return {*}
+ */
+function mergeArrays(a, b) {
+	var merged = a.slice();
+
+	for (var _iterator = b, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+		var _ref;
+
+		if (_isArray) {
+			if (_i >= _iterator.length) break;
+			_ref = _iterator[_i++];
+		} else {
+			_i = _iterator.next();
+			if (_i.done) break;
+			_ref = _i.value;
+		}
+
+		var element = _ref;
+
+		if (a.indexOf(element) < 0) {
+			merged.push(element);
+		}
+	}
+
+	return merged.sort(function (a, b) {
+		return a - b;
+	});
+
+	// ES6 version, requires Set polyfill.
+	// let merged = new Set(a)
+	// for (const element of b)
+	// {
+	// 	merged.add(i)
+	// }
+	// return Array.from(merged).sort((a, b) => a - b)
+}
+
+// Copy-pasted from:
+// https://github.com/substack/semver-compare/blob/master/index.js
+//
+// Inlining this function because some users reported issues with
+// importing from `semver-compare` in a browser with ES6 "native" modules.
+function cmp(a, b) {
+    var pa = a.split('.');
+    var pb = b.split('.');
+    for (var i = 0; i < 3; i++) {
+        var na = Number(pa[i]);
+        var nb = Number(pb[i]);
+        if (na > nb) return 1;
+        if (nb > na) return -1;
+        if (!isNaN(na) && isNaN(nb)) return 1;
+        if (isNaN(na) && !isNaN(nb)) return -1;
+    }
+    return 0;
+}
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass$1 = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck$2(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// Added "idd_prefix" and "default_idd_prefix".
+var V3 = '1.2.0';
+
+var DEFAULT_EXT_PREFIX = ' ext. ';
+
+var Metadata = function () {
+	function Metadata(metadata) {
+		_classCallCheck$2(this, Metadata);
+
+		validateMetadata(metadata);
+
+		this.metadata = metadata;
+
+		this.v1 = !metadata.version;
+		this.v2 = metadata.version !== undefined && cmp(metadata.version, V3) === -1;
+		this.v3 = metadata.version !== undefined; // && compare(metadata.version, V4) === -1
+	}
+
+	_createClass$1(Metadata, [{
+		key: 'hasCountry',
+		value: function hasCountry(country) {
+			return this.metadata.countries[country] !== undefined;
+		}
+	}, {
+		key: 'country',
+		value: function country(_country) {
+			if (!_country) {
+				this._country = undefined;
+				this.country_metadata = undefined;
+				return this;
+			}
+
+			if (!this.hasCountry(_country)) {
+				throw new Error('Unknown country: ' + _country);
+			}
+
+			this._country = _country;
+			this.country_metadata = this.metadata.countries[_country];
+			return this;
+		}
+	}, {
+		key: 'getDefaultCountryMetadataForRegion',
+		value: function getDefaultCountryMetadataForRegion() {
+			return this.metadata.countries[this.countryCallingCodes()[this.countryCallingCode()][0]];
+		}
+	}, {
+		key: 'countryCallingCode',
+		value: function countryCallingCode() {
+			return this.country_metadata[0];
+		}
+	}, {
+		key: 'IDDPrefix',
+		value: function IDDPrefix() {
+			if (this.v1 || this.v2) return;
+			return this.country_metadata[1];
+		}
+	}, {
+		key: 'defaultIDDPrefix',
+		value: function defaultIDDPrefix() {
+			if (this.v1 || this.v2) return;
+			return this.country_metadata[12];
+		}
+	}, {
+		key: 'nationalNumberPattern',
+		value: function nationalNumberPattern() {
+			if (this.v1 || this.v2) return this.country_metadata[1];
+			return this.country_metadata[2];
+		}
+	}, {
+		key: 'possibleLengths',
+		value: function possibleLengths() {
+			if (this.v1) return;
+			return this.country_metadata[this.v2 ? 2 : 3];
+		}
+	}, {
+		key: '_getFormats',
+		value: function _getFormats(country_metadata) {
+			return country_metadata[this.v1 ? 2 : this.v2 ? 3 : 4];
+		}
+
+		// For countries of the same region (e.g. NANPA)
+		// formats are all stored in the "main" country for that region.
+		// E.g. "RU" and "KZ", "US" and "CA".
+
+	}, {
+		key: 'formats',
+		value: function formats() {
+			var _this = this;
+
+			var formats = this._getFormats(this.country_metadata) || this._getFormats(this.getDefaultCountryMetadataForRegion()) || [];
+			return formats.map(function (_) {
+				return new Format(_, _this);
+			});
+		}
+	}, {
+		key: 'nationalPrefix',
+		value: function nationalPrefix() {
+			return this.country_metadata[this.v1 ? 3 : this.v2 ? 4 : 5];
+		}
+	}, {
+		key: '_getNationalPrefixFormattingRule',
+		value: function _getNationalPrefixFormattingRule(country_metadata) {
+			return country_metadata[this.v1 ? 4 : this.v2 ? 5 : 6];
+		}
+
+		// For countries of the same region (e.g. NANPA)
+		// national prefix formatting rule is stored in the "main" country for that region.
+		// E.g. "RU" and "KZ", "US" and "CA".
+
+	}, {
+		key: 'nationalPrefixFormattingRule',
+		value: function nationalPrefixFormattingRule() {
+			return this._getNationalPrefixFormattingRule(this.country_metadata) || this._getNationalPrefixFormattingRule(this.getDefaultCountryMetadataForRegion());
+		}
+	}, {
+		key: 'nationalPrefixForParsing',
+		value: function nationalPrefixForParsing() {
+			// If `national_prefix_for_parsing` is not set explicitly,
+			// then infer it from `national_prefix` (if any)
+			return this.country_metadata[this.v1 ? 5 : this.v2 ? 6 : 7] || this.nationalPrefix();
+		}
+	}, {
+		key: 'nationalPrefixTransformRule',
+		value: function nationalPrefixTransformRule() {
+			return this.country_metadata[this.v1 ? 6 : this.v2 ? 7 : 8];
+		}
+	}, {
+		key: '_getNationalPrefixIsOptionalWhenFormatting',
+		value: function _getNationalPrefixIsOptionalWhenFormatting() {
+			return !!this.country_metadata[this.v1 ? 7 : this.v2 ? 8 : 9];
+		}
+
+		// For countries of the same region (e.g. NANPA)
+		// "national prefix is optional when parsing" flag is
+		// stored in the "main" country for that region.
+		// E.g. "RU" and "KZ", "US" and "CA".
+
+	}, {
+		key: 'nationalPrefixIsOptionalWhenFormatting',
+		value: function nationalPrefixIsOptionalWhenFormatting() {
+			return this._getNationalPrefixIsOptionalWhenFormatting(this.country_metadata) || this._getNationalPrefixIsOptionalWhenFormatting(this.getDefaultCountryMetadataForRegion());
+		}
+	}, {
+		key: 'leadingDigits',
+		value: function leadingDigits() {
+			return this.country_metadata[this.v1 ? 8 : this.v2 ? 9 : 10];
+		}
+	}, {
+		key: 'types',
+		value: function types() {
+			return this.country_metadata[this.v1 ? 9 : this.v2 ? 10 : 11];
+		}
+	}, {
+		key: 'hasTypes',
+		value: function hasTypes() {
+			// Versions 1.2.0 - 1.2.4: can be `[]`.
+			/* istanbul ignore next */
+			if (this.types() && this.types().length === 0) {
+				return false;
+			}
+			// Versions <= 1.2.4: can be `undefined`.
+			// Version >= 1.2.5: can be `0`.
+			return !!this.types();
+		}
+	}, {
+		key: 'type',
+		value: function type(_type) {
+			if (this.hasTypes() && getType(this.types(), _type)) {
+				return new Type(getType(this.types(), _type), this);
+			}
+		}
+	}, {
+		key: 'ext',
+		value: function ext() {
+			if (this.v1 || this.v2) return DEFAULT_EXT_PREFIX;
+			return this.country_metadata[13] || DEFAULT_EXT_PREFIX;
+		}
+	}, {
+		key: 'countryCallingCodes',
+		value: function countryCallingCodes() {
+			if (this.v1) return this.metadata.country_phone_code_to_countries;
+			return this.metadata.country_calling_codes;
+		}
+
+		// Formatting information for regions which share
+		// a country calling code is contained by only one region
+		// for performance reasons. For example, for NANPA region
+		// ("North American Numbering Plan Administration",
+		//  which includes USA, Canada, Cayman Islands, Bahamas, etc)
+		// it will be contained in the metadata for `US`.
+		//
+		// `country_calling_code` is always valid.
+		// But the actual country may not necessarily be part of the metadata.
+		//
+
+	}, {
+		key: 'chooseCountryByCountryCallingCode',
+		value: function chooseCountryByCountryCallingCode(country_calling_code) {
+			var country = this.countryCallingCodes()[country_calling_code][0];
+
+			// Do not want to test this case.
+			// (custom metadata, not all countries).
+			/* istanbul ignore else */
+			if (this.hasCountry(country)) {
+				this.country(country);
+			}
+		}
+	}, {
+		key: 'selectedCountry',
+		value: function selectedCountry() {
+			return this._country;
+		}
+	}]);
+
+	return Metadata;
+}();
+
+var Format = function () {
+	function Format(format, metadata) {
+		_classCallCheck$2(this, Format);
+
+		this._format = format;
+		this.metadata = metadata;
+	}
+
+	_createClass$1(Format, [{
+		key: 'pattern',
+		value: function pattern() {
+			return this._format[0];
+		}
+	}, {
+		key: 'format',
+		value: function format() {
+			return this._format[1];
+		}
+	}, {
+		key: 'leadingDigitsPatterns',
+		value: function leadingDigitsPatterns() {
+			return this._format[2] || [];
+		}
+	}, {
+		key: 'nationalPrefixFormattingRule',
+		value: function nationalPrefixFormattingRule() {
+			return this._format[3] || this.metadata.nationalPrefixFormattingRule();
+		}
+	}, {
+		key: 'nationalPrefixIsOptionalWhenFormatting',
+		value: function nationalPrefixIsOptionalWhenFormatting() {
+			return !!this._format[4] || this.metadata.nationalPrefixIsOptionalWhenFormatting();
+		}
+	}, {
+		key: 'nationalPrefixIsMandatoryWhenFormatting',
+		value: function nationalPrefixIsMandatoryWhenFormatting() {
+			// National prefix is omitted if there's no national prefix formatting rule
+			// set for this country, or when the national prefix formatting rule
+			// contains no national prefix itself, or when this rule is set but
+			// national prefix is optional for this phone number format
+			// (and it is not enforced explicitly)
+			return this.usesNationalPrefix() && !this.nationalPrefixIsOptionalWhenFormatting();
+		}
+
+		// Checks whether national prefix formatting rule contains national prefix.
+
+	}, {
+		key: 'usesNationalPrefix',
+		value: function usesNationalPrefix() {
+			return this.nationalPrefixFormattingRule() &&
+			// Check that national prefix formatting rule is not a dummy one.
+			this.nationalPrefixFormattingRule() !== '$1' &&
+			// Check that national prefix formatting rule actually has national prefix digit(s).
+			/\d/.test(this.nationalPrefixFormattingRule().replace('$1', ''));
+		}
+	}, {
+		key: 'internationalFormat',
+		value: function internationalFormat() {
+			return this._format[5] || this.format();
+		}
+	}]);
+
+	return Format;
+}();
+
+var Type = function () {
+	function Type(type, metadata) {
+		_classCallCheck$2(this, Type);
+
+		this.type = type;
+		this.metadata = metadata;
+	}
+
+	_createClass$1(Type, [{
+		key: 'pattern',
+		value: function pattern() {
+			if (this.metadata.v1) return this.type;
+			return this.type[0];
+		}
+	}, {
+		key: 'possibleLengths',
+		value: function possibleLengths() {
+			if (this.metadata.v1) return;
+			return this.type[1] || this.metadata.possibleLengths();
+		}
+	}]);
+
+	return Type;
+}();
+
+function getType(types, type) {
+	switch (type) {
+		case 'FIXED_LINE':
+			return types[0];
+		case 'MOBILE':
+			return types[1];
+		case 'TOLL_FREE':
+			return types[2];
+		case 'PREMIUM_RATE':
+			return types[3];
+		case 'PERSONAL_NUMBER':
+			return types[4];
+		case 'VOICEMAIL':
+			return types[5];
+		case 'UAN':
+			return types[6];
+		case 'PAGER':
+			return types[7];
+		case 'VOIP':
+			return types[8];
+		case 'SHARED_COST':
+			return types[9];
+	}
+}
+
+function validateMetadata(metadata) {
+	if (!metadata) {
+		throw new Error('[libphonenumber-js] `metadata` argument not passed. Check your arguments.');
+	}
+
+	// `country_phone_code_to_countries` was renamed to
+	// `country_calling_codes` in `1.0.18`.
+	if (!is_object(metadata) || !is_object(metadata.countries) || !is_object(metadata.country_calling_codes) && !is_object(metadata.country_phone_code_to_countries)) {
+		throw new Error('[libphonenumber-js] `metadata` argument was passed but it\'s not a valid metadata. Must be an object having `.countries` and `.country_calling_codes` child object properties. Got ' + (is_object(metadata) ? 'an object of shape: { ' + Object.keys(metadata).join(', ') + ' }' : 'a ' + type_of(metadata) + ': ' + metadata) + '.');
+	}
+}
+
+// Babel transforms `typeof` into some "branches"
+// so istanbul will show this as "branch not covered".
+/* istanbul ignore next */
+var is_object = function is_object(_) {
+	return (typeof _ === 'undefined' ? 'undefined' : _typeof(_)) === 'object';
+};
+
+// Babel transforms `typeof` into some "branches"
+// so istanbul will show this as "branch not covered".
+/* istanbul ignore next */
+var type_of = function type_of(_) {
+	return typeof _ === 'undefined' ? 'undefined' : _typeof(_);
+};
+
+/**
+ * Returns extension prefix for a country.
+ * @param  {string} country
+ * @param  {object} metadata
+ * @return {string?}
+ * @example
+ * // Returns " ext. "
+ * getExtPrefix("US")
+ */
+function getExtPrefix(country, metadata) {
+	metadata = new Metadata(metadata);
+	if (metadata.hasCountry(country)) {
+		return metadata.country(country).ext();
+	}
+	return DEFAULT_EXT_PREFIX;
+}
+
+/**
+ * Returns "country calling code" for a country.
+ * Throws an error if the country doesn't exist or isn't supported by this library.
+ * @param  {string} country
+ * @param  {object} metadata
+ * @return {string}
+ * @example
+ * // Returns "44"
+ * getCountryCallingCode("GB")
+ */
+function getCountryCallingCode(country, metadata) {
+	metadata = new Metadata(metadata);
+	if (metadata.hasCountry(country)) {
+		return metadata.country(country).countryCallingCode();
+	}
+	throw new Error('Unknown country: ' + country);
+}
+
+function isSupportedCountry(country, metadata) {
+	// metadata = new Metadata(metadata)
+	// return metadata.hasCountry(country)
+	return metadata.countries[country] !== undefined;
+}
+
+// The RFC 3966 format for extensions.
+var RFC3966_EXTN_PREFIX = ';ext=';
+
+// Pattern to capture digits used in an extension.
+// Places a maximum length of '7' for an extension.
+var CAPTURING_EXTN_DIGITS = '([' + VALID_DIGITS + ']{1,7})';
+
+/**
+ * Regexp of all possible ways to write extensions, for use when parsing. This
+ * will be run as a case-insensitive regexp match. Wide character versions are
+ * also provided after each ASCII version. There are three regular expressions
+ * here. The first covers RFC 3966 format, where the extension is added using
+ * ';ext='. The second more generic one starts with optional white space and
+ * ends with an optional full stop (.), followed by zero or more spaces/tabs
+ * /commas and then the numbers themselves. The other one covers the special
+ * case of American numbers where the extension is written with a hash at the
+ * end, such as '- 503#'. Note that the only capturing groups should be around
+ * the digits that you want to capture as part of the extension, or else parsing
+ * will fail! We allow two options for representing the accented o - the
+ * character itself, and one in the unicode decomposed form with the combining
+ * acute accent.
+ */
+function create_extension_pattern(purpose) {
+	// One-character symbols that can be used to indicate an extension.
+	var single_extension_characters = 'x\uFF58#\uFF03~\uFF5E';
+
+	switch (purpose) {
+		// For parsing, we are slightly more lenient in our interpretation than for matching. Here we
+		// allow "comma" and "semicolon" as possible extension indicators. When matching, these are
+		case 'parsing':
+			single_extension_characters = ',;' + single_extension_characters;
+	}
+
+	return RFC3966_EXTN_PREFIX + CAPTURING_EXTN_DIGITS + '|' + '[ \xA0\\t,]*' + '(?:e?xt(?:ensi(?:o\u0301?|\xF3))?n?|\uFF45?\uFF58\uFF54\uFF4E?|' +
+	// "доб."
+	'\u0434\u043E\u0431|' + '[' + single_extension_characters + ']|int|anexo|\uFF49\uFF4E\uFF54)' + '[:\\.\uFF0E]?[ \xA0\\t,-]*' + CAPTURING_EXTN_DIGITS + '#?|' + '[- ]+([' + VALID_DIGITS + ']{1,5})#';
+}
+
+/**
+ * Regexp of all possible ways to write extensions, for use when parsing. This
+ * will be run as a case-insensitive regexp match. Wide character versions are
+ * also provided after each ASCII version. There are three regular expressions
+ * here. The first covers RFC 3966 format, where the extension is added using
+ * ';ext='. The second more generic one starts with optional white space and
+ * ends with an optional full stop (.), followed by zero or more spaces/tabs
+ * /commas and then the numbers themselves. The other one covers the special
+ * case of American numbers where the extension is written with a hash at the
+ * end, such as '- 503#'. Note that the only capturing groups should be around
+ * the digits that you want to capture as part of the extension, or else parsing
+ * will fail! We allow two options for representing the accented o - the
+ * character itself, and one in the unicode decomposed form with the combining
+ * acute accent.
+ */
+var EXTN_PATTERNS_FOR_PARSING = create_extension_pattern('parsing');
+
+var EXTN_PATTERNS_FOR_MATCHING = create_extension_pattern('matching');
+
+// Regexp of all known extension prefixes used by different regions followed by
+// 1 or more valid digits, for use when parsing.
+var EXTN_PATTERN = new RegExp('(?:' + EXTN_PATTERNS_FOR_PARSING + ')$', 'i');
+
+// Strips any extension (as in, the part of the number dialled after the call is
+// connected, usually indicated with extn, ext, x or similar) from the end of
+// the number, and returns it.
+function extractExtension(number) {
+	var start = number.search(EXTN_PATTERN);
+	if (start < 0) {
+		return {};
+	}
+
+	// If we find a potential extension, and the number preceding this is a viable
+	// number, we assume it is an extension.
+	var number_without_extension = number.slice(0, start);
+
+	var matches = number.match(EXTN_PATTERN);
+	var i = 1;
+	while (i < matches.length) {
+		if (matches[i] != null && matches[i].length > 0) {
+			return {
+				number: number_without_extension,
+				ext: matches[i]
+			};
+		}
+		i++;
+	}
+}
+
+//  Regular expression of viable phone numbers. This is location independent.
+//  Checks we have at least three leading digits, and only valid punctuation,
+//  alpha characters and digits in the phone number. Does not include extension
+//  data. The symbol 'x' is allowed here as valid punctuation since it is often
+//  used as a placeholder for carrier codes, for example in Brazilian phone
+//  numbers. We also allow multiple '+' characters at the start.
+//
+//  Corresponds to the following:
+//  [digits]{minLengthNsn}|
+//  plus_sign*
+//  (([punctuation]|[star])*[digits]){3,}([punctuation]|[star]|[digits]|[alpha])*
+//
+//  The first reg-ex is to allow short numbers (two digits long) to be parsed if
+//  they are entered as "15" etc, but only if there is no punctuation in them.
+//  The second expression restricts the number of digits to three or more, but
+//  then allows them to be in international form, and to have alpha-characters
+//  and punctuation. We split up the two reg-exes here and combine them when
+//  creating the reg-ex VALID_PHONE_NUMBER_PATTERN itself so we can prefix it
+//  with ^ and append $ to each branch.
+//
+//  "Note VALID_PUNCTUATION starts with a -,
+//   so must be the first in the range" (c) Google devs.
+//  (wtf did they mean by saying that; probably nothing)
+//
+var MIN_LENGTH_PHONE_NUMBER_PATTERN = '[' + VALID_DIGITS + ']{' + MIN_LENGTH_FOR_NSN + '}';
+//
+// And this is the second reg-exp:
+// (see MIN_LENGTH_PHONE_NUMBER_PATTERN for a full description of this reg-exp)
+//
+var VALID_PHONE_NUMBER = '[' + PLUS_CHARS + ']{0,1}' + '(?:' + '[' + VALID_PUNCTUATION + ']*' + '[' + VALID_DIGITS + ']' + '){3,}' + '[' + VALID_PUNCTUATION + VALID_DIGITS + ']*';
+
+// The combined regular expression for valid phone numbers:
+//
+var VALID_PHONE_NUMBER_PATTERN = new RegExp(
+// Either a short two-digit-only phone number
+'^' + MIN_LENGTH_PHONE_NUMBER_PATTERN + '$' + '|' +
+// Or a longer fully parsed phone number (min 3 characters)
+'^' + VALID_PHONE_NUMBER +
+// Phone number extensions
+'(?:' + EXTN_PATTERNS_FOR_PARSING + ')?' + '$', 'i');
+
+// Checks to see if the string of characters could possibly be a phone number at
+// all. At the moment, checks to see that the string begins with at least 2
+// digits, ignoring any punctuation commonly found in phone numbers. This method
+// does not require the number to be normalized in advance - but does assume
+// that leading non-number symbols have been removed, such as by the method
+// `extract_possible_number`.
+//
+function isViablePhoneNumber(number) {
+	return number.length >= MIN_LENGTH_FOR_NSN && VALID_PHONE_NUMBER_PATTERN.test(number);
+}
+
+// These mappings map a character (key) to a specific digit that should
+// replace it for normalization purposes. Non-European digits that
+// may be used in phone numbers are mapped to a European equivalent.
+//
+// E.g. in Iraq they don't write `+442323234` but rather `+٤٤٢٣٢٣٢٣٤`.
+//
+var DIGITS = {
+	'0': '0',
+	'1': '1',
+	'2': '2',
+	'3': '3',
+	'4': '4',
+	'5': '5',
+	'6': '6',
+	'7': '7',
+	'8': '8',
+	'9': '9',
+	'\uFF10': '0', // Fullwidth digit 0
+	'\uFF11': '1', // Fullwidth digit 1
+	'\uFF12': '2', // Fullwidth digit 2
+	'\uFF13': '3', // Fullwidth digit 3
+	'\uFF14': '4', // Fullwidth digit 4
+	'\uFF15': '5', // Fullwidth digit 5
+	'\uFF16': '6', // Fullwidth digit 6
+	'\uFF17': '7', // Fullwidth digit 7
+	'\uFF18': '8', // Fullwidth digit 8
+	'\uFF19': '9', // Fullwidth digit 9
+	'\u0660': '0', // Arabic-indic digit 0
+	'\u0661': '1', // Arabic-indic digit 1
+	'\u0662': '2', // Arabic-indic digit 2
+	'\u0663': '3', // Arabic-indic digit 3
+	'\u0664': '4', // Arabic-indic digit 4
+	'\u0665': '5', // Arabic-indic digit 5
+	'\u0666': '6', // Arabic-indic digit 6
+	'\u0667': '7', // Arabic-indic digit 7
+	'\u0668': '8', // Arabic-indic digit 8
+	'\u0669': '9', // Arabic-indic digit 9
+	'\u06F0': '0', // Eastern-Arabic digit 0
+	'\u06F1': '1', // Eastern-Arabic digit 1
+	'\u06F2': '2', // Eastern-Arabic digit 2
+	'\u06F3': '3', // Eastern-Arabic digit 3
+	'\u06F4': '4', // Eastern-Arabic digit 4
+	'\u06F5': '5', // Eastern-Arabic digit 5
+	'\u06F6': '6', // Eastern-Arabic digit 6
+	'\u06F7': '7', // Eastern-Arabic digit 7
+	'\u06F8': '8', // Eastern-Arabic digit 8
+	'\u06F9': '9' // Eastern-Arabic digit 9
+};
+
+function parseDigit(character) {
+	return DIGITS[character];
+}
+
+/**
+ * Parses phone number digits from a string.
+ * Drops all punctuation leaving only digits.
+ * Also converts wide-ascii and arabic-indic numerals to conventional numerals.
+ * E.g. in Iraq they don't write `+442323234` but rather `+٤٤٢٣٢٣٢٣٤`.
+ * @param  {string} string
+ * @return {string}
+ * @example
+ * ```js
+ * parseDigits('8 (800) 555')
+ * // Outputs '8800555'.
+ * ```
+ */
+function parseDigits(string) {
+	var result = '';
+
+	// Using `.split('')` here instead of normal `for ... of`
+	// because the importing application doesn't neccessarily include an ES6 polyfill.
+	// The `.split('')` approach discards "exotic" UTF-8 characters
+	// (the ones consisting of four bytes) but digits
+	// (including non-European ones) don't fall into that range
+	// so such "exotic" characters would be discarded anyway.
+	for (var _iterator = string.split(''), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+		var _ref;
+
+		if (_isArray) {
+			if (_i >= _iterator.length) break;
+			_ref = _iterator[_i++];
+		} else {
+			_i = _iterator.next();
+			if (_i.done) break;
+			_ref = _i.value;
+		}
+
+		var character = _ref;
+
+		var digit = parseDigit(character);
+		if (digit) {
+			result += digit;
+		}
+	}
+
+	return result;
+}
+
+/**
+ * Parses phone number characters from a string.
+ * Drops all punctuation leaving only digits and the leading `+` sign (if any).
+ * Also converts wide-ascii and arabic-indic numerals to conventional numerals.
+ * E.g. in Iraq they don't write `+442323234` but rather `+٤٤٢٣٢٣٢٣٤`.
+ * @param  {string} string
+ * @return {string}
+ * @example
+ * ```js
+ * parseIncompletePhoneNumber('8 (800) 555')
+ * // Outputs '8800555'.
+ * parseIncompletePhoneNumber('+7 800 555')
+ * // Outputs '+7800555'.
+ * ```
+ */
+function parseIncompletePhoneNumber(string) {
+	var result = '';
+
+	// Using `.split('')` here instead of normal `for ... of`
+	// because the importing application doesn't neccessarily include an ES6 polyfill.
+	// The `.split('')` approach discards "exotic" UTF-8 characters
+	// (the ones consisting of four bytes) but digits
+	// (including non-European ones) don't fall into that range
+	// so such "exotic" characters would be discarded anyway.
+	for (var _iterator = string.split(''), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+		var _ref;
+
+		if (_isArray) {
+			if (_i >= _iterator.length) break;
+			_ref = _iterator[_i++];
+		} else {
+			_i = _iterator.next();
+			if (_i.done) break;
+			_ref = _i.value;
+		}
+
+		var character = _ref;
+
+		result += parsePhoneNumberCharacter(character, result) || '';
+	}
+
+	return result;
+}
+
+/**
+ * `input-format` `parse()` function.
+ * https://github.com/catamphetamine/input-format
+ * @param  {string} character - Yet another character from raw input string.
+ * @param  {string} value - The value parsed so far.
+ * @param  {object} meta - Optional custom use-case-specific metadata.
+ * @return {string?} The parsed character.
+ */
+function parsePhoneNumberCharacter(character, value) {
+	// Only allow a leading `+`.
+	if (character === '+') {
+		// If this `+` is not the first parsed character
+		// then discard it.
+		if (value) {
+			return;
+		}
+
+		return '+';
+	}
+
+	// Allow digits.
+	return parseDigit(character);
+}
+
+var NON_FIXED_LINE_PHONE_TYPES = ['MOBILE', 'PREMIUM_RATE', 'TOLL_FREE', 'SHARED_COST', 'VOIP', 'PERSONAL_NUMBER', 'PAGER', 'UAN', 'VOICEMAIL'];
+
+// Finds out national phone number type (fixed line, mobile, etc)
+function getNumberType(input) {
+	var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	var metadata = arguments[2];
+
+	// When `parse()` returned `{}`
+	// meaning that the phone number is not a valid one.
+	if (!input.country) {
+		return;
+	}
+
+	metadata = new Metadata(metadata);
+
+	if (!metadata.hasCountry(input.country)) {
+		throw new Error('Unknown country: ' + input.country);
+	}
+
+	var nationalNumber = options.v2 ? input.nationalNumber : input.phone;
+	metadata.country(input.country);
+
+	// The following is copy-pasted from the original function:
+	// https://github.com/googlei18n/libphonenumber/blob/3ea547d4fbaa2d0b67588904dfa5d3f2557c27ff/javascript/i18n/phonenumbers/phonenumberutil.js#L2835
+
+	// Is this national number even valid for this country
+	if (!matchesEntirely(nationalNumber, metadata.nationalNumberPattern())) {
+		return;
+	}
+
+	// Is it fixed line number
+	if (is_of_type(nationalNumber, 'FIXED_LINE', metadata)) {
+		// Because duplicate regular expressions are removed
+		// to reduce metadata size, if "mobile" pattern is ""
+		// then it means it was removed due to being a duplicate of the fixed-line pattern.
+		//
+		if (metadata.type('MOBILE') && metadata.type('MOBILE').pattern() === '') {
+			return 'FIXED_LINE_OR_MOBILE';
+		}
+
+		// v1 metadata.
+		// Legacy.
+		// Deprecated.
+		if (!metadata.type('MOBILE')) {
+			return 'FIXED_LINE_OR_MOBILE';
+		}
+
+		// Check if the number happens to qualify as both fixed line and mobile.
+		// (no such country in the minimal metadata set)
+		/* istanbul ignore if */
+		if (is_of_type(nationalNumber, 'MOBILE', metadata)) {
+			return 'FIXED_LINE_OR_MOBILE';
+		}
+
+		return 'FIXED_LINE';
+	}
+
+	for (var _iterator = NON_FIXED_LINE_PHONE_TYPES, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+		var _ref;
+
+		if (_isArray) {
+			if (_i >= _iterator.length) break;
+			_ref = _iterator[_i++];
+		} else {
+			_i = _iterator.next();
+			if (_i.done) break;
+			_ref = _i.value;
+		}
+
+		var _type = _ref;
+
+		if (is_of_type(nationalNumber, _type, metadata)) {
+			return _type;
+		}
+	}
+}
+
+function is_of_type(nationalNumber, type, metadata) {
+	type = metadata.type(type);
+
+	if (!type || !type.pattern()) {
+		return false;
+	}
+
+	// Check if any possible number lengths are present;
+	// if so, we use them to avoid checking
+	// the validation pattern if they don't match.
+	// If they are absent, this means they match
+	// the general description, which we have
+	// already checked before a specific number type.
+	if (type.possibleLengths() && type.possibleLengths().indexOf(nationalNumber.length) < 0) {
+		return false;
+	}
+
+	return matchesEntirely(nationalNumber, type.pattern());
+}
+
+// Should only be called for the "new" metadata which has "possible lengths".
+function checkNumberLengthForType(nationalNumber, type, metadata) {
+	var type_info = metadata.type(type);
+
+	// There should always be "<possiblePengths/>" set for every type element.
+	// This is declared in the XML schema.
+	// For size efficiency, where a sub-description (e.g. fixed-line)
+	// has the same "<possiblePengths/>" as the "general description", this is missing,
+	// so we fall back to the "general description". Where no numbers of the type
+	// exist at all, there is one possible length (-1) which is guaranteed
+	// not to match the length of any real phone number.
+	var possible_lengths = type_info && type_info.possibleLengths() || metadata.possibleLengths();
+	// let local_lengths    = type_info && type.possibleLengthsLocal() || metadata.possibleLengthsLocal()
+
+	if (type === 'FIXED_LINE_OR_MOBILE') {
+		// No such country in metadata.
+		/* istanbul ignore next */
+		if (!metadata.type('FIXED_LINE')) {
+			// The rare case has been encountered where no fixedLine data is available
+			// (true for some non-geographical entities), so we just check mobile.
+			return checkNumberLengthForType(nationalNumber, 'MOBILE', metadata);
+		}
+
+		var mobile_type = metadata.type('MOBILE');
+
+		if (mobile_type) {
+			// Merge the mobile data in if there was any. "Concat" creates a new
+			// array, it doesn't edit possible_lengths in place, so we don't need a copy.
+			// Note that when adding the possible lengths from mobile, we have
+			// to again check they aren't empty since if they are this indicates
+			// they are the same as the general desc and should be obtained from there.
+			possible_lengths = mergeArrays(possible_lengths, mobile_type.possibleLengths());
+			// The current list is sorted; we need to merge in the new list and
+			// re-sort (duplicates are okay). Sorting isn't so expensive because
+			// the lists are very small.
+
+			// if (local_lengths)
+			// {
+			// 	local_lengths = mergeArrays(local_lengths, mobile_type.possibleLengthsLocal())
+			// }
+			// else
+			// {
+			// 	local_lengths = mobile_type.possibleLengthsLocal()
+			// }
+		}
+	}
+	// If the type doesn't exist then return 'INVALID_LENGTH'.
+	else if (type && !type_info) {
+			return 'INVALID_LENGTH';
+		}
+
+	var actual_length = nationalNumber.length;
+
+	// In `libphonenumber-js` all "local-only" formats are dropped for simplicity.
+	// // This is safe because there is never an overlap beween the possible lengths
+	// // and the local-only lengths; this is checked at build time.
+	// if (local_lengths && local_lengths.indexOf(nationalNumber.length) >= 0)
+	// {
+	// 	return 'IS_POSSIBLE_LOCAL_ONLY'
+	// }
+
+	var minimum_length = possible_lengths[0];
+
+	if (minimum_length === actual_length) {
+		return 'IS_POSSIBLE';
+	}
+
+	if (minimum_length > actual_length) {
+		return 'TOO_SHORT';
+	}
+
+	if (possible_lengths[possible_lengths.length - 1] < actual_length) {
+		return 'TOO_LONG';
+	}
+
+	// We skip the first element since we've already checked it.
+	return possible_lengths.indexOf(actual_length, 1) >= 0 ? 'IS_POSSIBLE' : 'INVALID_LENGTH';
+}
+
+function isPossibleNumber(input, options, metadata) {
+	/* istanbul ignore if */
+	if (options === undefined) {
+		options = {};
+	}
+
+	metadata = new Metadata(metadata);
+
+	if (options.v2) {
+		if (!input.countryCallingCode) {
+			throw new Error('Invalid phone number object passed');
+		}
+		metadata.chooseCountryByCountryCallingCode(input.countryCallingCode);
+	} else {
+		if (!input.phone) {
+			return false;
+		}
+		if (input.country) {
+			if (!metadata.hasCountry(input.country)) {
+				throw new Error('Unknown country: ' + input.country);
+			}
+			metadata.country(input.country);
+		} else {
+			if (!input.countryCallingCode) {
+				throw new Error('Invalid phone number object passed');
+			}
+			metadata.chooseCountryByCountryCallingCode(input.countryCallingCode);
+		}
+	}
+
+	if (!metadata.possibleLengths()) {
+		throw new Error('Metadata too old');
+	}
+
+	return is_possible_number(input.phone || input.nationalNumber, undefined, metadata);
+}
+
+function is_possible_number(national_number, is_international, metadata) {
+	switch (checkNumberLengthForType(national_number, undefined, metadata)) {
+		case 'IS_POSSIBLE':
+			return true;
+		// case 'IS_POSSIBLE_LOCAL_ONLY':
+		// 	return !is_international
+		default:
+			return false;
+	}
+}
+
+var CAPTURING_DIGIT_PATTERN = new RegExp('([' + VALID_DIGITS + '])');
+
+/**
+ * Pattern that makes it easy to distinguish whether a region has a single
+ * international dialing prefix or not. If a region has a single international
+ * prefix (e.g. 011 in USA), it will be represented as a string that contains
+ * a sequence of ASCII digits, and possibly a tilde, which signals waiting for
+ * the tone. If there are multiple available international prefixes in a
+ * region, they will be represented as a regex string that always contains one
+ * or more characters that are not ASCII digits or a tilde.
+ */
+var SINGLE_IDD_PREFIX = /^[\d]+(?:[~\u2053\u223C\uFF5E][\d]+)?$/;
+
+// For regions that have multiple IDD prefixes
+// a preferred IDD prefix is returned.
+function getIDDPrefix(country, metadata) {
+	var countryMetadata = new Metadata(metadata);
+	countryMetadata.country(country);
+
+	if (SINGLE_IDD_PREFIX.test(countryMetadata.IDDPrefix())) {
+		return countryMetadata.IDDPrefix();
+	}
+
+	return countryMetadata.defaultIDDPrefix();
+}
+
+function stripIDDPrefix(number, country, metadata) {
+	if (!country) {
+		return;
+	}
+
+	// Check if the number is IDD-prefixed.
+
+	var countryMetadata = new Metadata(metadata);
+	countryMetadata.country(country);
+
+	var IDDPrefixPattern = new RegExp(countryMetadata.IDDPrefix());
+
+	if (number.search(IDDPrefixPattern) !== 0) {
+		return;
+	}
+
+	// Strip IDD prefix.
+	number = number.slice(number.match(IDDPrefixPattern)[0].length);
+
+	// Some kind of a weird edge case.
+	// No explanation from Google given.
+	var matchedGroups = number.match(CAPTURING_DIGIT_PATTERN);
+	/* istanbul ignore next */
+	if (matchedGroups && matchedGroups[1] != null && matchedGroups[1].length > 0) {
+		if (matchedGroups[1] === '0') {
+			return;
+		}
+	}
+
+	return number;
+}
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+// https://www.ietf.org/rfc/rfc3966.txt
+
+/**
+ * @param  {string} text - Phone URI (RFC 3966).
+ * @return {object} `{ ?number, ?ext }`.
+ */
+function parseRFC3966(text) {
+	var number = void 0;
+	var ext = void 0;
+
+	// Replace "tel:" with "tel=" for parsing convenience.
+	text = text.replace(/^tel:/, 'tel=');
+
+	for (var _iterator = text.split(';'), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+		var _ref;
+
+		if (_isArray) {
+			if (_i >= _iterator.length) break;
+			_ref = _iterator[_i++];
+		} else {
+			_i = _iterator.next();
+			if (_i.done) break;
+			_ref = _i.value;
+		}
+
+		var part = _ref;
+
+		var _part$split = part.split('='),
+		    _part$split2 = _slicedToArray(_part$split, 2),
+		    name = _part$split2[0],
+		    value = _part$split2[1];
+
+		switch (name) {
+			case 'tel':
+				number = value;
+				break;
+			case 'ext':
+				ext = value;
+				break;
+			case 'phone-context':
+				// Only "country contexts" are supported.
+				// "Domain contexts" are ignored.
+				if (value[0] === '+') {
+					number = value + number;
+				}
+				break;
+		}
+	}
+
+	// If the phone number is not viable, then abort.
+	if (!isViablePhoneNumber(number)) {
+		return {};
+	}
+
+	var result = { number: number };
+	if (ext) {
+		result.ext = ext;
+	}
+	return result;
+}
+
+/**
+ * @param  {object} - `{ ?number, ?extension }`.
+ * @return {string} Phone URI (RFC 3966).
+ */
+function formatRFC3966(_ref2) {
+	var number = _ref2.number,
+	    ext = _ref2.ext;
+
+	if (!number) {
+		return '';
+	}
+
+	if (number[0] !== '+') {
+		throw new Error('"formatRFC3966()" expects "number" to be in E.164 format.');
+	}
+
+	return 'tel:' + number + (ext ? ';ext=' + ext : '');
+}
+
+/**
+ * Checks if a given phone number is valid.
+ *
+ * If the `number` is a string, it will be parsed to an object,
+ * but only if it contains only valid phone number characters (including punctuation).
+ * If the `number` is an object, it is used as is.
+ *
+ * The optional `defaultCountry` argument is the default country.
+ * I.e. it does not restrict to just that country,
+ * e.g. in those cases where several countries share
+ * the same phone numbering rules (NANPA, Britain, etc).
+ * For example, even though the number `07624 369230`
+ * belongs to the Isle of Man ("IM" country code)
+ * calling `isValidNumber('07624369230', 'GB', metadata)`
+ * still returns `true` because the country is not restricted to `GB`,
+ * it's just that `GB` is the default one for the phone numbering rules.
+ * For restricting the country see `isValidNumberForRegion()`
+ * though restricting a country might not be a good idea.
+ * https://github.com/googlei18n/libphonenumber/blob/master/FAQ.md#when-should-i-use-isvalidnumberforregion
+ *
+ * Examples:
+ *
+ * ```js
+ * isValidNumber('+78005553535', metadata)
+ * isValidNumber('8005553535', 'RU', metadata)
+ * isValidNumber('88005553535', 'RU', metadata)
+ * isValidNumber({ phone: '8005553535', country: 'RU' }, metadata)
+ * ```
+ */
+function isValidNumber(input) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var metadata = arguments[2];
+
+  metadata = new Metadata(metadata);
+
+  // This is just to support `isValidNumber({})`
+  // for cases when `parseNumber()` returns `{}`.
+  if (!input.country) {
+    return false;
+  }
+
+  if (!metadata.hasCountry(input.country)) {
+    throw new Error('Unknown country: ' + input.country);
+  }
+
+  metadata.country(input.country);
+
+  // By default, countries only have type regexps when it's required for
+  // distinguishing different countries having the same `countryCallingCode`.
+  if (metadata.hasTypes()) {
+    return getNumberType(input, options, metadata.metadata) !== undefined;
+  }
+
+  // If there are no type regexps for this country in metadata then use
+  // `nationalNumberPattern` as a "better than nothing" replacement.
+  var national_number = options.v2 ? input.nationalNumber : input.phone;
+  return matchesEntirely(national_number, metadata.nationalNumberPattern());
+}
+
+var _extends$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var defaultOptions = {
+	formatExtension: function formatExtension(formattedNumber, extension, metadata) {
+		return '' + formattedNumber + metadata.ext() + extension;
+	}
+
+	// Formats a phone number
+	//
+	// Example use cases:
+	//
+	// ```js
+	// formatNumber('8005553535', 'RU', 'INTERNATIONAL')
+	// formatNumber('8005553535', 'RU', 'INTERNATIONAL', metadata)
+	// formatNumber({ phone: '8005553535', country: 'RU' }, 'INTERNATIONAL')
+	// formatNumber({ phone: '8005553535', country: 'RU' }, 'INTERNATIONAL', metadata)
+	// formatNumber('+78005553535', 'NATIONAL')
+	// formatNumber('+78005553535', 'NATIONAL', metadata)
+	// ```
+	//
+};function formatNumber$1(input, format, options, metadata) {
+	// Apply default options.
+	if (options) {
+		options = _extends$1({}, defaultOptions, options);
+	} else {
+		options = defaultOptions;
+	}
+
+	metadata = new Metadata(metadata);
+
+	if (input.country) {
+		// Validate `input.country`.
+		if (!metadata.hasCountry(input.country)) {
+			throw new Error('Unknown country: ' + input.country);
+		}
+		metadata.country(input.country);
+	} else if (input.countryCallingCode) {
+		metadata.chooseCountryByCountryCallingCode(input.countryCallingCode);
+	} else return input.phone || '';
+
+	var countryCallingCode = metadata.countryCallingCode();
+
+	var nationalNumber = options.v2 ? input.nationalNumber : input.phone;
+
+	// This variable should have been declared inside `case`s
+	// but Babel has a bug and it says "duplicate variable declaration".
+	var number = void 0;
+
+	switch (format) {
+		case 'NATIONAL':
+			// Legacy argument support.
+			// (`{ country: ..., phone: '' }`)
+			if (!nationalNumber) {
+				return '';
+			}
+			number = format_national_number(nationalNumber, 'NATIONAL', metadata);
+			return addExtension(number, input.ext, metadata, options.formatExtension);
+
+		case 'INTERNATIONAL':
+			// Legacy argument support.
+			// (`{ country: ..., phone: '' }`)
+			if (!nationalNumber) {
+				return '+' + countryCallingCode;
+			}
+			number = format_national_number(nationalNumber, 'INTERNATIONAL', metadata);
+			number = '+' + countryCallingCode + ' ' + number;
+			return addExtension(number, input.ext, metadata, options.formatExtension);
+
+		case 'E.164':
+			// `E.164` doesn't define "phone number extensions".
+			return '+' + countryCallingCode + nationalNumber;
+
+		case 'RFC3966':
+			return formatRFC3966({
+				number: '+' + countryCallingCode + nationalNumber,
+				ext: input.ext
+			});
+
+		case 'IDD':
+			if (!options.fromCountry) {
+				return;
+				// throw new Error('`fromCountry` option not passed for IDD-prefixed formatting.')
+			}
+			var IDDPrefix = getIDDPrefix(options.fromCountry, metadata.metadata);
+			if (!IDDPrefix) {
+				return;
+			}
+			if (options.humanReadable) {
+				var formattedForSameCountryCallingCode = countryCallingCode && formatIDDSameCountryCallingCodeNumber(nationalNumber, metadata.countryCallingCode(), options.fromCountry, metadata);
+				if (formattedForSameCountryCallingCode) {
+					number = formattedForSameCountryCallingCode;
+				} else {
+					number = IDDPrefix + ' ' + countryCallingCode + ' ' + format_national_number(nationalNumber, 'INTERNATIONAL', metadata);
+				}
+				return addExtension(number, input.ext, metadata, options.formatExtension);
+			}
+			return '' + IDDPrefix + countryCallingCode + nationalNumber;
+
+		default:
+			throw new Error('Unknown "format" argument passed to "formatNumber()": "' + format + '"');
+	}
+}
+
+// This was originally set to $1 but there are some countries for which the
+// first group is not used in the national pattern (e.g. Argentina) so the $1
+// group does not match correctly.  Therefore, we use \d, so that the first
+// group actually used in the pattern will be matched.
+var FIRST_GROUP_PATTERN = /(\$\d)/;
+
+function format_national_number_using_format(number, format, useInternationalFormat, includeNationalPrefixForNationalFormat, metadata) {
+	var formattedNumber = number.replace(new RegExp(format.pattern()), useInternationalFormat ? format.internationalFormat() : format.nationalPrefixFormattingRule() && (!format.nationalPrefixIsOptionalWhenFormatting() || includeNationalPrefixForNationalFormat) ? format.format().replace(FIRST_GROUP_PATTERN, format.nationalPrefixFormattingRule()) : format.format());
+
+	if (useInternationalFormat) {
+		return changeInternationalFormatStyle(formattedNumber);
+	}
+
+	return formattedNumber;
+}
+
+function format_national_number(number, format_as, metadata) {
+	var format = choose_format_for_number(metadata.formats(), number);
+	if (!format) {
+		return number;
+	}
+	return format_national_number_using_format(number, format, format_as === 'INTERNATIONAL', true);
+}
+
+function choose_format_for_number(available_formats, national_number) {
+	for (var _iterator = available_formats, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+		var _ref;
+
+		if (_isArray) {
+			if (_i >= _iterator.length) break;
+			_ref = _iterator[_i++];
+		} else {
+			_i = _iterator.next();
+			if (_i.done) break;
+			_ref = _i.value;
+		}
+
+		var format = _ref;
+
+		// Validate leading digits
+		if (format.leadingDigitsPatterns().length > 0) {
+			// The last leading_digits_pattern is used here, as it is the most detailed
+			var last_leading_digits_pattern = format.leadingDigitsPatterns()[format.leadingDigitsPatterns().length - 1];
+
+			// If leading digits don't match then move on to the next phone number format
+			if (national_number.search(last_leading_digits_pattern) !== 0) {
+				continue;
+			}
+		}
+
+		// Check that the national number matches the phone number format regular expression
+		if (matchesEntirely(national_number, format.pattern())) {
+			return format;
+		}
+	}
+}
+
+// Removes brackets and replaces dashes with spaces.
+//
+// E.g. "(999) 111-22-33" -> "999 111 22 33"
+//
+// For some reason Google's metadata contains `<intlFormat/>`s with brackets and dashes.
+// Meanwhile, there's no single opinion about using punctuation in international phone numbers.
+//
+// For example, Google's `<intlFormat/>` for USA is `+1 213-373-4253`.
+// And here's a quote from WikiPedia's "North American Numbering Plan" page:
+// https://en.wikipedia.org/wiki/North_American_Numbering_Plan
+//
+// "The country calling code for all countries participating in the NANP is 1.
+// In international format, an NANP number should be listed as +1 301 555 01 00,
+// where 301 is an area code (Maryland)."
+//
+// I personally prefer the international format without any punctuation.
+// For example, brackets are remnants of the old age, meaning that the
+// phone number part in brackets (so called "area code") can be omitted
+// if dialing within the same "area".
+// And hyphens were clearly introduced for splitting local numbers into memorizable groups.
+// For example, remembering "5553535" is difficult but "555-35-35" is much simpler.
+// Imagine a man taking a bus from home to work and seeing an ad with a phone number.
+// He has a couple of seconds to memorize that number until it passes by.
+// If it were spaces instead of hyphens the man wouldn't necessarily get it,
+// but with hyphens instead of spaces the grouping is more explicit.
+// I personally think that hyphens introduce visual clutter,
+// so I prefer replacing them with spaces in international numbers.
+// In the modern age all output is done on displays where spaces are clearly distinguishable
+// so hyphens can be safely replaced with spaces without losing any legibility.
+//
+function changeInternationalFormatStyle(local) {
+	return local.replace(new RegExp('[' + VALID_PUNCTUATION + ']+', 'g'), ' ').trim();
+}
+
+function addExtension(formattedNumber, ext, metadata, formatExtension) {
+	return ext ? formatExtension(formattedNumber, ext, metadata) : formattedNumber;
+}
+
+function formatIDDSameCountryCallingCodeNumber(number, toCountryCallingCode, fromCountry, toCountryMetadata) {
+	var fromCountryMetadata = new Metadata(toCountryMetadata.metadata);
+	fromCountryMetadata.country(fromCountry);
+
+	// If calling within the same country calling code.
+	if (toCountryCallingCode === fromCountryMetadata.countryCallingCode()) {
+		// For NANPA regions, return the national format for these regions
+		// but prefix it with the country calling code.
+		if (toCountryCallingCode === '1') {
+			return toCountryCallingCode + ' ' + format_national_number(number, 'NATIONAL', toCountryMetadata);
+		}
+
+		// If regions share a country calling code, the country calling code need
+		// not be dialled. This also applies when dialling within a region, so this
+		// if clause covers both these cases. Technically this is the case for
+		// dialling from La Reunion to other overseas departments of France (French
+		// Guiana, Martinique, Guadeloupe), but not vice versa - so we don't cover
+		// this edge case for now and for those cases return the version including
+		// country calling code. Details here:
+		// http://www.petitfute.com/voyage/225-info-pratiques-reunion
+		//
+		return format_national_number(number, 'NATIONAL', toCountryMetadata);
+	}
+}
+
+var _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass$2 = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck$3(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var PhoneNumber = function () {
+	function PhoneNumber(countryCallingCode, nationalNumber, metadata) {
+		_classCallCheck$3(this, PhoneNumber);
+
+		if (!countryCallingCode) {
+			throw new TypeError('`countryCallingCode` not passed');
+		}
+		if (!nationalNumber) {
+			throw new TypeError('`nationalNumber` not passed');
+		}
+		// If country code is passed then derive `countryCallingCode` from it.
+		// Also store the country code as `.country`.
+		if (isCountryCode(countryCallingCode)) {
+			this.country = countryCallingCode;
+			var _metadata = new Metadata(metadata);
+			_metadata.country(countryCallingCode);
+			countryCallingCode = _metadata.countryCallingCode();
+		}
+		this.countryCallingCode = countryCallingCode;
+		this.nationalNumber = nationalNumber;
+		this.number = '+' + this.countryCallingCode + this.nationalNumber;
+		this.metadata = metadata;
+	}
+
+	_createClass$2(PhoneNumber, [{
+		key: 'isPossible',
+		value: function isPossible() {
+			return isPossibleNumber(this, { v2: true }, this.metadata);
+		}
+	}, {
+		key: 'isValid',
+		value: function isValid() {
+			return isValidNumber(this, { v2: true }, this.metadata);
+		}
+
+		// // Is just an alias for `this.isValid() && this.country === country`.
+		// // https://github.com/googlei18n/libphonenumber/blob/master/FAQ.md#when-should-i-use-isvalidnumberforregion
+		// isValidForRegion(country) {
+		// 	return isValidNumberForRegion(this, country, { v2: true }, this.metadata)
+		// }
+
+	}, {
+		key: 'getType',
+		value: function getType() {
+			return getNumberType(this, { v2: true }, this.metadata);
+		}
+	}, {
+		key: 'format',
+		value: function format(_format, options) {
+			return formatNumber$1(this, _format, options ? _extends$2({}, options, { v2: true }) : { v2: true }, this.metadata);
+		}
+	}, {
+		key: 'formatNational',
+		value: function formatNational(options) {
+			return this.format('NATIONAL', options);
+		}
+	}, {
+		key: 'formatInternational',
+		value: function formatInternational(options) {
+			return this.format('INTERNATIONAL', options);
+		}
+	}, {
+		key: 'getURI',
+		value: function getURI(options) {
+			return this.format('RFC3966', options);
+		}
+	}]);
+
+	return PhoneNumber;
+}();
+
+
+var isCountryCode = function isCountryCode(value) {
+	return (/^[A-Z]{2}$/.test(value)
+	);
+};
+
+// This is a port of Google Android `libphonenumber`'s
+
+// We don't allow input strings for parsing to be longer than 250 chars.
+// This prevents malicious input from consuming CPU.
+var MAX_INPUT_STRING_LENGTH = 250;
+
+// This consists of the plus symbol, digits, and arabic-indic digits.
+var PHONE_NUMBER_START_PATTERN = new RegExp('[' + PLUS_CHARS + VALID_DIGITS + ']');
+
+// Regular expression of trailing characters that we want to remove.
+var AFTER_PHONE_NUMBER_END_PATTERN = new RegExp('[^' + VALID_DIGITS + ']+$');
+
+// `options`:
+//  {
+//    country:
+//    {
+//      restrict - (a two-letter country code)
+//                 the phone number must be in this country
+//
+//      default - (a two-letter country code)
+//                default country to use for phone number parsing and validation
+//                (if no country code could be derived from the phone number)
+//    }
+//  }
+//
+// Returns `{ country, number }`
+//
+// Example use cases:
+//
+// ```js
+// parse('8 (800) 555-35-35', 'RU')
+// parse('8 (800) 555-35-35', 'RU', metadata)
+// parse('8 (800) 555-35-35', { country: { default: 'RU' } })
+// parse('8 (800) 555-35-35', { country: { default: 'RU' } }, metadata)
+// parse('+7 800 555 35 35')
+// parse('+7 800 555 35 35', metadata)
+// ```
+//
+function parse$1(text) {
+	var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	var metadata = arguments[2];
+
+	metadata = new Metadata(metadata);
+
+	// Validate `defaultCountry`.
+	if (options.defaultCountry && !metadata.hasCountry(options.defaultCountry)) {
+		if (options.v2) {
+			throw new ParseError('INVALID_COUNTRY');
+		}
+		throw new Error('Unknown country: ' + options.defaultCountry);
+	}
+
+	// Parse the phone number.
+
+	var _parse_input = parse_input(text, options.v2),
+	    formatted_phone_number = _parse_input.number,
+	    ext = _parse_input.ext;
+
+	// If the phone number is not viable then return nothing.
+
+
+	if (!formatted_phone_number) {
+		if (options.v2) {
+			throw new ParseError('NOT_A_NUMBER');
+		}
+		return {};
+	}
+
+	var _parse_phone_number = parse_phone_number(formatted_phone_number, options.defaultCountry, metadata),
+	    country = _parse_phone_number.country,
+	    nationalNumber = _parse_phone_number.national_number,
+	    countryCallingCode = _parse_phone_number.countryCallingCode,
+	    carrierCode = _parse_phone_number.carrierCode;
+
+	if (!metadata.selectedCountry()) {
+		if (options.v2) {
+			throw new ParseError('INVALID_COUNTRY');
+		}
+		return {};
+	}
+
+	// Validate national (significant) number length.
+	if (nationalNumber.length < MIN_LENGTH_FOR_NSN) {
+		// Won't throw here because the regexp already demands length > 1.
+		/* istanbul ignore if */
+		if (options.v2) {
+			throw new ParseError('TOO_SHORT');
+		}
+		// Google's demo just throws an error in this case.
+		return {};
+	}
+
+	// Validate national (significant) number length.
+	//
+	// A sidenote:
+	//
+	// They say that sometimes national (significant) numbers
+	// can be longer than `MAX_LENGTH_FOR_NSN` (e.g. in Germany).
+	// https://github.com/googlei18n/libphonenumber/blob/7e1748645552da39c4e1ba731e47969d97bdb539/resources/phonenumber.proto#L36
+	// Such numbers will just be discarded.
+	//
+	if (nationalNumber.length > MAX_LENGTH_FOR_NSN) {
+		if (options.v2) {
+			throw new ParseError('TOO_LONG');
+		}
+		// Google's demo just throws an error in this case.
+		return {};
+	}
+
+	if (options.v2) {
+		var phoneNumber = new PhoneNumber(countryCallingCode, nationalNumber, metadata.metadata);
+
+		if (country) {
+			phoneNumber.country = country;
+		}
+		if (carrierCode) {
+			phoneNumber.carrierCode = carrierCode;
+		}
+		if (ext) {
+			phoneNumber.ext = ext;
+		}
+
+		return phoneNumber;
+	}
+
+	// Check if national phone number pattern matches the number.
+	// National number pattern is different for each country,
+	// even for those ones which are part of the "NANPA" group.
+	var valid = country && matchesEntirely(nationalNumber, metadata.nationalNumberPattern()) ? true : false;
+
+	if (!options.extended) {
+		return valid ? result(country, nationalNumber, ext) : {};
+	}
+
+	return {
+		country: country,
+		countryCallingCode: countryCallingCode,
+		carrierCode: carrierCode,
+		valid: valid,
+		possible: valid ? true : options.extended === true && metadata.possibleLengths() && is_possible_number(nationalNumber, countryCallingCode !== undefined, metadata),
+		phone: nationalNumber,
+		ext: ext
+	};
+}
+
+/**
+ * Extracts a parseable phone number.
+ * @param  {string} text - Input.
+ * @return {string}.
+ */
+function extract_formatted_phone_number(text, v2) {
+	if (!text) {
+		return;
+	}
+
+	if (text.length > MAX_INPUT_STRING_LENGTH) {
+		if (v2) {
+			throw new ParseError('TOO_LONG');
+		}
+		return;
+	}
+
+	// Attempt to extract a possible number from the string passed in
+
+	var starts_at = text.search(PHONE_NUMBER_START_PATTERN);
+
+	if (starts_at < 0) {
+		return;
+	}
+
+	return text
+	// Trim everything to the left of the phone number
+	.slice(starts_at)
+	// Remove trailing non-numerical characters
+	.replace(AFTER_PHONE_NUMBER_END_PATTERN, '');
+}
+
+// Strips any national prefix (such as 0, 1) present in the number provided.
+// "Carrier codes" are only used  in Colombia and Brazil,
+// and only when dialing within those countries from a mobile phone to a fixed line number.
+function strip_national_prefix_and_carrier_code(number, metadata) {
+	if (!number || !metadata.nationalPrefixForParsing()) {
+		return { number: number };
+	}
+
+	// In many countries the national prefix
+	// is not just a constant digit (like `0` in UK)
+	// but can be different depending on the phone number
+	// (and can be also absent for some phone numbers).
+	//
+	// So `national_prefix_for_parsing` is used when parsing
+	// a national-prefixed (local) phone number
+	// into a national significant phone number
+	// extracting that possible national prefix out of it.
+	//
+	// Example `national_prefix_for_parsing` for Australia (AU) is `0|(183[12])`.
+	// Which means that in Australia the national prefix can be: `0`, `1831`, `1832`.
+
+	// Attempt to parse the first digits as a national prefix
+	var national_prefix_pattern = new RegExp('^(?:' + metadata.nationalPrefixForParsing() + ')');
+	var national_prefix_matcher = national_prefix_pattern.exec(number);
+
+	// If no national prefix is present in the phone number,
+	// but the national prefix is optional for this country,
+	// then consider this phone number valid.
+	//
+	// Google's reference `libphonenumber` implementation
+	// wouldn't recognize such phone numbers as valid,
+	// but I think it would perfectly make sense
+	// to consider such phone numbers as valid
+	// because if a national phone number was originally
+	// formatted without the national prefix
+	// then it must be parseable back into the original national number.
+	// In other words, `parse(format(number))`
+	// must always be equal to `number`.
+	//
+	if (!national_prefix_matcher) {
+		return { number: number };
+	}
+
+	var national_significant_number = void 0;
+
+	// In more complex cases just `national_prefix_for_parsing` regexp
+	// is not enough to extract the national number and then strip it
+	// like `number.slice(national_prefix.length)` because when parsing
+	// national numbers it's not always clear whether the first digits
+	// are a national prefix or part of the national significant number.
+	// For such cases `national_prefix_transform_rule` regexp is present
+	// which contains "capturing groups" that are later used in such
+	// `national_prefix_transform_rule` to transform the national number
+	// being parsed into the national significant number.
+	//
+	// Example.
+	// Country: U.S. Virgin Islands (VI).
+	// Country calling code: +1.
+	// Leading digits: 340.
+	// Phone number format: +1 (340) xxx-xxxx.
+	// National prefix: 1.
+	// National prefix for parsing: 1|([2-9]\d{6})$.
+	// National prefix transform rule: 340$1.
+	//
+	// So for input "13401234567" "national prefix for parsing" regexp
+	// will return "1" and the national significant number will be
+	// "13401234567".slice("1".length) === "(340) 123-4567".
+	//
+	// And for input "3401234567" "national prefix for parsing" regexp
+	// the "captured group" will be "3401234567" and the national significant
+	// number will be "3401234567".replace("340123", "340340123") === "(340) 3401234567".
+	//
+	// `national_prefix_matcher[captured_groups_count]` means that
+	// the corresponding "captured group" is not empty.
+	// It can be empty if the regexp either doesn't have any "capturing groups"
+	// or if the "capturing groups" are defined as optional.
+	// Example: "0?(?:...)?" for Argentina.
+	//
+	var captured_groups_count = national_prefix_matcher.length - 1;
+	if (metadata.nationalPrefixTransformRule() && national_prefix_matcher[captured_groups_count]) {
+		national_significant_number = number.replace(national_prefix_pattern, metadata.nationalPrefixTransformRule());
+	}
+	// If it's a simple-enough case then just strip the national prefix from the number.
+	else {
+			// National prefix is the whole substring matched by
+			// the `national_prefix_for_parsing` regexp.
+			var national_prefix = national_prefix_matcher[0];
+			national_significant_number = number.slice(national_prefix.length);
+		}
+
+	var carrierCode = void 0;
+	if (captured_groups_count > 0) {
+		carrierCode = national_prefix_matcher[1];
+	}
+
+	// The following is done in `get_country_and_national_number_for_local_number()` instead.
+	//
+	// // Verify the parsed national (significant) number for this country
+	// const national_number_rule = new RegExp(metadata.nationalNumberPattern())
+	// //
+	// // If the original number (before stripping national prefix) was viable,
+	// // and the resultant number is not, then prefer the original phone number.
+	// // This is because for some countries (e.g. Russia) the same digit could be both
+	// // a national prefix and a leading digit of a valid national phone number,
+	// // like `8` is the national prefix for Russia and both
+	// // `8 800 555 35 35` and `800 555 35 35` are valid numbers.
+	// if (matchesEntirely(number, national_number_rule) &&
+	// 		!matchesEntirely(national_significant_number, national_number_rule))
+	// {
+	// 	return number
+	// }
+
+	// Return the parsed national (significant) number
+	return {
+		number: national_significant_number,
+		carrierCode: carrierCode
+	};
+}
+
+function find_country_code(country_calling_code, national_phone_number, metadata) {
+	// Is always non-empty, because `country_calling_code` is always valid
+	var possible_countries = metadata.countryCallingCodes()[country_calling_code];
+
+	// If there's just one country corresponding to the country code,
+	// then just return it, without further phone number digits validation.
+	if (possible_countries.length === 1) {
+		return possible_countries[0];
+	}
+
+	return _find_country_code(possible_countries, national_phone_number, metadata.metadata);
+}
+
+// Changes `metadata` `country`.
+function _find_country_code(possible_countries, national_phone_number, metadata) {
+	metadata = new Metadata(metadata);
+
+	for (var _iterator = possible_countries, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+		var _ref;
+
+		if (_isArray) {
+			if (_i >= _iterator.length) break;
+			_ref = _iterator[_i++];
+		} else {
+			_i = _iterator.next();
+			if (_i.done) break;
+			_ref = _i.value;
+		}
+
+		var country = _ref;
+
+		metadata.country(country);
+
+		// Leading digits check would be the simplest one
+		if (metadata.leadingDigits()) {
+			if (national_phone_number && national_phone_number.search(metadata.leadingDigits()) === 0) {
+				return country;
+			}
+		}
+		// Else perform full validation with all of those
+		// fixed-line/mobile/etc regular expressions.
+		else if (getNumberType({ phone: national_phone_number, country: country }, undefined, metadata.metadata)) {
+				return country;
+			}
+	}
+}
+
+/**
+ * @param  {string} text - Input.
+ * @return {object} `{ ?number, ?ext }`.
+ */
+function parse_input(text, v2) {
+	// Parse RFC 3966 phone number URI.
+	if (text && text.indexOf('tel:') === 0) {
+		return parseRFC3966(text);
+	}
+
+	var number = extract_formatted_phone_number(text, v2);
+
+	// If the phone number is not viable, then abort.
+	if (!number || !isViablePhoneNumber(number)) {
+		return {};
+	}
+
+	// Attempt to parse extension first, since it doesn't require region-specific
+	// data and we want to have the non-normalised number here.
+	var with_extension_stripped = extractExtension(number);
+	if (with_extension_stripped.ext) {
+		return with_extension_stripped;
+	}
+
+	return { number: number };
+}
+
+/**
+ * Creates `parse()` result object.
+ */
+function result(country, national_number, ext) {
+	var result = {
+		country: country,
+		phone: national_number
+	};
+
+	if (ext) {
+		result.ext = ext;
+	}
+
+	return result;
+}
+
+/**
+ * Parses a viable phone number.
+ * Returns `{ country, countryCallingCode, national_number }`.
+ */
+function parse_phone_number(formatted_phone_number, default_country, metadata) {
+	var _extractCountryCallin = extractCountryCallingCode(formatted_phone_number, default_country, metadata.metadata),
+	    countryCallingCode = _extractCountryCallin.countryCallingCode,
+	    number = _extractCountryCallin.number;
+
+	if (!number) {
+		return { countryCallingCode: countryCallingCode };
+	}
+
+	var country = void 0;
+
+	if (countryCallingCode) {
+		metadata.chooseCountryByCountryCallingCode(countryCallingCode);
+	} else if (default_country) {
+		metadata.country(default_country);
+		country = default_country;
+		countryCallingCode = getCountryCallingCode(default_country, metadata.metadata);
+	} else return {};
+
+	var _parse_national_numbe = parse_national_number(number, metadata),
+	    national_number = _parse_national_numbe.national_number,
+	    carrier_code = _parse_national_numbe.carrier_code;
+
+	// Sometimes there are several countries
+	// corresponding to the same country phone code
+	// (e.g. NANPA countries all having `1` country phone code).
+	// Therefore, to reliably determine the exact country,
+	// national (significant) number should have been parsed first.
+	//
+	// When `metadata.json` is generated, all "ambiguous" country phone codes
+	// get their countries populated with the full set of
+	// "phone number type" regular expressions.
+	//
+
+
+	var exactCountry = find_country_code(countryCallingCode, national_number, metadata);
+	if (exactCountry) {
+		country = exactCountry;
+		metadata.country(country);
+	}
+
+	return {
+		country: country,
+		countryCallingCode: countryCallingCode,
+		national_number: national_number,
+		carrierCode: carrier_code
+	};
+}
+
+function parse_national_number(number, metadata) {
+	var national_number = parseIncompletePhoneNumber(number);
+	var carrier_code = void 0;
+
+	// Parsing national prefixes and carrier codes
+	// is only required for local phone numbers
+	// but some people don't understand that
+	// and sometimes write international phone numbers
+	// with national prefixes (or maybe even carrier codes).
+	// http://ucken.blogspot.ru/2016/03/trunk-prefixes-in-skype4b.html
+	// Google's original library forgives such mistakes
+	// and so does this library, because it has been requested:
+	// https://github.com/catamphetamine/libphonenumber-js/issues/127
+
+	var _strip_national_prefi = strip_national_prefix_and_carrier_code(national_number, metadata),
+	    potential_national_number = _strip_national_prefi.number,
+	    carrierCode = _strip_national_prefi.carrierCode;
+
+	// If metadata has "possible lengths" then employ the new algorythm.
+
+
+	if (metadata.possibleLengths()) {
+		// We require that the NSN remaining after stripping the national prefix and
+		// carrier code be long enough to be a possible length for the region.
+		// Otherwise, we don't do the stripping, since the original number could be
+		// a valid short number.
+		switch (checkNumberLengthForType(potential_national_number, undefined, metadata)) {
+			case 'TOO_SHORT':
+			// case 'IS_POSSIBLE_LOCAL_ONLY':
+			case 'INVALID_LENGTH':
+				break;
+			default:
+				national_number = potential_national_number;
+				carrier_code = carrierCode;
+		}
+	} else {
+		// If the original number (before stripping national prefix) was viable,
+		// and the resultant number is not, then prefer the original phone number.
+		// This is because for some countries (e.g. Russia) the same digit could be both
+		// a national prefix and a leading digit of a valid national phone number,
+		// like `8` is the national prefix for Russia and both
+		// `8 800 555 35 35` and `800 555 35 35` are valid numbers.
+		if (matchesEntirely(national_number, metadata.nationalNumberPattern()) && !matchesEntirely(potential_national_number, metadata.nationalNumberPattern())) ; else {
+			national_number = potential_national_number;
+			carrier_code = carrierCode;
+		}
+	}
+
+	return {
+		national_number: national_number,
+		carrier_code: carrier_code
+	};
+}
+
+// Determines the country for a given (possibly incomplete) phone number.
+// export function get_country_from_phone_number(number, metadata)
+// {
+// 	return parse_phone_number(number, null, metadata).country
+// }
+
+// Parses a formatted phone number
+// and returns `{ countryCallingCode, number }`
+// where `number` is just the "number" part
+// which is left after extracting `countryCallingCode`
+// and is not necessarily a "national (significant) number"
+// and might as well contain national prefix.
+//
+function extractCountryCallingCode(number, country, metadata) {
+	number = parseIncompletePhoneNumber(number);
+
+	if (!number) {
+		return {};
+	}
+
+	// If this is not an international phone number,
+	// then don't extract country phone code.
+	if (number[0] !== '+') {
+		// Convert an "out-of-country" dialing phone number
+		// to a proper international phone number.
+		var numberWithoutIDD = stripIDDPrefix(number, country, metadata);
+
+		// If an IDD prefix was stripped then
+		// convert the number to international one
+		// for subsequent parsing.
+		if (numberWithoutIDD && numberWithoutIDD !== number) {
+			number = '+' + numberWithoutIDD;
+		} else {
+			return { number: number };
+		}
+	}
+
+	// Fast abortion: country codes do not begin with a '0'
+	if (number[1] === '0') {
+		return {};
+	}
+
+	metadata = new Metadata(metadata);
+
+	// The thing with country phone codes
+	// is that they are orthogonal to each other
+	// i.e. there's no such country phone code A
+	// for which country phone code B exists
+	// where B starts with A.
+	// Therefore, while scanning digits,
+	// if a valid country code is found,
+	// that means that it is the country code.
+	//
+	var i = 2;
+	while (i - 1 <= MAX_LENGTH_COUNTRY_CODE && i <= number.length) {
+		var countryCallingCode = number.slice(1, i);
+
+		if (metadata.countryCallingCodes()[countryCallingCode]) {
+			return {
+				countryCallingCode: countryCallingCode,
+				number: number.slice(i)
+			};
+		}
+
+		i++;
+	}
+
+	return {};
+}
+
+var _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function parsePhoneNumber(text, options, metadata) {
+	return parse$1(text, _extends$3({}, options, { v2: true }), metadata);
+}
+
+var _typeof$1 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray$1 = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+function parsePhoneNumber$1() {
+	var _normalizeArguments = normalizeArguments(arguments),
+	    text = _normalizeArguments.text,
+	    options = _normalizeArguments.options,
+	    metadata = _normalizeArguments.metadata;
+
+	return parsePhoneNumber(text, options, metadata);
+}
+
+function normalizeArguments(args) {
+	var _Array$prototype$slic = Array.prototype.slice.call(args),
+	    _Array$prototype$slic2 = _slicedToArray$1(_Array$prototype$slic, 4),
+	    arg_1 = _Array$prototype$slic2[0],
+	    arg_2 = _Array$prototype$slic2[1],
+	    arg_3 = _Array$prototype$slic2[2],
+	    arg_4 = _Array$prototype$slic2[3];
+
+	var text = void 0;
+	var options = void 0;
+	var metadata = void 0;
+
+	// If the phone number is passed as a string.
+	// `parsePhoneNumber('88005553535', ...)`.
+	if (typeof arg_1 === 'string') {
+		text = arg_1;
+	} else throw new TypeError('A text for parsing must be a string.');
+
+	// If "default country" argument is being passed then move it to `options`.
+	// `parsePhoneNumber('88005553535', 'RU', [options], metadata)`.
+	if (!arg_2 || typeof arg_2 === 'string') {
+		if (arg_4) {
+			options = arg_3;
+			metadata = arg_4;
+		} else {
+			options = undefined;
+			metadata = arg_3;
+		}
+
+		if (arg_2) {
+			options = _extends$4({ defaultCountry: arg_2 }, options);
+		}
+	}
+	// `defaultCountry` is not passed.
+	// Example: `parsePhoneNumber('+78005553535', [options], metadata)`.
+	else if (isObject(arg_2)) {
+			if (arg_3) {
+				options = arg_2;
+				metadata = arg_3;
+			} else {
+				metadata = arg_2;
+			}
+		} else throw new Error('Invalid second argument: ' + arg_2);
+
+	return {
+		text: text,
+		options: options,
+		metadata: metadata
+	};
+}
+
+// Otherwise istanbul would show this as "branch not covered".
+/* istanbul ignore next */
+var isObject = function isObject(_) {
+	return (typeof _ === 'undefined' ? 'undefined' : _typeof$1(_)) === 'object';
+};
+
+var _extends$5 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function parsePhoneNumberFromString(text, options, metadata) {
+	// Validate `defaultCountry`.
+	if (options && options.defaultCountry && !isSupportedCountry(options.defaultCountry, metadata)) {
+		options = _extends$5({}, options, {
+			defaultCountry: undefined
+		});
+	}
+	// Parse phone number.
+	try {
+		return parsePhoneNumber(text, options, metadata);
+	} catch (error) {
+		/* istanbul ignore else */
+		if (error instanceof ParseError) ; else {
+			throw error;
+		}
+	}
+}
+
+function parsePhoneNumberFromString$1() {
+	var _normalizeArguments = normalizeArguments(arguments),
+	    text = _normalizeArguments.text,
+	    options = _normalizeArguments.options,
+	    metadata = _normalizeArguments.metadata;
+
+	return parsePhoneNumberFromString(text, options, metadata);
+}
+
+var _createClass$3 = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck$4(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// https://medium.com/dsinjs/implementing-lru-cache-in-javascript-94ba6755cda9
+
+var Node$1 = function Node(key, value) {
+  var next = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var prev = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+  _classCallCheck$4(this, Node);
+
+  this.key = key;
+  this.value = value;
+  this.next = next;
+  this.prev = prev;
+};
+
+var LRUCache = function () {
+  //set default limit of 10 if limit is not passed.
+  function LRUCache() {
+    var limit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 10;
+
+    _classCallCheck$4(this, LRUCache);
+
+    this.size = 0;
+    this.limit = limit;
+    this.head = null;
+    this.tail = null;
+    this.cache = {};
+  }
+
+  // Write Node to head of LinkedList
+  // update cache with Node key and Node reference
+
+
+  _createClass$3(LRUCache, [{
+    key: "put",
+    value: function put(key, value) {
+      this.ensureLimit();
+
+      if (!this.head) {
+        this.head = this.tail = new Node$1(key, value);
+      } else {
+        var node = new Node$1(key, value, this.head);
+        this.head.prev = node;
+        this.head = node;
+      }
+
+      //Update the cache map
+      this.cache[key] = this.head;
+      this.size++;
+    }
+
+    // Read from cache map and make that node as new Head of LinkedList
+
+  }, {
+    key: "get",
+    value: function get(key) {
+      if (this.cache[key]) {
+        var value = this.cache[key].value;
+
+        // node removed from it's position and cache
+        this.remove(key);
+        // write node again to the head of LinkedList to make it most recently used
+        this.put(key, value);
+
+        return value;
+      }
+
+      console.log("Item not available in cache for key " + key);
+    }
+  }, {
+    key: "ensureLimit",
+    value: function ensureLimit() {
+      if (this.size === this.limit) {
+        this.remove(this.tail.key);
+      }
+    }
+  }, {
+    key: "remove",
+    value: function remove(key) {
+      var node = this.cache[key];
+
+      if (node.prev !== null) {
+        node.prev.next = node.next;
+      } else {
+        this.head = node.next;
+      }
+
+      if (node.next !== null) {
+        node.next.prev = node.prev;
+      } else {
+        this.tail = node.prev;
+      }
+
+      delete this.cache[key];
+      this.size--;
+    }
+  }, {
+    key: "clear",
+    value: function clear() {
+      this.head = null;
+      this.tail = null;
+      this.size = 0;
+      this.cache = {};
+    }
+
+    // // Invokes the callback function with every node of the chain and the index of the node.
+    // forEach(fn) {
+    //   let node = this.head;
+    //   let counter = 0;
+    //   while (node) {
+    //     fn(node, counter);
+    //     node = node.next;
+    //     counter++;
+    //   }
+    // }
+
+    // // To iterate over LRU with a 'for...of' loop
+    // *[Symbol.iterator]() {
+    //   let node = this.head;
+    //   while (node) {
+    //     yield node;
+    //     node = node.next;
+    //   }
+    // }
+
+  }]);
+
+  return LRUCache;
+}();
+
+var _createClass$4 = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck$5(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// A cache for frequently used country-specific regular expressions. Set to 32 to cover ~2-3
+// countries being used for the same doc with ~10 patterns for each country. Some pages will have
+// a lot more countries in use, but typically fewer numbers for each so expanding the cache for
+// that use-case won't have a lot of benefit.
+
+var RegExpCache = function () {
+	function RegExpCache(size) {
+		_classCallCheck$5(this, RegExpCache);
+
+		this.cache = new LRUCache(size);
+	}
+
+	_createClass$4(RegExpCache, [{
+		key: 'getPatternForRegExp',
+		value: function getPatternForRegExp(pattern) {
+			var regExp = this.cache.get(pattern);
+			if (!regExp) {
+				regExp = new RegExp('^' + pattern);
+				this.cache.put(pattern, regExp);
+			}
+			return regExp;
+		}
+	}]);
+
+	return RegExpCache;
+}();
+
+/** Returns a regular expression quantifier with an upper and lower limit. */
+function limit(lower, upper) {
+	if (lower < 0 || upper <= 0 || upper < lower) {
+		throw new TypeError();
+	}
+	return "{" + lower + "," + upper + "}";
+}
+
+/**
+ * Trims away any characters after the first match of {@code pattern} in {@code candidate},
+ * returning the trimmed version.
+ */
+function trimAfterFirstMatch(regexp, string) {
+	var index = string.search(regexp);
+
+	if (index >= 0) {
+		return string.slice(0, index);
+	}
+
+	return string;
+}
+
+function startsWith(string, substring) {
+	return string.indexOf(substring) === 0;
+}
+
+function endsWith(string, substring) {
+	return string.indexOf(substring, string.length - substring.length) === string.length - substring.length;
+}
+
+// Javascript doesn't support UTF-8 regular expressions.
+// So mimicking them here.
+
+// Copy-pasted from `PhoneNumberMatcher.js`.
+
+/**
+ * "\p{Z}" is any kind of whitespace or invisible separator ("Separator").
+ * http://www.regular-expressions.info/unicode.html
+ * "\P{Z}" is the reverse of "\p{Z}".
+ * "\p{N}" is any kind of numeric character in any script ("Number").
+ * "\p{Nd}" is a digit zero through nine in any script except "ideographic scripts" ("Decimal_Digit_Number").
+ * "\p{Sc}" is a currency symbol ("Currency_Symbol").
+ * "\p{L}" is any kind of letter from any language ("Letter").
+ * "\p{Mn}" is "non-spacing mark".
+ *
+ * Javascript doesn't support Unicode Regular Expressions
+ * so substituting it with this explicit set of characters.
+ *
+ * https://stackoverflow.com/questions/13210194/javascript-regex-equivalent-of-a-za-z-using-pl
+ * https://github.com/danielberndt/babel-plugin-utf-8-regex/blob/master/src/transformer.js
+ */
+
+var _pZ = ' \xA0\u1680\u180E\u2000-\u200A\u2028\u2029\u202F\u205F\u3000';
+var pZ = '[' + _pZ + ']';
+var PZ = '[^' + _pZ + ']';
+
+var _pN = '0-9\xB2\xB3\xB9\xBC-\xBE\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u09F4-\u09F9\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0B72-\u0B77\u0BE6-\u0BF2\u0C66-\u0C6F\u0C78-\u0C7E\u0CE6-\u0CEF\u0D66-\u0D75\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F33\u1040-\u1049\u1090-\u1099\u1369-\u137C\u16EE-\u16F0\u17E0-\u17E9\u17F0-\u17F9\u1810-\u1819\u1946-\u194F\u19D0-\u19DA\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\u2070\u2074-\u2079\u2080-\u2089\u2150-\u2182\u2185-\u2189\u2460-\u249B\u24EA-\u24FF\u2776-\u2793\u2CFD\u3007\u3021-\u3029\u3038-\u303A\u3192-\u3195\u3220-\u3229\u3248-\u324F\u3251-\u325F\u3280-\u3289\u32B1-\u32BF\uA620-\uA629\uA6E6-\uA6EF\uA830-\uA835\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19';
+// const pN = `[${_pN}]`
+
+var _pNd = '0-9\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0BE6-\u0BEF\u0C66-\u0C6F\u0CE6-\u0CEF\u0D66-\u0D6F\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F29\u1040-\u1049\u1090-\u1099\u17E0-\u17E9\u1810-\u1819\u1946-\u194F\u19D0-\u19D9\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\uA620-\uA629\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19';
+var pNd = '[' + _pNd + ']';
+
+var _pL = 'A-Za-z\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377\u037A-\u037D\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u048A-\u0527\u0531-\u0556\u0559\u0561-\u0587\u05D0-\u05EA\u05F0-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u08A0\u08A2-\u08AC\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0977\u0979-\u097F\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C33\u0C35-\u0C39\u0C3D\u0C58\u0C59\u0C60\u0C61\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D60\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81\u0E82\u0E84\u0E87\u0E88\u0E8A\u0E8D\u0E94-\u0E97\u0E99-\u0E9F\u0EA1-\u0EA3\u0EA5\u0EA7\u0EAA\u0EAB\u0EAD-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F4\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u1700-\u170C\u170E-\u1711\u1720-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7\u17DC\u1820-\u1877\u1880-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191C\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19C1-\u19C7\u1A00-\u1A16\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4B\u1B83-\u1BA0\u1BAE\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1CE9-\u1CEC\u1CEE-\u1CF1\u1CF5\u1CF6\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2183\u2184\u2C00-\u2C2E\u2C30-\u2C5E\u2C60-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2E2F\u3005\u3006\u3031-\u3035\u303B\u303C\u3041-\u3096\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312D\u3131-\u318E\u31A0-\u31BA\u31F0-\u31FF\u3400-\u4DB5\u4E00-\u9FCC\uA000-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B\uA640-\uA66E\uA67F-\uA697\uA6A0-\uA6E5\uA717-\uA71F\uA722-\uA788\uA78B-\uA78E\uA790-\uA793\uA7A0-\uA7AA\uA7F8-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA80-\uAAAF\uAAB1\uAAB5\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uABC0-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC';
+var pL = '[' + _pL + ']';
+var pL_regexp = new RegExp(pL);
+
+var _pSc = '$\xA2-\xA5\u058F\u060B\u09F2\u09F3\u09FB\u0AF1\u0BF9\u0E3F\u17DB\u20A0-\u20B9\uA838\uFDFC\uFE69\uFF04\uFFE0\uFFE1\uFFE5\uFFE6';
+var pSc = '[' + _pSc + ']';
+var pSc_regexp = new RegExp(pSc);
+
+var _pMn = '\u0300-\u036F\u0483-\u0487\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08E4-\u08FE\u0900-\u0902\u093A\u093C\u0941-\u0948\u094D\u0951-\u0957\u0962\u0963\u0981\u09BC\u09C1-\u09C4\u09CD\u09E2\u09E3\u0A01\u0A02\u0A3C\u0A41\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81\u0A82\u0ABC\u0AC1-\u0AC5\u0AC7\u0AC8\u0ACD\u0AE2\u0AE3\u0B01\u0B3C\u0B3F\u0B41-\u0B44\u0B4D\u0B56\u0B62\u0B63\u0B82\u0BC0\u0BCD\u0C3E-\u0C40\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0CBC\u0CBF\u0CC6\u0CCC\u0CCD\u0CE2\u0CE3\u0D41-\u0D44\u0D4D\u0D62\u0D63\u0DCA\u0DD2-\u0DD4\u0DD6\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F71-\u0F7E\u0F80-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102D-\u1030\u1032-\u1037\u1039\u103A\u103D\u103E\u1058\u1059\u105E-\u1060\u1071-\u1074\u1082\u1085\u1086\u108D\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4\u17B5\u17B7-\u17BD\u17C6\u17C9-\u17D3\u17DD\u180B-\u180D\u18A9\u1920-\u1922\u1927\u1928\u1932\u1939-\u193B\u1A17\u1A18\u1A56\u1A58-\u1A5E\u1A60\u1A62\u1A65-\u1A6C\u1A73-\u1A7C\u1A7F\u1B00-\u1B03\u1B34\u1B36-\u1B3A\u1B3C\u1B42\u1B6B-\u1B73\u1B80\u1B81\u1BA2-\u1BA5\u1BA8\u1BA9\u1BAB\u1BE6\u1BE8\u1BE9\u1BED\u1BEF-\u1BF1\u1C2C-\u1C33\u1C36\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE0\u1CE2-\u1CE8\u1CED\u1CF4\u1DC0-\u1DE6\u1DFC-\u1DFF\u20D0-\u20DC\u20E1\u20E5-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302D\u3099\u309A\uA66F\uA674-\uA67D\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA825\uA826\uA8C4\uA8E0-\uA8F1\uA926-\uA92D\uA947-\uA951\uA980-\uA982\uA9B3\uA9B6-\uA9B9\uA9BC\uAA29-\uAA2E\uAA31\uAA32\uAA35\uAA36\uAA43\uAA4C\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEC\uAAED\uAAF6\uABE5\uABE8\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE26';
+var pMn = '[' + _pMn + ']';
+var pMn_regexp = new RegExp(pMn);
+
+var _InBasic_Latin = '\0-\x7F';
+var _InLatin_1_Supplement = '\x80-\xFF';
+var _InLatin_Extended_A = '\u0100-\u017F';
+var _InLatin_Extended_Additional = '\u1E00-\u1EFF';
+var _InLatin_Extended_B = '\u0180-\u024F';
+var _InCombining_Diacritical_Marks = '\u0300-\u036F';
+
+var latinLetterRegexp = new RegExp('[' + _InBasic_Latin + _InLatin_1_Supplement + _InLatin_Extended_A + _InLatin_Extended_Additional + _InLatin_Extended_B + _InCombining_Diacritical_Marks + ']');
+
+/**
+ * Helper method to determine if a character is a Latin-script letter or not.
+ * For our purposes, combining marks should also return true since we assume
+ * they have been added to a preceding Latin character.
+ */
+function isLatinLetter(letter) {
+  // Combining marks are a subset of non-spacing-mark.
+  if (!pL_regexp.test(letter) && !pMn_regexp.test(letter)) {
+    return false;
+  }
+
+  return latinLetterRegexp.test(letter);
+}
+
+function isInvalidPunctuationSymbol(character) {
+  return character === '%' || pSc_regexp.test(character);
+}
+
+/**
+ * Leniency when finding potential phone numbers in text segments
+ * The levels here are ordered in increasing strictness.
+ */
+var Leniency = {
+  /**
+   * Phone numbers accepted are "possible", but not necessarily "valid".
+   */
+  POSSIBLE: function POSSIBLE(number, candidate, metadata) {
+    return true;
+  },
+
+
+  /**
+   * Phone numbers accepted are "possible" and "valid".
+   * Numbers written in national format must have their national-prefix
+   * present if it is usually written for a number of this type.
+   */
+  VALID: function VALID(number, candidate, metadata) {
+    if (!isValidNumber(number, undefined, metadata) || !containsOnlyValidXChars(number, candidate.toString())) {
+      return false;
+    }
+
+    // Skipped for simplicity.
+    // return isNationalPrefixPresentIfRequired(number, metadata)
+    return true;
+  },
+
+
+  /**
+   * Phone numbers accepted are "valid" and
+   * are grouped in a possible way for this locale. For example, a US number written as
+   * "65 02 53 00 00" and "650253 0000" are not accepted at this leniency level, whereas
+   * "650 253 0000", "650 2530000" or "6502530000" are.
+   * Numbers with more than one '/' symbol in the national significant number
+   * are also dropped at this level.
+   *
+   * Warning: This level might result in lower coverage especially for regions outside of
+   * country code "+1". If you are not sure about which level to use,
+   * email the discussion group libphonenumber-discuss@googlegroups.com.
+   */
+  STRICT_GROUPING: function STRICT_GROUPING(number, candidate, metadata, regExpCache) {
+    var candidateString = candidate.toString();
+
+    if (!isValidNumber(number, undefined, metadata) || !containsOnlyValidXChars(number, candidateString) || containsMoreThanOneSlashInNationalNumber(number, candidateString) || !isNationalPrefixPresentIfRequired(number)) {
+      return false;
+    }
+
+    return checkNumberGroupingIsValid(number, candidate, metadata, allNumberGroupsRemainGrouped, regExpCache);
+  },
+
+
+  /**
+   * Phone numbers accepted are {@linkplain PhoneNumberUtil#isValidNumber(PhoneNumber) valid} and
+   * are grouped in the same way that we would have formatted it, or as a single block. For
+   * example, a US number written as "650 2530000" is not accepted at this leniency level, whereas
+   * "650 253 0000" or "6502530000" are.
+   * Numbers with more than one '/' symbol are also dropped at this level.
+   * <p>
+   * Warning: This level might result in lower coverage especially for regions outside of country
+   * code "+1". If you are not sure about which level to use, email the discussion group
+   * libphonenumber-discuss@googlegroups.com.
+   */
+  EXACT_GROUPING: function EXACT_GROUPING(number, candidate, metadata, regExpCache) {
+    var candidateString = candidate.toString();
+
+    if (!isValidNumber(number, undefined, metadata) || !containsOnlyValidXChars(number, candidateString) || containsMoreThanOneSlashInNationalNumber(number, candidateString) || !isNationalPrefixPresentIfRequired(number)) {
+      return false;
+    }
+
+    return checkNumberGroupingIsValid(number, candidate, metadata, allNumberGroupsAreExactlyPresent, regExpCache);
+  }
+};
+
+function containsOnlyValidXChars(number, candidate, metadata) {
+  // The characters 'x' and 'X' can be (1) a carrier code, in which case they always precede the
+  // national significant number or (2) an extension sign, in which case they always precede the
+  // extension number. We assume a carrier code is more than 1 digit, so the first case has to
+  // have more than 1 consecutive 'x' or 'X', whereas the second case can only have exactly 1 'x'
+  // or 'X'. We ignore the character if it appears as the last character of the string.
+  for (var index = 0; index < candidate.length - 1; index++) {
+    var charAtIndex = candidate.charAt(index);
+
+    if (charAtIndex === 'x' || charAtIndex === 'X') {
+      var charAtNextIndex = candidate.charAt(index + 1);
+
+      if (charAtNextIndex === 'x' || charAtNextIndex === 'X') {
+        // This is the carrier code case, in which the 'X's always precede the national
+        // significant number.
+        index++;
+        if (util.isNumberMatch(number, candidate.substring(index)) != MatchType.NSN_MATCH) {
+          return false;
+        }
+        // This is the extension sign case, in which the 'x' or 'X' should always precede the
+        // extension number.
+      } else if (parseDigits(candidate.substring(index)) !== number.ext) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+
+function isNationalPrefixPresentIfRequired(number, _metadata) {
+  // First, check how we deduced the country code. If it was written in international format, then
+  // the national prefix is not required.
+  if (number.getCountryCodeSource() != 'FROM_DEFAULT_COUNTRY') {
+    return true;
+  }
+
+  var phoneNumberRegion = util.getRegionCodeForCountryCode(number.getCountryCode());
+
+  var metadata = util.getMetadataForRegion(phoneNumberRegion);
+  if (metadata == null) {
+    return true;
+  }
+
+  // Check if a national prefix should be present when formatting this number.
+  var nationalNumber = util.getNationalSignificantNumber(number);
+  var formatRule = util.chooseFormattingPatternForNumber(metadata.numberFormats(), nationalNumber);
+
+  // To do this, we check that a national prefix formatting rule was present
+  // and that it wasn't just the first-group symbol ($1) with punctuation.
+  if (formatRule && formatRule.getNationalPrefixFormattingRule().length > 0) {
+    if (formatRule.getNationalPrefixOptionalWhenFormatting()) {
+      // The national-prefix is optional in these cases, so we don't need to check if it was
+      // present.
+      return true;
+    }
+
+    if (PhoneNumberUtil.formattingRuleHasFirstGroupOnly(formatRule.getNationalPrefixFormattingRule())) {
+      // National Prefix not needed for this number.
+      return true;
+    }
+
+    // Normalize the remainder.
+    var rawInputCopy = PhoneNumberUtil.normalizeDigitsOnly(number.getRawInput());
+
+    // Check if we found a national prefix and/or carrier code at the start of the raw input, and
+    // return the result.
+    return util.maybeStripNationalPrefixAndCarrierCode(rawInputCopy, metadata, null);
+  }
+
+  return true;
+}
+
+function containsMoreThanOneSlashInNationalNumber(number, candidate) {
+  var firstSlashInBodyIndex = candidate.indexOf('/');
+  if (firstSlashInBodyIndex < 0) {
+    // No slashes, this is okay.
+    return false;
+  }
+
+  // Now look for a second one.
+  var secondSlashInBodyIndex = candidate.indexOf('/', firstSlashInBodyIndex + 1);
+  if (secondSlashInBodyIndex < 0) {
+    // Only one slash, this is okay.
+    return false;
+  }
+
+  // If the first slash is after the country calling code, this is permitted.
+  var candidateHasCountryCode = number.getCountryCodeSource() === CountryCodeSource.FROM_NUMBER_WITH_PLUS_SIGN || number.getCountryCodeSource() === CountryCodeSource.FROM_NUMBER_WITHOUT_PLUS_SIGN;
+
+  if (candidateHasCountryCode && PhoneNumberUtil.normalizeDigitsOnly(candidate.substring(0, firstSlashInBodyIndex)) === String(number.getCountryCode())) {
+    // Any more slashes and this is illegal.
+    return candidate.slice(secondSlashInBodyIndex + 1).indexOf('/') >= 0;
+  }
+
+  return true;
+}
+
+function checkNumberGroupingIsValid(number, candidate, metadata, checkGroups, regExpCache) {
+  var normalizedCandidate = normalizeDigits(candidate, true /* keep non-digits */);
+  var formattedNumberGroups = getNationalNumberGroups(metadata, number, null);
+  if (checkGroups(metadata, number, normalizedCandidate, formattedNumberGroups)) {
+    return true;
+  }
+
+  // If this didn't pass, see if there are any alternate formats that match, and try them instead.
+  var alternateFormats = MetadataManager.getAlternateFormatsForCountry(number.getCountryCode());
+  var nationalSignificantNumber = util.getNationalSignificantNumber(number);
+
+  if (alternateFormats) {
+    for (var _iterator = alternateFormats.numberFormats(), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+      var _ref;
+
+      if (_isArray) {
+        if (_i >= _iterator.length) break;
+        _ref = _iterator[_i++];
+      } else {
+        _i = _iterator.next();
+        if (_i.done) break;
+        _ref = _i.value;
+      }
+
+      var alternateFormat = _ref;
+
+      if (alternateFormat.leadingDigitsPatterns().length > 0) {
+        // There is only one leading digits pattern for alternate formats.
+        var leadingDigitsRegExp = regExpCache.getPatternForRegExp('^' + alternateFormat.leadingDigitsPatterns()[0]);
+        if (!leadingDigitsRegExp.test(nationalSignificantNumber)) {
+          // Leading digits don't match; try another one.
+          continue;
+        }
+      }
+      formattedNumberGroups = getNationalNumberGroups(metadata, number, alternateFormat);
+      if (checkGroups(metadata, number, normalizedCandidate, formattedNumberGroups)) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+/**
+ * Helper method to get the national-number part of a number, formatted without any national
+ * prefix, and return it as a set of digit blocks that would be formatted together following
+ * standard formatting rules.
+ */
+function getNationalNumberGroups(metadata, number, formattingPattern) {
+  if (formattingPattern) {
+    // We format the NSN only, and split that according to the separator.
+    var nationalSignificantNumber = util.getNationalSignificantNumber(number);
+    return util.formatNsnUsingPattern(nationalSignificantNumber, formattingPattern, 'RFC3966', metadata).split('-');
+  }
+
+  // This will be in the format +CC-DG1-DG2-DGX;ext=EXT where DG1..DGX represents groups of digits.
+  var rfc3966Format = formatNumber(number, 'RFC3966', metadata);
+
+  // We remove the extension part from the formatted string before splitting it into different
+  // groups.
+  var endIndex = rfc3966Format.indexOf(';');
+  if (endIndex < 0) {
+    endIndex = rfc3966Format.length;
+  }
+
+  // The country-code will have a '-' following it.
+  var startIndex = rfc3966Format.indexOf('-') + 1;
+  return rfc3966Format.slice(startIndex, endIndex).split('-');
+}
+
+function allNumberGroupsAreExactlyPresent(metadata, number, normalizedCandidate, formattedNumberGroups) {
+  var candidateGroups = normalizedCandidate.split(NON_DIGITS_PATTERN);
+
+  // Set this to the last group, skipping it if the number has an extension.
+  var candidateNumberGroupIndex = number.hasExtension() ? candidateGroups.length - 2 : candidateGroups.length - 1;
+
+  // First we check if the national significant number is formatted as a block.
+  // We use contains and not equals, since the national significant number may be present with
+  // a prefix such as a national number prefix, or the country code itself.
+  if (candidateGroups.length == 1 || candidateGroups[candidateNumberGroupIndex].contains(util.getNationalSignificantNumber(number))) {
+    return true;
+  }
+
+  // Starting from the end, go through in reverse, excluding the first group, and check the
+  // candidate and number groups are the same.
+  var formattedNumberGroupIndex = formattedNumberGroups.length - 1;
+  while (formattedNumberGroupIndex > 0 && candidateNumberGroupIndex >= 0) {
+    if (candidateGroups[candidateNumberGroupIndex] !== formattedNumberGroups[formattedNumberGroupIndex]) {
+      return false;
+    }
+    formattedNumberGroupIndex--;
+    candidateNumberGroupIndex--;
+  }
+
+  // Now check the first group. There may be a national prefix at the start, so we only check
+  // that the candidate group ends with the formatted number group.
+  return candidateNumberGroupIndex >= 0 && endsWith(candidateGroups[candidateNumberGroupIndex], formattedNumberGroups[0]);
+}
+
+function allNumberGroupsRemainGrouped(metadata, number, normalizedCandidate, formattedNumberGroups) {
+  var fromIndex = 0;
+  if (number.getCountryCodeSource() !== CountryCodeSource.FROM_DEFAULT_COUNTRY) {
+    // First skip the country code if the normalized candidate contained it.
+    var countryCode = String(number.getCountryCode());
+    fromIndex = normalizedCandidate.indexOf(countryCode) + countryCode.length();
+  }
+
+  // Check each group of consecutive digits are not broken into separate groupings in the
+  // {@code normalizedCandidate} string.
+  for (var i = 0; i < formattedNumberGroups.length; i++) {
+    // Fails if the substring of {@code normalizedCandidate} starting from {@code fromIndex}
+    // doesn't contain the consecutive digits in formattedNumberGroups[i].
+    fromIndex = normalizedCandidate.indexOf(formattedNumberGroups[i], fromIndex);
+    if (fromIndex < 0) {
+      return false;
+    }
+    // Moves {@code fromIndex} forward.
+    fromIndex += formattedNumberGroups[i].length();
+    if (i == 0 && fromIndex < normalizedCandidate.length()) {
+      // We are at the position right after the NDC. We get the region used for formatting
+      // information based on the country code in the phone number, rather than the number itself,
+      // as we do not need to distinguish between different countries with the same country
+      // calling code and this is faster.
+      var region = util.getRegionCodeForCountryCode(number.getCountryCode());
+      if (util.getNddPrefixForRegion(region, true) != null && Character.isDigit(normalizedCandidate.charAt(fromIndex))) {
+        // This means there is no formatting symbol after the NDC. In this case, we only
+        // accept the number if there is no formatting symbol at all in the number, except
+        // for extensions. This is only important for countries with national prefixes.
+        var nationalSignificantNumber = util.getNationalSignificantNumber(number);
+        return startsWith(normalizedCandidate.slice(fromIndex - formattedNumberGroups[i].length), nationalSignificantNumber);
+      }
+    }
+  }
+
+  // The check here makes sure that we haven't mistakenly already used the extension to
+  // match the last group of the subscriber number. Note the extension cannot have
+  // formatting in-between digits.
+  return normalizedCandidate.slice(fromIndex).contains(number.getExtension());
+}
+
+// Regular expression of characters typically used to start a second phone number for the purposes
+// of parsing. This allows us to strip off parts of the number that are actually the start of
+// another number, such as for: (530) 583-6985 x302/x2303 -> the second extension here makes this
+// actually two phone numbers, (530) 583-6985 x302 and (530) 583-6985 x2303. We remove the second
+// extension so that the first number is parsed correctly.
+//
+// Matches a slash (\ or /) followed by a space followed by an `x`.
+//
+var SECOND_NUMBER_START_PATTERN = /[\\/] *x/;
+
+function parsePreCandidate(candidate) {
+	// Check for extra numbers at the end.
+	// TODO: This is the place to start when trying to support extraction of multiple phone number
+	// from split notations (+41 79 123 45 67 / 68).
+	return trimAfterFirstMatch(SECOND_NUMBER_START_PATTERN, candidate);
+}
+
+// Matches strings that look like dates using "/" as a separator.
+// Examples: 3/10/2011, 31/10/96 or 08/31/95.
+var SLASH_SEPARATED_DATES = /(?:(?:[0-3]?\d\/[01]?\d)|(?:[01]?\d\/[0-3]?\d))\/(?:[12]\d)?\d{2}/;
+
+// Matches timestamps.
+// Examples: "2012-01-02 08:00".
+// Note that the reg-ex does not include the
+// trailing ":\d\d" -- that is covered by TIME_STAMPS_SUFFIX.
+var TIME_STAMPS = /[12]\d{3}[-/]?[01]\d[-/]?[0-3]\d +[0-2]\d$/;
+var TIME_STAMPS_SUFFIX_LEADING = /^:[0-5]\d/;
+
+function isValidPreCandidate(candidate, offset, text) {
+	// Skip a match that is more likely to be a date.
+	if (SLASH_SEPARATED_DATES.test(candidate)) {
+		return false;
+	}
+
+	// Skip potential time-stamps.
+	if (TIME_STAMPS.test(candidate)) {
+		var followingText = text.slice(offset + candidate.length);
+		if (TIME_STAMPS_SUFFIX_LEADING.test(followingText)) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+// Copy-pasted from `PhoneNumberMatcher.js`.
+
+var OPENING_PARENS = '(\\[\uFF08\uFF3B';
+var CLOSING_PARENS = ')\\]\uFF09\uFF3D';
+var NON_PARENS = '[^' + OPENING_PARENS + CLOSING_PARENS + ']';
+
+var LEAD_CLASS = '[' + OPENING_PARENS + PLUS_CHARS + ']';
+
+// Punctuation that may be at the start of a phone number - brackets and plus signs.
+var LEAD_CLASS_LEADING = new RegExp('^' + LEAD_CLASS);
+
+// Limit on the number of pairs of brackets in a phone number.
+var BRACKET_PAIR_LIMIT = limit(0, 3);
+
+/**
+ * Pattern to check that brackets match. Opening brackets should be closed within a phone number.
+ * This also checks that there is something inside the brackets. Having no brackets at all is also
+ * fine.
+ *
+ * An opening bracket at the beginning may not be closed, but subsequent ones should be.  It's
+ * also possible that the leading bracket was dropped, so we shouldn't be surprised if we see a
+ * closing bracket first. We limit the sets of brackets in a phone number to four.
+ */
+var MATCHING_BRACKETS_ENTIRE = new RegExp('^' + "(?:[" + OPENING_PARENS + "])?" + "(?:" + NON_PARENS + "+" + "[" + CLOSING_PARENS + "])?" + NON_PARENS + "+" + "(?:[" + OPENING_PARENS + "]" + NON_PARENS + "+[" + CLOSING_PARENS + "])" + BRACKET_PAIR_LIMIT + NON_PARENS + "*" + '$');
+
+/**
+ * Matches strings that look like publication pages. Example:
+ * <pre>Computing Complete Answers to Queries in the Presence of Limited Access Patterns.
+ * Chen Li. VLDB J. 12(3): 211-227 (2003).</pre>
+ *
+ * The string "211-227 (2003)" is not a telephone number.
+ */
+var PUB_PAGES = /\d{1,5}-+\d{1,5}\s{0,4}\(\d{1,4}/;
+
+function isValidCandidate(candidate, offset, text, leniency) {
+	// Check the candidate doesn't contain any formatting
+	// which would indicate that it really isn't a phone number.
+	if (!MATCHING_BRACKETS_ENTIRE.test(candidate) || PUB_PAGES.test(candidate)) {
+		return;
+	}
+
+	// If leniency is set to VALID or stricter, we also want to skip numbers that are surrounded
+	// by Latin alphabetic characters, to skip cases like abc8005001234 or 8005001234def.
+	if (leniency !== 'POSSIBLE') {
+		// If the candidate is not at the start of the text,
+		// and does not start with phone-number punctuation,
+		// check the previous character.
+		if (offset > 0 && !LEAD_CLASS_LEADING.test(candidate)) {
+			var previousChar = text[offset - 1];
+			// We return null if it is a latin letter or an invalid punctuation symbol.
+			if (isInvalidPunctuationSymbol(previousChar) || isLatinLetter(previousChar)) {
+				return false;
+			}
+		}
+
+		var lastCharIndex = offset + candidate.length;
+		if (lastCharIndex < text.length) {
+			var nextChar = text[lastCharIndex];
+			if (isInvalidPunctuationSymbol(nextChar) || isLatinLetter(nextChar)) {
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
+
+var _extends$6 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass$5 = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck$6(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Patterns used to extract phone numbers from a larger phone-number-like pattern. These are
+ * ordered according to specificity. For example, white-space is last since that is frequently
+ * used in numbers, not just to separate two numbers. We have separate patterns since we don't
+ * want to break up the phone-number-like text on more than one different kind of symbol at one
+ * time, although symbols of the same type (e.g. space) can be safely grouped together.
+ *
+ * Note that if there is a match, we will always check any text found up to the first match as
+ * well.
+ */
+var INNER_MATCHES = [
+// Breaks on the slash - e.g. "651-234-2345/332-445-1234"
+'\\/+(.*)/',
+
+// Note that the bracket here is inside the capturing group, since we consider it part of the
+// phone number. Will match a pattern like "(650) 223 3345 (754) 223 3321".
+'(\\([^(]*)',
+
+// Breaks on a hyphen - e.g. "12345 - 332-445-1234 is my number."
+// We require a space on either side of the hyphen for it to be considered a separator.
+'(?:' + pZ + '-|-' + pZ + ')' + pZ + '*(.+)',
+
+// Various types of wide hyphens. Note we have decided not to enforce a space here, since it's
+// possible that it's supposed to be used to break two numbers without spaces, and we haven't
+// seen many instances of it used within a number.
+'[\u2012-\u2015\uFF0D]' + pZ + '*(.+)',
+
+// Breaks on a full stop - e.g. "12345. 332-445-1234 is my number."
+'\\.+' + pZ + '*([^.]+)',
+
+// Breaks on space - e.g. "3324451234 8002341234"
+pZ + '+(' + PZ + '+)'];
+
+// Limit on the number of leading (plus) characters.
+var leadLimit = limit(0, 2);
+
+// Limit on the number of consecutive punctuation characters.
+var punctuationLimit = limit(0, 4);
+
+/* The maximum number of digits allowed in a digit-separated block. As we allow all digits in a
+ * single block, set high enough to accommodate the entire national number and the international
+ * country code. */
+var digitBlockLimit = MAX_LENGTH_FOR_NSN + MAX_LENGTH_COUNTRY_CODE;
+
+// Limit on the number of blocks separated by punctuation.
+// Uses digitBlockLimit since some formats use spaces to separate each digit.
+var blockLimit = limit(0, digitBlockLimit);
+
+/* A punctuation sequence allowing white space. */
+var punctuation = '[' + VALID_PUNCTUATION + ']' + punctuationLimit;
+
+// A digits block without punctuation.
+var digitSequence = pNd + limit(1, digitBlockLimit);
+
+/**
+ * Phone number pattern allowing optional punctuation.
+ * The phone number pattern used by `find()`, similar to
+ * VALID_PHONE_NUMBER, but with the following differences:
+ * <ul>
+ *   <li>All captures are limited in order to place an upper bound to the text matched by the
+ *       pattern.
+ * <ul>
+ *   <li>Leading punctuation / plus signs are limited.
+ *   <li>Consecutive occurrences of punctuation are limited.
+ *   <li>Number of digits is limited.
+ * </ul>
+ *   <li>No whitespace is allowed at the start or end.
+ *   <li>No alpha digits (vanity numbers such as 1-800-SIX-FLAGS) are currently supported.
+ * </ul>
+ */
+var PATTERN = '(?:' + LEAD_CLASS + punctuation + ')' + leadLimit + digitSequence + '(?:' + punctuation + digitSequence + ')' + blockLimit + '(?:' + EXTN_PATTERNS_FOR_MATCHING + ')?';
+
+// Regular expression of trailing characters that we want to remove.
+// We remove all characters that are not alpha or numerical characters.
+// The hash character is retained here, as it may signify
+// the previous block was an extension.
+//
+// // Don't know what does '&&' mean here.
+// const UNWANTED_END_CHAR_PATTERN = new RegExp(`[[\\P{N}&&\\P{L}]&&[^#]]+$`)
+//
+var UNWANTED_END_CHAR_PATTERN = new RegExp('[^' + _pN + _pL + '#]+$');
+
+var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || Math.pow(2, 53) - 1;
+
+/**
+ * A stateful class that finds and extracts telephone numbers from {@linkplain CharSequence text}.
+ * Instances can be created using the {@linkplain PhoneNumberUtil#findNumbers factory methods} in
+ * {@link PhoneNumberUtil}.
+ *
+ * <p>Vanity numbers (phone numbers using alphabetic digits such as <tt>1-800-SIX-FLAGS</tt> are
+ * not found.
+ *
+ * <p>This class is not thread-safe.
+ */
+
+var PhoneNumberMatcher = function () {
+
+  /**
+   * Creates a new instance. See the factory methods in {@link PhoneNumberUtil} on how to obtain a
+   * new instance.
+   *
+   * @param util  the phone number util to use
+   * @param text  the character sequence that we will search, null for no text
+   * @param country  the country to assume for phone numbers not written in international format
+   *     (with a leading plus, or with the international dialing prefix of the specified region).
+   *     May be null or "ZZ" if only numbers with a leading plus should be
+   *     considered.
+   * @param leniency  the leniency to use when evaluating candidate phone numbers
+   * @param maxTries  the maximum number of invalid numbers to try before giving up on the text.
+   *     This is to cover degenerate cases where the text has a lot of false positives in it. Must
+   *     be {@code >= 0}.
+   */
+
+
+  /** The next index to start searching at. Undefined in {@link State#DONE}. */
+  function PhoneNumberMatcher() {
+    var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var metadata = arguments[2];
+
+    _classCallCheck$6(this, PhoneNumberMatcher);
+
+    this.state = 'NOT_READY';
+    this.searchIndex = 0;
+    this.regExpCache = new RegExpCache(32);
+
+    options = _extends$6({}, options, {
+      defaultCountry: options.defaultCountry && isSupportedCountry(options.defaultCountry, metadata) ? options.defaultCountry : undefined,
+      leniency: options.leniency || options.extended ? 'POSSIBLE' : 'VALID',
+      maxTries: options.maxTries || MAX_SAFE_INTEGER
+    });
+
+    if (!options.leniency) {
+      throw new TypeError('`Leniency` not supplied');
+    }
+
+    if (options.maxTries < 0) {
+      throw new TypeError('`maxTries` not supplied');
+    }
+
+    this.text = text;
+    this.options = options;
+    this.metadata = metadata;
+
+    /** The degree of validation requested. */
+    this.leniency = Leniency[options.leniency];
+
+    if (!this.leniency) {
+      throw new TypeError('Unknown leniency: ' + options.leniency + '.');
+    }
+
+    /** The maximum number of retries after matching an invalid number. */
+    this.maxTries = options.maxTries;
+
+    this.PATTERN = new RegExp(PATTERN, 'ig');
+  }
+
+  /**
+   * Attempts to find the next subsequence in the searched sequence on or after {@code searchIndex}
+   * that represents a phone number. Returns the next match, null if none was found.
+   *
+   * @param index  the search index to start searching at
+   * @return  the phone number match found, null if none can be found
+   */
+
+
+  // A cache for frequently used country-specific regular expressions. Set to 32 to cover ~2-3
+  // countries being used for the same doc with ~10 patterns for each country. Some pages will have
+  // a lot more countries in use, but typically fewer numbers for each so expanding the cache for
+  // that use-case won't have a lot of benefit.
+
+  /** The iteration tristate. */
+
+
+  _createClass$5(PhoneNumberMatcher, [{
+    key: 'find',
+    value: function find() // (index)
+    {
+      // // Reset the regular expression.
+      // this.PATTERN.lastIndex = index
+
+      var matches = void 0;
+      while (this.maxTries > 0 && (matches = this.PATTERN.exec(this.text)) !== null) {
+        var candidate = matches[0];
+        var offset = matches.index;
+
+        candidate = parsePreCandidate(candidate);
+
+        if (isValidPreCandidate(candidate, offset, this.text)) {
+          var match =
+          // Try to come up with a valid match given the entire candidate.
+          this.parseAndVerify(candidate, offset, this.text)
+          // If that failed, try to find an "inner match" -
+          // there might be a phone number within this candidate.
+          || this.extractInnerMatch(candidate, offset, this.text);
+
+          if (match) {
+            if (this.options.v2) {
+              var phoneNumber = new PhoneNumber(match.country, match.phone, this.metadata);
+              if (match.ext) {
+                phoneNumber.ext = match.ext;
+              }
+              return {
+                startsAt: match.startsAt,
+                endsAt: match.endsAt,
+                number: phoneNumber
+              };
+            }
+            return match;
+          }
+        }
+
+        this.maxTries--;
+      }
+    }
+
+    /**
+     * Attempts to extract a match from `candidate`
+     * if the whole candidate does not qualify as a match.
+     */
+
+  }, {
+    key: 'extractInnerMatch',
+    value: function extractInnerMatch(candidate, offset, text) {
+      for (var _iterator = INNER_MATCHES, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+        var _ref;
+
+        if (_isArray) {
+          if (_i >= _iterator.length) break;
+          _ref = _iterator[_i++];
+        } else {
+          _i = _iterator.next();
+          if (_i.done) break;
+          _ref = _i.value;
+        }
+
+        var innerMatchPattern = _ref;
+
+        var isFirstMatch = true;
+        var matches = void 0;
+        var possibleInnerMatch = new RegExp(innerMatchPattern, 'g');
+        while ((matches = possibleInnerMatch.exec(candidate)) !== null && this.maxTries > 0) {
+          if (isFirstMatch) {
+            // We should handle any group before this one too.
+            var _group = trimAfterFirstMatch(UNWANTED_END_CHAR_PATTERN, candidate.slice(0, matches.index));
+
+            var _match = this.parseAndVerify(_group, offset, text);
+            if (_match) {
+              return _match;
+            }
+
+            this.maxTries--;
+            isFirstMatch = false;
+          }
+
+          var group = trimAfterFirstMatch(UNWANTED_END_CHAR_PATTERN, matches[1]);
+
+          // Java code does `groupMatcher.start(1)` here,
+          // but there's no way in javascript to get a group match start index,
+          // therefore using the overall match start index `matches.index`.
+          var match = this.parseAndVerify(group, offset + matches.index, text);
+          if (match) {
+            return match;
+          }
+
+          this.maxTries--;
+        }
+      }
+    }
+
+    /**
+     * Parses a phone number from the `candidate` using `parseNumber` and
+     * verifies it matches the requested `leniency`. If parsing and verification succeed,
+     * a corresponding `PhoneNumberMatch` is returned, otherwise this method returns `null`.
+     *
+     * @param candidate  the candidate match
+     * @param offset  the offset of {@code candidate} within {@link #text}
+     * @return  the parsed and validated phone number match, or null
+     */
+
+  }, {
+    key: 'parseAndVerify',
+    value: function parseAndVerify(candidate, offset, text) {
+      if (!isValidCandidate(candidate, offset, text, this.options.leniency)) {
+        return;
+      }
+
+      var number = parse$1(candidate, {
+        extended: true,
+        defaultCountry: this.options.defaultCountry
+      }, this.metadata);
+
+      if (!number.possible) {
+        return;
+      }
+
+      if (this.leniency(number, candidate, this.metadata, this.regExpCache)) {
+        // // We used parseAndKeepRawInput to create this number,
+        // // but for now we don't return the extra values parsed.
+        // // TODO: stop clearing all values here and switch all users over
+        // // to using rawInput() rather than the rawString() of PhoneNumberMatch.
+        // number.clearCountryCodeSource()
+        // number.clearRawInput()
+        // number.clearPreferredDomesticCarrierCode()
+
+        var result = {
+          startsAt: offset,
+          endsAt: offset + candidate.length,
+          country: number.country,
+          phone: number.phone
+        };
+
+        if (number.ext) {
+          result.ext = number.ext;
+        }
+
+        return result;
+      }
+    }
+  }, {
+    key: 'hasNext',
+    value: function hasNext() {
+      if (this.state === 'NOT_READY') {
+        this.lastMatch = this.find(); // (this.searchIndex)
+
+        if (this.lastMatch) {
+          // this.searchIndex = this.lastMatch.endsAt
+          this.state = 'READY';
+        } else {
+          this.state = 'DONE';
+        }
+      }
+
+      return this.state === 'READY';
+    }
+  }, {
+    key: 'next',
+    value: function next() {
+      // Check the state and find the next match as a side-effect if necessary.
+      if (!this.hasNext()) {
+        throw new Error('No next element');
+      }
+
+      // Don't retain that memory any longer than necessary.
+      var result = this.lastMatch;
+      this.lastMatch = null;
+      this.state = 'NOT_READY';
+      return result;
+    }
+  }]);
+
+  return PhoneNumberMatcher;
+}();
+
+function findNumbers(text, options, metadata) {
+	var matcher = new PhoneNumberMatcher(text, options, metadata);
+	var results = [];
+	while (matcher.hasNext()) {
+		results.push(matcher.next());
+	}
+	return results;
+}
+
+function findNumbers$1() {
+	var _normalizeArguments = normalizeArguments(arguments),
+	    text = _normalizeArguments.text,
+	    options = _normalizeArguments.options,
+	    metadata = _normalizeArguments.metadata;
+
+	return findNumbers(text, options, metadata);
+}
+
+function _defineProperty$1(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/**
+ * @return ES6 `for ... of` iterator.
+ */
+function searchNumbers() {
+	var _normalizeArguments = normalizeArguments(arguments),
+	    text = _normalizeArguments.text,
+	    options = _normalizeArguments.options,
+	    metadata = _normalizeArguments.metadata;
+
+	var matcher = new PhoneNumberMatcher(text, options, metadata);
+
+	return _defineProperty$1({}, Symbol.iterator, function () {
+		return {
+			next: function next() {
+				if (matcher.hasNext()) {
+					return {
+						done: false,
+						value: matcher.next()
+					};
+				}
+				return {
+					done: true
+				};
+			}
+		};
+	});
+}
+
+var _createClass$6 = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck$7(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// Used in phone number format template creation.
+// Could be any digit, I guess.
+var DUMMY_DIGIT = '9';
+// I don't know why is it exactly `15`
+var LONGEST_NATIONAL_PHONE_NUMBER_LENGTH = 15;
+// Create a phone number consisting only of the digit 9 that matches the
+// `number_pattern` by applying the pattern to the "longest phone number" string.
+var LONGEST_DUMMY_PHONE_NUMBER = repeat(DUMMY_DIGIT, LONGEST_NATIONAL_PHONE_NUMBER_LENGTH);
+
+// The digits that have not been entered yet will be represented by a \u2008,
+// the punctuation space.
+var DIGIT_PLACEHOLDER = 'x'; // '\u2008' (punctuation space)
+var DIGIT_PLACEHOLDER_MATCHER = new RegExp(DIGIT_PLACEHOLDER);
+
+// A pattern that is used to match character classes in regular expressions.
+// An example of a character class is "[1-4]".
+var CREATE_CHARACTER_CLASS_PATTERN =  function () {
+	return (/\[([^\[\]])*\]/g
+	);
+};
+
+// Any digit in a regular expression that actually denotes a digit. For
+// example, in the regular expression "80[0-2]\d{6,10}", the first 2 digits
+// (8 and 0) are standalone digits, but the rest are not.
+// Two look-aheads are needed because the number following \\d could be a
+// two-digit number, since the phone number can be as long as 15 digits.
+var CREATE_STANDALONE_DIGIT_PATTERN =  function () {
+	return (/\d(?=[^,}][^,}])/g
+	);
+};
+
+// A pattern that is used to determine if a `format` is eligible
+// to be used by the "as you type formatter".
+// It is eligible when the `format` contains groups of the dollar sign
+// followed by a single digit, separated by valid phone number punctuation.
+// This prevents invalid punctuation (such as the star sign in Israeli star numbers)
+// getting into the output of the "as you type formatter".
+var ELIGIBLE_FORMAT_PATTERN = new RegExp('^' + '[' + VALID_PUNCTUATION + ']*' + '(\\$\\d[' + VALID_PUNCTUATION + ']*)+' + '$');
+
+// This is the minimum length of the leading digits of a phone number
+// to guarantee the first "leading digits pattern" for a phone number format
+// to be preemptive.
+var MIN_LEADING_DIGITS_LENGTH = 3;
+
+var VALID_INCOMPLETE_PHONE_NUMBER = '[' + PLUS_CHARS + ']{0,1}' + '[' + VALID_PUNCTUATION + VALID_DIGITS + ']*';
+
+var VALID_INCOMPLETE_PHONE_NUMBER_PATTERN = new RegExp('^' + VALID_INCOMPLETE_PHONE_NUMBER + '$', 'i');
+
+var AsYouType = function () {
+
+	/**
+  * @param {string?} [defaultCountry] - The default country used for parsing non-international phone numbers.
+  * @param {Object} metadata
+  */
+	function AsYouType(defaultCountry, metadata) {
+		_classCallCheck$7(this, AsYouType);
+
+		this.options = {};
+
+		this.metadata = new Metadata(metadata);
+
+		if (defaultCountry && this.metadata.hasCountry(defaultCountry)) {
+			this.defaultCountry = defaultCountry;
+		}
+
+		this.reset();
+	}
+	// Not setting `options` to a constructor argument
+	// not to break backwards compatibility
+	// for older versions of the library.
+
+
+	_createClass$6(AsYouType, [{
+		key: 'input',
+		value: function input(text) {
+			// Parse input
+
+			var extracted_number = extract_formatted_phone_number(text) || '';
+
+			// Special case for a lone '+' sign
+			// since it's not considered a possible phone number.
+			if (!extracted_number) {
+				if (text && text.indexOf('+') >= 0) {
+					extracted_number = '+';
+				}
+			}
+
+			// Validate possible first part of a phone number
+			if (!VALID_INCOMPLETE_PHONE_NUMBER_PATTERN.test(extracted_number)) {
+				return this.currentOutput;
+			}
+
+			return this.processInput(parseIncompletePhoneNumber(extracted_number));
+		}
+	}, {
+		key: 'processInput',
+		value: function processInput(input) {
+			// If an out of position '+' sign detected
+			// (or a second '+' sign),
+			// then just drop it from the input.
+			if (input[0] === '+') {
+				if (!this.parsedInput) {
+					this.parsedInput += '+';
+
+					// If a default country was set
+					// then reset it because an explicitly international
+					// phone number is being entered
+					this.resetCountriness();
+				}
+
+				input = input.slice(1);
+			}
+
+			// Raw phone number
+			this.parsedInput += input;
+
+			// // Reset phone number validation state
+			// this.valid = false
+
+			// Add digits to the national number
+			this.nationalNumber += input;
+
+			// TODO: Deprecated: rename `this.nationalNumber`
+			// to `this.nationalNumber` and remove `.getNationalNumber()`.
+
+			// Try to format the parsed input
+
+			if (this.isInternational()) {
+				if (!this.countryCallingCode) {
+					// Extract country calling code from the digits entered so far.
+
+					// There must be some digits in order to extract anything from them.
+					if (!this.nationalNumber) {
+						// Return raw phone number
+						return this.parsedInput;
+					}
+
+					// If one looks at country phone codes
+					// then he can notice that no one country phone code
+					// is ever a (leftmost) substring of another country phone code.
+					// So if a valid country code is extracted so far
+					// then it means that this is the country code.
+
+					// If no country phone code could be extracted so far,
+					// then just return the raw phone number,
+					// because it has no way of knowing
+					// how to format the phone number so far.
+					if (!this.extractCountryCallingCode()) {
+						// Return raw phone number
+						return this.parsedInput;
+					}
+
+					// Initialize country-specific data
+					this.initialize_phone_number_formats_for_this_country_calling_code();
+					this.resetFormat();
+					this.determineTheCountry();
+				}
+				// `this.country` could be `undefined`,
+				// for instance, when there is ambiguity
+				// in a form of several different countries
+				// each corresponding to the same country phone code
+				// (e.g. NANPA: USA, Canada, etc),
+				// and there's not enough digits entered
+				// to reliably determine the country
+				// the phone number belongs to.
+				// Therefore, in cases of such ambiguity,
+				// each time something is input,
+				// try to determine the country
+				// (if it's not determined yet).
+				else if (!this.country) {
+						this.determineTheCountry();
+					}
+			} else {
+				// Some national prefixes are substrings of other national prefixes
+				// (for the same country), therefore try to extract national prefix each time
+				// because a longer national prefix might be available at some point in time.
+
+				var previous_national_prefix = this.nationalPrefix;
+				this.nationalNumber = this.nationalPrefix + this.nationalNumber;
+
+				// Possibly extract a national prefix
+				this.extractNationalPrefix();
+
+				if (this.nationalPrefix !== previous_national_prefix) {
+					// National number has changed
+					// (due to another national prefix been extracted)
+					// therefore national number has changed
+					// therefore reset all previous formatting data.
+					// (and leading digits matching state)
+					this.matching_formats = undefined;
+					this.resetFormat();
+				}
+			}
+
+			// if (!this.shouldFormat())
+			// {
+			// 	return this.format_as_non_formatted_number()
+			// }
+
+			if (!this.nationalNumber) {
+				return this.format_as_non_formatted_number();
+			}
+
+			// Check the available phone number formats
+			// based on the currently available leading digits.
+			this.match_formats_by_leading_digits();
+
+			// Format the phone number (given the next digits)
+			var formatted_national_phone_number = this.formatNationalNumber(input);
+
+			// If the phone number could be formatted,
+			// then return it, possibly prepending with country phone code
+			// (for international phone numbers only)
+			if (formatted_national_phone_number) {
+				return this.formatFullNumber(formatted_national_phone_number);
+			}
+
+			// If the phone number couldn't be formatted,
+			// then just fall back to the raw phone number.
+			return this.format_as_non_formatted_number();
+		}
+	}, {
+		key: 'format_as_non_formatted_number',
+		value: function format_as_non_formatted_number() {
+			// Strip national prefix for incorrectly inputted international phones.
+			if (this.isInternational() && this.countryCallingCode) {
+				return '+' + this.countryCallingCode + this.nationalNumber;
+			}
+
+			return this.parsedInput;
+		}
+	}, {
+		key: 'formatNationalNumber',
+		value: function formatNationalNumber(next_digits) {
+			// Format the next phone number digits
+			// using the previously chosen phone number format.
+			//
+			// This is done here because if `attempt_to_format_complete_phone_number`
+			// was placed before this call then the `template`
+			// wouldn't reflect the situation correctly (and would therefore be inconsistent)
+			//
+			var national_number_formatted_with_previous_format = void 0;
+			if (this.chosenFormat) {
+				national_number_formatted_with_previous_format = this.formatNextNationalNumberDigits(next_digits);
+			}
+
+			// See if the input digits can be formatted properly already. If not,
+			// use the results from formatNextNationalNumberDigits(), which does formatting
+			// based on the formatting pattern chosen.
+
+			var formatted_number = this.attempt_to_format_complete_phone_number();
+
+			// Just because a phone number doesn't have a suitable format
+			// that doesn't mean that the phone is invalid
+			// because phone number formats only format phone numbers,
+			// they don't validate them and some (rare) phone numbers
+			// are meant to stay non-formatted.
+			if (formatted_number) {
+				return formatted_number;
+			}
+
+			// For some phone number formats national prefix
+
+			// If the previously chosen phone number format
+			// didn't match the next (current) digit being input
+			// (leading digits pattern didn't match).
+			if (this.chooseAnotherFormat()) {
+				// And a more appropriate phone number format
+				// has been chosen for these `leading digits`,
+				// then format the national phone number (so far)
+				// using the newly selected phone number pattern.
+
+				// Will return `undefined` if it couldn't format
+				// the supplied national number
+				// using the selected phone number pattern.
+
+				return this.reformatNationalNumber();
+			}
+
+			// If could format the next (current) digit
+			// using the previously chosen phone number format
+			// then return the formatted number so far.
+
+			// If no new phone number format could be chosen,
+			// and couldn't format the supplied national number
+			// using the selected phone number pattern,
+			// then it will return `undefined`.
+
+			return national_number_formatted_with_previous_format;
+		}
+	}, {
+		key: 'reset',
+		value: function reset() {
+			// Input stripped of non-phone-number characters.
+			// Can only contain a possible leading '+' sign and digits.
+			this.parsedInput = '';
+
+			this.currentOutput = '';
+
+			// This contains the national prefix that has been extracted. It contains only
+			// digits without formatting.
+			this.nationalPrefix = '';
+
+			this.nationalNumber = '';
+			this.carrierCode = '';
+
+			this.resetCountriness();
+
+			this.resetFormat();
+
+			return this;
+		}
+	}, {
+		key: 'resetCountry',
+		value: function resetCountry() {
+			if (this.isInternational()) {
+				this.country = undefined;
+			} else {
+				this.country = this.defaultCountry;
+			}
+		}
+	}, {
+		key: 'resetCountriness',
+		value: function resetCountriness() {
+			this.resetCountry();
+
+			if (this.defaultCountry && !this.isInternational()) {
+				this.metadata.country(this.defaultCountry);
+				this.countryCallingCode = this.metadata.countryCallingCode();
+
+				this.initialize_phone_number_formats_for_this_country_calling_code();
+			} else {
+				this.metadata.country(undefined);
+				this.countryCallingCode = undefined;
+
+				// "Available formats" are all formats available for the country.
+				// "Matching formats" are only formats eligible for the national number being entered.
+				this.available_formats = [];
+				this.matching_formats = undefined;
+			}
+		}
+	}, {
+		key: 'resetFormat',
+		value: function resetFormat() {
+			this.chosenFormat = undefined;
+			this.template = undefined;
+			this.partially_populated_template = undefined;
+			this.last_match_position = -1;
+		}
+
+		// Format each digit of national phone number (so far)
+		// using the newly selected phone number pattern.
+
+	}, {
+		key: 'reformatNationalNumber',
+		value: function reformatNationalNumber() {
+			// Format each digit of national phone number (so far)
+			// using the selected phone number pattern.
+			return this.formatNextNationalNumberDigits(this.nationalNumber);
+		}
+	}, {
+		key: 'initialize_phone_number_formats_for_this_country_calling_code',
+		value: function initialize_phone_number_formats_for_this_country_calling_code() {
+			// Get all "eligible" phone number formats for this country
+			this.available_formats = this.metadata.formats().filter(function (format) {
+				return ELIGIBLE_FORMAT_PATTERN.test(format.internationalFormat());
+			});
+
+			this.matching_formats = undefined;
+		}
+	}, {
+		key: 'match_formats_by_leading_digits',
+		value: function match_formats_by_leading_digits() {
+			var leading_digits = this.nationalNumber;
+
+			// "leading digits" pattern list starts with a
+			// "leading digits" pattern fitting a maximum of 3 leading digits.
+			// So, after a user inputs 3 digits of a national (significant) phone number
+			// this national (significant) number can already be formatted.
+			// The next "leading digits" pattern is for 4 leading digits max,
+			// and the "leading digits" pattern after it is for 5 leading digits max, etc.
+
+			// This implementation is different from Google's
+			// in that it searches for a fitting format
+			// even if the user has entered less than
+			// `MIN_LEADING_DIGITS_LENGTH` digits of a national number.
+			// Because some leading digits patterns already match for a single first digit.
+			var index_of_leading_digits_pattern = leading_digits.length - MIN_LEADING_DIGITS_LENGTH;
+			if (index_of_leading_digits_pattern < 0) {
+				index_of_leading_digits_pattern = 0;
+			}
+
+			// "Available formats" are all formats available for the country.
+			// "Matching formats" are only formats eligible for the national number being entered.
+
+			// If at least `MIN_LEADING_DIGITS_LENGTH` digits of a national number are available
+			// then format matching starts narrowing down the list of possible formats
+			// (only previously matched formats are considered for next digits).
+			var available_formats = this.had_enough_leading_digits && this.matching_formats || this.available_formats;
+			this.had_enough_leading_digits = this.shouldFormat();
+
+			this.matching_formats = available_formats.filter(function (format) {
+				var leading_digits_patterns_count = format.leadingDigitsPatterns().length;
+
+				// If this format is not restricted to a certain
+				// leading digits pattern then it fits.
+				if (leading_digits_patterns_count === 0) {
+					return true;
+				}
+
+				var leading_digits_pattern_index = Math.min(index_of_leading_digits_pattern, leading_digits_patterns_count - 1);
+				var leading_digits_pattern = format.leadingDigitsPatterns()[leading_digits_pattern_index];
+
+				// Brackets are required for `^` to be applied to
+				// all or-ed (`|`) parts, not just the first one.
+				return new RegExp('^(' + leading_digits_pattern + ')').test(leading_digits);
+			});
+
+			// If there was a phone number format chosen
+			// and it no longer holds given the new leading digits then reset it.
+			// The test for this `if` condition is marked as:
+			// "Reset a chosen format when it no longer holds given the new leading digits".
+			// To construct a valid test case for this one can find a country
+			// in `PhoneNumberMetadata.xml` yielding one format for 3 `<leadingDigits>`
+			// and yielding another format for 4 `<leadingDigits>` (Australia in this case).
+			if (this.chosenFormat && this.matching_formats.indexOf(this.chosenFormat) === -1) {
+				this.resetFormat();
+			}
+		}
+	}, {
+		key: 'shouldFormat',
+		value: function shouldFormat() {
+			// Start matching any formats at all when the national number
+			// entered so far is at least 3 digits long,
+			// otherwise format matching would give false negatives
+			// like when the digits entered so far are `2`
+			// and the leading digits pattern is `21` –
+			// it's quite obvious in this case that the format could be the one
+			// but due to the absence of further digits it would give false negative.
+			//
+			// Presumably the limitation of "3 digits min"
+			// is imposed to exclude false matches,
+			// e.g. when there are two different formats
+			// each one fitting one or two leading digits being input.
+			// But for this case I would propose a specific `if/else` condition.
+			//
+			return this.nationalNumber.length >= MIN_LEADING_DIGITS_LENGTH;
+		}
+
+		// Check to see if there is an exact pattern match for these digits. If so, we
+		// should use this instead of any other formatting template whose
+		// `leadingDigitsPattern` also matches the input.
+
+	}, {
+		key: 'attempt_to_format_complete_phone_number',
+		value: function attempt_to_format_complete_phone_number() {
+			for (var _iterator = this.matching_formats, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+				var _ref;
+
+				if (_isArray) {
+					if (_i >= _iterator.length) break;
+					_ref = _iterator[_i++];
+				} else {
+					_i = _iterator.next();
+					if (_i.done) break;
+					_ref = _i.value;
+				}
+
+				var format = _ref;
+
+				var matcher = new RegExp('^(?:' + format.pattern() + ')$');
+
+				if (!matcher.test(this.nationalNumber)) {
+					continue;
+				}
+
+				if (!this.isFormatApplicable(format)) {
+					continue;
+				}
+
+				// To leave the formatter in a consistent state
+				this.resetFormat();
+				this.chosenFormat = format;
+
+				var formatted_number = format_national_number_using_format(this.nationalNumber, format, this.isInternational(), this.nationalPrefix !== '', this.metadata);
+
+				// Special handling for NANPA countries for AsYouType formatter.
+				// Copied from Google's `libphonenumber`:
+				// https://github.com/googlei18n/libphonenumber/blob/66986dbbe443ee8450e2b54dcd44ac384b3bbee8/java/libphonenumber/src/com/google/i18n/phonenumbers/AsYouTypeFormatter.java#L535-L573
+				if (this.nationalPrefix && this.countryCallingCode === '1') {
+					formatted_number = '1 ' + formatted_number;
+				}
+
+				// Set `this.template` and `this.partially_populated_template`.
+				//
+				// `else` case doesn't ever happen
+				// with the current metadata,
+				// but just in case.
+				//
+				/* istanbul ignore else */
+				if (this.createFormattingTemplate(format)) {
+					// Populate `this.partially_populated_template`
+					this.reformatNationalNumber();
+				} else {
+					// Prepend `+CountryCode` in case of an international phone number
+					var full_number = this.formatFullNumber(formatted_number);
+					this.template = full_number.replace(/[\d\+]/g, DIGIT_PLACEHOLDER);
+					this.partially_populated_template = full_number;
+				}
+
+				return formatted_number;
+			}
+		}
+
+		// Prepends `+CountryCode` in case of an international phone number
+
+	}, {
+		key: 'formatFullNumber',
+		value: function formatFullNumber(formattedNationalNumber) {
+			if (this.isInternational()) {
+				return '+' + this.countryCallingCode + ' ' + formattedNationalNumber;
+			}
+			return formattedNationalNumber;
+		}
+
+		// Extracts the country calling code from the beginning
+		// of the entered `national_number` (so far),
+		// and places the remaining input into the `national_number`.
+
+	}, {
+		key: 'extractCountryCallingCode',
+		value: function extractCountryCallingCode$1() {
+			var _extractCountryCallin = extractCountryCallingCode(this.parsedInput, this.defaultCountry, this.metadata.metadata),
+			    countryCallingCode = _extractCountryCallin.countryCallingCode,
+			    number = _extractCountryCallin.number;
+
+			if (!countryCallingCode) {
+				return;
+			}
+
+			this.countryCallingCode = countryCallingCode;
+
+			// Sometimes people erroneously write national prefix
+			// as part of an international number, e.g. +44 (0) ....
+			// This violates the standards for international phone numbers,
+			// so "As You Type" formatter assumes no national prefix
+			// when parsing a phone number starting from `+`.
+			// Even if it did attempt to filter-out that national prefix
+			// it would look weird for a user trying to enter a digit
+			// because from user's perspective the keyboard "wouldn't be working".
+			this.nationalNumber = number;
+
+			this.metadata.chooseCountryByCountryCallingCode(countryCallingCode);
+			return this.metadata.selectedCountry() !== undefined;
+		}
+	}, {
+		key: 'extractNationalPrefix',
+		value: function extractNationalPrefix() {
+			this.nationalPrefix = '';
+
+			if (!this.metadata.selectedCountry()) {
+				return;
+			}
+
+			// Only strip national prefixes for non-international phone numbers
+			// because national prefixes can't be present in international phone numbers.
+			// While `parseNumber()` is forgiving is such cases, `AsYouType` is not.
+
+			var _strip_national_prefi = strip_national_prefix_and_carrier_code(this.nationalNumber, this.metadata),
+			    potential_national_number = _strip_national_prefi.number,
+			    carrierCode = _strip_national_prefi.carrierCode;
+
+			if (carrierCode) {
+				this.carrierCode = carrierCode;
+			}
+
+			// We require that the NSN remaining after stripping the national prefix and
+			// carrier code be long enough to be a possible length for the region.
+			// Otherwise, we don't do the stripping, since the original number could be
+			// a valid short number.
+			if (!this.metadata.possibleLengths() || this.isPossibleNumber(this.nationalNumber) && !this.isPossibleNumber(potential_national_number)) {
+				// Verify the parsed national (significant) number for this country
+				//
+				// If the original number (before stripping national prefix) was viable,
+				// and the resultant number is not, then prefer the original phone number.
+				// This is because for some countries (e.g. Russia) the same digit could be both
+				// a national prefix and a leading digit of a valid national phone number,
+				// like `8` is the national prefix for Russia and both
+				// `8 800 555 35 35` and `800 555 35 35` are valid numbers.
+				if (matchesEntirely(this.nationalNumber, this.metadata.nationalNumberPattern()) && !matchesEntirely(potential_national_number, this.metadata.nationalNumberPattern())) {
+					return;
+				}
+			}
+
+			this.nationalPrefix = this.nationalNumber.slice(0, this.nationalNumber.length - potential_national_number.length);
+			this.nationalNumber = potential_national_number;
+
+			return this.nationalPrefix;
+		}
+	}, {
+		key: 'isPossibleNumber',
+		value: function isPossibleNumber(number) {
+			var validation_result = checkNumberLengthForType(number, undefined, this.metadata);
+			switch (validation_result) {
+				case 'IS_POSSIBLE':
+					return true;
+				// case 'IS_POSSIBLE_LOCAL_ONLY':
+				// 	return !this.isInternational()
+				default:
+					return false;
+			}
+		}
+	}, {
+		key: 'chooseAnotherFormat',
+		value: function chooseAnotherFormat() {
+			// When there are multiple available formats, the formatter uses the first
+			// format where a formatting template could be created.
+			for (var _iterator2 = this.matching_formats, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+				var _ref2;
+
+				if (_isArray2) {
+					if (_i2 >= _iterator2.length) break;
+					_ref2 = _iterator2[_i2++];
+				} else {
+					_i2 = _iterator2.next();
+					if (_i2.done) break;
+					_ref2 = _i2.value;
+				}
+
+				var format = _ref2;
+
+				// If this format is currently being used
+				// and is still possible, then stick to it.
+				if (this.chosenFormat === format) {
+					return;
+				}
+
+				// If this `format` is suitable for "as you type",
+				// then extract the template from this format
+				// and use it to format the phone number being input.
+
+				if (!this.isFormatApplicable(format)) {
+					continue;
+				}
+
+				if (!this.createFormattingTemplate(format)) {
+					continue;
+				}
+
+				this.chosenFormat = format;
+
+				// With a new formatting template, the matched position
+				// using the old template needs to be reset.
+				this.last_match_position = -1;
+
+				return true;
+			}
+
+			// No format matches the phone number,
+			// therefore set `country` to `undefined`
+			// (or to the default country).
+			this.resetCountry();
+
+			// No format matches the national phone number entered
+			this.resetFormat();
+		}
+	}, {
+		key: 'isFormatApplicable',
+		value: function isFormatApplicable(format) {
+			// If national prefix is mandatory for this phone number format
+			// and the user didn't input the national prefix
+			// then this phone number format isn't suitable.
+			if (!this.isInternational() && !this.nationalPrefix && format.nationalPrefixIsMandatoryWhenFormatting()) {
+				return false;
+			}
+			// If this format doesn't use national prefix
+			// but the user did input national prefix
+			// then this phone number format isn't suitable.
+			if (this.nationalPrefix && !format.usesNationalPrefix() && !format.nationalPrefixIsOptionalWhenFormatting()) {
+				return false;
+			}
+			return true;
+		}
+	}, {
+		key: 'createFormattingTemplate',
+		value: function createFormattingTemplate(format) {
+			// The formatter doesn't format numbers when numberPattern contains '|', e.g.
+			// (20|3)\d{4}. In those cases we quickly return.
+			// (Though there's no such format in current metadata)
+			/* istanbul ignore if */
+			if ( format.pattern().indexOf('|') >= 0) {
+				return;
+			}
+
+			// Get formatting template for this phone number format
+			var template = this.getTemplateForNumberFormatPattern(format);
+
+			// If the national number entered is too long
+			// for any phone number format, then abort.
+			if (!template) {
+				return;
+			}
+
+			// This one is for national number only
+			this.partially_populated_template = template;
+
+			// For convenience, the public `.template` property
+			// contains the whole international number
+			// if the phone number being input is international:
+			// 'x' for the '+' sign, 'x'es for the country phone code,
+			// a spacebar and then the template for the formatted national number.
+			if (this.isInternational()) {
+				this.template = DIGIT_PLACEHOLDER + repeat(DIGIT_PLACEHOLDER, this.countryCallingCode.length) + ' ' + template;
+			}
+			// For local numbers, replace national prefix
+			// with a digit placeholder.
+			else {
+					this.template = template.replace(/\d/g, DIGIT_PLACEHOLDER);
+				}
+
+			// This one is for the full phone number
+			return this.template;
+		}
+
+		// Generates formatting template for a phone number format
+
+	}, {
+		key: 'getTemplateForNumberFormatPattern',
+		value: function getTemplateForNumberFormatPattern(format) {
+			// A very smart trick by the guys at Google
+			var number_pattern = format.pattern();
+
+			/* istanbul ignore else */
+			{
+				number_pattern = number_pattern
+				// Replace anything in the form of [..] with \d
+				.replace(CREATE_CHARACTER_CLASS_PATTERN(), '\\d')
+				// Replace any standalone digit (not the one in `{}`) with \d
+				.replace(CREATE_STANDALONE_DIGIT_PATTERN(), '\\d');
+			}
+
+			// This match will always succeed,
+			// because the "longest dummy phone number"
+			// has enough length to accomodate any possible
+			// national phone number format pattern.
+			var dummy_phone_number_matching_format_pattern = LONGEST_DUMMY_PHONE_NUMBER.match(number_pattern)[0];
+
+			// If the national number entered is too long
+			// for any phone number format, then abort.
+			if (this.nationalNumber.length > dummy_phone_number_matching_format_pattern.length) {
+				return;
+			}
+
+			// Prepare the phone number format
+			var number_format = this.getFormatFormat(format);
+
+			// Get a formatting template which can be used to efficiently format
+			// a partial number where digits are added one by one.
+
+			// Below `strict_pattern` is used for the
+			// regular expression (with `^` and `$`).
+			// This wasn't originally in Google's `libphonenumber`
+			// and I guess they don't really need it
+			// because they're not using "templates" to format phone numbers
+			// but I added `strict_pattern` after encountering
+			// South Korean phone number formatting bug.
+			//
+			// Non-strict regular expression bug demonstration:
+			//
+			// this.nationalNumber : `111111111` (9 digits)
+			//
+			// number_pattern : (\d{2})(\d{3,4})(\d{4})
+			// number_format : `$1 $2 $3`
+			// dummy_phone_number_matching_format_pattern : `9999999999` (10 digits)
+			//
+			// '9999999999'.replace(new RegExp(/(\d{2})(\d{3,4})(\d{4})/g), '$1 $2 $3') = "99 9999 9999"
+			//
+			// template : xx xxxx xxxx
+			//
+			// But the correct template in this case is `xx xxx xxxx`.
+			// The template was generated incorrectly because of the
+			// `{3,4}` variability in the `number_pattern`.
+			//
+			// The fix is, if `this.nationalNumber` has already sufficient length
+			// to satisfy the `number_pattern` completely then `this.nationalNumber` is used
+			// instead of `dummy_phone_number_matching_format_pattern`.
+
+			var strict_pattern = new RegExp('^' + number_pattern + '$');
+			var national_number_dummy_digits = this.nationalNumber.replace(/\d/g, DUMMY_DIGIT);
+
+			// If `this.nationalNumber` has already sufficient length
+			// to satisfy the `number_pattern` completely then use it
+			// instead of `dummy_phone_number_matching_format_pattern`.
+			if (strict_pattern.test(national_number_dummy_digits)) {
+				dummy_phone_number_matching_format_pattern = national_number_dummy_digits;
+			}
+
+			// Generate formatting template for this phone number format
+			return dummy_phone_number_matching_format_pattern
+			// Format the dummy phone number according to the format
+			.replace(new RegExp(number_pattern), number_format)
+			// Replace each dummy digit with a DIGIT_PLACEHOLDER
+			.replace(new RegExp(DUMMY_DIGIT, 'g'), DIGIT_PLACEHOLDER);
+		}
+	}, {
+		key: 'formatNextNationalNumberDigits',
+		value: function formatNextNationalNumberDigits(digits) {
+			// Using `.split('')` to iterate through a string here
+			// to avoid requiring `Symbol.iterator` polyfill.
+			// `.split('')` is generally not safe for Unicode,
+			// but in this particular case for `digits` it is safe.
+			// for (const digit of digits)
+			for (var _iterator3 = digits.split(''), _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
+				var _ref3;
+
+				if (_isArray3) {
+					if (_i3 >= _iterator3.length) break;
+					_ref3 = _iterator3[_i3++];
+				} else {
+					_i3 = _iterator3.next();
+					if (_i3.done) break;
+					_ref3 = _i3.value;
+				}
+
+				var digit = _ref3;
+
+				// If there is room for more digits in current `template`,
+				// then set the next digit in the `template`,
+				// and return the formatted digits so far.
+
+				// If more digits are entered than the current format could handle
+				if (this.partially_populated_template.slice(this.last_match_position + 1).search(DIGIT_PLACEHOLDER_MATCHER) === -1) {
+					// Reset the current format,
+					// so that the new format will be chosen
+					// in a subsequent `this.chooseAnotherFormat()` call
+					// later in code.
+					this.chosenFormat = undefined;
+					this.template = undefined;
+					this.partially_populated_template = undefined;
+					return;
+				}
+
+				this.last_match_position = this.partially_populated_template.search(DIGIT_PLACEHOLDER_MATCHER);
+				this.partially_populated_template = this.partially_populated_template.replace(DIGIT_PLACEHOLDER_MATCHER, digit);
+			}
+
+			// Return the formatted phone number so far.
+			return cut_stripping_dangling_braces(this.partially_populated_template, this.last_match_position + 1);
+
+			// The old way which was good for `input-format` but is not so good
+			// for `react-phone-number-input`'s default input (`InputBasic`).
+			// return close_dangling_braces(this.partially_populated_template, this.last_match_position + 1)
+			// 	.replace(DIGIT_PLACEHOLDER_MATCHER_GLOBAL, ' ')
+		}
+	}, {
+		key: 'isInternational',
+		value: function isInternational() {
+			return this.parsedInput && this.parsedInput[0] === '+';
+		}
+	}, {
+		key: 'getFormatFormat',
+		value: function getFormatFormat(format) {
+			if (this.isInternational()) {
+				return changeInternationalFormatStyle(format.internationalFormat());
+			}
+
+			// If national prefix formatting rule is set
+			// for this phone number format
+			if (format.nationalPrefixFormattingRule()) {
+				// If the user did input the national prefix
+				// (or if the national prefix formatting rule does not require national prefix)
+				// then maybe make it part of the phone number template
+				if (this.nationalPrefix || !format.usesNationalPrefix()) {
+					// Make the national prefix part of the phone number template
+					return format.format().replace(FIRST_GROUP_PATTERN, format.nationalPrefixFormattingRule());
+				}
+			}
+			// Special handling for NANPA countries for AsYouType formatter.
+			// Copied from Google's `libphonenumber`:
+			// https://github.com/googlei18n/libphonenumber/blob/66986dbbe443ee8450e2b54dcd44ac384b3bbee8/java/libphonenumber/src/com/google/i18n/phonenumbers/AsYouTypeFormatter.java#L535-L573
+			else if (this.countryCallingCode === '1' && this.nationalPrefix === '1') {
+					return '1 ' + format.format();
+				}
+
+			return format.format();
+		}
+
+		// Determines the country of the phone number
+		// entered so far based on the country phone code
+		// and the national phone number.
+
+	}, {
+		key: 'determineTheCountry',
+		value: function determineTheCountry() {
+			this.country = find_country_code(this.countryCallingCode, this.nationalNumber, this.metadata);
+		}
+
+		/**
+   * Returns an instance of `PhoneNumber` class.
+   * Will return `undefined` if no national (significant) number
+   * digits have been entered so far, or if no `defaultCountry` has been
+   * set and the user enters a phone number not in international format.
+   */
+
+	}, {
+		key: 'getNumber',
+		value: function getNumber() {
+			if (!this.countryCallingCode || !this.nationalNumber) {
+				return undefined;
+			}
+			var phoneNumber = new PhoneNumber(this.country || this.countryCallingCode, this.nationalNumber, this.metadata.metadata);
+			if (this.carrierCode) {
+				phoneNumber.carrierCode = this.carrierCode;
+			}
+			// Phone number extensions are not supported by "As You Type" formatter.
+			return phoneNumber;
+		}
+	}, {
+		key: 'getNationalNumber',
+		value: function getNationalNumber() {
+			return this.nationalNumber;
+		}
+	}, {
+		key: 'getTemplate',
+		value: function getTemplate() {
+			if (!this.template) {
+				return;
+			}
+
+			var index = -1;
+
+			var i = 0;
+			while (i < this.parsedInput.length) {
+				index = this.template.indexOf(DIGIT_PLACEHOLDER, index + 1);
+				i++;
+			}
+
+			return cut_stripping_dangling_braces(this.template, index + 1);
+		}
+	}]);
+
+	return AsYouType;
+}();
+
+
+function strip_dangling_braces(string) {
+	var dangling_braces = [];
+	var i = 0;
+	while (i < string.length) {
+		if (string[i] === '(') {
+			dangling_braces.push(i);
+		} else if (string[i] === ')') {
+			dangling_braces.pop();
+		}
+		i++;
+	}
+
+	var start = 0;
+	var cleared_string = '';
+	dangling_braces.push(string.length);
+	for (var _iterator4 = dangling_braces, _isArray4 = Array.isArray(_iterator4), _i4 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
+		var _ref4;
+
+		if (_isArray4) {
+			if (_i4 >= _iterator4.length) break;
+			_ref4 = _iterator4[_i4++];
+		} else {
+			_i4 = _iterator4.next();
+			if (_i4.done) break;
+			_ref4 = _i4.value;
+		}
+
+		var index = _ref4;
+
+		cleared_string += string.slice(start, index);
+		start = index + 1;
+	}
+
+	return cleared_string;
+}
+
+function cut_stripping_dangling_braces(string, cut_before_index) {
+	if (string[cut_before_index] === ')') {
+		cut_before_index++;
+	}
+	return strip_dangling_braces(string.slice(0, cut_before_index));
+}
+
+// Repeats a string (or a symbol) N times.
+// http://stackoverflow.com/questions/202605/repeat-string-javascript
+function repeat(string, times) {
+	if (times < 1) {
+		return '';
+	}
+
+	var result = '';
+
+	while (times > 1) {
+		if (times & 1) {
+			result += string;
+		}
+
+		times >>= 1;
+		string += string;
+	}
+
+	return result + string;
+}
+
+function getExampleNumber(country, examples, metadata) {
+	if (examples[country]) {
+		return new PhoneNumber(country, examples[country], metadata);
+	}
+}
+
+/**
+ * Formats a (possibly incomplete) phone number.
+ * The phone number can be either in E.164 format
+ * or in a form of national number digits.
+ * @param {string} value - A possibly incomplete phone number. Either in E.164 format or in a form of national number digits.
+ * @param {string?} country - Two-letter ("ISO 3166-1 alpha-2") country code.
+ * @return {string} Formatted (possibly incomplete) phone number.
+ */
+function formatIncompletePhoneNumber(value, country, metadata) {
+  if (!metadata) {
+    metadata = country;
+    country = undefined;
+  }
+  return new AsYouType(country, metadata).input(value);
+}
+
+
+
+var core = /*#__PURE__*/Object.freeze({
+  ParseError: ParseError,
+  parsePhoneNumber: parsePhoneNumber$1,
+  parsePhoneNumberFromString: parsePhoneNumberFromString$1,
+  findNumbers: findNumbers$1,
+  searchNumbers: searchNumbers,
+  PhoneNumberMatcher: PhoneNumberMatcher,
+  AsYouType: AsYouType,
+  Metadata: Metadata,
+  isSupportedCountry: isSupportedCountry,
+  getCountryCallingCode: getCountryCallingCode,
+  getExtPrefix: getExtPrefix,
+  getExampleNumber: getExampleNumber,
+  formatIncompletePhoneNumber: formatIncompletePhoneNumber,
+  parseIncompletePhoneNumber: parseIncompletePhoneNumber,
+  parsePhoneNumberCharacter: parsePhoneNumberCharacter,
+  parseDigits: parseDigits,
+  parseRFC3966: parseRFC3966,
+  formatRFC3966: formatRFC3966
+});
+
+var InputBasic = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+exports.createInput = createInput;
+
+
+
+var _react2 = _interopRequireDefault(e__default);
+
+
+
+var _propTypes2 = _interopRequireDefault(PropTypes$2);
+
+
+
+
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// `PureComponent` is only available in React >= 15.3.0.
+var PureComponent = _react2.default.PureComponent || _react2.default.Component;
+
+function createInput(defaultMetadata) {
+	/**
+  * `InputBasic`'s caret is not as "smart" as the default `inputComponent`'s
+  * but still works good enough. When erasing or inserting digits in the middle
+  * of a phone number the caret usually jumps to the end: this is the expected
+  * behaviour and it's the workaround for the [Samsung Galaxy smart caret positioning bug](https://github.com/catamphetamine/react-phone-number-input/issues/75).
+  */
+	var InputBasic = function (_PureComponent) {
+		_inherits(InputBasic, _PureComponent);
+
+		function InputBasic() {
+			var _ref;
+
+			var _temp, _this, _ret;
+
+			_classCallCheck(this, InputBasic);
+
+			for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+				args[_key] = arguments[_key];
+			}
+
+			return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = InputBasic.__proto__ || Object.getPrototypeOf(InputBasic)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _this.onChange = function (event) {
+				var onChange = _this.props.onChange;
+				var value = _this.state.value;
+
+
+				var newValue = (0, core.parseIncompletePhoneNumber)(event.target.value);
+
+				// By default, if a value is something like `"(123)"`
+				// then Backspace would only erase the rightmost brace
+				// becoming something like `"(123"`
+				// which would give the same `"123"` value
+				// which would then be formatted back to `"(123)"`
+				// and so a user wouldn't be able to erase the phone number.
+				// Working around this issue with this simple hack.
+				if (newValue === value) {
+					if (_this.format(newValue).indexOf(event.target.value) === 0) {
+						// Trim the last digit (or plus sign).
+						newValue = newValue.slice(0, -1);
+					}
+				}
+
+				// Prevents React from resetting the `<input/>` caret position.
+				// https://github.com/reactjs/react-redux/issues/525#issuecomment-254852039
+				// https://github.com/facebook/react/issues/955
+				_this.setState({ value: newValue }, function () {
+					return onChange(newValue);
+				});
+			}, _this.onBlur = function (event) {
+				var onBlur = _this.props.onBlur;
+				var value = _this.state.value;
+
+				if (onBlur) {
+					// `event` is React's `SyntheticEvent`.
+					// Its `.value` is read-only therefore cloning it.
+					var _event = _extends({}, event, {
+						target: _extends({}, event.target, {
+							value: value
+						})
+						// Workaround for `redux-form` event detection.
+						// https://github.com/erikras/redux-form/blob/v5/src/events/isEvent.js
+					});_event.stopPropagation = event.stopPropagation;
+					_event.preventDefault = event.preventDefault;
+					return onBlur(_event);
+				}
+			}, _this.focus = function () {
+				return _this.input.focus();
+			}, _this.storeInput = function (ref) {
+				return _this.input = ref;
+			}, _temp), _possibleConstructorReturn(_this, _ret);
+		}
+
+		_createClass(InputBasic, [{
+			key: 'format',
+			value: function format(value) {
+				var _props = this.props,
+				    country = _props.country,
+				    metadata = _props.metadata;
+
+				return (0, core.formatIncompletePhoneNumber)(value, country, metadata);
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var _props2 = this.props,
+				    onChange = _props2.onChange,
+				    onFocus = _props2.onFocus,
+				    country = _props2.country,
+				    metadata = _props2.metadata,
+				    Input = _props2.inputComponent,
+				    rest = _objectWithoutProperties(_props2, ['onChange', 'onFocus', 'country', 'metadata', 'inputComponent']);
+
+				// Prevents React from resetting the `<input/>` caret position.
+				// https://github.com/reactjs/react-redux/issues/525#issuecomment-254852039
+				// https://github.com/facebook/react/issues/955
+
+
+				var value = this.state.value;
+
+				// Deprecated. Should be removed in a future major version release.
+				// `type="tel"` and `autoComplete="tel"` properties are here
+				// just for the "Without country select" component exported from
+				// `react-phone-number-input/basic-input` subpackage.
+				// These two properties will be overwritten by `<PhoneInput/>` properties
+				// when not used as a "Without country select" component.
+
+				return _react2.default.createElement(Input, _extends({
+					type: 'tel',
+					autoComplete: 'tel'
+				}, rest, {
+					ref: this.storeInput,
+					value: this.format(value),
+					onChange: this.onChange,
+					onFocus: onFocus,
+					onBlur: this.onBlur }));
+			}
+		}], [{
+			key: 'getDerivedStateFromProps',
+
+			// Prevents React from resetting the `<input/>` caret position.
+			// https://github.com/reactjs/react-redux/issues/525#issuecomment-254852039
+			// https://github.com/facebook/react/issues/955
+			value: function getDerivedStateFromProps(_ref2) {
+				var value = _ref2.value;
+
+				return { value: value };
+			}
+
+			// This `onBlur` interceptor is a workaround for `redux-form`'s bug
+			// so that it gets the up-to-date `value` in its `onBlur` handler.
+			// Without this fix it just gets the actual (raw) input field textual value.
+			// E.g. `+7 800 555 35 35` instead of `+78005553535`.
+			//
+			// New `value` is taken from `event` in `redux-form`'s `handleBlur()`.
+			// https://github.com/erikras/redux-form/blob/785edf8aac3adc84aba2ab6898a4aa8c48687750/src/ConnectedField.js#L168
+			// `redux-form` shouldn't have taken the new `value` from `event`.
+			//
+			// A developer is not supposed to pass this `onBlur` property manually.
+			// Instead, `redux-form` passes `onBlur` to this component automatically
+			// and this component patches that `onBlur` handler (a hacky way but works).
+			//
+
+		}]);
+
+		return InputBasic;
+	}(PureComponent);
+
+	InputBasic.propTypes = {
+		// The parsed phone number.
+		// "Parsed" not in a sense of "E.164"
+		// but rather in a sense of "having only
+		// digits and possibly a leading plus character".
+		// Examples: `""`, `"+"`, `"+123"`, `"123"`.
+		value: _propTypes2.default.string.isRequired,
+
+		// Updates the `value`.
+		onChange: _propTypes2.default.func.isRequired,
+
+		// Toggles the `--focus` CSS class.
+		// https://github.com/catamphetamine/react-phone-number-input/issues/189
+		onFocus: _propTypes2.default.func,
+
+		// `onBlur` workaround for `redux-form`'s bug.
+		onBlur: _propTypes2.default.func,
+
+		// A two-letter country code for formatting `value`
+		// as a national phone number (e.g. `(800) 555 35 35`).
+		// E.g. "US", "RU", etc.
+		// If no `country` is passed then `value`
+		// is formatted as an international phone number.
+		// (e.g. `+7 800 555 35 35`)
+		country: _propTypes2.default.string,
+
+		// `libphonenumber-js` metadata.
+		metadata: _propTypes2.default.object.isRequired,
+
+		// The `<input/>` component.
+		inputComponent: _propTypes2.default.elementType.isRequired
+	};
+
+	InputBasic.defaultProps = {
+		metadata: defaultMetadata,
+		inputComponent: 'input'
+	};
+
+	return (0, reactLifecyclesCompat_es.polyfill)(InputBasic);
+}
+
+exports.default = createInput();
+
+});
+
+unwrapExports(InputBasic);
+var InputBasic_1 = InputBasic.createInput;
+
+var countries$1 = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.getCountryCodes = getCountryCodes;
+exports.getCountryCodeForFlag = getCountryCodeForFlag;
+// See the table of officially assigned ISO 3166-1 alpha-2 country codes:
+// https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Current_codes
+var SKIP_COUNTRIES = exports.SKIP_COUNTRIES = [
+// "001" means "Non-Geographical Entity" ("No country", "International").
+'001'];
+
+function getCountryCodes(labels) {
+	// Includes all country codes (excluding "ZZ" for "International").
+	//
+	// From ISO 3166-1:2006(E/F):
+	//
+	// 8.1.3   User-assigned code elements
+	//
+	// If users need code elements to represent country names not included
+	// in this part of ISO 3166, the series of letters AA, QM to QZ, XA
+	// to XZ, and ZZ, and the series AAA to AAZ, QMA to QZZ, XAA to XZZ,
+	// and ZZA to ZZZ respectively, and the series of numbers 900 to 999
+	// are available. These users should inform the ISO 3166/MA of such use.
+	//
+	return Object.keys(labels).filter(function (key) {
+		return key.length === 2 && key.toUpperCase() === key && key !== 'ZZ' && SKIP_COUNTRIES.indexOf(key) < 0;
+	});
+}
+
+function getCountryCodeForFlag(country) {
+	switch (country) {
+		// "Ascension Island".
+		// The flag is missing for it:
+		// https://lipis.github.io/flag-icon-css/flags/4x3/ac.svg
+		// GitHub issue:
+		// https://github.com/lipis/flag-icon-css/issues/537
+		// Using "SH" flag as a temporary substitute
+		// because previously "AC" and "TA" were parts of "SH".
+		case 'AC':
+			return 'SH';
+
+		// "Tristan da Cunha".
+		// The flag is missing for it:
+		// https://lipis.github.io/flag-icon-css/flags/4x3/ta.svg
+		// GitHub issue:
+		// https://github.com/lipis/flag-icon-css/issues/537
+		// Using "SH" flag as a temporary substitute
+		// because previously "AC" and "TA" were parts of "SH".
+		case 'TA':
+			return 'SH';
+
+		default:
+			return country;
+	}
+}
+
+});
+
+unwrapExports(countries$1);
+var countries_1 = countries$1.getCountryCodes;
+var countries_2 = countries$1.getCountryCodeForFlag;
+var countries_3 = countries$1.SKIP_COUNTRIES;
+
+var Flag = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+
+
+var _react2 = _interopRequireDefault(e__default);
+
+
+
+var _propTypes2 = _interopRequireDefault(PropTypes$2);
+
+
+
+var _classnames2 = _interopRequireDefault(classnames);
+
+
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Default country flag icon.
+// `<img/>` is wrapped in a `<div/>` to prevent SVGs from exploding in size in IE 11.
+// https://github.com/catamphetamine/react-phone-number-input/issues/111
+var FlagComponent = function FlagComponent(_ref) {
+	var country = _ref.country,
+	    flags = _ref.flags,
+	    flagsPath = _ref.flagsPath,
+	    className = _ref.className;
+
+	if (flags && flags[country]) {
+		return flags[country]();
+	}
+	return _react2.default.createElement('img', {
+		alt: country,
+		className: 'react-phone-number-input__icon-image',
+		src: '' + flagsPath + (0, countries$1.getCountryCodeForFlag)(country).toLowerCase() + '.svg' });
+};
+
+FlagComponent.propTypes = {
+	// The country to be selected by default.
+	// Two-letter country code ("ISO 3166-1 alpha-2").
+	country: _propTypes2.default.string.isRequired,
+
+	// Country flag icon components.
+	// By default flag icons are inserted as `<img/>`s
+	// with their `src` pointed to `flag-icon-css` github repo.
+	// There might be cases (e.g. an offline application)
+	// where having a large (3 megabyte) `<svg/>` flags
+	// bundle is more appropriate.
+	// `import flags from 'react-phone-number-input/flags'`.
+	flags: _propTypes2.default.objectOf(_propTypes2.default.elementType),
+
+	// A base URL path for national flag SVG icons.
+	// By default it uses the ones from `flag-icon-css` github repo.
+	flagsPath: _propTypes2.default.string.isRequired
+};
+
+exports.default = FlagComponent;
+
+});
+
+unwrapExports(Flag);
+
+var inputControl = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.getPreSelectedCountry = getPreSelectedCountry;
+exports.getCountrySelectOptions = getCountrySelectOptions;
+exports.parsePhoneNumber = parsePhoneNumber;
+exports.generateNationalNumberDigits = generateNationalNumberDigits;
+exports.migrateParsedInputForNewCountry = migrateParsedInputForNewCountry;
+exports.e164 = e164;
+exports.trimNumber = trimNumber;
+exports.getCountryForPartialE164Number = getCountryForPartialE164Number;
+exports.parseInput = parseInput;
+exports.get_country_from_possibly_incomplete_international_phone_number = get_country_from_possibly_incomplete_international_phone_number;
+exports.compare_strings = compare_strings;
+exports.strip_country_calling_code = strip_country_calling_code;
+exports.get_national_significant_number_part = get_national_significant_number_part;
+exports.could_number_belong_to_country = could_number_belong_to_country;
+
+
+
+/**
+ * Decides which country should be pre-selected
+ * when the phone number input component is first mounted.
+ * @param  {object?} phoneNumber - An instance of `PhoneNumber` class.
+ * @param  {string?} country - Pre-defined country (two-letter code).
+ * @param  {string[]?} countries - A list of countries available.
+ * @param  {boolean} includeInternationalOption - Whether "International" country option is available.
+ * @param  {object} metadata - `libphonenumber-js` metadata
+ * @return {string?}
+ */
+function getPreSelectedCountry(phoneNumber, country, countries, includeInternationalOption, metadata) {
+	// If can get country from E.164 phone number
+	// then it overrides the `country` passed (or not passed).
+	if (phoneNumber && phoneNumber.country) {
+		// `country` will be left `undefined` in case of non-detection.
+		country = phoneNumber.country;
+	}
+
+	// Only pre-select a country if it's in the available `countries` list.
+	if (countries && countries.indexOf(country) < 0) {
+		country = undefined;
+	}
+
+	// If there will be no "International" option
+	// then some `country` must be selected.
+	// It will still be the wrong country though.
+	// But still country `<select/>` can't be left in a broken state.
+	if (!country && !includeInternationalOption && countries && countries.length > 0) {
+		country = countries[0];
+	}
+
+	return country;
+}
+
+/**
+ * Generates a sorted list of country `<select/>` options.
+ * @param  {string[]} countries - A list of two-letter ("ISO 3166-1 alpha-2") country codes.
+ * @param  {object} labels - Custom country labels. E.g. `{ RU: 'Россия', US: 'США', ... }`.
+ * @param  {boolean} includeInternationalOption - Whether should include "International" option at the top of the list.
+ * @return {object[]} A list of objects having shape `{ value : string, label : string }`.
+ */
+function getCountrySelectOptions(countries, country_names, includeInternationalOption) {
+	// Generates a `<Select/>` option for each country.
+	var country_select_options = countries.map(function (country) {
+		return {
+			value: country,
+			label: country_names[country]
+		};
+	});
+
+	// Sort the list of countries alphabetically.
+	country_select_options.sort(function (a, b) {
+		return compare_strings(a.label, b.label);
+	});
+
+	// Add the "International" option to the country list (if suitable)
+	if (includeInternationalOption) {
+		country_select_options.unshift({
+			label: country_names.ZZ
+		});
+	}
+
+	return country_select_options;
+}
+
+/**
+ * Parses a E.164 phone number to an instance of `PhoneNumber` class.
+ * @param {string?} value = E.164 phone number.
+ * @param  {object} metadata - `libphonenumber-js` metadata
+ * @example
+ * parsePhoneNumber('+78005553535')
+ */
+function parsePhoneNumber(value, metadata) {
+	return (0, core.parsePhoneNumberFromString)(value || '', metadata);
+}
+
+/**
+ * Generates national number digits for a parsed phone.
+ * May prepend national prefix.
+ * The phone number must be a complete and valid phone number.
+ * @param  {object} phoneNumber - An instance of `PhoneNumber` class.
+ * @param  {object} metadata - `libphonenumber-js` metadata
+ * @return {string}
+ * @example
+ * getNationalNumberDigits({ country: 'RU', phone: '8005553535' })
+ * // returns '88005553535'
+ */
+function generateNationalNumberDigits(phoneNumber) {
+	return phoneNumber.formatNational().replace(/\D/g, '');
+}
+
+/**
+ * Migrates parsed `<input/>` `value` for the newly selected `country`.
+ * @param {string?} value - The `value` parsed from phone number `<input/>` (it's the `parsed_input` state property, not the `value` property).
+ * @param {string?} previousCountry - Previously selected country.
+ * @param {string?} newCountry - Newly selected country. Can't be same as previously selected country.
+ * @param {object} metadata - `libphonenumber-js` metadata.
+ * @param {boolean} preferNationalFormat - whether should attempt to convert from international to national number for the new country.
+ * @return {string?}
+ */
+function migrateParsedInputForNewCountry(value, previous_country, new_country, metadata, preferNationalFormat) {
+	// If `parsed_input` is empty
+	// then no need to migrate anything.
+	if (!value) {
+		return value;
+	}
+
+	// If switching to some country.
+	// (from "International" or another country)
+	// If switching from "International" then `value` starts with a `+`.
+	// Otherwise it may or may not start with a `+`.
+	if (new_country) {
+		// If the phone number was entered in international format
+		// then migrate it to the newly selected country.
+		// The phone number may be incomplete.
+		// The phone number entered not necessarily starts with
+		// the previously selected country phone prefix.
+		if (value[0] === '+') {
+			// If the international phone number is for the new country
+			// then convert it to local if required.
+			if (preferNationalFormat) {
+				// // If a phone number is being input in international form
+				// // and the country can already be derived from it,
+				// // and if it is the new country, then format as a national number.
+				// const derived_country = get_country_from_possibly_incomplete_international_phone_number(value, metadata)
+				// if (derived_country === new_country)
+				// {
+				// 	return strip_country_calling_code(value, derived_country, metadata)
+				// }
+
+				// Simply strip the leading `+` character
+				// therefore simply converting all digits into a "local" phone number.
+				// https://github.com/catamphetamine/react-phone-number-input/issues/287
+				return value.slice(1);
+			}
+
+			// If the international phone number already contains
+			// any country calling code then trim the country calling code part.
+			// (that could also be the newly selected country phone code prefix as well)
+			// `value` doesn't neccessarily belong to `previous_country`.
+			// (e.g. if a user enters an international number
+			//  not belonging to any of the reduced `countries` list).
+			value = strip_country_calling_code(value, previous_country, metadata);
+
+			// Prepend country calling code prefix
+			// for the newly selected country.
+			return e164(value, new_country, metadata) || '+' + (0, core.getCountryCallingCode)(new_country, metadata);
+		}
+	}
+	// If switching to "International" from a country.
+	else {
+			// If the phone number was entered in national format.
+			if (value[0] !== '+') {
+				// Format the national phone number as an international one.
+				// The phone number entered not necessarily even starts with
+				// the previously selected country phone prefix.
+				// Even if the phone number belongs to whole another country
+				// it will still be parsed into some national phone number.
+				return e164(value, previous_country, metadata) || '';
+			}
+		}
+
+	return value;
+}
+
+/**
+ * Converts phone number digits to a (possibly incomplete) E.164 phone number.
+ * @param  {string?} number - A possibly incomplete phone number digits string. Can be a possibly incomplete E.164 phone number.
+ * @param  {string?} country
+ * @param  {[object} metadata - `libphonenumber-js` metadata.
+ * @return {string?}
+ */
+function e164(number, country, metadata) {
+	if (!number) {
+		return;
+	}
+
+	// If the phone number is being input in international format.
+	if (number[0] === '+') {
+		// If it's just the `+` sign then return nothing.
+		if (number === '+') {
+			return;
+		}
+
+		// If there are any digits then the `value` is returned as is.
+		return number;
+	}
+
+	// For non-international phone numbers
+	// an accompanying country code is required.
+	if (!country) {
+		return;
+	}
+
+	var partial_national_significant_number = get_national_significant_number_part(number, country, metadata);
+
+	if (partial_national_significant_number) {
+		return '+' + (0, core.getCountryCallingCode)(country, metadata) + partial_national_significant_number;
+	}
+}
+
+/**
+ * Trims phone number digits if they exceed the maximum possible length
+ * for a national (significant) number for the country.
+ * @param  {string} number - A possibly incomplete phone number digits string. Can be a possibly incomplete E.164 phone number.
+ * @param  {string} country
+ * @param  {object} metadata - `libphonenumber-js` metadata.
+ * @return {string} Can be empty.
+ */
+function trimNumber(number, country, metadata) {
+	var nationalSignificantNumberPart = get_national_significant_number_part(number, country, metadata);
+	var overflowDigitsCount = nationalSignificantNumberPart.length - getMaxNumberLength(country, metadata);
+	if (overflowDigitsCount > 0) {
+		return number.slice(0, number.length - overflowDigitsCount);
+	}
+	return number;
+}
+
+function getMaxNumberLength(country, metadata) {
+	// Get "possible lengths" for a phone number of the country.
+	metadata = new core.Metadata(metadata);
+	metadata.country(country);
+	// Return the last "possible length".
+	return metadata.possibleLengths()[metadata.possibleLengths().length - 1];
+}
+
+// If the phone number being input is an international one
+// then tries to derive the country from the phone number.
+// (regardless of whether there's any country currently selected)
+/**
+ * @param {string} parsedInput - A possibly incomplete E.164 phone number.
+ * @param {string?} country - Currently selected country.
+ * @param {string[]?} countries - A list of available countries. If not passed then "all countries" are assumed.
+ * @param {boolean} includeInternationalOption - Whether "International" country option is available.
+ * @param  {object} metadata - `libphonenumber-js` metadata.
+ * @return {string?}
+ */
+function getCountryForPartialE164Number(partialE164Number, country, countries, includeInternationalOption, metadata) {
+	if (partialE164Number === '+') {
+		// Don't change the currently selected country yet.
+		return country;
+	}
+
+	var derived_country = get_country_from_possibly_incomplete_international_phone_number(partialE164Number, metadata);
+
+	// If a phone number is being input in international form
+	// and the country can already be derived from it,
+	// then select that country.
+	if (derived_country && (!countries || countries.indexOf(derived_country) >= 0)) {
+		return derived_country;
+	}
+	// If "International" country option has not been disabled
+	// and the international phone number entered doesn't correspond
+	// to the currently selected country then reset the currently selected country.
+	else if (country && includeInternationalOption && !could_number_belong_to_country(partialE164Number, country, metadata)) {
+			return undefined;
+		}
+
+	// Don't change the currently selected country.
+	return country;
+}
+
+/**
+ * Parses `<input/>` value. Derives `country` from `input`. Derives an E.164 `value`.
+ * @param  {string?} input — Parsed `<input/>` value. Examples: `""`, `"+"`, `"+123"`, `"123"`.
+ * @param  {string?} prevInput — Previous parsed `<input/>` value. Examples: `""`, `"+"`, `"+123"`, `"123"`.
+ * @param  {string?} country - Currently selected country.
+ * @param  {string[]?} countries - A list of available countries. If not passed then "all countries" are assumed.
+ * @param  {boolean} includeInternationalOption - Whether "International" country option is available.
+ * @param  {boolean} limitMaxLength — Whether to enable limiting phone number max length.
+ * @param  {object} metadata - `libphonenumber-js` metadata.
+ * @return {object} An object of shape `{ input, country, value }`.
+ */
+function parseInput(input, prevInput, country, countries, includeInternationalOption, limitMaxLength, metadata) {
+	// Trim the input to not exceed the maximum possible number length.
+	if (input && country && limitMaxLength) {
+		input = trimNumber(input, country, metadata);
+	}
+
+	// If this `onChange()` event was triggered
+	// as a result of selecting "International" country
+	// then force-prepend a `+` sign if the phone number
+	// `<input/>` value isn't in international format.
+	if (input && !country && input[0] !== '+') {
+		input = '+' + input;
+	}
+
+	// If the previously entered phone number
+	// has been entered in international format
+	// and the user decides to erase it,
+	// then also reset the `country`
+	// because it was most likely automatically selected
+	// while the user was typing in the phone number
+	// in international format.
+	// This fixes the issue when a user is presented
+	// with a phone number input with no country selected
+	// and then types in their local phone number
+	// then discovers that the input's messed up
+	// (a `+` has been prepended at the start of their input
+	//  and a random country has been selected),
+	// decides to undo it all by erasing everything
+	// and then types in their local phone number again
+	// resulting in a seemingly correct phone number
+	// but in reality that phone number has incorrect country.
+	// https://github.com/catamphetamine/react-phone-number-input/issues/273
+	if (!input && prevInput && prevInput[0] === '+') {
+		country = undefined;
+	}
+	// Also resets such "randomly" selected country
+	// as soon as the user erases the number
+	// digit-by-digit up to the leading `+` sign.
+	if (input === '+' && prevInput && prevInput[0] === '+' && prevInput.length > '+'.length) {
+		country = undefined;
+	}
+
+	// Generate the new `value` property.
+	var value = void 0;
+	if (input) {
+		if (input[0] === '+') {
+			if (input !== '+') {
+				value = input;
+			}
+		} else {
+			value = e164(input, country, metadata);
+		}
+	}
+
+	// Derive the country from the phone number.
+	// (regardless of whether there's any country currently selected)
+	if (value) {
+		country = getCountryForPartialE164Number(value, country, countries, includeInternationalOption, metadata);
+	}
+
+	return {
+		input: input,
+		country: country,
+		value: value
+	};
+}
+
+/**
+ * Determines the country for a given (possibly incomplete) E.164 phone number.
+ * @param  {string} number - A possibly incomplete E.164 phone number.
+ * @param  {object} metadata - `libphonenumber-js` metadata.
+ * @return {string?}
+ */
+function get_country_from_possibly_incomplete_international_phone_number(number, metadata) {
+	var formatter = new core.AsYouType(null, metadata);
+	formatter.input(number);
+	// `001` is a special "non-geograpical entity" code
+	// in Google's `libphonenumber` library.
+	if (formatter.country === '001') {
+		return;
+	}
+	return formatter.country;
+}
+
+/**
+ * Compares two strings.
+ * A helper for `Array.sort()`.
+ */
+function compare_strings(a, b) {
+	// Use `String.localeCompare` if it's available.
+	// https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
+	// Which means everyone except IE <= 10 and Safari <= 10.
+	// `localeCompare()` is available in latest Node.js versions.
+	/* istanbul ignore else */
+	if (String.prototype.localeCompare) {
+		return a.localeCompare(b);
+	}
+	/* istanbul ignore next */
+	return a < b ? -1 : a > b ? 1 : 0;
+}
+
+/**
+ * Strips `+${countryCallingCode}` prefix from an E.164 phone number.
+ * @param {string} number - (possibly incomplete) E.164 phone number.
+ * @param {string?} country - A possible country for this phone number.
+ * @param {object} metadata - `libphonenumber-js` metadata.
+ * @return {string}
+ */
+function strip_country_calling_code(number, country, metadata) {
+	// Just an optimization, so that it
+	// doesn't have to iterate through all country calling codes.
+	if (country) {
+		var country_calling_prefix = '+' + (0, core.getCountryCallingCode)(country, metadata);
+
+		// If `country` fits the actual `number`.
+		if (number.length < country_calling_prefix.length) {
+			if (country_calling_prefix.indexOf(number) === 0) {
+				return '';
+			}
+		} else {
+			if (number.indexOf(country_calling_prefix) === 0) {
+				return number.slice(country_calling_prefix.length);
+			}
+		}
+	}
+
+	// If `country` doesn't fit the actual `number`.
+	// Try all available country calling codes.
+	for (var _iterator = Object.keys(metadata.country_calling_codes), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+		var _ref;
+
+		if (_isArray) {
+			if (_i >= _iterator.length) break;
+			_ref = _iterator[_i++];
+		} else {
+			_i = _iterator.next();
+			if (_i.done) break;
+			_ref = _i.value;
+		}
+
+		var country_calling_code = _ref;
+
+		if (number.indexOf(country_calling_code) === '+'.length) {
+			return number.slice('+'.length + country_calling_code.length);
+		}
+	}
+
+	return '';
+}
+
+/**
+ * Parses a partially entered national phone number digits
+ * (or a partially entered E.164 international phone number)
+ * and returns the national significant number part.
+ * National significant number returned doesn't come with a national prefix.
+ * @param {string} number - National number digits. Or possibly incomplete E.164 phone number.
+ * @param {string?} country
+ * @param {object} metadata - `libphonenumber-js` metadata.
+ * @return {string} Can be empty.
+ */
+function get_national_significant_number_part(number, country, metadata) {
+	// Create "as you type" formatter.
+	var formatter = new core.AsYouType(country, metadata);
+
+	// Input partial national phone number.
+	formatter.input(number);
+
+	// Return the parsed partial national phone number.
+	return formatter.getNationalNumber();
+}
+
+/**
+ * Checks if a partially entered E.164 phone number could belong to a country.
+ * @param  {string} number
+ * @param  {string} country
+ * @return {boolean}
+ */
+function could_number_belong_to_country(number, country, metadata) {
+	var country_calling_code = (0, core.getCountryCallingCode)(country, metadata);
+
+	var i = 0;
+	while (i + 1 < number.length && i < country_calling_code.length) {
+		if (number[i + 1] !== country_calling_code[i]) {
+			return false;
+		}
+		i++;
+	}
+
+	return true;
+}
+
+});
+
+unwrapExports(inputControl);
+var inputControl_1 = inputControl.getPreSelectedCountry;
+var inputControl_2 = inputControl.getCountrySelectOptions;
+var inputControl_3 = inputControl.parsePhoneNumber;
+var inputControl_4 = inputControl.generateNationalNumberDigits;
+var inputControl_5 = inputControl.migrateParsedInputForNewCountry;
+var inputControl_6 = inputControl.e164;
+var inputControl_7 = inputControl.trimNumber;
+var inputControl_8 = inputControl.getCountryForPartialE164Number;
+var inputControl_9 = inputControl.parseInput;
+var inputControl_10 = inputControl.get_country_from_possibly_incomplete_international_phone_number;
+var inputControl_11 = inputControl.compare_strings;
+var inputControl_12 = inputControl.strip_country_calling_code;
+var inputControl_13 = inputControl.get_national_significant_number_part;
+var inputControl_14 = inputControl.could_number_belong_to_country;
+
+var PhoneInput = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class, _class2, _temp, _initialiseProps;
+
+// import InputSmart from './InputSmart'
+
+
+
+
+var _react2 = _interopRequireDefault(e__default);
+
+
+
+var _propTypes2 = _interopRequireDefault(PropTypes$2);
+
+
+
+var _classnames2 = _interopRequireDefault(classnames);
+
+
+
+
+
+
+
+var _InputBasic2 = _interopRequireDefault(InputBasic);
+
+
+
+var _Flag2 = _interopRequireDefault(Flag);
+
+
+
+
+
+
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// `PureComponent` is only available in React >= 15.3.0.
+var PureComponent = _react2.default.PureComponent || _react2.default.Component;
+
+var PhoneNumberInput = (0, reactLifecyclesCompat_es.polyfill)(_class = (_temp = _class2 = function (_PureComponent) {
+	_inherits(PhoneNumberInput, _PureComponent);
+
+	function PhoneNumberInput(props) {
+		_classCallCheck(this, PhoneNumberInput);
+
+		var _this = _possibleConstructorReturn(this, (PhoneNumberInput.__proto__ || Object.getPrototypeOf(PhoneNumberInput)).call(this, props));
+
+		_initialiseProps.call(_this);
+
+		var _this$props = _this.props,
+		    value = _this$props.value,
+		    labels = _this$props.labels,
+		    international = _this$props.international,
+		    metadata = _this$props.metadata;
+		var _this$props2 = _this.props,
+		    country = _this$props2.country,
+		    countries = _this$props2.countries,
+		    countryOptions = _this$props2.countryOptions;
+
+		// Validate `country`.
+
+		if (country) {
+			if (!_this.isCountrySupportedWithError(country)) {
+				country = undefined;
+			}
+		}
+
+		// Validate `countries`.
+		countries = filterCountries(countries, metadata);
+
+		// Validate `countryOptions`.
+		countryOptions = filterCountryOptions(countryOptions, metadata);
+
+		var phoneNumber = (0, inputControl.parsePhoneNumber)(value, metadata);
+
+		var pre_selected_country = (0, inputControl.getPreSelectedCountry)(phoneNumber, country, countries || (0, countries$1.getCountryCodes)(labels).filter(function (_) {
+			return _ === 'ZZ' || metadata.countries[_];
+		}), international, metadata);
+
+		_this.state = {
+			// Workaround for `this.props` inside `getDerivedStateFromProps()`.
+			props: _this.props,
+
+			// The country selected.
+			country: pre_selected_country,
+
+			// `countries` are stored in `this.state` because they're filtered.
+			// For example, a developer might theoretically pass some unsupported
+			// countries as part of the `countries` property, and because of that
+			// the component uses `this.state.countries` (which are filtered)
+			// instead of `this.props.countries`
+			// (which could potentially contain unsupported countries).
+			countries: countries,
+
+			// Generate country `<select/>` options.
+			country_select_options: generateCountrySelectOptions(countries, countryOptions, _this.props),
+
+			// `parsed_input` state property holds non-formatted user's input.
+			// The reason is that there's no way of finding out
+			// in which form should `value` be displayed: international or national.
+			// E.g. if `value` is `+78005553535` then it could be input
+			// by a user both as `8 (800) 555-35-35` and `+7 800 555 35 35`.
+			// Hence storing just `value`is not sufficient for correct formatting.
+			// E.g. if a user entered `8 (800) 555-35-35`
+			// then value is `+78005553535` and `parsed_input` is `88005553535`
+			// and if a user entered `+7 800 555 35 35`
+			// then value is `+78005553535` and `parsed_input` is `+78005553535`.
+			parsed_input: generateParsedInput(value, phoneNumber, _this.props),
+
+			// `value` property is duplicated in state.
+			// The reason is that `getDerivedStateFromProps()`
+			// needs this `value` to compare to the new `value` property
+			// to find out if `parsed_input` needs updating:
+			// If the `value` property was changed externally
+			// then it won't be equal to `state.value`
+			// in which case `parsed_input` and `country` should be updated.
+			value: value
+		};
+		return _this;
+	}
+
+	_createClass(PhoneNumberInput, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			var onCountryChange = this.props.onCountryChange;
+			var country = this.props.country;
+			var selectedCountry = this.state.country;
+
+
+			if (onCountryChange) {
+				if (!country || !this.isCountrySupportedWithError(country)) {
+					country = undefined;
+				}
+				if (selectedCountry !== country) {
+					onCountryChange(selectedCountry);
+				}
+			}
+		}
+	}, {
+		key: 'componentDidUpdate',
+		value: function componentDidUpdate(prevProps, prevState) {
+			var onCountryChange = this.props.onCountryChange;
+			// Call `onCountryChange` when user selects another country.
+
+			if (onCountryChange && this.state.country !== prevState.country) {
+				onCountryChange(this.state.country);
+			}
+		}
+
+		// A shorthand for not passing `metadata` as a second argument.
+
+
+		// Country `<select/>` `onChange` handler.
+
+
+		// Phone number `<input/>` `onKeyDown` handler.
+
+
+		/**
+   * `<input/>` `onChange()` handler.
+   * Updates `value` property accordingly (so that they are kept in sync).
+   * @param {string?} input — Either a parsed phone number or an empty string. Examples: `""`, `"+"`, `"+123"`, `"123"`.
+   */
+
+
+		// Toggles the `--focus` CSS class.
+
+
+		// Toggles the `--focus` CSS class.
+
+
+		// This `onBlur` interceptor is a workaround for `redux-form`
+		// so that it gets the up-to-date `value` in its `onBlur` handler.
+		// Without this fix it just gets the actual (raw) input field textual value.
+		// E.g. `+7 800 555 35 35` instead of `+78005553535`.
+		//
+		// A developer is not supposed to pass this `onBlur` property manually.
+		// Instead, `redux-form` passes `onBlur` to this component automatically
+		// and this component patches that `onBlur` handler (a hacky way but works).
+		//
+
+
+		// When country `<select/>` is toggled.
+
+
+		// Can be called externally.
+
+	}, {
+		key: 'render',
+		value: function render() {
+			var _props = this.props,
+			    name = _props.name,
+			    disabled = _props.disabled,
+			    disablePhoneInput = _props.disablePhoneInput,
+			    autoComplete = _props.autoComplete,
+			    countrySelectTabIndex = _props.countrySelectTabIndex,
+			    showCountrySelect = _props.showCountrySelect,
+			    style = _props.style,
+			    className = _props.className,
+			    inputClassName = _props.inputClassName,
+			    getInputClassName = _props.getInputClassName,
+			    countrySelectAriaLabel = _props.countrySelectAriaLabel,
+			    countrySelectProperties = _props.countrySelectProperties,
+			    error = _props.error,
+			    indicateInvalid = _props.indicateInvalid,
+			    CountrySelectComponent = _props.countrySelectComponent,
+			    countrySelectProps = _props.countrySelectProps,
+			    InputComponent = _props.inputComponent,
+			    inputComponent = _props.numberInputComponent,
+			    numberInputProps = _props.numberInputProps,
+			    ext = _props.ext,
+			    _ = _props.country,
+			    countries = _props.countries,
+			    countryOptions = _props.countryOptions,
+			    labels = _props.labels,
+			    flags = _props.flags,
+			    flagComponent = _props.flagComponent,
+			    flagsPath = _props.flagsPath,
+			    international = _props.international,
+			    internationalIcon = _props.internationalIcon,
+			    displayInitialValueAsLocalNumber = _props.displayInitialValueAsLocalNumber,
+			    onCountryChange = _props.onCountryChange,
+			    limitMaxLength = _props.limitMaxLength,
+			    metadata = _props.metadata,
+			    phoneNumberInputProps = _objectWithoutProperties(_props, ['name', 'disabled', 'disablePhoneInput', 'autoComplete', 'countrySelectTabIndex', 'showCountrySelect', 'style', 'className', 'inputClassName', 'getInputClassName', 'countrySelectAriaLabel', 'countrySelectProperties', 'error', 'indicateInvalid', 'countrySelectComponent', 'countrySelectProps', 'inputComponent', 'numberInputComponent', 'numberInputProps', 'ext', 'country', 'countries', 'countryOptions', 'labels', 'flags', 'flagComponent', 'flagsPath', 'international', 'internationalIcon', 'displayInitialValueAsLocalNumber', 'onCountryChange', 'limitMaxLength', 'metadata']);
+
+			var _state = this.state,
+			    country = _state.country,
+			    hidePhoneInputField = _state.hidePhoneInputField,
+			    country_select_options = _state.country_select_options,
+			    parsed_input = _state.parsed_input,
+			    isFocused = _state.isFocused;
+
+			// const InputComponent = InputComponent || (smartCaret ? InputSmart : InputBasic)
+
+			// Extract `countrySelectProperties` from `this.props`
+			// also removing them from `phoneNumberInputProps`.
+
+			var _countrySelectProps = {};
+			if (countrySelectProperties) {
+				for (var key in countrySelectProperties) {
+					if (this.props.hasOwnProperty(key)) {
+						_countrySelectProps[countrySelectProperties[key]] = this.props[key];
+						delete phoneNumberInputProps[key];
+					}
+				}
+			}
+
+			// Could use something like `aria-label={labels.phone}` on the `<InputComponent/>`,
+			// however, some users may have already been using this component with one of:
+			// * `<label/>` container
+			// * `aria-labelledby`
+			// * `id` and `<label for/>`
+			// https://developers.google.com/web/fundamentals/accessibility/semantics-aria/aria-labels-and-relationships
+			// Maybe in some future major version update.
+
+			return _react2.default.createElement(
+				'div',
+				{
+					style: style,
+					className: (0, _classnames2.default)('react-phone-number-input', {
+						'react-phone-number-input--focus': isFocused,
+						'react-phone-number-input--invalid': error && indicateInvalid
+					}, className) },
+				_react2.default.createElement(
+					'div',
+					{ className: 'react-phone-number-input__row' },
+					showCountrySelect && _react2.default.createElement(CountrySelectComponent, _extends({}, _countrySelectProps, {
+						ref: this.storeCountrySelectInstance,
+						name: name ? name + '__country' : undefined,
+						'aria-label': countrySelectAriaLabel || labels.country,
+						tabIndex: countrySelectTabIndex
+					}, countrySelectProps, {
+						value: country,
+						options: country_select_options,
+						onChange: this.onCountryChange,
+						onFocus: this._onFocus,
+						onBlur: this._onBlur,
+						disabled: disabled,
+						hidePhoneInputField: this.hidePhoneInputField,
+						focusPhoneInputField: this.focus,
+						className: 'react-phone-number-input__country' })),
+					!hidePhoneInputField && _react2.default.createElement(InputComponent, _extends({
+						type: 'tel',
+						autoComplete: autoComplete
+					}, numberInputProps, phoneNumberInputProps, {
+						ref: this.storePhoneNumberInputInstance,
+						name: name,
+						metadata: metadata,
+						country: country,
+						value: parsed_input || '',
+						onChange: this.onChange,
+						onFocus: this.onFocus,
+						onBlur: this.onBlur,
+						onKeyDown: this.onPhoneNumberKeyDown,
+						disabled: disabled || disablePhoneInput,
+						inputComponent: inputComponent,
+						className: (0, _classnames2.default)('react-phone-number-input__input', 'react-phone-number-input__phone', {
+							'react-phone-number-input__input--disabled': disabled || disablePhoneInput,
+							'react-phone-number-input__input--invalid': error && indicateInvalid
+						}, inputClassName, getInputClassName && getInputClassName({
+							disabled: disabled || disablePhoneInput,
+							invalid: error && indicateInvalid
+						})) })),
+					ext && !hidePhoneInputField && _react2.default.createElement(
+						'label',
+						{ className: 'react-phone-number-input__ext' },
+						labels.ext,
+						_react2.default.cloneElement(ext, {
+							onChange: ext.props.onChange ? function (event) {
+								return ext.props.onChange(parseExtDigits(event));
+							} : undefined,
+							onFocus: this._onFocus,
+							onBlur: this._onBlur,
+							className: (0, _classnames2.default)('react-phone-number-input__input', 'react-phone-number-input__ext-input', {
+								'react-phone-number-input__input--disabled': disabled || disablePhoneInput
+							}, inputClassName, getInputClassName && getInputClassName({
+								disabled: disabled || disablePhoneInput
+							}), ext.props.className)
+						})
+					)
+				),
+				error && indicateInvalid && _react2.default.createElement(
+					'div',
+					{ className: 'react-phone-number-input__error' },
+					error
+				)
+			);
+		}
+	}], [{
+		key: 'getDerivedStateFromProps',
+
+
+		// `state` holds previous props as `props`, and also:
+		// * `country` — The currently selected country, e.g. `"RU"`.
+		// * `value` — The currently entered phone number (E.164), e.g. `+78005553535`.
+		// * `parsed_input` — The parsed `<input/>` value, e.g. `8005553535`.
+		// (and a couple of other less significant properties)
+		value: function getDerivedStateFromProps(props, state) {
+			var country = state.country,
+			    hasUserSelectedACountry = state.hasUserSelectedACountry,
+			    value = state.value,
+			    _state$props = state.props,
+			    old_default_country = _state$props.country,
+			    old_value = _state$props.value;
+			var metadata = props.metadata,
+			    countries = props.countries,
+			    new_default_country = props.country,
+			    new_value = props.value;
+
+
+			var new_state = {
+				// Emulate `prevProps` via `state.props`.
+				props: props,
+				// If the user has already manually selected a country
+				// then don't override that already selected country
+				// if the default `country` property changes.
+				// That's what `hasUserSelectedACountry` flag is for.
+				hasUserSelectedACountry: hasUserSelectedACountry
+
+				// If `countries` or `labels` or `international` changed
+				// then re-generate country `<select/>` options.
+			};if (props.countries !== state.props.countries || props.labels !== state.props.labels || props.international !== state.props.international) {
+				// Re-generate country select options.
+				new_state.country_select_options = generateCountrySelectOptions(filterCountries(props.countries, metadata), filterCountryOptions(props.countryOptions, metadata), props);
+			}
+
+			// If the default country changed.
+			// (e.g. in case of ajax GeoIP detection after page loaded)
+			// then select it but only if the user hasn't already manually
+			// selected a country and no phone number has been entered so far.
+			// Because if the user has already started inputting a phone number
+			// then he's okay with no country being selected at all ("International")
+			// and doesn't want to be disturbed, doesn't want his input to be screwed, etc.
+			if (new_default_country !== old_default_country && !hasUserSelectedACountry && !value && !new_value) {
+				return _extends({}, new_state, {
+					country: isCountrySupportedWithError(new_default_country, metadata) ? new_default_country : old_default_country
+					// `value` is `undefined`.
+					// `parsed_input` is `undefined` because `value` is `undefined`.
+				});
+			}
+			// If a new `value` is set externally.
+			// (e.g. as a result of an ajax API request
+			//  to get user's phone after page loaded)
+			// The first part — `new_value !== old_value` —
+			// is basically `props.value !== prevProps.value`
+			// so it means "if value property was changed externally".
+			// The second part — `new_value !== value` —
+			// is for ignoring the `getDerivedStateFromProps()` call
+			// which happens in `this.onChange()` right after `this.setState()`.
+			// If this `getDerivedStateFromProps()` call isn't ignored
+			// then the country flag would reset on each input.
+			else if (new_value !== old_value && new_value !== value) {
+					var phoneNumber = (0, inputControl.parsePhoneNumber)(new_value, metadata);
+					var parsedCountry = void 0;
+					if (phoneNumber) {
+						var _countries = filterCountries(props.countries, metadata);
+						if (!_countries || _countries.indexOf(phoneNumber.country) >= 0) {
+							parsedCountry = phoneNumber.country;
+						}
+					}
+					return _extends({}, new_state, {
+						parsed_input: generateParsedInput(new_value, phoneNumber, props),
+						value: new_value,
+						country: new_value ? parsedCountry : country
+					});
+				}
+
+			// `country` didn't change.
+			// `value` didn't change.
+			// `parsed_input` didn't change, because `value` didn't change.
+			//
+			// Maybe `new_state.country_select_options` changed.
+			// In any case, update `prevProps`.
+			return new_state;
+		}
+	}]);
+
+	return PhoneNumberInput;
+}(PureComponent), _class2.propTypes = {
+	/**
+  * Phone number in `E.164` format.
+  *
+  * Example:
+  *
+  * `"+12223333333"`
+  */
+	value: _propTypes2.default.string,
+
+	/**
+  * Updates the `value` as the user inputs the phone number.
+  */
+	onChange: _propTypes2.default.func.isRequired,
+
+	/**
+  * Toggles the `--focus` CSS class.
+  * @ignore
+  */
+	onFocus: _propTypes2.default.func,
+
+	/**
+  * `onBlur` is usually passed by `redux-form`.
+  * @ignore
+  */
+	onBlur: _propTypes2.default.func,
+
+	/**
+  * `onKeyDown` handler (e.g. to handle Enter key press).
+  * @ignore
+  */
+	onKeyDown: _propTypes2.default.func,
+
+	/**
+  * Disables both the phone number `<input/>`
+  * and the country `<select/>`.
+  */
+	// (is `false` by default)
+	disabled: _propTypes2.default.bool.isRequired,
+
+	/**
+  * Sets `autoComplete` property for phone number `<input/>`.
+  *
+  * Web browser's "autocomplete" feature
+  * remembers the phone number being input
+  * and can also autofill the `<input/>`
+  * with previously remembered phone numbers.
+  *
+  * https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill
+  *
+  * For example, can be used to turn it off:
+  *
+  * "So when should you use `autocomplete="off"`?
+  *  One example is when you've implemented your own version
+  *  of autocomplete for search. Another example is any form field
+  *  where users will input and submit different kinds of information
+  *  where it would not be useful to have the browser remember
+  *  what was submitted previously".
+  */
+	// (is `"tel"` by default)
+	autoComplete: _propTypes2.default.string.isRequired,
+
+	/**
+  * Set to `true` to show the initial `value` in
+  * "national" format rather than "international".
+  *
+  * For example, if this flag is set to `true`
+  * and the initial `value="+12133734253"` is passed
+  * then the `<input/>` value will be `"(213) 373-4253"`.
+  *
+  * By default, this flag is set to `false`,
+  * meaning that if the initial `value="+12133734253"` is passed
+  * then the `<input/>` value will be `"+1 213 373 4253"`.
+  *
+  * The reason for such default behaviour is that
+  * the newer generation grows up when there are no stationary phones
+  * and therefore everyone inputs phone numbers in international format
+  * in their smartphones so people gradually get more accustomed to
+  * writing phone numbers in international format rather than in local format.
+  * Future people won't be using "national" format, only "international".
+  */
+	// (is `false` by default)
+	displayInitialValueAsLocalNumber: _propTypes2.default.bool.isRequired,
+
+	/**
+  * The country to be selected by default.
+  * For example, can be set after a GeoIP lookup.
+  *
+  * Example: `"US"`.
+  */
+	// A two-letter country code ("ISO 3166-1 alpha-2").
+	country: _propTypes2.default.string,
+
+	/**
+  * If specified, only these countries will be available for selection.
+  *
+  * Example:
+  *
+  * `["RU", "UA", "KZ"]`
+  */
+	countries: _propTypes2.default.arrayOf(_propTypes2.default.string),
+
+	/**
+  * Custom country `<select/>` option names.
+  * Also some labels like "ext" and country `<select/>` `aria-label`.
+  *
+  * Example:
+  *
+  * `{ "ZZ": "Международный", RU: "Россия", US: "США", ... }`
+  *
+  * See the `locales` directory for examples.
+  */
+	labels: PropTypes.labels.isRequired,
+
+	/**
+  * The base URL path for country flag icons.
+  * By default it loads country flag icons from
+  * `flag-icon-css` repo github pages website.
+  * I imagine someone might want to download
+  * those country flag icons and host them
+  * on their own servers instead.
+  * Warning: in future new countries can be added
+  * to the country select which would result in
+  * "Image not found" errors when using custom `flagsPath`
+  * due to the custom-hosted flags bundle being outdated
+  * and missing the new flags.
+  * So if using custom `flagsPath` always check `CHANGELOG.md`
+  * for new country announcements before updating this library.
+  */
+	flagsPath: _propTypes2.default.string.isRequired,
+
+	/**
+  * Custom country flag icon components.
+  * These flags replace the default ones.
+  *
+  * The shape is an object where keys are country codes
+  * and values are flag icon components.
+  * Flag icon components receive the same properties
+  * as `flagComponent` (see below).
+  *
+  * Example:
+  *
+  * `{ "RU": () => <img src="..."/> }`
+  *
+  * Can be used to replace the default flags
+  * with custom ones for certain (or all) countries.
+  *
+  * Can also be used to bundle `<svg/>` flags instead of `<img/>`s:
+  *
+  * By default flag icons are inserted as `<img/>`s
+  * with their `src` pointed to `flag-icon-css` repo github pages website.
+  *
+  * There might be some cases
+  * (e.g. a standalone "native" app, or an "intranet" web application)
+  * when including the full set of `<svg/>` country flags (3 megabytes)
+  * is more appropriate than downloading them individually at runtime only if needed.
+  *
+  * Example:
+  *
+  * `// Uses <svg/> flags (3 megabytes):`
+  *
+  * `import flags from 'react-phone-number-input/flags'`
+  *
+  * `import PhoneInput from 'react-phone-number-input'`
+  *
+  * `<PhoneInput flags={flags} .../>`
+  */
+	flags: _propTypes2.default.objectOf(_propTypes2.default.elementType),
+
+	/**
+  * Country flag icon component.
+  *
+  * Takes properties:
+  *
+  * * country : string — The country code.
+  * * flagsPath : string — The `flagsPath` property (see above).
+  * * flags : object — The `flags` property (see above).
+  */
+	flagComponent: _propTypes2.default.elementType.isRequired,
+
+	/**
+  * Set to `false` to drop the "International" option from country `<select/>`.
+  */
+	international: _propTypes2.default.bool.isRequired,
+
+	/**
+  * Custom "International" country `<select/>` option icon.
+  */
+	internationalIcon: _propTypes2.default.elementType.isRequired,
+
+	/**
+  * Set to `false` to hide country `<select/>`.
+  */
+	// (is `true` by default)
+	showCountrySelect: _propTypes2.default.bool.isRequired,
+
+	/**
+  * HTML `tabindex` attribute for country `<select/>`.
+  */
+	countrySelectTabIndex: _propTypes2.default.number,
+
+	/**
+  * HTML `aria-label` attribute for country `<select/>`.
+  * The default is `.country` of the `labels` property
+  * which is `"Country"` for the default `labels`.
+  */
+	countrySelectAriaLabel: _propTypes2.default.string,
+
+	/**
+  * Can be used to place some countries on top of the list of country `<select/>` options.
+  *
+  * * `"|"` — inserts a separator.
+  * * `"..."` — means "the rest of the countries" (can be omitted).
+  *
+  * Example:
+  *
+  * `["US", "CA", "AU", "|", "..."]`
+  */
+	countryOptions: _propTypes2.default.arrayOf(_propTypes2.default.string),
+
+	/**
+  * `<Phone/>` component CSS style object.
+  */
+	style: _propTypes2.default.object,
+
+	/**
+  * `<Phone/>` component CSS class.
+  */
+	className: _propTypes2.default.string,
+
+	/**
+  * Phone number `<input/>` CSS class.
+  */
+	inputClassName: _propTypes2.default.string,
+
+	/**
+  * Returns phone number `<input/>` CSS class string.
+  * Receives an object of shape `{ disabled : boolean?, invalid : boolean? }`.
+  * @ignore
+  */
+	getInputClassName: _propTypes2.default.func,
+
+	/**
+  * Country `<select/>` component.
+  *
+  * Receives properties:
+  *
+  * * `name : string?` — HTML `name` attribute.
+  * * `value : string?` — The currently selected country code.
+  * * `onChange(value : string?)` — Updates the `value`.
+  * * `onFocus()` — Is used to toggle the `--focus` CSS class.
+  * * `onBlur()` — Is used to toggle the `--focus` CSS class.
+  * * `options : object[]` — The list of all selectable countries (including "International") each being an object of shape `{ value : string?, label : string, icon : React.Component }`.
+  * * `disabled : boolean?` — HTML `disabled` attribute.
+  * * `tabIndex : (number|string)?` — HTML `tabIndex` attribute.
+  * * `className : string` — CSS class name.
+  */
+	//
+	// (deprecated)
+	// * `hidePhoneInputField(hide : boolean)` — Can be called to show/hide phone input field. Takes `hide : boolean` argument. E.g. `react-responsive-ui` `<Select/>` uses this to hide phone number input when country select is expanded.
+	// * `focusPhoneInputField()` — Can be called to manually focus phone input field. E.g. `react-responsive-ui` `<Select/>` uses this to focus phone number input after country selection in a timeout (after the phone input field is no longer hidden).
+	//
+	countrySelectComponent: _propTypes2.default.elementType.isRequired,
+
+	/**
+  * Country `<select/>` component props.
+  */
+	countrySelectProps: _propTypes2.default.object,
+
+	/**
+  * Phone number `<input/>` component.
+  *
+  * Receives properties:
+  *
+  * * `value: string` — The formatted `value`.
+  * * `onChange(event: Event)` — Updates the formatted `value` from `event.target.value`.
+  * * `onFocus()` — Is used to toggle the `--focus` CSS class.
+  * * `onBlur(event: Event)` — Is used to toggle the `--focus` CSS class.
+  * * Other properties like `type="tel"` or `autoComplete="tel"` that should be passed through to the DOM `<input/>`.
+  *
+  * Must also either use `React.forwardRef()` to "forward" `ref` to the `<input/>` or implement `.focus()` method.
+  */
+	numberInputComponent: _propTypes2.default.elementType.isRequired,
+
+	/**
+  * Phone number `<input/>` component props.
+  */
+	numberInputProps: _propTypes2.default.object,
+
+	/**
+  * Phone number `<input/>` component (a higher-order one).
+  *
+  * Receives properties:
+  *
+  * * `value : string` — The parsed phone number. E.g.: `""`, `"+"`, `"+123"`, `"123"`.
+  * * `onChange(value? : string)` — Updates the `value`.
+  * * `onFocus()` — Is used to toggle the `--focus` CSS class.
+  * * `onBlur()` — Is used to toggle the `--focus` CSS class.
+  * * `country : string?` — The currently selected country. `undefined` means "International" (no country selected).
+  * * `metadata : object` — `libphonenumber-js` metadata.
+  * * `inputComponent : elementType` — Phone number `<input/>` component. This is basically the `numberInputComponent` property renamed to `inputComponent`.
+  * * All other properties should be passed through to the underlying `<input/>`.
+  *
+  * Must also either use `React.forwardRef()` to "forward" `ref` to the `<input/>` or implement `.focus()` method.
+  *
+  * @ignore
+  */
+	inputComponent: _propTypes2.default.elementType.isRequired,
+
+	/**
+  * Set to `false` to use `inputComponent={InputBasic}`
+  * instead of `input-format`'s `<ReactInput/>`.
+  */
+	// Is `false` by default.
+	// smartCaret : PropTypes.bool.isRequired,
+
+	/**
+  * Phone number extension `<input/>` element.
+  *
+  * Example:
+  *
+  *	`ext={<input value={...} onChange={...}/>}`
+  */
+	ext: _propTypes2.default.node,
+
+	/**
+  * If set to `true` the phone number input will get trimmed
+  * if it exceeds the maximum length for the country.
+  */
+	limitMaxLength: _propTypes2.default.bool.isRequired,
+
+	/**
+  * An error message to show below the phone number `<input/>`. For example, `"Required"`.
+  */
+	error: _propTypes2.default.string,
+
+	/**
+  * The `error` is shown only when `indicateInvalid` is `true`.
+  * (which is the default).
+  * @deprecated
+  * @ignore
+  */
+	indicateInvalid: _propTypes2.default.bool,
+
+	/**
+  * `libphonenumber-js` metadata.
+  *
+  * Can be used to pass custom `libphonenumber-js` metadata
+  * to reduce the overall bundle size for those who compile "custom" metadata.
+  */
+	metadata: PropTypes.metadata.isRequired,
+
+	/**
+  * Is called every time the selected country changes:
+  * either programmatically or when user selects it manually from the list.
+  */
+	// People have been asking for a way to get the selected country.
+	// @see  https://github.com/catamphetamine/react-phone-number-input/issues/128
+	// For some it's just a "business requirement".
+	// I guess it's about gathering as much info on the user as a website can
+	// without introducing any addional fields that would complicate the form
+	// therefore reducing "conversion" (that's a marketing term).
+	// Assuming that the phone number's country is the user's country
+	// is not 100% correct but in most cases I guess it's valid.
+	onCountryChange: _propTypes2.default.func,
+
+	/**
+  * Disables only the phone number `<input/>`.
+  *
+  * Some users choose to implement a digital keyboard component for phone number input.
+  * In such cases the phone number input field must be disabled in order for the default system keyboard to not show up on focus.
+  * At the same time, country select should not be disabled in order for the user to be able to choose their country.
+  */
+	// (is `false` by default)
+	// https://github.com/catamphetamine/react-phone-number-input/issues/215
+	disablePhoneInput: _propTypes2.default.bool.isRequired
+}, _class2.defaultProps = {
+	/**
+  * Not disabled.
+  */
+	disabled: false,
+	disablePhoneInput: false,
+
+	/**
+  * Show `error` (if passed).
+  * @deprecated
+  */
+	indicateInvalid: true,
+
+	/**
+  * Remember (and autofill) the value as a phone number.
+  */
+	autoComplete: 'tel',
+
+	/**
+  * Flag icon component.
+  */
+	flagComponent: _Flag2.default,
+
+	/**
+  * By default, use icons from `flag-icon-css` github repo.
+  */
+	flagsPath: 'https://lipis.github.io/flag-icon-css/flags/4x3/',
+
+	/**
+  * Default "International" country `<select/>` option icon (globe).
+  */
+	// internationalIcon: InternationalIcon,
+
+	/**
+  * Phone number `<input/>` component.
+  */
+	numberInputComponent: 'input',
+
+	/**
+  * Phone number `<input/>` component (a higher-order one).
+  */
+	inputComponent: _InputBasic2.default,
+
+	/**
+  * Show country `<select/>`.
+  */
+	showCountrySelect: true,
+
+	/**
+  * Don't convert the initially passed phone number `value`
+  * to a national phone number for its country.
+  * The reason is that the newer generation grows up when
+  * there are no stationary phones and therefore everyone inputs
+  * phone numbers with a `+` in their smartphones
+  * so phone numbers written in international form
+  * are gradually being considered more natural than local ones.
+  */
+	displayInitialValueAsLocalNumber: false,
+
+	/**
+  * Set to `false` to use `inputComponent={InputBasic}`
+  * instead of `input-format`'s `<ReactInput/>`.
+  * Is `false` by default.
+  */
+	// smartCaret : false,
+
+	/**
+  * Whether to add the "International" option
+  * to the list of countries.
+  */
+	international: true,
+
+	/**
+  * If set to `true` the phone number input will get trimmed
+  * if it exceeds the maximum length for the country.
+  */
+	limitMaxLength: false
+}, _initialiseProps = function _initialiseProps() {
+	var _this2 = this;
+
+	this.isCountrySupportedWithError = function (country) {
+		var metadata = _this2.props.metadata;
+
+		return isCountrySupportedWithError(country, metadata);
+	};
+
+	this.onCountryChange = function (new_country) {
+		var _props2 = _this2.props,
+		    metadata = _props2.metadata,
+		    onChange = _props2.onChange;
+		var _state2 = _this2.state,
+		    old_parsed_input = _state2.parsed_input,
+		    old_country = _state2.country;
+
+		// After the new `country` has been selected,
+		// if the phone number `<input/>` holds any digits
+		// then migrate those digits for the new `country`.
+
+		var new_parsed_input = (0, inputControl.migrateParsedInputForNewCountry)(old_parsed_input, old_country, new_country, metadata,
+		// Convert to "local" phone number format.
+		true);
+
+		var new_value = (0, inputControl.e164)(new_parsed_input, new_country, metadata);
+
+		// Focus phone number `<input/>` upon country selection.
+		_this2.focus();
+
+		// If the user has already manually selected a country
+		// then don't override that already selected country
+		// if the default `country` property changes.
+		// That's what `hasUserSelectedACountry` flag is for.
+
+		_this2.setState({
+			country: new_country,
+			hasUserSelectedACountry: true,
+			parsed_input: new_parsed_input,
+			value: new_value
+		}, function () {
+			// Update the new `value` property.
+			// Doing it after the `state` has been updated
+			// because `onChange()` will trigger `getDerivedStateFromProps()`
+			// with the new `value` which will be compared to `state.value` there.
+			onChange(new_value);
+		});
+	};
+
+	this.onPhoneNumberKeyDown = function (event) {
+		var onKeyDown = _this2.props.onKeyDown;
+
+		// Actually "Down arrow" key is used for showing "autocomplete" ("autofill") options.
+		// (e.g. previously entered phone numbers for `autoComplete="tel"`)
+		// so can't hijack "Down arrow" keypress here.
+		// // Expand country `<select/>`` on "Down arrow" key press.
+		// if (event.keyCode === 40) {
+		// 	this.country_select.toggle()
+		// }
+
+		if (onKeyDown) {
+			onKeyDown(event);
+		}
+	};
+
+	this.onChange = function (_input) {
+		var _props3 = _this2.props,
+		    onChange = _props3.onChange,
+		    international = _props3.international,
+		    limitMaxLength = _props3.limitMaxLength,
+		    metadata = _props3.metadata;
+
+		var _parseInput = (0, inputControl.parseInput)(_input, _this2.state.parsed_input, _this2.state.country, _this2.state.countries, international, limitMaxLength, metadata),
+		    input = _parseInput.input,
+		    country = _parseInput.country,
+		    value = _parseInput.value;
+
+		_this2.setState({
+			parsed_input: input,
+			value: value,
+			country: country
+		},
+		// Update the new `value` property.
+		// Doing it after the `state` has been updated
+		// because `onChange()` will trigger `getDerivedStateFromProps()`
+		// with the new `value` which will be compared to `state.value` there.
+		function () {
+			return onChange(value);
+		});
+	};
+
+	this._onFocus = function () {
+		return _this2.setState({ isFocused: true });
+	};
+
+	this._onBlur = function () {
+		return _this2.setState({ isFocused: false });
+	};
+
+	this.onFocus = function (event) {
+		var onFocus = _this2.props.onFocus;
+
+		_this2._onFocus();
+		if (onFocus) {
+			onFocus(event);
+		}
+	};
+
+	this.onBlur = function (event) {
+		var onBlur = _this2.props.onBlur;
+		var value = _this2.state.value;
+
+
+		_this2._onBlur();
+
+		if (!onBlur) {
+			return;
+		}
+
+		// `event` is React's `SyntheticEvent`.
+		// Its `.value` is read-only therefore cloning it.
+		var _event = _extends({}, event, {
+			target: _extends({}, event.target, {
+				value: value
+			})
+
+			// For `redux-form` event detection.
+			// https://github.com/erikras/redux-form/blob/v5/src/events/isEvent.js
+		});_event.stopPropagation = event.stopPropagation;
+		_event.preventDefault = event.preventDefault;
+
+		return onBlur(_event);
+	};
+
+	this.hidePhoneInputField = function (hide) {
+		_this2.setState({
+			hidePhoneInputField: hide
+		});
+	};
+
+	this.focus = function () {
+		return _this2.number_input.focus();
+	};
+
+	this.storeCountrySelectInstance = function (_) {
+		return _this2.country_select = _;
+	};
+
+	this.storePhoneNumberInputInstance = function (_) {
+		return _this2.number_input = _;
+	};
+}, _temp)) || _class;
+
+// Generates country `<select/>` options.
+
+
+exports.default = PhoneNumberInput;
+function generateCountrySelectOptions(countries, countryOptions, props) {
+	var labels = props.labels,
+	    international = props.international,
+	    metadata = props.metadata;
+
+
+	var CountrySelectOptionIcon = createCountrySelectOptionIconComponent(props);
+
+	return transformCountryOptions((0, inputControl.getCountrySelectOptions)(countries || (0, countries$1.getCountryCodes)(labels).filter(function (country) {
+		return country === 'ZZ' || isCountrySupported(country, metadata);
+	}), labels, international).map(function (_ref) {
+		var value = _ref.value,
+		    label = _ref.label;
+		return {
+			value: value,
+			label: label,
+			icon: CountrySelectOptionIcon
+		};
+	}), countryOptions);
+}
+
+function createCountrySelectOptionIconComponent(props) {
+	var flags = props.flags,
+	    flagsPath = props.flagsPath,
+	    FlagComponent = props.flagComponent,
+	    InternationalIcon = props.internationalIcon;
+
+
+	return function (_ref2) {
+		var value = _ref2.value;
+		return _react2.default.createElement(
+			'div',
+			{
+				className: (0, _classnames2.default)('react-phone-number-input__icon', {
+					'react-phone-number-input__icon--international': value === undefined
+				}) },
+			value ? _react2.default.createElement(FlagComponent, {
+				country: value,
+				flags: flags,
+				flagsPath: flagsPath }) : _react2.default.createElement(InternationalIcon, null)
+		);
+	};
+}
+
+// Can move some country `<select/>` options
+// to the top of the list, for example.
+// See `countryOptions` property.
+function transformCountryOptions(options, transform) {
+	if (!transform) {
+		return options;
+	}
+
+	var optionsOnTop = [];
+	var optionsOnBottom = [];
+	var appendTo = optionsOnTop;
+
+	var _loop = function _loop() {
+		if (_isArray) {
+			if (_i >= _iterator.length) return 'break';
+			_ref3 = _iterator[_i++];
+		} else {
+			_i = _iterator.next();
+			if (_i.done) return 'break';
+			_ref3 = _i.value;
+		}
+
+		var element = _ref3;
+
+		if (element === '|') {
+			appendTo.push({ divider: true });
+		} else if (element === '...' || element === '…') {
+			appendTo = optionsOnBottom;
+		} else {
+			// Find the position of the option.
+			var index = options.indexOf(options.filter(function (option) {
+				return option.value === element;
+			})[0]);
+			// Get the option.
+			var option = options[index];
+			// Remove the option from its default position.
+			options.splice(index, 1);
+			// Add the option on top.
+			appendTo.push(option);
+		}
+	};
+
+	for (var _iterator = transform, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+		var _ref3;
+
+		var _ret = _loop();
+
+		if (_ret === 'break') break;
+	}
+
+	return optionsOnTop.concat(options).concat(optionsOnBottom);
+}
+
+function generateParsedInput(value, phoneNumber, props) {
+	var displayInitialValueAsLocalNumber = props.displayInitialValueAsLocalNumber;
+
+	// If the `value` (E.164 phone number)
+	// belongs to the currently selected country
+	// and `displayInitialValueAsLocalNumber` property is `true`
+	// then convert `value` (E.164 phone number)
+	// to a local phone number digits.
+	// E.g. '+78005553535' -> '88005553535'.
+
+	if (displayInitialValueAsLocalNumber && phoneNumber && phoneNumber.country) {
+		return (0, inputControl.generateNationalNumberDigits)(phoneNumber);
+	}
+
+	return value;
+}
+
+function isCountrySupported(country, metadata) {
+	return metadata.countries.hasOwnProperty(country);
+}
+
+function isCountrySupportedWithError(country, metadata) {
+	if (isCountrySupported(country, metadata)) {
+		return true;
+	} else {
+		console.error('Country not found: ' + country);
+		return false;
+	}
+}
+
+function isCountryOptionSupportedWithError(countryOption, metadata) {
+	switch (countryOption) {
+		case '|':
+		case '...':
+		case '…':
+			return true;
+		default:
+			return isCountrySupportedWithError(countryOption, metadata);
+	}
+}
+
+function filterCountries(countries, metadata) {
+	if (countries) {
+		countries = countries.filter(function (country) {
+			return isCountrySupportedWithError(country, metadata);
+		});
+		if (countries.length === 0) {
+			countries = undefined;
+		}
+	}
+	return countries;
+}
+
+function filterCountryOptions(countryOptions, metadata) {
+	if (countryOptions) {
+		countryOptions = countryOptions.filter(function (countryOption) {
+			return isCountryOptionSupportedWithError(countryOption, metadata);
+		});
+		if (countryOptions.length === 0) {
+			countryOptions = undefined;
+		}
+	}
+	return countryOptions;
+}
+
+function parseExtDigits(event) {
+	if (event) {
+		if (typeof event === 'string') {
+			event = (0, core.parseDigits)(event);
+		} else if (event.target && event.target.value) {
+			event.target.value = (0, core.parseDigits)(event.target.value);
+		}
+	}
+	return event;
+}
+
+});
+
+unwrapExports(PhoneInput);
+
+var CountrySelectNative_1 = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class, _temp2;
+
+
+
+var _react2 = _interopRequireDefault(e__default);
+
+
+
+var _propTypes2 = _interopRequireDefault(PropTypes$2);
+
+
+
+var _classnames2 = _interopRequireDefault(classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CountrySelectNative = (_temp2 = _class = function (_Component) {
+	_inherits(CountrySelectNative, _Component);
+
+	function CountrySelectNative() {
+		var _ref;
+
+		var _temp, _this, _ret;
+
+		_classCallCheck(this, CountrySelectNative);
+
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
+		}
+
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CountrySelectNative.__proto__ || Object.getPrototypeOf(CountrySelectNative)).call.apply(_ref, [this].concat(args))), _this), _this.onChange = function (event) {
+			var onChange = _this.props.onChange;
+
+			var value = event.target.value;
+			onChange(value === 'ZZ' ? undefined : value);
+		}, _temp), _possibleConstructorReturn(_this, _ret);
+	}
+
+	_createClass(CountrySelectNative, [{
+		key: 'render',
+		value: function render() {
+			var _props = this.props,
+			    name = _props.name,
+			    value = _props.value,
+			    options = _props.options,
+			    onFocus = _props.onFocus,
+			    onBlur = _props.onBlur,
+			    disabled = _props.disabled,
+			    tabIndex = _props.tabIndex,
+			    className = _props.className,
+			    SelectArrow = _props.selectArrowComponent;
+
+
+			var selectedOption = void 0;
+			for (var _iterator = options, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+				var _ref2;
+
+				if (_isArray) {
+					if (_i >= _iterator.length) break;
+					_ref2 = _iterator[_i++];
+				} else {
+					_i = _iterator.next();
+					if (_i.done) break;
+					_ref2 = _i.value;
+				}
+
+				var option = _ref2;
+
+				if (!option.divider && option.value === value) {
+					selectedOption = option;
+				}
+			}
+
+			return _react2.default.createElement(
+				'div',
+				{ className: (0, _classnames2.default)(className, 'react-phone-number-input__country--native') },
+				selectedOption && _react2.default.createElement(selectedOption.icon, { value: value }),
+				_react2.default.createElement(
+					'select',
+					{
+						name: name,
+						value: value || 'ZZ',
+						onChange: this.onChange,
+						onFocus: onFocus,
+						onBlur: onBlur,
+						disabled: disabled,
+						tabIndex: tabIndex,
+						'aria-label': this.props['aria-label'],
+						className: 'react-phone-number-input__country-select' },
+					options.map(function (_ref3) {
+						var value = _ref3.value,
+						    label = _ref3.label,
+						    divider = _ref3.divider;
+						return _react2.default.createElement(
+							'option',
+							{
+								key: divider ? '|' : value || 'ZZ',
+								value: divider ? '|' : value || 'ZZ',
+								disabled: divider ? true : false,
+								className: divider ? 'react-phone-number-input__country-select-divider' : undefined },
+							label
+						);
+					})
+				),
+				_react2.default.createElement(SelectArrow, null)
+			);
+		}
+	}]);
+
+	return CountrySelectNative;
+}(e__default.Component), _class.propTypes = {
+	// A two-letter country code.
+	// E.g. "US", "RU", etc.
+	value: _propTypes2.default.string,
+
+	// Updates the `value`.
+	onChange: _propTypes2.default.func.isRequired,
+
+	// `<select/>` options.
+	options: _propTypes2.default.arrayOf(_propTypes2.default.shape({
+		value: _propTypes2.default.string,
+		label: _propTypes2.default.string,
+		divider: _propTypes2.default.bool
+	})).isRequired,
+
+	// HTML `name` attribute.
+	name: _propTypes2.default.string,
+
+	// HTML `disabled` attribute.
+	disabled: _propTypes2.default.bool,
+
+	// HTML `tabIndex` attribute.
+	tabIndex: _propTypes2.default.number,
+
+	// Select arrow component.
+	selectArrowComponent: _propTypes2.default.elementType.isRequired,
+
+	// Toggles the `--focus` CSS class.
+	// https://github.com/catamphetamine/react-phone-number-input/issues/189
+	onFocus: _propTypes2.default.func,
+
+	// Toggles the `--focus` CSS class.
+	// https://github.com/catamphetamine/react-phone-number-input/issues/189
+	onBlur: _propTypes2.default.func
+}, _class.defaultProps = {
+	selectArrowComponent: function selectArrowComponent() {
+		return _react2.default.createElement('div', { className: 'react-phone-number-input__country-select-arrow' });
+	}
+}, _temp2);
+exports.default = CountrySelectNative;
+
+});
+
+unwrapExports(CountrySelectNative_1);
+
+var PhoneInputNative_1 = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class, _temp2;
+
+
+
+var _react2 = _interopRequireDefault(e__default);
+
+
+
+var _propTypes2 = _interopRequireDefault(PropTypes$2);
+
+
+
+var _classnames2 = _interopRequireDefault(classnames);
+
+
+
+var _PhoneInput2 = _interopRequireDefault(PhoneInput);
+
+
+
+var _CountrySelectNative2 = _interopRequireDefault(CountrySelectNative_1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PhoneInputNative = (_temp2 = _class = function (_Component) {
+	_inherits(PhoneInputNative, _Component);
+
+	function PhoneInputNative() {
+		var _ref;
+
+		var _temp, _this, _ret;
+
+		_classCallCheck(this, PhoneInputNative);
+
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
+		}
+
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PhoneInputNative.__proto__ || Object.getPrototypeOf(PhoneInputNative)).call.apply(_ref, [this].concat(args))), _this), _this.storeInputRef = function (ref) {
+			return _this.input = ref;
+		}, _this.focus = function () {
+			return _this.input.focus();
+		}, _temp), _possibleConstructorReturn(_this, _ret);
+	}
+
+	// These two country-select-related properties are
+	// implemented as `defaultProps` instead of passing them
+	// directly to the `<PhoneInput/>` because `<PhoneInputNative/>`
+	// is the default export of this library and therefore people pass
+	// `countrySelectComponent` property to this `<PhoneInputNative/>` component
+	// and when they don't see any changes they might get confused.
+	// https://github.com/catamphetamine/react-phone-number-input/issues/229
+
+
+	_createClass(PhoneInputNative, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(_PhoneInput2.default, _extends({ ref: this.storeInputRef }, this.props));
+		}
+
+		// Proxy `.focus()` method.
+
+	}]);
+
+	return PhoneInputNative;
+}(e__default.Component), _class.propTypes = {
+	// (optional)
+	// Replaces the default country select arrow.
+	countrySelectArrowComponent: _propTypes2.default.elementType }, _class.defaultProps = {
+	countrySelectComponent: _CountrySelectNative2.default,
+	countrySelectProperties: COUNTRY_SELECT_PROPERTIES
+}, _temp2);
+exports.default = PhoneInputNative;
+
+
+var COUNTRY_SELECT_PROPERTIES = {
+	countrySelectArrowComponent: 'selectArrowComponent'
+};
+
+});
+
+unwrapExports(PhoneInputNative_1);
+
+var _default$2 = getCjsExportFromNamespace(_default$1);
+
+var PhoneInputNativeDefaults = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.createPhoneInput = createPhoneInput;
+
+
+
+var _react2 = _interopRequireDefault(e__default);
+
+
+
+var _propTypes2 = _interopRequireDefault(PropTypes$2);
+
+
+
+var _default2 = _interopRequireDefault(_default$2);
+
+
+
+var _InternationalIcon2 = _interopRequireDefault(InternationalIcon_1);
+
+
+
+
+
+var _PhoneInputNative2 = _interopRequireDefault(PhoneInputNative_1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function createPhoneInput(defaultMetadata) {
+	var _class, _temp2;
+
+	return _temp2 = _class = function (_Component) {
+		_inherits(PhoneInputNativeDefaults, _Component);
+
+		function PhoneInputNativeDefaults() {
+			var _ref;
+
+			var _temp, _this, _ret;
+
+			_classCallCheck(this, PhoneInputNativeDefaults);
+
+			for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+				args[_key] = arguments[_key];
+			}
+
+			return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PhoneInputNativeDefaults.__proto__ || Object.getPrototypeOf(PhoneInputNativeDefaults)).call.apply(_ref, [this].concat(args))), _this), _this.storeInputRef = function (ref) {
+				return _this.input = ref;
+			}, _this.render = function () {
+				return _react2.default.createElement(_PhoneInputNative2.default, _extends({ ref: _this.storeInputRef }, _this.props));
+			}, _this.focus = function () {
+				return _this.input.focus();
+			}, _temp), _possibleConstructorReturn(_this, _ret);
+		}
+
+		return PhoneInputNativeDefaults;
+	}(e__default.Component), _class.propTypes = {
+		metadata: PropTypes.metadata.isRequired,
+		labels: PropTypes.labels.isRequired,
+		internationalIcon: _propTypes2.default.elementType.isRequired
+	}, _class.defaultProps = {
+		metadata: defaultMetadata,
+		labels: _default2.default,
+		internationalIcon: _InternationalIcon2.default
+	}, _temp2;
+}
+
+exports.default = createPhoneInput();
+
+});
+
+unwrapExports(PhoneInputNativeDefaults);
+var PhoneInputNativeDefaults_1 = PhoneInputNativeDefaults.createPhoneInput;
+
+var _metadataMin = getCjsExportFromNamespace(metadata_min$1);
+
+var PhoneInputNativeDefaultMetadata = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+
+
+var _metadataMin2 = _interopRequireDefault(_metadataMin);
+
+
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Deprecated.
+// This is a file used in legacy `/index.js` export entry.
+// In some next major version this file will be removed
+// and `/index.js` will be redirected to `/min/index.js`.
+
+exports.default = (0, PhoneInputNativeDefaults.createPhoneInput)(_metadataMin2.default);
+
+});
+
+var PhoneInput$1 = unwrapExports(PhoneInputNativeDefaultMetadata);
+
 var defaultMasks = {
   za: '+.. .. ... ....'
 };
 
 var TelInput = function TelInput(props) {
-  var formik = props.formik,
-      masks = props.masks,
-      value = props.value,
-      onBlur = props.onBlur,
-      onChange = props.onChange,
+  var masks = props.masks,
       placeholder = props.placeholder,
       _props$defaultCountry = props.defaultCountry,
-      defaultCountry = _props$defaultCountry === void 0 ? 'za' : _props$defaultCountry,
-      inputProps = props.inputProps,
+      defaultCountry = _props$defaultCountry === void 0 ? 'ZA' : _props$defaultCountry,
       disabled = props.disabled,
       alertTextOverride = props.alertText,
-      otherProps = objectWithoutProperties(props, ["formik", "masks", "value", "onBlur", "onChange", "placeholder", "defaultCountry", "inputProps", "disabled", "alertText"]);
+      otherProps = objectWithoutProperties(props, ["masks", "placeholder", "defaultCountry", "disabled", "alertText"]);
 
   var _otherProps$id = otherProps.id,
       id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
       label = otherProps.label,
       name = otherProps.name;
 
-  var _createDefaultInputPr = createDefaultInputProps({
-    alertText: alertTextOverride,
-    value: value,
-    onBlur: onBlur,
-    onChange: onChange,
-    name: name,
-    formik: formik
-  }),
-      alertText = _createDefaultInputPr.alertText,
-      hasFormik = _createDefaultInputPr.hasFormik,
-      inputDefaults = objectWithoutProperties(_createDefaultInputPr, ["alertText", "hasFormik"]);
+  var _useFormContext = useFormContext(),
+      register = _useFormContext.register,
+      errors = _useFormContext.errors,
+      setValue = _useFormContext.setValue,
+      triggerValidation = _useFormContext.triggerValidation;
 
-  var defaultOnChange = hasFormik && function (value) {
-    return formik.setFieldValue(name, value);
-  };
-
-  var defaultValue = hasFormik && formik.values[name];
   return e__default.createElement(InputWrapper, _extends_1({
     disabled: disabled,
-    alertText: alertText
-  }, otherProps), e__default.createElement(ReactPhoneInput, _extends_1({}, inputDefaults, {
-    onChange: onChange ? onChange : defaultOnChange,
-    value: value || defaultValue || '',
-    defaultCountry: defaultCountry,
+    alertText: alertTextOverride || errors[name] ? errors[name].message : ''
+  }, otherProps), e__default.createElement(PhoneInput$1, {
+    id: id,
+    onChange: function onChange(value) {
+      return setValue(name, value);
+    },
     disabled: disabled,
     name: name,
-    countryCodeEditable: false,
+    country: defaultCountry,
+    onBlur:
+    /*#__PURE__*/
+    asyncToGenerator(
+    /*#__PURE__*/
+    regenerator.mark(function _callee() {
+      return regenerator.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return triggerValidation({
+                name: name
+              });
+
+            case 2:
+              return _context.abrupt("return", _context.sent);
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    })),
     masks: masks || defaultMasks,
-    inputExtraProps: _objectSpread$7({}, inputProps, {
-      id: id,
+    placeholder: placeholder || label,
+    ref: register({
       name: name
-    }),
-    placeholder: placeholder || label
-  })));
+    })
+  }));
 };
 
-var index$2 = formik.connect(TelInput);
+TelInput.defaultProps = {
+  onChange: function onChange() {}
+};
 
 function _objectWithoutPropertiesLoose$1(source, excluded) {
   if (source == null) return {};
@@ -12031,8 +30162,8 @@ function _objectWithoutProperties$2(source, excluded) {
   return target;
 }
 
-function _extends$1() {
-  _extends$1 = Object.assign || function (target) {
+function _extends$7() {
+  _extends$7 = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
 
@@ -12046,7 +30177,7 @@ function _extends$1() {
     return target;
   };
 
-  return _extends$1.apply(this, arguments);
+  return _extends$7.apply(this, arguments);
 }
 
 function _arrayWithoutHoles(arr) {
@@ -12071,7 +30202,7 @@ function _toConsumableArray(arr) {
   return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
 }
 
-function _defineProperty$1(obj, key, value) {
+function _defineProperty$2(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -12086,7 +30217,7 @@ function _defineProperty$1(obj, key, value) {
   return obj;
 }
 
-function _objectSpread$8(target) {
+function _objectSpread$7(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i] != null ? arguments[i] : {};
     var ownKeys = Object.keys(source);
@@ -12098,14 +30229,14 @@ function _objectSpread$8(target) {
     }
 
     ownKeys.forEach(function (key) {
-      _defineProperty$1(target, key, source[key]);
+      _defineProperty$2(target, key, source[key]);
     });
   }
 
   return target;
 }
 
-function _classCallCheck$1(instance, Constructor) {
+function _classCallCheck$8(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
@@ -12121,7 +30252,7 @@ function _defineProperties$1(target, props) {
   }
 }
 
-function _createClass$1(Constructor, protoProps, staticProps) {
+function _createClass$7(Constructor, protoProps, staticProps) {
   if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
   if (staticProps) _defineProperties$1(Constructor, staticProps);
   return Constructor;
@@ -12129,18 +30260,18 @@ function _createClass$1(Constructor, protoProps, staticProps) {
 
 function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
 
-function _typeof(obj) {
+function _typeof$2(obj) {
   if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
-    _typeof = function _typeof(obj) {
+    _typeof$2 = function _typeof(obj) {
       return _typeof2(obj);
     };
   } else {
-    _typeof = function _typeof(obj) {
+    _typeof$2 = function _typeof(obj) {
       return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
     };
   }
 
-  return _typeof(obj);
+  return _typeof$2(obj);
 }
 
 function _assertThisInitialized$1(self) {
@@ -12152,7 +30283,7 @@ function _assertThisInitialized$1(self) {
 }
 
 function _possibleConstructorReturn$1(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+  if (call && (_typeof$2(call) === "object" || typeof call === "function")) {
     return call;
   }
 
@@ -13790,9 +31921,6 @@ var labelPropName = '__EMOTION_LABEL_PLEASE_DO_NOT_USE__';
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
 var render = function render(cache, props, theme, ref) {
-  var type = props[typePropName];
-  var registeredStyles = [];
-  var className = '';
   var cssProp = theme === null ? props.css : props.css(theme); // so that using `css` from `emotion` and passing the result to the css prop works
   // not passing the registered cache to serializeStyles because it would
   // make certain babel optimisations not possible
@@ -13801,7 +31929,9 @@ var render = function render(cache, props, theme, ref) {
     cssProp = cache.registered[cssProp];
   }
 
-  registeredStyles.push(cssProp);
+  var type = props[typePropName];
+  var registeredStyles = [cssProp];
+  var className = '';
 
   if (props.className !== undefined) {
     className = getRegisteredStyles(cache.registered, registeredStyles, props.className);
@@ -13850,7 +31980,9 @@ var render = function render(cache, props, theme, ref) {
   return ele;
 };
 
-var Emotion = withEmotionCache(function (props, cache, ref) {
+var Emotion =
+/* #__PURE__ */
+withEmotionCache(function (props, cache, ref) {
   // use Context.read for the theme when it's stable
   if (typeof props.css === 'function') {
     return e.createElement(ThemeContext.Consumer, null, function (theme) {
@@ -13869,7 +32001,7 @@ if (process.env.NODE_ENV !== 'production') {
 var jsx = function jsx(type, props) {
   var args = arguments;
 
-  if (props == null || props.css == null) {
+  if (props == null || !hasOwnProperty.call(props, 'css')) {
     // $FlowFixMe
     return e.createElement.apply(undefined, args);
   }
@@ -14058,122 +32190,6 @@ var ClassNames = withEmotionCache(function (props, context) {
   });
 });
 
-var performanceNow = createCommonjsModule(function (module) {
-// Generated by CoffeeScript 1.12.2
-(function() {
-  var getNanoSeconds, hrtime, loadTime, moduleLoadTime, nodeLoadTime, upTime;
-
-  if ((typeof performance !== "undefined" && performance !== null) && performance.now) {
-    module.exports = function() {
-      return performance.now();
-    };
-  } else if ((typeof process !== "undefined" && process !== null) && process.hrtime) {
-    module.exports = function() {
-      return (getNanoSeconds() - nodeLoadTime) / 1e6;
-    };
-    hrtime = process.hrtime;
-    getNanoSeconds = function() {
-      var hr;
-      hr = hrtime();
-      return hr[0] * 1e9 + hr[1];
-    };
-    moduleLoadTime = getNanoSeconds();
-    upTime = process.uptime() * 1e9;
-    nodeLoadTime = moduleLoadTime - upTime;
-  } else if (Date.now) {
-    module.exports = function() {
-      return Date.now() - loadTime;
-    };
-    loadTime = Date.now();
-  } else {
-    module.exports = function() {
-      return new Date().getTime() - loadTime;
-    };
-    loadTime = new Date().getTime();
-  }
-
-}).call(commonjsGlobal);
-
-
-});
-
-var root = typeof window === 'undefined' ? commonjsGlobal : window
-  , vendors = ['moz', 'webkit']
-  , suffix = 'AnimationFrame'
-  , raf = root['request' + suffix]
-  , caf = root['cancel' + suffix] || root['cancelRequest' + suffix];
-
-for(var i$1 = 0; !raf && i$1 < vendors.length; i$1++) {
-  raf = root[vendors[i$1] + 'Request' + suffix];
-  caf = root[vendors[i$1] + 'Cancel' + suffix]
-      || root[vendors[i$1] + 'CancelRequest' + suffix];
-}
-
-// Some versions of FF have rAF but not cAF
-if(!raf || !caf) {
-  var last = 0
-    , id = 0
-    , queue = []
-    , frameDuration = 1000 / 60;
-
-  raf = function(callback) {
-    if(queue.length === 0) {
-      var _now = performanceNow()
-        , next = Math.max(0, frameDuration - (_now - last));
-      last = next + _now;
-      setTimeout(function() {
-        var cp = queue.slice(0);
-        // Clear queue here to prevent
-        // callbacks from appending listeners
-        // to the current frame's queue
-        queue.length = 0;
-        for(var i = 0; i < cp.length; i++) {
-          if(!cp[i].cancelled) {
-            try{
-              cp[i].callback(last);
-            } catch(e) {
-              setTimeout(function() { throw e }, 0);
-            }
-          }
-        }
-      }, Math.round(next));
-    }
-    queue.push({
-      handle: ++id,
-      callback: callback,
-      cancelled: false
-    });
-    return id
-  };
-
-  caf = function(handle) {
-    for(var i = 0; i < queue.length; i++) {
-      if(queue[i].handle === handle) {
-        queue[i].cancelled = true;
-      }
-    }
-  };
-}
-
-var raf_1 = function(fn) {
-  // Wrap in a new function to prevent
-  // `cancel` potentially being assigned
-  // to the native rAF function
-  return raf.call(root, fn)
-};
-var cancel = function() {
-  caf.apply(root, arguments);
-};
-var polyfill = function(object) {
-  if (!object) {
-    object = root;
-  }
-  object.requestAnimationFrame = raf;
-  object.cancelAnimationFrame = caf;
-};
-raf_1.cancel = cancel;
-raf_1.polyfill = polyfill;
-
 // ==============================
 // NO OP
 // ==============================
@@ -14223,7 +32239,7 @@ function classNames(prefix, state, className) {
 
 var cleanValue = function cleanValue(value) {
   if (Array.isArray(value)) return value.filter(Boolean);
-  if (_typeof(value) === 'object' && value !== null) return [value];
+  if (_typeof$2(value) === 'object' && value !== null) return [value];
   return [];
 }; // ==============================
 // Scroll Helpers
@@ -14301,7 +32317,7 @@ function animatedScrollTo(element, to) {
     scrollTo(element, val);
 
     if (currentTime < duration) {
-      raf_1(animateScroll);
+      window.requestAnimationFrame(animateScroll);
     } else {
       callback(element);
     }
@@ -14387,7 +32403,7 @@ var _react2 = _interopRequireDefault(e__default);
 
 
 
-var _propTypes2 = _interopRequireDefault(PropTypes$1);
+var _propTypes2 = _interopRequireDefault(PropTypes$2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -14473,8 +32489,8 @@ var AutosizeInput = function (_Component) {
 			this.updateInputWidth();
 		}
 	}, {
-		key: 'componentWillReceiveProps',
-		value: function componentWillReceiveProps(nextProps) {
+		key: 'UNSAFE_componentWillReceiveProps',
+		value: function UNSAFE_componentWillReceiveProps(nextProps) {
 			var id = nextProps.id;
 
 			if (id !== this.props.id) {
@@ -14829,7 +32845,7 @@ var menuCSS = function menuCSS(_ref2) {
       colors = _ref2$theme.colors;
   return _ref3 = {
     label: 'menu'
-  }, _defineProperty$1(_ref3, alignToControl(placement), '100%'), _defineProperty$1(_ref3, "backgroundColor", colors.neutral0), _defineProperty$1(_ref3, "borderRadius", borderRadius), _defineProperty$1(_ref3, "boxShadow", '0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1)'), _defineProperty$1(_ref3, "marginBottom", spacing.menuGutter), _defineProperty$1(_ref3, "marginTop", spacing.menuGutter), _defineProperty$1(_ref3, "position", 'absolute'), _defineProperty$1(_ref3, "width", '100%'), _defineProperty$1(_ref3, "zIndex", 1), _ref3;
+  }, _defineProperty$2(_ref3, alignToControl(placement), '100%'), _defineProperty$2(_ref3, "backgroundColor", colors.neutral0), _defineProperty$2(_ref3, "borderRadius", borderRadius), _defineProperty$2(_ref3, "boxShadow", '0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1)'), _defineProperty$2(_ref3, "marginBottom", spacing.menuGutter), _defineProperty$2(_ref3, "marginTop", spacing.menuGutter), _defineProperty$2(_ref3, "position", 'absolute'), _defineProperty$2(_ref3, "width", '100%'), _defineProperty$2(_ref3, "zIndex", 1), _ref3;
 }; // NOTE: internal only
 
 var MenuPlacer =
@@ -14842,7 +32858,7 @@ function (_Component) {
 
     var _this;
 
-    _classCallCheck$1(this, MenuPlacer);
+    _classCallCheck$8(this, MenuPlacer);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -14850,12 +32866,12 @@ function (_Component) {
 
     _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(MenuPlacer)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
       maxHeight: _this.props.maxMenuHeight,
       placement: null
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getPlacement", function (ref) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getPlacement", function (ref) {
       var _this$props = _this.props,
           minMenuHeight = _this$props.minMenuHeight,
           maxMenuHeight = _this$props.maxMenuHeight,
@@ -14882,10 +32898,10 @@ function (_Component) {
       _this.setState(state);
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getUpdatedProps", function () {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getUpdatedProps", function () {
       var menuPlacement = _this.props.menuPlacement;
       var placement = _this.state.placement || coercePlacement(menuPlacement);
-      return _objectSpread$8({}, _this.props, {
+      return _objectSpread$7({}, _this.props, {
         placement: placement,
         maxHeight: _this.state.maxHeight
       });
@@ -14894,7 +32910,7 @@ function (_Component) {
     return _this;
   }
 
-  _createClass$1(MenuPlacer, [{
+  _createClass$7(MenuPlacer, [{
     key: "render",
     value: function render() {
       var children = this.props.children;
@@ -14908,8 +32924,8 @@ function (_Component) {
   return MenuPlacer;
 }(e.Component);
 
-_defineProperty$1(MenuPlacer, "contextTypes", {
-  getPortalPlacement: PropTypes$1.func
+_defineProperty$2(MenuPlacer, "contextTypes", {
+  getPortalPlacement: PropTypes$2.func
 });
 
 var Menu = function Menu(props) {
@@ -14919,7 +32935,7 @@ var Menu = function Menu(props) {
       getStyles = props.getStyles,
       innerRef = props.innerRef,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$7({
     css: getStyles('menu', props),
     className: cx({
       menu: true
@@ -14982,7 +32998,7 @@ var NoOptionsMessage = function NoOptionsMessage(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$7({
     css: getStyles('noOptionsMessage', props),
     className: cx({
       'menu-notice': true,
@@ -14999,7 +33015,7 @@ var LoadingMessage = function LoadingMessage(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$7({
     css: getStyles('loadingMessage', props),
     className: cx({
       'menu-notice': true,
@@ -15035,7 +33051,7 @@ function (_Component2) {
 
     var _this2;
 
-    _classCallCheck$1(this, MenuPortal);
+    _classCallCheck$8(this, MenuPortal);
 
     for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
       args[_key2] = arguments[_key2];
@@ -15043,11 +33059,11 @@ function (_Component2) {
 
     _this2 = _possibleConstructorReturn$1(this, (_getPrototypeOf3 = _getPrototypeOf(MenuPortal)).call.apply(_getPrototypeOf3, [this].concat(args)));
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this2)), "state", {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this2)), "state", {
       placement: null
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this2)), "getPortalPlacement", function (_ref7) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this2)), "getPortalPlacement", function (_ref7) {
       var placement = _ref7.placement;
       var initialPlacement = coercePlacement(_this2.props.menuPlacement); // avoid re-renders if the placement has not changed
 
@@ -15061,7 +33077,7 @@ function (_Component2) {
     return _this2;
   }
 
-  _createClass$1(MenuPortal, [{
+  _createClass$7(MenuPortal, [{
     key: "getChildContext",
     value: function getChildContext() {
       return {
@@ -15105,8 +33121,8 @@ function (_Component2) {
   return MenuPortal;
 }(e.Component);
 
-_defineProperty$1(MenuPortal, "childContextTypes", {
-  getPortalPlacement: PropTypes$1.func
+_defineProperty$2(MenuPortal, "childContextTypes", {
+  getPortalPlacement: PropTypes$2.func
 });
 
 var isArray = Array.isArray;
@@ -15117,7 +33133,7 @@ function equal(a, b) {
   // fast-deep-equal index.js 2.0.1
   if (a === b) return true;
 
-  if (a && b && _typeof(a) == 'object' && _typeof(b) == 'object') {
+  if (a && b && _typeof$2(a) == 'object' && _typeof$2(b) == 'object') {
     var arrA = isArray(a),
         arrB = isArray(b),
         i,
@@ -15218,7 +33234,7 @@ var SelectContainer = function SelectContainer(props) {
       innerProps = props.innerProps,
       isDisabled = props.isDisabled,
       isRtl = props.isRtl;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$7({
     css: getStyles('container', props),
     className: cx({
       '--is-disabled': isDisabled,
@@ -15248,12 +33264,12 @@ function (_Component) {
   _inherits$1(ValueContainer, _Component);
 
   function ValueContainer() {
-    _classCallCheck$1(this, ValueContainer);
+    _classCallCheck$8(this, ValueContainer);
 
     return _possibleConstructorReturn$1(this, _getPrototypeOf(ValueContainer).apply(this, arguments));
   }
 
-  _createClass$1(ValueContainer, [{
+  _createClass$7(ValueContainer, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -15300,10 +33316,10 @@ var IndicatorsContainer = function IndicatorsContainer(props) {
   }, children);
 };
 
-function _templateObject$d() {
+function _templateObject$e() {
   var data = _taggedTemplateLiteral$1(["\n  0%, 80%, 100% { opacity: 0; }\n  40% { opacity: 1; }\n"]);
 
-  _templateObject$d = function _templateObject() {
+  _templateObject$e = function _templateObject() {
     return data;
   };
 
@@ -15326,7 +33342,7 @@ var Svg = function Svg(_ref) {
   var size = _ref.size,
       props = _objectWithoutProperties$2(_ref, ["size"]);
 
-  return jsx("svg", _extends$1({
+  return jsx("svg", _extends$7({
     height: size,
     width: size,
     viewBox: "0 0 20 20",
@@ -15337,14 +33353,14 @@ var Svg = function Svg(_ref) {
 };
 
 var CrossIcon = function CrossIcon(props) {
-  return jsx(Svg, _extends$1({
+  return jsx(Svg, _extends$7({
     size: 20
   }, props), jsx("path", {
     d: "M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
   }));
 };
 var DownChevron = function DownChevron(props) {
-  return jsx(Svg, _extends$1({
+  return jsx(Svg, _extends$7({
     size: 20
   }, props), jsx("path", {
     d: "M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
@@ -15377,7 +33393,7 @@ var DropdownIndicator = function DropdownIndicator(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({}, innerProps, {
+  return jsx("div", _extends$7({}, innerProps, {
     css: getStyles('dropdownIndicator', props),
     className: cx({
       indicator: true,
@@ -15392,7 +33408,7 @@ var ClearIndicator = function ClearIndicator(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({}, innerProps, {
+  return jsx("div", _extends$7({}, innerProps, {
     css: getStyles('clearIndicator', props),
     className: cx({
       indicator: true,
@@ -15422,7 +33438,7 @@ var IndicatorSeparator = function IndicatorSeparator(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("span", _extends$1({}, innerProps, {
+  return jsx("span", _extends$7({}, innerProps, {
     css: getStyles('indicatorSeparator', props),
     className: cx({
       'indicator-separator': true
@@ -15432,7 +33448,7 @@ var IndicatorSeparator = function IndicatorSeparator(props) {
 // Loading
 // ==============================
 
-var loadingDotAnimations = keyframes(_templateObject$d());
+var loadingDotAnimations = keyframes(_templateObject$e());
 var loadingIndicatorCSS = function loadingIndicatorCSS(_ref5) {
   var isFocused = _ref5.isFocused,
       size = _ref5.size,
@@ -15479,7 +33495,7 @@ var LoadingIndicator = function LoadingIndicator(props) {
       getStyles = props.getStyles,
       innerProps = props.innerProps,
       isRtl = props.isRtl;
-  return jsx("div", _extends$1({}, innerProps, {
+  return jsx("div", _extends$7({}, innerProps, {
     css: getStyles('loadingIndicator', props),
     className: cx({
       indicator: true,
@@ -15540,7 +33556,7 @@ var Control = function Control(props) {
       innerRef = props.innerRef,
       innerProps = props.innerProps,
       menuIsOpen = props.menuIsOpen;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$7({
     ref: innerRef,
     css: getStyles('control', props),
     className: cx({
@@ -15575,7 +33591,7 @@ var Group = function Group(props) {
     className: cx({
       group: true
     }, className)
-  }, jsx(Heading, _extends$1({}, headingProps, {
+  }, jsx(Heading, _extends$7({}, headingProps, {
     selectProps: selectProps,
     theme: theme,
     getStyles: getStyles,
@@ -15606,8 +33622,8 @@ var GroupHeading = function GroupHeading(props) {
       selectProps = props.selectProps,
       cleanProps = _objectWithoutProperties$2(props, ["className", "cx", "getStyles", "theme", "selectProps"]);
 
-  return jsx("div", _extends$1({
-    css: getStyles('groupHeading', _objectSpread$8({
+  return jsx("div", _extends$7({
+    css: getStyles('groupHeading', _objectSpread$7({
       theme: theme
     }, cleanProps)),
     className: cx({
@@ -15655,10 +33671,10 @@ var Input$1 = function Input(_ref2) {
       props = _objectWithoutProperties$2(_ref2, ["className", "cx", "getStyles", "innerRef", "isHidden", "isDisabled", "theme", "selectProps"]);
 
   return jsx("div", {
-    css: getStyles('input', _objectSpread$8({
+    css: getStyles('input', _objectSpread$7({
       theme: theme
     }, props))
-  }, jsx(AutosizeInput, _extends$1({
+  }, jsx(AutosizeInput, _extends$7({
     className: cx({
       input: true
     }, className),
@@ -15731,12 +33747,12 @@ function (_Component) {
   _inherits$1(MultiValueRemove, _Component);
 
   function MultiValueRemove() {
-    _classCallCheck$1(this, MultiValueRemove);
+    _classCallCheck$8(this, MultiValueRemove);
 
     return _possibleConstructorReturn$1(this, _getPrototypeOf(MultiValueRemove).apply(this, arguments));
   }
 
-  _createClass$1(MultiValueRemove, [{
+  _createClass$7(MultiValueRemove, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -15757,12 +33773,12 @@ function (_Component2) {
   _inherits$1(MultiValue, _Component2);
 
   function MultiValue() {
-    _classCallCheck$1(this, MultiValue);
+    _classCallCheck$8(this, MultiValue);
 
     return _possibleConstructorReturn$1(this, _getPrototypeOf(MultiValue).apply(this, arguments));
   }
 
-  _createClass$1(MultiValue, [{
+  _createClass$7(MultiValue, [{
     key: "render",
     value: function render() {
       var _this = this;
@@ -15786,7 +33802,7 @@ function (_Component2) {
             emotionCx = _ref5.cx;
         return jsx(Container, {
           data: data,
-          innerProps: _objectSpread$8({}, innerProps, {
+          innerProps: _objectSpread$7({}, innerProps, {
             className: emotionCx(css(getStyles('multiValue', _this.props)), cx({
               'multi-value': true,
               'multi-value--is-disabled': isDisabled
@@ -15803,7 +33819,7 @@ function (_Component2) {
           selectProps: selectProps
         }, children), jsx(Remove, {
           data: data,
-          innerProps: _objectSpread$8({
+          innerProps: _objectSpread$7({
             className: emotionCx(css(getStyles('multiValueRemove', _this.props)), cx({
               'multi-value__remove': true
             }, className))
@@ -15817,7 +33833,7 @@ function (_Component2) {
   return MultiValue;
 }(e.Component);
 
-_defineProperty$1(MultiValue, "defaultProps", {
+_defineProperty$2(MultiValue, "defaultProps", {
   cropWithEllipsis: true
 });
 
@@ -15856,7 +33872,7 @@ var Option = function Option(props) {
       isSelected = props.isSelected,
       innerRef = props.innerRef,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$7({
     css: getStyles('option', props),
     className: cx({
       option: true,
@@ -15889,7 +33905,7 @@ var Placeholder = function Placeholder(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$7({
     css: getStyles('placeholder', props),
     className: cx({
       placeholder: true
@@ -15924,7 +33940,7 @@ var SingleValue = function SingleValue(props) {
       getStyles = props.getStyles,
       isDisabled = props.isDisabled,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$7({
     css: getStyles('singleValue', props),
     className: cx({
       'single-value': true,
@@ -15961,7 +33977,7 @@ var components = {
   ValueContainer: ValueContainer
 };
 var defaultComponents = function defaultComponents(props) {
-  return _objectSpread$8({}, components, props.components);
+  return _objectSpread$7({}, components, props.components);
 };
 
 var diacritics = [{
@@ -16235,7 +34251,7 @@ var defaultStringify = function defaultStringify(option) {
 
 var createFilter = function createFilter(config) {
   return function (option, rawInput) {
-    var _ignoreCase$ignoreAcc = _objectSpread$8({
+    var _ignoreCase$ignoreAcc = _objectSpread$7({
       ignoreCase: true,
       ignoreAccents: true,
       stringify: defaultStringify,
@@ -16275,7 +34291,7 @@ var _ref = process.env.NODE_ENV === "production" ? {
 };
 
 var A11yText = function A11yText(props) {
-  return jsx("span", _extends$1({
+  return jsx("span", _extends$7({
     css: _ref
   }, props));
 };
@@ -16286,12 +34302,12 @@ function (_Component) {
   _inherits$1(DummyInput, _Component);
 
   function DummyInput() {
-    _classCallCheck$1(this, DummyInput);
+    _classCallCheck$8(this, DummyInput);
 
     return _possibleConstructorReturn$1(this, _getPrototypeOf(DummyInput).apply(this, arguments));
   }
 
-  _createClass$1(DummyInput, [{
+  _createClass$7(DummyInput, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -16305,7 +34321,7 @@ function (_Component) {
           emotion = _this$props.emotion,
           props = _objectWithoutProperties$2(_this$props, ["in", "out", "onExited", "appear", "enter", "exit", "innerRef", "emotion"]);
 
-      return jsx("input", _extends$1({
+      return jsx("input", _extends$7({
         ref: innerRef
       }, props, {
         css:
@@ -16341,12 +34357,12 @@ function (_Component) {
   _inherits$1(NodeResolver, _Component);
 
   function NodeResolver() {
-    _classCallCheck$1(this, NodeResolver);
+    _classCallCheck$8(this, NodeResolver);
 
     return _possibleConstructorReturn$1(this, _getPrototypeOf(NodeResolver).apply(this, arguments));
   }
 
-  _createClass$1(NodeResolver, [{
+  _createClass$7(NodeResolver, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.innerRef(reactDom.findDOMNode(this));
@@ -16411,7 +34427,7 @@ function (_Component) {
 
     var _this;
 
-    _classCallCheck$1(this, ScrollLock);
+    _classCallCheck$8(this, ScrollLock);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -16419,9 +34435,9 @@ function (_Component) {
 
     _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(ScrollLock)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "originalStyles", {});
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "originalStyles", {});
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "listenerOptions", {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "listenerOptions", {
       capture: false,
       passive: false
     });
@@ -16429,7 +34445,7 @@ function (_Component) {
     return _this;
   }
 
-  _createClass$1(ScrollLock, [{
+  _createClass$7(ScrollLock, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
@@ -16525,7 +34541,7 @@ function (_Component) {
   return ScrollLock;
 }(e.Component);
 
-_defineProperty$1(ScrollLock, "defaultProps", {
+_defineProperty$2(ScrollLock, "defaultProps", {
   accountForScrollbars: true
 });
 
@@ -16552,7 +34568,7 @@ function (_PureComponent) {
 
     var _this;
 
-    _classCallCheck$1(this, ScrollBlock);
+    _classCallCheck$8(this, ScrollBlock);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -16560,11 +34576,11 @@ function (_PureComponent) {
 
     _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(ScrollBlock)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
       touchScrollTarget: null
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getScrollTarget", function (ref) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getScrollTarget", function (ref) {
       if (ref === _this.state.touchScrollTarget) return;
 
       _this.setState({
@@ -16572,7 +34588,7 @@ function (_PureComponent) {
       });
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "blurSelectInput", function () {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "blurSelectInput", function () {
       if (document.activeElement) {
         document.activeElement.blur();
       }
@@ -16581,7 +34597,7 @@ function (_PureComponent) {
     return _this;
   }
 
-  _createClass$1(ScrollBlock, [{
+  _createClass$7(ScrollBlock, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -16627,7 +34643,7 @@ function (_Component) {
 
     var _this;
 
-    _classCallCheck$1(this, ScrollCaptor);
+    _classCallCheck$8(this, ScrollCaptor);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -16635,20 +34651,20 @@ function (_Component) {
 
     _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(ScrollCaptor)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "isBottom", false);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "isBottom", false);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "isTop", false);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "isTop", false);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "scrollTarget", void 0);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "scrollTarget", void 0);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "touchStart", void 0);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "touchStart", void 0);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "cancelScroll", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "cancelScroll", function (event) {
       event.preventDefault();
       event.stopPropagation();
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "handleEventDelta", function (event, delta) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "handleEventDelta", function (event, delta) {
       var _this$props = _this.props,
           onBottomArrive = _this$props.onBottomArrive,
           onBottomLeave = _this$props.onBottomLeave,
@@ -16698,29 +34714,29 @@ function (_Component) {
       }
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onWheel", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onWheel", function (event) {
       _this.handleEventDelta(event, event.deltaY);
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchStart", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchStart", function (event) {
       // set touch start so we can calculate touchmove delta
       _this.touchStart = event.changedTouches[0].clientY;
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchMove", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchMove", function (event) {
       var deltaY = _this.touchStart - event.changedTouches[0].clientY;
 
       _this.handleEventDelta(event, deltaY);
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getScrollTarget", function (ref) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getScrollTarget", function (ref) {
       _this.scrollTarget = ref;
     });
 
     return _this;
   }
 
-  _createClass$1(ScrollCaptor, [{
+  _createClass$7(ScrollCaptor, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.startListening(this.scrollTarget);
@@ -16782,12 +34798,12 @@ function (_Component2) {
   _inherits$1(ScrollCaptorSwitch, _Component2);
 
   function ScrollCaptorSwitch() {
-    _classCallCheck$1(this, ScrollCaptorSwitch);
+    _classCallCheck$8(this, ScrollCaptorSwitch);
 
     return _possibleConstructorReturn$1(this, _getPrototypeOf(ScrollCaptorSwitch).apply(this, arguments));
   }
 
-  _createClass$1(ScrollCaptorSwitch, [{
+  _createClass$7(ScrollCaptorSwitch, [{
     key: "render",
     value: function render() {
       var _this$props2 = this.props,
@@ -16801,7 +34817,7 @@ function (_Component2) {
   return ScrollCaptorSwitch;
 }(e.Component);
 
-_defineProperty$1(ScrollCaptorSwitch, "defaultProps", {
+_defineProperty$2(ScrollCaptorSwitch, "defaultProps", {
   isEnabled: true
 });
 
@@ -16993,11 +35009,11 @@ function (_Component) {
   function Select(_props) {
     var _this;
 
-    _classCallCheck$1(this, Select);
+    _classCallCheck$8(this, Select);
 
     _this = _possibleConstructorReturn$1(this, _getPrototypeOf(Select).call(this, _props));
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
       ariaLiveSelection: '',
       ariaLiveContext: '',
       focusedOption: null,
@@ -17011,76 +35027,76 @@ function (_Component) {
       selectValue: []
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "blockOptionHover", false);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "blockOptionHover", false);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "isComposing", false);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "isComposing", false);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "clearFocusValueOnUpdate", false);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "clearFocusValueOnUpdate", false);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "commonProps", void 0);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "commonProps", void 0);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "components", void 0);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "components", void 0);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "hasGroups", false);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "hasGroups", false);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "initialTouchX", 0);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "initialTouchX", 0);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "initialTouchY", 0);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "initialTouchY", 0);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "inputIsHiddenAfterUpdate", void 0);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "inputIsHiddenAfterUpdate", void 0);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "instancePrefix", '');
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "instancePrefix", '');
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "openAfterFocus", false);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "openAfterFocus", false);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "scrollToFocusedOptionOnUpdate", false);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "scrollToFocusedOptionOnUpdate", false);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "userIsDragging", void 0);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "userIsDragging", void 0);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "controlRef", null);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "controlRef", null);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getControlRef", function (ref) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getControlRef", function (ref) {
       _this.controlRef = ref;
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "focusedOptionRef", null);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "focusedOptionRef", null);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getFocusedOptionRef", function (ref) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getFocusedOptionRef", function (ref) {
       _this.focusedOptionRef = ref;
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "menuListRef", null);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "menuListRef", null);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getMenuListRef", function (ref) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getMenuListRef", function (ref) {
       _this.menuListRef = ref;
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "inputRef", null);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "inputRef", null);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getInputRef", function (ref) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getInputRef", function (ref) {
       _this.inputRef = ref;
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "cacheComponents", function (components) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "cacheComponents", function (components) {
       _this.components = defaultComponents({
         components: components
       });
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "focus", _this.focusInput);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "focus", _this.focusInput);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "blur", _this.blurInput);
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "blur", _this.blurInput);
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onChange", function (newValue, actionMeta) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onChange", function (newValue, actionMeta) {
       var _this$props = _this.props,
           onChange = _this$props.onChange,
           name = _this$props.name;
-      onChange(newValue, _objectSpread$8({}, actionMeta, {
+      onChange(newValue, _objectSpread$7({}, actionMeta, {
         name: name
       }));
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "setValue", function (newValue) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "setValue", function (newValue) {
       var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'set-value';
       var option = arguments.length > 2 ? arguments[2] : undefined;
       var _this$props2 = _this.props,
@@ -17106,7 +35122,7 @@ function (_Component) {
       });
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "selectOption", function (newValue) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "selectOption", function (newValue) {
       var _this$props3 = _this.props,
           blurInputOnSelect = _this$props3.blurInputOnSelect,
           isMulti = _this$props3.isMulti;
@@ -17174,7 +35190,7 @@ function (_Component) {
       }
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "removeValue", function (removedValue) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "removeValue", function (removedValue) {
       var selectValue = _this.state.selectValue;
 
       var candidate = _this.getOptionValue(removedValue);
@@ -17198,7 +35214,7 @@ function (_Component) {
       _this.focusInput();
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "clearValue", function () {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "clearValue", function () {
       var isMulti = _this.props.isMulti;
 
       _this.onChange(isMulti ? [] : null, {
@@ -17206,7 +35222,7 @@ function (_Component) {
       });
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "popValue", function () {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "popValue", function () {
       var selectValue = _this.state.selectValue;
       var lastSelectedValue = selectValue[selectValue.length - 1];
       var newValue = selectValue.slice(0, selectValue.length - 1);
@@ -17224,26 +35240,26 @@ function (_Component) {
       });
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getOptionLabel", function (data) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getOptionLabel", function (data) {
       return _this.props.getOptionLabel(data);
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getOptionValue", function (data) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getOptionValue", function (data) {
       return _this.props.getOptionValue(data);
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getStyles", function (key, props) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getStyles", function (key, props) {
       var base = defaultStyles[key](props);
       base.boxSizing = 'border-box';
       var custom = _this.props.styles[key];
       return custom ? custom(base, props) : base;
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getElementId", function (element) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getElementId", function (element) {
       return "".concat(_this.instancePrefix, "-").concat(element);
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getActiveDescendentId", function () {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getActiveDescendentId", function () {
       var menuIsOpen = _this.props.menuIsOpen;
       var _this$state = _this.state,
           menuOptions = _this$state.menuOptions,
@@ -17254,7 +35270,7 @@ function (_Component) {
       return option && option.key;
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "announceAriaLiveSelection", function (_ref2) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "announceAriaLiveSelection", function (_ref2) {
       var event = _ref2.event,
           context = _ref2.context;
 
@@ -17263,18 +35279,18 @@ function (_Component) {
       });
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "announceAriaLiveContext", function (_ref3) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "announceAriaLiveContext", function (_ref3) {
       var event = _ref3.event,
           context = _ref3.context;
 
       _this.setState({
-        ariaLiveContext: instructionsAriaMessage(event, _objectSpread$8({}, context, {
+        ariaLiveContext: instructionsAriaMessage(event, _objectSpread$7({}, context, {
           label: _this.props['aria-label']
         }))
       });
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuMouseDown", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuMouseDown", function (event) {
       if (event.button !== 0) {
         return;
       }
@@ -17285,11 +35301,11 @@ function (_Component) {
       _this.focusInput();
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuMouseMove", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuMouseMove", function (event) {
       _this.blockOptionHover = false;
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onControlMouseDown", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onControlMouseDown", function (event) {
       var openMenuOnClick = _this.props.openMenuOnClick;
 
       if (!_this.state.isFocused) {
@@ -17315,7 +35331,7 @@ function (_Component) {
       }
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onDropdownIndicatorMouseDown", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onDropdownIndicatorMouseDown", function (event) {
       // ignore mouse events that weren't triggered by the primary button
       if (event && event.type === 'mousedown' && event.button !== 0) {
         return;
@@ -17340,7 +35356,7 @@ function (_Component) {
       event.stopPropagation();
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onClearIndicatorMouseDown", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onClearIndicatorMouseDown", function (event) {
       // ignore mouse events that weren't triggered by the primary button
       if (event && event.type === 'mousedown' && event.button !== 0) {
         return;
@@ -17360,7 +35376,7 @@ function (_Component) {
       }
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onScroll", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onScroll", function (event) {
       if (typeof _this.props.closeMenuOnScroll === 'boolean') {
         if (event.target instanceof HTMLElement && isDocumentElement(event.target)) {
           _this.props.onMenuClose();
@@ -17372,15 +35388,15 @@ function (_Component) {
       }
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onCompositionStart", function () {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onCompositionStart", function () {
       _this.isComposing = true;
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onCompositionEnd", function () {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onCompositionEnd", function () {
       _this.isComposing = false;
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchStart", function (_ref4) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchStart", function (_ref4) {
       var touches = _ref4.touches;
       var touch = touches.item(0);
 
@@ -17393,7 +35409,7 @@ function (_Component) {
       _this.userIsDragging = false;
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchMove", function (_ref5) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchMove", function (_ref5) {
       var touches = _ref5.touches;
       var touch = touches.item(0);
 
@@ -17407,7 +35423,7 @@ function (_Component) {
       _this.userIsDragging = deltaX > moveThreshold || deltaY > moveThreshold;
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchEnd", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchEnd", function (event) {
       if (_this.userIsDragging) return; // close the menu if the user taps outside
       // we're checking on event.target here instead of event.currentTarget, because we want to assert information
       // on events on child elements, not the document (which we've attached this handler to).
@@ -17421,25 +35437,25 @@ function (_Component) {
       _this.initialTouchY = 0;
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onControlTouchEnd", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onControlTouchEnd", function (event) {
       if (_this.userIsDragging) return;
 
       _this.onControlMouseDown(event);
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onClearIndicatorTouchEnd", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onClearIndicatorTouchEnd", function (event) {
       if (_this.userIsDragging) return;
 
       _this.onClearIndicatorMouseDown(event);
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onDropdownIndicatorTouchEnd", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onDropdownIndicatorTouchEnd", function (event) {
       if (_this.userIsDragging) return;
 
       _this.onDropdownIndicatorMouseDown(event);
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "handleInputChange", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "handleInputChange", function (event) {
       var inputValue = event.currentTarget.value;
       _this.inputIsHiddenAfterUpdate = false;
 
@@ -17450,7 +35466,7 @@ function (_Component) {
       _this.onMenuOpen();
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onInputFocus", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onInputFocus", function (event) {
       var _this$props5 = _this.props,
           isSearchable = _this$props5.isSearchable,
           isMulti = _this$props5.isMulti;
@@ -17480,7 +35496,7 @@ function (_Component) {
       _this.openAfterFocus = false;
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onInputBlur", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onInputBlur", function (event) {
       if (_this.menuListRef && _this.menuListRef.contains(document.activeElement)) {
         _this.inputRef.focus();
 
@@ -17503,7 +35519,7 @@ function (_Component) {
       });
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onOptionHover", function (focusedOption) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onOptionHover", function (focusedOption) {
       if (_this.blockOptionHover || _this.state.focusedOption === focusedOption) {
         return;
       }
@@ -17513,7 +35529,7 @@ function (_Component) {
       });
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "shouldHideSelectedOptions", function () {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "shouldHideSelectedOptions", function () {
       var _this$props6 = _this.props,
           hideSelectedOptions = _this$props6.hideSelectedOptions,
           isMulti = _this$props6.isMulti;
@@ -17521,7 +35537,7 @@ function (_Component) {
       return hideSelectedOptions;
     });
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onKeyDown", function (event) {
+    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onKeyDown", function (event) {
       var _this$props7 = _this.props,
           isMulti = _this$props7.isMulti,
           backspaceRemovesValue = _this$props7.backspaceRemovesValue,
@@ -17719,7 +35735,7 @@ function (_Component) {
     return _this;
   }
 
-  _createClass$1(Select, [{
+  _createClass$7(Select, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.startListeningComposition();
@@ -18005,7 +36021,7 @@ function (_Component) {
       // overlay it with the default theme.
 
 
-      return _objectSpread$8({}, defaultTheme, this.props.theme);
+      return _objectSpread$7({}, defaultTheme, this.props.theme);
     }
   }, {
     key: "getCommonProps",
@@ -18356,7 +36372,7 @@ function (_Component) {
           cx = _this$commonProps.cx,
           theme = _this$commonProps.theme,
           selectProps = _this$commonProps.selectProps;
-      return e__default.createElement(Input, _extends$1({
+      return e__default.createElement(Input, _extends$7({
         autoCapitalize: "none",
         autoComplete: "off",
         autoCorrect: "off",
@@ -18402,7 +36418,7 @@ function (_Component) {
           isFocused = _this$state8.isFocused;
 
       if (!this.hasValue() || !controlShouldRenderValue) {
-        return inputValue ? null : e__default.createElement(Placeholder, _extends$1({}, commonProps, {
+        return inputValue ? null : e__default.createElement(Placeholder, _extends$7({}, commonProps, {
           key: "placeholder",
           isDisabled: isDisabled,
           isFocused: isFocused
@@ -18410,9 +36426,9 @@ function (_Component) {
       }
 
       if (isMulti) {
-        var selectValues = selectValue.map(function (opt) {
+        var selectValues = selectValue.map(function (opt, index) {
           var isOptionFocused = opt === focusedValue;
-          return e__default.createElement(MultiValue, _extends$1({}, commonProps, {
+          return e__default.createElement(MultiValue, _extends$7({}, commonProps, {
             components: {
               Container: MultiValueContainer,
               Label: MultiValueLabel,
@@ -18421,6 +36437,7 @@ function (_Component) {
             isFocused: isOptionFocused,
             isDisabled: isDisabled,
             key: _this4.getOptionValue(opt),
+            index: index,
             removeProps: {
               onClick: function onClick() {
                 return _this4.removeValue(opt);
@@ -18444,7 +36461,7 @@ function (_Component) {
       }
 
       var singleValue = selectValue[0];
-      return e__default.createElement(SingleValue, _extends$1({}, commonProps, {
+      return e__default.createElement(SingleValue, _extends$7({}, commonProps, {
         data: singleValue,
         isDisabled: isDisabled
       }), this.formatOptionLabel(singleValue, 'value'));
@@ -18468,7 +36485,7 @@ function (_Component) {
         onTouchEnd: this.onClearIndicatorTouchEnd,
         'aria-hidden': 'true'
       };
-      return e__default.createElement(ClearIndicator, _extends$1({}, commonProps, {
+      return e__default.createElement(ClearIndicator, _extends$7({}, commonProps, {
         innerProps: innerProps,
         isFocused: isFocused
       }));
@@ -18486,7 +36503,7 @@ function (_Component) {
       var innerProps = {
         'aria-hidden': 'true'
       };
-      return e__default.createElement(LoadingIndicator, _extends$1({}, commonProps, {
+      return e__default.createElement(LoadingIndicator, _extends$7({}, commonProps, {
         innerProps: innerProps,
         isDisabled: isDisabled,
         isFocused: isFocused
@@ -18503,7 +36520,7 @@ function (_Component) {
       var commonProps = this.commonProps;
       var isDisabled = this.props.isDisabled;
       var isFocused = this.state.isFocused;
-      return e__default.createElement(IndicatorSeparator, _extends$1({}, commonProps, {
+      return e__default.createElement(IndicatorSeparator, _extends$7({}, commonProps, {
         isDisabled: isDisabled,
         isFocused: isFocused
       }));
@@ -18521,7 +36538,7 @@ function (_Component) {
         onTouchEnd: this.onDropdownIndicatorTouchEnd,
         'aria-hidden': 'true'
       };
-      return e__default.createElement(DropdownIndicator, _extends$1({}, commonProps, {
+      return e__default.createElement(DropdownIndicator, _extends$7({}, commonProps, {
         innerProps: innerProps,
         isDisabled: isDisabled,
         isFocused: isFocused
@@ -18568,7 +36585,7 @@ function (_Component) {
         // focused option changes so we calculate additional props based on that
         var isFocused = focusedOption === props.data;
         props.innerRef = isFocused ? _this5.getFocusedOptionRef : undefined;
-        return e__default.createElement(Option, _extends$1({}, commonProps, props, {
+        return e__default.createElement(Option, _extends$7({}, commonProps, props, {
           isFocused: isFocused
         }), _this5.formatOptionLabel(props.data, 'menu'));
       };
@@ -18582,7 +36599,7 @@ function (_Component) {
                 group = _objectWithoutProperties$2(item, ["type"]);
 
             var headingId = "".concat(item.key, "-heading");
-            return e__default.createElement(Group, _extends$1({}, commonProps, group, {
+            return e__default.createElement(Group, _extends$7({}, commonProps, group, {
               Heading: GroupHeading,
               headingProps: {
                 id: headingId
@@ -18617,12 +36634,12 @@ function (_Component) {
         menuPosition: menuPosition,
         menuShouldScrollIntoView: menuShouldScrollIntoView
       };
-      var menuElement = e__default.createElement(MenuPlacer, _extends$1({}, commonProps, menuPlacementProps), function (_ref6) {
+      var menuElement = e__default.createElement(MenuPlacer, _extends$7({}, commonProps, menuPlacementProps), function (_ref6) {
         var ref = _ref6.ref,
             _ref6$placerProps = _ref6.placerProps,
             placement = _ref6$placerProps.placement,
             maxHeight = _ref6$placerProps.maxHeight;
-        return e__default.createElement(Menu, _extends$1({}, commonProps, menuPlacementProps, {
+        return e__default.createElement(Menu, _extends$7({}, commonProps, menuPlacementProps, {
           innerRef: ref,
           innerProps: {
             onMouseDown: _this5.onMenuMouseDown,
@@ -18636,7 +36653,7 @@ function (_Component) {
           onBottomArrive: onMenuScrollToBottom
         }, e__default.createElement(ScrollBlock, {
           isEnabled: menuShouldBlockScroll
-        }, e__default.createElement(MenuList, _extends$1({}, commonProps, {
+        }, e__default.createElement(MenuList, _extends$7({}, commonProps, {
           innerRef: _this5.getMenuListRef,
           isLoading: isLoading,
           maxHeight: maxHeight
@@ -18645,7 +36662,7 @@ function (_Component) {
       // so we use the same component. the actual portalling logic is forked
       // within the component based on `menuPosition`
 
-      return menuPortalTarget || menuPosition === 'fixed' ? e__default.createElement(MenuPortal, _extends$1({}, commonProps, {
+      return menuPortalTarget || menuPosition === 'fixed' ? e__default.createElement(MenuPortal, _extends$7({}, commonProps, {
         appendTo: menuPortalTarget,
         controlElement: this.controlRef,
         menuPlacement: menuPlacement,
@@ -18726,7 +36743,7 @@ function (_Component) {
           menuIsOpen = _this$props20.menuIsOpen;
       var isFocused = this.state.isFocused;
       var commonProps = this.commonProps = this.getCommonProps();
-      return e__default.createElement(SelectContainer, _extends$1({}, commonProps, {
+      return e__default.createElement(SelectContainer, _extends$7({}, commonProps, {
         className: className,
         innerProps: {
           id: id,
@@ -18734,7 +36751,7 @@ function (_Component) {
         },
         isDisabled: isDisabled,
         isFocused: isFocused
-      }), this.renderLiveRegion(), e__default.createElement(Control, _extends$1({}, commonProps, {
+      }), this.renderLiveRegion(), e__default.createElement(Control, _extends$7({}, commonProps, {
         innerRef: this.getControlRef,
         innerProps: {
           onMouseDown: this.onControlMouseDown,
@@ -18743,9 +36760,9 @@ function (_Component) {
         isDisabled: isDisabled,
         isFocused: isFocused,
         menuIsOpen: menuIsOpen
-      }), e__default.createElement(ValueContainer, _extends$1({}, commonProps, {
+      }), e__default.createElement(ValueContainer, _extends$7({}, commonProps, {
         isDisabled: isDisabled
-      }), this.renderPlaceholderOrValue(), this.renderInput()), e__default.createElement(IndicatorsContainer, _extends$1({}, commonProps, {
+      }), this.renderPlaceholderOrValue(), this.renderInput()), e__default.createElement(IndicatorsContainer, _extends$7({}, commonProps, {
         isDisabled: isDisabled
       }), this.renderClearIndicator(), this.renderLoadingIndicator(), this.renderIndicatorSeparator(), this.renderDropdownIndicator())), this.renderMenu(), this.renderFormField());
     }
@@ -18754,7 +36771,7 @@ function (_Component) {
   return Select;
 }(e.Component);
 
-_defineProperty$1(Select, "defaultProps", defaultProps);
+_defineProperty$2(Select, "defaultProps", defaultProps);
 
 var defaultProps$1 = {
   defaultInputValue: '',
@@ -18775,7 +36792,7 @@ var manageState = function manageState(SelectComponent) {
 
       var _this;
 
-      _classCallCheck$1(this, StateManager);
+      _classCallCheck$8(this, StateManager);
 
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
@@ -18783,15 +36800,15 @@ var manageState = function manageState(SelectComponent) {
 
       _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(StateManager)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "select", void 0);
+      _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "select", void 0);
 
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+      _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
         inputValue: _this.props.inputValue !== undefined ? _this.props.inputValue : _this.props.defaultInputValue,
         menuIsOpen: _this.props.menuIsOpen !== undefined ? _this.props.menuIsOpen : _this.props.defaultMenuIsOpen,
         value: _this.props.value !== undefined ? _this.props.value : _this.props.defaultValue
       });
 
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onChange", function (value, actionMeta) {
+      _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onChange", function (value, actionMeta) {
         _this.callProp('onChange', value, actionMeta);
 
         _this.setState({
@@ -18799,7 +36816,7 @@ var manageState = function manageState(SelectComponent) {
         });
       });
 
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onInputChange", function (value, actionMeta) {
+      _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onInputChange", function (value, actionMeta) {
         // TODO: for backwards compatibility, we allow the prop to return a new
         // value, but now inputValue is a controllable prop we probably shouldn't
         var newValue = _this.callProp('onInputChange', value, actionMeta);
@@ -18809,7 +36826,7 @@ var manageState = function manageState(SelectComponent) {
         });
       });
 
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuOpen", function () {
+      _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuOpen", function () {
         _this.callProp('onMenuOpen');
 
         _this.setState({
@@ -18817,7 +36834,7 @@ var manageState = function manageState(SelectComponent) {
         });
       });
 
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuClose", function () {
+      _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuClose", function () {
         _this.callProp('onMenuClose');
 
         _this.setState({
@@ -18828,7 +36845,7 @@ var manageState = function manageState(SelectComponent) {
       return _this;
     }
 
-    _createClass$1(StateManager, [{
+    _createClass$7(StateManager, [{
       key: "focus",
       value: function focus() {
         this.select.focus();
@@ -18869,7 +36886,7 @@ var manageState = function manageState(SelectComponent) {
             defaultValue = _this$props2.defaultValue,
             props = _objectWithoutProperties$2(_this$props2, ["defaultInputValue", "defaultMenuIsOpen", "defaultValue"]);
 
-        return e__default.createElement(SelectComponent, _extends$1({}, props, {
+        return e__default.createElement(SelectComponent, _extends$7({}, props, {
           ref: function ref(_ref) {
             _this2.select = _ref;
           },
@@ -18885,14 +36902,14 @@ var manageState = function manageState(SelectComponent) {
     }]);
 
     return StateManager;
-  }(e.Component), _defineProperty$1(_class, "defaultProps", defaultProps$1), _temp;
+  }(e.Component), _defineProperty$2(_class, "defaultProps", defaultProps$1), _temp;
 };
 
-var index$3 = manageState(Select);
+var index = manageState(Select);
 
-function ownKeys$8(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$7(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$9(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$8(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$8(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$8(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$7(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$7(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var styleOverride = function styleOverride(_ref) {
   var fontSize = _ref.fontSize,
@@ -18907,11 +36924,11 @@ var styleOverride = function styleOverride(_ref) {
       };
     },
     control: function control(provided, state) {
-      var backgroundColor = state.isDisabled || variant === 'light' ? colors.white : colors.gray.xlight;
-      return _objectSpread$9({}, provided, {
+      var backgroundColor = colors.white;
+      return _objectSpread$8({}, provided, {
         backgroundColor: backgroundColor,
-        border: state.isDisabled && !hasShadow ? "border: 1px solid ".concat(colors.gray.default) : 'none',
-        borderColor: state.isDisabled ? colors.gray.default : null,
+        border: state.isDisabled && !hasShadow ? "border: 1px solid ".concat(colors.gray.default) : "border: 1px solid ".concat(colors.gray.xlight),
+        borderColor: state.isDisabled ? colors.gray.default : colors.gray.xlight,
         fontFamily: fonts.Montserrat,
         fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
         borderRadius: shape === 'rounded' ? radii.full : radii.small,
@@ -18919,7 +36936,7 @@ var styleOverride = function styleOverride(_ref) {
         boxShadow: hasShadow ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
         padding: '0 0.8em',
         overflow: 'hidden'
-      }, variant === 'light' && {
+      }, variant === 'dark' && {
         border: "solid 1px ".concat(colors.gray.default)
       });
     },
@@ -18951,11 +36968,11 @@ var styleOverride = function styleOverride(_ref) {
         color = colors.gray.light;
       }
 
-      return _objectSpread$9({}, defaultStyles, {
+      return _objectSpread$8({}, defaultStyles, {
         fontSize: fontSizes.small,
         color: colors.black,
         backgroundColor: color,
-        ':active': _objectSpread$9({}, defaultStyles[':active'], {
+        ':active': _objectSpread$8({}, defaultStyles[':active'], {
           backgroundColor: colors.gray.xlight
         })
       });
@@ -18969,10 +36986,8 @@ var Select$1 = function Select(_ref3) {
       hasShadow = _ref3.hasShadow,
       disabled = _ref3.disabled,
       disableEmpty = _ref3.disableEmpty,
-      options = _ref3.options,
-      formik = _ref3.formik,
-      value = _ref3.value,
-      onBlur = _ref3.onBlur,
+      _ref3$options = _ref3.options,
+      options = _ref3$options === void 0 ? [] : _ref3$options,
       onChange = _ref3.onChange,
       placeholder = _ref3.placeholder,
       fontSize = _ref3.fontSize,
@@ -18980,30 +36995,87 @@ var Select$1 = function Select(_ref3) {
       multiple = _ref3.multiple,
       alertTextOverride = _ref3.alertText,
       name = _ref3.name,
-      otherProps = objectWithoutProperties(_ref3, ["shape", "variant", "hasShadow", "disabled", "disableEmpty", "options", "formik", "value", "onBlur", "onChange", "placeholder", "fontSize", "bordered", "multiple", "alertText", "name"]);
+      required = _ref3.required,
+      otherProps = objectWithoutProperties(_ref3, ["shape", "variant", "hasShadow", "disabled", "disableEmpty", "options", "onChange", "placeholder", "fontSize", "bordered", "multiple", "alertText", "name", "required"]);
 
-  var _createDefaultInputPr = createDefaultInputProps({
-    alertText: alertTextOverride,
-    value: value,
-    onBlur: onBlur,
-    onChange: onChange,
-    name: name,
-    formik: formik
-  }),
-      alertText = _createDefaultInputPr.alertText,
-      hasFormik = _createDefaultInputPr.hasFormik,
-      inputDefaults = objectWithoutProperties(_createDefaultInputPr, ["alertText", "hasFormik"]);
+  var _useFormContext = useFormContext(),
+      register = _useFormContext.register,
+      errors = _useFormContext.errors,
+      setValue = _useFormContext.setValue,
+      getValues = _useFormContext.getValues,
+      triggerValidation = _useFormContext.triggerValidation;
 
-  var defaultOnChange = hasFormik && function (value) {
-    return formik.setFieldValue(name, value);
+  var getLabel = function getLabel() {
+    return options.find(function (_ref4) {
+      var value = _ref4.value;
+      return value === getValues()[name];
+    });
   };
 
-  var defaultValue = hasFormik && formik.values[name];
   return e__default.createElement(InputWrapper, _extends_1({
-    alertText: alertText
-  }, otherProps), e__default.createElement(index$3, _extends_1({}, inputDefaults, otherProps, {
-    onChange: onChange || defaultOnChange,
-    value: value || defaultValue,
+    alertText: alertTextOverride || errors[name] ? errors[name].message : '',
+    required: required
+  }, otherProps), e__default.createElement(index, _extends_1({
+    onChange:
+    /*#__PURE__*/
+    function () {
+      var _ref6 = asyncToGenerator(
+      /*#__PURE__*/
+      regenerator.mark(function _callee(_ref5) {
+        var value, label;
+        return regenerator.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                value = _ref5.value, label = _ref5.label;
+                setValue(name, value);
+                _context.next = 4;
+                return triggerValidation({
+                  name: name
+                });
+
+              case 4:
+                onChange({
+                  value: value,
+                  label: label
+                });
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function (_x) {
+        return _ref6.apply(this, arguments);
+      };
+    }(),
+    onBlur:
+    /*#__PURE__*/
+    asyncToGenerator(
+    /*#__PURE__*/
+    regenerator.mark(function _callee2() {
+      return regenerator.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return triggerValidation({
+                name: name
+              });
+
+            case 2:
+              return _context2.abrupt("return", _context2.sent);
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    })),
     placeholder: placeholder,
     styles: styleOverride({
       shape: shape,
@@ -19013,16 +37085,24 @@ var Select$1 = function Select(_ref3) {
       hasShadow: hasShadow
     }),
     name: name,
-    options: options,
+    options: options.length ? options : [],
     isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
-    isMulti: multiple
-  })));
+    isMulti: multiple,
+    required: required,
+    ref: register({
+      name: name
+    }),
+    value: {
+      value: getValues()[name],
+      label: options.length && getLabel() ? getLabel().label : getValues()[name]
+    }
+  }, otherProps)));
 };
 
 Select$1.defaultProps = {
-  containerStyle: {}
+  containerStyle: {},
+  onChange: function onChange() {}
 };
-var index$4 = formik.connect(Select$1);
 
 /*!
  * reactjs-popup v1.5.0
@@ -19030,7 +37110,7 @@ var index$4 = formik.connect(Select$1);
  * Released under the MIT License.
  */
 
-function _classCallCheck$2(instance, Constructor) {
+function _classCallCheck$9(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
@@ -19046,13 +37126,13 @@ function _defineProperties$2(target, props) {
   }
 }
 
-function _createClass$2(Constructor, protoProps, staticProps) {
+function _createClass$8(Constructor, protoProps, staticProps) {
   if (protoProps) _defineProperties$2(Constructor.prototype, protoProps);
   if (staticProps) _defineProperties$2(Constructor, staticProps);
   return Constructor;
 }
 
-function _defineProperty$2(obj, key, value) {
+function _defineProperty$3(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -19067,8 +37147,8 @@ function _defineProperty$2(obj, key, value) {
   return obj;
 }
 
-function _extends$2() {
-  _extends$2 = Object.assign || function (target) {
+function _extends$8() {
+  _extends$8 = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
 
@@ -19082,7 +37162,7 @@ function _extends$2() {
     return target;
   };
 
-  return _extends$2.apply(this, arguments);
+  return _extends$8.apply(this, arguments);
 }
 
 function _inherits$2(subClass, superClass) {
@@ -19340,19 +37420,19 @@ function (_React$PureComponent) {
   function Popup(props) {
     var _this;
 
-    _classCallCheck$2(this, Popup);
+    _classCallCheck$9(this, Popup);
 
     _this = _possibleConstructorReturn$2(this, _getPrototypeOf$1(Popup).call(this, props));
 
-    _defineProperty$2(_assertThisInitialized$2(_this), "repositionOnResize", function () {
+    _defineProperty$3(_assertThisInitialized$2(_this), "repositionOnResize", function () {
       _this.setPosition();
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_this), "onEscape", function (e) {
+    _defineProperty$3(_assertThisInitialized$2(_this), "onEscape", function (e) {
       if (e.key === 'Escape') _this.closePopup();
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_this), "lockScroll", function () {
+    _defineProperty$3(_assertThisInitialized$2(_this), "lockScroll", function () {
       var lockScroll = _this.props.lockScroll;
       var modal = _this.state.modal;
       if (modal && lockScroll)
@@ -19360,7 +37440,7 @@ function (_React$PureComponent) {
         document.getElementsByTagName('body')[0].style.overflow = 'hidden';
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_this), "resetScroll", function () {
+    _defineProperty$3(_assertThisInitialized$2(_this), "resetScroll", function () {
       var lockScroll = _this.props.lockScroll;
       var modal = _this.state.modal;
       if (modal && lockScroll)
@@ -19368,13 +37448,13 @@ function (_React$PureComponent) {
         document.getElementsByTagName('body')[0].style.overflow = 'auto';
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_this), "togglePopup", function (e) {
+    _defineProperty$3(_assertThisInitialized$2(_this), "togglePopup", function (e) {
       // https://reactjs.org/docs/events.html#event-pooling
       e.persist();
       if (_this.state.isOpen) _this.closePopup(e);else _this.openPopup(e);
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_this), "openPopup", function (e) {
+    _defineProperty$3(_assertThisInitialized$2(_this), "openPopup", function (e) {
       var _this$props = _this.props,
           disabled = _this$props.disabled,
           onOpen = _this$props.onOpen;
@@ -19391,7 +37471,7 @@ function (_React$PureComponent) {
       });
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_this), "closePopup", function (e) {
+    _defineProperty$3(_assertThisInitialized$2(_this), "closePopup", function (e) {
       var onClose = _this.props.onClose;
       var isOpen = _this.state.isOpen;
       if (!isOpen) return;
@@ -19404,7 +37484,7 @@ function (_React$PureComponent) {
       });
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_this), "onMouseEnter", function () {
+    _defineProperty$3(_assertThisInitialized$2(_this), "onMouseEnter", function () {
       clearTimeout(_this.timeOut);
       var mouseEnterDelay = _this.props.mouseEnterDelay;
       _this.timeOut = setTimeout(function () {
@@ -19412,7 +37492,7 @@ function (_React$PureComponent) {
       }, mouseEnterDelay);
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_this), "onMouseLeave", function () {
+    _defineProperty$3(_assertThisInitialized$2(_this), "onMouseLeave", function () {
       clearTimeout(_this.timeOut);
       var mouseLeaveDelay = _this.props.mouseLeaveDelay;
       _this.timeOut = setTimeout(function () {
@@ -19420,7 +37500,7 @@ function (_React$PureComponent) {
       }, mouseLeaveDelay);
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_this), "getTooltipBoundary", function () {
+    _defineProperty$3(_assertThisInitialized$2(_this), "getTooltipBoundary", function () {
       var keepTooltipInside = _this.props.keepTooltipInside;
       var boundingBox = {
         top: 0,
@@ -19447,7 +37527,7 @@ function (_React$PureComponent) {
       return boundingBox;
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_this), "setPosition", function () {
+    _defineProperty$3(_assertThisInitialized$2(_this), "setPosition", function () {
       var _this$state = _this.state,
           modal = _this$state.modal,
           isOpen = _this$state.isOpen;
@@ -19500,7 +37580,7 @@ function (_React$PureComponent) {
       window.getComputedStyle(_this.TriggerEl, null).getPropertyValue('position') === '') _this.TriggerEl.style.position = 'relative';
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_this), "addWarperAction", function () {
+    _defineProperty$3(_assertThisInitialized$2(_this), "addWarperAction", function () {
       var _this$props3 = _this.props,
           contentStyle = _this$props3.contentStyle,
           className = _this$props3.className,
@@ -19524,7 +37604,7 @@ function (_React$PureComponent) {
       return childrenElementProps;
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_this), "renderTrigger", function () {
+    _defineProperty$3(_assertThisInitialized$2(_this), "renderTrigger", function () {
       var triggerProps = {
         key: 'T',
         ref: _this.setTriggerRef
@@ -19558,7 +37638,7 @@ function (_React$PureComponent) {
       return !!trigger && e__default.cloneElement(trigger, triggerProps);
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_this), "renderContent", function () {
+    _defineProperty$3(_assertThisInitialized$2(_this), "renderContent", function () {
       var _this$props5 = _this.props,
           arrow = _this$props5.arrow,
           arrowStyle = _this$props5.arrowStyle,
@@ -19566,7 +37646,7 @@ function (_React$PureComponent) {
       var _this$state2 = _this.state,
           modal = _this$state2.modal,
           isOpen = _this$state2.isOpen;
-      return e__default.createElement("div", _extends$2({}, _this.addWarperAction(), {
+      return e__default.createElement("div", _extends$8({}, _this.addWarperAction(), {
         key: "C"
       }), arrow && !modal && e__default.createElement("div", {
         ref: _this.setArrowRef,
@@ -19603,7 +37683,7 @@ function (_React$PureComponent) {
     return _this;
   }
 
-  _createClass$2(Popup, [{
+  _createClass$8(Popup, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this$props6 = this.props,
@@ -19693,7 +37773,7 @@ function (_React$PureComponent) {
   return Popup;
 }(e__default.PureComponent);
 
-_defineProperty$2(Popup, "defaultProps", {
+_defineProperty$3(Popup, "defaultProps", {
   trigger: null,
   onOpen: function onOpen() {},
   onClose: function onClose() {},
@@ -19720,35 +37800,35 @@ _defineProperty$2(Popup, "defaultProps", {
 });
 
 if (process.env.NODE_ENV !== 'production') {
-  var PropTypes = require('prop-types');
+  var PropTypes$1 = require('prop-types');
 
   var TRIGGER_TYPES = ['hover', 'click', 'focus'];
   Popup.propTypes = {
-    arrowStyle: PropTypes.object,
-    contentStyle: PropTypes.object,
-    overlayStyle: PropTypes.object,
-    className: PropTypes.string,
-    modal: PropTypes.bool,
-    arrow: PropTypes.bool,
-    closeOnDocumentClick: PropTypes.bool,
-    repositionOnResize: PropTypes.bool,
-    disabled: PropTypes.bool,
-    closeOnEscape: PropTypes.bool,
-    lockScroll: PropTypes.bool,
-    offsetX: PropTypes.number,
-    offsetY: PropTypes.number,
-    mouseEnterDelay: PropTypes.number,
-    mouseLeaveDelay: PropTypes.number,
-    onOpen: PropTypes.func,
-    onClose: PropTypes.func,
-    open: PropTypes.bool,
-    defaultOpen: PropTypes.bool,
-    trigger: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
+    arrowStyle: PropTypes$1.object,
+    contentStyle: PropTypes$1.object,
+    overlayStyle: PropTypes$1.object,
+    className: PropTypes$1.string,
+    modal: PropTypes$1.bool,
+    arrow: PropTypes$1.bool,
+    closeOnDocumentClick: PropTypes$1.bool,
+    repositionOnResize: PropTypes$1.bool,
+    disabled: PropTypes$1.bool,
+    closeOnEscape: PropTypes$1.bool,
+    lockScroll: PropTypes$1.bool,
+    offsetX: PropTypes$1.number,
+    offsetY: PropTypes$1.number,
+    mouseEnterDelay: PropTypes$1.number,
+    mouseLeaveDelay: PropTypes$1.number,
+    onOpen: PropTypes$1.func,
+    onClose: PropTypes$1.func,
+    open: PropTypes$1.bool,
+    defaultOpen: PropTypes$1.bool,
+    trigger: PropTypes$1.oneOfType([PropTypes$1.func, PropTypes$1.element]),
     // for uncontrolled component we don't need the trigger Element
-    on: PropTypes.oneOfType([PropTypes.oneOf(TRIGGER_TYPES), PropTypes.arrayOf(PropTypes.oneOf(TRIGGER_TYPES))]),
-    children: PropTypes.oneOfType([PropTypes.func, PropTypes.element, PropTypes.string]).isRequired,
-    position: PropTypes.oneOfType([PropTypes.oneOf(POSITION_TYPES), PropTypes.arrayOf(PropTypes.oneOf(POSITION_TYPES))]),
-    keepTooltipInside: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
+    on: PropTypes$1.oneOfType([PropTypes$1.oneOf(TRIGGER_TYPES), PropTypes$1.arrayOf(PropTypes$1.oneOf(TRIGGER_TYPES))]),
+    children: PropTypes$1.oneOfType([PropTypes$1.func, PropTypes$1.element, PropTypes$1.string]).isRequired,
+    position: PropTypes$1.oneOfType([PropTypes$1.oneOf(POSITION_TYPES), PropTypes$1.arrayOf(PropTypes$1.oneOf(POSITION_TYPES))]),
+    keepTooltipInside: PropTypes$1.oneOfType([PropTypes$1.bool, PropTypes$1.string])
   };
 }
 
@@ -19801,16 +37881,16 @@ exports["default"] = _default;
 
 var DotsVertical$1 = unwrapExports(DotsVertical);
 
-function _templateObject$e() {
+function _templateObject$f() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  > * {\n    display: inline-block;\n    margin: 0.4em 0;\n  }\n"]);
 
-  _templateObject$e = function _templateObject() {
+  _templateObject$f = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var SettingsContainer = styled__default.div(_templateObject$e());
+var SettingsContainer = styled__default.div(_templateObject$f());
 
 var OverflowMenu = function OverflowMenu(_ref) {
   var position = _ref.position,
@@ -19887,16 +37967,16 @@ function _templateObject2$4() {
   return data;
 }
 
-function _templateObject$f() {
+function _templateObject$g() {
   var data = taggedTemplateLiteral(["\n  cursor: pointer;\n  display: inline-block;\n  overflow: hidden;\n  position: relative;\n  text-align: left;\n  width: 100px;\n  height: 32px;\n  border-radius: 30px;\n  line-height: ", ";\n  font-size: ", ";\n  font-family: ", ";\n"]);
 
-  _templateObject$f = function _templateObject() {
+  _templateObject$g = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Container$1 = styled__default.div(_templateObject$f(), dist_2('lineHeights.tight'), dist_2('fontSizes.xsmall'), dist_2('fonts[0]'));
+var Container$1 = styled__default.div(_templateObject$g(), dist_2('lineHeights.tight'), dist_2('fontSizes.xsmall'), dist_2('fonts[0]'));
 var Input$2 = styled__default.input.attrs({
   type: 'checkbox'
 })(_templateObject2$4(), dist_2('space[0]'), dist_2('space[0]'), dist_2('zIndices[1]'));
@@ -19906,17 +37986,31 @@ var CheckboxOff = styled__default(CheckboxState)(_templateObject5$1(), Input$2, 
 var CheckboxOn = styled__default(CheckboxState)(_templateObject6$1(), Input$2, Animate);
 
 var Toggle = function Toggle(_ref) {
-  var label = _ref.label,
+  var id = _ref.id,
+      label = _ref.label,
       offText = _ref.offText,
       onText = _ref.onText,
       containerStyle = _ref.containerStyle,
-      props = objectWithoutProperties(_ref, ["label", "offText", "onText", "containerStyle"]);
+      name = _ref.name,
+      required = _ref.required,
+      onChange = _ref.onChange,
+      disabled = _ref.disabled,
+      otherProps = objectWithoutProperties(_ref, ["id", "label", "offText", "onText", "containerStyle", "name", "required", "onChange", "disabled"]);
 
-  return e.createElement(Container$1, {
+  var _useFormContext = useFormContext(),
+      register = _useFormContext.register;
+
+  return e__default.createElement(Container$1, {
     style: containerStyle
-  }, e.createElement(Input$2, _extends_1({
-    "aria-label": label
-  }, props)), e.createElement(Animate, null, e.createElement(CheckboxOff, null, offText), e.createElement(CheckboxOn, null, onText)));
+  }, e__default.createElement(Input$2, _extends_1({
+    id: id,
+    "aria-label": label,
+    "aria-required": required,
+    disabled: disabled,
+    name: name,
+    onChange: onChange,
+    ref: register
+  }, otherProps)), e__default.createElement(Animate, null, e__default.createElement(CheckboxOff, null, offText), e__default.createElement(CheckboxOn, null, onText)));
 };
 
 Toggle.defaultProps = {
@@ -19925,20 +38019,20 @@ Toggle.defaultProps = {
   containerStyle: {}
 };
 Toggle.propTypes = {
-  offText: PropTypes$1.string,
-  onText: PropTypes$1.string,
-  containerStyle: PropTypes$1.object,
-  label: PropTypes$1.string.isRequired
+  offText: PropTypes$2.string,
+  onText: PropTypes$2.string,
+  containerStyle: PropTypes$2.object,
+  label: PropTypes$2.string.isRequired
 };
 
-function ownKeys$9(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$8(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$a(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$9(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$9(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$9(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$8(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$8(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _templateObject$g() {
+function _templateObject$h() {
   var data = taggedTemplateLiteral(["\n  background-position: center;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-image: ", ";\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
 
-  _templateObject$g = function _templateObject() {
+  _templateObject$h = function _templateObject() {
     return data;
   };
 
@@ -19949,12 +38043,12 @@ var image = function image(props) {
   return "url(".concat(props.source, ")");
 };
 
-var BackgroundImage = styled__default.div(_templateObject$g(), image, styledSystem.space, styledSystem.background, styledSystem.layout, styledSystem.flexbox);
+var BackgroundImage = styled__default.div(_templateObject$h(), image, styledSystem.space, styledSystem.background, styledSystem.layout, styledSystem.flexbox);
 BackgroundImage.defaultProps = {
   theme: theme
 };
-BackgroundImage.propTypes = _objectSpread$a({
-  source: PropTypes$1.string.isRequired
+BackgroundImage.propTypes = _objectSpread$9({
+  source: PropTypes$2.string.isRequired
 }, styledSystem.space.propTypes, {}, styledSystem.background.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.flexbox.propTypes);
 BackgroundImage.displayName = 'BackgroundImage';
 
@@ -20705,7 +38799,7 @@ var _react2 = _interopRequireDefault(e__default);
 
 
 
-var _propTypes2 = _interopRequireDefault(PropTypes$1);
+var _propTypes2 = _interopRequireDefault(PropTypes$2);
 
 
 
@@ -21472,7 +39566,7 @@ exports["default"] = _default;
 var Close$1 = unwrapExports(Close);
 
 function _templateObject3$4() {
-  var data = taggedTemplateLiteral(["\n  color: ", ";\n  background: ", ";\n"]);
+  var data = taggedTemplateLiteral(["\n  cursor: pointer;\n  border: none;\n  color: ", ";\n  background: ", ";\n"]);
 
   _templateObject3$4 = function _templateObject3() {
     return data;
@@ -21491,16 +39585,16 @@ function _templateObject2$5() {
   return data;
 }
 
-function _templateObject$h() {
-  var data = taggedTemplateLiteral(["\n  ", ";\n  background: ", ";\n  min-width: 120px;\n  max-width: 300px;\n  height: 40px;\n  border-radius: ", ";\n  color: ", ";\n  border: 1px solid ", ";\n  padding: 0 ", ";\n"]);
+function _templateObject$i() {
+  var data = taggedTemplateLiteral(["\n  ", ";\n  background: ", ";\n  min-width: 120px;\n  max-width: 300px;\n  height: 40px;\n  border-radius: ", ";\n  color: ", ";\n  border: 1px solid ", ";\n  padding: 0 ", ";\n  margin: 0 ", " 0 0;\n"]);
 
-  _templateObject$h = function _templateObject() {
+  _templateObject$i = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Container$2 = styled__default.div(_templateObject$h(), flexBetween, dist_2('colors.gray[0]'), dist_2('radii.full'), dist_2('colors.gray[7]'), dist_2('colors.gray[3]'), dist_2('space[3]'));
+var Container$2 = styled__default.div(_templateObject$i(), flexBetween, dist_2('colors.gray[0]'), dist_2('radii.full'), dist_2('colors.gray[7]'), dist_2('colors.gray[3]'), dist_2('space[3]'), dist_2('space[2]'));
 var Name = styled__default.span(_templateObject2$5(), dist_2('fontWeights.semi'));
 var CloseButton = styled__default.button(_templateObject3$4(), dist_2('colors.gray[7]'), dist_2('colors.transparent'));
 
@@ -21510,35 +39604,50 @@ var Tag = function Tag(_ref) {
       onClose = _ref.onClose;
   return e__default.createElement("div", null, e__default.createElement(Container$2, null, e__default.createElement("span", null, e__default.createElement(Name, null, name), ": ".concat(value)), onClose && e__default.createElement(CloseButton, {
     type: "button",
-    "aria-label": "Close"
+    "aria-label": "Close",
+    onClick: onClose
   }, e__default.createElement(Close$1, {
     color: "inherit"
   }))));
 };
 
 Tag.propTypes = {
-  name: PropTypes$1.string.isRequired,
-  value: PropTypes$1.string.isRequired,
-  onClose: PropTypes$1.func
+  name: PropTypes$2.string.isRequired,
+  value: PropTypes$2.string.isRequired,
+  onClose: PropTypes$2.func
 };
+
+function _templateObject$j() {
+  var data = taggedTemplateLiteral(["\n  border-radius: 10em;\n  width: 4em;\n  height: 4em;\n  margin: 4em;\n  animation: ", " 1s linear infinite;\n  border-top: 0.4em solid #64afcc;\n  border-right: 0.4em solid #64afcc;\n  border-bottom: 0.4em solid #64afcc;\n  border-left: 0.4em solid transparent;\n"]);
+
+  _templateObject$j = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var rotate = styled.keyframes(["from{transform:rotate(0deg);}to{transform:rotate(360deg);}"]);
+var Loader = styled__default.div(_templateObject$j(), rotate);
 
 exports.BackgroundImage = BackgroundImage;
 exports.Box = Box;
 exports.Button = button;
 exports.Card = Card;
 exports.Checkbox = Checkbox;
-exports.DateInput = index$1;
+exports.DateInput = DateInput;
 exports.Flex = Flex;
 exports.Image = Image;
-exports.Input = index;
+exports.Input = Input;
+exports.Loader = Loader;
 exports.Normalize = Normalize;
 exports.OverflowMenu = OverflowMenu;
 exports.RadioButton = RadioButton;
-exports.Select = index$4;
+exports.Select = Select$1;
 exports.Tag = Tag;
-exports.TelInput = index$2;
+exports.TelInput = TelInput;
 exports.Text = Text;
 exports.ThemeProvider = themeProvider;
+exports.TimeInput = TimeInput;
 exports.Toggle = Toggle;
 exports.Tooltip = Tooltip;
 exports.Visuallyhidden = Visuallyhidden;

@@ -39,6 +39,7 @@
     "@lessondesk/material-icons": "1.0.2",
     "@radio-retail/babel-preset": "1.0.0",
     "@radio-retail/eslint-config": "1.0.0",
+    "@rollup/plugin-json": "^4.0.0",
     "@storybook/addon-a11y": "5.2.0",
     "@storybook/addon-actions": "5.2.0",
     "@storybook/addon-docs": "5.2.0-beta.40",
