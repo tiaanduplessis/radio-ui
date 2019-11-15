@@ -25,20 +25,13 @@ const StyledDatePicker = styled(DatePicker)`
   }
 `
 
-function getDateString(value) {
-  return value instanceof Date ? value.toDateString() : value
-}
-
 const DateInput = props => {
   const {
     disabled,
-    value,
-    onBlur,
     onChange,
     placeholder,
     inputProps,
     alertText: alertTextOverride,
-    dateFormatter = getDateString,
     ...otherProps
   } = props
 
@@ -46,7 +39,10 @@ const DateInput = props => {
   const { register, errors } = useFormContext()
 
   return (
-    <InputWrapper alertText={alertTextOverride || errors[name] ? errors[name].message : ''} {...otherProps}>
+    <InputWrapper
+      alertText={alertTextOverride || errors[name] ? errors[name].message : ''}
+      {...otherProps}
+    >
       <StyledDatePicker
         onChange={onChange}
         style={inputStyle}
@@ -65,7 +61,7 @@ const DateInput = props => {
 
 DateInput.defaultProps = {
   dateFormat: 'dd/MM/yyyy',
-  onChange: () => {}
+  onChange: () => {},
 }
 
 export default DateInput

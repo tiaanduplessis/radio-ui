@@ -36,7 +36,6 @@ export const StyledCardTitle = styled.h3`
   text-transform: uppercase;
   letter-spacing: ${byTheme('letterSpacings.tight')};
   color: ${byTheme('colors.gray[5]')};
-  
 `
 
 export const StyledContent = styled.div`

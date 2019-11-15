@@ -1,17 +1,22 @@
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
 import PropTypes from 'prop-types'
-import {
-  Container,
-  Input,
-  Animate,
-  CheckboxOff,
-  CheckboxOn
-} from './styles'
+import { Container, Input, Animate, CheckboxOff, CheckboxOn } from './styles'
 
-const Toggle = ({ id, label, offText, onText, containerStyle, name, required, onChange, disabled, ...otherProps }) => {
+const Toggle = ({
+  id,
+  label,
+  offText,
+  onText,
+  containerStyle,
+  name,
+  required,
+  onChange,
+  disabled,
+  ...otherProps
+}) => {
   const { register } = useFormContext()
-  return(
+  return (
     <Container style={containerStyle}>
       <Input
         id={id}

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React from 'react'
 import { useFormContext } from 'react-hook-form'
 import ReactSelect from 'react-select'
 import InputWrapper from '../input-wrapper'
@@ -14,7 +14,10 @@ const styleOverride = ({ fontSize, width, shape, variant, hasShadow }) => ({
     return {
       ...provided,
       backgroundColor: backgroundColor,
-      border: state.isDisabled && !hasShadow ? `border: 1px solid ${colors.gray.default}` : `border: 1px solid ${colors.gray.xlight}`,
+      border:
+        state.isDisabled && !hasShadow
+          ? `border: 1px solid ${colors.gray.default}`
+          : `border: 1px solid ${colors.gray.xlight}`,
       borderColor: state.isDisabled ? colors.gray.default : colors.gray.xlight,
       fontFamily: fonts.Montserrat,
       fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
@@ -67,8 +70,6 @@ const Select = ({
   disabled,
   disableEmpty,
   options = [],
-  value,
-  onBlur,
   onChange,
   placeholder,
   fontSize,
@@ -83,7 +84,11 @@ const Select = ({
   const getLabel = () => options.find(({ value }) => value === getValues()[name])
 
   return (
-    <InputWrapper alertText={alertTextOverride || errors[name] ? errors[name].message : ''} required={required} {...otherProps}>
+    <InputWrapper
+      alertText={alertTextOverride || errors[name] ? errors[name].message : ''}
+      required={required}
+      {...otherProps}
+    >
       <ReactSelect
         onChange={async ({ value, label }) => {
           setValue(name, value)
@@ -99,7 +104,10 @@ const Select = ({
         isMulti={multiple}
         required={required}
         ref={register({ name })}
-        value={{ value: getValues()[name], label: options.length && getLabel() ? getLabel().label : getValues()[name]}}
+        value={{
+          value: getValues()[name],
+          label: options.length && getLabel() ? getLabel().label : getValues()[name],
+        }}
         {...otherProps}
       />
     </InputWrapper>
@@ -108,7 +116,7 @@ const Select = ({
 
 Select.defaultProps = {
   containerStyle: {},
-  onChange: () => { }
+  onChange: () => {},
 }
 
 export default Select

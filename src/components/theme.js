@@ -1,12 +1,11 @@
 const addAliases = (arr, aliases) =>
-  aliases.forEach(
-    (key, i) =>
-      Object.defineProperty(arr, key, {
-        enumerable: false,
-        get() {
-          return this[i]
-        },
-      })
+  aliases.forEach((key, i) =>
+    Object.defineProperty(arr, key, {
+      enumerable: false,
+      get() {
+        return this[i]
+      },
+    })
   )
 
 export const space = [0, '4px', '8px', '16px', '32px', '64px', '128px', '256px', '512px']

@@ -13,12 +13,8 @@ const defaultMasks = {
 const TelInput = props => {
   const {
     masks,
-    value,
-    onBlur,
-    onChange,
     placeholder,
     defaultCountry = 'ZA',
-    inputProps,
     disabled,
     alertText: alertTextOverride,
     ...otherProps
@@ -27,7 +23,11 @@ const TelInput = props => {
   const { id = otherProps.name, label, name } = otherProps
   const { register, errors, setValue, triggerValidation } = useFormContext()
   return (
-    <InputWrapper disabled={disabled} alertText={alertTextOverride || errors[name] ? errors[name].message : ''} {...otherProps}>
+    <InputWrapper
+      disabled={disabled}
+      alertText={alertTextOverride || errors[name] ? errors[name].message : ''}
+      {...otherProps}
+    >
       <PhoneInput
         id={id}
         onChange={value => setValue(name, value)}
@@ -44,7 +44,7 @@ const TelInput = props => {
 }
 
 TelInput.defaultProps = {
-  onChange: () => { }
+  onChange: () => {},
 }
 
 export default TelInput

@@ -8,8 +8,6 @@ import defaultPropTypes from '../../config/prop-types'
 const Input = ({
   alertText: alertTextOverride,
   disabled,
-  value,
-  onBlur,
   onChange,
   inputProps,
   required,
@@ -18,7 +16,11 @@ const Input = ({
   const { id = otherProps.name, label, placeholder, inputStyle, name } = otherProps
   const { register, errors, triggerValidation } = useFormContext()
   return (
-    <InputWrapper alertText={alertTextOverride || errors[name] ? errors[name].message : ''} required={required} {...otherProps}>
+    <InputWrapper
+      alertText={alertTextOverride || errors[name] ? errors[name].message : ''}
+      required={required}
+      {...otherProps}
+    >
       <StyledInput
         id={id}
         style={inputStyle}

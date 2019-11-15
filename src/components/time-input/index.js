@@ -8,8 +8,6 @@ import defaultPropTypes from '../../config/prop-types'
 const TimeInput = ({
   alertText: alertTextOverride,
   disabled,
-  value,
-  onBlur,
   onChange,
   inputProps,
   required,
@@ -19,7 +17,11 @@ const TimeInput = ({
   const { register, errors, triggerValidation } = useFormContext()
 
   return (
-    <InputWrapper alertText={alertTextOverride || errors[name] ? errors[name].message : ''} required={required} {...otherProps}>
+    <InputWrapper
+      alertText={alertTextOverride || errors[name] ? errors[name].message : ''}
+      required={required}
+      {...otherProps}
+    >
       <StyledInput
         id={id}
         step="1"

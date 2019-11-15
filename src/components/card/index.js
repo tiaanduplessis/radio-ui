@@ -14,7 +14,7 @@ import {
   Container,
   ActionsContainer,
   StyledCardDescription,
-  StyledButton
+  StyledButton,
 } from './styles'
 
 class Card extends React.PureComponent {
@@ -32,7 +32,18 @@ class Card extends React.PureComponent {
   }
 
   render() {
-    const { title, actions, renderHeader, viewState, children, onAdd, description, showDivider, hideIndicator, ...props } = this.props
+    const {
+      title,
+      actions,
+      renderHeader,
+      viewState,
+      children,
+      onAdd,
+      description,
+      showDivider,
+      hideIndicator,
+      ...props
+    } = this.props
 
     return (
       <StyledCard {...props}>
@@ -51,7 +62,7 @@ class Card extends React.PureComponent {
                 <ActionsContainer>
                   {actions}
                   {onAdd && !viewState && (
-                    <StyledButton onClick={onAdd} type='button'>
+                    <StyledButton onClick={onAdd} type="button">
                       <Plus />
                     </StyledButton>
                   )}
@@ -67,4 +78,3 @@ class Card extends React.PureComponent {
 }
 
 export default Card
-
