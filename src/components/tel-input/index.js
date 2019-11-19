@@ -16,6 +16,7 @@ const TelInput = props => {
     placeholder,
     defaultCountry = 'ZA',
     disabled,
+    required,
     alertText: alertTextOverride,
     ...otherProps
   } = props

@@ -31,11 +31,12 @@ const DateInput = props => {
     onChange,
     placeholder,
     inputProps,
+    required,
     alertText: alertTextOverride,
     ...otherProps
   } = props
 
-  const { id = otherProps.name, label, inputStyle, name, required } = otherProps
+  const { id = otherProps.name, label, inputStyle, name } = otherProps
   const { register, errors } = useFormContext()
 
   return (
