@@ -40,6 +40,8 @@ const DateInput = props => {
 
   return (
     <InputWrapper
+      required={required}
+      disabled={disabled}
       alertText={alertTextOverride || errors[name] ? errors[name].message : ''}
       {...otherProps}
     >

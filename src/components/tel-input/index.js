@@ -24,6 +24,7 @@ const TelInput = props => {
   const { register, errors, setValue, triggerValidation } = useFormContext()
   return (
     <InputWrapper
+      required={required}
       disabled={disabled}
       alertText={alertTextOverride || errors[name] ? errors[name].message : ''}
       {...otherProps}
