@@ -67,12 +67,13 @@ const InputWrapper = ({
   labelStyle,
   width,
   required,
+  disabled,
   ...otherProps
 }) => (
     <StyledInputContainer width={width} empty={!label} style={containerStyle} {...otherProps}>
     <StyledLabel htmlFor={id} required={required} style={labelStyle}>
       {label}
-      {required && <Required aria-label="required">*</Required>}
+      {!disabled && required && <Required aria-label="required">*</Required>}
     </StyledLabel>
     {children}
     {alertText && <StyledAlertText style={alertStyle}>{alertText}</StyledAlertText>}

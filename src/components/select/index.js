@@ -87,6 +87,7 @@ const Select = ({
     <InputWrapper
       alertText={alertTextOverride || errors[name] ? errors[name].message : ''}
       required={required}
+      disabled={disabled}
       {...otherProps}
     >
       <ReactSelect
