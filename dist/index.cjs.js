@@ -12719,15 +12719,15 @@ var DateInput = function DateInput(props) {
       onChange = props.onChange,
       placeholder = props.placeholder,
       inputProps = props.inputProps,
+      required = props.required,
       alertTextOverride = props.alertText,
-      otherProps = objectWithoutProperties(props, ["disabled", "onChange", "placeholder", "inputProps", "alertText"]);
+      otherProps = objectWithoutProperties(props, ["disabled", "onChange", "placeholder", "inputProps", "required", "alertText"]);
 
   var _otherProps$id = otherProps.id,
       id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
       label = otherProps.label,
       inputStyle = otherProps.inputStyle,
-      name = otherProps.name,
-      required = otherProps.required;
+      name = otherProps.name;
 
   var _useFormContext = reactHookForm.useFormContext(),
       register = _useFormContext.register,
@@ -30067,8 +30067,9 @@ var TelInput = function TelInput(props) {
       _props$defaultCountry = props.defaultCountry,
       defaultCountry = _props$defaultCountry === void 0 ? 'ZA' : _props$defaultCountry,
       disabled = props.disabled,
+      required = props.required,
       alertTextOverride = props.alertText,
-      otherProps = objectWithoutProperties(props, ["masks", "placeholder", "defaultCountry", "disabled", "alertText"]);
+      otherProps = objectWithoutProperties(props, ["masks", "placeholder", "defaultCountry", "disabled", "required", "alertText"]);
 
   var _otherProps$id = otherProps.id,
       id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
