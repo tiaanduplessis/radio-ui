@@ -23,11 +23,12 @@ const TelInput = props => {
 
   const { id = otherProps.name, label, name } = otherProps
   const { register, errors, setValue, triggerValidation } = useFormContext()
+
   return (
     <InputWrapper
       required={required}
       disabled={disabled}
-      alertText={alertTextOverride || errors[name] ? errors[name].message : ''}
+      alertText={alertTextOverride || (errors[name] ? errors[name].message : '')}
       {...otherProps}
     >
       <PhoneInput

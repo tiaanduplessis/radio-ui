@@ -13,3 +13,5 @@ storiesOf('Input | Checkbox', module)
   .add('With Label', () => <Checkbox>With Label</Checkbox>)
   .add('Checked', () => <Checkbox checked>With Label</Checkbox>)
   .add('Disabled', () => <Checkbox disabled>Disabled</Checkbox>)
+
+

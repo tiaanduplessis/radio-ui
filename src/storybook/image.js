@@ -5,19 +5,19 @@ import { Image } from '../'
 storiesOf('Image', module)
   .addParameters({ component: Image })
   .add('Basic', () => (
-    <Image src="https://www.lessondesk.com/assets/images/lessondesk/Icon.png" size="300px" />
+    <Image src="https://avatars1.githubusercontent.com/u/53628491?s=400&u=25953147f2bc709ab3a8b65adb52e81a857edcef&v=4" size="300px" />
   ))
   .add('Rounded', () => (
     <Image
       shape="rounded"
-      src="https://www.lessondesk.com/assets/images/lessondesk/Icon.png"
+      src="https://avatars1.githubusercontent.com/u/53628491?s=400&u=25953147f2bc709ab3a8b65adb52e81a857edcef&v=4"
       size="300px"
     />
   ))
   .add('Round', () => (
     <Image
       shape="round"
-      src="https://www.lessondesk.com/assets/images/lessondesk/Icon.png"
+      src="https://avatars1.githubusercontent.com/u/53628491?s=400&u=25953147f2bc709ab3a8b65adb52e81a857edcef&v=4"
       size="300px"
     />
   ))
@@ -25,7 +25,7 @@ storiesOf('Image', module)
     <Image
       shape="round"
       boxShadow={3}
-      src="https://www.lessondesk.com/assets/images/lessondesk/Icon.png"
+      src="https://avatars1.githubusercontent.com/u/53628491?s=400&u=25953147f2bc709ab3a8b65adb52e81a857edcef&v=4"
       size="300px"
     />
   ))

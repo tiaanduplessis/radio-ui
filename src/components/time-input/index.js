@@ -18,7 +18,7 @@ const TimeInput = ({
 
   return (
     <InputWrapper
-      alertText={alertTextOverride || errors[name] ? errors[name].message : ''}
+      alertText={alertTextOverride || (errors[name] ? errors[name].message : '')}
       required={required}
       {...otherProps}
     >

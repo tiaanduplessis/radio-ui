@@ -18,6 +18,7 @@ import {
 } from './styles'
 
 class Card extends React.PureComponent {
+
   static defaultProps = {
     title: '',
     actions: [],
