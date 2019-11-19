@@ -2284,7 +2284,8 @@ var InputWrapper = function InputWrapper(_ref2) {
       containerStyle = _ref2.containerStyle,
       labelStyle = _ref2.labelStyle,
       required = _ref2.required,
-      otherProps = objectWithoutProperties(_ref2, ["id", "label", "children", "alertText", "alertStyle", "containerStyle", "labelStyle", "required"]);
+      disabled = _ref2.disabled,
+      otherProps = objectWithoutProperties(_ref2, ["id", "label", "children", "alertText", "alertStyle", "containerStyle", "labelStyle", "required", "disabled"]);
 
   return e__default.createElement(StyledInputContainer, _extends_1({
     empty: !label,
@@ -2293,7 +2294,7 @@ var InputWrapper = function InputWrapper(_ref2) {
     htmlFor: id,
     required: required,
     style: labelStyle
-  }, label, required && e__default.createElement(Required, {
+  }, label, !disabled && required && e__default.createElement(Required, {
     "aria-label": "required"
   }, "*")), children, alertText && e__default.createElement(StyledAlertText, {
     style: alertStyle
@@ -2334,7 +2335,8 @@ var Input = function Input(_ref) {
 
   return e__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || errors[name] ? errors[name].message : '',
-    required: required
+    required: required,
+    disabled: disabled
   }, otherProps), e__default.createElement(StyledInput$1, _extends_1({
     id: id,
     style: inputStyle,
@@ -12732,6 +12734,8 @@ var DateInput = function DateInput(props) {
       errors = _useFormContext.errors;
 
   return e__default.createElement(InputWrapper, _extends_1({
+    required: required,
+    disabled: disabled,
     alertText: alertTextOverride || errors[name] ? errors[name].message : ''
   }, otherProps), e__default.createElement(StyledDatePicker, _extends_1({
     onChange: onChange,
@@ -30078,6 +30082,7 @@ var TelInput = function TelInput(props) {
       triggerValidation = _useFormContext.triggerValidation;
 
   return e__default.createElement(InputWrapper, _extends_1({
+    required: required,
     disabled: disabled,
     alertText: alertTextOverride || errors[name] ? errors[name].message : ''
   }, otherProps), e__default.createElement(PhoneInput$1, {
@@ -37010,7 +37015,8 @@ var Select$1 = function Select(_ref3) {
 
   return e__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || errors[name] ? errors[name].message : '',
-    required: required
+    required: required,
+    disabled: disabled
   }, otherProps), e__default.createElement(index, _extends_1({
     onChange:
     /*#__PURE__*/
