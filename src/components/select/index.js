@@ -102,7 +102,7 @@ const Select = ({
 
   useEffect(() => {
     setSelectValue(getSelectValue())
-  }, values[name])
+  }, [values[name]])
 
   return (
     <InputWrapper

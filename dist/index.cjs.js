@@ -37135,7 +37135,7 @@ var Select$1 = function Select(_ref3) {
 
   e.useEffect(function () {
     setSelectValue(getSelectValue());
-  }, values[name]);
+  }, [values[name]]);
   return e__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || (errors[name] ? errors[name].message : ''),
     required: required,
