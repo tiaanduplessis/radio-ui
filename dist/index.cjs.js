@@ -37120,22 +37120,17 @@ var Select$1 = function Select(_ref3) {
   var getLabel = function getLabel() {
     return options.find(function (_ref4) {
       var value = _ref4.value;
-      var values = getValues();
       return value === values[name];
     });
   };
 
   var getSelectValue = function getSelectValue() {
-    var values = getValues();
     return options.length && getLabel() ? {
       value: values[name],
       label: getLabel().label
     } : '';
   };
 
-  e.useEffect(function () {
-    setSelectValue(getSelectValue());
-  }, [values[name]]);
   return e__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || (errors[name] ? errors[name].message : ''),
     required: required,
@@ -37160,12 +37155,13 @@ var Select$1 = function Select(_ref3) {
                 });
 
               case 4:
+                setSelectValue(getSelectValue());
                 onChange({
                   value: value,
                   label: label
                 });
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
