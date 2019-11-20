@@ -32,7 +32,6 @@ module.exports = {
   ],
   external: [
     "@lessondesk/material-icons",
-    "formik",
     "prop-types",
     "react",
     'react-dom',

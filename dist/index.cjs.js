@@ -2241,7 +2241,7 @@ function _templateObject3$2() {
 }
 
 function _templateObject2$3() {
-  var data = taggedTemplateLiteral(["\n  min-width: 300px;\n  width: 45%;\n  ", "\n  position: relative;\n\n  @media (max-width: 990px) {\n    width: 100%;\n  }\n\n  ", "\n  ", "\n"]);
+  var data = taggedTemplateLiteral(["\n  min-width: 300px;\n  width: ", ";\n  ", "\n  position: relative;\n\n  @media (max-width: 990px) {\n    width: 100%;\n  }\n\n  ", "\n  ", "\n"]);
 
   _templateObject2$3 = function _templateObject2() {
     return data;
@@ -2260,7 +2260,17 @@ function _templateObject$b() {
   return data;
 }
 var StyledLabel$2 = styled__default.label(_templateObject$b(), dist_2('colors.gray.xxdark'), dist_2('fontWeights.bold'), dist_2('fontSizes.xsmall'), dist_2('space[1]'));
-var StyledInputContainer = styled__default.div(_templateObject2$3(), function (_ref) {
+var StyledInputContainer = styled__default.div(_templateObject2$3(), function (props) {
+  if (props.width === 'full') {
+    return '100%';
+  }
+
+  if (props.width === 'half') {
+    return 'calc(50% - 1em)%';
+  }
+
+  return props.width || '45%';
+}, function (_ref) {
   var empty = _ref.empty;
   return !empty && 'margin-bottom: 1.5em;';
 }, styledSystem.space, styledSystem.layout);
@@ -2278,11 +2288,13 @@ var InputWrapper = function InputWrapper(_ref2) {
       alertStyle = _ref2.alertStyle,
       containerStyle = _ref2.containerStyle,
       labelStyle = _ref2.labelStyle,
+      width = _ref2.width,
       required = _ref2.required,
       disabled = _ref2.disabled,
-      otherProps = objectWithoutProperties(_ref2, ["id", "label", "children", "alertText", "alertStyle", "containerStyle", "labelStyle", "required", "disabled"]);
+      otherProps = objectWithoutProperties(_ref2, ["id", "label", "children", "alertText", "alertStyle", "containerStyle", "labelStyle", "width", "required", "disabled"]);
 
   return e__default.createElement(StyledInputContainer, _extends_1({
+    width: width,
     empty: !label,
     style: containerStyle
   }, otherProps), e__default.createElement(StyledLabel$2, {
@@ -2309,7 +2321,7 @@ var defaultPropTypes = _objectSpread$6({
 }, styledSystem.layout.propTypes, {}, styledSystem.space.propTypes);
 
 var Input = function Input(_ref) {
-  var alertTextOverride = _ref.alertText,
+  var alertText = _ref.alertText,
       disabled = _ref.disabled,
       onChange = _ref.onChange,
       inputProps = _ref.inputProps,
@@ -2329,7 +2341,7 @@ var Input = function Input(_ref) {
       triggerValidation = _useFormContext.triggerValidation;
 
   return e__default.createElement(InputWrapper, _extends_1({
-    alertText: alertTextOverride || errors[name] ? errors[name].message : '',
+    alertText: alertText || (errors[name] && errors[name].message ? errors[name].message : ''),
     required: required,
     disabled: disabled
   }, otherProps), e__default.createElement(StyledInput$1, _extends_1({
@@ -2410,7 +2422,7 @@ var TimeInput = function TimeInput(_ref) {
       triggerValidation = _useFormContext.triggerValidation;
 
   return e__default.createElement(InputWrapper, _extends_1({
-    alertText: alertTextOverride || errors[name] ? errors[name].message : '',
+    alertText: alertTextOverride || (errors[name] ? errors[name].message : ''),
     required: required
   }, otherProps), e__default.createElement(StyledInput$2, _extends_1({
     id: id,
@@ -12771,12 +12783,13 @@ var DateInput = function DateInput(props) {
 
   var _useFormContext = reactHookForm.useFormContext(),
       register = _useFormContext.register,
-      errors = _useFormContext.errors;
+      _useFormContext$error = _useFormContext.errors,
+      errors = _useFormContext$error === void 0 ? {} : _useFormContext$error;
 
   return e__default.createElement(InputWrapper, _extends_1({
     required: required,
     disabled: disabled,
-    alertText: alertTextOverride || errors[name] ? errors[name].message : ''
+    alertText: alertTextOverride || (errors[name] ? errors[name].message : '')
   }, otherProps), e__default.createElement(StyledDatePicker, _extends_1({
     onChange: onChange,
     style: inputStyle,
@@ -30125,7 +30138,7 @@ var TelInput = function TelInput(props) {
   return e__default.createElement(InputWrapper, _extends_1({
     required: required,
     disabled: disabled,
-    alertText: alertTextOverride || errors[name] ? errors[name].message : ''
+    alertText: alertTextOverride || (errors[name] ? errors[name].message : '')
   }, otherProps), e__default.createElement(PhoneInput$1, {
     id: id,
     onChange: function onChange(value) {
@@ -37055,7 +37068,7 @@ var Select$1 = function Select(_ref3) {
   };
 
   return e__default.createElement(InputWrapper, _extends_1({
-    alertText: alertTextOverride || errors[name] ? errors[name].message : '',
+    alertText: alertTextOverride || (errors[name] ? errors[name].message : ''),
     required: required,
     disabled: disabled
   }, otherProps), e__default.createElement(index, _extends_1({

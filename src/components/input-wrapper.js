@@ -15,7 +15,17 @@ const StyledLabel = styled.label`
 
 const StyledInputContainer = styled.div`
   min-width: 300px;
-  width: 45%;
+  width: ${props => {
+    if (props.width === 'full') {
+      return '100%'
+    }
+
+  if (props.width === 'half') {
+    return 'calc(50% - 1em)%'
+  }
+
+  return props.width || '45%'
+  }};
   ${({ empty }) => !empty && 'margin-bottom: 1.5em;'}
   position: relative;
 
@@ -55,11 +65,12 @@ const InputWrapper = ({
   alertStyle,
   containerStyle,
   labelStyle,
+  width,
   required,
   disabled,
   ...otherProps
 }) => (
-  <StyledInputContainer empty={!label} style={containerStyle} {...otherProps}>
+    <StyledInputContainer width={width} empty={!label} style={containerStyle} {...otherProps}>
     <StyledLabel htmlFor={id} required={required} style={labelStyle}>
       {label}
       {!disabled && required && <Required aria-label="required">*</Required>}

@@ -6,7 +6,7 @@ import theme from '../theme'
 import defaultPropTypes from '../../config/prop-types'
 
 const Input = ({
-  alertText: alertTextOverride,
+  alertText,
   disabled,
   onChange,
   inputProps,
@@ -15,9 +15,11 @@ const Input = ({
 }) => {
   const { id = otherProps.name, label, placeholder, inputStyle, name } = otherProps
   const { register, errors, triggerValidation } = useFormContext()
+
+
   return (
     <InputWrapper
-      alertText={alertTextOverride || errors[name] ? errors[name].message : ''}
+      alertText={alertText || (errors[name] && errors[name].message ? errors[name].message  : '')}
       required={required}
       disabled={disabled}
       {...otherProps}

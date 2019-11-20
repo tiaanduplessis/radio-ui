@@ -37,13 +37,13 @@ const DateInput = props => {
   } = props
 
   const { id = otherProps.name, label, inputStyle, name } = otherProps
-  const { register, errors } = useFormContext()
+  const { register, errors = {} } = useFormContext()
 
   return (
     <InputWrapper
       required={required}
       disabled={disabled}
-      alertText={alertTextOverride || errors[name] ? errors[name].message : ''}
+      alertText={alertTextOverride || (errors[name] ? errors[name].message : '')}
       {...otherProps}
     >
       <StyledDatePicker

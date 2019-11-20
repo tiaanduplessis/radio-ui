@@ -1,6 +1,10 @@
 {
   "name": "@radio-retail/ui",
+<<<<<<< HEAD
   "version": "0.2.4",
+=======
+  "version": "0.2.6",
+>>>>>>> d8ce232c732541ffa5c823cf5a0cca8e32720c82
   "description": "Radio Retail Component Library",
   "main": "dist/index.cjs.js",
   "repository": {
@@ -22,7 +26,7 @@
     "lint:js": "eslint --fix src",
     "lint:styles": "stylelint --fix src/**/*.js",
     "lint": "yarn lint:js && yarn lint:styles",
-    "fmt": "prettier-eslint --write \"src/**/*.js\"",
+    "format": "prettier-eslint --write \"src/**/*.js\"",
     "build": "rollup --config",
     "test": "jest"
   },
@@ -40,16 +44,16 @@
     "@radio-retail/babel-preset": "1.0.0",
     "@radio-retail/eslint-config": "1.0.0",
     "@rollup/plugin-json": "^4.0.0",
-    "@storybook/addon-a11y": "5.2.0",
-    "@storybook/addon-actions": "5.2.0",
-    "@storybook/addon-docs": "5.2.0-beta.40",
-    "@storybook/addon-knobs": "5.2.0",
-    "@storybook/addon-storyshots": "5.2.0",
-    "@storybook/addon-storyshots-puppeteer": "5.2.0",
-    "@storybook/addon-viewport": "5.2.0",
+    "@storybook/addon-a11y": "5.2.6",
+    "@storybook/addon-actions": "5.2.6",
+    "@storybook/addon-docs": "5.2.6",
+    "@storybook/addon-knobs": "5.2.6",
+    "@storybook/addon-storyshots": "5.2.6",
+    "@storybook/addon-storyshots-puppeteer": "5.2.6",
+    "@storybook/addon-viewport": "5.2.6",
     "@storybook/codemod": "5.1.11",
-    "@storybook/react": "5.2.0",
-    "@storybook/theming": "5.2.0",
+    "@storybook/react": "5.2.6",
+    "@storybook/theming": "5.2.6",
     "babel-eslint": "10.0.3",
     "babel-jest": "24.8.0",
     "babel-loader": "8.0.6",
@@ -63,9 +67,7 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-react": "7.14.3",
     "eslint-plugin-react-hooks": "1.6.1",
-    "formik": "1.5.8",
     "jest": "24.8.0",
-    "jscodeshift": "0.6.4",
     "markdown-loader-jest": "0.1.1",
     "preact-render-to-json": "3.6.6",
     "prettier": "1.18.2",
@@ -81,7 +83,7 @@
     "rollup-plugin-css-porter": "1.0.2",
     "rollup-plugin-filesize": "6.1.1",
     "rollup-plugin-node-resolve": "5.2.0",
-    "storybook-addon-jsx": "7.1.5",
+    "storybook-addon-jsx": "7.1.13",
     "storybook-readme": "5.0.8",
     "style-loader": "0.23.1",
     "styled-components": "4.3.2",
@@ -93,22 +95,22 @@
     "yup": "0.27.0"
   },
   "peerDependencies": {
-    "@lessondesk/material-icons": "^1.0.2",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-hook-form": "^3.27.0",
-    "styled-components": "^4.3.2"
+    "@lessondesk/material-icons": "^1",
+    "prop-types": "^15",
+    "react": "^16",
+    "react-dom": "^16",
+    "react-hook-form": "^3",
+    "styled-components": "^4"
   },
   "dependencies": {
-    "hoist-non-react-statics": "^3.3.1",
-    "just-toasty": "^1.3.0",
-    "react-datepicker": "^2.10.0",
-    "react-phone-number-input": "^2.4.1",
-    "react-select": "^3.0.5",
-    "react-tooltip": "^3.11.0",
-    "reactjs-popup": "^1.5.0",
-    "styled-funcs": "^1.0.1",
-    "styled-system": "^5.0.15"
+    "hoist-non-react-statics": "3.3.1",
+    "just-toasty": "1.4.0",
+    "react-datepicker": "2.10.0",
+    "react-phone-number-input": "2.4.1",
+    "react-select": "3.0.8",
+    "react-tooltip": "3.11.1",
+    "reactjs-popup": "1.5.0",
+    "styled-funcs": "1.0.1",
+    "styled-system": "5.1.2"
   }
 }
