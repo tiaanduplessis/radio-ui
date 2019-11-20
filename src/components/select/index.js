@@ -105,10 +105,14 @@ const Select = ({
         isMulti={multiple}
         required={required}
         ref={register({ name })}
-        value={{
-          value: getValues()[name],
-          label: options.length && getLabel() ? getLabel().label : getValues()[name],
-        }}
+        value={options.length && getLabel() ?
+          {
+            value: getValues()[name],
+            label: getLabel().label,
+          }
+          :
+          getValues()[name]
+        }
         {...otherProps}
       />
     </InputWrapper>
