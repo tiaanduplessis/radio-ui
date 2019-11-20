@@ -37151,7 +37151,7 @@ var Select$1 = function Select(_ref3) {
     value: options.length && getLabel() ? {
       value: getValues()[name],
       label: getLabel().label
-    } : getValues()[name]
+    } : ''
   }, otherProps)));
 };
 
