@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useFormContext } from 'react-hook-form'
 import ReactSelect from 'react-select'
 import InputWrapper from '../input-wrapper'
@@ -80,7 +80,10 @@ const Select = ({
   required,
   ...otherProps
 }) => {
+  const [selectValue, setSelectValue] = useState('')
   const { register, errors, setValue, getValues, triggerValidation } = useFormContext()
+  const values = getValues()
+
   const getLabel = () => options.find(({ value }) => {
     const values = getValues()
     return value === values[name]
@@ -88,9 +91,6 @@ const Select = ({
 
   const getSelectValue = () => {
     const values = getValues()
-
-    console.log(options.length, options.length && getLabel(), values[name])
-
     return options.length && getLabel() ? 
     {
       value: values[name],
@@ -99,6 +99,10 @@ const Select = ({
     :
     ''
   }
+
+  useEffect(() => {
+    setSelectValue(getSelectValue())
+  }, values[name])
 
   return (
     <InputWrapper
@@ -122,7 +126,7 @@ const Select = ({
         isMulti={multiple}
         required={required}
         ref={register({ name })}
-        value={getSelectValue()}
+        value={selectValue}
         {...otherProps}
       />
     </InputWrapper>

@@ -30183,6 +30183,56 @@ TelInput.defaultProps = {
   onChange: function onChange() {}
 };
 
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+var arrayWithHoles = _arrayWithHoles;
+
+function _iterableToArrayLimit(arr, i) {
+  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+    return;
+  }
+
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+var iterableToArrayLimit = _iterableToArrayLimit;
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+var nonIterableRest = _nonIterableRest;
+
+function _slicedToArray$2(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+}
+
+var slicedToArray = _slicedToArray$2;
+
 function _objectWithoutPropertiesLoose$1(source, excluded) {
   if (source == null) return {};
   var target = {};
@@ -37053,12 +37103,19 @@ var Select$1 = function Select(_ref3) {
       required = _ref3.required,
       otherProps = objectWithoutProperties(_ref3, ["shape", "variant", "hasShadow", "disabled", "disableEmpty", "options", "onChange", "placeholder", "fontSize", "bordered", "multiple", "alertText", "name", "required"]);
 
+  var _useState = e.useState(''),
+      _useState2 = slicedToArray(_useState, 2),
+      selectValue = _useState2[0],
+      setSelectValue = _useState2[1];
+
   var _useFormContext = reactHookForm.useFormContext(),
       register = _useFormContext.register,
       errors = _useFormContext.errors,
       setValue = _useFormContext.setValue,
       getValues = _useFormContext.getValues,
       triggerValidation = _useFormContext.triggerValidation;
+
+  var values = getValues();
 
   var getLabel = function getLabel() {
     return options.find(function (_ref4) {
@@ -37070,13 +37127,15 @@ var Select$1 = function Select(_ref3) {
 
   var getSelectValue = function getSelectValue() {
     var values = getValues();
-    console.log(options.length, options.length && getLabel(), values[name]);
     return options.length && getLabel() ? {
       value: values[name],
       label: getLabel().label
     } : '';
   };
 
+  e.useEffect(function () {
+    setSelectValue(getSelectValue());
+  }, values[name]);
   return e__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || (errors[name] ? errors[name].message : ''),
     required: required,
@@ -37158,7 +37217,7 @@ var Select$1 = function Select(_ref3) {
     ref: register({
       name: name
     }),
-    value: getSelectValue()
+    value: selectValue
   }, otherProps)));
 };
 
