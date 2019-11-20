@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useFormContext } from 'react-hook-form'
 import ReactSelect from 'react-select'
 import InputWrapper from '../input-wrapper'
@@ -80,7 +80,6 @@ const Select = ({
   required,
   ...otherProps
 }) => {
-  const [selectValue, setSelectValue] = useState('')
   const { register, errors, setValue, getValues, triggerValidation } = useFormContext()
   const values = getValues()
 
@@ -107,7 +106,6 @@ const Select = ({
         onChange={async ({ value, label }) => {
           setValue(name, value)
           await triggerValidation({ name })
-          setSelectValue(getSelectValue())
           onChange({ value, label })
         }}
         onBlur={async () => await triggerValidation({ name })}
@@ -119,7 +117,7 @@ const Select = ({
         isMulti={multiple}
         required={required}
         ref={register({ name })}
-        value={selectValue}
+        value={getSelectValue()}
         {...otherProps}
       />
     </InputWrapper>
