@@ -37070,6 +37070,7 @@ var Select$1 = function Select(_ref3) {
 
   var getSelectValue = function getSelectValue() {
     var values = getValues();
+    console.log(options.length, getLabel(), options.length && getLabel(), values[name]);
     return options.length && getLabel() ? {
       value: values[name],
       label: getLabel().label
