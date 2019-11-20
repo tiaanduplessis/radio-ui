@@ -111,7 +111,7 @@ const Select = ({
             label: getLabel().label,
           }
           :
-          getValues()[name]
+          ''
         }
         {...otherProps}
       />
