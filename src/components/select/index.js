@@ -81,19 +81,22 @@ const Select = ({
   ...otherProps
 }) => {
   const { register, errors, setValue, getValues, triggerValidation } = useFormContext()
-  const values = getValues()
 
-  const getLabel = () => options.find(({ value }) => value === values[name])
+  const getLabel = () => options.find(({ value }) => {
+    const values = getValues()
+    return value === values[name]
+  })
 
-  const getSelectValue = () => (
-    options.length && getLabel() ? 
+  const getSelectValue = () => {
+    const values = getValues()
+    return options.length && getLabel() ? 
     {
       value: values[name],
       label: getLabel().label
     }
     :
     ''
-  )
+  }
 
   return (
     <InputWrapper
