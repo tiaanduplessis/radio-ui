@@ -37063,8 +37063,17 @@ var Select$1 = function Select(_ref3) {
   var getLabel = function getLabel() {
     return options.find(function (_ref4) {
       var value = _ref4.value;
-      return value === getValues()[name];
+      var values = getValues();
+      return value === values[name];
     });
+  };
+
+  var getSelectValue = function getSelectValue() {
+    var values = getValues();
+    return options.length && getLabel() ? {
+      value: values[name],
+      label: getLabel().label
+    } : '';
   };
 
   return e__default.createElement(InputWrapper, _extends_1({
@@ -37148,10 +37157,7 @@ var Select$1 = function Select(_ref3) {
     ref: register({
       name: name
     }),
-    value: options.length && getLabel() ? {
-      value: getValues()[name],
-      label: getLabel().label
-    } : ''
+    value: getSelectValue()
   }, otherProps)));
 };
 
