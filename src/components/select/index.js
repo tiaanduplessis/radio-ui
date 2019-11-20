@@ -89,6 +89,8 @@ const Select = ({
   const getSelectValue = () => {
     const values = getValues()
 
+    console.log(options.length, getLabel(), options.length && getLabel(), values[name])
+
     return options.length && getLabel() ? 
     {
       value: values[name],
