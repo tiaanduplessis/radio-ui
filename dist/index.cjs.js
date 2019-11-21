@@ -37058,7 +37058,8 @@ var Select$1 = function Select(_ref3) {
       errors = _useFormContext.errors,
       setValue = _useFormContext.setValue,
       getValues = _useFormContext.getValues,
-      triggerValidation = _useFormContext.triggerValidation;
+      triggerValidation = _useFormContext.triggerValidation,
+      reset = _useFormContext.reset;
 
   var getLabel = function getLabel() {
     return options.find(function (_ref4) {
@@ -37087,7 +37088,7 @@ var Select$1 = function Select(_ref3) {
       var _ref6 = asyncToGenerator(
       /*#__PURE__*/
       regenerator.mark(function _callee(_ref5) {
-        var value, label;
+        var value, label, values;
         return regenerator.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -37100,12 +37101,14 @@ var Select$1 = function Select(_ref3) {
                 });
 
               case 4:
+                values = getValues();
+                reset(values);
                 onChange({
                   value: value,
                   label: label
                 });
 
-              case 5:
+              case 7:
               case "end":
                 return _context.stop();
             }

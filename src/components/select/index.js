@@ -80,7 +80,7 @@ const Select = ({
   required,
   ...otherProps
 }) => {
-  const { register, errors, setValue, getValues, triggerValidation } = useFormContext()
+  const { register, errors, setValue, getValues, triggerValidation, reset } = useFormContext()
 
   const getLabel = () => options.find(({ value }) => {
     const values = getValues()
@@ -109,6 +109,8 @@ const Select = ({
         onChange={async ({ value, label }) => {
           setValue(name, value)
           await triggerValidation({ name })
+          const values = getValues()
+          reset(values)
           onChange({ value, label })
         }}
         onBlur={async () => await triggerValidation({ name })}
