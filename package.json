@@ -1,6 +1,6 @@
 {
   "name": "@radio-retail/ui",
-  "version": "0.2.19",
+  "version": "0.2.20",
   "description": "Radio Retail Component Library",
   "main": "dist/index.cjs.js",
   "repository": {
