@@ -78,6 +78,7 @@ const Select = ({
   alertText: alertTextOverride,
   name,
   required,
+  onInputChange,
   ...otherProps
 }) => {
   const { register, errors, setValue, getValues, triggerValidation, reset } = useFormContext()
@@ -106,6 +107,7 @@ const Select = ({
       {...otherProps}
     >
       <ReactSelect
+        onInputChange={onInputChange}
         onChange={async ({ value, label }) => {
           setValue(name, value)
           await triggerValidation({ name })
@@ -132,6 +134,7 @@ const Select = ({
 Select.defaultProps = {
   containerStyle: {},
   onChange: () => {},
+  onInputChange: () => {}
 }
 
 export default Select
