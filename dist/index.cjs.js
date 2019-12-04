@@ -37051,7 +37051,8 @@ var Select$1 = function Select(_ref3) {
       alertTextOverride = _ref3.alertText,
       name = _ref3.name,
       required = _ref3.required,
-      otherProps = objectWithoutProperties(_ref3, ["shape", "variant", "hasShadow", "disabled", "disableEmpty", "options", "onChange", "placeholder", "fontSize", "bordered", "multiple", "alertText", "name", "required"]);
+      onInputChange = _ref3.onInputChange,
+      otherProps = objectWithoutProperties(_ref3, ["shape", "variant", "hasShadow", "disabled", "disableEmpty", "options", "onChange", "placeholder", "fontSize", "bordered", "multiple", "alertText", "name", "required", "onInputChange"]);
 
   var _useFormContext = reactHookForm.useFormContext(),
       register = _useFormContext.register,
@@ -37082,6 +37083,7 @@ var Select$1 = function Select(_ref3) {
     required: required,
     disabled: disabled
   }, otherProps), e__default.createElement(index, _extends_1({
+    onInputChange: onInputChange,
     onChange:
     /*#__PURE__*/
     function () {
@@ -37166,7 +37168,8 @@ var Select$1 = function Select(_ref3) {
 
 Select$1.defaultProps = {
   containerStyle: {},
-  onChange: function onChange() {}
+  onChange: function onChange() {},
+  onInputChange: function onInputChange() {}
 };
 
 /*!
