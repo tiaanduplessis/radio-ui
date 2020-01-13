@@ -110,12 +110,12 @@ const Select = ({
         onInputChange={onInputChange}
         onChange={async ({ value, label }) => {
           setValue(name, value)
-          triggerValidation({ name })
+          await triggerValidation({ name })
           const values = getValues()
           reset(values)
           onChange({ value, label })
         }}
-        onBlur={async () => triggerValidation({ name })}
+        onBlur={async () => await triggerValidation({ name })}
         placeholder={placeholder}
         styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
         name={name}
