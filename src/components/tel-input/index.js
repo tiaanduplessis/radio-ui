@@ -37,7 +37,7 @@ const TelInput = props => {
         disabled={disabled}
         name={name}
         country={defaultCountry}
-        onBlur={async () => await triggerValidation({ name })}
+        onBlur={async () => await triggerValidation(name)}
         masks={masks || defaultMasks}
         placeholder={placeholder || label}
         ref={register({ name })}
