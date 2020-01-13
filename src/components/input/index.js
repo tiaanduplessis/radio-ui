@@ -33,7 +33,7 @@ const Input = ({
         disabled={disabled}
         name={name}
         onChange={onChange}
-        onBlur={async () => await triggerValidation({ name })}
+        onBlur={async () => triggerValidation({ name })}
         ref={register}
         {...inputProps}
       />
