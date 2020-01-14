@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, Controller } from 'react-hook-form'
 import ReactSelect from 'react-select'
 import InputWrapper from '../input-wrapper'
 import { colors, radii, fontSizes, fonts } from '../theme'
@@ -106,7 +106,28 @@ const Select = ({
       disabled={disabled}
       {...otherProps}
     >
-      <ReactSelect
+      <Controller
+        as={
+          <ReactSelect
+            onInputChange={onInputChange}
+            onBlur={async () => await triggerValidation(name)}
+            placeholder={placeholder}
+            styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
+            options={options.length ? options : []}
+            isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
+            isMulti={multiple}
+            required={required}
+            {...otherProps}
+          />
+        }
+        onChange={([selectValue]) => {
+          const { value } = selectValue
+          setValue(name, value)
+        }}
+        name={name}
+        defaultValue={getSelectValue()}
+      />
+      {/* <ReactSelect
         onInputChange={onInputChange}
         onChange={async ({ value, label }) => {
           setValue(name, value)
@@ -126,7 +147,7 @@ const Select = ({
         ref={register({ name })}
         value={getSelectValue()}
         {...otherProps}
-      />
+      /> */}
     </InputWrapper>
   )
 }
