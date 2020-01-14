@@ -4,9 +4,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var e = require('react');
-var e__default = _interopDefault(e);
-var PropTypes$2 = _interopDefault(require('prop-types'));
+var React = require('react');
+var React__default = _interopDefault(React);
+var PropTypes$1 = _interopDefault(require('prop-types'));
 var styled = require('styled-components');
 var styled__default = _interopDefault(styled);
 var styledSystem = require('styled-system');
@@ -116,15 +116,15 @@ var theme = {
 
 var ThemeProvider = function ThemeProvider(_ref) {
   var children = _ref.children;
-  return e.createElement(styled.ThemeProvider, {
+  return React.createElement(styled.ThemeProvider, {
     theme: theme
   }, children);
 };
 
 ThemeProvider.propTypes = {
-  theme: PropTypes$2.object
+  theme: PropTypes$1.object
 };
-var themeProvider = e.memo(ThemeProvider);
+var themeProvider = React.memo(ThemeProvider);
 
 function _taggedTemplateLiteral(strings, raw) {
   if (!raw) {
@@ -190,7 +190,7 @@ var defineProperty = _defineProperty;
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _templateObject$2() {
   var data = taggedTemplateLiteral(["\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
@@ -256,10 +256,6 @@ function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
 
-function getCjsExportFromNamespace (n) {
-	return n && n['default'] || n;
-}
-
 var dist = createCommonjsModule(function (module, exports) {
 var r=styled__default,n=Object.freeze(["",""]),t=function(r,n){return n.split(".").reduce(function(r,n){var t=n.match(/(.*?)\[(\d*)\]/);return t&&null!==r&&null!==r[t[1]]?r[t[1]][+t[2]]:null===r?r:r[n]},r)},e=function(r){return void 0===r&&(r=[]),r.reduce(function(r,n,t){return r[t]=n,r},{})};exports.by=function(r,n){return function(e){return t(e,r)||n}},exports.byTheme=function(r,n){return function(e){return e.theme?t(e.theme,r):n}},exports.is=function(t,e){return void 0===e&&(e=""),function(u){return !0===u[t]?r.css(n,e):""}},exports.map=function(r){return void 0===r&&(r={}),function(n){Array.isArray(r)&&(r=e(r));for(var t=Object.keys(r),u=0;u<t.length;u++){var i=t[u];if(void 0!==n[i])return n[i]}if(r.default)return r.default}},exports.isMap=function(r,n){return void 0===r&&(r=""),void 0===n&&(n={}),function(t){if(Array.isArray(n)&&(n=e(n)),t[r]){for(var u=Object.keys(n),i=0;i<u.length;i++){var o=u[i];if(o===t[r])return n[o]}if(n.default)return n.default}}},exports.withProp=function(r){return void 0===r&&(r=""),function(n){var t;return n[r]?((t={})[r]=n[r],t):""}};
 
@@ -275,7 +271,7 @@ var _isMap3, _isMap4;
 
 function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _templateObject$3() {
   var data = taggedTemplateLiteral(["\n  font-weight: ", ";\n  font-family: ", ";\n  min-width: 120px;\n  border: none;\n  cursor: pointer;\n  transition: transform 100ms;\n  ", ";\n  border-radius: ", ";\n  font-size: ", ";\n  width: ", ";\n  padding: ", ";\n\n  &:active {\n    transform: ", ";\n  }\n\n  &:disabled {\n    pointer-events: none;\n    background-color: ", ";\n    color: ", ";\n    box-shadow: none;\n  }\n\n  ", "\n  ", "\n  ", "\n"]);
@@ -315,13 +311,13 @@ var Button = function Button(_ref) {
   var children = _ref.children,
       props = objectWithoutProperties(_ref, ["children"]);
 
-  return e.createElement(StyledButton, props, children);
+  return React.createElement(StyledButton, props, children);
 };
 
 Button.propTypes = _objectSpread$1({
-  onClick: PropTypes$2.oneOfType([PropTypes$2.func, PropTypes$2.string]).isRequired,
-  shape: PropTypes$2.oneOf(Object.keys(SHAPES)),
-  size: PropTypes$2.oneOf(Object.keys(SIZES))
+  onClick: PropTypes$1.oneOfType([PropTypes$1.func, PropTypes$1.string]).isRequired,
+  shape: PropTypes$1.oneOf(Object.keys(SHAPES)),
+  size: PropTypes$1.oneOf(Object.keys(SIZES))
 }, styledSystem.space.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.typography.propTypes);
 Button.defaultProps = {
   shape: SHAPES.square,
@@ -330,7 +326,7 @@ Button.defaultProps = {
 Button.SHAPES = SHAPES;
 Button.SIZES = SIZES;
 Button.displayName = 'Button';
-var button = e.memo(Button);
+var button = React.memo(Button);
 
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -446,7 +442,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _react = _interopRequireDefault(e__default);
+var _react = _interopRequireDefault(React__default);
 
 var _styledComponents = _interopRequireDefault(styled__default);
 
@@ -630,7 +626,7 @@ var StyledButton$1 = styled__default.button(_templateObject11(), function (props
 
 function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var Card =
 /*#__PURE__*/
@@ -658,19 +654,19 @@ function (_React$PureComponent) {
           hideIndicator = _this$props.hideIndicator,
           props = objectWithoutProperties(_this$props, ["title", "actions", "renderHeader", "viewState", "children", "onAdd", "description", "showDivider", "hideIndicator"]);
 
-      return e.createElement(StyledCard, props, typeof renderHeader === 'function' ? renderHeader({
+      return React.createElement(StyledCard, props, typeof renderHeader === 'function' ? renderHeader({
         title: title
-      }) : title && e.createElement(StyledCardHeader, null, e.createElement(Container, null, e.createElement(TitleContainer, null, !hideIndicator && e.createElement(StyledIndicator, null), e.createElement(StyledCardTitle, null, title)), description && !viewState && e.createElement(StyledCardDescription, null, description), e.createElement(ActionsContainer, null, actions, onAdd && !viewState && e.createElement(StyledButton$1, {
+      }) : title && React.createElement(StyledCardHeader, null, React.createElement(Container, null, React.createElement(TitleContainer, null, !hideIndicator && React.createElement(StyledIndicator, null), React.createElement(StyledCardTitle, null, title)), description && !viewState && React.createElement(StyledCardDescription, null, description), React.createElement(ActionsContainer, null, actions, onAdd && !viewState && React.createElement(StyledButton$1, {
         onClick: onAdd,
         type: "button"
-      }, e.createElement(Plus$1, null)))), e.createElement(StyledCardDivider, {
+      }, React.createElement(Plus$1, null)))), React.createElement(StyledCardDivider, {
         showDivider: showDivider
-      })), e.createElement(StyledContent, null, children));
+      })), React.createElement(StyledContent, null, children));
     }
   }]);
 
   return Card;
-}(e.PureComponent);
+}(React.PureComponent);
 
 defineProperty(Card, "defaultProps", {
   title: '',
@@ -678,13 +674,13 @@ defineProperty(Card, "defaultProps", {
 });
 
 defineProperty(Card, "propTypes", _objectSpread$2({
-  title: PropTypes$2.string.isRequired,
-  actions: PropTypes$2.array
+  title: PropTypes$1.string.isRequired,
+  actions: PropTypes$1.array
 }, styledSystem.space.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.flexbox.propTypes));
 
 function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _templateObject$5() {
   var data = taggedTemplateLiteral(["\n  color: ", ";\n  ", "\n  ", "\n  ", "\n"]);
@@ -704,7 +700,7 @@ Text.displayName = 'Text';
 
 function ownKeys$4(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _templateObject$6() {
   var data = taggedTemplateLiteral(["\n  display: block;\n  max-width: 100%;\n  height: auto;\n  border-radius: ", ";\n  ", "\n  ", "\n"]);
@@ -729,7 +725,7 @@ var Image = styled__default.img.attrs({
 }, styledSystem.layout, styledSystem.shadow);
 Image.displayName = 'Image';
 Image.propTypes = _objectSpread$4({}, styledSystem.layout.propTypes, {}, styledSystem.shadow.propTypes, {
-  shape: PropTypes$2.oneOf(Object.keys(SHAPES$1))
+  shape: PropTypes$1.oneOf(Object.keys(SHAPES$1))
 });
 Image.defaultProps = {
   theme: theme,
@@ -1143,7 +1139,7 @@ var hoistNonReactStatics_cjs = hoistNonReactStatics;
 var mapProps = function mapProps(map) {
   return function (Component) {
     return hoistNonReactStatics_cjs(function (props) {
-      return e.createElement(Component, map(props));
+      return React.createElement(Component, map(props));
     }, Component);
   };
 };
@@ -1160,7 +1156,7 @@ function _templateObject$7() {
 
 function ownKeys$5(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$5(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$5(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$5(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$5(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$5(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$5(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var Flex = mapProps(function (_ref) {
   var wrap = _ref.wrap,
       align = _ref.align,
@@ -1239,12 +1235,12 @@ var Checkbox = function Checkbox(_ref2) {
       disabled = _ref2.disabled,
       props = objectWithoutProperties(_ref2, ["children", "onChange", "checked", "onBlur", "disabled"]);
 
-  return e.createElement(StyledLabel, props, e.createElement(StyledInput, {
+  return React.createElement(StyledLabel, props, React.createElement(StyledInput, {
     onChange: onChange,
     onBlur: onBlur,
     checked: checked,
     disabled: disabled
-  }), e.createElement(StyledSpan, {
+  }), React.createElement(StyledSpan, {
     labelled: children
   }, children));
 };
@@ -1278,7 +1274,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _react = _interopRequireDefault(e__default);
+var _react = _interopRequireDefault(React__default);
 
 var _styledComponents = _interopRequireDefault(styled__default);
 
@@ -1327,7 +1323,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _react = _interopRequireDefault(e__default);
+var _react = _interopRequireDefault(React__default);
 
 var _styledComponents = _interopRequireDefault(styled__default);
 
@@ -1422,18 +1418,18 @@ function (_React$PureComponent) {
           otherProps = objectWithoutProperties(_this$props, ["children", "theme", "onChange", "checked", "inputProps", "labelProps", "disabled"]);
 
       var Icon = checked ? RadioboxMarked$1 : RadioboxBlank$1;
-      return e.createElement(StyledLabel$1, _extends_1({
+      return React.createElement(StyledLabel$1, _extends_1({
         disabled: disabled
-      }, otherProps), e.createElement(Icon, _extends_1({
+      }, otherProps), React.createElement(Icon, _extends_1({
         onClick: onChange,
         checked: checked,
         color: checked ? theme.colors.primary : theme.colors.gray.dark
-      }, inputProps)), children && e.createElement(StyledSpan$1, labelProps, children));
+      }, inputProps)), children && React.createElement(StyledSpan$1, labelProps, children));
     }
   }]);
 
   return RadioButton;
-}(e.PureComponent);
+}(React.PureComponent);
 
 defineProperty(RadioButton, "defaultProps", {
   theme: theme
@@ -2293,31 +2289,31 @@ var InputWrapper = function InputWrapper(_ref2) {
       disabled = _ref2.disabled,
       otherProps = objectWithoutProperties(_ref2, ["id", "label", "children", "alertText", "alertStyle", "containerStyle", "labelStyle", "width", "required", "disabled"]);
 
-  return e__default.createElement(StyledInputContainer, _extends_1({
+  return React__default.createElement(StyledInputContainer, _extends_1({
     width: width,
     empty: !label,
     style: containerStyle
-  }, otherProps), e__default.createElement(StyledLabel$2, {
+  }, otherProps), React__default.createElement(StyledLabel$2, {
     htmlFor: id,
     required: required,
     style: labelStyle
-  }, label, !disabled && required && e__default.createElement(Required, {
+  }, label, !disabled && required && React__default.createElement(Required, {
     "aria-label": "required"
-  }, "*")), children, alertText && e__default.createElement(StyledAlertText, {
+  }, "*")), children, alertText && React__default.createElement(StyledAlertText, {
     style: alertStyle
   }, alertText));
 };
 
 function ownKeys$6(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$6(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$6(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$6(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$6(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$6(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$6(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var defaultPropTypes = _objectSpread$6({
-  id: PropTypes$2.string,
-  name: PropTypes$2.string.isRequired,
-  label: PropTypes$2.string,
-  placeholder: PropTypes$2.string,
-  alertText: PropTypes$2.string,
-  inputStyle: PropTypes$2.object
+  id: PropTypes$1.string,
+  name: PropTypes$1.string.isRequired,
+  label: PropTypes$1.string,
+  placeholder: PropTypes$1.string,
+  alertText: PropTypes$1.string,
+  inputStyle: PropTypes$1.object
 }, styledSystem.layout.propTypes, {}, styledSystem.space.propTypes);
 
 var Input = function Input(_ref) {
@@ -2340,11 +2336,11 @@ var Input = function Input(_ref) {
       errors = _useFormContext.errors,
       triggerValidation = _useFormContext.triggerValidation;
 
-  return e__default.createElement(InputWrapper, _extends_1({
+  return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertText || (errors[name] && errors[name].message ? errors[name].message : ''),
     required: required,
     disabled: disabled
-  }, otherProps), e__default.createElement(StyledInput$1, _extends_1({
+  }, otherProps), React__default.createElement(StyledInput$1, _extends_1({
     id: id,
     style: inputStyle,
     "aria-label": label.toString(),
@@ -2363,9 +2359,7 @@ var Input = function Input(_ref) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return triggerValidation({
-                name: name
-              });
+              return triggerValidation(name);
 
             case 2:
               return _context.abrupt("return", _context.sent);
@@ -2421,10 +2415,10 @@ var TimeInput = function TimeInput(_ref) {
       errors = _useFormContext.errors,
       triggerValidation = _useFormContext.triggerValidation;
 
-  return e__default.createElement(InputWrapper, _extends_1({
+  return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || (errors[name] ? errors[name].message : ''),
     required: required
-  }, otherProps), e__default.createElement(StyledInput$2, _extends_1({
+  }, otherProps), React__default.createElement(StyledInput$2, _extends_1({
     id: id,
     step: "1",
     style: inputStyle,
@@ -2444,9 +2438,7 @@ var TimeInput = function TimeInput(_ref) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return triggerValidation({
-                name: name
-              });
+              return triggerValidation(name);
 
             case 2:
               return _context.abrupt("return", _context.sent);
@@ -9517,11 +9509,11 @@ function onClickOutsideHOC(WrappedComponent, config) {
 
       props.disableOnClickOutside = this.disableOnClickOutside;
       props.enableOnClickOutside = this.enableOnClickOutside;
-      return e.createElement(WrappedComponent, props);
+      return React.createElement(WrappedComponent, props);
     };
 
     return onClickOutside;
-  }(e.Component), _class.displayName = "OnClickOutside(" + componentName + ")", _class.defaultProps = {
+  }(React.Component), _class.displayName = "OnClickOutside(" + componentName + ")", _class.defaultProps = {
     eventTypes: ['mousedown', 'touchstart'],
     excludeScrollbar: config && config.excludeScrollbar || false,
     outsideClickIgnoreClass: IGNORE_CLASS_NAME,
@@ -12227,11 +12219,11 @@ exports.__esModule = true;
 
 
 
-var _react2 = _interopRequireDefault(e__default);
+var _react2 = _interopRequireDefault(React__default);
 
 
 
-var _propTypes2 = _interopRequireDefault(PropTypes$2);
+var _propTypes2 = _interopRequireDefault(PropTypes$1);
 
 
 
@@ -12342,7 +12334,7 @@ function createReactContext(defaultValue, calculateChangedBits) {
     };
 
     return Provider;
-  }(e__default.Component);
+  }(React__default.Component);
 
   Provider.childContextTypes = (_Provider$childContex = {}, _Provider$childContex[contextProp] = _propTypes2.default.object.isRequired, _Provider$childContex);
 
@@ -12404,7 +12396,7 @@ function createReactContext(defaultValue, calculateChangedBits) {
     };
 
     return Consumer;
-  }(e__default.Component);
+  }(React__default.Component);
 
   Consumer.contextTypes = (_Consumer$contextType = {}, _Consumer$contextType[contextProp] = _propTypes2.default.object, _Consumer$contextType);
 
@@ -12427,7 +12419,7 @@ exports.__esModule = true;
 
 
 
-var _react2 = _interopRequireDefault(e__default);
+var _react2 = _interopRequireDefault(React__default);
 
 
 
@@ -12483,13 +12475,13 @@ function (_React$Component) {
   var _proto = Manager.prototype;
 
   _proto.render = function render() {
-    return e.createElement(ManagerContext.Provider, {
+    return React.createElement(ManagerContext.Provider, {
       value: this.state.context
     }, this.props.children);
   };
 
   return Manager;
-}(e.Component);
+}(React.Component);
 
 /**
  * Takes an argument and if it's an array, returns the first item in the array,
@@ -12676,7 +12668,7 @@ function (_React$Component) {
   };
 
   return InnerPopper;
-}(e.Component);
+}(React.Component);
 
 defineProperty(InnerPopper, "defaultProps", {
   placement: 'bottom',
@@ -12688,9 +12680,9 @@ function Popper$1(_ref) {
   var referenceElement = _ref.referenceElement,
       props = objectWithoutPropertiesLoose(_ref, ["referenceElement"]);
 
-  return e.createElement(ManagerContext.Consumer, null, function (_ref2) {
+  return React.createElement(ManagerContext.Consumer, null, function (_ref2) {
     var referenceNode = _ref2.referenceNode;
-    return e.createElement(InnerPopper, _extends_1({
+    return React.createElement(InnerPopper, _extends_1({
       referenceElement: referenceElement !== undefined ? referenceElement : referenceNode
     }, props));
   });
@@ -12732,18 +12724,18 @@ function (_React$Component) {
   };
 
   return InnerReference;
-}(e.Component);
+}(React.Component);
 
 function Reference(props) {
-  return e.createElement(ManagerContext.Consumer, null, function (_ref) {
+  return React.createElement(ManagerContext.Consumer, null, function (_ref) {
     var setReferenceNode = _ref.setReferenceNode;
-    return e.createElement(InnerReference, _extends_1({
+    return React.createElement(InnerReference, _extends_1({
       setReferenceNode: setReferenceNode
     }, props));
   });
 }
 
-function oe(e){return (oe="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function ae(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function se(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n);}}function pe(e,t,r){return t&&se(e.prototype,t),r&&se(e,r),e}function ie(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function ce(){return (ce=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n]);}return e}).apply(this,arguments)}function le(e,t){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter(function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable})),r.push.apply(r,n);}return r}function de(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&he(e,t);}function ue(e){return (ue=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function he(e,t){return (he=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function me(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function fe(e,t){return !t||"object"!=typeof t&&"function"!=typeof t?me(e):t}var ve,ye=function(e,t){return e(t={exports:{}},t.exports),t.exports}(function(e,t){function r(e,t){switch(e){case"P":return t.date({width:"short"});case"PP":return t.date({width:"medium"});case"PPP":return t.date({width:"long"});case"PPPP":default:return t.date({width:"full"})}}function n(e,t){switch(e){case"p":return t.time({width:"short"});case"pp":return t.time({width:"medium"});case"ppp":return t.time({width:"long"});case"pppp":default:return t.time({width:"full"})}}Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var o={p:n,P:function(e,t){var o,a=e.match(/(P+)(p+)?/),s=a[1],p=a[2];if(!p)return r(e,t);switch(s){case"P":o=t.dateTime({width:"short"});break;case"PP":o=t.dateTime({width:"medium"});break;case"PPP":o=t.dateTime({width:"long"});break;case"PPPP":default:o=t.dateTime({width:"full"});}return o.replace("{{date}}",r(s,t)).replace("{{time}}",n(p,t))}};t.default=o,e.exports=t.default;}),De=(ve=ye)&&ve.__esModule&&Object.prototype.hasOwnProperty.call(ve,"default")?ve.default:ve,ge=/P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;function we(e){var t=e?"string"==typeof e||e instanceof String?parseISO(e):toDate(e):new Date;return _e(t)?t:null}function ke(e,t,r,n){var a=null,s=Fe(r)||Le(),p=!0;return Array.isArray(t)?(t.forEach(function(t){var r=parse(e,t,new Date,{locale:s});n&&(p=_e(r)&&e===format(r,t,{awareOfUnicodeTokens:!0})),_e(r)&&p&&(a=r);}),a):(a=parse(e,t,new Date,{locale:s}),n?p=_e(a)&&e===format(a,t,{awareOfUnicodeTokens:!0}):_e(a)||(t=t.match(ge).map(function(e){var t=e[0];if("p"===t||"P"===t){var r=De[t];return s?r(e,s.formatLong):t}return e}).join(""),e.length>0&&(a=parse(e,t.slice(0,e.length),new Date)),_e(a)||(a=new Date(e))),_e(a)&&p?a:null)}function _e(e){return isValid(e)&&isAfter(e,new Date("1/1/1000"))}function Ce(e,t,r){if("en"===r)return format(e,t,{awareOfUnicodeTokens:!0});var n=Fe(r);return r&&!n&&console.warn('A locale object was not found for the provided string ["'.concat(r,'"].')),!n&&Le()&&Fe(Le())&&(n=Fe(Le())),format(e,t,{locale:n||null,awareOfUnicodeTokens:!0})}function be(e,t){var r=t.hour,n=void 0===r?0:r,o=t.minute,a=void 0===o?0:o,s=t.second;return setHours(setMinutes(setSeconds(e,void 0===s?0:s),a),n)}function Se(e,t){var r=Fe(t||Le());return startOfWeek(e,{locale:r})}function Me(e){return startOfMonth(e)}function Ee(e,t){return e&&t?isSameYear(e,t):!e&&!t}function Ne(e,t){return e&&t?isSameMonth(e,t):!e&&!t}function Oe(e,t){return e&&t?isSameQuarter(e,t):!e&&!t}function Pe(e,t){return e&&t?isSameDay(e,t):!e&&!t}function Te(e,t){return e&&t?isEqual(e,t):!e&&!t}function xe(e,t,r){var n,o=startOfDay(t),a=endOfDay(r);try{n=isWithinInterval(e,{start:o,end:a});}catch(e){n=!1;}return n}function Le(){return ("undefined"!=typeof window?window:global).__localeId__}function Fe(e){if("string"==typeof e){var t="undefined"!=typeof window?window:global;return t.__localeData__?t.__localeData__[e]:null}return e}function We(e,t){return Ce(setMonth(we(),e),"LLL",t)}function Be(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return Qe(e,{minDate:r,maxDate:n})||o&&o.some(function(t){return Pe(e,t)})||a&&!a.some(function(t){return Pe(e,t)})||s&&!s(we(e))||!1}function je(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return Qe(e,{minDate:r,maxDate:n})||o&&o.some(function(t){return Ne(e,t)})||a&&!a.some(function(t){return Ne(e,t)})||s&&!s(we(e))||!1}function Re(e,t,r,n){var o=getYear(e),a=getMonth(e),s=getYear(t),p=getMonth(t),i=getYear(n);return o===s&&o===i?a<=r&&r<=p:o<s?i===o&&a<=r||i===s&&p>=r||i<s&&i>o:void 0}function He(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return Qe(e,{minDate:r,maxDate:n})||o&&o.some(function(t){return Oe(e,t)})||a&&!a.some(function(t){return Oe(e,t)})||s&&!s(we(e))||!1}function Ae(e,t,r,n){var o=getYear(e),a=getQuarter(e),s=getYear(t),p=getQuarter(t),i=getYear(n);return o===s&&o===i?a<=r&&r<=p:o<s?i===o&&a<=r||i===s&&p>=r||i<s&&i>o:void 0}function Qe(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate;return r&&differenceInCalendarDays(e,r)<0||n&&differenceInCalendarDays(e,n)>0}function Ve(e,t){for(var r=t.length,n=0;n<r;n++)if(getHours(t[n])===getHours(e)&&getMinutes(t[n])===getMinutes(e))return !0;return !1}function Ke(e,t){var r=t.minTime,n=t.maxTime;if(!r||!n)throw new Error("Both minTime and maxTime props required");var o,a=we(),s=setHours(setMinutes(a,getMinutes(e)),getHours(e)),p=setHours(setMinutes(a,getMinutes(r)),getHours(r)),i=setHours(setMinutes(a,getMinutes(n)),getHours(n));try{o=!isWithinInterval(s,{start:p,end:i});}catch(e){o=!1;}return o}function qe(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.includeDates,o=subMonths(e,1);return r&&differenceInCalendarMonths(r,o)>0||n&&n.every(function(e){return differenceInCalendarMonths(e,o)>0})||!1}function Ue(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.maxDate,n=t.includeDates,o=addMonths(e,1);return r&&differenceInCalendarMonths(o,r)>0||n&&n.every(function(e){return differenceInCalendarMonths(o,e)>0})||!1}function $e(e){var t=e.minDate,r=e.includeDates;if(r&&t){var n=r.filter(function(e){return differenceInCalendarDays(e,t)>=0});return min(n)}return r?min(r):t}function ze(e){var t=e.maxDate,r=e.includeDates;if(r&&t){var n=r.filter(function(e){return differenceInCalendarDays(e,t)<=0});return max(n)}return r?max(r):t}function Ge(){for(var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"react-datepicker__day--highlighted",n=new Map,o=0,a=e.length;o<a;o++){var s=e[o];if(isDate(s)){var p=Ce(s,"MM.dd.yyyy"),i=n.get(p)||[];i.includes(t)||(i.push(t),n.set(p,i));}else if("object"===oe(s)){var c=Object.keys(s),l=c[0],d=s[c[0]];if("string"==typeof l&&d.constructor===Array)for(var u=0,h=d.length;u<h;u++){var m=Ce(d[u],"MM.dd.yyyy"),f=n.get(m)||[];f.includes(l)||(f.push(l),n.set(m,f));}}}return n}function Je(e,t,r,n,o){for(var p=o.length,i=[],c=0;c<p;c++){var l=addMinutes(addHours(e,getHours(o[c])),getMinutes(o[c])),d=addMinutes(e,(r+1)*n);isAfter(l,t)&&isBefore(l,d)&&i.push(o[c]);}return i}function Xe(e){return e<10?"0".concat(e):"".concat(e)}function Ze(e,t,r,n){for(var o=[],a=0;a<2*t+1;a++){var s=e+t-a,p=!0;r&&(p=getYear(r)<=s),n&&p&&(p=getYear(n)>=s),p&&o.push(s);}return o}var et=onClickOutsideHOC(function(r){function n(t){var r;ae(this,n),ie(me(r=fe(this,ue(n).call(this,t))),"renderOptions",function(){var t=r.props.year,n=r.state.yearsList.map(function(n){return e__default.createElement("div",{className:t===n?"react-datepicker__year-option react-datepicker__year-option--selected_year":"react-datepicker__year-option",key:n,ref:n,onClick:r.onChange.bind(me(r),n)},t===n?e__default.createElement("span",{className:"react-datepicker__year-option--selected"},"✓"):"",n)}),o=r.props.minDate?getYear(r.props.minDate):null,a=r.props.maxDate?getYear(r.props.maxDate):null;return a&&r.state.yearsList.find(function(e){return e===a})||n.unshift(e__default.createElement("div",{className:"react-datepicker__year-option",ref:"upcoming",key:"upcoming",onClick:r.incrementYears},e__default.createElement("a",{className:"react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-upcoming"}))),o&&r.state.yearsList.find(function(e){return e===o})||n.push(e__default.createElement("div",{className:"react-datepicker__year-option",ref:"previous",key:"previous",onClick:r.decrementYears},e__default.createElement("a",{className:"react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-previous"}))),n}),ie(me(r),"onChange",function(e){r.props.onChange(e);}),ie(me(r),"handleClickOutside",function(){r.props.onCancel();}),ie(me(r),"shiftYears",function(e){var t=r.state.yearsList.map(function(t){return t+e});r.setState({yearsList:t});}),ie(me(r),"incrementYears",function(){return r.shiftYears(1)}),ie(me(r),"decrementYears",function(){return r.shiftYears(-1)});var o=t.yearDropdownItemNumber,a=t.scrollableYearDropdown,s=o||(a?10:5);return r.state={yearsList:Ze(r.props.year,s,r.props.minDate,r.props.maxDate)},r}return de(n,e__default.Component),pe(n,[{key:"render",value:function(){var r=classnames({"react-datepicker__year-dropdown":!0,"react-datepicker__year-dropdown--scrollable":this.props.scrollableYearDropdown});return e__default.createElement("div",{className:r},this.renderOptions())}}]),n}()),tt=function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),ie(me(n),"renderSelectOptions",function(){for(var t=n.props.minDate?getYear(n.props.minDate):1900,r=n.props.maxDate?getYear(n.props.maxDate):2100,o=[],a=t;a<=r;a++)o.push(e__default.createElement("option",{key:a,value:a},a));return o}),ie(me(n),"onSelectChange",function(e){n.onChange(e.target.value);}),ie(me(n),"renderSelectMode",function(){return e__default.createElement("select",{value:n.props.year,className:"react-datepicker__year-select",onChange:n.onSelectChange},n.renderSelectOptions())}),ie(me(n),"renderReadView",function(t){return e__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__year-read-view",onClick:function(e){return n.toggleDropdown(e)}},e__default.createElement("span",{className:"react-datepicker__year-read-view--down-arrow"}),e__default.createElement("span",{className:"react-datepicker__year-read-view--selected-year"},n.props.year))}),ie(me(n),"renderDropdown",function(){return e__default.createElement(et,{key:"dropdown",ref:"options",year:n.props.year,onChange:n.onChange,onCancel:n.toggleDropdown,minDate:n.props.minDate,maxDate:n.props.maxDate,scrollableYearDropdown:n.props.scrollableYearDropdown,yearDropdownItemNumber:n.props.yearDropdownItemNumber})}),ie(me(n),"renderScrollMode",function(){var e=n.state.dropdownVisible,t=[n.renderReadView(!e)];return e&&t.unshift(n.renderDropdown()),t}),ie(me(n),"onChange",function(e){n.toggleDropdown(),e!==n.props.year&&n.props.onChange(e);}),ie(me(n),"toggleDropdown",function(e){n.setState({dropdownVisible:!n.state.dropdownVisible},function(){n.props.adjustDateOnChange&&n.handleYearChange(n.props.date,e);});}),ie(me(n),"handleYearChange",function(e,t){n.onSelect(e,t),n.setOpen();}),ie(me(n),"onSelect",function(e,t){n.props.onSelect&&n.props.onSelect(e,t);}),ie(me(n),"setOpen",function(){n.props.setOpen&&n.props.setOpen(!0);}),n}return de(r,e__default.Component),pe(r,[{key:"render",value:function(){var t;switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode();break;case"select":t=this.renderSelectMode();}return e__default.createElement("div",{className:"react-datepicker__year-dropdown-container react-datepicker__year-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}(),rt=onClickOutsideHOC(function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(a)))),"renderOptions",function(){return n.props.monthNames.map(function(t,r){return e__default.createElement("div",{className:n.props.month===r?"react-datepicker__month-option react-datepicker__month-option--selected_month":"react-datepicker__month-option",key:t,ref:t,onClick:n.onChange.bind(me(n),r)},n.props.month===r?e__default.createElement("span",{className:"react-datepicker__month-option--selected"},"✓"):"",t)})}),ie(me(n),"onChange",function(e){return n.props.onChange(e)}),ie(me(n),"handleClickOutside",function(){return n.props.onCancel()}),n}return de(r,e__default.Component),pe(r,[{key:"render",value:function(){return e__default.createElement("div",{className:"react-datepicker__month-dropdown"},this.renderOptions())}}]),r}()),nt=function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),ie(me(n),"renderSelectOptions",function(t){return t.map(function(t,r){return e__default.createElement("option",{key:r,value:r},t)})}),ie(me(n),"renderSelectMode",function(t){return e__default.createElement("select",{value:n.props.month,className:"react-datepicker__month-select",onChange:function(e){return n.onChange(e.target.value)}},n.renderSelectOptions(t))}),ie(me(n),"renderReadView",function(t,r){return e__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__month-read-view",onClick:n.toggleDropdown},e__default.createElement("span",{className:"react-datepicker__month-read-view--down-arrow"}),e__default.createElement("span",{className:"react-datepicker__month-read-view--selected-month"},r[n.props.month]))}),ie(me(n),"renderDropdown",function(t){return e__default.createElement(rt,{key:"dropdown",ref:"options",month:n.props.month,monthNames:t,onChange:n.onChange,onCancel:n.toggleDropdown})}),ie(me(n),"renderScrollMode",function(e){var t=n.state.dropdownVisible,r=[n.renderReadView(!t,e)];return t&&r.unshift(n.renderDropdown(e)),r}),ie(me(n),"onChange",function(e){n.toggleDropdown(),e!==n.props.month&&n.props.onChange(e);}),ie(me(n),"toggleDropdown",function(){return n.setState({dropdownVisible:!n.state.dropdownVisible})}),n}return de(r,e__default.Component),pe(r,[{key:"render",value:function(){var t,r=this,n=[0,1,2,3,4,5,6,7,8,9,10,11].map(this.props.useShortMonthInDropdown?function(e){return We(e,r.props.locale)}:function(e){return t=e,n=r.props.locale,Ce(setMonth(we(),t),"LLLL",n);var t,n;});switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode(n);break;case"select":t=this.renderSelectMode(n);}return e__default.createElement("div",{className:"react-datepicker__month-dropdown-container react-datepicker__month-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}();function ot(e,t){for(var r=[],n=Me(e),o=Me(t);!isAfter(n,o);)r.push(we(n)),n=addMonths(n,1);return r}var at=onClickOutsideHOC(function(r){function n(t){var r;return ae(this,n),ie(me(r=fe(this,ue(n).call(this,t))),"renderOptions",function(){return r.state.monthYearsList.map(function(t){var n=getTime(t),o=Ee(r.props.date,t)&&Ne(r.props.date,t);return e__default.createElement("div",{className:o?"react-datepicker__month-year-option --selected_month-year":"react-datepicker__month-year-option",key:n,ref:n,onClick:r.onChange.bind(me(r),n)},o?e__default.createElement("span",{className:"react-datepicker__month-year-option--selected"},"✓"):"",Ce(t,r.props.dateFormat))})}),ie(me(r),"onChange",function(e){return r.props.onChange(e)}),ie(me(r),"handleClickOutside",function(){r.props.onCancel();}),r.state={monthYearsList:ot(r.props.minDate,r.props.maxDate)},r}return de(n,e__default.Component),pe(n,[{key:"render",value:function(){var r=classnames({"react-datepicker__month-year-dropdown":!0,"react-datepicker__month-year-dropdown--scrollable":this.props.scrollableMonthYearDropdown});return e__default.createElement("div",{className:r},this.renderOptions())}}]),n}()),st=function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),ie(me(n),"renderSelectOptions",function(){for(var t=Me(n.props.minDate),r=Me(n.props.maxDate),o=[];!isAfter(t,r);){var a=getTime(t);o.push(e__default.createElement("option",{key:a,value:a},Ce(t,n.props.dateFormat,n.props.locale))),t=addMonths(t,1);}return o}),ie(me(n),"onSelectChange",function(e){n.onChange(e.target.value);}),ie(me(n),"renderSelectMode",function(){return e__default.createElement("select",{value:getTime(Me(n.props.date)),className:"react-datepicker__month-year-select",onChange:n.onSelectChange},n.renderSelectOptions())}),ie(me(n),"renderReadView",function(t){var r=Ce(n.props.date,n.props.dateFormat,n.props.locale);return e__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__month-year-read-view",onClick:function(e){return n.toggleDropdown(e)}},e__default.createElement("span",{className:"react-datepicker__month-year-read-view--down-arrow"}),e__default.createElement("span",{className:"react-datepicker__month-year-read-view--selected-month-year"},r))}),ie(me(n),"renderDropdown",function(){return e__default.createElement(at,{key:"dropdown",ref:"options",date:n.props.date,dateFormat:n.props.dateFormat,onChange:n.onChange,onCancel:n.toggleDropdown,minDate:n.props.minDate,maxDate:n.props.maxDate,scrollableMonthYearDropdown:n.props.scrollableMonthYearDropdown})}),ie(me(n),"renderScrollMode",function(){var e=n.state.dropdownVisible,t=[n.renderReadView(!e)];return e&&t.unshift(n.renderDropdown()),t}),ie(me(n),"onChange",function(e){n.toggleDropdown();var t=we(parseInt(e));Ee(n.props.date,t)&&Ne(n.props.date,t)||n.props.onChange(t);}),ie(me(n),"toggleDropdown",function(){return n.setState({dropdownVisible:!n.state.dropdownVisible})}),n}return de(r,e__default.Component),pe(r,[{key:"render",value:function(){var t;switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode();break;case"select":t=this.renderSelectMode();}return e__default.createElement("div",{className:"react-datepicker__month-year-dropdown-container react-datepicker__month-year-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}(),pt=function(r){function n(){var e,r;ae(this,n);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(r=fe(this,(e=ue(n)).call.apply(e,[this].concat(a)))),"handleClick",function(e){!r.isDisabled()&&r.props.onClick&&r.props.onClick(e);}),ie(me(r),"handleMouseEnter",function(e){!r.isDisabled()&&r.props.onMouseEnter&&r.props.onMouseEnter(e);}),ie(me(r),"isSameDay",function(e){return Pe(r.props.day,e)}),ie(me(r),"isKeyboardSelected",function(){return !r.props.disabledKeyboardNavigation&&!r.props.inline&&!r.isSameDay(r.props.selected)&&r.isSameDay(r.props.preSelection)}),ie(me(r),"isDisabled",function(){return Be(r.props.day,r.props)}),ie(me(r),"isExcluded",function(){return function(e){var t=(arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}).excludeDates;return t&&t.some(function(t){return Pe(e,t)})||!1}(r.props.day,r.props)}),ie(me(r),"getHighLightedClass",function(e){var t=r.props,n=t.day,o=t.highlightDates;if(!o)return !1;var a=Ce(n,"MM.dd.yyyy");return o.get(a)}),ie(me(r),"isInRange",function(){var e=r.props,t=e.day,n=e.startDate,o=e.endDate;return !(!n||!o)&&xe(t,n,o)}),ie(me(r),"isInSelectingRange",function(){var e=r.props,t=e.day,n=e.selectsStart,o=e.selectsEnd,a=e.selectingDate,s=e.startDate,p=e.endDate;return !(!n&&!o||!a||r.isDisabled())&&(n&&p&&(isBefore(a,p)||Te(a,p))?xe(t,a,p):!(!o||!s||!isAfter(a,s)&&!Te(a,s))&&xe(t,s,a))}),ie(me(r),"isSelectingRangeStart",function(){if(!r.isInSelectingRange())return !1;var e=r.props,t=e.day,n=e.selectingDate,o=e.startDate;return Pe(t,e.selectsStart?n:o)}),ie(me(r),"isSelectingRangeEnd",function(){if(!r.isInSelectingRange())return !1;var e=r.props,t=e.day,n=e.selectingDate,o=e.endDate;return Pe(t,e.selectsEnd?n:o)}),ie(me(r),"isRangeStart",function(){var e=r.props,t=e.day,n=e.startDate,o=e.endDate;return !(!n||!o)&&Pe(n,t)}),ie(me(r),"isRangeEnd",function(){var e=r.props,t=e.day,n=e.startDate,o=e.endDate;return !(!n||!o)&&Pe(o,t)}),ie(me(r),"isWeekend",function(){var e=getDay(r.props.day);return 0===e||6===e}),ie(me(r),"isOutsideMonth",function(){return void 0!==r.props.month&&r.props.month!==getMonth(r.props.day)}),ie(me(r),"getClassNames",function(e){var n,o=r.props.dayClassName?r.props.dayClassName(e):void 0;return classnames("react-datepicker__day",o,"react-datepicker__day--"+Ce(r.props.day,"ddd",n),{"react-datepicker__day--disabled":r.isDisabled(),"react-datepicker__day--excluded":r.isExcluded(),"react-datepicker__day--selected":r.isSameDay(r.props.selected),"react-datepicker__day--keyboard-selected":r.isKeyboardSelected(),"react-datepicker__day--range-start":r.isRangeStart(),"react-datepicker__day--range-end":r.isRangeEnd(),"react-datepicker__day--in-range":r.isInRange(),"react-datepicker__day--in-selecting-range":r.isInSelectingRange(),"react-datepicker__day--selecting-range-start":r.isSelectingRangeStart(),"react-datepicker__day--selecting-range-end":r.isSelectingRangeEnd(),"react-datepicker__day--today":r.isSameDay(we()),"react-datepicker__day--weekend":r.isWeekend(),"react-datepicker__day--outside-month":r.isOutsideMonth()},r.getHighLightedClass("react-datepicker__day--highlighted"))}),r}return de(n,e__default.Component),pe(n,[{key:"render",value:function(){return e__default.createElement("div",{className:this.getClassNames(this.props.day),onClick:this.handleClick,onMouseEnter:this.handleMouseEnter,"aria-label":"day-".concat(getDate(this.props.day)),role:"option","aria-disabled":this.isDisabled()},this.props.renderDayContents?this.props.renderDayContents(getDate(this.props.day),this.props.day):getDate(this.props.day))}}]),n}(),it=function(r){function n(){var e,t;ae(this,n);for(var r=arguments.length,o=new Array(r),a=0;a<r;a++)o[a]=arguments[a];return ie(me(t=fe(this,(e=ue(n)).call.apply(e,[this].concat(o)))),"handleClick",function(e){t.props.onClick&&t.props.onClick(e);}),t}return de(n,e__default.Component),pe(n,[{key:"render",value:function(){var r={"react-datepicker__week-number":!0,"react-datepicker__week-number--clickable":!!this.props.onClick};return e__default.createElement("div",{className:classnames(r),"aria-label":"week-".concat(this.props.weekNumber),onClick:this.handleClick},this.props.weekNumber)}}]),n}(),ct=function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(a)))),"handleDayClick",function(e,t){n.props.onDayClick&&n.props.onDayClick(e,t);}),ie(me(n),"handleDayMouseEnter",function(e){n.props.onDayMouseEnter&&n.props.onDayMouseEnter(e);}),ie(me(n),"handleWeekClick",function(e,t,r){"function"==typeof n.props.onWeekSelect&&n.props.onWeekSelect(e,t,r),n.props.shouldCloseOnSelect&&n.props.setOpen(!1);}),ie(me(n),"formatWeekNumber",function(e){return n.props.formatWeekNumber?n.props.formatWeekNumber(e):function(e){return Ee(endOfWeek(e),e)?differenceInCalendarWeeks(e,startOfYear(e))+1:1}(e)}),ie(me(n),"renderDays",function(){var t=Se(n.props.day,n.props.locale),r=[],o=n.formatWeekNumber(t);if(n.props.showWeekNumber){var a=n.props.onWeekSelect?n.handleWeekClick.bind(me(n),t,o):void 0;r.push(e__default.createElement(it,{key:"W",weekNumber:o,onClick:a}));}return r.concat([0,1,2,3,4,5,6].map(function(r){var o=addDays(t,r);return e__default.createElement(pt,{key:r,day:o,month:n.props.month,onClick:n.handleDayClick.bind(me(n),o),onMouseEnter:n.handleDayMouseEnter.bind(me(n),o),minDate:n.props.minDate,maxDate:n.props.maxDate,excludeDates:n.props.excludeDates,includeDates:n.props.includeDates,inline:n.props.inline,highlightDates:n.props.highlightDates,selectingDate:n.props.selectingDate,filterDate:n.props.filterDate,preSelection:n.props.preSelection,selected:n.props.selected,selectsStart:n.props.selectsStart,selectsEnd:n.props.selectsEnd,startDate:n.props.startDate,endDate:n.props.endDate,dayClassName:n.props.dayClassName,renderDayContents:n.props.renderDayContents,disabledKeyboardNavigation:n.props.disabledKeyboardNavigation})}))}),n}return de(r,e__default.Component),pe(r,[{key:"render",value:function(){return e__default.createElement("div",{className:"react-datepicker__week"},this.renderDays())}}],[{key:"defaultProps",get:function(){return {shouldCloseOnSelect:!0}}}]),r}(),lt=6,dt=function(r){function n(){var r,o;ae(this,n);for(var a=arguments.length,s=new Array(a),c=0;c<a;c++)s[c]=arguments[c];return ie(me(o=fe(this,(r=ue(n)).call.apply(r,[this].concat(s)))),"handleDayClick",function(e,t){o.props.onDayClick&&o.props.onDayClick(e,t,o.props.orderInDisplay);}),ie(me(o),"handleDayMouseEnter",function(e){o.props.onDayMouseEnter&&o.props.onDayMouseEnter(e);}),ie(me(o),"handleMouseLeave",function(){o.props.onMouseLeave&&o.props.onMouseLeave();}),ie(me(o),"isRangeStartMonth",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Ne(setMonth(r,e),n)}),ie(me(o),"isRangeStartQuarter",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Oe(setQuarter(r,e),n)}),ie(me(o),"isRangeEndMonth",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Ne(setMonth(r,e),a)}),ie(me(o),"isRangeEndQuarter",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Oe(setQuarter(r,e),a)}),ie(me(o),"isWeekInMonth",function(e){var t=o.props.day,r=addDays(e,6);return Ne(e,t)||Ne(r,t)}),ie(me(o),"renderWeeks",function(){for(var t=[],r=o.props.fixedHeight,n=Se(Me(o.props.day),o.props.locale),a=0,s=!1;t.push(e__default.createElement(ct,{key:a,day:n,month:getMonth(o.props.day),onDayClick:o.handleDayClick,onDayMouseEnter:o.handleDayMouseEnter,onWeekSelect:o.props.onWeekSelect,formatWeekNumber:o.props.formatWeekNumber,locale:o.props.locale,minDate:o.props.minDate,maxDate:o.props.maxDate,excludeDates:o.props.excludeDates,includeDates:o.props.includeDates,inline:o.props.inline,highlightDates:o.props.highlightDates,selectingDate:o.props.selectingDate,filterDate:o.props.filterDate,preSelection:o.props.preSelection,selected:o.props.selected,selectsStart:o.props.selectsStart,selectsEnd:o.props.selectsEnd,showWeekNumber:o.props.showWeekNumbers,startDate:o.props.startDate,endDate:o.props.endDate,dayClassName:o.props.dayClassName,setOpen:o.props.setOpen,shouldCloseOnSelect:o.props.shouldCloseOnSelect,disabledKeyboardNavigation:o.props.disabledKeyboardNavigation,renderDayContents:o.props.renderDayContents})),!s;){a++,n=addWeeks(n,1);var p=r&&a>=lt,c=!r&&!o.isWeekInMonth(n);if(p||c){if(!o.props.peekNextMonth)break;s=!0;}}return t}),ie(me(o),"onMonthClick",function(e,t){o.handleDayClick(Me(setMonth(o.props.day,t)),e);}),ie(me(o),"onQuarterClick",function(e,t){var r;o.handleDayClick((r=setQuarter(o.props.day,t),startOfQuarter(r)),e);}),ie(me(o),"getMonthClassNames",function(e){var r=o.props,n=r.day,a=r.startDate,s=r.endDate,p=r.selected,i=r.minDate,c=r.maxDate;return classnames("react-datepicker__month-text","react-datepicker__month-".concat(e),{"react-datepicker__month--disabled":(i||c)&&je(setMonth(n,e),o.props),"react-datepicker__month--selected":getMonth(n)===e&&getYear(n)===getYear(p),"react-datepicker__month--in-range":Re(a,s,e,n),"react-datepicker__month--range-start":o.isRangeStartMonth(e),"react-datepicker__month--range-end":o.isRangeEndMonth(e)})}),ie(me(o),"getQuarterClassNames",function(e){var r=o.props,n=r.day,a=r.startDate,s=r.endDate,p=r.selected,i=r.minDate,c=r.maxDate;return classnames("react-datepicker__quarter-text","react-datepicker__quarter-".concat(e),{"react-datepicker__quarter--disabled":(i||c)&&He(setQuarter(n,e),o.props),"react-datepicker__quarter--selected":getQuarter(n)===e&&getYear(n)===getYear(p),"react-datepicker__quarter--in-range":Ae(a,s,e,n),"react-datepicker__quarter--range-start":o.isRangeStartQuarter(e),"react-datepicker__quarter--range-end":o.isRangeEndQuarter(e)})}),ie(me(o),"renderMonths",function(){return [[0,1,2],[3,4,5],[6,7,8],[9,10,11]].map(function(t,r){return e__default.createElement("div",{className:"react-datepicker__month-wrapper",key:r},t.map(function(t,r){return e__default.createElement("div",{key:r,onClick:function(e){o.onMonthClick(e,t);},className:o.getMonthClassNames(t)},We(t,o.props.locale))}))})}),ie(me(o),"renderQuarters",function(){return e__default.createElement("div",{className:"react-datepicker__quarter-wrapper"},[1,2,3,4].map(function(t,r){return e__default.createElement("div",{key:r,onClick:function(e){o.onQuarterClick(e,t);},className:o.getQuarterClassNames(t)},(n=t,a=o.props.locale,Ce(setQuarter(we(),n),"QQQ",a)));var n,a;}))}),ie(me(o),"getClassNames",function(){var e=o.props,r=e.selectingDate,n=e.selectsStart,a=e.selectsEnd,s=e.showMonthYearPicker,p=e.showQuarterYearPicker;return classnames("react-datepicker__month",{"react-datepicker__month--selecting-range":r&&(n||a)},{"react-datepicker__monthPicker":s},{"react-datepicker__quarterPicker":p})}),o}return de(n,e__default.Component),pe(n,[{key:"render",value:function(){var t=this.props,r=t.showMonthYearPicker,n=t.showQuarterYearPicker;return e__default.createElement("div",{className:this.getClassNames(),onMouseLeave:this.handleMouseLeave,role:"listbox","aria-label":"month-"+Ce(this.props.day,"yyyy-MM")},r?this.renderMonths():n?this.renderQuarters():this.renderWeeks())}}]),n}(),ut=function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,s=new Array(o),p=0;p<o;p++)s[p]=arguments[p];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(s)))),"state",{height:null}),ie(me(n),"handleClick",function(e){(n.props.minTime||n.props.maxTime)&&Ke(e,n.props)||n.props.excludeTimes&&Ve(e,n.props.excludeTimes)||n.props.includeTimes&&!Ve(e,n.props.includeTimes)||n.props.onChange(e);}),ie(me(n),"liClasses",function(e,t,r){var o=["react-datepicker__time-list-item"];return n.props.selected&&t===getHours(e)&&r===getMinutes(e)&&o.push("react-datepicker__time-list-item--selected"),((n.props.minTime||n.props.maxTime)&&Ke(e,n.props)||n.props.excludeTimes&&Ve(e,n.props.excludeTimes)||n.props.includeTimes&&!Ve(e,n.props.includeTimes))&&o.push("react-datepicker__time-list-item--disabled"),n.props.injectTimes&&(60*getHours(e)+getMinutes(e))%n.props.intervals!=0&&o.push("react-datepicker__time-list-item--injected"),o.join(" ")}),ie(me(n),"renderTimes",function(){for(var t,r=[],o=n.props.format?n.props.format:"p",s=n.props.intervals,p=n.props.selected||n.props.openToDate||we(),i=getHours(p),c=getMinutes(p),l=(t=we(),startOfDay(t)),d=1440/s,u=n.props.injectTimes&&n.props.injectTimes.sort(function(e,t){return e-t}),h=0;h<d;h++){var m=addMinutes(l,h*s);if(r.push(m),u){var f=Je(l,m,h,s,u);r=r.concat(f);}}return r.map(function(t,r){return e__default.createElement("li",{key:r,onClick:n.handleClick.bind(me(n),t),className:n.liClasses(t,i,c),ref:function(e){i===getHours(t)&&c>=getMinutes(t)&&(n.centerLi=e);}},Ce(t,o,n.props.locale))})}),n}return de(r,e__default.Component),pe(r,[{key:"componentDidMount",value:function(){this.list.scrollTop=r.calcCenterPosition(this.props.monthRef?this.props.monthRef.clientHeight-this.header.clientHeight:this.list.clientHeight,this.centerLi),this.props.monthRef&&this.header&&this.setState({height:this.props.monthRef.clientHeight-this.header.clientHeight});}},{key:"render",value:function(){var t=this,r=this.state.height;return e__default.createElement("div",{className:"react-datepicker__time-container ".concat(this.props.todayButton?"react-datepicker__time-container--with-today-button":"")},e__default.createElement("div",{className:"react-datepicker__header react-datepicker__header--time",ref:function(e){t.header=e;}},e__default.createElement("div",{className:"react-datepicker-time__header"},this.props.timeCaption)),e__default.createElement("div",{className:"react-datepicker__time"},e__default.createElement("div",{className:"react-datepicker__time-box"},e__default.createElement("ul",{className:"react-datepicker__time-list",ref:function(e){t.list=e;},style:r?{height:r}:{}},this.renderTimes()))))}}],[{key:"defaultProps",get:function(){return {intervals:30,onTimeChange:function(){},todayButton:null,timeCaption:"Time"}}}]),r}();ie(ut,"calcCenterPosition",function(e,t){return t.offsetTop-(e/2-t.clientHeight/2)});var ht=function(t){function r(e){var t;return ae(this,r),ie(me(t=fe(this,ue(r).call(this,e))),"onTimeChange",function(e){t.setState({time:e});var r=new Date;r.setHours(e.split(":")[0]),r.setMinutes(e.split(":")[1]),t.props.onChange(r);}),t.state={time:t.props.timeString},t}return de(r,e__default.Component),pe(r,[{key:"render",value:function(){var t=this,r=this.state.time,n=this.props.timeString;return e__default.createElement("div",{className:"react-datepicker__input-time-container"},e__default.createElement("div",{className:"react-datepicker-time__caption"},this.props.timeInputLabel),e__default.createElement("div",{className:"react-datepicker-time__input-container"},e__default.createElement("div",{className:"react-datepicker-time__input"},e__default.createElement("input",{type:"time",className:"react-datepicker-time__input",placeholder:"Time",name:"time-input",required:!0,value:r,onChange:function(e){t.onTimeChange(e.target.value||n);}}))))}}]),r}();function mt(t){var r=t.className,n=t.children,o=t.showPopperArrow,a=t.arrowProps,s=void 0===a?{}:a;return e__default.createElement("div",{className:r},o&&e__default.createElement("div",ce({className:"react-datepicker__triangle"},s)),n)}var ft=["react-datepicker__year-select","react-datepicker__month-select","react-datepicker__month-year-select"],vt=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=(e.className||"").split(/\s+/);return ft.some(function(e){return t.indexOf(e)>=0})},yt=function(r){function n(t){var r;return ae(this,n),ie(me(r=fe(this,ue(n).call(this,t))),"handleClickOutside",function(e){r.props.onClickOutside(e);}),ie(me(r),"setClickOutsideRef",function(){return r.containerRef.current}),ie(me(r),"handleDropdownFocus",function(e){vt(e.target)&&r.props.onDropdownFocus();}),ie(me(r),"getDateInView",function(){var e=r.props,t=e.preSelection,n=e.selected,o=e.openToDate,a=$e(r.props),s=ze(r.props),p=we(),i=o||n||t;return i||(a&&isBefore(p,a)?a:s&&isAfter(p,s)?s:p)}),ie(me(r),"increaseMonth",function(){r.setState(function(e){var t=e.date;return {date:addMonths(t,1)}},function(){return r.handleMonthChange(r.state.date)});}),ie(me(r),"decreaseMonth",function(){r.setState(function(e){var t=e.date;return {date:subMonths(t,1)}},function(){return r.handleMonthChange(r.state.date)});}),ie(me(r),"handleDayClick",function(e,t,n){return r.props.onSelect(e,t,n)}),ie(me(r),"handleDayMouseEnter",function(e){r.setState({selectingDate:e}),r.props.onDayMouseEnter&&r.props.onDayMouseEnter(e);}),ie(me(r),"handleMonthMouseLeave",function(){r.setState({selectingDate:null}),r.props.onMonthMouseLeave&&r.props.onMonthMouseLeave();}),ie(me(r),"handleYearChange",function(e){r.props.onYearChange&&r.props.onYearChange(e);}),ie(me(r),"handleMonthChange",function(e){r.props.onMonthChange&&r.props.onMonthChange(e),r.props.adjustDateOnChange&&(r.props.onSelect&&r.props.onSelect(e),r.props.setOpen&&r.props.setOpen(!0));}),ie(me(r),"handleMonthYearChange",function(e){r.handleYearChange(e),r.handleMonthChange(e);}),ie(me(r),"changeYear",function(e){r.setState(function(t){var r=t.date;return {date:setYear(r,e)}},function(){return r.handleYearChange(r.state.date)});}),ie(me(r),"changeMonth",function(e){r.setState(function(t){var r=t.date;return {date:setMonth(r,e)}},function(){return r.handleMonthChange(r.state.date)});}),ie(me(r),"changeMonthYear",function(e){r.setState(function(t){var r=t.date;return {date:setYear(setMonth(r,getMonth(e)),getYear(e))}},function(){return r.handleMonthYearChange(r.state.date)});}),ie(me(r),"header",function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:r.state.date,n=Se(t,r.props.locale),o=[];return r.props.showWeekNumbers&&o.push(e__default.createElement("div",{key:"W",className:"react-datepicker__day-name"},r.props.weekLabel||"#")),o.concat([0,1,2,3,4,5,6].map(function(t){var o=addDays(n,t),a=r.formatWeekday(o,r.props.locale);return e__default.createElement("div",{key:t,className:"react-datepicker__day-name"},a)}))}),ie(me(r),"formatWeekday",function(e,t){return r.props.formatWeekDay?function(e,t,r){return t(Ce(e,"EEEE",r))}(e,r.props.formatWeekDay,t):r.props.useWeekdaysShort?function(e,t){return Ce(e,"EEE",t)}(e,t):function(e,t){return Ce(e,"EEEEEE",t)}(e,t)}),ie(me(r),"decreaseYear",function(){r.setState(function(e){var t=e.date;return {date:subYears(t,1)}},function(){return r.handleYearChange(r.state.date)});}),ie(me(r),"renderPreviousButton",function(){if(!r.props.renderCustomHeader){var t=r.props.showMonthYearPicker?function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.includeDates,o=subYears(e,1);return r&&differenceInCalendarYears(r,o)>0||n&&n.every(function(e){return differenceInCalendarYears(e,o)>0})||!1}(r.state.date,r.props):qe(r.state.date,r.props);if((r.props.forceShowMonthNavigation||r.props.showDisabledMonthNavigation||!t)&&!r.props.showTimeSelectOnly){var n=["react-datepicker__navigation","react-datepicker__navigation--previous"],o=r.decreaseMonth;return (r.props.showMonthYearPicker||r.props.showQuarterYearPicker)&&(o=r.decreaseYear),t&&r.props.showDisabledMonthNavigation&&(n.push("react-datepicker__navigation--previous--disabled"),o=null),e__default.createElement("button",{type:"button",className:n.join(" "),onClick:o},r.props.showMonthYearPicker||r.props.showQuarterYearPicker?r.props.previousYearButtonLabel:r.props.previousMonthButtonLabel)}}}),ie(me(r),"increaseYear",function(){r.setState(function(e){var t=e.date;return {date:addYears(t,1)}},function(){return r.handleYearChange(r.state.date)});}),ie(me(r),"renderNextButton",function(){if(!r.props.renderCustomHeader){var t=r.props.showMonthYearPicker?function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.maxDate,n=t.includeDates,o=addYears(e,1);return r&&differenceInCalendarYears(o,r)>0||n&&n.every(function(e){return differenceInCalendarYears(o,e)>0})||!1}(r.state.date,r.props):Ue(r.state.date,r.props);if((r.props.forceShowMonthNavigation||r.props.showDisabledMonthNavigation||!t)&&!r.props.showTimeSelectOnly){var n=["react-datepicker__navigation","react-datepicker__navigation--next"];r.props.showTimeSelect&&n.push("react-datepicker__navigation--next--with-time"),r.props.todayButton&&n.push("react-datepicker__navigation--next--with-today-button");var o=r.increaseMonth;return (r.props.showMonthYearPicker||r.props.showQuarterYearPicker)&&(o=r.increaseYear),t&&r.props.showDisabledMonthNavigation&&(n.push("react-datepicker__navigation--next--disabled"),o=null),e__default.createElement("button",{type:"button",className:n.join(" "),onClick:o},r.props.showMonthYearPicker||r.props.showQuarterYearPicker?r.props.nextYearButtonLabel:r.props.nextMonthButtonLabel)}}}),ie(me(r),"renderCurrentMonth",function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:r.state.date,n=["react-datepicker__current-month"];return r.props.showYearDropdown&&n.push("react-datepicker__current-month--hasYearDropdown"),r.props.showMonthDropdown&&n.push("react-datepicker__current-month--hasMonthDropdown"),r.props.showMonthYearDropdown&&n.push("react-datepicker__current-month--hasMonthYearDropdown"),e__default.createElement("div",{className:n.join(" ")},Ce(t,r.props.dateFormat,r.props.locale))}),ie(me(r),"renderYearDropdown",function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showYearDropdown&&!t)return e__default.createElement(tt,{adjustDateOnChange:r.props.adjustDateOnChange,date:r.state.date,onSelect:r.props.onSelect,setOpen:r.props.setOpen,dropdownMode:r.props.dropdownMode,onChange:r.changeYear,minDate:r.props.minDate,maxDate:r.props.maxDate,year:getYear(r.state.date),scrollableYearDropdown:r.props.scrollableYearDropdown,yearDropdownItemNumber:r.props.yearDropdownItemNumber})}),ie(me(r),"renderMonthDropdown",function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showMonthDropdown&&!t)return e__default.createElement(nt,{dropdownMode:r.props.dropdownMode,locale:r.props.locale,onChange:r.changeMonth,month:getMonth(r.state.date),useShortMonthInDropdown:r.props.useShortMonthInDropdown})}),ie(me(r),"renderMonthYearDropdown",function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showMonthYearDropdown&&!t)return e__default.createElement(st,{dropdownMode:r.props.dropdownMode,locale:r.props.locale,dateFormat:r.props.dateFormat,onChange:r.changeMonthYear,minDate:r.props.minDate,maxDate:r.props.maxDate,date:r.state.date,scrollableMonthYearDropdown:r.props.scrollableMonthYearDropdown})}),ie(me(r),"renderTodayButton",function(){if(r.props.todayButton&&!r.props.showTimeSelectOnly)return e__default.createElement("div",{className:"react-datepicker__today-button",onClick:function(e){return r.props.onSelect(startOfDay(we()),e)}},r.props.todayButton)}),ie(me(r),"renderDefaultHeader",function(t){var n=t.monthDate,o=t.i;return e__default.createElement("div",{className:"react-datepicker__header"},r.renderCurrentMonth(n),e__default.createElement("div",{className:"react-datepicker__header__dropdown react-datepicker__header__dropdown--".concat(r.props.dropdownMode),onFocus:r.handleDropdownFocus},r.renderMonthDropdown(0!==o),r.renderMonthYearDropdown(0!==o),r.renderYearDropdown(0!==o)),e__default.createElement("div",{className:"react-datepicker__day-names"},r.header(n)))}),ie(me(r),"renderCustomHeader",function(t){var n=t.monthDate;if(0!==t.i)return null;var o=qe(r.state.date,r.props),a=Ue(r.state.date,r.props);return e__default.createElement("div",{className:"react-datepicker__header react-datepicker__header--custom",onFocus:r.props.onDropdownFocus},r.props.renderCustomHeader(function(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{};t%2?le(r,!0).forEach(function(t){ie(e,t,r[t]);}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):le(r).forEach(function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(r,t));});}return e}({},r.state,{changeMonth:r.changeMonth,changeYear:r.changeYear,decreaseMonth:r.decreaseMonth,increaseMonth:r.increaseMonth,prevMonthButtonDisabled:o,nextMonthButtonDisabled:a})),e__default.createElement("div",{className:"react-datepicker__day-names"},r.header(n)))}),ie(me(r),"renderYearHeader",function(){return e__default.createElement("div",{className:"react-datepicker__header react-datepicker-year-header"},getYear(r.state.date))}),ie(me(r),"renderMonths",function(){if(!r.props.showTimeSelectOnly){for(var t=[],n=r.props.showPreviousMonths?r.props.monthsShown-1:0,o=subMonths(r.state.date,n),a=0;a<r.props.monthsShown;++a){var s=a-r.props.monthSelectedIn,p=addMonths(o,s),i="month-".concat(a);t.push(e__default.createElement("div",{key:i,ref:function(e){r.monthContainer=e;},className:"react-datepicker__month-container"},r.props.showMonthYearPicker||r.props.showQuarterYearPicker?r.renderYearHeader({monthDate:p,i:a}):r.props.renderCustomHeader?r.renderCustomHeader({monthDate:p,i:a}):r.renderDefaultHeader({monthDate:p,i:a}),e__default.createElement(dt,{onChange:r.changeMonthYear,day:p,dayClassName:r.props.dayClassName,onDayClick:r.handleDayClick,onDayMouseEnter:r.handleDayMouseEnter,onMouseLeave:r.handleMonthMouseLeave,onWeekSelect:r.props.onWeekSelect,orderInDisplay:a,formatWeekNumber:r.props.formatWeekNumber,locale:r.props.locale,minDate:r.props.minDate,maxDate:r.props.maxDate,excludeDates:r.props.excludeDates,highlightDates:r.props.highlightDates,selectingDate:r.state.selectingDate,includeDates:r.props.includeDates,inline:r.props.inline,fixedHeight:r.props.fixedHeight,filterDate:r.props.filterDate,preSelection:r.props.preSelection,selected:r.props.selected,selectsStart:r.props.selectsStart,selectsEnd:r.props.selectsEnd,showWeekNumbers:r.props.showWeekNumbers,startDate:r.props.startDate,endDate:r.props.endDate,peekNextMonth:r.props.peekNextMonth,setOpen:r.props.setOpen,shouldCloseOnSelect:r.props.shouldCloseOnSelect,renderDayContents:r.props.renderDayContents,disabledKeyboardNavigation:r.props.disabledKeyboardNavigation,showMonthYearPicker:r.props.showMonthYearPicker,showQuarterYearPicker:r.props.showQuarterYearPicker})));}return t}}),ie(me(r),"renderTimeSection",function(){if(r.props.showTimeSelect&&(r.state.monthContainer||r.props.showTimeSelectOnly))return e__default.createElement(ut,{selected:r.props.selected,openToDate:r.props.openToDate,onChange:r.props.onTimeChange,format:r.props.timeFormat,includeTimes:r.props.includeTimes,intervals:r.props.timeIntervals,minTime:r.props.minTime,maxTime:r.props.maxTime,excludeTimes:r.props.excludeTimes,timeCaption:r.props.timeCaption,todayButton:r.props.todayButton,showMonthDropdown:r.props.showMonthDropdown,showMonthYearDropdown:r.props.showMonthYearDropdown,showYearDropdown:r.props.showYearDropdown,withPortal:r.props.withPortal,monthRef:r.state.monthContainer,injectTimes:r.props.injectTimes,locale:r.props.locale})}),ie(me(r),"renderInputTimeSection",function(){var t=new Date(r.props.selected),n="".concat(Xe(t.getHours()),":").concat(Xe(t.getMinutes()));if(r.props.showTimeInput)return e__default.createElement(ht,{timeString:n,timeInputLabel:r.props.timeInputLabel,onChange:r.props.onTimeChange})}),r.containerRef=e__default.createRef(),r.state={date:r.getDateInView(),selectingDate:null,monthContainer:null},r}return de(n,e__default.Component),pe(n,null,[{key:"defaultProps",get:function(){return {onDropdownFocus:function(){},monthsShown:1,monthSelectedIn:0,forceShowMonthNavigation:!1,timeCaption:"Time",previousYearButtonLabel:"Previous Year",nextYearButtonLabel:"Next Year",previousMonthButtonLabel:"Previous Month",nextMonthButtonLabel:"Next Month"}}}]),pe(n,[{key:"componentDidMount",value:function(){var e=this;this.props.showTimeSelect&&(this.assignMonthContainer=void e.setState({monthContainer:e.monthContainer}));}},{key:"componentDidUpdate",value:function(e){this.props.preSelection&&!Pe(this.props.preSelection,e.preSelection)?this.setState({date:this.props.preSelection}):this.props.openToDate&&!Pe(this.props.openToDate,e.openToDate)&&this.setState({date:this.props.openToDate});}},{key:"render",value:function(){var r=this.props.container||mt;return e__default.createElement("div",{ref:this.containerRef},e__default.createElement(r,{className:classnames("react-datepicker",this.props.className,{"react-datepicker--time-only":this.props.showTimeSelectOnly}),showPopperArrow:this.props.showPopperArrow},this.renderPreviousButton(),this.renderNextButton(),this.renderMonths(),this.renderTodayButton(),this.renderTimeSection(),this.renderInputTimeSection(),this.props.children))}}]),n}(),Dt=function(r){function n(){return ae(this,n),fe(this,ue(n).apply(this,arguments))}return de(n,e__default.Component),pe(n,[{key:"render",value:function(){var r,n=this.props,o=n.className,a=n.wrapperClassName,s=n.hidePopper,p=n.popperComponent,i=n.popperModifiers,c=n.popperPlacement,l=n.popperProps,d=n.targetComponent;if(!s){var u=classnames("react-datepicker-popper",o);r=e__default.createElement(Popper$1,ce({modifiers:i,placement:c},l),function(t){var r=t.ref,n=t.style,o=t.placement,a=t.arrowProps;return e__default.createElement("div",ce({ref:r,style:n},{className:u,"data-placement":o}),e__default.cloneElement(p,{arrowProps:a}))});}this.props.popperContainer&&(r=e__default.createElement(this.props.popperContainer,{},r));var h=classnames("react-datepicker-wrapper",a);return e__default.createElement(Manager,{className:"react-datepicker-manager"},e__default.createElement(Reference,null,function(t){var r=t.ref;return e__default.createElement("div",{ref:r,className:h},d)}),r)}}],[{key:"defaultProps",get:function(){return {hidePopper:!0,popperModifiers:{preventOverflow:{enabled:!0,escapeWithReference:!0,boundariesElement:"viewport"}},popperProps:{},popperPlacement:"bottom-start"}}}]),n}(),gt="react-datepicker-ignore-onclickoutside",wt=onClickOutsideHOC(yt);var kt="Date input not valid.",_t=function(n){function o(n){var a;return ae(this,o),ie(me(a=fe(this,ue(o).call(this,n))),"getPreSelection",function(){return a.props.openToDate?a.props.openToDate:a.props.selectsEnd&&a.props.startDate?a.props.startDate:a.props.selectsStart&&a.props.endDate?a.props.endDate:we()}),ie(me(a),"calcInitialState",function(){var e=a.getPreSelection(),t=$e(a.props),r=ze(a.props),n=t&&isBefore(e,t)?t:r&&isAfter(e,r)?r:e;return {open:a.props.startOpen||!1,preventFocus:!1,preSelection:a.props.selected?a.props.selected:n,highlightDates:Ge(a.props.highlightDates),focused:!1}}),ie(me(a),"clearPreventFocusTimeout",function(){a.preventFocusTimeout&&clearTimeout(a.preventFocusTimeout);}),ie(me(a),"setFocus",function(){a.input&&a.input.focus&&a.input.focus();}),ie(me(a),"setBlur",function(){a.input&&a.input.blur&&a.input.blur(),a.cancelFocusInput();}),ie(me(a),"setOpen",function(e){var t=arguments.length>1&&void 0!==arguments[1]&&arguments[1];a.setState({open:e,preSelection:e&&a.state.open?a.state.preSelection:a.calcInitialState().preSelection,lastPreSelectChange:bt},function(){e||a.setState(function(e){return {focused:!!t&&e.focused}},function(){!t&&a.setBlur(),a.setState({inputValue:null});});});}),ie(me(a),"inputOk",function(){return isDate(a.state.preSelection)}),ie(me(a),"isCalendarOpen",function(){return void 0===a.props.open?a.state.open&&!a.props.disabled&&!a.props.readOnly:a.props.open}),ie(me(a),"handleFocus",function(e){a.state.preventFocus||(a.props.onFocus(e),a.props.preventOpenOnFocus||a.props.readOnly||a.setOpen(!0)),a.setState({focused:!0});}),ie(me(a),"cancelFocusInput",function(){clearTimeout(a.inputFocusTimeout),a.inputFocusTimeout=null;}),ie(me(a),"deferFocusInput",function(){a.cancelFocusInput(),a.inputFocusTimeout=setTimeout(function(){return a.setFocus()},1);}),ie(me(a),"handleDropdownFocus",function(){a.cancelFocusInput();}),ie(me(a),"handleBlur",function(e){!a.state.open||a.props.withPortal||a.props.showTimeInput?a.props.onBlur(e):a.deferFocusInput(),a.setState({focused:!1});}),ie(me(a),"handleCalendarClickOutside",function(e){a.props.inline||a.setOpen(!1),a.props.onClickOutside(e),a.props.withPortal&&e.preventDefault();}),ie(me(a),"handleChange",function(){for(var e=arguments.length,t=new Array(e),r=0;r<e;r++)t[r]=arguments[r];var n=t[0];if(!a.props.onChangeRaw||(a.props.onChangeRaw.apply(me(a),t),"function"==typeof n.isDefaultPrevented&&!n.isDefaultPrevented())){a.setState({inputValue:n.target.value,lastPreSelectChange:Ct});var o=ke(n.target.value,a.props.dateFormat,a.props.locale,a.props.strictParsing);!o&&n.target.value||a.setSelected(o,n,!0);}}),ie(me(a),"handleSelect",function(e,t,r){a.setState({preventFocus:!0},function(){return a.preventFocusTimeout=setTimeout(function(){return a.setState({preventFocus:!1})},50),a.preventFocusTimeout}),a.setSelected(e,t,void 0,r),!a.props.shouldCloseOnSelect||a.props.showTimeSelect?a.setPreSelection(e):a.props.inline||a.setOpen(!1);}),ie(me(a),"setSelected",function(e,t,r,n){var o=e;if(null===o||!Be(o,a.props)){if(!Te(a.props.selected,o)||a.props.allowSameDay){if(null!==o){if(a.props.selected){var s=a.props.selected;r&&(s=we(o)),o=be(o,{hour:getHours(s),minute:getMinutes(s),second:getSeconds(s)});}a.props.inline||a.setState({preSelection:o}),a.props.inline&&a.props.monthsShown>1&&!a.props.inlineFocusSelectedMonth&&a.setState({monthSelectedIn:n});}a.props.onChange(o,t);}a.props.onSelect(o,t),r||a.setState({inputValue:null});}}),ie(me(a),"setPreSelection",function(e){var t=void 0!==a.props.minDate,r=void 0!==a.props.maxDate,n=!0;e&&(t&&r?n=xe(e,a.props.minDate,a.props.maxDate):t?n=isAfter(e,a.props.minDate):r&&(n=isBefore(e,a.props.maxDate))),n&&a.setState({preSelection:e});}),ie(me(a),"handleTimeChange",function(e){var t=be(a.props.selected?a.props.selected:a.getPreSelection(),{hour:getHours(e),minute:getMinutes(e)});a.setState({preSelection:t}),a.props.onChange(t),a.props.shouldCloseOnSelect&&a.setOpen(!1),a.props.showTimeInput&&a.setOpen(!0),a.setState({inputValue:null});}),ie(me(a),"onInputClick",function(){a.props.disabled||a.props.readOnly||a.setOpen(!0),a.props.onInputClick();}),ie(me(a),"onInputKeyDown",function(e){a.props.onKeyDown(e);var t=e.key;if(a.state.open||a.props.inline||a.props.preventOpenOnFocus){var r=we(a.state.preSelection);if("Enter"===t)e.preventDefault(),a.inputOk()&&a.state.lastPreSelectChange===bt?(a.handleSelect(r,e),!a.props.shouldCloseOnSelect&&a.setPreSelection(r)):a.setOpen(!1);else if("Escape"===t)e.preventDefault(),a.setOpen(!1),a.inputOk()||a.props.onInputError({code:1,msg:kt});else if("Tab"===t)a.setOpen(!1,!0);else if(!a.props.disabledKeyboardNavigation){var n;switch(t){case"ArrowLeft":n=subDays(r,1);break;case"ArrowRight":n=addDays(r,1);break;case"ArrowUp":n=subWeeks(r,1);break;case"ArrowDown":n=addWeeks(r,1);break;case"PageUp":n=subMonths(r,1);break;case"PageDown":n=addMonths(r,1);break;case"Home":n=subYears(r,1);break;case"End":n=addYears(r,1);}if(!n)return void(a.props.onInputError&&a.props.onInputError({code:1,msg:kt}));e.preventDefault(),a.setState({lastPreSelectChange:bt}),a.props.adjustDateOnChange&&a.setSelected(n),a.setPreSelection(n);}}else"ArrowDown"!==t&&"ArrowUp"!==t||a.onInputClick();}),ie(me(a),"onClearClick",function(e){e&&e.preventDefault&&e.preventDefault(),a.props.onChange(null,e),a.setState({inputValue:null});}),ie(me(a),"clear",function(){a.onClearClick();}),ie(me(a),"renderCalendar",function(){return a.props.inline||a.isCalendarOpen()?e__default.createElement(wt,{ref:function(e){a.calendar=e;},locale:a.props.locale,adjustDateOnChange:a.props.adjustDateOnChange,setOpen:a.setOpen,shouldCloseOnSelect:a.props.shouldCloseOnSelect,dateFormat:a.props.dateFormatCalendar,useWeekdaysShort:a.props.useWeekdaysShort,formatWeekDay:a.props.formatWeekDay,dropdownMode:a.props.dropdownMode,selected:a.props.selected,preSelection:a.state.preSelection,onSelect:a.handleSelect,onWeekSelect:a.props.onWeekSelect,openToDate:a.props.openToDate,minDate:a.props.minDate,maxDate:a.props.maxDate,selectsStart:a.props.selectsStart,selectsEnd:a.props.selectsEnd,startDate:a.props.startDate,endDate:a.props.endDate,excludeDates:a.props.excludeDates,filterDate:a.props.filterDate,onClickOutside:a.handleCalendarClickOutside,formatWeekNumber:a.props.formatWeekNumber,highlightDates:a.state.highlightDates,includeDates:a.props.includeDates,includeTimes:a.props.includeTimes,injectTimes:a.props.injectTimes,inline:a.props.inline,peekNextMonth:a.props.peekNextMonth,showMonthDropdown:a.props.showMonthDropdown,showPreviousMonths:a.props.showPreviousMonths,useShortMonthInDropdown:a.props.useShortMonthInDropdown,showMonthYearDropdown:a.props.showMonthYearDropdown,showWeekNumbers:a.props.showWeekNumbers,showYearDropdown:a.props.showYearDropdown,withPortal:a.props.withPortal,forceShowMonthNavigation:a.props.forceShowMonthNavigation,showDisabledMonthNavigation:a.props.showDisabledMonthNavigation,scrollableYearDropdown:a.props.scrollableYearDropdown,scrollableMonthYearDropdown:a.props.scrollableMonthYearDropdown,todayButton:a.props.todayButton,weekLabel:a.props.weekLabel,outsideClickIgnoreClass:gt,fixedHeight:a.props.fixedHeight,monthsShown:a.props.monthsShown,monthSelectedIn:a.state.monthSelectedIn,onDropdownFocus:a.handleDropdownFocus,onMonthChange:a.props.onMonthChange,onYearChange:a.props.onYearChange,dayClassName:a.props.dayClassName,showTimeSelect:a.props.showTimeSelect,showTimeSelectOnly:a.props.showTimeSelectOnly,onTimeChange:a.handleTimeChange,timeFormat:a.props.timeFormat,timeIntervals:a.props.timeIntervals,minTime:a.props.minTime,maxTime:a.props.maxTime,excludeTimes:a.props.excludeTimes,timeCaption:a.props.timeCaption,className:a.props.calendarClassName,container:a.props.calendarContainer,yearDropdownItemNumber:a.props.yearDropdownItemNumber,previousMonthButtonLabel:a.props.previousMonthButtonLabel,nextMonthButtonLabel:a.props.nextMonthButtonLabel,previousYearButtonLabel:a.props.previousYearButtonLabel,nextYearButtonLabel:a.props.nextYearButtonLabel,timeInputLabel:a.props.timeInputLabel,disabledKeyboardNavigation:a.props.disabledKeyboardNavigation,renderCustomHeader:a.props.renderCustomHeader,popperProps:a.props.popperProps,renderDayContents:a.props.renderDayContents,onDayMouseEnter:a.props.onDayMouseEnter,onMonthMouseLeave:a.props.onMonthMouseLeave,showTimeInput:a.props.showTimeInput,showMonthYearPicker:a.props.showMonthYearPicker,showQuarterYearPicker:a.props.showQuarterYearPicker,showPopperArrow:a.props.showPopperArrow},a.props.children):null}),ie(me(a),"renderDateInput",function(){var r,n,o,s,p,i=classnames(a.props.className,ie({},gt,a.state.open)),c=a.props.customInput||e__default.createElement("input",{type:"text"}),l=a.props.customInputRef||"ref",d="string"==typeof a.props.value?a.props.value:"string"==typeof a.state.inputValue?a.state.inputValue:(n=a.props.selected,o=a.props,s=o.dateFormat,p=o.locale,n&&Ce(n,Array.isArray(s)?s[0]:s,p)||"");return e__default.cloneElement(c,(ie(r={},l,function(e){a.input=e;}),ie(r,"value",d),ie(r,"onBlur",a.handleBlur),ie(r,"onChange",a.handleChange),ie(r,"onClick",a.onInputClick),ie(r,"onFocus",a.handleFocus),ie(r,"onKeyDown",a.onInputKeyDown),ie(r,"id",a.props.id),ie(r,"name",a.props.name),ie(r,"autoFocus",a.props.autoFocus),ie(r,"placeholder",a.props.placeholderText),ie(r,"disabled",a.props.disabled),ie(r,"autoComplete",a.props.autoComplete),ie(r,"className",classnames(c.props.className,i)),ie(r,"title",a.props.title),ie(r,"readOnly",a.props.readOnly),ie(r,"required",a.props.required),ie(r,"tabIndex",a.props.tabIndex),ie(r,"aria-labelledby",a.props.ariaLabelledBy),r))}),ie(me(a),"renderClearButton",function(){return a.props.isClearable&&null!=a.props.selected?e__default.createElement("button",{type:"button",className:"react-datepicker__close-icon","aria-label":"Close",onClick:a.onClearClick,title:a.props.clearButtonTitle,tabIndex:-1}):null}),a.state=a.calcInitialState(),a}return de(o,e__default.Component),pe(o,null,[{key:"defaultProps",get:function(){return {allowSameDay:!1,dateFormat:"MM/dd/yyyy",dateFormatCalendar:"LLLL yyyy",onChange:function(){},disabled:!1,disabledKeyboardNavigation:!1,dropdownMode:"scroll",onFocus:function(){},onBlur:function(){},onKeyDown:function(){},onInputClick:function(){},onSelect:function(){},onClickOutside:function(){},onMonthChange:function(){},onCalendarOpen:function(){},onCalendarClose:function(){},preventOpenOnFocus:!1,onYearChange:function(){},onInputError:function(){},monthsShown:1,readOnly:!1,withPortal:!1,shouldCloseOnSelect:!0,showTimeSelect:!1,showTimeInput:!1,showPreviousMonths:!1,showMonthYearPicker:!1,showQuarterYearPicker:!1,strictParsing:!1,timeIntervals:30,timeCaption:"Time",previousMonthButtonLabel:"Previous Month",nextMonthButtonLabel:"Next Month",previousYearButtonLabel:"Previous Year",nextYearButtonLabel:"Next Year",timeInputLabel:"Time",renderDayContents:function(e){return e},inlineFocusSelectedMonth:!1,showPopperArrow:!0}}}]),pe(o,[{key:"componentDidUpdate",value:function(e,t){var r,n;e.inline&&(r=e.selected,n=this.props.selected,r&&n?getMonth(r)!==getMonth(n)||getYear(r)!==getYear(n):r!==n)&&this.setPreSelection(this.props.selected),void 0!==this.state.monthSelectedIn&&e.monthsShown!==this.props.monthsShown&&this.setState({monthSelectedIn:0}),e.highlightDates!==this.props.highlightDates&&this.setState({highlightDates:Ge(this.props.highlightDates)}),t.focused||Te(e.selected,this.props.selected)||this.setState({inputValue:null}),t.open!==this.state.open&&(!1===t.open&&!0===this.state.open&&this.props.onCalendarOpen(),!0===t.open&&!1===this.state.open&&this.props.onCalendarClose());}},{key:"componentWillUnmount",value:function(){this.clearPreventFocusTimeout();}},{key:"render",value:function(){var t=this.renderCalendar();return this.props.inline&&!this.props.withPortal?t:this.props.withPortal?e__default.createElement("div",null,this.props.inline?null:e__default.createElement("div",{className:"react-datepicker__input-container"},this.renderDateInput(),this.renderClearButton()),this.state.open||this.props.inline?e__default.createElement("div",{className:"react-datepicker__portal"},t):null):e__default.createElement(Dt,{className:this.props.popperClassName,wrapperClassName:this.props.wrapperClassName,hidePopper:!this.isCalendarOpen(),popperModifiers:this.props.popperModifiers,targetComponent:e__default.createElement("div",{className:"react-datepicker__input-container"},this.renderDateInput(),this.renderClearButton()),popperContainer:this.props.popperContainer,popperComponent:t,popperPlacement:this.props.popperPlacement,popperProps:this.props.popperProps})}}]),o}(),Ct="input",bt="navigate";
+function oe(e){return (oe="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function ae(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function se(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n);}}function pe(e,t,r){return t&&se(e.prototype,t),r&&se(e,r),e}function ie(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function ce(){return (ce=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n]);}return e}).apply(this,arguments)}function le(e,t){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter(function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable})),r.push.apply(r,n);}return r}function de(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&he(e,t);}function ue(e){return (ue=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function he(e,t){return (he=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function me(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function fe(e,t){return !t||"object"!=typeof t&&"function"!=typeof t?me(e):t}function ve(e,t){switch(e){case"P":return t.date({width:"short"});case"PP":return t.date({width:"medium"});case"PPP":return t.date({width:"long"});case"PPPP":default:return t.date({width:"full"})}}function ye(e,t){switch(e){case"p":return t.time({width:"short"});case"pp":return t.time({width:"medium"});case"ppp":return t.time({width:"long"});case"pppp":default:return t.time({width:"full"})}}var De={p:ye,P:function(e,t){var r,n=e.match(/(P+)(p+)?/),o=n[1],a=n[2];if(!a)return ve(e,t);switch(o){case"P":r=t.dateTime({width:"short"});break;case"PP":r=t.dateTime({width:"medium"});break;case"PPP":r=t.dateTime({width:"long"});break;case"PPPP":default:r=t.dateTime({width:"full"});}return r.replace("{{date}}",ve(o,t)).replace("{{time}}",ye(a,t))}},ge=/P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;function we(e){var t=e?"string"==typeof e||e instanceof String?parseISO(e):toDate(e):new Date;return _e(t)?t:null}function ke(e,t,r,n){var a=null,s=Fe(r)||Le(),p=!0;return Array.isArray(t)?(t.forEach(function(t){var r=parse(e,t,new Date,{locale:s});n&&(p=_e(r)&&e===format(r,t,{awareOfUnicodeTokens:!0})),_e(r)&&p&&(a=r);}),a):(a=parse(e,t,new Date,{locale:s}),n?p=_e(a)&&e===format(a,t,{awareOfUnicodeTokens:!0}):_e(a)||(t=t.match(ge).map(function(e){var t=e[0];if("p"===t||"P"===t){var r=De[t];return s?r(e,s.formatLong):t}return e}).join(""),e.length>0&&(a=parse(e,t.slice(0,e.length),new Date)),_e(a)||(a=new Date(e))),_e(a)&&p?a:null)}function _e(e){return isValid(e)&&isAfter(e,new Date("1/1/1000"))}function Ce(e,t,r){if("en"===r)return format(e,t,{awareOfUnicodeTokens:!0});var n=Fe(r);return r&&!n&&console.warn('A locale object was not found for the provided string ["'.concat(r,'"].')),!n&&Le()&&Fe(Le())&&(n=Fe(Le())),format(e,t,{locale:n||null,awareOfUnicodeTokens:!0})}function be(e,t){var r=t.hour,n=void 0===r?0:r,o=t.minute,a=void 0===o?0:o,s=t.second;return setHours(setMinutes(setSeconds(e,void 0===s?0:s),a),n)}function Se(e,t){var r=Fe(t||Le());return startOfWeek(e,{locale:r})}function Me(e){return startOfMonth(e)}function Ee(e,t){return e&&t?isSameYear(e,t):!e&&!t}function Ne(e,t){return e&&t?isSameMonth(e,t):!e&&!t}function Oe(e,t){return e&&t?isSameQuarter(e,t):!e&&!t}function Pe(e,t){return e&&t?isSameDay(e,t):!e&&!t}function Te(e,t){return e&&t?isEqual(e,t):!e&&!t}function Ye(e,t,r){var n,o=startOfDay(t),a=endOfDay(r);try{n=isWithinInterval(e,{start:o,end:a});}catch(e){n=!1;}return n}function Le(){return ("undefined"!=typeof window?window:global).__localeId__}function Fe(e){if("string"==typeof e){var t="undefined"!=typeof window?window:global;return t.__localeData__?t.__localeData__[e]:null}return e}function We(e,t){return Ce(setMonth(we(),e),"LLL",t)}function Be(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return Qe(e,{minDate:r,maxDate:n})||o&&o.some(function(t){return Pe(e,t)})||a&&!a.some(function(t){return Pe(e,t)})||s&&!s(we(e))||!1}function Re(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return Qe(e,{minDate:r,maxDate:n})||o&&o.some(function(t){return Ne(e,t)})||a&&!a.some(function(t){return Ne(e,t)})||s&&!s(we(e))||!1}function je(e,t,r,n){var o=getYear(e),a=getMonth(e),s=getYear(t),p=getMonth(t),i=getYear(n);return o===s&&o===i?a<=r&&r<=p:o<s?i===o&&a<=r||i===s&&p>=r||i<s&&i>o:void 0}function He(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return Qe(e,{minDate:r,maxDate:n})||o&&o.some(function(t){return Oe(e,t)})||a&&!a.some(function(t){return Oe(e,t)})||s&&!s(we(e))||!1}function Ae(e,t,r,n){var o=getYear(e),a=getQuarter(e),s=getYear(t),p=getQuarter(t),i=getYear(n);return o===s&&o===i?a<=r&&r<=p:o<s?i===o&&a<=r||i===s&&p>=r||i<s&&i>o:void 0}function Qe(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate;return r&&differenceInCalendarDays(e,r)<0||n&&differenceInCalendarDays(e,n)>0}function Ve(e,t){for(var r=t.length,n=0;n<r;n++)if(getHours(t[n])===getHours(e)&&getMinutes(t[n])===getMinutes(e))return !0;return !1}function Ke(e,t){var r=t.minTime,n=t.maxTime;if(!r||!n)throw new Error("Both minTime and maxTime props required");var o,a=we(),s=setHours(setMinutes(a,getMinutes(e)),getHours(e)),p=setHours(setMinutes(a,getMinutes(r)),getHours(r)),i=setHours(setMinutes(a,getMinutes(n)),getHours(n));try{o=!isWithinInterval(s,{start:p,end:i});}catch(e){o=!1;}return o}function qe(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.includeDates,o=subMonths(e,1);return r&&differenceInCalendarMonths(r,o)>0||n&&n.every(function(e){return differenceInCalendarMonths(e,o)>0})||!1}function Ue(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.maxDate,n=t.includeDates,o=addMonths(e,1);return r&&differenceInCalendarMonths(o,r)>0||n&&n.every(function(e){return differenceInCalendarMonths(o,e)>0})||!1}function $e(e){var t=e.minDate,r=e.includeDates;if(r&&t){var n=r.filter(function(e){return differenceInCalendarDays(e,t)>=0});return min(n)}return r?min(r):t}function ze(e){var t=e.maxDate,r=e.includeDates;if(r&&t){var n=r.filter(function(e){return differenceInCalendarDays(e,t)<=0});return max(n)}return r?max(r):t}function Ge(){for(var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"react-datepicker__day--highlighted",n=new Map,o=0,a=e.length;o<a;o++){var s=e[o];if(isDate(s)){var p=Ce(s,"MM.dd.yyyy"),i=n.get(p)||[];i.includes(t)||(i.push(t),n.set(p,i));}else if("object"===oe(s)){var c=Object.keys(s),l=c[0],d=s[c[0]];if("string"==typeof l&&d.constructor===Array)for(var u=0,h=d.length;u<h;u++){var m=Ce(d[u],"MM.dd.yyyy"),f=n.get(m)||[];f.includes(l)||(f.push(l),n.set(m,f));}}}return n}function Je(e,t,r,n,o){for(var p=o.length,i=[],c=0;c<p;c++){var l=addMinutes(addHours(e,getHours(o[c])),getMinutes(o[c])),d=addMinutes(e,(r+1)*n);isAfter(l,t)&&isBefore(l,d)&&i.push(o[c]);}return i}function Xe(e){return e<10?"0".concat(e):"".concat(e)}function Ze(e,t,r,n){for(var o=[],a=0;a<2*t+1;a++){var s=e+t-a,p=!0;r&&(p=getYear(r)<=s),n&&p&&(p=getYear(n)>=s),p&&o.push(s);}return o}var et=onClickOutsideHOC(function(r){function n(t){var r;ae(this,n),ie(me(r=fe(this,ue(n).call(this,t))),"renderOptions",function(){var t=r.props.year,n=r.state.yearsList.map(function(n){return React__default.createElement("div",{className:t===n?"react-datepicker__year-option react-datepicker__year-option--selected_year":"react-datepicker__year-option",key:n,ref:n,onClick:r.onChange.bind(me(r),n)},t===n?React__default.createElement("span",{className:"react-datepicker__year-option--selected"},"✓"):"",n)}),o=r.props.minDate?getYear(r.props.minDate):null,a=r.props.maxDate?getYear(r.props.maxDate):null;return a&&r.state.yearsList.find(function(e){return e===a})||n.unshift(React__default.createElement("div",{className:"react-datepicker__year-option",ref:"upcoming",key:"upcoming",onClick:r.incrementYears},React__default.createElement("a",{className:"react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-upcoming"}))),o&&r.state.yearsList.find(function(e){return e===o})||n.push(React__default.createElement("div",{className:"react-datepicker__year-option",ref:"previous",key:"previous",onClick:r.decrementYears},React__default.createElement("a",{className:"react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-previous"}))),n}),ie(me(r),"onChange",function(e){r.props.onChange(e);}),ie(me(r),"handleClickOutside",function(){r.props.onCancel();}),ie(me(r),"shiftYears",function(e){var t=r.state.yearsList.map(function(t){return t+e});r.setState({yearsList:t});}),ie(me(r),"incrementYears",function(){return r.shiftYears(1)}),ie(me(r),"decrementYears",function(){return r.shiftYears(-1)});var o=t.yearDropdownItemNumber,a=t.scrollableYearDropdown,s=o||(a?10:5);return r.state={yearsList:Ze(r.props.year,s,r.props.minDate,r.props.maxDate)},r}return de(n,React__default.Component),pe(n,[{key:"render",value:function(){var r=classnames({"react-datepicker__year-dropdown":!0,"react-datepicker__year-dropdown--scrollable":this.props.scrollableYearDropdown});return React__default.createElement("div",{className:r},this.renderOptions())}}]),n}()),tt=function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),ie(me(n),"renderSelectOptions",function(){for(var t=n.props.minDate?getYear(n.props.minDate):1900,r=n.props.maxDate?getYear(n.props.maxDate):2100,o=[],a=t;a<=r;a++)o.push(React__default.createElement("option",{key:a,value:a},a));return o}),ie(me(n),"onSelectChange",function(e){n.onChange(e.target.value);}),ie(me(n),"renderSelectMode",function(){return React__default.createElement("select",{value:n.props.year,className:"react-datepicker__year-select",onChange:n.onSelectChange},n.renderSelectOptions())}),ie(me(n),"renderReadView",function(t){return React__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__year-read-view",onClick:function(e){return n.toggleDropdown(e)}},React__default.createElement("span",{className:"react-datepicker__year-read-view--down-arrow"}),React__default.createElement("span",{className:"react-datepicker__year-read-view--selected-year"},n.props.year))}),ie(me(n),"renderDropdown",function(){return React__default.createElement(et,{key:"dropdown",ref:"options",year:n.props.year,onChange:n.onChange,onCancel:n.toggleDropdown,minDate:n.props.minDate,maxDate:n.props.maxDate,scrollableYearDropdown:n.props.scrollableYearDropdown,yearDropdownItemNumber:n.props.yearDropdownItemNumber})}),ie(me(n),"renderScrollMode",function(){var e=n.state.dropdownVisible,t=[n.renderReadView(!e)];return e&&t.unshift(n.renderDropdown()),t}),ie(me(n),"onChange",function(e){n.toggleDropdown(),e!==n.props.year&&n.props.onChange(e);}),ie(me(n),"toggleDropdown",function(e){n.setState({dropdownVisible:!n.state.dropdownVisible},function(){n.props.adjustDateOnChange&&n.handleYearChange(n.props.date,e);});}),ie(me(n),"handleYearChange",function(e,t){n.onSelect(e,t),n.setOpen();}),ie(me(n),"onSelect",function(e,t){n.props.onSelect&&n.props.onSelect(e,t);}),ie(me(n),"setOpen",function(){n.props.setOpen&&n.props.setOpen(!0);}),n}return de(r,React__default.Component),pe(r,[{key:"render",value:function(){var t;switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode();break;case"select":t=this.renderSelectMode();}return React__default.createElement("div",{className:"react-datepicker__year-dropdown-container react-datepicker__year-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}(),rt=onClickOutsideHOC(function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(a)))),"renderOptions",function(){return n.props.monthNames.map(function(t,r){return React__default.createElement("div",{className:n.props.month===r?"react-datepicker__month-option react-datepicker__month-option--selected_month":"react-datepicker__month-option",key:t,ref:t,onClick:n.onChange.bind(me(n),r)},n.props.month===r?React__default.createElement("span",{className:"react-datepicker__month-option--selected"},"✓"):"",t)})}),ie(me(n),"onChange",function(e){return n.props.onChange(e)}),ie(me(n),"handleClickOutside",function(){return n.props.onCancel()}),n}return de(r,React__default.Component),pe(r,[{key:"render",value:function(){return React__default.createElement("div",{className:"react-datepicker__month-dropdown"},this.renderOptions())}}]),r}()),nt=function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),ie(me(n),"renderSelectOptions",function(t){return t.map(function(t,r){return React__default.createElement("option",{key:r,value:r},t)})}),ie(me(n),"renderSelectMode",function(t){return React__default.createElement("select",{value:n.props.month,className:"react-datepicker__month-select",onChange:function(e){return n.onChange(e.target.value)}},n.renderSelectOptions(t))}),ie(me(n),"renderReadView",function(t,r){return React__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__month-read-view",onClick:n.toggleDropdown},React__default.createElement("span",{className:"react-datepicker__month-read-view--down-arrow"}),React__default.createElement("span",{className:"react-datepicker__month-read-view--selected-month"},r[n.props.month]))}),ie(me(n),"renderDropdown",function(t){return React__default.createElement(rt,{key:"dropdown",ref:"options",month:n.props.month,monthNames:t,onChange:n.onChange,onCancel:n.toggleDropdown})}),ie(me(n),"renderScrollMode",function(e){var t=n.state.dropdownVisible,r=[n.renderReadView(!t,e)];return t&&r.unshift(n.renderDropdown(e)),r}),ie(me(n),"onChange",function(e){n.toggleDropdown(),e!==n.props.month&&n.props.onChange(e);}),ie(me(n),"toggleDropdown",function(){return n.setState({dropdownVisible:!n.state.dropdownVisible})}),n}return de(r,React__default.Component),pe(r,[{key:"render",value:function(){var t,r=this,n=[0,1,2,3,4,5,6,7,8,9,10,11].map(this.props.useShortMonthInDropdown?function(e){return We(e,r.props.locale)}:function(e){return t=e,n=r.props.locale,Ce(setMonth(we(),t),"LLLL",n);var t,n;});switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode(n);break;case"select":t=this.renderSelectMode(n);}return React__default.createElement("div",{className:"react-datepicker__month-dropdown-container react-datepicker__month-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}();function ot(e,t){for(var r=[],n=Me(e),o=Me(t);!isAfter(n,o);)r.push(we(n)),n=addMonths(n,1);return r}var at=onClickOutsideHOC(function(r){function n(t){var r;return ae(this,n),ie(me(r=fe(this,ue(n).call(this,t))),"renderOptions",function(){return r.state.monthYearsList.map(function(t){var n=getTime(t),o=Ee(r.props.date,t)&&Ne(r.props.date,t);return React__default.createElement("div",{className:o?"react-datepicker__month-year-option --selected_month-year":"react-datepicker__month-year-option",key:n,ref:n,onClick:r.onChange.bind(me(r),n)},o?React__default.createElement("span",{className:"react-datepicker__month-year-option--selected"},"✓"):"",Ce(t,r.props.dateFormat))})}),ie(me(r),"onChange",function(e){return r.props.onChange(e)}),ie(me(r),"handleClickOutside",function(){r.props.onCancel();}),r.state={monthYearsList:ot(r.props.minDate,r.props.maxDate)},r}return de(n,React__default.Component),pe(n,[{key:"render",value:function(){var r=classnames({"react-datepicker__month-year-dropdown":!0,"react-datepicker__month-year-dropdown--scrollable":this.props.scrollableMonthYearDropdown});return React__default.createElement("div",{className:r},this.renderOptions())}}]),n}()),st=function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),ie(me(n),"renderSelectOptions",function(){for(var t=Me(n.props.minDate),r=Me(n.props.maxDate),o=[];!isAfter(t,r);){var a=getTime(t);o.push(React__default.createElement("option",{key:a,value:a},Ce(t,n.props.dateFormat,n.props.locale))),t=addMonths(t,1);}return o}),ie(me(n),"onSelectChange",function(e){n.onChange(e.target.value);}),ie(me(n),"renderSelectMode",function(){return React__default.createElement("select",{value:getTime(Me(n.props.date)),className:"react-datepicker__month-year-select",onChange:n.onSelectChange},n.renderSelectOptions())}),ie(me(n),"renderReadView",function(t){var r=Ce(n.props.date,n.props.dateFormat,n.props.locale);return React__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__month-year-read-view",onClick:function(e){return n.toggleDropdown(e)}},React__default.createElement("span",{className:"react-datepicker__month-year-read-view--down-arrow"}),React__default.createElement("span",{className:"react-datepicker__month-year-read-view--selected-month-year"},r))}),ie(me(n),"renderDropdown",function(){return React__default.createElement(at,{key:"dropdown",ref:"options",date:n.props.date,dateFormat:n.props.dateFormat,onChange:n.onChange,onCancel:n.toggleDropdown,minDate:n.props.minDate,maxDate:n.props.maxDate,scrollableMonthYearDropdown:n.props.scrollableMonthYearDropdown})}),ie(me(n),"renderScrollMode",function(){var e=n.state.dropdownVisible,t=[n.renderReadView(!e)];return e&&t.unshift(n.renderDropdown()),t}),ie(me(n),"onChange",function(e){n.toggleDropdown();var t=we(parseInt(e));Ee(n.props.date,t)&&Ne(n.props.date,t)||n.props.onChange(t);}),ie(me(n),"toggleDropdown",function(){return n.setState({dropdownVisible:!n.state.dropdownVisible})}),n}return de(r,React__default.Component),pe(r,[{key:"render",value:function(){var t;switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode();break;case"select":t=this.renderSelectMode();}return React__default.createElement("div",{className:"react-datepicker__month-year-dropdown-container react-datepicker__month-year-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}(),pt=function(r){function n(){var e,r;ae(this,n);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(r=fe(this,(e=ue(n)).call.apply(e,[this].concat(a)))),"handleClick",function(e){!r.isDisabled()&&r.props.onClick&&r.props.onClick(e);}),ie(me(r),"handleMouseEnter",function(e){!r.isDisabled()&&r.props.onMouseEnter&&r.props.onMouseEnter(e);}),ie(me(r),"isSameDay",function(e){return Pe(r.props.day,e)}),ie(me(r),"isKeyboardSelected",function(){return !r.props.disabledKeyboardNavigation&&!r.props.inline&&!r.isSameDay(r.props.selected)&&r.isSameDay(r.props.preSelection)}),ie(me(r),"isDisabled",function(){return Be(r.props.day,r.props)}),ie(me(r),"isExcluded",function(){return function(e){var t=(arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}).excludeDates;return t&&t.some(function(t){return Pe(e,t)})||!1}(r.props.day,r.props)}),ie(me(r),"getHighLightedClass",function(e){var t=r.props,n=t.day,o=t.highlightDates;if(!o)return !1;var a=Ce(n,"MM.dd.yyyy");return o.get(a)}),ie(me(r),"isInRange",function(){var e=r.props,t=e.day,n=e.startDate,o=e.endDate;return !(!n||!o)&&Ye(t,n,o)}),ie(me(r),"isInSelectingRange",function(){var e=r.props,t=e.day,n=e.selectsStart,o=e.selectsEnd,a=e.selectingDate,s=e.startDate,p=e.endDate;return !(!n&&!o||!a||r.isDisabled())&&(n&&p&&(isBefore(a,p)||Te(a,p))?Ye(t,a,p):!(!o||!s||!isAfter(a,s)&&!Te(a,s))&&Ye(t,s,a))}),ie(me(r),"isSelectingRangeStart",function(){if(!r.isInSelectingRange())return !1;var e=r.props,t=e.day,n=e.selectingDate,o=e.startDate;return Pe(t,e.selectsStart?n:o)}),ie(me(r),"isSelectingRangeEnd",function(){if(!r.isInSelectingRange())return !1;var e=r.props,t=e.day,n=e.selectingDate,o=e.endDate;return Pe(t,e.selectsEnd?n:o)}),ie(me(r),"isRangeStart",function(){var e=r.props,t=e.day,n=e.startDate,o=e.endDate;return !(!n||!o)&&Pe(n,t)}),ie(me(r),"isRangeEnd",function(){var e=r.props,t=e.day,n=e.startDate,o=e.endDate;return !(!n||!o)&&Pe(o,t)}),ie(me(r),"isWeekend",function(){var e=getDay(r.props.day);return 0===e||6===e}),ie(me(r),"isOutsideMonth",function(){return void 0!==r.props.month&&r.props.month!==getMonth(r.props.day)}),ie(me(r),"getClassNames",function(e){var n,o=r.props.dayClassName?r.props.dayClassName(e):void 0;return classnames("react-datepicker__day",o,"react-datepicker__day--"+Ce(r.props.day,"ddd",n),{"react-datepicker__day--disabled":r.isDisabled(),"react-datepicker__day--excluded":r.isExcluded(),"react-datepicker__day--selected":r.isSameDay(r.props.selected),"react-datepicker__day--keyboard-selected":r.isKeyboardSelected(),"react-datepicker__day--range-start":r.isRangeStart(),"react-datepicker__day--range-end":r.isRangeEnd(),"react-datepicker__day--in-range":r.isInRange(),"react-datepicker__day--in-selecting-range":r.isInSelectingRange(),"react-datepicker__day--selecting-range-start":r.isSelectingRangeStart(),"react-datepicker__day--selecting-range-end":r.isSelectingRangeEnd(),"react-datepicker__day--today":r.isSameDay(we()),"react-datepicker__day--weekend":r.isWeekend(),"react-datepicker__day--outside-month":r.isOutsideMonth()},r.getHighLightedClass("react-datepicker__day--highlighted"))}),r}return de(n,React__default.Component),pe(n,[{key:"render",value:function(){return React__default.createElement("div",{className:this.getClassNames(this.props.day),onClick:this.handleClick,onMouseEnter:this.handleMouseEnter,"aria-label":"day-".concat(getDate(this.props.day)),role:"option","aria-disabled":this.isDisabled()},this.props.renderDayContents?this.props.renderDayContents(getDate(this.props.day),this.props.day):getDate(this.props.day))}}]),n}(),it=function(r){function n(){var e,t;ae(this,n);for(var r=arguments.length,o=new Array(r),a=0;a<r;a++)o[a]=arguments[a];return ie(me(t=fe(this,(e=ue(n)).call.apply(e,[this].concat(o)))),"handleClick",function(e){t.props.onClick&&t.props.onClick(e);}),t}return de(n,React__default.Component),pe(n,[{key:"render",value:function(){var r={"react-datepicker__week-number":!0,"react-datepicker__week-number--clickable":!!this.props.onClick};return React__default.createElement("div",{className:classnames(r),"aria-label":"week-".concat(this.props.weekNumber),onClick:this.handleClick},this.props.weekNumber)}}]),n}(),ct=function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(a)))),"handleDayClick",function(e,t){n.props.onDayClick&&n.props.onDayClick(e,t);}),ie(me(n),"handleDayMouseEnter",function(e){n.props.onDayMouseEnter&&n.props.onDayMouseEnter(e);}),ie(me(n),"handleWeekClick",function(e,t,r){"function"==typeof n.props.onWeekSelect&&n.props.onWeekSelect(e,t,r),n.props.shouldCloseOnSelect&&n.props.setOpen(!1);}),ie(me(n),"formatWeekNumber",function(e){return n.props.formatWeekNumber?n.props.formatWeekNumber(e):function(e){return Ee(endOfWeek(e),e)?differenceInCalendarWeeks(e,startOfYear(e))+1:1}(e)}),ie(me(n),"renderDays",function(){var t=Se(n.props.day,n.props.locale),r=[],o=n.formatWeekNumber(t);if(n.props.showWeekNumber){var a=n.props.onWeekSelect?n.handleWeekClick.bind(me(n),t,o):void 0;r.push(React__default.createElement(it,{key:"W",weekNumber:o,onClick:a}));}return r.concat([0,1,2,3,4,5,6].map(function(r){var o=addDays(t,r);return React__default.createElement(pt,{key:r,day:o,month:n.props.month,onClick:n.handleDayClick.bind(me(n),o),onMouseEnter:n.handleDayMouseEnter.bind(me(n),o),minDate:n.props.minDate,maxDate:n.props.maxDate,excludeDates:n.props.excludeDates,includeDates:n.props.includeDates,inline:n.props.inline,highlightDates:n.props.highlightDates,selectingDate:n.props.selectingDate,filterDate:n.props.filterDate,preSelection:n.props.preSelection,selected:n.props.selected,selectsStart:n.props.selectsStart,selectsEnd:n.props.selectsEnd,startDate:n.props.startDate,endDate:n.props.endDate,dayClassName:n.props.dayClassName,renderDayContents:n.props.renderDayContents,disabledKeyboardNavigation:n.props.disabledKeyboardNavigation})}))}),n}return de(r,React__default.Component),pe(r,[{key:"render",value:function(){return React__default.createElement("div",{className:"react-datepicker__week"},this.renderDays())}}],[{key:"defaultProps",get:function(){return {shouldCloseOnSelect:!0}}}]),r}(),lt=6,dt=function(r){function n(){var r,o;ae(this,n);for(var a=arguments.length,s=new Array(a),c=0;c<a;c++)s[c]=arguments[c];return ie(me(o=fe(this,(r=ue(n)).call.apply(r,[this].concat(s)))),"handleDayClick",function(e,t){o.props.onDayClick&&o.props.onDayClick(e,t,o.props.orderInDisplay);}),ie(me(o),"handleDayMouseEnter",function(e){o.props.onDayMouseEnter&&o.props.onDayMouseEnter(e);}),ie(me(o),"handleMouseLeave",function(){o.props.onMouseLeave&&o.props.onMouseLeave();}),ie(me(o),"isRangeStartMonth",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Ne(setMonth(r,e),n)}),ie(me(o),"isRangeStartQuarter",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Oe(setQuarter(r,e),n)}),ie(me(o),"isRangeEndMonth",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Ne(setMonth(r,e),a)}),ie(me(o),"isRangeEndQuarter",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Oe(setQuarter(r,e),a)}),ie(me(o),"isWeekInMonth",function(e){var t=o.props.day,r=addDays(e,6);return Ne(e,t)||Ne(r,t)}),ie(me(o),"renderWeeks",function(){for(var t=[],r=o.props.fixedHeight,n=Se(Me(o.props.day),o.props.locale),a=0,s=!1;t.push(React__default.createElement(ct,{key:a,day:n,month:getMonth(o.props.day),onDayClick:o.handleDayClick,onDayMouseEnter:o.handleDayMouseEnter,onWeekSelect:o.props.onWeekSelect,formatWeekNumber:o.props.formatWeekNumber,locale:o.props.locale,minDate:o.props.minDate,maxDate:o.props.maxDate,excludeDates:o.props.excludeDates,includeDates:o.props.includeDates,inline:o.props.inline,highlightDates:o.props.highlightDates,selectingDate:o.props.selectingDate,filterDate:o.props.filterDate,preSelection:o.props.preSelection,selected:o.props.selected,selectsStart:o.props.selectsStart,selectsEnd:o.props.selectsEnd,showWeekNumber:o.props.showWeekNumbers,startDate:o.props.startDate,endDate:o.props.endDate,dayClassName:o.props.dayClassName,setOpen:o.props.setOpen,shouldCloseOnSelect:o.props.shouldCloseOnSelect,disabledKeyboardNavigation:o.props.disabledKeyboardNavigation,renderDayContents:o.props.renderDayContents})),!s;){a++,n=addWeeks(n,1);var p=r&&a>=lt,c=!r&&!o.isWeekInMonth(n);if(p||c){if(!o.props.peekNextMonth)break;s=!0;}}return t}),ie(me(o),"onMonthClick",function(e,t){o.handleDayClick(Me(setMonth(o.props.day,t)),e);}),ie(me(o),"onQuarterClick",function(e,t){var r;o.handleDayClick((r=setQuarter(o.props.day,t),startOfQuarter(r)),e);}),ie(me(o),"getMonthClassNames",function(e){var r=o.props,n=r.day,a=r.startDate,s=r.endDate,p=r.selected,i=r.minDate,c=r.maxDate;return classnames("react-datepicker__month-text","react-datepicker__month-".concat(e),{"react-datepicker__month--disabled":(i||c)&&Re(setMonth(n,e),o.props),"react-datepicker__month--selected":getMonth(n)===e&&getYear(n)===getYear(p),"react-datepicker__month--in-range":je(a,s,e,n),"react-datepicker__month--range-start":o.isRangeStartMonth(e),"react-datepicker__month--range-end":o.isRangeEndMonth(e)})}),ie(me(o),"getQuarterClassNames",function(e){var r=o.props,n=r.day,a=r.startDate,s=r.endDate,p=r.selected,i=r.minDate,c=r.maxDate;return classnames("react-datepicker__quarter-text","react-datepicker__quarter-".concat(e),{"react-datepicker__quarter--disabled":(i||c)&&He(setQuarter(n,e),o.props),"react-datepicker__quarter--selected":getQuarter(n)===e&&getYear(n)===getYear(p),"react-datepicker__quarter--in-range":Ae(a,s,e,n),"react-datepicker__quarter--range-start":o.isRangeStartQuarter(e),"react-datepicker__quarter--range-end":o.isRangeEndQuarter(e)})}),ie(me(o),"renderMonths",function(){return [[0,1,2],[3,4,5],[6,7,8],[9,10,11]].map(function(t,r){return React__default.createElement("div",{className:"react-datepicker__month-wrapper",key:r},t.map(function(t,r){return React__default.createElement("div",{key:r,onClick:function(e){o.onMonthClick(e,t);},className:o.getMonthClassNames(t)},We(t,o.props.locale))}))})}),ie(me(o),"renderQuarters",function(){return React__default.createElement("div",{className:"react-datepicker__quarter-wrapper"},[1,2,3,4].map(function(t,r){return React__default.createElement("div",{key:r,onClick:function(e){o.onQuarterClick(e,t);},className:o.getQuarterClassNames(t)},(n=t,a=o.props.locale,Ce(setQuarter(we(),n),"QQQ",a)));var n,a;}))}),ie(me(o),"getClassNames",function(){var e=o.props,r=e.selectingDate,n=e.selectsStart,a=e.selectsEnd,s=e.showMonthYearPicker,p=e.showQuarterYearPicker;return classnames("react-datepicker__month",{"react-datepicker__month--selecting-range":r&&(n||a)},{"react-datepicker__monthPicker":s},{"react-datepicker__quarterPicker":p})}),o}return de(n,React__default.Component),pe(n,[{key:"render",value:function(){var t=this.props,r=t.showMonthYearPicker,n=t.showQuarterYearPicker;return React__default.createElement("div",{className:this.getClassNames(),onMouseLeave:this.handleMouseLeave,role:"listbox","aria-label":"month-"+Ce(this.props.day,"yyyy-MM")},r?this.renderMonths():n?this.renderQuarters():this.renderWeeks())}}]),n}(),ut=function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,s=new Array(o),p=0;p<o;p++)s[p]=arguments[p];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(s)))),"state",{height:null}),ie(me(n),"handleClick",function(e){(n.props.minTime||n.props.maxTime)&&Ke(e,n.props)||n.props.excludeTimes&&Ve(e,n.props.excludeTimes)||n.props.includeTimes&&!Ve(e,n.props.includeTimes)||n.props.onChange(e);}),ie(me(n),"liClasses",function(e,t,r){var o=["react-datepicker__time-list-item"];return n.props.selected&&t===getHours(e)&&r===getMinutes(e)&&o.push("react-datepicker__time-list-item--selected"),((n.props.minTime||n.props.maxTime)&&Ke(e,n.props)||n.props.excludeTimes&&Ve(e,n.props.excludeTimes)||n.props.includeTimes&&!Ve(e,n.props.includeTimes))&&o.push("react-datepicker__time-list-item--disabled"),n.props.injectTimes&&(60*getHours(e)+getMinutes(e))%n.props.intervals!=0&&o.push("react-datepicker__time-list-item--injected"),o.join(" ")}),ie(me(n),"renderTimes",function(){for(var t,r=[],o=n.props.format?n.props.format:"p",s=n.props.intervals,p=n.props.selected||n.props.openToDate||we(),i=getHours(p),c=getMinutes(p),l=(t=we(),startOfDay(t)),d=1440/s,u=n.props.injectTimes&&n.props.injectTimes.sort(function(e,t){return e-t}),h=0;h<d;h++){var m=addMinutes(l,h*s);if(r.push(m),u){var f=Je(l,m,h,s,u);r=r.concat(f);}}return r.map(function(t,r){return React__default.createElement("li",{key:r,onClick:n.handleClick.bind(me(n),t),className:n.liClasses(t,i,c),ref:function(e){i===getHours(t)&&c>=getMinutes(t)&&(n.centerLi=e);}},Ce(t,o,n.props.locale))})}),n}return de(r,React__default.Component),pe(r,[{key:"componentDidMount",value:function(){this.list.scrollTop=r.calcCenterPosition(this.props.monthRef?this.props.monthRef.clientHeight-this.header.clientHeight:this.list.clientHeight,this.centerLi),this.props.monthRef&&this.header&&this.setState({height:this.props.monthRef.clientHeight-this.header.clientHeight});}},{key:"render",value:function(){var t=this,r=this.state.height;return React__default.createElement("div",{className:"react-datepicker__time-container ".concat(this.props.todayButton?"react-datepicker__time-container--with-today-button":"")},React__default.createElement("div",{className:"react-datepicker__header react-datepicker__header--time",ref:function(e){t.header=e;}},React__default.createElement("div",{className:"react-datepicker-time__header"},this.props.timeCaption)),React__default.createElement("div",{className:"react-datepicker__time"},React__default.createElement("div",{className:"react-datepicker__time-box"},React__default.createElement("ul",{className:"react-datepicker__time-list",ref:function(e){t.list=e;},style:r?{height:r}:{}},this.renderTimes()))))}}],[{key:"defaultProps",get:function(){return {intervals:30,onTimeChange:function(){},todayButton:null,timeCaption:"Time"}}}]),r}();ie(ut,"calcCenterPosition",function(e,t){return t.offsetTop-(e/2-t.clientHeight/2)});var ht=function(t){function r(e){var t;return ae(this,r),ie(me(t=fe(this,ue(r).call(this,e))),"onTimeChange",function(e){t.setState({time:e});var r=new Date;r.setHours(e.split(":")[0]),r.setMinutes(e.split(":")[1]),t.props.onChange(r);}),t.state={time:t.props.timeString},t}return de(r,React__default.Component),pe(r,[{key:"render",value:function(){var t=this,r=this.state.time,n=this.props.timeString;return React__default.createElement("div",{className:"react-datepicker__input-time-container"},React__default.createElement("div",{className:"react-datepicker-time__caption"},this.props.timeInputLabel),React__default.createElement("div",{className:"react-datepicker-time__input-container"},React__default.createElement("div",{className:"react-datepicker-time__input"},React__default.createElement("input",{type:"time",className:"react-datepicker-time__input",placeholder:"Time",name:"time-input",required:!0,value:r,onChange:function(e){t.onTimeChange(e.target.value||n);}}))))}}]),r}();function mt(t){var r=t.className,n=t.children,o=t.showPopperArrow,a=t.arrowProps,s=void 0===a?{}:a;return React__default.createElement("div",{className:r},o&&React__default.createElement("div",ce({className:"react-datepicker__triangle"},s)),n)}var ft=["react-datepicker__year-select","react-datepicker__month-select","react-datepicker__month-year-select"],vt=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=(e.className||"").split(/\s+/);return ft.some(function(e){return t.indexOf(e)>=0})},yt=function(r){function n(t){var r;return ae(this,n),ie(me(r=fe(this,ue(n).call(this,t))),"handleClickOutside",function(e){r.props.onClickOutside(e);}),ie(me(r),"setClickOutsideRef",function(){return r.containerRef.current}),ie(me(r),"handleDropdownFocus",function(e){vt(e.target)&&r.props.onDropdownFocus();}),ie(me(r),"getDateInView",function(){var e=r.props,t=e.preSelection,n=e.selected,o=e.openToDate,a=$e(r.props),s=ze(r.props),p=we(),i=o||n||t;return i||(a&&isBefore(p,a)?a:s&&isAfter(p,s)?s:p)}),ie(me(r),"increaseMonth",function(){r.setState(function(e){var t=e.date;return {date:addMonths(t,1)}},function(){return r.handleMonthChange(r.state.date)});}),ie(me(r),"decreaseMonth",function(){r.setState(function(e){var t=e.date;return {date:subMonths(t,1)}},function(){return r.handleMonthChange(r.state.date)});}),ie(me(r),"handleDayClick",function(e,t,n){return r.props.onSelect(e,t,n)}),ie(me(r),"handleDayMouseEnter",function(e){r.setState({selectingDate:e}),r.props.onDayMouseEnter&&r.props.onDayMouseEnter(e);}),ie(me(r),"handleMonthMouseLeave",function(){r.setState({selectingDate:null}),r.props.onMonthMouseLeave&&r.props.onMonthMouseLeave();}),ie(me(r),"handleYearChange",function(e){r.props.onYearChange&&r.props.onYearChange(e);}),ie(me(r),"handleMonthChange",function(e){r.props.onMonthChange&&r.props.onMonthChange(e),r.props.adjustDateOnChange&&(r.props.onSelect&&r.props.onSelect(e),r.props.setOpen&&r.props.setOpen(!0));}),ie(me(r),"handleMonthYearChange",function(e){r.handleYearChange(e),r.handleMonthChange(e);}),ie(me(r),"changeYear",function(e){r.setState(function(t){var r=t.date;return {date:setYear(r,e)}},function(){return r.handleYearChange(r.state.date)});}),ie(me(r),"changeMonth",function(e){r.setState(function(t){var r=t.date;return {date:setMonth(r,e)}},function(){return r.handleMonthChange(r.state.date)});}),ie(me(r),"changeMonthYear",function(e){r.setState(function(t){var r=t.date;return {date:setYear(setMonth(r,getMonth(e)),getYear(e))}},function(){return r.handleMonthYearChange(r.state.date)});}),ie(me(r),"header",function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:r.state.date,n=Se(t,r.props.locale),o=[];return r.props.showWeekNumbers&&o.push(React__default.createElement("div",{key:"W",className:"react-datepicker__day-name"},r.props.weekLabel||"#")),o.concat([0,1,2,3,4,5,6].map(function(t){var o=addDays(n,t),a=r.formatWeekday(o,r.props.locale);return React__default.createElement("div",{key:t,className:"react-datepicker__day-name"},a)}))}),ie(me(r),"formatWeekday",function(e,t){return r.props.formatWeekDay?function(e,t,r){return t(Ce(e,"EEEE",r))}(e,r.props.formatWeekDay,t):r.props.useWeekdaysShort?function(e,t){return Ce(e,"EEE",t)}(e,t):function(e,t){return Ce(e,"EEEEEE",t)}(e,t)}),ie(me(r),"decreaseYear",function(){r.setState(function(e){var t=e.date;return {date:subYears(t,1)}},function(){return r.handleYearChange(r.state.date)});}),ie(me(r),"renderPreviousButton",function(){if(!r.props.renderCustomHeader){var t=r.props.showMonthYearPicker?function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.includeDates,o=subYears(e,1);return r&&differenceInCalendarYears(r,o)>0||n&&n.every(function(e){return differenceInCalendarYears(e,o)>0})||!1}(r.state.date,r.props):qe(r.state.date,r.props);if((r.props.forceShowMonthNavigation||r.props.showDisabledMonthNavigation||!t)&&!r.props.showTimeSelectOnly){var n=["react-datepicker__navigation","react-datepicker__navigation--previous"],o=r.decreaseMonth;return (r.props.showMonthYearPicker||r.props.showQuarterYearPicker)&&(o=r.decreaseYear),t&&r.props.showDisabledMonthNavigation&&(n.push("react-datepicker__navigation--previous--disabled"),o=null),React__default.createElement("button",{type:"button",className:n.join(" "),onClick:o},r.props.showMonthYearPicker||r.props.showQuarterYearPicker?r.props.previousYearButtonLabel:r.props.previousMonthButtonLabel)}}}),ie(me(r),"increaseYear",function(){r.setState(function(e){var t=e.date;return {date:addYears(t,1)}},function(){return r.handleYearChange(r.state.date)});}),ie(me(r),"renderNextButton",function(){if(!r.props.renderCustomHeader){var t=r.props.showMonthYearPicker?function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.maxDate,n=t.includeDates,o=addYears(e,1);return r&&differenceInCalendarYears(o,r)>0||n&&n.every(function(e){return differenceInCalendarYears(o,e)>0})||!1}(r.state.date,r.props):Ue(r.state.date,r.props);if((r.props.forceShowMonthNavigation||r.props.showDisabledMonthNavigation||!t)&&!r.props.showTimeSelectOnly){var n=["react-datepicker__navigation","react-datepicker__navigation--next"];r.props.showTimeSelect&&n.push("react-datepicker__navigation--next--with-time"),r.props.todayButton&&n.push("react-datepicker__navigation--next--with-today-button");var o=r.increaseMonth;return (r.props.showMonthYearPicker||r.props.showQuarterYearPicker)&&(o=r.increaseYear),t&&r.props.showDisabledMonthNavigation&&(n.push("react-datepicker__navigation--next--disabled"),o=null),React__default.createElement("button",{type:"button",className:n.join(" "),onClick:o},r.props.showMonthYearPicker||r.props.showQuarterYearPicker?r.props.nextYearButtonLabel:r.props.nextMonthButtonLabel)}}}),ie(me(r),"renderCurrentMonth",function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:r.state.date,n=["react-datepicker__current-month"];return r.props.showYearDropdown&&n.push("react-datepicker__current-month--hasYearDropdown"),r.props.showMonthDropdown&&n.push("react-datepicker__current-month--hasMonthDropdown"),r.props.showMonthYearDropdown&&n.push("react-datepicker__current-month--hasMonthYearDropdown"),React__default.createElement("div",{className:n.join(" ")},Ce(t,r.props.dateFormat,r.props.locale))}),ie(me(r),"renderYearDropdown",function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showYearDropdown&&!t)return React__default.createElement(tt,{adjustDateOnChange:r.props.adjustDateOnChange,date:r.state.date,onSelect:r.props.onSelect,setOpen:r.props.setOpen,dropdownMode:r.props.dropdownMode,onChange:r.changeYear,minDate:r.props.minDate,maxDate:r.props.maxDate,year:getYear(r.state.date),scrollableYearDropdown:r.props.scrollableYearDropdown,yearDropdownItemNumber:r.props.yearDropdownItemNumber})}),ie(me(r),"renderMonthDropdown",function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showMonthDropdown&&!t)return React__default.createElement(nt,{dropdownMode:r.props.dropdownMode,locale:r.props.locale,onChange:r.changeMonth,month:getMonth(r.state.date),useShortMonthInDropdown:r.props.useShortMonthInDropdown})}),ie(me(r),"renderMonthYearDropdown",function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showMonthYearDropdown&&!t)return React__default.createElement(st,{dropdownMode:r.props.dropdownMode,locale:r.props.locale,dateFormat:r.props.dateFormat,onChange:r.changeMonthYear,minDate:r.props.minDate,maxDate:r.props.maxDate,date:r.state.date,scrollableMonthYearDropdown:r.props.scrollableMonthYearDropdown})}),ie(me(r),"renderTodayButton",function(){if(r.props.todayButton&&!r.props.showTimeSelectOnly)return React__default.createElement("div",{className:"react-datepicker__today-button",onClick:function(e){return r.props.onSelect(startOfDay(we()),e)}},r.props.todayButton)}),ie(me(r),"renderDefaultHeader",function(t){var n=t.monthDate,o=t.i;return React__default.createElement("div",{className:"react-datepicker__header"},r.renderCurrentMonth(n),React__default.createElement("div",{className:"react-datepicker__header__dropdown react-datepicker__header__dropdown--".concat(r.props.dropdownMode),onFocus:r.handleDropdownFocus},r.renderMonthDropdown(0!==o),r.renderMonthYearDropdown(0!==o),r.renderYearDropdown(0!==o)),React__default.createElement("div",{className:"react-datepicker__day-names"},r.header(n)))}),ie(me(r),"renderCustomHeader",function(t){var n=t.monthDate;if(0!==t.i)return null;var o=qe(r.state.date,r.props),a=Ue(r.state.date,r.props);return React__default.createElement("div",{className:"react-datepicker__header react-datepicker__header--custom",onFocus:r.props.onDropdownFocus},r.props.renderCustomHeader(function(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{};t%2?le(r,!0).forEach(function(t){ie(e,t,r[t]);}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):le(r).forEach(function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(r,t));});}return e}({},r.state,{changeMonth:r.changeMonth,changeYear:r.changeYear,decreaseMonth:r.decreaseMonth,increaseMonth:r.increaseMonth,prevMonthButtonDisabled:o,nextMonthButtonDisabled:a})),React__default.createElement("div",{className:"react-datepicker__day-names"},r.header(n)))}),ie(me(r),"renderYearHeader",function(){return React__default.createElement("div",{className:"react-datepicker__header react-datepicker-year-header"},getYear(r.state.date))}),ie(me(r),"renderMonths",function(){if(!r.props.showTimeSelectOnly){for(var t=[],n=r.props.showPreviousMonths?r.props.monthsShown-1:0,o=subMonths(r.state.date,n),a=0;a<r.props.monthsShown;++a){var s=a-r.props.monthSelectedIn,p=addMonths(o,s),i="month-".concat(a);t.push(React__default.createElement("div",{key:i,ref:function(e){r.monthContainer=e;},className:"react-datepicker__month-container"},r.props.showMonthYearPicker||r.props.showQuarterYearPicker?r.renderYearHeader({monthDate:p,i:a}):r.props.renderCustomHeader?r.renderCustomHeader({monthDate:p,i:a}):r.renderDefaultHeader({monthDate:p,i:a}),React__default.createElement(dt,{onChange:r.changeMonthYear,day:p,dayClassName:r.props.dayClassName,onDayClick:r.handleDayClick,onDayMouseEnter:r.handleDayMouseEnter,onMouseLeave:r.handleMonthMouseLeave,onWeekSelect:r.props.onWeekSelect,orderInDisplay:a,formatWeekNumber:r.props.formatWeekNumber,locale:r.props.locale,minDate:r.props.minDate,maxDate:r.props.maxDate,excludeDates:r.props.excludeDates,highlightDates:r.props.highlightDates,selectingDate:r.state.selectingDate,includeDates:r.props.includeDates,inline:r.props.inline,fixedHeight:r.props.fixedHeight,filterDate:r.props.filterDate,preSelection:r.props.preSelection,selected:r.props.selected,selectsStart:r.props.selectsStart,selectsEnd:r.props.selectsEnd,showWeekNumbers:r.props.showWeekNumbers,startDate:r.props.startDate,endDate:r.props.endDate,peekNextMonth:r.props.peekNextMonth,setOpen:r.props.setOpen,shouldCloseOnSelect:r.props.shouldCloseOnSelect,renderDayContents:r.props.renderDayContents,disabledKeyboardNavigation:r.props.disabledKeyboardNavigation,showMonthYearPicker:r.props.showMonthYearPicker,showQuarterYearPicker:r.props.showQuarterYearPicker})));}return t}}),ie(me(r),"renderTimeSection",function(){if(r.props.showTimeSelect&&(r.state.monthContainer||r.props.showTimeSelectOnly))return React__default.createElement(ut,{selected:r.props.selected,openToDate:r.props.openToDate,onChange:r.props.onTimeChange,format:r.props.timeFormat,includeTimes:r.props.includeTimes,intervals:r.props.timeIntervals,minTime:r.props.minTime,maxTime:r.props.maxTime,excludeTimes:r.props.excludeTimes,timeCaption:r.props.timeCaption,todayButton:r.props.todayButton,showMonthDropdown:r.props.showMonthDropdown,showMonthYearDropdown:r.props.showMonthYearDropdown,showYearDropdown:r.props.showYearDropdown,withPortal:r.props.withPortal,monthRef:r.state.monthContainer,injectTimes:r.props.injectTimes,locale:r.props.locale})}),ie(me(r),"renderInputTimeSection",function(){var t=new Date(r.props.selected),n="".concat(Xe(t.getHours()),":").concat(Xe(t.getMinutes()));if(r.props.showTimeInput)return React__default.createElement(ht,{timeString:n,timeInputLabel:r.props.timeInputLabel,onChange:r.props.onTimeChange})}),r.containerRef=React__default.createRef(),r.state={date:r.getDateInView(),selectingDate:null,monthContainer:null},r}return de(n,React__default.Component),pe(n,null,[{key:"defaultProps",get:function(){return {onDropdownFocus:function(){},monthsShown:1,monthSelectedIn:0,forceShowMonthNavigation:!1,timeCaption:"Time",previousYearButtonLabel:"Previous Year",nextYearButtonLabel:"Next Year",previousMonthButtonLabel:"Previous Month",nextMonthButtonLabel:"Next Month"}}}]),pe(n,[{key:"componentDidMount",value:function(){var e=this;this.props.showTimeSelect&&(this.assignMonthContainer=void e.setState({monthContainer:e.monthContainer}));}},{key:"componentDidUpdate",value:function(e){this.props.preSelection&&!Pe(this.props.preSelection,e.preSelection)?this.setState({date:this.props.preSelection}):this.props.openToDate&&!Pe(this.props.openToDate,e.openToDate)&&this.setState({date:this.props.openToDate});}},{key:"render",value:function(){var r=this.props.container||mt;return React__default.createElement("div",{ref:this.containerRef},React__default.createElement(r,{className:classnames("react-datepicker",this.props.className,{"react-datepicker--time-only":this.props.showTimeSelectOnly}),showPopperArrow:this.props.showPopperArrow},this.renderPreviousButton(),this.renderNextButton(),this.renderMonths(),this.renderTodayButton(),this.renderTimeSection(),this.renderInputTimeSection(),this.props.children))}}]),n}(),Dt=function(r){function n(){return ae(this,n),fe(this,ue(n).apply(this,arguments))}return de(n,React__default.Component),pe(n,[{key:"render",value:function(){var r,n=this.props,o=n.className,a=n.wrapperClassName,s=n.hidePopper,p=n.popperComponent,i=n.popperModifiers,c=n.popperPlacement,l=n.popperProps,d=n.targetComponent;if(!s){var u=classnames("react-datepicker-popper",o);r=React__default.createElement(Popper$1,ce({modifiers:i,placement:c},l),function(t){var r=t.ref,n=t.style,o=t.placement,a=t.arrowProps;return React__default.createElement("div",ce({ref:r,style:n},{className:u,"data-placement":o}),React__default.cloneElement(p,{arrowProps:a}))});}this.props.popperContainer&&(r=React__default.createElement(this.props.popperContainer,{},r));var h=classnames("react-datepicker-wrapper",a);return React__default.createElement(Manager,{className:"react-datepicker-manager"},React__default.createElement(Reference,null,function(t){var r=t.ref;return React__default.createElement("div",{ref:r,className:h},d)}),r)}}],[{key:"defaultProps",get:function(){return {hidePopper:!0,popperModifiers:{preventOverflow:{enabled:!0,escapeWithReference:!0,boundariesElement:"viewport"}},popperProps:{},popperPlacement:"bottom-start"}}}]),n}(),gt="react-datepicker-ignore-onclickoutside",wt=onClickOutsideHOC(yt);var kt="Date input not valid.",_t=function(n){function o(n){var a;return ae(this,o),ie(me(a=fe(this,ue(o).call(this,n))),"getPreSelection",function(){return a.props.openToDate?a.props.openToDate:a.props.selectsEnd&&a.props.startDate?a.props.startDate:a.props.selectsStart&&a.props.endDate?a.props.endDate:we()}),ie(me(a),"calcInitialState",function(){var e=a.getPreSelection(),t=$e(a.props),r=ze(a.props),n=t&&isBefore(e,t)?t:r&&isAfter(e,r)?r:e;return {open:a.props.startOpen||!1,preventFocus:!1,preSelection:a.props.selected?a.props.selected:n,highlightDates:Ge(a.props.highlightDates),focused:!1}}),ie(me(a),"clearPreventFocusTimeout",function(){a.preventFocusTimeout&&clearTimeout(a.preventFocusTimeout);}),ie(me(a),"setFocus",function(){a.input&&a.input.focus&&a.input.focus();}),ie(me(a),"setBlur",function(){a.input&&a.input.blur&&a.input.blur(),a.cancelFocusInput();}),ie(me(a),"setOpen",function(e){var t=arguments.length>1&&void 0!==arguments[1]&&arguments[1];a.setState({open:e,preSelection:e&&a.state.open?a.state.preSelection:a.calcInitialState().preSelection,lastPreSelectChange:bt},function(){e||a.setState(function(e){return {focused:!!t&&e.focused}},function(){!t&&a.setBlur(),a.setState({inputValue:null});});});}),ie(me(a),"inputOk",function(){return isDate(a.state.preSelection)}),ie(me(a),"isCalendarOpen",function(){return void 0===a.props.open?a.state.open&&!a.props.disabled&&!a.props.readOnly:a.props.open}),ie(me(a),"handleFocus",function(e){a.state.preventFocus||(a.props.onFocus(e),a.props.preventOpenOnFocus||a.props.readOnly||a.setOpen(!0)),a.setState({focused:!0});}),ie(me(a),"cancelFocusInput",function(){clearTimeout(a.inputFocusTimeout),a.inputFocusTimeout=null;}),ie(me(a),"deferFocusInput",function(){a.cancelFocusInput(),a.inputFocusTimeout=setTimeout(function(){return a.setFocus()},1);}),ie(me(a),"handleDropdownFocus",function(){a.cancelFocusInput();}),ie(me(a),"handleBlur",function(e){!a.state.open||a.props.withPortal||a.props.showTimeInput?a.props.onBlur(e):a.deferFocusInput(),a.setState({focused:!1});}),ie(me(a),"handleCalendarClickOutside",function(e){a.props.inline||a.setOpen(!1),a.props.onClickOutside(e),a.props.withPortal&&e.preventDefault();}),ie(me(a),"handleChange",function(){for(var e=arguments.length,t=new Array(e),r=0;r<e;r++)t[r]=arguments[r];var n=t[0];if(!a.props.onChangeRaw||(a.props.onChangeRaw.apply(me(a),t),"function"==typeof n.isDefaultPrevented&&!n.isDefaultPrevented())){a.setState({inputValue:n.target.value,lastPreSelectChange:Ct});var o=ke(n.target.value,a.props.dateFormat,a.props.locale,a.props.strictParsing);!o&&n.target.value||a.setSelected(o,n,!0);}}),ie(me(a),"handleSelect",function(e,t,r){a.setState({preventFocus:!0},function(){return a.preventFocusTimeout=setTimeout(function(){return a.setState({preventFocus:!1})},50),a.preventFocusTimeout}),a.setSelected(e,t,void 0,r),!a.props.shouldCloseOnSelect||a.props.showTimeSelect?a.setPreSelection(e):a.props.inline||a.setOpen(!1);}),ie(me(a),"setSelected",function(e,t,r,n){var o=e;if(null===o||!Be(o,a.props)){if(!Te(a.props.selected,o)||a.props.allowSameDay){if(null!==o){if(a.props.selected){var s=a.props.selected;r&&(s=we(o)),o=be(o,{hour:getHours(s),minute:getMinutes(s),second:getSeconds(s)});}a.props.inline||a.setState({preSelection:o}),a.props.inline&&a.props.monthsShown>1&&!a.props.inlineFocusSelectedMonth&&a.setState({monthSelectedIn:n});}a.props.onChange(o,t);}a.props.onSelect(o,t),r||a.setState({inputValue:null});}}),ie(me(a),"setPreSelection",function(e){var t=void 0!==a.props.minDate,r=void 0!==a.props.maxDate,n=!0;e&&(t&&r?n=Ye(e,a.props.minDate,a.props.maxDate):t?n=isAfter(e,a.props.minDate):r&&(n=isBefore(e,a.props.maxDate))),n&&a.setState({preSelection:e});}),ie(me(a),"handleTimeChange",function(e){var t=be(a.props.selected?a.props.selected:a.getPreSelection(),{hour:getHours(e),minute:getMinutes(e)});a.setState({preSelection:t}),a.props.onChange(t),a.props.shouldCloseOnSelect&&a.setOpen(!1),a.props.showTimeInput&&a.setOpen(!0),a.setState({inputValue:null});}),ie(me(a),"onInputClick",function(){a.props.disabled||a.props.readOnly||a.setOpen(!0),a.props.onInputClick();}),ie(me(a),"onInputKeyDown",function(e){a.props.onKeyDown(e);var t=e.key;if(a.state.open||a.props.inline||a.props.preventOpenOnFocus){var r=we(a.state.preSelection);if("Enter"===t)e.preventDefault(),a.inputOk()&&a.state.lastPreSelectChange===bt?(a.handleSelect(r,e),!a.props.shouldCloseOnSelect&&a.setPreSelection(r)):a.setOpen(!1);else if("Escape"===t)e.preventDefault(),a.setOpen(!1),a.inputOk()||a.props.onInputError({code:1,msg:kt});else if("Tab"===t)a.setOpen(!1,!0);else if(!a.props.disabledKeyboardNavigation){var n;switch(t){case"ArrowLeft":n=subDays(r,1);break;case"ArrowRight":n=addDays(r,1);break;case"ArrowUp":n=subWeeks(r,1);break;case"ArrowDown":n=addWeeks(r,1);break;case"PageUp":n=subMonths(r,1);break;case"PageDown":n=addMonths(r,1);break;case"Home":n=subYears(r,1);break;case"End":n=addYears(r,1);}if(!n)return void(a.props.onInputError&&a.props.onInputError({code:1,msg:kt}));e.preventDefault(),a.setState({lastPreSelectChange:bt}),a.props.adjustDateOnChange&&a.setSelected(n),a.setPreSelection(n);}}else"ArrowDown"!==t&&"ArrowUp"!==t||a.onInputClick();}),ie(me(a),"onClearClick",function(e){e&&e.preventDefault&&e.preventDefault(),a.props.onChange(null,e),a.setState({inputValue:null});}),ie(me(a),"clear",function(){a.onClearClick();}),ie(me(a),"renderCalendar",function(){return a.props.inline||a.isCalendarOpen()?React__default.createElement(wt,{ref:function(e){a.calendar=e;},locale:a.props.locale,adjustDateOnChange:a.props.adjustDateOnChange,setOpen:a.setOpen,shouldCloseOnSelect:a.props.shouldCloseOnSelect,dateFormat:a.props.dateFormatCalendar,useWeekdaysShort:a.props.useWeekdaysShort,formatWeekDay:a.props.formatWeekDay,dropdownMode:a.props.dropdownMode,selected:a.props.selected,preSelection:a.state.preSelection,onSelect:a.handleSelect,onWeekSelect:a.props.onWeekSelect,openToDate:a.props.openToDate,minDate:a.props.minDate,maxDate:a.props.maxDate,selectsStart:a.props.selectsStart,selectsEnd:a.props.selectsEnd,startDate:a.props.startDate,endDate:a.props.endDate,excludeDates:a.props.excludeDates,filterDate:a.props.filterDate,onClickOutside:a.handleCalendarClickOutside,formatWeekNumber:a.props.formatWeekNumber,highlightDates:a.state.highlightDates,includeDates:a.props.includeDates,includeTimes:a.props.includeTimes,injectTimes:a.props.injectTimes,inline:a.props.inline,peekNextMonth:a.props.peekNextMonth,showMonthDropdown:a.props.showMonthDropdown,showPreviousMonths:a.props.showPreviousMonths,useShortMonthInDropdown:a.props.useShortMonthInDropdown,showMonthYearDropdown:a.props.showMonthYearDropdown,showWeekNumbers:a.props.showWeekNumbers,showYearDropdown:a.props.showYearDropdown,withPortal:a.props.withPortal,forceShowMonthNavigation:a.props.forceShowMonthNavigation,showDisabledMonthNavigation:a.props.showDisabledMonthNavigation,scrollableYearDropdown:a.props.scrollableYearDropdown,scrollableMonthYearDropdown:a.props.scrollableMonthYearDropdown,todayButton:a.props.todayButton,weekLabel:a.props.weekLabel,outsideClickIgnoreClass:gt,fixedHeight:a.props.fixedHeight,monthsShown:a.props.monthsShown,monthSelectedIn:a.state.monthSelectedIn,onDropdownFocus:a.handleDropdownFocus,onMonthChange:a.props.onMonthChange,onYearChange:a.props.onYearChange,dayClassName:a.props.dayClassName,showTimeSelect:a.props.showTimeSelect,showTimeSelectOnly:a.props.showTimeSelectOnly,onTimeChange:a.handleTimeChange,timeFormat:a.props.timeFormat,timeIntervals:a.props.timeIntervals,minTime:a.props.minTime,maxTime:a.props.maxTime,excludeTimes:a.props.excludeTimes,timeCaption:a.props.timeCaption,className:a.props.calendarClassName,container:a.props.calendarContainer,yearDropdownItemNumber:a.props.yearDropdownItemNumber,previousMonthButtonLabel:a.props.previousMonthButtonLabel,nextMonthButtonLabel:a.props.nextMonthButtonLabel,previousYearButtonLabel:a.props.previousYearButtonLabel,nextYearButtonLabel:a.props.nextYearButtonLabel,timeInputLabel:a.props.timeInputLabel,disabledKeyboardNavigation:a.props.disabledKeyboardNavigation,renderCustomHeader:a.props.renderCustomHeader,popperProps:a.props.popperProps,renderDayContents:a.props.renderDayContents,onDayMouseEnter:a.props.onDayMouseEnter,onMonthMouseLeave:a.props.onMonthMouseLeave,showTimeInput:a.props.showTimeInput,showMonthYearPicker:a.props.showMonthYearPicker,showQuarterYearPicker:a.props.showQuarterYearPicker,showPopperArrow:a.props.showPopperArrow},a.props.children):null}),ie(me(a),"renderDateInput",function(){var r,n,o,s,p,i=classnames(a.props.className,ie({},gt,a.state.open)),c=a.props.customInput||React__default.createElement("input",{type:"text"}),l=a.props.customInputRef||"ref",d="string"==typeof a.props.value?a.props.value:"string"==typeof a.state.inputValue?a.state.inputValue:(n=a.props.selected,o=a.props,s=o.dateFormat,p=o.locale,n&&Ce(n,Array.isArray(s)?s[0]:s,p)||"");return React__default.cloneElement(c,(ie(r={},l,function(e){a.input=e;}),ie(r,"value",d),ie(r,"onBlur",a.handleBlur),ie(r,"onChange",a.handleChange),ie(r,"onClick",a.onInputClick),ie(r,"onFocus",a.handleFocus),ie(r,"onKeyDown",a.onInputKeyDown),ie(r,"id",a.props.id),ie(r,"name",a.props.name),ie(r,"autoFocus",a.props.autoFocus),ie(r,"placeholder",a.props.placeholderText),ie(r,"disabled",a.props.disabled),ie(r,"autoComplete",a.props.autoComplete),ie(r,"className",classnames(c.props.className,i)),ie(r,"title",a.props.title),ie(r,"readOnly",a.props.readOnly),ie(r,"required",a.props.required),ie(r,"tabIndex",a.props.tabIndex),ie(r,"aria-labelledby",a.props.ariaLabelledBy),r))}),ie(me(a),"renderClearButton",function(){return a.props.isClearable&&null!=a.props.selected?React__default.createElement("button",{type:"button",className:"react-datepicker__close-icon","aria-label":"Close",onClick:a.onClearClick,title:a.props.clearButtonTitle,tabIndex:-1}):null}),a.state=a.calcInitialState(),a}return de(o,React__default.Component),pe(o,null,[{key:"defaultProps",get:function(){return {allowSameDay:!1,dateFormat:"MM/dd/yyyy",dateFormatCalendar:"LLLL yyyy",onChange:function(){},disabled:!1,disabledKeyboardNavigation:!1,dropdownMode:"scroll",onFocus:function(){},onBlur:function(){},onKeyDown:function(){},onInputClick:function(){},onSelect:function(){},onClickOutside:function(){},onMonthChange:function(){},onCalendarOpen:function(){},onCalendarClose:function(){},preventOpenOnFocus:!1,onYearChange:function(){},onInputError:function(){},monthsShown:1,readOnly:!1,withPortal:!1,shouldCloseOnSelect:!0,showTimeSelect:!1,showTimeInput:!1,showPreviousMonths:!1,showMonthYearPicker:!1,showQuarterYearPicker:!1,strictParsing:!1,timeIntervals:30,timeCaption:"Time",previousMonthButtonLabel:"Previous Month",nextMonthButtonLabel:"Next Month",previousYearButtonLabel:"Previous Year",nextYearButtonLabel:"Next Year",timeInputLabel:"Time",renderDayContents:function(e){return e},inlineFocusSelectedMonth:!1,showPopperArrow:!0}}}]),pe(o,[{key:"componentDidUpdate",value:function(e,t){var r,n;e.inline&&(r=e.selected,n=this.props.selected,r&&n?getMonth(r)!==getMonth(n)||getYear(r)!==getYear(n):r!==n)&&this.setPreSelection(this.props.selected),void 0!==this.state.monthSelectedIn&&e.monthsShown!==this.props.monthsShown&&this.setState({monthSelectedIn:0}),e.highlightDates!==this.props.highlightDates&&this.setState({highlightDates:Ge(this.props.highlightDates)}),t.focused||Te(e.selected,this.props.selected)||this.setState({inputValue:null}),t.open!==this.state.open&&(!1===t.open&&!0===this.state.open&&this.props.onCalendarOpen(),!0===t.open&&!1===this.state.open&&this.props.onCalendarClose());}},{key:"componentWillUnmount",value:function(){this.clearPreventFocusTimeout();}},{key:"render",value:function(){var t=this.renderCalendar();return this.props.inline&&!this.props.withPortal?t:this.props.withPortal?React__default.createElement("div",null,this.props.inline?null:React__default.createElement("div",{className:"react-datepicker__input-container"},this.renderDateInput(),this.renderClearButton()),this.state.open||this.props.inline?React__default.createElement("div",{className:"react-datepicker__portal"},t):null):React__default.createElement(Dt,{className:this.props.popperClassName,wrapperClassName:this.props.wrapperClassName,hidePopper:!this.isCalendarOpen(),popperModifiers:this.props.popperModifiers,targetComponent:React__default.createElement("div",{className:"react-datepicker__input-container"},this.renderDateInput(),this.renderClearButton()),popperContainer:this.props.popperContainer,popperComponent:t,popperPlacement:this.props.popperPlacement,popperProps:this.props.popperProps})}}]),o}(),Ct="input",bt="navigate";
 
 function _templateObject$d() {
   var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid\n    ", ";\n  font-family: inherit;\n  font-size: ", ";\n  padding: 0.6em 1em;\n  height: 38px;\n  border-radius: ", ";\n  width: 100%;\n\n  ::placeholder {\n    color: ", ";\n  }\n"]);
@@ -12786,11 +12778,11 @@ var DateInput = function DateInput(props) {
       _useFormContext$error = _useFormContext.errors,
       errors = _useFormContext$error === void 0 ? {} : _useFormContext$error;
 
-  return e__default.createElement(InputWrapper, _extends_1({
+  return React__default.createElement(InputWrapper, _extends_1({
     required: required,
     disabled: disabled,
     alertText: alertTextOverride || (errors[name] ? errors[name].message : '')
-  }, otherProps), e__default.createElement(StyledDatePicker, _extends_1({
+  }, otherProps), React__default.createElement(StyledDatePicker, _extends_1({
     onChange: onChange,
     style: inputStyle,
     "aria-label": label,
@@ -12808,7 +12800,7 @@ DateInput.defaultProps = {
   onChange: function onChange() {}
 };
 
-var version = "1.7.26";
+var version = "1.7.30";
 var country_calling_codes = {
 	"1": [
 		"US",
@@ -13765,7 +13757,7 @@ var countries = {
 					"2(?:2[024-9]|3[0-59]|47|6[245]|9[02-8])|3(?:3[28]|4[03-9]|5[2-46-8]|7[1-578]|8[2-9])",
 					"2(?:[23]02|6(?:[25]|4[6-8])|9(?:[02356]|4[02568]|72|8[23]))|3(?:3[28]|4(?:[04679]|3[5-8]|5[4-68]|8[2379])|5(?:[2467]|3[237]|8[2-5])|7[1-578]|8(?:[2469]|3[2578]|5[4-8]|7[36-8]|8[5-8]))|2(?:2[24-9]|3[1-59]|47)",
 					"2(?:[23]02|6(?:[25]|4(?:64|[78]))|9(?:[02356]|4(?:[0268]|5[2-6])|72|8[23]))|3(?:3[28]|4(?:[04679]|3[78]|5(?:4[46]|8)|8[2379])|5(?:[2467]|3[237]|8[23])|7[1-578]|8(?:[2469]|3[278]|5[56][46]|86[3-6]))|2(?:2[24-9]|3[1-59]|47)|38(?:[58][78]|7[378])|3(?:4[35][56]|58[45]|8(?:[38]5|54|76))[4-6]",
-					"2(?:[23]02|6(?:[25]|4(?:64|[78]))|9(?:[02356]|4(?:[0268]|5(?:[24-6]|3[2-5]))|72|8[23]))|3(?:3[28]|4(?:[04679]|3(?:5(?:4[0-25689]|[56])|[78])|58|8[2379])|5(?:[2467]|3[237]|8(?:[23]|4(?:[45]|60)|5(?:4[0-39]|5|64)))|7[1-578]|8(?:[2469]|3[278]|54(?:4|5[13-7]|6[89])|86[3-6]))|2(?:2[24-9]|3[1-59]|47)|38(?:[58][78]|7[378])|3(?:454|85[56])[46]|3(?:4(?:36|5[56])|8(?:[38]5|76))[4-6]"
+					"2(?:[23]02|6(?:[25]|4(?:64|[78]))|9(?:[02356]|4(?:[0268]|5[2-6])|72|8[23]))|3(?:3[28]|4(?:[04679]|3(?:5(?:4[0-25689]|[56])|[78])|58|8[2379])|5(?:[2467]|3[237]|8(?:[23]|4(?:[45]|60)|5(?:4[0-39]|5|64)))|7[1-578]|8(?:[2469]|3[278]|54(?:4|5[13-7]|6[89])|86[3-6]))|2(?:2[24-9]|3[1-59]|47)|38(?:[58][78]|7[378])|3(?:454|85[56])[46]|3(?:4(?:36|5[56])|8(?:[38]5|76))[4-6]"
 				],
 				"0$1",
 				1
@@ -13781,20 +13773,20 @@ var countries = {
 			],
 			[
 				"(\\d{3})(\\d{3})(\\d{4})",
+				"$1-$2-$3",
+				[
+					"[68]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{3})(\\d{4})",
 				"$1 $2-$3",
 				[
 					"[23]"
 				],
 				"0$1",
 				1
-			],
-			[
-				"(\\d{3})(\\d{3})(\\d{4})",
-				"$1-$2-$3",
-				[
-					"[68]"
-				],
-				"0$1"
 			],
 			[
 				"(\\d)(\\d{4})(\\d{2})(\\d{4})",
@@ -13804,7 +13796,7 @@ var countries = {
 					"9(?:2(?:2[024-9]|3[0-59]|47|6[245]|9[02-8])|3(?:3[28]|4[03-9]|5[2-46-8]|7[1-578]|8[2-9]))",
 					"9(?:2(?:[23]02|6(?:[25]|4[6-8])|9(?:[02356]|4[02568]|72|8[23]))|3(?:3[28]|4(?:[04679]|3[5-8]|5[4-68]|8[2379])|5(?:[2467]|3[237]|8[2-5])|7[1-578]|8(?:[2469]|3[2578]|5[4-8]|7[36-8]|8[5-8])))|92(?:2[24-9]|3[1-59]|47)",
 					"9(?:2(?:[23]02|6(?:[25]|4(?:64|[78]))|9(?:[02356]|4(?:[0268]|5[2-6])|72|8[23]))|3(?:3[28]|4(?:[04679]|3[78]|5(?:4[46]|8)|8[2379])|5(?:[2467]|3[237]|8[23])|7[1-578]|8(?:[2469]|3[278]|5(?:[56][46]|[78])|7[378]|8(?:6[3-6]|[78]))))|92(?:2[24-9]|3[1-59]|47)|93(?:4[35][56]|58[45]|8(?:[38]5|54|76))[4-6]",
-					"9(?:2(?:[23]02|6(?:[25]|4(?:64|[78]))|9(?:[02356]|4(?:[0268]|5(?:[24-6]|3[2-5]))|72|8[23]))|3(?:3[28]|4(?:[04679]|3(?:5(?:4[0-25689]|[56])|[78])|5(?:4[46]|8)|8[2379])|5(?:[2467]|3[237]|8(?:[23]|4(?:[45]|60)|5(?:4[0-39]|5|64)))|7[1-578]|8(?:[2469]|3[278]|5(?:4(?:4|5[13-7]|6[89])|[56][46]|[78])|7[378]|8(?:6[3-6]|[78]))))|92(?:2[24-9]|3[1-59]|47)|93(?:4(?:36|5[56])|8(?:[38]5|76))[4-6]"
+					"9(?:2(?:[23]02|6(?:[25]|4(?:64|[78]))|9(?:[02356]|4(?:[0268]|5[2-6])|72|8[23]))|3(?:3[28]|4(?:[04679]|3(?:5(?:4[0-25689]|[56])|[78])|5(?:4[46]|8)|8[2379])|5(?:[2467]|3[237]|8(?:[23]|4(?:[45]|60)|5(?:4[0-39]|5|64)))|7[1-578]|8(?:[2469]|3[278]|5(?:4(?:4|5[13-7]|6[89])|[56][46]|[78])|7[378]|8(?:6[3-6]|[78]))))|92(?:2[24-9]|3[1-59]|47)|93(?:4(?:36|5[56])|8(?:[38]5|76))[4-6]"
 				],
 				"0$1",
 				0,
@@ -14062,14 +14054,16 @@ var countries = {
 	AX: [
 		"358",
 		"00|99(?:[01469]|5(?:[14]1|3[23]|5[59]|77|88|9[09]))",
-		"2\\d{4,9}|35\\d{4,5}|(?:60\\d\\d|800)\\d{4,6}|(?:[147]\\d|3[0-46-9]|50)\\d{4,8}",
+		"2\\d{4,9}|35\\d{4,5}|(?:60\\d\\d|800)\\d{4,6}|7\\d{5,11}|(?:[14]\\d|3[0-46-9]|50)\\d{4,8}",
 		[
 			5,
 			6,
 			7,
 			8,
 			9,
-			10
+			10,
+			11,
+			12
 		],
 		0,
 		"0",
@@ -14084,7 +14078,7 @@ var countries = {
 	AZ: [
 		"994",
 		"00",
-		"(?:365\\d{3}|900200)\\d{3}|(?:[12457]\\d|60|88)\\d{7}",
+		"365\\d{6}|(?:[124579]\\d|60|88)\\d{7}",
 		[
 			9
 		],
@@ -14093,7 +14087,7 @@ var countries = {
 				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
 				"$1 $2 $3 $4",
 				[
-					"9"
+					"90"
 				],
 				"0$1"
 			],
@@ -14111,7 +14105,7 @@ var countries = {
 				"(\\d{2})(\\d{3})(\\d{2})(\\d{2})",
 				"$1 $2 $3 $4",
 				[
-					"[3-8]"
+					"[3-9]"
 				],
 				"0$1"
 			]
@@ -14131,7 +14125,7 @@ var countries = {
 				"(\\d{2})(\\d{3})(\\d{3})",
 				"$1 $2 $3",
 				[
-					"6[1-356]|[7-9]"
+					"6[1-3]|[7-9]"
 				],
 				"0$1"
 			],
@@ -14139,7 +14133,7 @@ var countries = {
 				"(\\d{2})(\\d{3})(\\d{3})",
 				"$1 $2-$3",
 				[
-					"[3-5]"
+					"[3-5]|6[56]"
 				],
 				"0$1"
 			],
@@ -14409,7 +14403,7 @@ var countries = {
 	BL: [
 		"590",
 		"00",
-		"(?:590|69\\d)\\d{6}",
+		"(?:590|69\\d|976)\\d{6}",
 		[
 			9
 		],
@@ -14426,6 +14420,15 @@ var countries = {
 			],
 			[
 				"69(?:0\\d\\d|1(?:2[29]|3[0-5]))\\d{4}"
+			],
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			[
+				"976[01]\\d{5}"
 			]
 		]
 	],
@@ -14979,7 +14982,7 @@ var countries = {
 	CK: [
 		"682",
 		"00",
-		"[2-8]\\d{4}",
+		"[2-578]\\d{4}",
 		[
 			5
 		],
@@ -14988,7 +14991,7 @@ var countries = {
 				"(\\d{2})(\\d{3})",
 				"$1 $2",
 				[
-					"[2-8]"
+					"[2-578]"
 				]
 			]
 		]
@@ -15215,7 +15218,7 @@ var countries = {
 				"(\\d)(\\d{7})",
 				"$1 $2",
 				[
-					"1[2-79]|[25-8]|(?:18|4)[2-9]"
+					"[14][2-9]|[25-8]"
 				],
 				"($1)"
 			],
@@ -15230,8 +15233,7 @@ var countries = {
 				"(\\d)(\\d{3})(\\d{7})",
 				"$1-$2-$3",
 				[
-					"1(?:80|9)",
-					"1(?:800|9)"
+					"1"
 				],
 				"0$1",
 				0,
@@ -15273,11 +15275,12 @@ var countries = {
 	CU: [
 		"53",
 		"119",
-		"[27]\\d{6,7}|[34]\\d{5,7}|5\\d{7}",
+		"[27]\\d{6,7}|[34]\\d{5,7}|(?:5|8\\d\\d)\\d{7}",
 		[
 			6,
 			7,
-			8
+			8,
+			10
 		],
 		[
 			[
@@ -15303,6 +15306,14 @@ var countries = {
 					"5"
 				],
 				"0$1"
+			],
+			[
+				"(\\d{3})(\\d{7})",
+				"$1 $2",
+				[
+					"8"
+				],
+				"0$1"
 			]
 		],
 		"0"
@@ -15310,7 +15321,7 @@ var countries = {
 	CV: [
 		"238",
 		"0",
-		"[2-59]\\d{6}",
+		"(?:[2-59]\\d\\d|800)\\d{4}",
 		[
 			7
 		],
@@ -15319,7 +15330,7 @@ var countries = {
 				"(\\d{3})(\\d{2})(\\d{2})",
 				"$1 $2 $3",
 				[
-					"[2-59]"
+					"[2-589]"
 				]
 			]
 		]
@@ -15685,7 +15696,7 @@ var countries = {
 		"1|([2-7]\\d{6})$",
 		"767$1",
 		0,
-		"767|8001"
+		"767"
 	],
 	DO: [
 		"1",
@@ -15936,14 +15947,16 @@ var countries = {
 	FI: [
 		"358",
 		"00|99(?:[01469]|5(?:[14]1|3[23]|5[59]|77|88|9[09]))",
-		"(?:[124-7]\\d|3[0-46-9])\\d{8}|[1-9]\\d{5,8}|[1-35689]\\d{4}",
+		"[1-35689]\\d{4}|7\\d{10,11}|(?:[124-7]\\d|3[0-46-9])\\d{8}|[1-9]\\d{5,8}",
 		[
 			5,
 			6,
 			7,
 			8,
 			9,
-			10
+			10,
+			11,
+			12
 		],
 		[
 			[
@@ -15958,7 +15971,7 @@ var countries = {
 				"(\\d{3})(\\d{3,7})",
 				"$1 $2",
 				[
-					"(?:[12]0|7)0|[368]"
+					"[12]00|[368]|70[07-9]"
 				],
 				"0$1"
 			],
@@ -15966,7 +15979,15 @@ var countries = {
 				"(\\d{2})(\\d{4,8})",
 				"$1 $2",
 				[
-					"[12457]"
+					"[1245]|7[135]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{6,10})",
+				"$1 $2",
+				[
+					"7"
 				],
 				"0$1"
 			]
@@ -16088,7 +16109,7 @@ var countries = {
 	GA: [
 		"241",
 		"00",
-		"(?:0\\d|[2-7])\\d{6}",
+		"(?:[067]\\d|11)\\d{6}|[2-7]\\d{6}",
 		[
 			7,
 			8
@@ -16106,10 +16127,22 @@ var countries = {
 				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
 				"$1 $2 $3 $4",
 				[
+					"11|[67]"
+				],
+				"0$1"
+			],
+			[
+				"(\\d{2})(\\d{2})(\\d{2})(\\d{2})",
+				"$1 $2 $3 $4",
+				[
 					"0"
 				]
 			]
-		]
+		],
+		0,
+		0,
+		"0(11\\d{6}|6[256]\\d{6}|7[47]\\d{6})",
+		"$1"
 	],
 	GB: [
 		"44",
@@ -16204,7 +16237,7 @@ var countries = {
 		0,
 		[
 			[
-				"(?:1(?:(?:1(?:3[0-58]|4[0-5]|5[0-26-9]|6[0-4]|[78][0-49])|3(?:0\\d|1[0-8]|[25][02-9]|3[02-579]|[468][0-46-9]|7[1-35-79]|9[2-578])|4(?:0[03-9]|[137]\\d|[28][02-57-9]|4[02-69]|5[0-8]|[69][0-79])|5(?:0[1-35-9]|[16]\\d|2[024-9]|3[015689]|4[02-9]|5[03-9]|7[0-35-9]|8[0-468]|9[0-57-9])|6(?:0[034689]|1\\d|2[0-35689]|[38][013-9]|4[1-467]|5[0-69]|6[13-9]|7[0-8]|9[0-24578])|7(?:0[0246-9]|2\\d|3[0236-8]|4[03-9]|5[0-46-9]|6[013-9]|7[0-35-9]|8[024-9]|9[02-9])|8(?:0[35-9]|2[1-57-9]|3[02-578]|4[0-578]|5[124-9]|6[2-69]|7\\d|8[02-9]|9[02569])|9(?:0[02-589]|[18]\\d|2[02-689]|3[1-57-9]|4[2-9]|5[0-579]|6[2-47-9]|7[0-24578]|9[2-57]))\\d\\d|2(?:(?:0[024-9]|2[3-9]|3[3-79]|4[1-689]|[58][02-9]|6[0-47-9]|7[013-9]|9\\d)\\d\\d|1(?:[0-7]\\d\\d|80[04589])))|2(?:0[01378]|3[0189]|4[017]|8[0-46-9]|9[0-2])\\d{3})\\d{4}|1(?:(?:2(?:0(?:46[1-4]|87[2-9])|545[1-79]|76(?:2\\d|3[1-8]|6[1-6])|9(?:7(?:2[0-4]|3[2-5])|8(?:2[2-8]|7[0-47-9]|8[3-5])))|3(?:6(?:38[2-5]|47[23])|8(?:47[04-9]|64[0157-9]))|4(?:044[1-7]|20(?:2[23]|8\\d)|6(?:0(?:30|5[2-57]|6[1-8]|7[2-8])|140)|8(?:052|87[1-3]))|5(?:2(?:4(?:3[2-79]|6\\d)|76\\d)|6(?:26[06-9]|686))|6(?:06(?:4\\d|7[4-79])|295[5-7]|35[34]\\d|47(?:24|61)|59(?:5[08]|6[67]|74)|9(?:55[0-4]|77[23]))|8(?:27[56]\\d|37(?:5[2-5]|8[239])|843[2-58])|9(?:0(?:0(?:6[1-8]|85)|52\\d)|3583|4(?:66[1-8]|9(?:2[01]|81))|63(?:23|3[1-4])|9561))\\d|7(?:(?:26(?:6[13-9]|7[0-7])|442\\d|50(?:2[0-3]|[3-68]2|76))\\d|6888[2-46-8]))\\d\\d",
+				"(?:1(?:(?:1(?:3[0-58]|4[0-5]|5[0-26-9]|6[0-4]|[78][0-49])|3(?:0\\d|1[0-8]|[25][02-9]|3[02-579]|[468][0-46-9]|7[1-35-79]|9[2-578])|4(?:0[03-9]|[137]\\d|[28][02-57-9]|4[02-69]|5[0-8]|[69][0-79])|5(?:0[1-35-9]|[16]\\d|2[024-9]|3[015689]|4[02-9]|5[03-9]|7[0-35-9]|8[0-468]|9[0-57-9])|6(?:0[034689]|1\\d|2[0-35689]|[38][013-9]|4[1-467]|5[0-69]|6[13-9]|7[0-8]|9[0-24578])|7(?:0[0246-9]|2\\d|3[0236-8]|4[03-9]|5[0-46-9]|6[013-9]|7[0-35-9]|8[024-9]|9[02-9])|8(?:0[35-9]|2[1-57-9]|3[02-578]|4[0-578]|5[124-9]|6[2-69]|7\\d|8[02-9]|9[02569])|9(?:0[02-589]|[18]\\d|2[02-689]|3[1-57-9]|4[2-9]|5[0-579]|6[2-47-9]|7[0-24578]|9[2-57]))\\d\\d|2(?:(?:0[024-9]|2[3-9]|3[3-79]|4[1-689]|[58][02-9]|6[0-47-9]|7[013-9]|9\\d)\\d\\d|1(?:[0-7]\\d\\d|80[04589])))|2(?:0[01378]|3[0189]|4[017]|8[0-46-9]|9[0-2])\\d{3})\\d{4}|1(?:2(?:0(?:46[1-4]|87[2-9])|545[1-79]|76(?:2\\d|3[1-8]|6[1-6])|9(?:7(?:2[0-4]|3[2-5])|8(?:2[2-8]|7[0-47-9]|8[3-5])))|3(?:6(?:38[2-5]|47[23])|8(?:47[04-9]|64[0157-9]))|4(?:044[1-7]|20(?:2[23]|8\\d)|6(?:0(?:30|5[2-57]|6[1-8]|7[2-8])|140)|8(?:052|87[1-3]))|5(?:2(?:4(?:3[2-79]|6\\d)|76\\d)|6(?:26[06-9]|686))|6(?:06(?:4\\d|7[4-79])|295[5-7]|35[34]\\d|47(?:24|61)|59(?:5[08]|6[67]|74)|9(?:55[0-4]|77[23]))|7(?:26(?:6[13-9]|7[0-7])|(?:442|688)\\d|50(?:2[0-3]|[3-68]2|76))|8(?:27[56]\\d|37(?:5[2-5]|8[239])|843[2-58])|9(?:0(?:0(?:6[1-8]|85)|52\\d)|3583|4(?:66[1-8]|9(?:2[01]|81))|63(?:23|3[1-4])|9561))\\d{3}",
 				[
 					9,
 					10
@@ -16315,7 +16348,7 @@ var countries = {
 	GF: [
 		"594",
 		"00",
-		"[56]94\\d{6}",
+		"(?:[56]94|976)\\d{6}",
 		[
 			9
 		],
@@ -16324,7 +16357,7 @@ var countries = {
 				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
 				"$1 $2 $3 $4",
 				[
-					"[56]"
+					"[569]"
 				],
 				"0$1"
 			]
@@ -16428,7 +16461,7 @@ var countries = {
 	GI: [
 		"350",
 		"00",
-		"(?:[25]\\d\\d|629)\\d{5}",
+		"[256]\\d{7}",
 		[
 			8
 		],
@@ -16504,7 +16537,7 @@ var countries = {
 	GP: [
 		"590",
 		"00",
-		"(?:590|69\\d)\\d{6}",
+		"(?:590|69\\d|976)\\d{6}",
 		[
 			9
 		],
@@ -16513,7 +16546,7 @@ var countries = {
 				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
 				"$1 $2 $3 $4",
 				[
-					"[56]"
+					"[569]"
 				],
 				"0$1"
 			]
@@ -16530,6 +16563,15 @@ var countries = {
 			],
 			[
 				"69(?:0\\d\\d|1(?:2[29]|3[0-5]))\\d{4}"
+			],
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			[
+				"976[01]\\d{5}"
 			]
 		]
 	],
@@ -16560,7 +16602,7 @@ var countries = {
 	GR: [
 		"30",
 		"00",
-		"(?:[268]\\d|[79]0)\\d{8}",
+		"5005000\\d{3}|(?:[2689]\\d|70)\\d{8}",
 		[
 			10
 		],
@@ -16576,7 +16618,7 @@ var countries = {
 				"(\\d{4})(\\d{6})",
 				"$1 $2",
 				[
-					"2(?:2|3[2-57-9]|4[2-469]|5[2-59]|6[2-9]|7[2-69]|8[2-49])"
+					"2(?:2|3[2-57-9]|4[2-469]|5[2-59]|6[2-9]|7[2-69]|8[2-49])|5"
 				]
 			],
 			[
@@ -17026,20 +17068,20 @@ var countries = {
 				]
 			],
 			[
-				"(\\d{2})(\\d)(\\d{3})(\\d{4})",
-				"$1 $2 $3 $4",
-				[
-					"8"
-				],
-				"0$1"
-			],
-			[
 				"(\\d{2})(\\d{4})(\\d{4})",
 				"$1 $2 $3",
 				[
 					"4"
 				],
 				"(0$1)"
+			],
+			[
+				"(\\d{2})(\\d)(\\d{3})(\\d{4})",
+				"$1 $2 $3 $4",
+				[
+					"8"
+				],
+				"0$1"
 			]
 		],
 		"0"
@@ -17136,7 +17178,7 @@ var countries = {
 	IN: [
 		"91",
 		"00",
-		"(?:00800|[2-9]\\d\\d)\\d{7}|1\\d{7,12}",
+		"(?:000800|[2-9]\\d\\d)\\d{7}|1\\d{7,12}",
 		[
 			8,
 			9,
@@ -17192,8 +17234,8 @@ var countries = {
 				"$1 $2 $3",
 				[
 					"1(?:2[0-249]|3[0-25]|4[145]|[68]|7[1257])|2(?:1[257]|3[013]|4[01]|5[0137]|6[0158]|78|8[1568])|3(?:26|4[1-3]|5[34]|6[01489]|7[02-46]|8[159])|4(?:1[36]|2[1-47]|5[12]|6[0-26-9]|7[0-24-9]|8[013-57]|9[014-7])|5(?:1[025]|22|[36][25]|4[28]|5[12]|[78]1)|6(?:12|[2-4]1|5[17]|6[13]|80)|7(?:12|3[134]|4[47]|61|88)|8(?:16|2[014]|3[126]|6[136]|7[078]|8[34]|91)|(?:43|59|75)[15]|(?:1[59]|29|67|72)[14]",
-					"1(?:2[0-24]|3[0-25]|4[145]|[59][14]|6[1-9]|7[1257]|8[1-57-9])|2(?:1[257]|3[013]|4[01]|5[0137]|6[058]|78|8[1568]|9[14])|3(?:26|4[1-3]|5[34]|6[01489]|7[02-46]|8[159])|4(?:1[36]|2[1-47]|3[15]|5[12]|6[0-26-9]|7[0-24-9]|8[013-57]|9[014-7])|5(?:1[025]|22|[36][25]|4[28]|[578]1|9[15])|6(?:[2-4]1|5[17]|6[13]|7[14]|80)|7(?:12|(?:2[14]|3[34]|5[15])[2-6]|61[346]|88[0-8])|8(?:70[2-6]|84[235-7]|91[3-7])|(?:1(?:29|60|8[06])|261|(?:55|61)2|7(?:31|4[47])|8(?:16|2[014]|3[126]|6[136]|7[78]|83))[2-7]",
-					"1(?:2[0-24]|3[0-25]|4[145]|[59][14]|6[1-9]|7[1257]|8[1-57-9])|2(?:1[257]|3[013]|4[01]|5[0137]|6[058]|78|8[1568]|9[14])|3(?:26|4[1-3]|5[34]|6[01489]|7[02-46]|8[159])|4(?:1[36]|2[1-47]|3[15]|5[12]|6[0-26-9]|7[0-24-9]|8[013-57]|9[014-7])|5(?:1[025]|22|[36][25]|4[28]|[578]1|9[15])|6(?:12(?:[2-6]|7[0-8])|[2-4]1|5[17]|6[13]|7[14]|80)|7(?:12|(?:2[14]|5[15])[2-6]|3171|61[346]|88(?:[2-7]|82))|8(?:70[2-6]|84(?:[2356]|7[19])|91(?:[3-6]|7[19]))|73[134][2-6]|(?:1(?:29|60|8[06])|261|552|788[01])[2-7]|(?:74[47]|8(?:16|2[014]|3[126]|6[136]|7[78]|83))(?:[2-6]|7[19])"
+					"1(?:2[0-24]|3[0-25]|4[145]|[59][14]|6[1-9]|7[1257]|8[1-57-9])|2(?:1[257]|3[013]|4[01]|5[0137]|6[058]|78|8[1568]|9[14])|3(?:26|4[1-3]|5[34]|6[01489]|7[02-46]|8[159])|4(?:1[36]|2[1-47]|3[15]|5[12]|6[0-26-9]|7[0-24-9]|8[013-57]|9[014-7])|5(?:1[025]|22|[36][25]|4[28]|[578]1|9[15])|674|7(?:(?:2[14]|3[34]|5[15])[2-6]|61[346]|88[0-8])|8(?:70[2-6]|84[235-7]|91[3-7])|(?:1(?:29|60|8[06])|261|552|6(?:12|[2-47]1|5[17]|6[13]|80)|7(?:12|31|4[47])|8(?:16|2[014]|3[126]|6[136]|7[78]|83))[2-7]",
+					"1(?:2[0-24]|3[0-25]|4[145]|[59][14]|6[1-9]|7[1257]|8[1-57-9])|2(?:1[257]|3[013]|4[01]|5[0137]|6[058]|78|8[1568]|9[14])|3(?:26|4[1-3]|5[34]|6[01489]|7[02-46]|8[159])|4(?:1[36]|2[1-47]|3[15]|5[12]|6[0-26-9]|7[0-24-9]|8[013-57]|9[014-7])|5(?:1[025]|22|[36][25]|4[28]|[578]1|9[15])|6(?:12(?:[2-6]|7[0-8])|74[2-7])|7(?:(?:2[14]|5[15])[2-6]|3171|61[346]|88(?:[2-7]|82))|8(?:70[2-6]|84(?:[2356]|7[19])|91(?:[3-6]|7[19]))|73[134][2-6]|(?:74[47]|8(?:16|2[014]|3[126]|6[136]|7[78]|83))(?:[2-6]|7[19])|(?:1(?:29|60|8[06])|261|552|6(?:[2-4]1|5[17]|6[13]|7(?:1|4[0189])|80)|7(?:12|88[01]))[2-7]"
 				],
 				"0$1",
 				1
@@ -17202,9 +17244,9 @@ var countries = {
 				"(\\d{4})(\\d{3})(\\d{3})",
 				"$1 $2 $3",
 				[
-					"1(?:[2-479]|5[0235-9])|[2-5]|6(?:1[1358]|2[2457-9]|3[2-5]|[4-8])|7(?:1[013-9]|28|3[129]|4[1-35689]|5[29]|6[02-5]|70)|807",
-					"1(?:[2-479]|5[0235-9])|[2-5]|6(?:1[1358]|2(?:[2457]|84|95)|3(?:[2-4]|55)|[4-8])|7(?:1(?:[013-8]|9[6-9])|28[6-8]|3(?:17|2[0-49]|9[2-57])|4(?:1[2-4]|[29][0-7]|3[0-8]|[56]|8[0-24-7])|5(?:2[1-3]|9[0-6])|6(?:0[5689]|2[5-9]|3[02-8]|4|5[0-367])|70[13-7])|807[19]",
-					"1(?:[2-479]|5(?:[0236-9]|5[013-9]))|[2-5]|6(?:1[1358]|2(?:[2457]|84|95)|3(?:[2-4]|55)|[4-8])|7(?:1(?:[013-8]|9[6-9])|3179)|807(?:1|9[1-3])|(?:1552|7(?:28[6-8]|3(?:2[0-49]|9[2-57])|4(?:1[2-4]|[29][0-7]|3[0-8]|[56]\\d|8[0-24-7])|5(?:2[1-3]|9[0-6])|6(?:0[5689]|2[5-9]|3[02-8]|4\\d|5[0-367])|70[13-7]))[2-7]"
+					"1(?:[2-479]|5[0235-9])|[2-5]|6(?:1[1358]|2[2457-9]|3[2-5]|4[235-7]|5[2-689]|6[24578]|7[235689]|8[1-6])|7(?:1[013-9]|28|3[129]|4[1-35689]|5[29]|6[02-5]|70)|807",
+					"1(?:[2-479]|5[0235-9])|[2-5]|6(?:1[1358]|2(?:[2457]|84|95)|3(?:[2-4]|55)|4[235-7]|5[2-689]|6[24578]|7[235689]|8[1-6])|7(?:1(?:[013-8]|9[6-9])|28[6-8]|3(?:17|2[0-49]|9[2-57])|4(?:1[2-4]|[29][0-7]|3[0-8]|[56]|8[0-24-7])|5(?:2[1-3]|9[0-6])|6(?:0[5689]|2[5-9]|3[02-8]|4|5[0-367])|70[13-7])|807[19]",
+					"1(?:[2-479]|5(?:[0236-9]|5[013-9]))|[2-5]|6(?:2(?:84|95)|355|83)|73179|807(?:1|9[1-3])|(?:1552|6(?:1[1358]|2[2457]|3[2-4]|4[235-7]|5[2-689]|6[24578]|7[235689]|8[124-6])\\d|7(?:1(?:[013-8]\\d|9[6-9])|28[6-8]|3(?:2[0-49]|9[2-57])|4(?:1[2-4]|[29][0-7]|3[0-8]|[56]\\d|8[0-24-7])|5(?:2[1-3]|9[0-6])|6(?:0[5689]|2[5-9]|3[02-8]|4\\d|5[0-367])|70[13-7]))[2-7]"
 				],
 				"0$1",
 				1
@@ -18135,7 +18177,7 @@ var countries = {
 		],
 		"0",
 		0,
-		"0|(10(?:01|20|66))"
+		"0|(1001)"
 	],
 	LK: [
 		"94",
@@ -18370,7 +18412,7 @@ var countries = {
 	LY: [
 		"218",
 		"00",
-		"(?:[2569]\\d|71)\\d{7}",
+		"[2-9]\\d{8}",
 		[
 			9
 		],
@@ -18379,7 +18421,7 @@ var countries = {
 				"(\\d{2})(\\d{7})",
 				"$1-$2",
 				[
-					"[25-79]"
+					"[2-9]"
 				],
 				"0$1"
 			]
@@ -18444,10 +18486,10 @@ var countries = {
 		0,
 		[
 			[
-				"5(?:29|38)[89]0\\d{4}|5(?:2(?:[015-7]\\d|2[2-9]|3[2-57]|4[2-46-8]|8[235-7]|90)|3(?:[0-4]\\d|[57][2-9]|6[2-8]|80|9[3-9])|(?:4[067]|5[03])\\d)\\d{5}"
+				"5(?:29|38)[89]0\\d{4}|5(?:2(?:[015-7]\\d|2[02-9]|3[2-578]|4[2-46-8]|8[235-7]|90)|3(?:[0-4]\\d|[57][2-9]|6[2-8]|80|9[3-9])|(?:4[067]|5[03])\\d)\\d{5}"
 			],
 			[
-				"692[12]\\d{5}|(?:6(?:[0-7]\\d|8[0-247-9]|9[013-9])|7(?:0[06-8]|6[1267]|7[0-27]))\\d{6}"
+				"(?:6(?:[0-79]\\d|8[0-247-9])|7(?:0[06-8]|6[1267]|7[0-27]))\\d{6}"
 			],
 			[
 				"80\\d{7}"
@@ -18460,7 +18502,7 @@ var countries = {
 			0,
 			0,
 			[
-				"5924[0-2]\\d{4}"
+				"592(?:4[0-2]|93)\\d{4}"
 			]
 		]
 	],
@@ -18557,7 +18599,7 @@ var countries = {
 	MF: [
 		"590",
 		"00",
-		"(?:590|69\\d)\\d{6}",
+		"(?:590|69\\d|976)\\d{6}",
 		[
 			9
 		],
@@ -18574,6 +18616,15 @@ var countries = {
 			],
 			[
 				"69(?:0\\d\\d|1(?:2[29]|3[0-5]))\\d{4}"
+			],
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			[
+				"976[01]\\d{5}"
 			]
 		]
 	],
@@ -18844,7 +18895,7 @@ var countries = {
 	MQ: [
 		"596",
 		"00",
-		"(?:596|69\\d)\\d{6}",
+		"69\\d{7}|(?:59|97)6\\d{6}",
 		[
 			9
 		],
@@ -18853,7 +18904,7 @@ var countries = {
 				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
 				"$1 $2 $3 $4",
 				[
-					"[56]"
+					"[569]"
 				],
 				"0$1"
 			]
@@ -19423,7 +19474,7 @@ var countries = {
 				"(\\d{3})(\\d{2})(\\d{3})",
 				"$1 $2 $3",
 				[
-					"[489]"
+					"[489]|5[89]"
 				]
 			],
 			[
@@ -20145,7 +20196,7 @@ var countries = {
 	QA: [
 		"974",
 		"00",
-		"800\\d{4}|(?:2|[3-7]\\d)\\d{6}",
+		"[2-7]\\d{7}|(?:2\\d\\d|800)\\d{4}",
 		[
 			7,
 			8
@@ -20162,7 +20213,7 @@ var countries = {
 				"(\\d{4})(\\d{4})",
 				"$1 $2",
 				[
-					"[3-7]"
+					"[2-7]"
 				]
 			]
 		]
@@ -20170,7 +20221,7 @@ var countries = {
 	RE: [
 		"262",
 		"00",
-		"(?:26|[68]\\d)\\d{7}",
+		"9769\\d{5}|(?:26|[68]\\d)\\d{7}",
 		[
 			9
 		],
@@ -20179,7 +20230,7 @@ var countries = {
 				"(\\d{3})(\\d{2})(\\d{2})(\\d{2})",
 				"$1 $2 $3 $4",
 				[
-					"[268]"
+					"[2689]"
 				],
 				"0$1"
 			]
@@ -20189,7 +20240,7 @@ var countries = {
 		0,
 		0,
 		0,
-		"262|69|8"
+		"26[23]|69|[89]"
 	],
 	RO: [
 		"40",
@@ -21453,12 +21504,13 @@ var countries = {
 	TW: [
 		"886",
 		"0(?:0[25-79]|19)",
-		"(?:[24589]|7\\d)\\d{8}|[2-8]\\d{7}|2\\d{6}",
+		"[2-689]\\d{8}|7\\d{9,10}|[2-8]\\d{7}|2\\d{6}",
 		[
 			7,
 			8,
 			9,
-			10
+			10,
+			11
 		],
 		[
 			[
@@ -21470,18 +21522,19 @@ var countries = {
 				"0$1"
 			],
 			[
-				"(\\d)(\\d{3,4})(\\d{4})",
+				"(\\d{2})(\\d{3})(\\d{3,4})",
 				"$1 $2 $3",
 				[
-					"[25][2-8]|[346]|7[1-9]|8[237-9]"
+					"[258]0"
 				],
 				"0$1"
 			],
 			[
-				"(\\d{2})(\\d{3})(\\d{4})",
+				"(\\d)(\\d{3,4})(\\d{4})",
 				"$1 $2 $3",
 				[
-					"[258]"
+					"[23568]|4(?:0[02-48]|[1-47-9])|7[1-9]",
+					"[23568]|4(?:0[2-48]|[1-47-9])|(?:400|7)[1-9]"
 				],
 				"0$1"
 			],
@@ -21489,12 +21542,12 @@ var countries = {
 				"(\\d{3})(\\d{3})(\\d{3})",
 				"$1 $2 $3",
 				[
-					"9"
+					"[49]"
 				],
 				"0$1"
 			],
 			[
-				"(\\d{2})(\\d{4})(\\d{4})",
+				"(\\d{2})(\\d{4})(\\d{4,5})",
 				"$1 $2 $3",
 				[
 					"7"
@@ -22103,7 +22156,7 @@ var countries = {
 	ZM: [
 		"260",
 		"00",
-		"800\\d{6}|(?:21|76|9\\d)\\d{7}",
+		"(?:63|80)0\\d{6}|(?:21|[79]\\d)\\d{7}",
 		[
 			9
 		],
@@ -22241,1017 +22294,11 @@ var countries = {
 		]
 	]
 };
-var metadata_min = {
+var metadata = {
 	version: version,
 	country_calling_codes: country_calling_codes,
 	countries: countries
 };
-
-var metadata_min$1 = /*#__PURE__*/Object.freeze({
-  version: version,
-  country_calling_codes: country_calling_codes,
-  countries: countries,
-  'default': metadata_min
-});
-
-var ext = "ext.";
-var country = "Country";
-var phone = "Phone";
-var AB = "Abkhazia";
-var AC = "Ascension Island";
-var AD = "Andorra";
-var AE = "United Arab Emirates (‫الإمارات العربية المتحدة‬‎)";
-var AF = "Afghanistan (‫افغانستان‬‎)";
-var AG = "Antigua and Barbuda";
-var AI = "Anguilla";
-var AL = "Albania (Shqipëri)";
-var AM = "Armenia (Հայաստան)";
-var AO = "Angola";
-var AQ = "Antarctica";
-var AR = "Argentina";
-var AS = "American Samoa (Amerika Sāmoa)";
-var AT = "Austria (Österreich)";
-var AU = "Australia";
-var AW = "Aruba";
-var AX = "Åland Islands";
-var AZ = "Azerbaijan (Azərbaycan)";
-var BA = "Bosnia and Herzegovina";
-var BB = "Barbados";
-var BD = "Bangladesh (বাংলাদেশ)";
-var BE = "Belgium (België)";
-var BF = "Burkina Faso";
-var BG = "Bulgaria (България)";
-var BH = "Bahrain (‫البحرين‬‎)";
-var BI = "Burundi (Uburundi)";
-var BJ = "Benin (Bénin)";
-var BL = "Saint Barthélemy (Saint-Barthélemy)";
-var BM = "Bermuda";
-var BN = "Brunei (Negara Brunei Darussalam)";
-var BO = "Bolivia";
-var BQ = "Caribbean Netherlands";
-var BR = "Brazil (Brasil)";
-var BS = "Bahamas";
-var BT = "Bhutan (འབྲུག)";
-var BV = "Bouvet Island";
-var BW = "Botswana";
-var BY = "Belarus (Беларусь)";
-var BZ = "Belize";
-var CA = "Canada";
-var CC = "Cocos (Keeling) Islands";
-var CD = "Congo (DRC) (Kongo)";
-var CF = "Central African Republic";
-var CG = "Congo (Republic) (Congo-Brazzaville)";
-var CH = "Switzerland (Schweiz)";
-var CI = "Côte d’Ivoire";
-var CK = "Cook Islands";
-var CL = "Chile";
-var CM = "Cameroon (Cameroun)";
-var CN = "China (中国)";
-var CO = "Colombia";
-var CR = "Costa Rica";
-var CU = "Cuba";
-var CV = "Cape Verde (Kabu Verdi)";
-var CW = "Curaçao";
-var CX = "Christmas Island";
-var CY = "Cyprus (Κύπρος)";
-var CZ = "Czech Republic (Česká republika)";
-var DE = "Germany (Deutschland)";
-var DJ = "Djibouti";
-var DK = "Denmark (Danmark)";
-var DM = "Dominica";
-var DO = "Dominican Republic";
-var DZ = "Algeria (‫الجزائر‬‎)";
-var EC = "Ecuador";
-var EE = "Estonia (Eesti)";
-var EG = "Egypt (‫مصر‬‎)";
-var EH = "Western Sahara (‫الصحراء الغربية‬‎)";
-var ER = "Eritrea";
-var ES = "Spain (España)";
-var ET = "Ethiopia";
-var FI = "Finland (Suomi)";
-var FJ = "Fiji (Matanitu Tugalala o Viti)";
-var FK = "Falkland Islands (Islas Malvinas)";
-var FM = "Micronesia";
-var FO = "Faroe Islands (Føroyar)";
-var FR = "France (République française)";
-var GA = "Gabon (République gabonaise)";
-var GB = "United Kingdom";
-var GD = "Grenada";
-var GE = "Georgia (საქართველო)";
-var GF = "French Guiana (Guyane française)";
-var GG = "Guernsey";
-var GH = "Ghana (Gaana)";
-var GI = "Gibraltar";
-var GL = "Greenland (Kalaallit Nunaat)";
-var GM = "Gambia";
-var GN = "Guinea (Guinée)";
-var GP = "Guadeloupe";
-var GQ = "Equatorial Guinea (Guinea Ecuatorial)";
-var GR = "Greece (Ελλάδα)";
-var GS = "South Georgia and the South Sandwich Islands";
-var GT = "Guatemala";
-var GU = "Guam (Guåhån)";
-var GW = "Guinea-Bissau (Guiné Bissau)";
-var GY = "Guyana";
-var HK = "Hong Kong (香港)";
-var HM = "Heard Island and McDonald Islands";
-var HN = "Honduras";
-var HR = "Croatia (Hrvatska)";
-var HT = "Haiti (République d'Haïti)";
-var HU = "Hungary (Magyarország)";
-var ID = "Indonesia";
-var IE = "Ireland";
-var IL = "Israel (‫ישראל‬‎)";
-var IM = "Isle of Man";
-var IN = "India (भारत)";
-var IO = "British Indian Ocean Territory";
-var IQ = "Iraq (‫العراق‬‎)";
-var IR = "Iran (‫ایران‬‎)";
-var IS = "Iceland (Ísland)";
-var IT = "Italy (Italia)";
-var JE = "Jersey";
-var JM = "Jamaica";
-var JO = "Jordan (‫الأردن‬‎)";
-var JP = "Japan (日本)";
-var KE = "Kenya";
-var KG = "Kyrgyzstan (Кыргызстан)";
-var KH = "Cambodia (កម្ពុជា)";
-var KI = "Kiribati";
-var KM = "Comoros (‫جزر القمر‬‎)";
-var KN = "Saint Kitts and Nevis";
-var KP = "North Korea (조선 민주주의 인민 공화국)";
-var KR = "South Korea (대한민국)";
-var KW = "Kuwait (‫الكويت‬‎)";
-var KY = "Cayman Islands";
-var KZ = "Kazakhstan (Казахстан)";
-var LA = "Laos (ລາວ)";
-var LB = "Lebanon (‫لبنان‬‎)";
-var LC = "Saint Lucia";
-var LI = "Liechtenstein";
-var LK = "Sri Lanka (ශ්‍රී ලංකාව)";
-var LR = "Liberia";
-var LS = "Lesotho";
-var LT = "Lithuania (Lietuva)";
-var LU = "Luxembourg (Lëtzebuerg)";
-var LV = "Latvia (Latvija)";
-var LY = "Libya (‫ليبيا‬‎)";
-var MA = "Morocco (‫المغرب‬‎)";
-var MC = "Monaco";
-var MD = "Moldova (Republica Moldova)";
-var ME = "Montenegro (Crna Gora)";
-var MF = "Saint Martin (Saint-Martin)";
-var MG = "Madagascar (Madagasikara)";
-var MH = "Marshall Islands";
-var MK = "Macedonia (FYROM) (Македонија)";
-var ML = "Mali";
-var MM = "Myanmar (Burma) (မြန်မာ)";
-var MN = "Mongolia (Монгол)";
-var MO = "Macau (澳門)";
-var MP = "Northern Mariana Islands";
-var MQ = "Martinique";
-var MR = "Mauritania (‫موريتانيا‬‎)";
-var MS = "Montserrat";
-var MT = "Malta";
-var MU = "Mauritius (Moris)";
-var MV = "Maldives";
-var MW = "Malawi (Malaŵi)";
-var MX = "Mexico (México)";
-var MY = "Malaysia";
-var MZ = "Mozambique (Moçambique)";
-var NA = "Namibia (Namibië)";
-var NC = "New Caledonia (Nouvelle-Calédonie)";
-var NE = "Niger (Nijar)";
-var NF = "Norfolk Island";
-var NG = "Nigeria";
-var NI = "Nicaragua";
-var NL = "Netherlands (Nederland)";
-var NO = "Norway (Norge)";
-var NP = "Nepal (नेपाल)";
-var NR = "Nauru (Repubrikin Naoero)";
-var NU = "Niue (Niuē)";
-var NZ = "New Zealand";
-var OM = "Oman (‫عُمان‬‎)";
-var OS = "South Ossetia";
-var PA = "Panama (Panamá)";
-var PE = "Peru (Perú)";
-var PF = "French Polynesia (Polynésie française)";
-var PG = "Papua New Guinea";
-var PH = "Philippines (Republika ng Pilipinas)";
-var PK = "Pakistan (‫پاکستان‬‎)";
-var PL = "Poland (Polska)";
-var PM = "Saint Pierre and Miquelon";
-var PN = "Pitcairn";
-var PR = "Puerto Rico";
-var PS = "Palestine (‫فلسطين‬‎)";
-var PT = "Portugal (República Portuguesa)";
-var PW = "Palau (Beluu er a Belau)";
-var PY = "Paraguay (Tetã Paraguái)";
-var QA = "Qatar (‫قطر‬‎)";
-var RE = "Réunion (La Réunion)";
-var RO = "Romania (România)";
-var RS = "Serbia (Србија)";
-var RU = "Russia (Россия)";
-var RW = "Rwanda";
-var SA = "Saudi Arabia (‫المملكة العربية السعودية‬‎)";
-var SB = "Solomon Islands";
-var SC = "Seychelles (Repiblik Sesel)";
-var SD = "Sudan (‫السودان‬‎)";
-var SE = "Sweden (Sverige)";
-var SG = "Singapore (Singapura) (新加坡共和国)";
-var SH = "Saint Helena";
-var SI = "Slovenia (Slovenija)";
-var SJ = "Svalbard and Jan Mayen";
-var SK = "Slovakia (Slovensko)";
-var SL = "Sierra Leone";
-var SM = "San Marino";
-var SN = "Senegal (Sénégal)";
-var SO = "Somalia (Soomaaliya)";
-var SR = "Suriname";
-var SS = "South Sudan (‫جنوب السودان‬‎)";
-var ST = "São Tomé and Príncipe";
-var SV = "El Salvador";
-var SX = "Sint Maarten";
-var SY = "Syria (‫سوريا‬‎)";
-var SZ = "Swaziland (Umbuso weSwatini)";
-var TA = "Tristan da Cunha";
-var TC = "Turks and Caicos Islands";
-var TD = "Chad (Tchad)";
-var TF = "French Southern Territories";
-var TG = "Togo (République togolaise)";
-var TH = "Thailand (ไทย)";
-var TJ = "Tajikistan (Ҷумҳурии Тоҷикистон)";
-var TK = "Tokelau";
-var TL = "Timor-Leste (Timór-Leste)";
-var TM = "Turkmenistan (Türkmenistan)";
-var TN = "Tunisia (‫تونس‬‎)";
-var TO = "Tonga";
-var TR = "Turkey (Türkiye)";
-var TT = "Trinidad and Tobago";
-var TV = "Tuvalu";
-var TW = "Taiwan (台灣)";
-var TZ = "Tanzania";
-var UA = "Ukraine (Україна)";
-var UG = "Uganda";
-var UM = "United States Minor Outlying Islands";
-var US = "United States";
-var UY = "Uruguay";
-var UZ = "Uzbekistan (Oʻzbekiston)";
-var VA = "Vatican City (Città del Vaticano)";
-var VC = "Saint Vincent and the Grenadines";
-var VE = "Venezuela";
-var VG = "British Virgin Islands";
-var VI = "U.S. Virgin Islands";
-var VN = "Vietnam (Việt Nam)";
-var VU = "Vanuatu";
-var WF = "Wallis and Futuna (Wallis-et-Futuna)";
-var WS = "Samoa (Sāmoa)";
-var XK = "Kosovo";
-var YE = "Yemen (‫اليمن‬‎)";
-var YT = "Mayotte";
-var ZA = "South Africa";
-var ZM = "Zambia";
-var ZW = "Zimbabwe";
-var ZZ = "International";
-var _default = {
-	ext: ext,
-	country: country,
-	phone: phone,
-	AB: AB,
-	AC: AC,
-	AD: AD,
-	AE: AE,
-	AF: AF,
-	AG: AG,
-	AI: AI,
-	AL: AL,
-	AM: AM,
-	AO: AO,
-	AQ: AQ,
-	AR: AR,
-	AS: AS,
-	AT: AT,
-	AU: AU,
-	AW: AW,
-	AX: AX,
-	AZ: AZ,
-	BA: BA,
-	BB: BB,
-	BD: BD,
-	BE: BE,
-	BF: BF,
-	BG: BG,
-	BH: BH,
-	BI: BI,
-	BJ: BJ,
-	BL: BL,
-	BM: BM,
-	BN: BN,
-	BO: BO,
-	BQ: BQ,
-	BR: BR,
-	BS: BS,
-	BT: BT,
-	BV: BV,
-	BW: BW,
-	BY: BY,
-	BZ: BZ,
-	CA: CA,
-	CC: CC,
-	CD: CD,
-	CF: CF,
-	CG: CG,
-	CH: CH,
-	CI: CI,
-	CK: CK,
-	CL: CL,
-	CM: CM,
-	CN: CN,
-	CO: CO,
-	CR: CR,
-	CU: CU,
-	CV: CV,
-	CW: CW,
-	CX: CX,
-	CY: CY,
-	CZ: CZ,
-	DE: DE,
-	DJ: DJ,
-	DK: DK,
-	DM: DM,
-	DO: DO,
-	DZ: DZ,
-	EC: EC,
-	EE: EE,
-	EG: EG,
-	EH: EH,
-	ER: ER,
-	ES: ES,
-	ET: ET,
-	FI: FI,
-	FJ: FJ,
-	FK: FK,
-	FM: FM,
-	FO: FO,
-	FR: FR,
-	GA: GA,
-	GB: GB,
-	GD: GD,
-	GE: GE,
-	GF: GF,
-	GG: GG,
-	GH: GH,
-	GI: GI,
-	GL: GL,
-	GM: GM,
-	GN: GN,
-	GP: GP,
-	GQ: GQ,
-	GR: GR,
-	GS: GS,
-	GT: GT,
-	GU: GU,
-	GW: GW,
-	GY: GY,
-	HK: HK,
-	HM: HM,
-	HN: HN,
-	HR: HR,
-	HT: HT,
-	HU: HU,
-	ID: ID,
-	IE: IE,
-	IL: IL,
-	IM: IM,
-	IN: IN,
-	IO: IO,
-	IQ: IQ,
-	IR: IR,
-	IS: IS,
-	IT: IT,
-	JE: JE,
-	JM: JM,
-	JO: JO,
-	JP: JP,
-	KE: KE,
-	KG: KG,
-	KH: KH,
-	KI: KI,
-	KM: KM,
-	KN: KN,
-	KP: KP,
-	KR: KR,
-	KW: KW,
-	KY: KY,
-	KZ: KZ,
-	LA: LA,
-	LB: LB,
-	LC: LC,
-	LI: LI,
-	LK: LK,
-	LR: LR,
-	LS: LS,
-	LT: LT,
-	LU: LU,
-	LV: LV,
-	LY: LY,
-	MA: MA,
-	MC: MC,
-	MD: MD,
-	ME: ME,
-	MF: MF,
-	MG: MG,
-	MH: MH,
-	MK: MK,
-	ML: ML,
-	MM: MM,
-	MN: MN,
-	MO: MO,
-	MP: MP,
-	MQ: MQ,
-	MR: MR,
-	MS: MS,
-	MT: MT,
-	MU: MU,
-	MV: MV,
-	MW: MW,
-	MX: MX,
-	MY: MY,
-	MZ: MZ,
-	NA: NA,
-	NC: NC,
-	NE: NE,
-	NF: NF,
-	NG: NG,
-	NI: NI,
-	NL: NL,
-	NO: NO,
-	NP: NP,
-	NR: NR,
-	NU: NU,
-	NZ: NZ,
-	OM: OM,
-	OS: OS,
-	PA: PA,
-	PE: PE,
-	PF: PF,
-	PG: PG,
-	PH: PH,
-	PK: PK,
-	PL: PL,
-	PM: PM,
-	PN: PN,
-	PR: PR,
-	PS: PS,
-	PT: PT,
-	PW: PW,
-	PY: PY,
-	QA: QA,
-	RE: RE,
-	RO: RO,
-	RS: RS,
-	RU: RU,
-	RW: RW,
-	SA: SA,
-	SB: SB,
-	SC: SC,
-	SD: SD,
-	SE: SE,
-	SG: SG,
-	SH: SH,
-	SI: SI,
-	SJ: SJ,
-	SK: SK,
-	SL: SL,
-	SM: SM,
-	SN: SN,
-	SO: SO,
-	SR: SR,
-	SS: SS,
-	ST: ST,
-	SV: SV,
-	SX: SX,
-	SY: SY,
-	SZ: SZ,
-	TA: TA,
-	TC: TC,
-	TD: TD,
-	TF: TF,
-	TG: TG,
-	TH: TH,
-	TJ: TJ,
-	TK: TK,
-	TL: TL,
-	TM: TM,
-	TN: TN,
-	TO: TO,
-	TR: TR,
-	TT: TT,
-	TV: TV,
-	TW: TW,
-	TZ: TZ,
-	UA: UA,
-	UG: UG,
-	UM: UM,
-	US: US,
-	UY: UY,
-	UZ: UZ,
-	VA: VA,
-	VC: VC,
-	VE: VE,
-	VG: VG,
-	VI: VI,
-	VN: VN,
-	VU: VU,
-	WF: WF,
-	WS: WS,
-	XK: XK,
-	YE: YE,
-	YT: YT,
-	ZA: ZA,
-	ZM: ZM,
-	ZW: ZW,
-	ZZ: ZZ
-};
-
-var _default$1 = /*#__PURE__*/Object.freeze({
-  ext: ext,
-  country: country,
-  phone: phone,
-  AB: AB,
-  AC: AC,
-  AD: AD,
-  AE: AE,
-  AF: AF,
-  AG: AG,
-  AI: AI,
-  AL: AL,
-  AM: AM,
-  AO: AO,
-  AQ: AQ,
-  AR: AR,
-  AS: AS,
-  AT: AT,
-  AU: AU,
-  AW: AW,
-  AX: AX,
-  AZ: AZ,
-  BA: BA,
-  BB: BB,
-  BD: BD,
-  BE: BE,
-  BF: BF,
-  BG: BG,
-  BH: BH,
-  BI: BI,
-  BJ: BJ,
-  BL: BL,
-  BM: BM,
-  BN: BN,
-  BO: BO,
-  BQ: BQ,
-  BR: BR,
-  BS: BS,
-  BT: BT,
-  BV: BV,
-  BW: BW,
-  BY: BY,
-  BZ: BZ,
-  CA: CA,
-  CC: CC,
-  CD: CD,
-  CF: CF,
-  CG: CG,
-  CH: CH,
-  CI: CI,
-  CK: CK,
-  CL: CL,
-  CM: CM,
-  CN: CN,
-  CO: CO,
-  CR: CR,
-  CU: CU,
-  CV: CV,
-  CW: CW,
-  CX: CX,
-  CY: CY,
-  CZ: CZ,
-  DE: DE,
-  DJ: DJ,
-  DK: DK,
-  DM: DM,
-  DO: DO,
-  DZ: DZ,
-  EC: EC,
-  EE: EE,
-  EG: EG,
-  EH: EH,
-  ER: ER,
-  ES: ES,
-  ET: ET,
-  FI: FI,
-  FJ: FJ,
-  FK: FK,
-  FM: FM,
-  FO: FO,
-  FR: FR,
-  GA: GA,
-  GB: GB,
-  GD: GD,
-  GE: GE,
-  GF: GF,
-  GG: GG,
-  GH: GH,
-  GI: GI,
-  GL: GL,
-  GM: GM,
-  GN: GN,
-  GP: GP,
-  GQ: GQ,
-  GR: GR,
-  GS: GS,
-  GT: GT,
-  GU: GU,
-  GW: GW,
-  GY: GY,
-  HK: HK,
-  HM: HM,
-  HN: HN,
-  HR: HR,
-  HT: HT,
-  HU: HU,
-  ID: ID,
-  IE: IE,
-  IL: IL,
-  IM: IM,
-  IN: IN,
-  IO: IO,
-  IQ: IQ,
-  IR: IR,
-  IS: IS,
-  IT: IT,
-  JE: JE,
-  JM: JM,
-  JO: JO,
-  JP: JP,
-  KE: KE,
-  KG: KG,
-  KH: KH,
-  KI: KI,
-  KM: KM,
-  KN: KN,
-  KP: KP,
-  KR: KR,
-  KW: KW,
-  KY: KY,
-  KZ: KZ,
-  LA: LA,
-  LB: LB,
-  LC: LC,
-  LI: LI,
-  LK: LK,
-  LR: LR,
-  LS: LS,
-  LT: LT,
-  LU: LU,
-  LV: LV,
-  LY: LY,
-  MA: MA,
-  MC: MC,
-  MD: MD,
-  ME: ME,
-  MF: MF,
-  MG: MG,
-  MH: MH,
-  MK: MK,
-  ML: ML,
-  MM: MM,
-  MN: MN,
-  MO: MO,
-  MP: MP,
-  MQ: MQ,
-  MR: MR,
-  MS: MS,
-  MT: MT,
-  MU: MU,
-  MV: MV,
-  MW: MW,
-  MX: MX,
-  MY: MY,
-  MZ: MZ,
-  NA: NA,
-  NC: NC,
-  NE: NE,
-  NF: NF,
-  NG: NG,
-  NI: NI,
-  NL: NL,
-  NO: NO,
-  NP: NP,
-  NR: NR,
-  NU: NU,
-  NZ: NZ,
-  OM: OM,
-  OS: OS,
-  PA: PA,
-  PE: PE,
-  PF: PF,
-  PG: PG,
-  PH: PH,
-  PK: PK,
-  PL: PL,
-  PM: PM,
-  PN: PN,
-  PR: PR,
-  PS: PS,
-  PT: PT,
-  PW: PW,
-  PY: PY,
-  QA: QA,
-  RE: RE,
-  RO: RO,
-  RS: RS,
-  RU: RU,
-  RW: RW,
-  SA: SA,
-  SB: SB,
-  SC: SC,
-  SD: SD,
-  SE: SE,
-  SG: SG,
-  SH: SH,
-  SI: SI,
-  SJ: SJ,
-  SK: SK,
-  SL: SL,
-  SM: SM,
-  SN: SN,
-  SO: SO,
-  SR: SR,
-  SS: SS,
-  ST: ST,
-  SV: SV,
-  SX: SX,
-  SY: SY,
-  SZ: SZ,
-  TA: TA,
-  TC: TC,
-  TD: TD,
-  TF: TF,
-  TG: TG,
-  TH: TH,
-  TJ: TJ,
-  TK: TK,
-  TL: TL,
-  TM: TM,
-  TN: TN,
-  TO: TO,
-  TR: TR,
-  TT: TT,
-  TV: TV,
-  TW: TW,
-  TZ: TZ,
-  UA: UA,
-  UG: UG,
-  UM: UM,
-  US: US,
-  UY: UY,
-  UZ: UZ,
-  VA: VA,
-  VC: VC,
-  VE: VE,
-  VG: VG,
-  VI: VI,
-  VN: VN,
-  VU: VU,
-  WF: WF,
-  WS: WS,
-  XK: XK,
-  YE: YE,
-  YT: YT,
-  ZA: ZA,
-  ZM: ZM,
-  ZW: ZW,
-  ZZ: ZZ,
-  'default': _default
-});
-
-var InternationalIcon_1 = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.default = InternationalIcon;
-
-
-
-var _react2 = _interopRequireDefault(e__default);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function InternationalIcon() {
-	return _react2.default.createElement(
-		"svg",
-		{ xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 50 50" },
-		_react2.default.createElement("path", { stroke: "currentColor", fill: "none", strokeWidth: "1.5", strokeLinecap: "round", d: "M8.45,13A21.44,21.44,0,1,1,37.08,41.56" }),
-		_react2.default.createElement("path", { stroke: "currentColor", fill: "none", strokeWidth: "1.5", strokeLinecap: "round", d: "M19.36,35.47a36.9,36.9,0,0,1-2.28-13.24C17.08,10.39,21.88.85,27.8.85s10.72,9.54,10.72,21.38c0,6.48-1.44,12.28-3.71,16.21" }),
-		_react2.default.createElement("path", { stroke: "currentColor", fill: "none", strokeWidth: "1.5", strokeLinecap: "round", d: "M17.41,33.4A39,39,0,0,1,27.8,32.06c6.62,0,12.55,1.5,16.48,3.86" }),
-		_react2.default.createElement("path", { stroke: "currentColor", fill: "none", strokeWidth: "1.5", strokeLinecap: "round", d: "M44.29,8.53c-3.93,2.37-9.86,3.88-16.49,3.88S15.25,10.9,11.31,8.54" }),
-		_react2.default.createElement("line", { stroke: "currentColor", fill: "none", strokeWidth: "1.5", strokeLinecap: "round", x1: "27.8", y1: "0.85", x2: "27.8", y2: "34.61" }),
-		_react2.default.createElement("line", { stroke: "currentColor", fill: "none", strokeWidth: "1.5", strokeLinecap: "round", x1: "15.2", y1: "22.23", x2: "49.15", y2: "22.23" }),
-		_react2.default.createElement("path", { stroke: "transparent", fill: "currentColor", d: "M9.42,26.64c2.22-2.22,4.15-3.59.22-8.49S3.08,17,.93,19.17c-2.49,2.48-.13,11.74,9,20.89s18.41,11.5,20.89,9c2.15-2.15,5.91-4.77,1-8.71s-6.27-2-8.49.22c-1.55,1.55-5.48-1.69-8.86-5.08S7.87,28.19,9.42,26.64Z" })
-	);
-}
-
-});
-
-unwrapExports(InternationalIcon_1);
-
-var PropTypes = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.labels = exports.metadata = undefined;
-
-
-
-var _propTypes2 = _interopRequireDefault(PropTypes$2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var metadata = exports.metadata = _propTypes2.default.shape({
-	country_calling_codes: _propTypes2.default.object.isRequired,
-	countries: _propTypes2.default.object.isRequired
-});
-
-var labels = exports.labels = _propTypes2.default.objectOf(_propTypes2.default.string);
-
-});
-
-unwrapExports(PropTypes);
-var PropTypes_1 = PropTypes.labels;
-var PropTypes_2 = PropTypes.metadata;
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-function componentWillMount() {
-  // Call this.constructor.gDSFP to support sub-classes.
-  var state = this.constructor.getDerivedStateFromProps(this.props, this.state);
-  if (state !== null && state !== undefined) {
-    this.setState(state);
-  }
-}
-
-function componentWillReceiveProps(nextProps) {
-  // Call this.constructor.gDSFP to support sub-classes.
-  // Use the setState() updater to ensure state isn't stale in certain edge cases.
-  function updater(prevState) {
-    var state = this.constructor.getDerivedStateFromProps(nextProps, prevState);
-    return state !== null && state !== undefined ? state : null;
-  }
-  // Binding "this" is important for shallow renderer support.
-  this.setState(updater.bind(this));
-}
-
-function componentWillUpdate(nextProps, nextState) {
-  try {
-    var prevProps = this.props;
-    var prevState = this.state;
-    this.props = nextProps;
-    this.state = nextState;
-    this.__reactInternalSnapshotFlag = true;
-    this.__reactInternalSnapshot = this.getSnapshotBeforeUpdate(
-      prevProps,
-      prevState
-    );
-  } finally {
-    this.props = prevProps;
-    this.state = prevState;
-  }
-}
-
-// React may warn about cWM/cWRP/cWU methods being deprecated.
-// Add a flag to suppress these warnings for this special case.
-componentWillMount.__suppressDeprecationWarning = true;
-componentWillReceiveProps.__suppressDeprecationWarning = true;
-componentWillUpdate.__suppressDeprecationWarning = true;
-
-function polyfill(Component) {
-  var prototype = Component.prototype;
-
-  if (!prototype || !prototype.isReactComponent) {
-    throw new Error('Can only polyfill class components');
-  }
-
-  if (
-    typeof Component.getDerivedStateFromProps !== 'function' &&
-    typeof prototype.getSnapshotBeforeUpdate !== 'function'
-  ) {
-    return Component;
-  }
-
-  // If new component APIs are defined, "unsafe" lifecycles won't be called.
-  // Error if any of these lifecycles are present,
-  // Because they would work differently between older and newer (16.3+) versions of React.
-  var foundWillMountName = null;
-  var foundWillReceivePropsName = null;
-  var foundWillUpdateName = null;
-  if (typeof prototype.componentWillMount === 'function') {
-    foundWillMountName = 'componentWillMount';
-  } else if (typeof prototype.UNSAFE_componentWillMount === 'function') {
-    foundWillMountName = 'UNSAFE_componentWillMount';
-  }
-  if (typeof prototype.componentWillReceiveProps === 'function') {
-    foundWillReceivePropsName = 'componentWillReceiveProps';
-  } else if (typeof prototype.UNSAFE_componentWillReceiveProps === 'function') {
-    foundWillReceivePropsName = 'UNSAFE_componentWillReceiveProps';
-  }
-  if (typeof prototype.componentWillUpdate === 'function') {
-    foundWillUpdateName = 'componentWillUpdate';
-  } else if (typeof prototype.UNSAFE_componentWillUpdate === 'function') {
-    foundWillUpdateName = 'UNSAFE_componentWillUpdate';
-  }
-  if (
-    foundWillMountName !== null ||
-    foundWillReceivePropsName !== null ||
-    foundWillUpdateName !== null
-  ) {
-    var componentName = Component.displayName || Component.name;
-    var newApiName =
-      typeof Component.getDerivedStateFromProps === 'function'
-        ? 'getDerivedStateFromProps()'
-        : 'getSnapshotBeforeUpdate()';
-
-    throw Error(
-      'Unsafe legacy lifecycles will not be called for components using new component APIs.\n\n' +
-        componentName +
-        ' uses ' +
-        newApiName +
-        ' but also contains the following legacy lifecycles:' +
-        (foundWillMountName !== null ? '\n  ' + foundWillMountName : '') +
-        (foundWillReceivePropsName !== null
-          ? '\n  ' + foundWillReceivePropsName
-          : '') +
-        (foundWillUpdateName !== null ? '\n  ' + foundWillUpdateName : '') +
-        '\n\nThe above lifecycles should be removed. Learn more about this warning here:\n' +
-        'https://fb.me/react-async-component-lifecycle-hooks'
-    );
-  }
-
-  // React <= 16.2 does not support static getDerivedStateFromProps.
-  // As a workaround, use cWM and cWRP to invoke the new static lifecycle.
-  // Newer versions of React will ignore these lifecycles if gDSFP exists.
-  if (typeof Component.getDerivedStateFromProps === 'function') {
-    prototype.componentWillMount = componentWillMount;
-    prototype.componentWillReceiveProps = componentWillReceiveProps;
-  }
-
-  // React <= 16.2 does not support getSnapshotBeforeUpdate.
-  // As a workaround, use cWU to invoke the new lifecycle.
-  // Newer versions of React will ignore that lifecycle if gSBU exists.
-  if (typeof prototype.getSnapshotBeforeUpdate === 'function') {
-    if (typeof prototype.componentDidUpdate !== 'function') {
-      throw new Error(
-        'Cannot polyfill getSnapshotBeforeUpdate() for components that do not define componentDidUpdate() on the prototype'
-      );
-    }
-
-    prototype.componentWillUpdate = componentWillUpdate;
-
-    var componentDidUpdate = prototype.componentDidUpdate;
-
-    prototype.componentDidUpdate = function componentDidUpdatePolyfill(
-      prevProps,
-      prevState,
-      maybeSnapshot
-    ) {
-      // 16.3+ will not execute our will-update method;
-      // It will pass a snapshot value to did-update though.
-      // Older versions will require our polyfilled will-update value.
-      // We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
-      // Because for <= 15.x versions this might be a "prevContext" object.
-      // We also can't just check "__reactInternalSnapshot",
-      // Because get-snapshot might return a falsy value.
-      // So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
-      var snapshot = this.__reactInternalSnapshotFlag
-        ? this.__reactInternalSnapshot
-        : maybeSnapshot;
-
-      componentDidUpdate.call(this, prevProps, prevState, snapshot);
-    };
-  }
-
-  return Component;
-}
-
-var reactLifecyclesCompat_es = /*#__PURE__*/Object.freeze({
-  polyfill: polyfill
-});
 
 function _classCallCheck$1(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -23394,6 +22441,13 @@ var Metadata = function () {
 	}
 
 	_createClass$1(Metadata, [{
+		key: 'getCountries',
+		value: function getCountries() {
+			return Object.keys(this.metadata.countries).filter(function (_) {
+				return _ !== '001';
+			});
+		}
+	}, {
 		key: 'hasCountry',
 		value: function hasCountry(country) {
 			return this.metadata.countries[country] !== undefined;
@@ -23734,23 +22788,6 @@ var type_of = function type_of(_) {
 };
 
 /**
- * Returns extension prefix for a country.
- * @param  {string} country
- * @param  {object} metadata
- * @return {string?}
- * @example
- * // Returns " ext. "
- * getExtPrefix("US")
- */
-function getExtPrefix(country, metadata) {
-	metadata = new Metadata(metadata);
-	if (metadata.hasCountry(country)) {
-		return metadata.country(country).ext();
-	}
-	return DEFAULT_EXT_PREFIX;
-}
-
-/**
  * Returns "country calling code" for a country.
  * Throws an error if the country doesn't exist or isn't supported by this library.
  * @param  {string} country
@@ -23964,51 +23001,6 @@ var DIGITS = {
 
 function parseDigit(character) {
 	return DIGITS[character];
-}
-
-/**
- * Parses phone number digits from a string.
- * Drops all punctuation leaving only digits.
- * Also converts wide-ascii and arabic-indic numerals to conventional numerals.
- * E.g. in Iraq they don't write `+442323234` but rather `+٤٤٢٣٢٣٢٣٤`.
- * @param  {string} string
- * @return {string}
- * @example
- * ```js
- * parseDigits('8 (800) 555')
- * // Outputs '8800555'.
- * ```
- */
-function parseDigits(string) {
-	var result = '';
-
-	// Using `.split('')` here instead of normal `for ... of`
-	// because the importing application doesn't neccessarily include an ES6 polyfill.
-	// The `.split('')` approach discards "exotic" UTF-8 characters
-	// (the ones consisting of four bytes) but digits
-	// (including non-European ones) don't fall into that range
-	// so such "exotic" characters would be discarded anyway.
-	for (var _iterator = string.split(''), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-		var _ref;
-
-		if (_isArray) {
-			if (_i >= _iterator.length) break;
-			_ref = _iterator[_i++];
-		} else {
-			_i = _iterator.next();
-			if (_i.done) break;
-			_ref = _i.value;
-		}
-
-		var character = _ref;
-
-		var digit = parseDigit(character);
-		if (digit) {
-			result += digit;
-		}
-	}
-
-	return result;
 }
 
 /**
@@ -24522,7 +23514,7 @@ var defaultOptions = {
 	// formatNumber('+78005553535', 'NATIONAL', metadata)
 	// ```
 	//
-};function formatNumber$1(input, format, options, metadata) {
+};function formatNumber(input, format, options, metadata) {
 	// Apply default options.
 	if (options) {
 		options = _extends$1({}, defaultOptions, options);
@@ -24780,7 +23772,7 @@ var PhoneNumber = function () {
 	}, {
 		key: 'format',
 		value: function format(_format, options) {
-			return formatNumber$1(this, _format, options ? _extends$2({}, options, { v2: true }) : { v2: true }, this.metadata);
+			return formatNumber(this, _format, options ? _extends$2({}, options, { v2: true }) : { v2: true }, this.metadata);
 		}
 	}, {
 		key: 'formatNational',
@@ -24863,24 +23855,24 @@ function parse$1(text) {
 	// Parse the phone number.
 
 	var _parse_input = parse_input(text, options.v2),
-	    formatted_phone_number = _parse_input.number,
+	    formattedPhoneNumber = _parse_input.number,
 	    ext = _parse_input.ext;
 
 	// If the phone number is not viable then return nothing.
 
 
-	if (!formatted_phone_number) {
+	if (!formattedPhoneNumber) {
 		if (options.v2) {
 			throw new ParseError('NOT_A_NUMBER');
 		}
 		return {};
 	}
 
-	var _parse_phone_number = parse_phone_number(formatted_phone_number, options.defaultCountry, metadata),
-	    country = _parse_phone_number.country,
-	    nationalNumber = _parse_phone_number.national_number,
-	    countryCallingCode = _parse_phone_number.countryCallingCode,
-	    carrierCode = _parse_phone_number.carrierCode;
+	var _parsePhoneNumber = parsePhoneNumber(formattedPhoneNumber, options.defaultCountry, metadata),
+	    country = _parsePhoneNumber.country,
+	    nationalNumber = _parsePhoneNumber.nationalNumber,
+	    countryCallingCode = _parsePhoneNumber.countryCallingCode,
+	    carrierCode = _parsePhoneNumber.carrierCode;
 
 	if (!metadata.selectedCountry()) {
 		if (options.v2) {
@@ -24890,7 +23882,7 @@ function parse$1(text) {
 	}
 
 	// Validate national (significant) number length.
-	if (nationalNumber.length < MIN_LENGTH_FOR_NSN) {
+	if (!nationalNumber || nationalNumber.length < MIN_LENGTH_FOR_NSN) {
 		// Won't throw here because the regexp already demands length > 1.
 		/* istanbul ignore if */
 		if (options.v2) {
@@ -25196,30 +24188,36 @@ function result(country, national_number, ext) {
 
 /**
  * Parses a viable phone number.
- * Returns `{ country, countryCallingCode, national_number }`.
+ * @param {string} formattedPhoneNumber
+ * @param {string} [defaultCountry]
+ * @param {Metadata} metadata
+ * @return {object} Returns `{ country: string?, countryCallingCode: string?, nationalNumber: string? }`.
  */
-function parse_phone_number(formatted_phone_number, default_country, metadata) {
-	var _extractCountryCallin = extractCountryCallingCode(formatted_phone_number, default_country, metadata.metadata),
+function parsePhoneNumber(formattedPhoneNumber, defaultCountry, metadata) {
+	var _extractCountryCallin = extractCountryCallingCode(formattedPhoneNumber, defaultCountry, metadata.metadata),
 	    countryCallingCode = _extractCountryCallin.countryCallingCode,
 	    number = _extractCountryCallin.number;
-
-	if (!number) {
-		return { countryCallingCode: countryCallingCode };
-	}
 
 	var country = void 0;
 
 	if (countryCallingCode) {
 		metadata.chooseCountryByCountryCallingCode(countryCallingCode);
-	} else if (default_country) {
-		metadata.country(default_country);
-		country = default_country;
-		countryCallingCode = getCountryCallingCode(default_country, metadata.metadata);
-	} else return {};
+	}
+	// If `formattedPhoneNumber` is in "national" format
+	// then `number` is defined and `countryCallingCode` isn't.
+	else if (number && defaultCountry) {
+			metadata.country(defaultCountry);
+			country = defaultCountry;
+			countryCallingCode = getCountryCallingCode(defaultCountry, metadata.metadata);
+		} else return {};
 
-	var _parse_national_numbe = parse_national_number(number, metadata),
-	    national_number = _parse_national_numbe.national_number,
-	    carrier_code = _parse_national_numbe.carrier_code;
+	if (!number) {
+		return { countryCallingCode: countryCallingCode };
+	}
+
+	var _parseNationalNumber = parseNationalNumber(number, metadata),
+	    nationalNumber = _parseNationalNumber.nationalNumber,
+	    carrierCode = _parseNationalNumber.carrierCode;
 
 	// Sometimes there are several countries
 	// corresponding to the same country phone code
@@ -25233,7 +24231,7 @@ function parse_phone_number(formatted_phone_number, default_country, metadata) {
 	//
 
 
-	var exactCountry = find_country_code(countryCallingCode, national_number, metadata);
+	var exactCountry = find_country_code(countryCallingCode, nationalNumber, metadata);
 	if (exactCountry) {
 		country = exactCountry;
 		metadata.country(country);
@@ -25242,14 +24240,14 @@ function parse_phone_number(formatted_phone_number, default_country, metadata) {
 	return {
 		country: country,
 		countryCallingCode: countryCallingCode,
-		national_number: national_number,
-		carrierCode: carrier_code
+		nationalNumber: nationalNumber,
+		carrierCode: carrierCode
 	};
 }
 
-function parse_national_number(number, metadata) {
-	var national_number = parseIncompletePhoneNumber(number);
-	var carrier_code = void 0;
+function parseNationalNumber(number, metadata) {
+	var nationalNumber = parseIncompletePhoneNumber(number);
+	var carrierCode = void 0;
 
 	// Parsing national prefixes and carrier codes
 	// is only required for local phone numbers
@@ -25261,9 +24259,9 @@ function parse_national_number(number, metadata) {
 	// and so does this library, because it has been requested:
 	// https://github.com/catamphetamine/libphonenumber-js/issues/127
 
-	var _strip_national_prefi = strip_national_prefix_and_carrier_code(national_number, metadata),
-	    potential_national_number = _strip_national_prefi.number,
-	    carrierCode = _strip_national_prefi.carrierCode;
+	var _strip_national_prefi = strip_national_prefix_and_carrier_code(nationalNumber, metadata),
+	    potentialNationalNumber = _strip_national_prefi.number,
+	    potentialCarrierCode = _strip_national_prefi.carrierCode;
 
 	// If metadata has "possible lengths" then employ the new algorythm.
 
@@ -25273,14 +24271,14 @@ function parse_national_number(number, metadata) {
 		// carrier code be long enough to be a possible length for the region.
 		// Otherwise, we don't do the stripping, since the original number could be
 		// a valid short number.
-		switch (checkNumberLengthForType(potential_national_number, undefined, metadata)) {
+		switch (checkNumberLengthForType(potentialNationalNumber, undefined, metadata)) {
 			case 'TOO_SHORT':
 			// case 'IS_POSSIBLE_LOCAL_ONLY':
 			case 'INVALID_LENGTH':
 				break;
 			default:
-				national_number = potential_national_number;
-				carrier_code = carrierCode;
+				nationalNumber = potentialNationalNumber;
+				carrierCode = potentialCarrierCode;
 		}
 	} else {
 		// If the original number (before stripping national prefix) was viable,
@@ -25289,22 +24287,22 @@ function parse_national_number(number, metadata) {
 		// a national prefix and a leading digit of a valid national phone number,
 		// like `8` is the national prefix for Russia and both
 		// `8 800 555 35 35` and `800 555 35 35` are valid numbers.
-		if (matchesEntirely(national_number, metadata.nationalNumberPattern()) && !matchesEntirely(potential_national_number, metadata.nationalNumberPattern())) ; else {
-			national_number = potential_national_number;
-			carrier_code = carrierCode;
+		if (matchesEntirely(nationalNumber, metadata.nationalNumberPattern()) && !matchesEntirely(potentialNationalNumber, metadata.nationalNumberPattern())) ; else {
+			nationalNumber = potentialNationalNumber;
+			carrierCode = potentialCarrierCode;
 		}
 	}
 
 	return {
-		national_number: national_number,
-		carrier_code: carrier_code
+		nationalNumber: nationalNumber,
+		carrierCode: carrierCode
 	};
 }
 
 // Determines the country for a given (possibly incomplete) phone number.
 // export function get_country_from_phone_number(number, metadata)
 // {
-// 	return parse_phone_number(number, null, metadata).country
+// 	return parsePhoneNumber(number, null, metadata).country
 // }
 
 // Parses a formatted phone number
@@ -25373,7 +24371,7 @@ function extractCountryCallingCode(number, country, metadata) {
 
 var _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-function parsePhoneNumber(text, options, metadata) {
+function parsePhoneNumber$1(text, options, metadata) {
 	return parse$1(text, _extends$3({}, options, { v2: true }), metadata);
 }
 
@@ -25382,15 +24380,6 @@ var _typeof$1 = typeof Symbol === "function" && typeof Symbol.iterator === "symb
 var _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _slicedToArray$1 = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-function parsePhoneNumber$1() {
-	var _normalizeArguments = normalizeArguments(arguments),
-	    text = _normalizeArguments.text,
-	    options = _normalizeArguments.options,
-	    metadata = _normalizeArguments.metadata;
-
-	return parsePhoneNumber(text, options, metadata);
-}
 
 function normalizeArguments(args) {
 	var _Array$prototype$slic = Array.prototype.slice.call(args),
@@ -25460,7 +24449,7 @@ function parsePhoneNumberFromString(text, options, metadata) {
 	}
 	// Parse phone number.
 	try {
-		return parsePhoneNumber(text, options, metadata);
+		return parsePhoneNumber$1(text, options, metadata);
 	} catch (error) {
 		/* istanbul ignore else */
 		if (error instanceof ParseError) ; else {
@@ -25481,1104 +24470,6 @@ function parsePhoneNumberFromString$1() {
 var _createClass$3 = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck$4(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-// https://medium.com/dsinjs/implementing-lru-cache-in-javascript-94ba6755cda9
-
-var Node$1 = function Node(key, value) {
-  var next = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-  var prev = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-
-  _classCallCheck$4(this, Node);
-
-  this.key = key;
-  this.value = value;
-  this.next = next;
-  this.prev = prev;
-};
-
-var LRUCache = function () {
-  //set default limit of 10 if limit is not passed.
-  function LRUCache() {
-    var limit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 10;
-
-    _classCallCheck$4(this, LRUCache);
-
-    this.size = 0;
-    this.limit = limit;
-    this.head = null;
-    this.tail = null;
-    this.cache = {};
-  }
-
-  // Write Node to head of LinkedList
-  // update cache with Node key and Node reference
-
-
-  _createClass$3(LRUCache, [{
-    key: "put",
-    value: function put(key, value) {
-      this.ensureLimit();
-
-      if (!this.head) {
-        this.head = this.tail = new Node$1(key, value);
-      } else {
-        var node = new Node$1(key, value, this.head);
-        this.head.prev = node;
-        this.head = node;
-      }
-
-      //Update the cache map
-      this.cache[key] = this.head;
-      this.size++;
-    }
-
-    // Read from cache map and make that node as new Head of LinkedList
-
-  }, {
-    key: "get",
-    value: function get(key) {
-      if (this.cache[key]) {
-        var value = this.cache[key].value;
-
-        // node removed from it's position and cache
-        this.remove(key);
-        // write node again to the head of LinkedList to make it most recently used
-        this.put(key, value);
-
-        return value;
-      }
-
-      console.log("Item not available in cache for key " + key);
-    }
-  }, {
-    key: "ensureLimit",
-    value: function ensureLimit() {
-      if (this.size === this.limit) {
-        this.remove(this.tail.key);
-      }
-    }
-  }, {
-    key: "remove",
-    value: function remove(key) {
-      var node = this.cache[key];
-
-      if (node.prev !== null) {
-        node.prev.next = node.next;
-      } else {
-        this.head = node.next;
-      }
-
-      if (node.next !== null) {
-        node.next.prev = node.prev;
-      } else {
-        this.tail = node.prev;
-      }
-
-      delete this.cache[key];
-      this.size--;
-    }
-  }, {
-    key: "clear",
-    value: function clear() {
-      this.head = null;
-      this.tail = null;
-      this.size = 0;
-      this.cache = {};
-    }
-
-    // // Invokes the callback function with every node of the chain and the index of the node.
-    // forEach(fn) {
-    //   let node = this.head;
-    //   let counter = 0;
-    //   while (node) {
-    //     fn(node, counter);
-    //     node = node.next;
-    //     counter++;
-    //   }
-    // }
-
-    // // To iterate over LRU with a 'for...of' loop
-    // *[Symbol.iterator]() {
-    //   let node = this.head;
-    //   while (node) {
-    //     yield node;
-    //     node = node.next;
-    //   }
-    // }
-
-  }]);
-
-  return LRUCache;
-}();
-
-var _createClass$4 = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck$5(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-// A cache for frequently used country-specific regular expressions. Set to 32 to cover ~2-3
-// countries being used for the same doc with ~10 patterns for each country. Some pages will have
-// a lot more countries in use, but typically fewer numbers for each so expanding the cache for
-// that use-case won't have a lot of benefit.
-
-var RegExpCache = function () {
-	function RegExpCache(size) {
-		_classCallCheck$5(this, RegExpCache);
-
-		this.cache = new LRUCache(size);
-	}
-
-	_createClass$4(RegExpCache, [{
-		key: 'getPatternForRegExp',
-		value: function getPatternForRegExp(pattern) {
-			var regExp = this.cache.get(pattern);
-			if (!regExp) {
-				regExp = new RegExp('^' + pattern);
-				this.cache.put(pattern, regExp);
-			}
-			return regExp;
-		}
-	}]);
-
-	return RegExpCache;
-}();
-
-/** Returns a regular expression quantifier with an upper and lower limit. */
-function limit(lower, upper) {
-	if (lower < 0 || upper <= 0 || upper < lower) {
-		throw new TypeError();
-	}
-	return "{" + lower + "," + upper + "}";
-}
-
-/**
- * Trims away any characters after the first match of {@code pattern} in {@code candidate},
- * returning the trimmed version.
- */
-function trimAfterFirstMatch(regexp, string) {
-	var index = string.search(regexp);
-
-	if (index >= 0) {
-		return string.slice(0, index);
-	}
-
-	return string;
-}
-
-function startsWith(string, substring) {
-	return string.indexOf(substring) === 0;
-}
-
-function endsWith(string, substring) {
-	return string.indexOf(substring, string.length - substring.length) === string.length - substring.length;
-}
-
-// Javascript doesn't support UTF-8 regular expressions.
-// So mimicking them here.
-
-// Copy-pasted from `PhoneNumberMatcher.js`.
-
-/**
- * "\p{Z}" is any kind of whitespace or invisible separator ("Separator").
- * http://www.regular-expressions.info/unicode.html
- * "\P{Z}" is the reverse of "\p{Z}".
- * "\p{N}" is any kind of numeric character in any script ("Number").
- * "\p{Nd}" is a digit zero through nine in any script except "ideographic scripts" ("Decimal_Digit_Number").
- * "\p{Sc}" is a currency symbol ("Currency_Symbol").
- * "\p{L}" is any kind of letter from any language ("Letter").
- * "\p{Mn}" is "non-spacing mark".
- *
- * Javascript doesn't support Unicode Regular Expressions
- * so substituting it with this explicit set of characters.
- *
- * https://stackoverflow.com/questions/13210194/javascript-regex-equivalent-of-a-za-z-using-pl
- * https://github.com/danielberndt/babel-plugin-utf-8-regex/blob/master/src/transformer.js
- */
-
-var _pZ = ' \xA0\u1680\u180E\u2000-\u200A\u2028\u2029\u202F\u205F\u3000';
-var pZ = '[' + _pZ + ']';
-var PZ = '[^' + _pZ + ']';
-
-var _pN = '0-9\xB2\xB3\xB9\xBC-\xBE\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u09F4-\u09F9\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0B72-\u0B77\u0BE6-\u0BF2\u0C66-\u0C6F\u0C78-\u0C7E\u0CE6-\u0CEF\u0D66-\u0D75\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F33\u1040-\u1049\u1090-\u1099\u1369-\u137C\u16EE-\u16F0\u17E0-\u17E9\u17F0-\u17F9\u1810-\u1819\u1946-\u194F\u19D0-\u19DA\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\u2070\u2074-\u2079\u2080-\u2089\u2150-\u2182\u2185-\u2189\u2460-\u249B\u24EA-\u24FF\u2776-\u2793\u2CFD\u3007\u3021-\u3029\u3038-\u303A\u3192-\u3195\u3220-\u3229\u3248-\u324F\u3251-\u325F\u3280-\u3289\u32B1-\u32BF\uA620-\uA629\uA6E6-\uA6EF\uA830-\uA835\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19';
-// const pN = `[${_pN}]`
-
-var _pNd = '0-9\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0BE6-\u0BEF\u0C66-\u0C6F\u0CE6-\u0CEF\u0D66-\u0D6F\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F29\u1040-\u1049\u1090-\u1099\u17E0-\u17E9\u1810-\u1819\u1946-\u194F\u19D0-\u19D9\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\uA620-\uA629\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19';
-var pNd = '[' + _pNd + ']';
-
-var _pL = 'A-Za-z\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377\u037A-\u037D\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u048A-\u0527\u0531-\u0556\u0559\u0561-\u0587\u05D0-\u05EA\u05F0-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u08A0\u08A2-\u08AC\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0977\u0979-\u097F\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C33\u0C35-\u0C39\u0C3D\u0C58\u0C59\u0C60\u0C61\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D60\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81\u0E82\u0E84\u0E87\u0E88\u0E8A\u0E8D\u0E94-\u0E97\u0E99-\u0E9F\u0EA1-\u0EA3\u0EA5\u0EA7\u0EAA\u0EAB\u0EAD-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F4\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u1700-\u170C\u170E-\u1711\u1720-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7\u17DC\u1820-\u1877\u1880-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191C\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19C1-\u19C7\u1A00-\u1A16\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4B\u1B83-\u1BA0\u1BAE\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1CE9-\u1CEC\u1CEE-\u1CF1\u1CF5\u1CF6\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2183\u2184\u2C00-\u2C2E\u2C30-\u2C5E\u2C60-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2E2F\u3005\u3006\u3031-\u3035\u303B\u303C\u3041-\u3096\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312D\u3131-\u318E\u31A0-\u31BA\u31F0-\u31FF\u3400-\u4DB5\u4E00-\u9FCC\uA000-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B\uA640-\uA66E\uA67F-\uA697\uA6A0-\uA6E5\uA717-\uA71F\uA722-\uA788\uA78B-\uA78E\uA790-\uA793\uA7A0-\uA7AA\uA7F8-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA80-\uAAAF\uAAB1\uAAB5\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uABC0-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC';
-var pL = '[' + _pL + ']';
-var pL_regexp = new RegExp(pL);
-
-var _pSc = '$\xA2-\xA5\u058F\u060B\u09F2\u09F3\u09FB\u0AF1\u0BF9\u0E3F\u17DB\u20A0-\u20B9\uA838\uFDFC\uFE69\uFF04\uFFE0\uFFE1\uFFE5\uFFE6';
-var pSc = '[' + _pSc + ']';
-var pSc_regexp = new RegExp(pSc);
-
-var _pMn = '\u0300-\u036F\u0483-\u0487\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08E4-\u08FE\u0900-\u0902\u093A\u093C\u0941-\u0948\u094D\u0951-\u0957\u0962\u0963\u0981\u09BC\u09C1-\u09C4\u09CD\u09E2\u09E3\u0A01\u0A02\u0A3C\u0A41\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81\u0A82\u0ABC\u0AC1-\u0AC5\u0AC7\u0AC8\u0ACD\u0AE2\u0AE3\u0B01\u0B3C\u0B3F\u0B41-\u0B44\u0B4D\u0B56\u0B62\u0B63\u0B82\u0BC0\u0BCD\u0C3E-\u0C40\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0CBC\u0CBF\u0CC6\u0CCC\u0CCD\u0CE2\u0CE3\u0D41-\u0D44\u0D4D\u0D62\u0D63\u0DCA\u0DD2-\u0DD4\u0DD6\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F71-\u0F7E\u0F80-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102D-\u1030\u1032-\u1037\u1039\u103A\u103D\u103E\u1058\u1059\u105E-\u1060\u1071-\u1074\u1082\u1085\u1086\u108D\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4\u17B5\u17B7-\u17BD\u17C6\u17C9-\u17D3\u17DD\u180B-\u180D\u18A9\u1920-\u1922\u1927\u1928\u1932\u1939-\u193B\u1A17\u1A18\u1A56\u1A58-\u1A5E\u1A60\u1A62\u1A65-\u1A6C\u1A73-\u1A7C\u1A7F\u1B00-\u1B03\u1B34\u1B36-\u1B3A\u1B3C\u1B42\u1B6B-\u1B73\u1B80\u1B81\u1BA2-\u1BA5\u1BA8\u1BA9\u1BAB\u1BE6\u1BE8\u1BE9\u1BED\u1BEF-\u1BF1\u1C2C-\u1C33\u1C36\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE0\u1CE2-\u1CE8\u1CED\u1CF4\u1DC0-\u1DE6\u1DFC-\u1DFF\u20D0-\u20DC\u20E1\u20E5-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302D\u3099\u309A\uA66F\uA674-\uA67D\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA825\uA826\uA8C4\uA8E0-\uA8F1\uA926-\uA92D\uA947-\uA951\uA980-\uA982\uA9B3\uA9B6-\uA9B9\uA9BC\uAA29-\uAA2E\uAA31\uAA32\uAA35\uAA36\uAA43\uAA4C\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEC\uAAED\uAAF6\uABE5\uABE8\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE26';
-var pMn = '[' + _pMn + ']';
-var pMn_regexp = new RegExp(pMn);
-
-var _InBasic_Latin = '\0-\x7F';
-var _InLatin_1_Supplement = '\x80-\xFF';
-var _InLatin_Extended_A = '\u0100-\u017F';
-var _InLatin_Extended_Additional = '\u1E00-\u1EFF';
-var _InLatin_Extended_B = '\u0180-\u024F';
-var _InCombining_Diacritical_Marks = '\u0300-\u036F';
-
-var latinLetterRegexp = new RegExp('[' + _InBasic_Latin + _InLatin_1_Supplement + _InLatin_Extended_A + _InLatin_Extended_Additional + _InLatin_Extended_B + _InCombining_Diacritical_Marks + ']');
-
-/**
- * Helper method to determine if a character is a Latin-script letter or not.
- * For our purposes, combining marks should also return true since we assume
- * they have been added to a preceding Latin character.
- */
-function isLatinLetter(letter) {
-  // Combining marks are a subset of non-spacing-mark.
-  if (!pL_regexp.test(letter) && !pMn_regexp.test(letter)) {
-    return false;
-  }
-
-  return latinLetterRegexp.test(letter);
-}
-
-function isInvalidPunctuationSymbol(character) {
-  return character === '%' || pSc_regexp.test(character);
-}
-
-/**
- * Leniency when finding potential phone numbers in text segments
- * The levels here are ordered in increasing strictness.
- */
-var Leniency = {
-  /**
-   * Phone numbers accepted are "possible", but not necessarily "valid".
-   */
-  POSSIBLE: function POSSIBLE(number, candidate, metadata) {
-    return true;
-  },
-
-
-  /**
-   * Phone numbers accepted are "possible" and "valid".
-   * Numbers written in national format must have their national-prefix
-   * present if it is usually written for a number of this type.
-   */
-  VALID: function VALID(number, candidate, metadata) {
-    if (!isValidNumber(number, undefined, metadata) || !containsOnlyValidXChars(number, candidate.toString())) {
-      return false;
-    }
-
-    // Skipped for simplicity.
-    // return isNationalPrefixPresentIfRequired(number, metadata)
-    return true;
-  },
-
-
-  /**
-   * Phone numbers accepted are "valid" and
-   * are grouped in a possible way for this locale. For example, a US number written as
-   * "65 02 53 00 00" and "650253 0000" are not accepted at this leniency level, whereas
-   * "650 253 0000", "650 2530000" or "6502530000" are.
-   * Numbers with more than one '/' symbol in the national significant number
-   * are also dropped at this level.
-   *
-   * Warning: This level might result in lower coverage especially for regions outside of
-   * country code "+1". If you are not sure about which level to use,
-   * email the discussion group libphonenumber-discuss@googlegroups.com.
-   */
-  STRICT_GROUPING: function STRICT_GROUPING(number, candidate, metadata, regExpCache) {
-    var candidateString = candidate.toString();
-
-    if (!isValidNumber(number, undefined, metadata) || !containsOnlyValidXChars(number, candidateString) || containsMoreThanOneSlashInNationalNumber(number, candidateString) || !isNationalPrefixPresentIfRequired(number)) {
-      return false;
-    }
-
-    return checkNumberGroupingIsValid(number, candidate, metadata, allNumberGroupsRemainGrouped, regExpCache);
-  },
-
-
-  /**
-   * Phone numbers accepted are {@linkplain PhoneNumberUtil#isValidNumber(PhoneNumber) valid} and
-   * are grouped in the same way that we would have formatted it, or as a single block. For
-   * example, a US number written as "650 2530000" is not accepted at this leniency level, whereas
-   * "650 253 0000" or "6502530000" are.
-   * Numbers with more than one '/' symbol are also dropped at this level.
-   * <p>
-   * Warning: This level might result in lower coverage especially for regions outside of country
-   * code "+1". If you are not sure about which level to use, email the discussion group
-   * libphonenumber-discuss@googlegroups.com.
-   */
-  EXACT_GROUPING: function EXACT_GROUPING(number, candidate, metadata, regExpCache) {
-    var candidateString = candidate.toString();
-
-    if (!isValidNumber(number, undefined, metadata) || !containsOnlyValidXChars(number, candidateString) || containsMoreThanOneSlashInNationalNumber(number, candidateString) || !isNationalPrefixPresentIfRequired(number)) {
-      return false;
-    }
-
-    return checkNumberGroupingIsValid(number, candidate, metadata, allNumberGroupsAreExactlyPresent, regExpCache);
-  }
-};
-
-function containsOnlyValidXChars(number, candidate, metadata) {
-  // The characters 'x' and 'X' can be (1) a carrier code, in which case they always precede the
-  // national significant number or (2) an extension sign, in which case they always precede the
-  // extension number. We assume a carrier code is more than 1 digit, so the first case has to
-  // have more than 1 consecutive 'x' or 'X', whereas the second case can only have exactly 1 'x'
-  // or 'X'. We ignore the character if it appears as the last character of the string.
-  for (var index = 0; index < candidate.length - 1; index++) {
-    var charAtIndex = candidate.charAt(index);
-
-    if (charAtIndex === 'x' || charAtIndex === 'X') {
-      var charAtNextIndex = candidate.charAt(index + 1);
-
-      if (charAtNextIndex === 'x' || charAtNextIndex === 'X') {
-        // This is the carrier code case, in which the 'X's always precede the national
-        // significant number.
-        index++;
-        if (util.isNumberMatch(number, candidate.substring(index)) != MatchType.NSN_MATCH) {
-          return false;
-        }
-        // This is the extension sign case, in which the 'x' or 'X' should always precede the
-        // extension number.
-      } else if (parseDigits(candidate.substring(index)) !== number.ext) {
-        return false;
-      }
-    }
-  }
-
-  return true;
-}
-
-function isNationalPrefixPresentIfRequired(number, _metadata) {
-  // First, check how we deduced the country code. If it was written in international format, then
-  // the national prefix is not required.
-  if (number.getCountryCodeSource() != 'FROM_DEFAULT_COUNTRY') {
-    return true;
-  }
-
-  var phoneNumberRegion = util.getRegionCodeForCountryCode(number.getCountryCode());
-
-  var metadata = util.getMetadataForRegion(phoneNumberRegion);
-  if (metadata == null) {
-    return true;
-  }
-
-  // Check if a national prefix should be present when formatting this number.
-  var nationalNumber = util.getNationalSignificantNumber(number);
-  var formatRule = util.chooseFormattingPatternForNumber(metadata.numberFormats(), nationalNumber);
-
-  // To do this, we check that a national prefix formatting rule was present
-  // and that it wasn't just the first-group symbol ($1) with punctuation.
-  if (formatRule && formatRule.getNationalPrefixFormattingRule().length > 0) {
-    if (formatRule.getNationalPrefixOptionalWhenFormatting()) {
-      // The national-prefix is optional in these cases, so we don't need to check if it was
-      // present.
-      return true;
-    }
-
-    if (PhoneNumberUtil.formattingRuleHasFirstGroupOnly(formatRule.getNationalPrefixFormattingRule())) {
-      // National Prefix not needed for this number.
-      return true;
-    }
-
-    // Normalize the remainder.
-    var rawInputCopy = PhoneNumberUtil.normalizeDigitsOnly(number.getRawInput());
-
-    // Check if we found a national prefix and/or carrier code at the start of the raw input, and
-    // return the result.
-    return util.maybeStripNationalPrefixAndCarrierCode(rawInputCopy, metadata, null);
-  }
-
-  return true;
-}
-
-function containsMoreThanOneSlashInNationalNumber(number, candidate) {
-  var firstSlashInBodyIndex = candidate.indexOf('/');
-  if (firstSlashInBodyIndex < 0) {
-    // No slashes, this is okay.
-    return false;
-  }
-
-  // Now look for a second one.
-  var secondSlashInBodyIndex = candidate.indexOf('/', firstSlashInBodyIndex + 1);
-  if (secondSlashInBodyIndex < 0) {
-    // Only one slash, this is okay.
-    return false;
-  }
-
-  // If the first slash is after the country calling code, this is permitted.
-  var candidateHasCountryCode = number.getCountryCodeSource() === CountryCodeSource.FROM_NUMBER_WITH_PLUS_SIGN || number.getCountryCodeSource() === CountryCodeSource.FROM_NUMBER_WITHOUT_PLUS_SIGN;
-
-  if (candidateHasCountryCode && PhoneNumberUtil.normalizeDigitsOnly(candidate.substring(0, firstSlashInBodyIndex)) === String(number.getCountryCode())) {
-    // Any more slashes and this is illegal.
-    return candidate.slice(secondSlashInBodyIndex + 1).indexOf('/') >= 0;
-  }
-
-  return true;
-}
-
-function checkNumberGroupingIsValid(number, candidate, metadata, checkGroups, regExpCache) {
-  var normalizedCandidate = normalizeDigits(candidate, true /* keep non-digits */);
-  var formattedNumberGroups = getNationalNumberGroups(metadata, number, null);
-  if (checkGroups(metadata, number, normalizedCandidate, formattedNumberGroups)) {
-    return true;
-  }
-
-  // If this didn't pass, see if there are any alternate formats that match, and try them instead.
-  var alternateFormats = MetadataManager.getAlternateFormatsForCountry(number.getCountryCode());
-  var nationalSignificantNumber = util.getNationalSignificantNumber(number);
-
-  if (alternateFormats) {
-    for (var _iterator = alternateFormats.numberFormats(), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-      var _ref;
-
-      if (_isArray) {
-        if (_i >= _iterator.length) break;
-        _ref = _iterator[_i++];
-      } else {
-        _i = _iterator.next();
-        if (_i.done) break;
-        _ref = _i.value;
-      }
-
-      var alternateFormat = _ref;
-
-      if (alternateFormat.leadingDigitsPatterns().length > 0) {
-        // There is only one leading digits pattern for alternate formats.
-        var leadingDigitsRegExp = regExpCache.getPatternForRegExp('^' + alternateFormat.leadingDigitsPatterns()[0]);
-        if (!leadingDigitsRegExp.test(nationalSignificantNumber)) {
-          // Leading digits don't match; try another one.
-          continue;
-        }
-      }
-      formattedNumberGroups = getNationalNumberGroups(metadata, number, alternateFormat);
-      if (checkGroups(metadata, number, normalizedCandidate, formattedNumberGroups)) {
-        return true;
-      }
-    }
-  }
-
-  return false;
-}
-
-/**
- * Helper method to get the national-number part of a number, formatted without any national
- * prefix, and return it as a set of digit blocks that would be formatted together following
- * standard formatting rules.
- */
-function getNationalNumberGroups(metadata, number, formattingPattern) {
-  if (formattingPattern) {
-    // We format the NSN only, and split that according to the separator.
-    var nationalSignificantNumber = util.getNationalSignificantNumber(number);
-    return util.formatNsnUsingPattern(nationalSignificantNumber, formattingPattern, 'RFC3966', metadata).split('-');
-  }
-
-  // This will be in the format +CC-DG1-DG2-DGX;ext=EXT where DG1..DGX represents groups of digits.
-  var rfc3966Format = formatNumber(number, 'RFC3966', metadata);
-
-  // We remove the extension part from the formatted string before splitting it into different
-  // groups.
-  var endIndex = rfc3966Format.indexOf(';');
-  if (endIndex < 0) {
-    endIndex = rfc3966Format.length;
-  }
-
-  // The country-code will have a '-' following it.
-  var startIndex = rfc3966Format.indexOf('-') + 1;
-  return rfc3966Format.slice(startIndex, endIndex).split('-');
-}
-
-function allNumberGroupsAreExactlyPresent(metadata, number, normalizedCandidate, formattedNumberGroups) {
-  var candidateGroups = normalizedCandidate.split(NON_DIGITS_PATTERN);
-
-  // Set this to the last group, skipping it if the number has an extension.
-  var candidateNumberGroupIndex = number.hasExtension() ? candidateGroups.length - 2 : candidateGroups.length - 1;
-
-  // First we check if the national significant number is formatted as a block.
-  // We use contains and not equals, since the national significant number may be present with
-  // a prefix such as a national number prefix, or the country code itself.
-  if (candidateGroups.length == 1 || candidateGroups[candidateNumberGroupIndex].contains(util.getNationalSignificantNumber(number))) {
-    return true;
-  }
-
-  // Starting from the end, go through in reverse, excluding the first group, and check the
-  // candidate and number groups are the same.
-  var formattedNumberGroupIndex = formattedNumberGroups.length - 1;
-  while (formattedNumberGroupIndex > 0 && candidateNumberGroupIndex >= 0) {
-    if (candidateGroups[candidateNumberGroupIndex] !== formattedNumberGroups[formattedNumberGroupIndex]) {
-      return false;
-    }
-    formattedNumberGroupIndex--;
-    candidateNumberGroupIndex--;
-  }
-
-  // Now check the first group. There may be a national prefix at the start, so we only check
-  // that the candidate group ends with the formatted number group.
-  return candidateNumberGroupIndex >= 0 && endsWith(candidateGroups[candidateNumberGroupIndex], formattedNumberGroups[0]);
-}
-
-function allNumberGroupsRemainGrouped(metadata, number, normalizedCandidate, formattedNumberGroups) {
-  var fromIndex = 0;
-  if (number.getCountryCodeSource() !== CountryCodeSource.FROM_DEFAULT_COUNTRY) {
-    // First skip the country code if the normalized candidate contained it.
-    var countryCode = String(number.getCountryCode());
-    fromIndex = normalizedCandidate.indexOf(countryCode) + countryCode.length();
-  }
-
-  // Check each group of consecutive digits are not broken into separate groupings in the
-  // {@code normalizedCandidate} string.
-  for (var i = 0; i < formattedNumberGroups.length; i++) {
-    // Fails if the substring of {@code normalizedCandidate} starting from {@code fromIndex}
-    // doesn't contain the consecutive digits in formattedNumberGroups[i].
-    fromIndex = normalizedCandidate.indexOf(formattedNumberGroups[i], fromIndex);
-    if (fromIndex < 0) {
-      return false;
-    }
-    // Moves {@code fromIndex} forward.
-    fromIndex += formattedNumberGroups[i].length();
-    if (i == 0 && fromIndex < normalizedCandidate.length()) {
-      // We are at the position right after the NDC. We get the region used for formatting
-      // information based on the country code in the phone number, rather than the number itself,
-      // as we do not need to distinguish between different countries with the same country
-      // calling code and this is faster.
-      var region = util.getRegionCodeForCountryCode(number.getCountryCode());
-      if (util.getNddPrefixForRegion(region, true) != null && Character.isDigit(normalizedCandidate.charAt(fromIndex))) {
-        // This means there is no formatting symbol after the NDC. In this case, we only
-        // accept the number if there is no formatting symbol at all in the number, except
-        // for extensions. This is only important for countries with national prefixes.
-        var nationalSignificantNumber = util.getNationalSignificantNumber(number);
-        return startsWith(normalizedCandidate.slice(fromIndex - formattedNumberGroups[i].length), nationalSignificantNumber);
-      }
-    }
-  }
-
-  // The check here makes sure that we haven't mistakenly already used the extension to
-  // match the last group of the subscriber number. Note the extension cannot have
-  // formatting in-between digits.
-  return normalizedCandidate.slice(fromIndex).contains(number.getExtension());
-}
-
-// Regular expression of characters typically used to start a second phone number for the purposes
-// of parsing. This allows us to strip off parts of the number that are actually the start of
-// another number, such as for: (530) 583-6985 x302/x2303 -> the second extension here makes this
-// actually two phone numbers, (530) 583-6985 x302 and (530) 583-6985 x2303. We remove the second
-// extension so that the first number is parsed correctly.
-//
-// Matches a slash (\ or /) followed by a space followed by an `x`.
-//
-var SECOND_NUMBER_START_PATTERN = /[\\/] *x/;
-
-function parsePreCandidate(candidate) {
-	// Check for extra numbers at the end.
-	// TODO: This is the place to start when trying to support extraction of multiple phone number
-	// from split notations (+41 79 123 45 67 / 68).
-	return trimAfterFirstMatch(SECOND_NUMBER_START_PATTERN, candidate);
-}
-
-// Matches strings that look like dates using "/" as a separator.
-// Examples: 3/10/2011, 31/10/96 or 08/31/95.
-var SLASH_SEPARATED_DATES = /(?:(?:[0-3]?\d\/[01]?\d)|(?:[01]?\d\/[0-3]?\d))\/(?:[12]\d)?\d{2}/;
-
-// Matches timestamps.
-// Examples: "2012-01-02 08:00".
-// Note that the reg-ex does not include the
-// trailing ":\d\d" -- that is covered by TIME_STAMPS_SUFFIX.
-var TIME_STAMPS = /[12]\d{3}[-/]?[01]\d[-/]?[0-3]\d +[0-2]\d$/;
-var TIME_STAMPS_SUFFIX_LEADING = /^:[0-5]\d/;
-
-function isValidPreCandidate(candidate, offset, text) {
-	// Skip a match that is more likely to be a date.
-	if (SLASH_SEPARATED_DATES.test(candidate)) {
-		return false;
-	}
-
-	// Skip potential time-stamps.
-	if (TIME_STAMPS.test(candidate)) {
-		var followingText = text.slice(offset + candidate.length);
-		if (TIME_STAMPS_SUFFIX_LEADING.test(followingText)) {
-			return false;
-		}
-	}
-
-	return true;
-}
-
-// Copy-pasted from `PhoneNumberMatcher.js`.
-
-var OPENING_PARENS = '(\\[\uFF08\uFF3B';
-var CLOSING_PARENS = ')\\]\uFF09\uFF3D';
-var NON_PARENS = '[^' + OPENING_PARENS + CLOSING_PARENS + ']';
-
-var LEAD_CLASS = '[' + OPENING_PARENS + PLUS_CHARS + ']';
-
-// Punctuation that may be at the start of a phone number - brackets and plus signs.
-var LEAD_CLASS_LEADING = new RegExp('^' + LEAD_CLASS);
-
-// Limit on the number of pairs of brackets in a phone number.
-var BRACKET_PAIR_LIMIT = limit(0, 3);
-
-/**
- * Pattern to check that brackets match. Opening brackets should be closed within a phone number.
- * This also checks that there is something inside the brackets. Having no brackets at all is also
- * fine.
- *
- * An opening bracket at the beginning may not be closed, but subsequent ones should be.  It's
- * also possible that the leading bracket was dropped, so we shouldn't be surprised if we see a
- * closing bracket first. We limit the sets of brackets in a phone number to four.
- */
-var MATCHING_BRACKETS_ENTIRE = new RegExp('^' + "(?:[" + OPENING_PARENS + "])?" + "(?:" + NON_PARENS + "+" + "[" + CLOSING_PARENS + "])?" + NON_PARENS + "+" + "(?:[" + OPENING_PARENS + "]" + NON_PARENS + "+[" + CLOSING_PARENS + "])" + BRACKET_PAIR_LIMIT + NON_PARENS + "*" + '$');
-
-/**
- * Matches strings that look like publication pages. Example:
- * <pre>Computing Complete Answers to Queries in the Presence of Limited Access Patterns.
- * Chen Li. VLDB J. 12(3): 211-227 (2003).</pre>
- *
- * The string "211-227 (2003)" is not a telephone number.
- */
-var PUB_PAGES = /\d{1,5}-+\d{1,5}\s{0,4}\(\d{1,4}/;
-
-function isValidCandidate(candidate, offset, text, leniency) {
-	// Check the candidate doesn't contain any formatting
-	// which would indicate that it really isn't a phone number.
-	if (!MATCHING_BRACKETS_ENTIRE.test(candidate) || PUB_PAGES.test(candidate)) {
-		return;
-	}
-
-	// If leniency is set to VALID or stricter, we also want to skip numbers that are surrounded
-	// by Latin alphabetic characters, to skip cases like abc8005001234 or 8005001234def.
-	if (leniency !== 'POSSIBLE') {
-		// If the candidate is not at the start of the text,
-		// and does not start with phone-number punctuation,
-		// check the previous character.
-		if (offset > 0 && !LEAD_CLASS_LEADING.test(candidate)) {
-			var previousChar = text[offset - 1];
-			// We return null if it is a latin letter or an invalid punctuation symbol.
-			if (isInvalidPunctuationSymbol(previousChar) || isLatinLetter(previousChar)) {
-				return false;
-			}
-		}
-
-		var lastCharIndex = offset + candidate.length;
-		if (lastCharIndex < text.length) {
-			var nextChar = text[lastCharIndex];
-			if (isInvalidPunctuationSymbol(nextChar) || isLatinLetter(nextChar)) {
-				return false;
-			}
-		}
-	}
-
-	return true;
-}
-
-var _extends$6 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass$5 = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck$6(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Patterns used to extract phone numbers from a larger phone-number-like pattern. These are
- * ordered according to specificity. For example, white-space is last since that is frequently
- * used in numbers, not just to separate two numbers. We have separate patterns since we don't
- * want to break up the phone-number-like text on more than one different kind of symbol at one
- * time, although symbols of the same type (e.g. space) can be safely grouped together.
- *
- * Note that if there is a match, we will always check any text found up to the first match as
- * well.
- */
-var INNER_MATCHES = [
-// Breaks on the slash - e.g. "651-234-2345/332-445-1234"
-'\\/+(.*)/',
-
-// Note that the bracket here is inside the capturing group, since we consider it part of the
-// phone number. Will match a pattern like "(650) 223 3345 (754) 223 3321".
-'(\\([^(]*)',
-
-// Breaks on a hyphen - e.g. "12345 - 332-445-1234 is my number."
-// We require a space on either side of the hyphen for it to be considered a separator.
-'(?:' + pZ + '-|-' + pZ + ')' + pZ + '*(.+)',
-
-// Various types of wide hyphens. Note we have decided not to enforce a space here, since it's
-// possible that it's supposed to be used to break two numbers without spaces, and we haven't
-// seen many instances of it used within a number.
-'[\u2012-\u2015\uFF0D]' + pZ + '*(.+)',
-
-// Breaks on a full stop - e.g. "12345. 332-445-1234 is my number."
-'\\.+' + pZ + '*([^.]+)',
-
-// Breaks on space - e.g. "3324451234 8002341234"
-pZ + '+(' + PZ + '+)'];
-
-// Limit on the number of leading (plus) characters.
-var leadLimit = limit(0, 2);
-
-// Limit on the number of consecutive punctuation characters.
-var punctuationLimit = limit(0, 4);
-
-/* The maximum number of digits allowed in a digit-separated block. As we allow all digits in a
- * single block, set high enough to accommodate the entire national number and the international
- * country code. */
-var digitBlockLimit = MAX_LENGTH_FOR_NSN + MAX_LENGTH_COUNTRY_CODE;
-
-// Limit on the number of blocks separated by punctuation.
-// Uses digitBlockLimit since some formats use spaces to separate each digit.
-var blockLimit = limit(0, digitBlockLimit);
-
-/* A punctuation sequence allowing white space. */
-var punctuation = '[' + VALID_PUNCTUATION + ']' + punctuationLimit;
-
-// A digits block without punctuation.
-var digitSequence = pNd + limit(1, digitBlockLimit);
-
-/**
- * Phone number pattern allowing optional punctuation.
- * The phone number pattern used by `find()`, similar to
- * VALID_PHONE_NUMBER, but with the following differences:
- * <ul>
- *   <li>All captures are limited in order to place an upper bound to the text matched by the
- *       pattern.
- * <ul>
- *   <li>Leading punctuation / plus signs are limited.
- *   <li>Consecutive occurrences of punctuation are limited.
- *   <li>Number of digits is limited.
- * </ul>
- *   <li>No whitespace is allowed at the start or end.
- *   <li>No alpha digits (vanity numbers such as 1-800-SIX-FLAGS) are currently supported.
- * </ul>
- */
-var PATTERN = '(?:' + LEAD_CLASS + punctuation + ')' + leadLimit + digitSequence + '(?:' + punctuation + digitSequence + ')' + blockLimit + '(?:' + EXTN_PATTERNS_FOR_MATCHING + ')?';
-
-// Regular expression of trailing characters that we want to remove.
-// We remove all characters that are not alpha or numerical characters.
-// The hash character is retained here, as it may signify
-// the previous block was an extension.
-//
-// // Don't know what does '&&' mean here.
-// const UNWANTED_END_CHAR_PATTERN = new RegExp(`[[\\P{N}&&\\P{L}]&&[^#]]+$`)
-//
-var UNWANTED_END_CHAR_PATTERN = new RegExp('[^' + _pN + _pL + '#]+$');
-
-var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || Math.pow(2, 53) - 1;
-
-/**
- * A stateful class that finds and extracts telephone numbers from {@linkplain CharSequence text}.
- * Instances can be created using the {@linkplain PhoneNumberUtil#findNumbers factory methods} in
- * {@link PhoneNumberUtil}.
- *
- * <p>Vanity numbers (phone numbers using alphabetic digits such as <tt>1-800-SIX-FLAGS</tt> are
- * not found.
- *
- * <p>This class is not thread-safe.
- */
-
-var PhoneNumberMatcher = function () {
-
-  /**
-   * Creates a new instance. See the factory methods in {@link PhoneNumberUtil} on how to obtain a
-   * new instance.
-   *
-   * @param util  the phone number util to use
-   * @param text  the character sequence that we will search, null for no text
-   * @param country  the country to assume for phone numbers not written in international format
-   *     (with a leading plus, or with the international dialing prefix of the specified region).
-   *     May be null or "ZZ" if only numbers with a leading plus should be
-   *     considered.
-   * @param leniency  the leniency to use when evaluating candidate phone numbers
-   * @param maxTries  the maximum number of invalid numbers to try before giving up on the text.
-   *     This is to cover degenerate cases where the text has a lot of false positives in it. Must
-   *     be {@code >= 0}.
-   */
-
-
-  /** The next index to start searching at. Undefined in {@link State#DONE}. */
-  function PhoneNumberMatcher() {
-    var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var metadata = arguments[2];
-
-    _classCallCheck$6(this, PhoneNumberMatcher);
-
-    this.state = 'NOT_READY';
-    this.searchIndex = 0;
-    this.regExpCache = new RegExpCache(32);
-
-    options = _extends$6({}, options, {
-      defaultCountry: options.defaultCountry && isSupportedCountry(options.defaultCountry, metadata) ? options.defaultCountry : undefined,
-      leniency: options.leniency || options.extended ? 'POSSIBLE' : 'VALID',
-      maxTries: options.maxTries || MAX_SAFE_INTEGER
-    });
-
-    if (!options.leniency) {
-      throw new TypeError('`Leniency` not supplied');
-    }
-
-    if (options.maxTries < 0) {
-      throw new TypeError('`maxTries` not supplied');
-    }
-
-    this.text = text;
-    this.options = options;
-    this.metadata = metadata;
-
-    /** The degree of validation requested. */
-    this.leniency = Leniency[options.leniency];
-
-    if (!this.leniency) {
-      throw new TypeError('Unknown leniency: ' + options.leniency + '.');
-    }
-
-    /** The maximum number of retries after matching an invalid number. */
-    this.maxTries = options.maxTries;
-
-    this.PATTERN = new RegExp(PATTERN, 'ig');
-  }
-
-  /**
-   * Attempts to find the next subsequence in the searched sequence on or after {@code searchIndex}
-   * that represents a phone number. Returns the next match, null if none was found.
-   *
-   * @param index  the search index to start searching at
-   * @return  the phone number match found, null if none can be found
-   */
-
-
-  // A cache for frequently used country-specific regular expressions. Set to 32 to cover ~2-3
-  // countries being used for the same doc with ~10 patterns for each country. Some pages will have
-  // a lot more countries in use, but typically fewer numbers for each so expanding the cache for
-  // that use-case won't have a lot of benefit.
-
-  /** The iteration tristate. */
-
-
-  _createClass$5(PhoneNumberMatcher, [{
-    key: 'find',
-    value: function find() // (index)
-    {
-      // // Reset the regular expression.
-      // this.PATTERN.lastIndex = index
-
-      var matches = void 0;
-      while (this.maxTries > 0 && (matches = this.PATTERN.exec(this.text)) !== null) {
-        var candidate = matches[0];
-        var offset = matches.index;
-
-        candidate = parsePreCandidate(candidate);
-
-        if (isValidPreCandidate(candidate, offset, this.text)) {
-          var match =
-          // Try to come up with a valid match given the entire candidate.
-          this.parseAndVerify(candidate, offset, this.text)
-          // If that failed, try to find an "inner match" -
-          // there might be a phone number within this candidate.
-          || this.extractInnerMatch(candidate, offset, this.text);
-
-          if (match) {
-            if (this.options.v2) {
-              var phoneNumber = new PhoneNumber(match.country, match.phone, this.metadata);
-              if (match.ext) {
-                phoneNumber.ext = match.ext;
-              }
-              return {
-                startsAt: match.startsAt,
-                endsAt: match.endsAt,
-                number: phoneNumber
-              };
-            }
-            return match;
-          }
-        }
-
-        this.maxTries--;
-      }
-    }
-
-    /**
-     * Attempts to extract a match from `candidate`
-     * if the whole candidate does not qualify as a match.
-     */
-
-  }, {
-    key: 'extractInnerMatch',
-    value: function extractInnerMatch(candidate, offset, text) {
-      for (var _iterator = INNER_MATCHES, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-        var _ref;
-
-        if (_isArray) {
-          if (_i >= _iterator.length) break;
-          _ref = _iterator[_i++];
-        } else {
-          _i = _iterator.next();
-          if (_i.done) break;
-          _ref = _i.value;
-        }
-
-        var innerMatchPattern = _ref;
-
-        var isFirstMatch = true;
-        var matches = void 0;
-        var possibleInnerMatch = new RegExp(innerMatchPattern, 'g');
-        while ((matches = possibleInnerMatch.exec(candidate)) !== null && this.maxTries > 0) {
-          if (isFirstMatch) {
-            // We should handle any group before this one too.
-            var _group = trimAfterFirstMatch(UNWANTED_END_CHAR_PATTERN, candidate.slice(0, matches.index));
-
-            var _match = this.parseAndVerify(_group, offset, text);
-            if (_match) {
-              return _match;
-            }
-
-            this.maxTries--;
-            isFirstMatch = false;
-          }
-
-          var group = trimAfterFirstMatch(UNWANTED_END_CHAR_PATTERN, matches[1]);
-
-          // Java code does `groupMatcher.start(1)` here,
-          // but there's no way in javascript to get a group match start index,
-          // therefore using the overall match start index `matches.index`.
-          var match = this.parseAndVerify(group, offset + matches.index, text);
-          if (match) {
-            return match;
-          }
-
-          this.maxTries--;
-        }
-      }
-    }
-
-    /**
-     * Parses a phone number from the `candidate` using `parseNumber` and
-     * verifies it matches the requested `leniency`. If parsing and verification succeed,
-     * a corresponding `PhoneNumberMatch` is returned, otherwise this method returns `null`.
-     *
-     * @param candidate  the candidate match
-     * @param offset  the offset of {@code candidate} within {@link #text}
-     * @return  the parsed and validated phone number match, or null
-     */
-
-  }, {
-    key: 'parseAndVerify',
-    value: function parseAndVerify(candidate, offset, text) {
-      if (!isValidCandidate(candidate, offset, text, this.options.leniency)) {
-        return;
-      }
-
-      var number = parse$1(candidate, {
-        extended: true,
-        defaultCountry: this.options.defaultCountry
-      }, this.metadata);
-
-      if (!number.possible) {
-        return;
-      }
-
-      if (this.leniency(number, candidate, this.metadata, this.regExpCache)) {
-        // // We used parseAndKeepRawInput to create this number,
-        // // but for now we don't return the extra values parsed.
-        // // TODO: stop clearing all values here and switch all users over
-        // // to using rawInput() rather than the rawString() of PhoneNumberMatch.
-        // number.clearCountryCodeSource()
-        // number.clearRawInput()
-        // number.clearPreferredDomesticCarrierCode()
-
-        var result = {
-          startsAt: offset,
-          endsAt: offset + candidate.length,
-          country: number.country,
-          phone: number.phone
-        };
-
-        if (number.ext) {
-          result.ext = number.ext;
-        }
-
-        return result;
-      }
-    }
-  }, {
-    key: 'hasNext',
-    value: function hasNext() {
-      if (this.state === 'NOT_READY') {
-        this.lastMatch = this.find(); // (this.searchIndex)
-
-        if (this.lastMatch) {
-          // this.searchIndex = this.lastMatch.endsAt
-          this.state = 'READY';
-        } else {
-          this.state = 'DONE';
-        }
-      }
-
-      return this.state === 'READY';
-    }
-  }, {
-    key: 'next',
-    value: function next() {
-      // Check the state and find the next match as a side-effect if necessary.
-      if (!this.hasNext()) {
-        throw new Error('No next element');
-      }
-
-      // Don't retain that memory any longer than necessary.
-      var result = this.lastMatch;
-      this.lastMatch = null;
-      this.state = 'NOT_READY';
-      return result;
-    }
-  }]);
-
-  return PhoneNumberMatcher;
-}();
-
-function findNumbers(text, options, metadata) {
-	var matcher = new PhoneNumberMatcher(text, options, metadata);
-	var results = [];
-	while (matcher.hasNext()) {
-		results.push(matcher.next());
-	}
-	return results;
-}
-
-function findNumbers$1() {
-	var _normalizeArguments = normalizeArguments(arguments),
-	    text = _normalizeArguments.text,
-	    options = _normalizeArguments.options,
-	    metadata = _normalizeArguments.metadata;
-
-	return findNumbers(text, options, metadata);
-}
-
-function _defineProperty$1(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-/**
- * @return ES6 `for ... of` iterator.
- */
-function searchNumbers() {
-	var _normalizeArguments = normalizeArguments(arguments),
-	    text = _normalizeArguments.text,
-	    options = _normalizeArguments.options,
-	    metadata = _normalizeArguments.metadata;
-
-	var matcher = new PhoneNumberMatcher(text, options, metadata);
-
-	return _defineProperty$1({}, Symbol.iterator, function () {
-		return {
-			next: function next() {
-				if (matcher.hasNext()) {
-					return {
-						done: false,
-						value: matcher.next()
-					};
-				}
-				return {
-					done: true
-				};
-			}
-		};
-	});
-}
-
-var _createClass$6 = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck$7(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 // Used in phone number format template creation.
 // Could be any digit, I guess.
@@ -26635,7 +24526,7 @@ var AsYouType = function () {
   * @param {Object} metadata
   */
 	function AsYouType(defaultCountry, metadata) {
-		_classCallCheck$7(this, AsYouType);
+		_classCallCheck$4(this, AsYouType);
 
 		this.options = {};
 
@@ -26652,7 +24543,7 @@ var AsYouType = function () {
 	// for older versions of the library.
 
 
-	_createClass$6(AsYouType, [{
+	_createClass$3(AsYouType, [{
 		key: 'input',
 		value: function input(text) {
 			// Parse input
@@ -27497,6 +25388,9 @@ var AsYouType = function () {
 			// Phone number extensions are not supported by "As You Type" formatter.
 			return phoneNumber;
 		}
+
+		// This method is still used in `react-phone-number-input/source/input-control.js`.
+
 	}, {
 		key: 'getNationalNumber',
 		value: function getNationalNumber() {
@@ -27589,10 +25483,8 @@ function repeat(string, times) {
 	return result + string;
 }
 
-function getExampleNumber(country, examples, metadata) {
-	if (examples[country]) {
-		return new PhoneNumber(country, examples[country], metadata);
-	}
+function getCountries(metadata) {
+	return new Metadata(metadata).getCountries();
 }
 
 /**
@@ -27611,815 +25503,138 @@ function formatIncompletePhoneNumber(value, country, metadata) {
   return new AsYouType(country, metadata).input(value);
 }
 
-
-
-var core = /*#__PURE__*/Object.freeze({
-  ParseError: ParseError,
-  parsePhoneNumber: parsePhoneNumber$1,
-  parsePhoneNumberFromString: parsePhoneNumberFromString$1,
-  findNumbers: findNumbers$1,
-  searchNumbers: searchNumbers,
-  PhoneNumberMatcher: PhoneNumberMatcher,
-  AsYouType: AsYouType,
-  Metadata: Metadata,
-  isSupportedCountry: isSupportedCountry,
-  getCountryCallingCode: getCountryCallingCode,
-  getExtPrefix: getExtPrefix,
-  getExampleNumber: getExampleNumber,
-  formatIncompletePhoneNumber: formatIncompletePhoneNumber,
-  parseIncompletePhoneNumber: parseIncompletePhoneNumber,
-  parsePhoneNumberCharacter: parsePhoneNumberCharacter,
-  parseDigits: parseDigits,
-  parseRFC3966: parseRFC3966,
-  formatRFC3966: formatRFC3966
-});
-
-var InputBasic = createCommonjsModule(function (module, exports) {
+var parse_1 = createCommonjsModule(function (module, exports) {
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.default = parse;
+// Parses the `text`.
+//
+// Returns `{ value, caret }` where `caret` is
+// the caret position inside `value`
+// corresponding to the `caret_position` inside `text`.
+//
+// The `text` is parsed by feeding each character sequentially to
+// `parse_character(character, value)` function
+// and appending the result (if it's not `undefined`) to `value`.
+//
+// Example:
+//
+// `text` is `8 (800) 555-35-35`,
+// `caret_position` is `4` (before the first `0`).
+// `parse_character` is `(character, value) =>
+//   if (character >= '0' && character <= '9') { return character }`.
+//
+// then `parse()` outputs `{ value: '88005553535', caret: 2 }`.
+//
+function parse(text, caret_position, parse_character) {
+	var value = '';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	var focused_input_character_index = 0;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	var index = 0;
+	while (index < text.length) {
+		var character = parse_character(text[index], value);
 
-exports.createInput = createInput;
+		if (character !== undefined) {
+			value += character;
 
-
-
-var _react2 = _interopRequireDefault(e__default);
-
-
-
-var _propTypes2 = _interopRequireDefault(PropTypes$2);
-
-
-
-
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// `PureComponent` is only available in React >= 15.3.0.
-var PureComponent = _react2.default.PureComponent || _react2.default.Component;
-
-function createInput(defaultMetadata) {
-	/**
-  * `InputBasic`'s caret is not as "smart" as the default `inputComponent`'s
-  * but still works good enough. When erasing or inserting digits in the middle
-  * of a phone number the caret usually jumps to the end: this is the expected
-  * behaviour and it's the workaround for the [Samsung Galaxy smart caret positioning bug](https://github.com/catamphetamine/react-phone-number-input/issues/75).
-  */
-	var InputBasic = function (_PureComponent) {
-		_inherits(InputBasic, _PureComponent);
-
-		function InputBasic() {
-			var _ref;
-
-			var _temp, _this, _ret;
-
-			_classCallCheck(this, InputBasic);
-
-			for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-				args[_key] = arguments[_key];
-			}
-
-			return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = InputBasic.__proto__ || Object.getPrototypeOf(InputBasic)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _this.onChange = function (event) {
-				var onChange = _this.props.onChange;
-				var value = _this.state.value;
-
-
-				var newValue = (0, core.parseIncompletePhoneNumber)(event.target.value);
-
-				// By default, if a value is something like `"(123)"`
-				// then Backspace would only erase the rightmost brace
-				// becoming something like `"(123"`
-				// which would give the same `"123"` value
-				// which would then be formatted back to `"(123)"`
-				// and so a user wouldn't be able to erase the phone number.
-				// Working around this issue with this simple hack.
-				if (newValue === value) {
-					if (_this.format(newValue).indexOf(event.target.value) === 0) {
-						// Trim the last digit (or plus sign).
-						newValue = newValue.slice(0, -1);
-					}
+			if (caret_position !== undefined) {
+				if (caret_position === index) {
+					focused_input_character_index = value.length - 1;
+				} else if (caret_position > index) {
+					focused_input_character_index = value.length;
 				}
-
-				// Prevents React from resetting the `<input/>` caret position.
-				// https://github.com/reactjs/react-redux/issues/525#issuecomment-254852039
-				// https://github.com/facebook/react/issues/955
-				_this.setState({ value: newValue }, function () {
-					return onChange(newValue);
-				});
-			}, _this.onBlur = function (event) {
-				var onBlur = _this.props.onBlur;
-				var value = _this.state.value;
-
-				if (onBlur) {
-					// `event` is React's `SyntheticEvent`.
-					// Its `.value` is read-only therefore cloning it.
-					var _event = _extends({}, event, {
-						target: _extends({}, event.target, {
-							value: value
-						})
-						// Workaround for `redux-form` event detection.
-						// https://github.com/erikras/redux-form/blob/v5/src/events/isEvent.js
-					});_event.stopPropagation = event.stopPropagation;
-					_event.preventDefault = event.preventDefault;
-					return onBlur(_event);
-				}
-			}, _this.focus = function () {
-				return _this.input.focus();
-			}, _this.storeInput = function (ref) {
-				return _this.input = ref;
-			}, _temp), _possibleConstructorReturn(_this, _ret);
+			}
 		}
 
-		_createClass(InputBasic, [{
-			key: 'format',
-			value: function format(value) {
-				var _props = this.props,
-				    country = _props.country,
-				    metadata = _props.metadata;
+		index++;
+	}
 
-				return (0, core.formatIncompletePhoneNumber)(value, country, metadata);
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				var _props2 = this.props,
-				    onChange = _props2.onChange,
-				    onFocus = _props2.onFocus,
-				    country = _props2.country,
-				    metadata = _props2.metadata,
-				    Input = _props2.inputComponent,
-				    rest = _objectWithoutProperties(_props2, ['onChange', 'onFocus', 'country', 'metadata', 'inputComponent']);
+	// If caret position wasn't specified
+	if (caret_position === undefined) {
+		// Then set caret position to "after the last input character"
+		focused_input_character_index = value.length;
+	}
 
-				// Prevents React from resetting the `<input/>` caret position.
-				// https://github.com/reactjs/react-redux/issues/525#issuecomment-254852039
-				// https://github.com/facebook/react/issues/955
-
-
-				var value = this.state.value;
-
-				// Deprecated. Should be removed in a future major version release.
-				// `type="tel"` and `autoComplete="tel"` properties are here
-				// just for the "Without country select" component exported from
-				// `react-phone-number-input/basic-input` subpackage.
-				// These two properties will be overwritten by `<PhoneInput/>` properties
-				// when not used as a "Without country select" component.
-
-				return _react2.default.createElement(Input, _extends({
-					type: 'tel',
-					autoComplete: 'tel'
-				}, rest, {
-					ref: this.storeInput,
-					value: this.format(value),
-					onChange: this.onChange,
-					onFocus: onFocus,
-					onBlur: this.onBlur }));
-			}
-		}], [{
-			key: 'getDerivedStateFromProps',
-
-			// Prevents React from resetting the `<input/>` caret position.
-			// https://github.com/reactjs/react-redux/issues/525#issuecomment-254852039
-			// https://github.com/facebook/react/issues/955
-			value: function getDerivedStateFromProps(_ref2) {
-				var value = _ref2.value;
-
-				return { value: value };
-			}
-
-			// This `onBlur` interceptor is a workaround for `redux-form`'s bug
-			// so that it gets the up-to-date `value` in its `onBlur` handler.
-			// Without this fix it just gets the actual (raw) input field textual value.
-			// E.g. `+7 800 555 35 35` instead of `+78005553535`.
-			//
-			// New `value` is taken from `event` in `redux-form`'s `handleBlur()`.
-			// https://github.com/erikras/redux-form/blob/785edf8aac3adc84aba2ab6898a4aa8c48687750/src/ConnectedField.js#L168
-			// `redux-form` shouldn't have taken the new `value` from `event`.
-			//
-			// A developer is not supposed to pass this `onBlur` property manually.
-			// Instead, `redux-form` passes `onBlur` to this component automatically
-			// and this component patches that `onBlur` handler (a hacky way but works).
-			//
-
-		}]);
-
-		return InputBasic;
-	}(PureComponent);
-
-	InputBasic.propTypes = {
-		// The parsed phone number.
-		// "Parsed" not in a sense of "E.164"
-		// but rather in a sense of "having only
-		// digits and possibly a leading plus character".
-		// Examples: `""`, `"+"`, `"+123"`, `"123"`.
-		value: _propTypes2.default.string.isRequired,
-
-		// Updates the `value`.
-		onChange: _propTypes2.default.func.isRequired,
-
-		// Toggles the `--focus` CSS class.
-		// https://github.com/catamphetamine/react-phone-number-input/issues/189
-		onFocus: _propTypes2.default.func,
-
-		// `onBlur` workaround for `redux-form`'s bug.
-		onBlur: _propTypes2.default.func,
-
-		// A two-letter country code for formatting `value`
-		// as a national phone number (e.g. `(800) 555 35 35`).
-		// E.g. "US", "RU", etc.
-		// If no `country` is passed then `value`
-		// is formatted as an international phone number.
-		// (e.g. `+7 800 555 35 35`)
-		country: _propTypes2.default.string,
-
-		// `libphonenumber-js` metadata.
-		metadata: _propTypes2.default.object.isRequired,
-
-		// The `<input/>` component.
-		inputComponent: _propTypes2.default.elementType.isRequired
+	var result = {
+		value: value,
+		caret: focused_input_character_index
 	};
 
-	InputBasic.defaultProps = {
-		metadata: defaultMetadata,
-		inputComponent: 'input'
-	};
-
-	return (0, reactLifecyclesCompat_es.polyfill)(InputBasic);
+	return result;
 }
-
-exports.default = createInput();
 
 });
 
-unwrapExports(InputBasic);
-var InputBasic_1 = InputBasic.createInput;
+unwrapExports(parse_1);
 
-var countries$1 = createCommonjsModule(function (module, exports) {
+var edit_1 = createCommonjsModule(function (module, exports) {
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.getCountryCodes = getCountryCodes;
-exports.getCountryCodeForFlag = getCountryCodeForFlag;
-// See the table of officially assigned ISO 3166-1 alpha-2 country codes:
-// https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Current_codes
-var SKIP_COUNTRIES = exports.SKIP_COUNTRIES = [
-// "001" means "Non-Geographical Entity" ("No country", "International").
-'001'];
+exports.default = edit;
+// Edits text `value` (if `operation` is passed) and repositions the `caret` if needed.
+//
+// Example:
+//
+// value - '88005553535'
+// caret - 2 // starting from 0; is positioned before the first zero
+// operation - 'Backspace'
+//
+// Returns
+// {
+// 	value: '8005553535'
+// 	caret: 1
+// }
+//
+// Currently supports just 'Delete' and 'Backspace' operations
+//
+function edit(value, caret, operation) {
+	switch (operation) {
+		case 'Backspace':
+			// If there exists the previous character,
+			// then erase it and reposition the caret.
+			if (caret > 0) {
+				// Remove the previous character
+				value = value.slice(0, caret - 1) + value.slice(caret);
+				// Position the caret where the previous (erased) character was
+				caret--;
+			}
+			break;
 
-function getCountryCodes(labels) {
-	// Includes all country codes (excluding "ZZ" for "International").
-	//
-	// From ISO 3166-1:2006(E/F):
-	//
-	// 8.1.3   User-assigned code elements
-	//
-	// If users need code elements to represent country names not included
-	// in this part of ISO 3166, the series of letters AA, QM to QZ, XA
-	// to XZ, and ZZ, and the series AAA to AAZ, QMA to QZZ, XAA to XZZ,
-	// and ZZA to ZZZ respectively, and the series of numbers 900 to 999
-	// are available. These users should inform the ISO 3166/MA of such use.
-	//
-	return Object.keys(labels).filter(function (key) {
-		return key.length === 2 && key.toUpperCase() === key && key !== 'ZZ' && SKIP_COUNTRIES.indexOf(key) < 0;
-	});
-}
-
-function getCountryCodeForFlag(country) {
-	switch (country) {
-		// "Ascension Island".
-		// The flag is missing for it:
-		// https://lipis.github.io/flag-icon-css/flags/4x3/ac.svg
-		// GitHub issue:
-		// https://github.com/lipis/flag-icon-css/issues/537
-		// Using "SH" flag as a temporary substitute
-		// because previously "AC" and "TA" were parts of "SH".
-		case 'AC':
-			return 'SH';
-
-		// "Tristan da Cunha".
-		// The flag is missing for it:
-		// https://lipis.github.io/flag-icon-css/flags/4x3/ta.svg
-		// GitHub issue:
-		// https://github.com/lipis/flag-icon-css/issues/537
-		// Using "SH" flag as a temporary substitute
-		// because previously "AC" and "TA" were parts of "SH".
-		case 'TA':
-			return 'SH';
-
-		default:
-			return country;
+		case 'Delete':
+			// Remove current digit (if any)
+			value = value.slice(0, caret) + value.slice(caret + 1);
+			break;
 	}
+
+	return { value: value, caret: caret };
 }
 
 });
 
-unwrapExports(countries$1);
-var countries_1 = countries$1.getCountryCodes;
-var countries_2 = countries$1.getCountryCodeForFlag;
-var countries_3 = countries$1.SKIP_COUNTRIES;
+unwrapExports(edit_1);
 
-var Flag = createCommonjsModule(function (module, exports) {
+var helpers = createCommonjsModule(function (module, exports) {
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-
-
-
-var _react2 = _interopRequireDefault(e__default);
-
-
-
-var _propTypes2 = _interopRequireDefault(PropTypes$2);
-
-
-
-var _classnames2 = _interopRequireDefault(classnames);
-
-
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// Default country flag icon.
-// `<img/>` is wrapped in a `<div/>` to prevent SVGs from exploding in size in IE 11.
-// https://github.com/catamphetamine/react-phone-number-input/issues/111
-var FlagComponent = function FlagComponent(_ref) {
-	var country = _ref.country,
-	    flags = _ref.flags,
-	    flagsPath = _ref.flagsPath,
-	    className = _ref.className;
-
-	if (flags && flags[country]) {
-		return flags[country]();
-	}
-	return _react2.default.createElement('img', {
-		alt: country,
-		className: 'react-phone-number-input__icon-image',
-		src: '' + flagsPath + (0, countries$1.getCountryCodeForFlag)(country).toLowerCase() + '.svg' });
-};
-
-FlagComponent.propTypes = {
-	// The country to be selected by default.
-	// Two-letter country code ("ISO 3166-1 alpha-2").
-	country: _propTypes2.default.string.isRequired,
-
-	// Country flag icon components.
-	// By default flag icons are inserted as `<img/>`s
-	// with their `src` pointed to `flag-icon-css` github repo.
-	// There might be cases (e.g. an offline application)
-	// where having a large (3 megabyte) `<svg/>` flags
-	// bundle is more appropriate.
-	// `import flags from 'react-phone-number-input/flags'`.
-	flags: _propTypes2.default.objectOf(_propTypes2.default.elementType),
-
-	// A base URL path for national flag SVG icons.
-	// By default it uses the ones from `flag-icon-css` github repo.
-	flagsPath: _propTypes2.default.string.isRequired
-};
-
-exports.default = FlagComponent;
-
-});
-
-unwrapExports(Flag);
-
-var inputControl = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.getPreSelectedCountry = getPreSelectedCountry;
-exports.getCountrySelectOptions = getCountrySelectOptions;
-exports.parsePhoneNumber = parsePhoneNumber;
-exports.generateNationalNumberDigits = generateNationalNumberDigits;
-exports.migrateParsedInputForNewCountry = migrateParsedInputForNewCountry;
-exports.e164 = e164;
-exports.trimNumber = trimNumber;
-exports.getCountryForPartialE164Number = getCountryForPartialE164Number;
-exports.parseInput = parseInput;
-exports.get_country_from_possibly_incomplete_international_phone_number = get_country_from_possibly_incomplete_international_phone_number;
-exports.compare_strings = compare_strings;
-exports.strip_country_calling_code = strip_country_calling_code;
-exports.get_national_significant_number_part = get_national_significant_number_part;
-exports.could_number_belong_to_country = could_number_belong_to_country;
-
-
-
-/**
- * Decides which country should be pre-selected
- * when the phone number input component is first mounted.
- * @param  {object?} phoneNumber - An instance of `PhoneNumber` class.
- * @param  {string?} country - Pre-defined country (two-letter code).
- * @param  {string[]?} countries - A list of countries available.
- * @param  {boolean} includeInternationalOption - Whether "International" country option is available.
- * @param  {object} metadata - `libphonenumber-js` metadata
- * @return {string?}
- */
-function getPreSelectedCountry(phoneNumber, country, countries, includeInternationalOption, metadata) {
-	// If can get country from E.164 phone number
-	// then it overrides the `country` passed (or not passed).
-	if (phoneNumber && phoneNumber.country) {
-		// `country` will be left `undefined` in case of non-detection.
-		country = phoneNumber.country;
-	}
-
-	// Only pre-select a country if it's in the available `countries` list.
-	if (countries && countries.indexOf(country) < 0) {
-		country = undefined;
-	}
-
-	// If there will be no "International" option
-	// then some `country` must be selected.
-	// It will still be the wrong country though.
-	// But still country `<select/>` can't be left in a broken state.
-	if (!country && !includeInternationalOption && countries && countries.length > 0) {
-		country = countries[0];
-	}
-
-	return country;
-}
-
-/**
- * Generates a sorted list of country `<select/>` options.
- * @param  {string[]} countries - A list of two-letter ("ISO 3166-1 alpha-2") country codes.
- * @param  {object} labels - Custom country labels. E.g. `{ RU: 'Россия', US: 'США', ... }`.
- * @param  {boolean} includeInternationalOption - Whether should include "International" option at the top of the list.
- * @return {object[]} A list of objects having shape `{ value : string, label : string }`.
- */
-function getCountrySelectOptions(countries, country_names, includeInternationalOption) {
-	// Generates a `<Select/>` option for each country.
-	var country_select_options = countries.map(function (country) {
-		return {
-			value: country,
-			label: country_names[country]
-		};
-	});
-
-	// Sort the list of countries alphabetically.
-	country_select_options.sort(function (a, b) {
-		return compare_strings(a.label, b.label);
-	});
-
-	// Add the "International" option to the country list (if suitable)
-	if (includeInternationalOption) {
-		country_select_options.unshift({
-			label: country_names.ZZ
-		});
-	}
-
-	return country_select_options;
-}
-
-/**
- * Parses a E.164 phone number to an instance of `PhoneNumber` class.
- * @param {string?} value = E.164 phone number.
- * @param  {object} metadata - `libphonenumber-js` metadata
- * @example
- * parsePhoneNumber('+78005553535')
- */
-function parsePhoneNumber(value, metadata) {
-	return (0, core.parsePhoneNumberFromString)(value || '', metadata);
-}
-
-/**
- * Generates national number digits for a parsed phone.
- * May prepend national prefix.
- * The phone number must be a complete and valid phone number.
- * @param  {object} phoneNumber - An instance of `PhoneNumber` class.
- * @param  {object} metadata - `libphonenumber-js` metadata
- * @return {string}
- * @example
- * getNationalNumberDigits({ country: 'RU', phone: '8005553535' })
- * // returns '88005553535'
- */
-function generateNationalNumberDigits(phoneNumber) {
-	return phoneNumber.formatNational().replace(/\D/g, '');
-}
-
-/**
- * Migrates parsed `<input/>` `value` for the newly selected `country`.
- * @param {string?} value - The `value` parsed from phone number `<input/>` (it's the `parsed_input` state property, not the `value` property).
- * @param {string?} previousCountry - Previously selected country.
- * @param {string?} newCountry - Newly selected country. Can't be same as previously selected country.
- * @param {object} metadata - `libphonenumber-js` metadata.
- * @param {boolean} preferNationalFormat - whether should attempt to convert from international to national number for the new country.
- * @return {string?}
- */
-function migrateParsedInputForNewCountry(value, previous_country, new_country, metadata, preferNationalFormat) {
-	// If `parsed_input` is empty
-	// then no need to migrate anything.
-	if (!value) {
-		return value;
-	}
-
-	// If switching to some country.
-	// (from "International" or another country)
-	// If switching from "International" then `value` starts with a `+`.
-	// Otherwise it may or may not start with a `+`.
-	if (new_country) {
-		// If the phone number was entered in international format
-		// then migrate it to the newly selected country.
-		// The phone number may be incomplete.
-		// The phone number entered not necessarily starts with
-		// the previously selected country phone prefix.
-		if (value[0] === '+') {
-			// If the international phone number is for the new country
-			// then convert it to local if required.
-			if (preferNationalFormat) {
-				// // If a phone number is being input in international form
-				// // and the country can already be derived from it,
-				// // and if it is the new country, then format as a national number.
-				// const derived_country = get_country_from_possibly_incomplete_international_phone_number(value, metadata)
-				// if (derived_country === new_country)
-				// {
-				// 	return strip_country_calling_code(value, derived_country, metadata)
-				// }
-
-				// Simply strip the leading `+` character
-				// therefore simply converting all digits into a "local" phone number.
-				// https://github.com/catamphetamine/react-phone-number-input/issues/287
-				return value.slice(1);
-			}
-
-			// If the international phone number already contains
-			// any country calling code then trim the country calling code part.
-			// (that could also be the newly selected country phone code prefix as well)
-			// `value` doesn't neccessarily belong to `previous_country`.
-			// (e.g. if a user enters an international number
-			//  not belonging to any of the reduced `countries` list).
-			value = strip_country_calling_code(value, previous_country, metadata);
-
-			// Prepend country calling code prefix
-			// for the newly selected country.
-			return e164(value, new_country, metadata) || '+' + (0, core.getCountryCallingCode)(new_country, metadata);
-		}
-	}
-	// If switching to "International" from a country.
-	else {
-			// If the phone number was entered in national format.
-			if (value[0] !== '+') {
-				// Format the national phone number as an international one.
-				// The phone number entered not necessarily even starts with
-				// the previously selected country phone prefix.
-				// Even if the phone number belongs to whole another country
-				// it will still be parsed into some national phone number.
-				return e164(value, previous_country, metadata) || '';
-			}
-		}
-
-	return value;
-}
-
-/**
- * Converts phone number digits to a (possibly incomplete) E.164 phone number.
- * @param  {string?} number - A possibly incomplete phone number digits string. Can be a possibly incomplete E.164 phone number.
- * @param  {string?} country
- * @param  {[object} metadata - `libphonenumber-js` metadata.
- * @return {string?}
- */
-function e164(number, country, metadata) {
-	if (!number) {
-		return;
-	}
-
-	// If the phone number is being input in international format.
-	if (number[0] === '+') {
-		// If it's just the `+` sign then return nothing.
-		if (number === '+') {
-			return;
-		}
-
-		// If there are any digits then the `value` is returned as is.
-		return number;
-	}
-
-	// For non-international phone numbers
-	// an accompanying country code is required.
-	if (!country) {
-		return;
-	}
-
-	var partial_national_significant_number = get_national_significant_number_part(number, country, metadata);
-
-	if (partial_national_significant_number) {
-		return '+' + (0, core.getCountryCallingCode)(country, metadata) + partial_national_significant_number;
-	}
-}
-
-/**
- * Trims phone number digits if they exceed the maximum possible length
- * for a national (significant) number for the country.
- * @param  {string} number - A possibly incomplete phone number digits string. Can be a possibly incomplete E.164 phone number.
- * @param  {string} country
- * @param  {object} metadata - `libphonenumber-js` metadata.
- * @return {string} Can be empty.
- */
-function trimNumber(number, country, metadata) {
-	var nationalSignificantNumberPart = get_national_significant_number_part(number, country, metadata);
-	var overflowDigitsCount = nationalSignificantNumberPart.length - getMaxNumberLength(country, metadata);
-	if (overflowDigitsCount > 0) {
-		return number.slice(0, number.length - overflowDigitsCount);
-	}
-	return number;
-}
-
-function getMaxNumberLength(country, metadata) {
-	// Get "possible lengths" for a phone number of the country.
-	metadata = new core.Metadata(metadata);
-	metadata.country(country);
-	// Return the last "possible length".
-	return metadata.possibleLengths()[metadata.possibleLengths().length - 1];
-}
-
-// If the phone number being input is an international one
-// then tries to derive the country from the phone number.
-// (regardless of whether there's any country currently selected)
-/**
- * @param {string} parsedInput - A possibly incomplete E.164 phone number.
- * @param {string?} country - Currently selected country.
- * @param {string[]?} countries - A list of available countries. If not passed then "all countries" are assumed.
- * @param {boolean} includeInternationalOption - Whether "International" country option is available.
- * @param  {object} metadata - `libphonenumber-js` metadata.
- * @return {string?}
- */
-function getCountryForPartialE164Number(partialE164Number, country, countries, includeInternationalOption, metadata) {
-	if (partialE164Number === '+') {
-		// Don't change the currently selected country yet.
-		return country;
-	}
-
-	var derived_country = get_country_from_possibly_incomplete_international_phone_number(partialE164Number, metadata);
-
-	// If a phone number is being input in international form
-	// and the country can already be derived from it,
-	// then select that country.
-	if (derived_country && (!countries || countries.indexOf(derived_country) >= 0)) {
-		return derived_country;
-	}
-	// If "International" country option has not been disabled
-	// and the international phone number entered doesn't correspond
-	// to the currently selected country then reset the currently selected country.
-	else if (country && includeInternationalOption && !could_number_belong_to_country(partialE164Number, country, metadata)) {
-			return undefined;
-		}
-
-	// Don't change the currently selected country.
-	return country;
-}
-
-/**
- * Parses `<input/>` value. Derives `country` from `input`. Derives an E.164 `value`.
- * @param  {string?} input — Parsed `<input/>` value. Examples: `""`, `"+"`, `"+123"`, `"123"`.
- * @param  {string?} prevInput — Previous parsed `<input/>` value. Examples: `""`, `"+"`, `"+123"`, `"123"`.
- * @param  {string?} country - Currently selected country.
- * @param  {string[]?} countries - A list of available countries. If not passed then "all countries" are assumed.
- * @param  {boolean} includeInternationalOption - Whether "International" country option is available.
- * @param  {boolean} limitMaxLength — Whether to enable limiting phone number max length.
- * @param  {object} metadata - `libphonenumber-js` metadata.
- * @return {object} An object of shape `{ input, country, value }`.
- */
-function parseInput(input, prevInput, country, countries, includeInternationalOption, limitMaxLength, metadata) {
-	// Trim the input to not exceed the maximum possible number length.
-	if (input && country && limitMaxLength) {
-		input = trimNumber(input, country, metadata);
-	}
-
-	// If this `onChange()` event was triggered
-	// as a result of selecting "International" country
-	// then force-prepend a `+` sign if the phone number
-	// `<input/>` value isn't in international format.
-	if (input && !country && input[0] !== '+') {
-		input = '+' + input;
-	}
-
-	// If the previously entered phone number
-	// has been entered in international format
-	// and the user decides to erase it,
-	// then also reset the `country`
-	// because it was most likely automatically selected
-	// while the user was typing in the phone number
-	// in international format.
-	// This fixes the issue when a user is presented
-	// with a phone number input with no country selected
-	// and then types in their local phone number
-	// then discovers that the input's messed up
-	// (a `+` has been prepended at the start of their input
-	//  and a random country has been selected),
-	// decides to undo it all by erasing everything
-	// and then types in their local phone number again
-	// resulting in a seemingly correct phone number
-	// but in reality that phone number has incorrect country.
-	// https://github.com/catamphetamine/react-phone-number-input/issues/273
-	if (!input && prevInput && prevInput[0] === '+') {
-		country = undefined;
-	}
-	// Also resets such "randomly" selected country
-	// as soon as the user erases the number
-	// digit-by-digit up to the leading `+` sign.
-	if (input === '+' && prevInput && prevInput[0] === '+' && prevInput.length > '+'.length) {
-		country = undefined;
-	}
-
-	// Generate the new `value` property.
-	var value = void 0;
-	if (input) {
-		if (input[0] === '+') {
-			if (input !== '+') {
-				value = input;
-			}
-		} else {
-			value = e164(input, country, metadata);
-		}
-	}
-
-	// Derive the country from the phone number.
-	// (regardless of whether there's any country currently selected)
-	if (value) {
-		country = getCountryForPartialE164Number(value, country, countries, includeInternationalOption, metadata);
-	}
-
-	return {
-		input: input,
-		country: country,
-		value: value
-	};
-}
-
-/**
- * Determines the country for a given (possibly incomplete) E.164 phone number.
- * @param  {string} number - A possibly incomplete E.164 phone number.
- * @param  {object} metadata - `libphonenumber-js` metadata.
- * @return {string?}
- */
-function get_country_from_possibly_incomplete_international_phone_number(number, metadata) {
-	var formatter = new core.AsYouType(null, metadata);
-	formatter.input(number);
-	// `001` is a special "non-geograpical entity" code
-	// in Google's `libphonenumber` library.
-	if (formatter.country === '001') {
-		return;
-	}
-	return formatter.country;
-}
-
-/**
- * Compares two strings.
- * A helper for `Array.sort()`.
- */
-function compare_strings(a, b) {
-	// Use `String.localeCompare` if it's available.
-	// https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
-	// Which means everyone except IE <= 10 and Safari <= 10.
-	// `localeCompare()` is available in latest Node.js versions.
-	/* istanbul ignore else */
-	if (String.prototype.localeCompare) {
-		return a.localeCompare(b);
-	}
-	/* istanbul ignore next */
-	return a < b ? -1 : a > b ? 1 : 0;
-}
-
-/**
- * Strips `+${countryCallingCode}` prefix from an E.164 phone number.
- * @param {string} number - (possibly incomplete) E.164 phone number.
- * @param {string?} country - A possible country for this phone number.
- * @param {object} metadata - `libphonenumber-js` metadata.
- * @return {string}
- */
-function strip_country_calling_code(number, country, metadata) {
-	// Just an optimization, so that it
-	// doesn't have to iterate through all country calling codes.
-	if (country) {
-		var country_calling_prefix = '+' + (0, core.getCountryCallingCode)(country, metadata);
-
-		// If `country` fits the actual `number`.
-		if (number.length < country_calling_prefix.length) {
-			if (country_calling_prefix.indexOf(number) === 0) {
-				return '';
-			}
-		} else {
-			if (number.indexOf(country_calling_prefix) === 0) {
-				return number.slice(country_calling_prefix.length);
-			}
-		}
-	}
-
-	// If `country` doesn't fit the actual `number`.
-	// Try all available country calling codes.
-	for (var _iterator = Object.keys(metadata.country_calling_codes), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+exports.count_occurences = count_occurences;
+// Counts all occurences of a symbol in a string
+function count_occurences(symbol, string) {
+	var count = 0;
+	// Using `.split('')` here instead of normal `for ... of`
+	// because the importing application doesn't neccessarily include an ES6 polyfill.
+	// The `.split('')` approach discards "exotic" UTF-8 characters
+	// (the ones consisting of four bytes)
+	// but template placeholder characters don't fall into that range
+	// so skipping such miscellaneous "exotic" characters
+	// won't matter here for just counting placeholder character occurrences.
+	for (var _iterator = string.split(''), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
 		var _ref;
 
 		if (_isArray) {
@@ -28431,16 +25646,1554 @@ function strip_country_calling_code(number, country, metadata) {
 			_ref = _i.value;
 		}
 
-		var country_calling_code = _ref;
+		var character = _ref;
 
-		if (number.indexOf(country_calling_code) === '+'.length) {
-			return number.slice('+'.length + country_calling_code.length);
+		if (character === symbol) {
+			count++;
+		}
+	}
+	return count;
+}
+
+});
+
+unwrapExports(helpers);
+var helpers_1 = helpers.count_occurences;
+
+var close_braces_1 = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = close_braces;
+
+
+
+function close_braces(retained_template, template) {
+	var placeholder = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'x';
+	var empty_placeholder = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : ' ';
+
+	var cut_before = retained_template.length;
+
+	var opening_braces = (0, helpers.count_occurences)('(', retained_template);
+	var closing_braces = (0, helpers.count_occurences)(')', retained_template);
+
+	var dangling_braces = opening_braces - closing_braces;
+
+	while (dangling_braces > 0 && cut_before < template.length) {
+		retained_template += template[cut_before].replace(placeholder, empty_placeholder);
+
+		if (template[cut_before] === ')') {
+			dangling_braces--;
+		}
+
+		cut_before++;
+	}
+
+	return retained_template;
+}
+
+});
+
+unwrapExports(close_braces_1);
+
+var template_formatter = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+exports.default = function (template) {
+	var placeholder = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'x';
+	var should_close_braces = arguments[2];
+
+	if (!template) {
+		return function (value) {
+			return { text: value };
+		};
+	}
+
+	var characters_in_template = (0, helpers.count_occurences)(placeholder, template);
+
+	return function (value) {
+		if (!value) {
+			return { text: '', template: template };
+		}
+
+		var value_character_index = 0;
+		var filled_in_template = '';
+
+		// Using `.split('')` here instead of normal `for ... of`
+		// because the importing application doesn't neccessarily include an ES6 polyfill.
+		// The `.split('')` approach discards "exotic" UTF-8 characters
+		// (the ones consisting of four bytes)
+		// but template placeholder characters don't fall into that range
+		// and appending UTF-8 characters to a string in parts still works.
+		for (var _iterator = template.split(''), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+			var _ref;
+
+			if (_isArray) {
+				if (_i >= _iterator.length) break;
+				_ref = _iterator[_i++];
+			} else {
+				_i = _iterator.next();
+				if (_i.done) break;
+				_ref = _i.value;
+			}
+
+			var character = _ref;
+
+			if (character !== placeholder) {
+				filled_in_template += character;
+				continue;
+			}
+
+			filled_in_template += value[value_character_index];
+			value_character_index++;
+
+			// If the last available value character has been filled in,
+			// then return the filled in template
+			// (either trim the right part or retain it,
+			//  if no more character placeholders in there)
+			if (value_character_index === value.length) {
+				// If there are more character placeholders
+				// in the right part of the template
+				// then simply trim it.
+				if (value.length < characters_in_template) {
+					break;
+				}
+			}
+		}
+
+		if (should_close_braces) {
+			filled_in_template = (0, _closeBraces2.default)(filled_in_template, template);
+		}
+
+		return { text: filled_in_template, template: template };
+	};
+};
+
+
+
+
+
+var _closeBraces2 = _interopRequireDefault(close_braces_1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+});
+
+unwrapExports(template_formatter);
+
+var format_1 = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = format;
+
+
+
+var _templateFormatter2 = _interopRequireDefault(template_formatter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Formats `value` value preserving `caret` at the same character.
+//
+// `{ value, caret }` attribute is the result of `parse()` function call.
+//
+// Returns `{ text, caret }` where the new `caret` is the caret position
+// inside `text` text corresponding to the original `caret` position inside `value`.
+//
+// `formatter(value)` is a function returning `{ text, template }`.
+//
+// `text` is the `value` value formatted using `template`.
+// It may either cut off the non-filled right part of the `template`
+// or it may fill the non-filled character placeholders
+// in the right part of the `template` with `spacer`
+// which is a space (' ') character by default.
+//
+// `template` is the template used to format the `value`.
+// It can be either a full-length template or a partial template.
+//
+// `formatter` can also be a string — a `template`
+// where character placeholders are denoted by 'x'es.
+// In this case `formatter` function is automatically created.
+//
+// Example:
+//
+// `value` is '880',
+// `caret` is `2` (before the first `0`)
+//
+// `formatter` is `'880' =>
+//   { text: '8 (80 )', template: 'x (xxx) xxx-xx-xx' }`
+//
+// The result is `{ text: '8 (80 )', caret: 4 }`.
+//
+function format(value, caret, formatter) {
+	if (typeof formatter === 'string') {
+		formatter = (0, _templateFormatter2.default)(formatter);
+	}
+
+	var _ref = formatter(value) || {},
+	    text = _ref.text,
+	    template = _ref.template;
+
+	if (text === undefined) {
+		text = value;
+	}
+
+	if (template) {
+		if (caret === undefined) {
+			caret = text.length;
+		} else {
+			var index = 0;
+			var found = false;
+
+			var possibly_last_input_character_index = -1;
+
+			while (index < text.length && index < template.length) {
+				// Character placeholder found
+				if (text[index] !== template[index]) {
+					if (caret === 0) {
+						found = true;
+						caret = index;
+						break;
+					}
+
+					possibly_last_input_character_index = index;
+
+					caret--;
+				}
+
+				index++;
+			}
+
+			// If the caret was positioned after last input character,
+			// then the text caret index is just after the last input character.
+			if (!found) {
+				caret = possibly_last_input_character_index + 1;
+			}
 		}
 	}
 
-	return '';
+	return { text: text, caret: caret };
 }
 
+});
+
+unwrapExports(format_1);
+
+var dom = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.getSelection = getSelection;
+exports.getOperation = getOperation;
+exports.getCaretPosition = getCaretPosition;
+exports.setCaretPosition = setCaretPosition;
+// Gets <input/> selection bounds
+function getSelection(element) {
+	// If no selection, return nothing
+	if (element.selectionStart === element.selectionEnd) {
+		return;
+	}
+
+	return { start: element.selectionStart, end: element.selectionEnd };
+}
+
+// Key codes
+var Keys = exports.Keys = {
+	Backspace: 8,
+	Delete: 46
+
+	// Finds out the operation to be intercepted and performed
+	// based on the key down event `keyCode`.
+};function getOperation(event) {
+	switch (event.keyCode) {
+		case Keys.Backspace:
+			return 'Backspace';
+
+		case Keys.Delete:
+			return 'Delete';
+	}
+}
+
+// Gets <input/> caret position
+function getCaretPosition(element) {
+	return element.selectionStart;
+}
+
+// Sets <input/> caret position
+function setCaretPosition(element, caret_position) {
+	// Sanity check
+	if (caret_position === undefined) {
+		return;
+	}
+
+	// Set caret position.
+	// There has been an issue with caret positioning on Android devices.
+	// https://github.com/catamphetamine/input-format/issues/2
+	// I was revisiting this issue and looked for similar issues in other libraries.
+	// For example, there's [`text-mask`](https://github.com/text-mask/text-mask) library.
+	// They've had exactly the same issue when the caret seemingly refused to be repositioned programmatically.
+	// The symptoms were the same: whenever the caret passed through a non-digit character of a mask (a whitespace, a bracket, a dash, etc), it looked as if it placed itself one character before its correct position.
+	// https://github.com/text-mask/text-mask/issues/300
+	// They seem to have found a basic fix for it: calling `input.setSelectionRange()` in a timeout rather than instantly for Android devices.
+	// https://github.com/text-mask/text-mask/pull/400/files
+	// I've implemented the same workaround here.
+	if (isAndroid()) {
+		setTimeout(function () {
+			return element.setSelectionRange(caret_position, caret_position);
+		}, 0);
+	} else {
+		element.setSelectionRange(caret_position, caret_position);
+	}
+}
+
+function isAndroid() {
+	// `navigator` is not defined when running mocha tests.
+	if (typeof navigator !== 'undefined') {
+		return ANDROID_USER_AGENT_REG_EXP.test(navigator.userAgent);
+	}
+}
+
+var ANDROID_USER_AGENT_REG_EXP = /Android/i;
+
+});
+
+unwrapExports(dom);
+var dom_1 = dom.getSelection;
+var dom_2 = dom.getOperation;
+var dom_3 = dom.getCaretPosition;
+var dom_4 = dom.setCaretPosition;
+var dom_5 = dom.Keys;
+
+var input_control = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.onCut = onCut;
+exports.onPaste = onPaste;
+exports.onChange = onChange;
+exports.onKeyDown = onKeyDown;
+
+
+
+var _edit2 = _interopRequireDefault(edit_1);
+
+
+
+var _parse4 = _interopRequireDefault(parse_1);
+
+
+
+var _format3 = _interopRequireDefault(format_1);
+
+
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function onCut(event, input, _parse, _format, on_change) {
+	// The actual cut hasn't happened just yet hence the timeout.
+	setTimeout(function () {
+		return format_input_text(input, _parse, _format, undefined, on_change);
+	}, 0);
+}
+
+function onPaste(event, input, _parse, _format, on_change) {
+	var selection = (0, dom.getSelection)(input);
+
+	// If selection is made,
+	// just erase the selected text
+	// prior to pasting
+	if (selection) {
+		erase_selection(input, selection);
+	}
+
+	format_input_text(input, _parse, _format, undefined, on_change);
+}
+
+function onChange(event, input, _parse, _format, on_change) {
+	format_input_text(input, _parse, _format, undefined, on_change);
+}
+
+// Intercepts "Delete" and "Backspace" keys.
+// (hitting "Delete" or "Backspace" at any caret
+//  position should always result in rasing a digit)
+function onKeyDown(event, input, _parse, _format, on_change) {
+	var operation = (0, dom.getOperation)(event);
+
+	switch (operation) {
+		case 'Delete':
+		case 'Backspace':
+			// Intercept this operation and perform it manually.
+			event.preventDefault();
+
+			var selection = (0, dom.getSelection)(input);
+
+			// If selection is made,
+			// just erase the selected text,
+			// and don't apply any more operations to it.
+			if (selection) {
+				erase_selection(input, selection);
+				return format_input_text(input, _parse, _format, undefined, on_change);
+			}
+
+			// Else, perform the (character erasing) operation manually
+			return format_input_text(input, _parse, _format, operation, on_change);
+		// Will be handled when `onChange` fires.
+	}
+}
+
+/**
+ * Erases the selected text inside an `<input/>`.
+ * @param  {DOMElement} input
+ * @param  {Selection} selection
+ */
+function erase_selection(input, selection) {
+	var text = input.value;
+	text = text.slice(0, selection.start) + text.slice(selection.end);
+
+	input.value = text;
+	(0, dom.setCaretPosition)(input, selection.start);
+}
+
+/**
+ * Parses and re-formats `<input/>` textual value.
+ * E.g. when a user enters something into the `<input/>`
+ * that raw input must first be parsed and the re-formatted properly.
+ * Is called either after some user input (e.g. entered a character, pasted something)
+ * or after the user performed an `operation` (e.g. "Backspace", "Delete").
+ * @param  {DOMElement} input
+ * @param  {Function} parse
+ * @param  {Function} format
+ * @param  {string} [operation] - The operation that triggered `<input/>` textual value change. E.g. "Backspace", "Delete".
+ * @param  {Function} onChange
+ */
+function format_input_text(input, _parse, _format, operation, on_change) {
+	// Parse `<input/>` textual value.
+	// Get `value` and `caret` position.
+	var _parse2 = (0, _parse4.default)(input.value, (0, dom.getCaretPosition)(input), _parse),
+	    value = _parse2.value,
+	    caret = _parse2.caret;
+
+	// If a user performed an operation (e.g. "Backspace", "Delete")
+	// then apply that operation and get new `value` and `caret` position.
+
+
+	if (operation) {
+		var operation_applied = (0, _edit2.default)(value, caret, operation);
+
+		value = operation_applied.value;
+		caret = operation_applied.caret;
+	}
+
+	// Format the `value`.
+	// (and reposition the caret accordingly)
+	var formatted = (0, _format3.default)(value, caret, _format);
+
+	var text = formatted.text;
+	caret = formatted.caret;
+
+	// Set `<input/>` textual value manually
+	// to prevent React from resetting the caret position
+	// later inside subsequent `render()`.
+	// Doesn't work for custom `inputComponent`s for some reason.
+	input.value = text;
+	// Position the caret properly.
+	(0, dom.setCaretPosition)(input, caret);
+
+	// `<input/>` textual value may have changed,
+	// so the parsed `value` may have changed too.
+	// The `value` didn't neccessarily change
+	// but it might have.
+	on_change(value);
+}
+
+});
+
+unwrapExports(input_control);
+var input_control_1 = input_control.onCut;
+var input_control_2 = input_control.onPaste;
+var input_control_3 = input_control.onChange;
+var input_control_4 = input_control.onKeyDown;
+
+var Input_1 = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+
+
+var _react2 = _interopRequireDefault(React__default);
+
+
+
+var _propTypes2 = _interopRequireDefault(PropTypes$1);
+
+
+
+var _parse3 = _interopRequireDefault(parse_1);
+
+
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } // This is just `./ReactInput.js` rewritten in Hooks.
+
+// Usage:
+//
+// <ReactInput
+// 	value={this.state.phone}
+// 	onChange={phone => this.setState({ phone })}
+// 	parse={character => character}
+// 	format={value => ({ text: value, template: 'xxxxxxxx' })}/>
+//
+function Input(_ref, ref) {
+	var value = _ref.value,
+	    parse = _ref.parse,
+	    format = _ref.format,
+	    InputComponent = _ref.inputComponent,
+	    onChange = _ref.onChange,
+	    onCut = _ref.onCut,
+	    onPaste = _ref.onPaste,
+	    onKeyDown = _ref.onKeyDown,
+	    rest = _objectWithoutProperties(_ref, ['value', 'parse', 'format', 'inputComponent', 'onChange', 'onCut', 'onPaste', 'onKeyDown']);
+
+	var ownRef = (0, React__default.useRef)();
+	ref = ref || ownRef;
+	var _onChange = (0, React__default.useCallback)(function (event) {
+		return (0, input_control.onChange)(event, ref.current, parse, format, onChange);
+	}, [ref, parse, format, onChange]);
+
+	var _onPaste = (0, React__default.useCallback)(function (event) {
+		if (onPaste) {
+			onPaste(event);
+		}
+		return (0, input_control.onPaste)(event, ref.current, parse, format, onChange);
+	}, [ref, parse, format, onChange, onPaste]);
+
+	var _onCut = (0, React__default.useCallback)(function (event) {
+		if (onCut) {
+			onCut(event);
+		}
+		return (0, input_control.onCut)(event, ref.current, parse, format, onChange);
+	}, [ref, parse, format, onChange, onCut]);
+
+	var _onKeyDown = (0, React__default.useCallback)(function (event) {
+		if (onKeyDown) {
+			onKeyDown(event);
+		}
+		return (0, input_control.onKeyDown)(event, ref.current, parse, format, onChange);
+	}, [ref, parse, format, onChange, onKeyDown]);
+
+	return _react2.default.createElement(InputComponent, _extends({}, rest, {
+		ref: ref,
+		value: format(isEmptyValue(value) ? '' : value).text,
+		onKeyDown: _onKeyDown,
+		onChange: _onChange,
+		onPaste: _onPaste,
+		onCut: _onCut }));
+}
+
+Input = _react2.default.forwardRef(Input);
+
+Input.propTypes = {
+	// Parses a single characher of `<input/>` text.
+	parse: _propTypes2.default.func.isRequired,
+
+	// Formats `value` into `<input/>` text.
+	format: _propTypes2.default.func.isRequired,
+
+	// Renders `<input/>` by default.
+	inputComponent: _propTypes2.default.elementType.isRequired,
+
+	// `<input/>` `type` attribute.
+	type: _propTypes2.default.string.isRequired,
+
+	// Is parsed from <input/> text.
+	value: _propTypes2.default.string,
+
+	// This handler is called each time `<input/>` text is changed.
+	onChange: _propTypes2.default.func.isRequired,
+
+	// Passthrough
+	onKeyDown: _propTypes2.default.func,
+	onCut: _propTypes2.default.func,
+	onPaste: _propTypes2.default.func
+};
+
+Input.defaultProps = {
+	// Renders `<input/>` by default.
+	inputComponent: 'input',
+
+	// `<input/>` `type` attribute.
+	type: 'text'
+};
+
+exports.default = Input;
+
+
+function isEmptyValue(value) {
+	return value === undefined || value === null;
+}
+
+});
+
+var Input$1 = unwrapExports(Input_1);
+
+function getInputValuePrefix(country, international, metadata) {
+  return country && international ? "+".concat(getCountryCallingCode(country, metadata)) : '';
+}
+function removeInputValuePrefix(value, prefix) {
+  if (prefix) {
+    value = value.slice(prefix.length);
+
+    if (value[0] === ' ') {
+      value = value.slice(1);
+    }
+  }
+
+  return value;
+}
+
+function _extends$6() { _extends$6 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$6.apply(this, arguments); }
+
+function _objectWithoutProperties$2(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose$1(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose$1(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+/**
+ * This input uses `input-format` library
+ * for "smart" caret positioning.
+ */
+
+function createInput(defaultMetadata) {
+  function InputSmart(_ref, ref) {
+    var country = _ref.country,
+        international = _ref.international,
+        metadata = _ref.metadata,
+        rest = _objectWithoutProperties$2(_ref, ["country", "international", "metadata"]);
+
+    var format = React.useCallback(function (value) {
+      // "As you type" formatter.
+      var formatter = new AsYouType(country, metadata);
+      var prefix = getInputValuePrefix(country, international, metadata); // Format the number.
+
+      var text = formatter.input(prefix + value);
+      var template = formatter.getTemplate();
+
+      if (prefix) {
+        text = removeInputValuePrefix(text, prefix); // `AsYouType.getTemplate()` can be `undefined`.
+
+        if (template) {
+          template = removeInputValuePrefix(template, prefix);
+        }
+      }
+
+      return {
+        text: text,
+        template: template
+      };
+    }, [country, metadata]);
+    return React__default.createElement(Input$1, _extends$6({}, rest, {
+      ref: ref,
+      parse: parsePhoneNumberCharacter,
+      format: format
+    }));
+  }
+
+  InputSmart = React__default.forwardRef(InputSmart);
+  InputSmart.propTypes = {
+    /**
+     * A two-letter country code for formatting `value`
+     * as a national phone number (e.g. `(800) 555 35 35`).
+     * E.g. "US", "RU", etc.
+     * If no `country` is passed then `value`
+     * is formatted as an international phone number.
+     * (e.g. `+7 800 555 35 35`)
+     * Perhaps the `country` property should have been called `defaultCountry`
+     * because if `value` is an international number then `country` is ignored.
+     */
+    country: PropTypes$1.string,
+
+    /**
+     * If `country` property is passed along with `international={true}` property
+     * then the phone number will be input in "international" format for that `country`
+     * (without "country calling code").
+     * For example, if `country="US"` property is passed to "without country select" input
+     * then the phone number will be input in the "national" format for `US` (`(213) 373-4253`).
+     * But if both `country="US"` and `international={true}` properties are passed then
+     * the phone number will be input in the "international" format for `US` (`213 373 4253`)
+     * (without "country calling code" `+1`).
+     */
+    international: PropTypes$1.bool,
+
+    /**
+     * `libphonenumber-js` metadata.
+     */
+    metadata: PropTypes$1.object.isRequired
+  };
+  InputSmart.defaultProps = {
+    metadata: defaultMetadata
+  };
+  return InputSmart;
+}
+var InputSmart = createInput();
+
+function _extends$7() { _extends$7 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$7.apply(this, arguments); }
+
+function _objectWithoutProperties$3(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose$2(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose$2(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+function createInput$1(defaultMetadata) {
+  /**
+   * `InputBasic`'s caret is not as "smart" as the default `inputComponent`'s
+   * but still works good enough. When erasing or inserting digits in the middle
+   * of a phone number the caret usually jumps to the end: this is the expected
+   * behaviour and it's the workaround for the [Samsung Galaxy smart caret positioning bug](https://github.com/catamphetamine/react-phone-number-input/issues/75).
+   */
+  function InputBasic(_ref, ref) {
+    var value = _ref.value,
+        onChange = _ref.onChange,
+        country = _ref.country,
+        international = _ref.international,
+        metadata = _ref.metadata,
+        Input = _ref.inputComponent,
+        rest = _objectWithoutProperties$3(_ref, ["value", "onChange", "country", "international", "metadata", "inputComponent"]);
+
+    var prefix = getInputValuePrefix(country, international, metadata);
+
+    var _onChange = React.useCallback(function (event) {
+      var newValue = parseIncompletePhoneNumber(event.target.value); // By default, if a value is something like `"(123)"`
+      // then Backspace would only erase the rightmost brace
+      // becoming something like `"(123"`
+      // which would give the same `"123"` value
+      // which would then be formatted back to `"(123)"`
+      // and so a user wouldn't be able to erase the phone number.
+      // Working around this issue with this simple hack.
+
+      if (newValue === value) {
+        var newValueFormatted = format$1(prefix, newValue, country, metadata);
+
+        if (newValueFormatted.indexOf(event.target.value) === 0) {
+          // Trim the last digit (or plus sign).
+          newValue = newValue.slice(0, -1);
+        }
+      }
+
+      onChange(newValue);
+    }, [prefix, value, onChange, country, metadata]);
+
+    return React__default.createElement(Input, _extends$7({}, rest, {
+      ref: ref,
+      value: format$1(prefix, value, country, metadata),
+      onChange: _onChange
+    }));
+  }
+
+  InputBasic = React__default.forwardRef(InputBasic);
+  InputBasic.propTypes = {
+    /**
+     * The parsed phone number.
+     * "Parsed" not in a sense of "E.164"
+     * but rather in a sense of "having only
+     * digits and possibly a leading plus character".
+     * Examples: `""`, `"+"`, `"+123"`, `"123"`.
+     */
+    value: PropTypes$1.string.isRequired,
+
+    /**
+     * Updates the `value`.
+     */
+    onChange: PropTypes$1.func.isRequired,
+
+    /**
+     * A two-letter country code for formatting `value`
+     * as a national phone number (e.g. `(800) 555 35 35`).
+     * E.g. "US", "RU", etc.
+     * If no `country` is passed then `value`
+     * is formatted as an international phone number.
+     * (e.g. `+7 800 555 35 35`)
+     * Perhaps the `country` property should have been called `defaultCountry`
+     * because if `value` is an international number then `country` is ignored.
+     */
+    country: PropTypes$1.string,
+
+    /**
+     * If `country` property is passed along with `international={true}` property
+     * then the phone number will be input in "international" format for that `country`
+     * (without "country calling code").
+     * For example, if `country="US"` property is passed to "without country select" input
+     * then the phone number will be input in the "national" format for `US` (`(213) 373-4253`).
+     * But if both `country="US"` and `international={true}` properties are passed then
+     * the phone number will be input in the "international" format for `US` (`213 373 4253`)
+     * (without "country calling code" `+1`).
+     */
+    international: PropTypes$1.bool,
+
+    /**
+     * `libphonenumber-js` metadata.
+     */
+    metadata: PropTypes$1.object.isRequired,
+
+    /**
+     * The `<input/>` component.
+     */
+    inputComponent: PropTypes$1.elementType.isRequired
+  };
+  InputBasic.defaultProps = {
+    metadata: defaultMetadata,
+    inputComponent: 'input'
+  };
+  return InputBasic;
+}
+var InputBasic = createInput$1();
+
+function format$1(prefix, value, country, metadata) {
+  return removeInputValuePrefix(formatIncompletePhoneNumber(prefix + value, country, metadata), prefix);
+}
+
+// `<img/>` is wrapped in a `<div/>` to prevent SVGs from exploding in size in IE 11.
+// https://github.com/catamphetamine/react-phone-number-input/issues/111
+
+function FlagComponent(_ref) {
+  var country = _ref.country,
+      countryName = _ref.countryName,
+      flags = _ref.flags,
+      flagUrl = _ref.flagUrl,
+      className = _ref.className;
+
+  if (flags && flags[country]) {
+    return flags[country]({
+      title: countryName
+    });
+  }
+
+  return React__default.createElement("img", {
+    alt: countryName,
+    className: "PhoneInputCountryIconImg",
+    src: flagUrl.replace('{XX}', country).replace('{xx}', country.toLowerCase())
+  });
+}
+FlagComponent.propTypes = {
+  // The country to be selected by default.
+  // Two-letter country code ("ISO 3166-1 alpha-2").
+  country: PropTypes$1.string.isRequired,
+  // Will be HTML `title` attribute of the `<img/>`.
+  countryName: PropTypes$1.string.isRequired,
+  // Country flag icon components.
+  // By default flag icons are inserted as `<img/>`s
+  // with their `src` pointed to `country-flag-icons` github pages website.
+  // There might be cases (e.g. an offline application)
+  // where having a large (3 megabyte) `<svg/>` flags
+  // bundle is more appropriate.
+  // `import flags from 'react-phone-number-input/flags'`.
+  flags: PropTypes$1.objectOf(PropTypes$1.elementType),
+  // A URL for a country flag icon.
+  // By default it points to `country-flag-icons` github pages website.
+  flagUrl: PropTypes$1.string.isRequired
+};
+
+function _extends$8() { _extends$8 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$8.apply(this, arguments); }
+
+function _objectWithoutProperties$4(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose$3(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose$3(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+function InternationalIcon(_ref) {
+  var aspectRatio = _ref.aspectRatio,
+      rest = _objectWithoutProperties$4(_ref, ["aspectRatio"]);
+
+  if (aspectRatio === 1) {
+    return React__default.createElement(InternationalIcon1x1, rest);
+  } else {
+    return React__default.createElement(InternationalIcon3x2, rest);
+  }
+}
+InternationalIcon.propTypes = {
+  title: PropTypes$1.string.isRequired,
+  aspectRatio: PropTypes$1.number
+}; // 3x2.
+// Using `<title/>` in `<svg/>`s:
+// https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title
+
+function InternationalIcon3x2(_ref2) {
+  var title = _ref2.title,
+      rest = _objectWithoutProperties$4(_ref2, ["title"]);
+
+  return React__default.createElement("svg", _extends$8({}, rest, {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 75 50"
+  }), React__default.createElement("title", null, title), React__default.createElement("g", {
+    className: "PhoneInputInternationalIconGlobe",
+    stroke: "currentColor",
+    fill: "none",
+    strokeWidth: "2",
+    strokeMiterlimit: "10"
+  }, React__default.createElement("path", {
+    strokeLinecap: "round",
+    d: "M47.2,36.1C48.1,36,49,36,50,36c7.4,0,14,1.7,18.5,4.3"
+  }), React__default.createElement("path", {
+    d: "M68.6,9.6C64.2,12.3,57.5,14,50,14c-7.4,0-14-1.7-18.5-4.3"
+  }), React__default.createElement("line", {
+    x1: "26",
+    y1: "25",
+    x2: "74",
+    y2: "25"
+  }), React__default.createElement("line", {
+    x1: "50",
+    y1: "1",
+    x2: "50",
+    y2: "49"
+  }), React__default.createElement("path", {
+    strokeLinecap: "round",
+    d: "M46.3,48.7c1.2,0.2,2.5,0.3,3.7,0.3c13.3,0,24-10.7,24-24S63.3,1,50,1S26,11.7,26,25c0,2,0.3,3.9,0.7,5.8"
+  }), React__default.createElement("path", {
+    strokeLinecap: "round",
+    d: "M46.8,48.2c1,0.6,2.1,0.8,3.2,0.8c6.6,0,12-10.7,12-24S56.6,1,50,1S38,11.7,38,25c0,1.4,0.1,2.7,0.2,4c0,0.1,0,0.2,0,0.2"
+  })), React__default.createElement("path", {
+    className: "PhoneInputInternationalIconPhone",
+    stroke: "none",
+    fill: "currentColor",
+    d: "M12.4,17.9c2.9-2.9,5.4-4.8,0.3-11.2S4.1,5.2,1.3,8.1C-2,11.4,1.1,23.5,13.1,35.6s24.3,15.2,27.5,11.9c2.8-2.8,7.8-6.3,1.4-11.5s-8.3-2.6-11.2,0.3c-2,2-7.2-2.2-11.7-6.7S10.4,19.9,12.4,17.9z"
+  }));
+}
+
+InternationalIcon3x2.propTypes = {
+  title: PropTypes$1.string.isRequired
+}; // 1x1.
+// Using `<title/>` in `<svg/>`s:
+// https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title
+
+function InternationalIcon1x1(_ref3) {
+  var title = _ref3.title,
+      rest = _objectWithoutProperties$4(_ref3, ["title"]);
+
+  return React__default.createElement("svg", _extends$8({}, rest, {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 50 50"
+  }), React__default.createElement("title", null, title), React__default.createElement("g", {
+    className: "PhoneInputInternationalIconGlobe",
+    stroke: "currentColor",
+    fill: "none",
+    strokeWidth: "2",
+    strokeLinecap: "round"
+  }, React__default.createElement("path", {
+    d: "M8.45,13A21.44,21.44,0,1,1,37.08,41.56"
+  }), React__default.createElement("path", {
+    d: "M19.36,35.47a36.9,36.9,0,0,1-2.28-13.24C17.08,10.39,21.88.85,27.8.85s10.72,9.54,10.72,21.38c0,6.48-1.44,12.28-3.71,16.21"
+  }), React__default.createElement("path", {
+    d: "M17.41,33.4A39,39,0,0,1,27.8,32.06c6.62,0,12.55,1.5,16.48,3.86"
+  }), React__default.createElement("path", {
+    d: "M44.29,8.53c-3.93,2.37-9.86,3.88-16.49,3.88S15.25,10.9,11.31,8.54"
+  }), React__default.createElement("line", {
+    x1: "27.8",
+    y1: "0.85",
+    x2: "27.8",
+    y2: "34.61"
+  }), React__default.createElement("line", {
+    x1: "15.2",
+    y1: "22.23",
+    x2: "49.15",
+    y2: "22.23"
+  })), React__default.createElement("path", {
+    className: "PhoneInputInternationalIconPhone",
+    stroke: "transparent",
+    fill: "currentColor",
+    d: "M9.42,26.64c2.22-2.22,4.15-3.59.22-8.49S3.08,17,.93,19.17c-2.49,2.48-.13,11.74,9,20.89s18.41,11.5,20.89,9c2.15-2.15,5.91-4.77,1-8.71s-6.27-2-8.49.22c-1.55,1.55-5.48-1.69-8.86-5.08S7.87,28.19,9.42,26.64Z"
+  }));
+}
+
+InternationalIcon1x1.propTypes = {
+  title: PropTypes$1.string.isRequired
+};
+
+/**
+ * Sorts country `<select/>` options.
+ * Can move some country `<select/>` options
+ * to the top of the list, for example.
+ * @param  {object[]} countryOptions — Country `<select/>` options.
+ * @param  {string[]} [countryOptionsOrder] — Country `<select/>` options order. Example: `["US", "CA", "AU", "|", "..."]`.
+ * @return {object[]}
+ */
+
+function sortCountryOptions(options, order) {
+  if (!order) {
+    return options;
+  }
+
+  var optionsOnTop = [];
+  var optionsOnBottom = [];
+  var appendTo = optionsOnTop;
+
+  var _loop = function _loop() {
+    if (_isArray) {
+      if (_i >= _iterator.length) return "break";
+      _ref = _iterator[_i++];
+    } else {
+      _i = _iterator.next();
+      if (_i.done) return "break";
+      _ref = _i.value;
+    }
+
+    var element = _ref;
+
+    if (element === '|') {
+      appendTo.push({
+        divider: true
+      });
+    } else if (element === '...' || element === '…') {
+      appendTo = optionsOnBottom;
+    } else {
+      // Find the position of the option.
+      var index = options.indexOf(options.filter(function (option) {
+        return option.value === element;
+      })[0]); // Get the option.
+
+      var option = options[index]; // Remove the option from its default position.
+
+      options.splice(index, 1); // Add the option on top.
+
+      appendTo.push(option);
+    }
+  };
+
+  for (var _iterator = order, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+    var _ref;
+
+    var _ret = _loop();
+
+    if (_ret === "break") break;
+  }
+
+  return optionsOnTop.concat(options).concat(optionsOnBottom);
+}
+function getSupportedCountryOptions(countryOptions, metadata) {
+  if (countryOptions) {
+    countryOptions = countryOptions.filter(function (option) {
+      switch (option) {
+        case '|':
+        case '...':
+        case '…':
+          return true;
+
+        default:
+          return isCountrySupportedWithError(option, metadata);
+      }
+    });
+
+    if (countryOptions.length > 0) {
+      return countryOptions;
+    }
+  }
+}
+function isCountrySupportedWithError(country, metadata) {
+  if (isSupportedCountry(country, metadata)) {
+    return true;
+  } else {
+    console.error("Country not found: ".concat(country));
+    return false;
+  }
+}
+function getSupportedCountries(countries, metadata) {
+  if (countries) {
+    countries = countries.filter(function (country) {
+      return isCountrySupportedWithError(country, metadata);
+    });
+
+    if (countries.length === 0) {
+      countries = undefined;
+    }
+  }
+
+  return countries;
+}
+
+function createCountryIconComponent(_ref) {
+  var flags = _ref.flags,
+      flagUrl = _ref.flagUrl,
+      FlagComponent = _ref.flagComponent,
+      InternationalIcon$1 = _ref.internationalIcon;
+
+  function CountryIcon(_ref2) {
+    var country = _ref2.country,
+        label = _ref2.label,
+        aspectRatio = _ref2.aspectRatio;
+
+    // `aspectRatio` is currently a hack for the default "International" icon
+    // to render it as a square when Unicode flag icons are used.
+    // So `aspectRatio` property is only used with the default "International" icon.
+    var _aspectRatio = InternationalIcon$1 === InternationalIcon ? aspectRatio : undefined;
+
+    return React__default.createElement("div", {
+      className: classnames('PhoneInputCountryIcon', {
+        'PhoneInputCountryIcon--square': _aspectRatio === 1,
+        'PhoneInputCountryIcon--border': country
+      })
+    }, country ? React__default.createElement(FlagComponent, {
+      country: country,
+      countryName: label,
+      flags: flags,
+      flagUrl: flagUrl
+    }) : React__default.createElement(InternationalIcon$1, {
+      title: label,
+      aspectRatio: _aspectRatio
+    }));
+  }
+
+  CountryIcon.propTypes = {
+    country: PropTypes$1.string.isRequired,
+    label: PropTypes$1.string.isRequired,
+    aspectRatio: PropTypes$1.number
+  };
+  return CountryIcon;
+}
+createCountryIconComponent({
+  // Must be equal to `defaultProps.flagUrl` in `./PhoneInputWithCountry.js`.
+  flagUrl: 'https://catamphetamine.github.io/country-flag-icons/3x2/{XX}.svg',
+  flagComponent: FlagComponent,
+  internationalIcon: InternationalIcon
+});
+
+var metadata$1 = PropTypes$1.shape({
+  country_calling_codes: PropTypes$1.object.isRequired,
+  countries: PropTypes$1.object.isRequired
+});
+var labels = PropTypes$1.objectOf(PropTypes$1.string);
+
+/**
+ * Decides which country should be pre-selected
+ * when the phone number input component is first mounted.
+ * @param  {object?} phoneNumber - An instance of `PhoneNumber` class.
+ * @param  {string?} country - Pre-defined country (two-letter code).
+ * @param  {string[]?} countries - A list of countries available.
+ * @param  {boolean} includeInternationalOption - Whether "International" country option is available.
+ * @param  {object} metadata - `libphonenumber-js` metadata
+ * @return {string?}
+ */
+
+function getPreSelectedCountry(phoneNumber, country, countries, includeInternationalOption, metadata) {
+  // If can get country from E.164 phone number
+  // then it overrides the `country` passed (or not passed).
+  if (phoneNumber && phoneNumber.country) {
+    // `country` will be left `undefined` in case of non-detection.
+    country = phoneNumber.country;
+  } // Only pre-select a country if it's in the available `countries` list.
+
+
+  if (countries && countries.indexOf(country) < 0) {
+    country = undefined;
+  } // If there will be no "International" option
+  // then some `country` must be selected.
+  // It will still be the wrong country though.
+  // But still country `<select/>` can't be left in a broken state.
+
+
+  if (!country && !includeInternationalOption && countries && countries.length > 0) {
+    country = countries[0];
+  }
+
+  return country;
+}
+/**
+ * Generates a sorted list of country `<select/>` options.
+ * @param  {string[]} countries - A list of two-letter ("ISO 3166-1 alpha-2") country codes.
+ * @param  {object} labels - Custom country labels. E.g. `{ RU: 'Россия', US: 'США', ... }`.
+ * @param  {boolean} includeInternationalOption - Whether should include "International" option at the top of the list.
+ * @return {object[]} A list of objects having shape `{ value : string, label : string }`.
+ */
+
+function getCountrySelectOptions(countries, country_names, includeInternationalOption) {
+  // Generates a `<Select/>` option for each country.
+  var country_select_options = countries.map(function (country) {
+    return {
+      value: country,
+      label: country_names[country]
+    };
+  }); // Sort the list of countries alphabetically.
+
+  country_select_options.sort(function (a, b) {
+    return compare_strings(a.label, b.label);
+  }); // Add the "International" option to the country list (if suitable)
+
+  if (includeInternationalOption) {
+    country_select_options.unshift({
+      label: country_names.ZZ
+    });
+  }
+
+  return country_select_options;
+}
+/**
+ * Parses a E.164 phone number to an instance of `PhoneNumber` class.
+ * @param {string?} value = E.164 phone number.
+ * @param  {object} metadata - `libphonenumber-js` metadata
+ * @example
+ * parsePhoneNumber('+78005553535')
+ */
+
+function parsePhoneNumber$2(value, metadata) {
+  return parsePhoneNumberFromString$1(value || '', metadata);
+}
+/**
+ * Generates national number digits for a parsed phone.
+ * May prepend national prefix.
+ * The phone number must be a complete and valid phone number.
+ * @param  {object} phoneNumber - An instance of `PhoneNumber` class.
+ * @param  {object} metadata - `libphonenumber-js` metadata
+ * @return {string}
+ * @example
+ * getNationalNumberDigits({ country: 'RU', phone: '8005553535' })
+ * // returns '88005553535'
+ */
+
+function generateNationalNumberDigits(phoneNumber) {
+  return phoneNumber.formatNational().replace(/\D/g, '');
+}
+/**
+ * Migrates parsed `<input/>` `value` for the newly selected `country`.
+ * @param {string?} value - The `value` parsed from phone number `<input/>` (it's the `parsed_input` state property, not the `value` property).
+ * @param {string?} previousCountry - Previously selected country.
+ * @param {string?} newCountry - Newly selected country. Can't be same as previously selected country.
+ * @param {object} metadata - `libphonenumber-js` metadata.
+ * @param {boolean} preferNationalFormat - whether should attempt to convert from international to national number for the new country.
+ * @return {string?}
+ */
+
+function migrateParsedInputForNewCountry(value, previous_country, new_country, metadata, preferNationalFormat) {
+  // If `parsed_input` is empty
+  // then no need to migrate anything.
+  if (!value) {
+    return value;
+  } // If switching to some country.
+  // (from "International" or another country)
+  // If switching from "International" then `value` starts with a `+`.
+  // Otherwise it may or may not start with a `+`.
+
+
+  if (new_country) {
+    // If the phone number was entered in international format
+    // then migrate it to the newly selected country.
+    // The phone number may be incomplete.
+    // The phone number entered not necessarily starts with
+    // the previously selected country phone prefix.
+    if (value[0] === '+') {
+      // If the international phone number is for the new country
+      // then convert it to local if required.
+      if (preferNationalFormat) {
+        // // If a phone number is being input in international form
+        // // and the country can already be derived from it,
+        // // and if it is the new country, then format as a national number.
+        // const derived_country = get_country_from_possibly_incomplete_international_phone_number(value, metadata)
+        // if (derived_country === new_country)
+        // {
+        // 	return strip_country_calling_code(value, derived_country, metadata)
+        // }
+        // Actually, the two countries don't necessarily need to match:
+        // the condition could be looser here, because several countries
+        // might share the same international phone number format
+        // (for example, "NANPA" countries like US, Canada, etc).
+        // The looser condition would be just "same nternational phone number format"
+        // which would mean "same country calling code" in the context of `libphonenumber-js`.
+        if (value.indexOf('+' + getCountryCallingCode(new_country, metadata)) === 0) {
+          return strip_country_calling_code(value, new_country, metadata);
+        } // Simply discard the previously entered international phone number,
+        // because otherwise any "smart" transformation like getting the
+        // "national (significant) number" part and then prepending the
+        // newly selected country's "country calling code" to it
+        // would just be confusing for a user without being actually useful.
+
+
+        return ''; // // Simply strip the leading `+` character
+        // // therefore simply converting all digits into a "local" phone number.
+        // // https://github.com/catamphetamine/react-phone-number-input/issues/287
+        // return value.slice(1)
+      } // If the international phone number already contains
+      // any country calling code then trim the country calling code part.
+      // (that could also be the newly selected country phone code prefix as well)
+      // `value` doesn't neccessarily belong to `previous_country`.
+      // (e.g. if a user enters an international number
+      //  not belonging to any of the reduced `countries` list).
+
+
+      value = strip_country_calling_code(value, previous_country, metadata); // Prepend country calling code prefix
+      // for the newly selected country.
+
+      return e164(value, new_country, metadata) || "+".concat(getCountryCallingCode(new_country, metadata));
+    }
+  } // If switching to "International" from a country.
+  else {
+      // If the phone number was entered in national format.
+      if (value[0] !== '+') {
+        // Format the national phone number as an international one.
+        // The phone number entered not necessarily even starts with
+        // the previously selected country phone prefix.
+        // Even if the phone number belongs to whole another country
+        // it will still be parsed into some national phone number.
+        return e164(value, previous_country, metadata) || '';
+      }
+    }
+
+  return value;
+}
+/**
+ * Converts phone number digits to a (possibly incomplete) E.164 phone number.
+ * @param  {string?} number - A possibly incomplete phone number digits string. Can be a possibly incomplete E.164 phone number.
+ * @param  {string?} country
+ * @param  {[object} metadata - `libphonenumber-js` metadata.
+ * @return {string?}
+ */
+
+function e164(number, country, metadata) {
+  if (!number) {
+    return;
+  } // If the phone number is being input in international format.
+
+
+  if (number[0] === '+') {
+    // If it's just the `+` sign then return nothing.
+    if (number === '+') {
+      return;
+    } // If there are any digits then the `value` is returned as is.
+
+
+    return number;
+  } // For non-international phone numbers
+  // an accompanying country code is required.
+
+
+  if (!country) {
+    return;
+  }
+
+  var partial_national_significant_number = get_national_significant_number_part(number, country, metadata);
+
+  if (partial_national_significant_number) {
+    return "+".concat(getCountryCallingCode(country, metadata)).concat(partial_national_significant_number);
+  }
+}
+/**
+ * Trims phone number digits if they exceed the maximum possible length
+ * for a national (significant) number for the country.
+ * @param  {string} number - A possibly incomplete phone number digits string. Can be a possibly incomplete E.164 phone number.
+ * @param  {string} country
+ * @param  {object} metadata - `libphonenumber-js` metadata.
+ * @return {string} Can be empty.
+ */
+
+function trimNumber(number, country, metadata) {
+  var nationalSignificantNumberPart = get_national_significant_number_part(number, country, metadata);
+  var overflowDigitsCount = nationalSignificantNumberPart.length - getMaxNumberLength(country, metadata);
+
+  if (overflowDigitsCount > 0) {
+    return number.slice(0, number.length - overflowDigitsCount);
+  }
+
+  return number;
+}
+
+function getMaxNumberLength(country, metadata) {
+  // Get "possible lengths" for a phone number of the country.
+  metadata = new Metadata(metadata);
+  metadata.country(country); // Return the last "possible length".
+
+  return metadata.possibleLengths()[metadata.possibleLengths().length - 1];
+} // If the phone number being input is an international one
+// then tries to derive the country from the phone number.
+// (regardless of whether there's any country currently selected)
+
+/**
+ * @param {string} parsedInput - A possibly incomplete E.164 phone number.
+ * @param {string?} country - Currently selected country.
+ * @param {string[]?} countries - A list of available countries. If not passed then "all countries" are assumed.
+ * @param {boolean} includeInternationalOption - Whether "International" country option is available.
+ * @param  {object} metadata - `libphonenumber-js` metadata.
+ * @return {string?}
+ */
+
+
+function getCountryForPartialE164Number(partialE164Number, country, countries, includeInternationalOption, metadata) {
+  if (partialE164Number === '+') {
+    // Don't change the currently selected country yet.
+    return country;
+  }
+
+  var derived_country = get_country_from_possibly_incomplete_international_phone_number(partialE164Number, metadata); // If a phone number is being input in international form
+  // and the country can already be derived from it,
+  // then select that country.
+
+  if (derived_country && (!countries || countries.indexOf(derived_country) >= 0)) {
+    return derived_country;
+  } // If "International" country option has not been disabled
+  // and the international phone number entered doesn't correspond
+  // to the currently selected country then reset the currently selected country.
+  else if (country && includeInternationalOption && !could_number_belong_to_country(partialE164Number, country, metadata)) {
+      return undefined;
+    } // Don't change the currently selected country.
+
+
+  return country;
+}
+/**
+ * Parses `<input/>` value. Derives `country` from `input`. Derives an E.164 `value`.
+ * @param  {string?} input — Parsed `<input/>` value. Examples: `""`, `"+"`, `"+123"`, `"123"`.
+ * @param  {string?} prevInput — Previous parsed `<input/>` value. Examples: `""`, `"+"`, `"+123"`, `"123"`.
+ * @param  {string?} country - Currently selected country.
+ * @param  {string[]?} countries - A list of available countries. If not passed then "all countries" are assumed.
+ * @param  {boolean} includeInternationalOption - Whether "International" country option is available.
+ * @param  {boolean} limitMaxLength — Whether to enable limiting phone number max length.
+ * @param  {object} metadata - `libphonenumber-js` metadata.
+ * @return {object} An object of shape `{ input, country, value }`.
+ */
+
+function parseInput(input, prevInput, country, defaultCountry, countries, includeInternationalOption, limitMaxLength, metadata) {
+  // Trim the input to not exceed the maximum possible number length.
+  if (input && country && limitMaxLength) {
+    input = trimNumber(input, country, metadata);
+  } // If this `onChange()` event was triggered
+  // as a result of selecting "International" country
+  // then force-prepend a `+` sign if the phone number
+  // `<input/>` value isn't in international format.
+
+
+  if (input && !country && input[0] !== '+') {
+    input = '+' + input;
+  } // If the previously entered phone number
+  // has been entered in international format
+  // and the user decides to erase it,
+  // then also reset the `country`
+  // because it was most likely automatically selected
+  // while the user was typing in the phone number
+  // in international format.
+  // This fixes the issue when a user is presented
+  // with a phone number input with no country selected
+  // and then types in their local phone number
+  // then discovers that the input's messed up
+  // (a `+` has been prepended at the start of their input
+  //  and a random country has been selected),
+  // decides to undo it all by erasing everything
+  // and then types in their local phone number again
+  // resulting in a seemingly correct phone number
+  // but in reality that phone number has incorrect country.
+  // https://github.com/catamphetamine/react-phone-number-input/issues/273
+
+
+  if (!input && prevInput && prevInput[0] === '+') {
+    country = defaultCountry;
+  } // Also resets such "randomly" selected country
+  // as soon as the user erases the number
+  // digit-by-digit up to the leading `+` sign.
+
+
+  if (input === '+' && prevInput && prevInput[0] === '+' && prevInput.length > '+'.length) {
+    country = undefined;
+  } // Generate the new `value` property.
+
+
+  var value;
+
+  if (input) {
+    if (input[0] === '+') {
+      if (input !== '+') {
+        value = input;
+      }
+    } else {
+      value = e164(input, country, metadata);
+    }
+  } // Derive the country from the phone number.
+  // (regardless of whether there's any country currently selected)
+
+
+  if (value) {
+    country = getCountryForPartialE164Number(value, country, countries, includeInternationalOption, metadata);
+  }
+
+  return {
+    input: input,
+    country: country,
+    value: value
+  };
+}
+/**
+ * Determines the country for a given (possibly incomplete) E.164 phone number.
+ * @param  {string} number - A possibly incomplete E.164 phone number.
+ * @param  {object} metadata - `libphonenumber-js` metadata.
+ * @return {string?}
+ */
+
+function get_country_from_possibly_incomplete_international_phone_number(number, metadata) {
+  var formatter = new AsYouType(null, metadata);
+  formatter.input(number); // `001` is a special "non-geograpical entity" code
+  // in Google's `libphonenumber` library.
+
+  if (formatter.country === '001') {
+    return;
+  }
+
+  return formatter.country;
+}
+/**
+ * Compares two strings.
+ * A helper for `Array.sort()`.
+ */
+
+function compare_strings(a, b) {
+  // Use `String.localeCompare` if it's available.
+  // https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
+  // Which means everyone except IE <= 10 and Safari <= 10.
+  // `localeCompare()` is available in latest Node.js versions.
+
+  /* istanbul ignore else */
+  if (String.prototype.localeCompare) {
+    return a.localeCompare(b);
+  }
+  /* istanbul ignore next */
+
+
+  return a < b ? -1 : a > b ? 1 : 0;
+}
+/**
+ * Strips `+${countryCallingCode}` prefix from an E.164 phone number.
+ * @param {string} number - (possibly incomplete) E.164 phone number.
+ * @param {string?} country - A possible country for this phone number.
+ * @param {object} metadata - `libphonenumber-js` metadata.
+ * @return {string}
+ */
+
+function strip_country_calling_code(number, country, metadata) {
+  // Just an optimization, so that it
+  // doesn't have to iterate through all country calling codes.
+  if (country) {
+    var country_calling_prefix = '+' + getCountryCallingCode(country, metadata); // If `country` fits the actual `number`.
+
+    if (number.length < country_calling_prefix.length) {
+      if (country_calling_prefix.indexOf(number) === 0) {
+        return '';
+      }
+    } else {
+      if (number.indexOf(country_calling_prefix) === 0) {
+        return number.slice(country_calling_prefix.length);
+      }
+    }
+  } // If `country` doesn't fit the actual `number`.
+  // Try all available country calling codes.
+
+
+  for (var _i = 0, _Object$keys = Object.keys(metadata.country_calling_codes); _i < _Object$keys.length; _i++) {
+    var country_calling_code = _Object$keys[_i];
+
+    if (number.indexOf(country_calling_code) === '+'.length) {
+      return number.slice('+'.length + country_calling_code.length);
+    }
+  }
+
+  return '';
+}
 /**
  * Parses a partially entered national phone number digits
  * (or a partially entered E.164 international phone number)
@@ -28451,1664 +27204,1496 @@ function strip_country_calling_code(number, country, metadata) {
  * @param {object} metadata - `libphonenumber-js` metadata.
  * @return {string} Can be empty.
  */
+
 function get_national_significant_number_part(number, country, metadata) {
-	// Create "as you type" formatter.
-	var formatter = new core.AsYouType(country, metadata);
+  // Create "as you type" formatter.
+  var formatter = new AsYouType(country, metadata); // Input partial national phone number.
 
-	// Input partial national phone number.
-	formatter.input(number);
+  formatter.input(number); // Return the parsed partial national phone number.
 
-	// Return the parsed partial national phone number.
-	return formatter.getNationalNumber();
+  return formatter.getNationalNumber();
 }
-
 /**
  * Checks if a partially entered E.164 phone number could belong to a country.
  * @param  {string} number
  * @param  {string} country
  * @return {boolean}
  */
+
 function could_number_belong_to_country(number, country, metadata) {
-	var country_calling_code = (0, core.getCountryCallingCode)(country, metadata);
+  var country_calling_code = getCountryCallingCode(country, metadata);
+  var i = 0;
 
-	var i = 0;
-	while (i + 1 < number.length && i < country_calling_code.length) {
-		if (number[i + 1] !== country_calling_code[i]) {
-			return false;
-		}
-		i++;
-	}
+  while (i + 1 < number.length && i < country_calling_code.length) {
+    if (number[i + 1] !== country_calling_code[i]) {
+      return false;
+    }
 
-	return true;
+    i++;
+  }
+
+  return true;
 }
 
+function _typeof$2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$2 = function _typeof(obj) { return typeof obj; }; } else { _typeof$2 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$2(obj); }
+
+function ownKeys$7(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread$7(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$7(Object(source), true).forEach(function (key) { _defineProperty$1(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$7(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _extends$9() { _extends$9 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$9.apply(this, arguments); }
+
+function _objectWithoutProperties$5(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose$4(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose$4(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _classCallCheck$5(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties$1(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass$4(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$1(Constructor.prototype, protoProps); if (staticProps) _defineProperties$1(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn$1(self, call) { if (call && (_typeof$2(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized$1(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized$1(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits$1(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty$1(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var PhoneNumberInput_ =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inherits$1(PhoneNumberInput_, _React$PureComponent);
+
+  function PhoneNumberInput_(props) {
+    var _this;
+
+    _classCallCheck$5(this, PhoneNumberInput_);
+
+    _this = _possibleConstructorReturn$1(this, _getPrototypeOf(PhoneNumberInput_).call(this, props));
+
+    _defineProperty$1(_assertThisInitialized$1(_this), "inputRef", React__default.createRef());
+
+    _defineProperty$1(_assertThisInitialized$1(_this), "isCountrySupportedWithError", function (country) {
+      var metadata = _this.props.metadata;
+      return isCountrySupportedWithError(country, metadata);
+    });
+
+    _defineProperty$1(_assertThisInitialized$1(_this), "onCountryChange", function (newCountry) {
+      var _this$props = _this.props,
+          metadata = _this$props.metadata,
+          onChange = _this$props.onChange;
+      var _this$state = _this.state,
+          prevParsedInput = _this$state.parsedInput,
+          prevCountry = _this$state.country; // After the new `country` has been selected,
+      // if the phone number `<input/>` holds any digits
+      // then migrate those digits for the new `country`.
+
+      var newParsedInput = migrateParsedInputForNewCountry(prevParsedInput, prevCountry, newCountry, metadata, // Convert the phone number to "national" format
+      // when the user changes the selected country by hand.
+      true);
+      var newValue = e164(newParsedInput, newCountry, metadata); // Focus phone number `<input/>` upon country selection.
+
+      _this.getInputRef().current.focus(); // If the user has already manually selected a country
+      // then don't override that already selected country
+      // if the `defaultCountry` property changes.
+      // That's what `hasUserSelectedACountry` flag is for.
+
+
+      _this.setState({
+        country: newCountry,
+        hasUserSelectedACountry: true,
+        parsedInput: newParsedInput,
+        value: newValue
+      }, function () {
+        // Update the new `value` property.
+        // Doing it after the `state` has been updated
+        // because `onChange()` will trigger `getDerivedStateFromProps()`
+        // with the new `value` which will be compared to `state.value` there.
+        onChange(newValue);
+      });
+    });
+
+    _defineProperty$1(_assertThisInitialized$1(_this), "onChange", function (_input) {
+      var _this$props2 = _this.props,
+          defaultCountry = _this$props2.defaultCountry,
+          onChange = _this$props2.onChange,
+          addInternationalOption = _this$props2.addInternationalOption,
+          limitMaxLength = _this$props2.limitMaxLength,
+          metadata = _this$props2.metadata;
+
+      var _parseInput = parseInput(_input, _this.state.parsedInput, _this.state.country, defaultCountry, _this.state.countries, addInternationalOption, limitMaxLength, metadata),
+          input = _parseInput.input,
+          country = _parseInput.country,
+          value = _parseInput.value;
+
+      _this.setState({
+        parsedInput: input,
+        value: value,
+        country: country
+      }, // Update the new `value` property.
+      // Doing it after the `state` has been updated
+      // because `onChange()` will trigger `getDerivedStateFromProps()`
+      // with the new `value` which will be compared to `state.value` there.
+      function () {
+        return onChange(value);
+      });
+    });
+
+    _defineProperty$1(_assertThisInitialized$1(_this), "_onFocus", function () {
+      return _this.setState({
+        isFocused: true
+      });
+    });
+
+    _defineProperty$1(_assertThisInitialized$1(_this), "_onBlur", function () {
+      return _this.setState({
+        isFocused: false
+      });
+    });
+
+    _defineProperty$1(_assertThisInitialized$1(_this), "onFocus", function (event) {
+      var onFocus = _this.props.onFocus;
+
+      _this._onFocus();
+
+      if (onFocus) {
+        onFocus(event);
+      }
+    });
+
+    _defineProperty$1(_assertThisInitialized$1(_this), "onBlur", function (event) {
+      var onBlur = _this.props.onBlur;
+
+      _this._onBlur();
+
+      if (onBlur) {
+        onBlur(event);
+      }
+    });
+
+    var _this$props3 = _this.props,
+        _value = _this$props3.value,
+        labels = _this$props3.labels,
+        _addInternationalOption = _this$props3.addInternationalOption,
+        _metadata = _this$props3.metadata,
+        countryOptionsOrder = _this$props3.countryOptionsOrder;
+    var _this$props4 = _this.props,
+        _defaultCountry = _this$props4.defaultCountry,
+        countries = _this$props4.countries; // Validate `defaultCountry`.
+
+    if (_defaultCountry) {
+      if (!_this.isCountrySupportedWithError(_defaultCountry)) {
+        _defaultCountry = undefined;
+      }
+    } // Validate `countries`.
+
+
+    countries = getSupportedCountries(countries, _metadata);
+    var phoneNumber = parsePhoneNumber$2(_value, _metadata);
+    _this.CountryIcon = createCountryIconComponent(_this.props);
+    _this.state = {
+      // Workaround for `this.props` inside `getDerivedStateFromProps()`.
+      props: _this.props,
+      // The country selected.
+      country: getPreSelectedCountry(phoneNumber, _defaultCountry, countries || getCountries(_metadata), _addInternationalOption),
+      // `countries` are stored in `this.state` because they're filtered.
+      // For example, a developer might theoretically pass some unsupported
+      // countries as part of the `countries` property, and because of that
+      // the component uses `this.state.countries` (which are filtered)
+      // instead of `this.props.countries`
+      // (which could potentially contain unsupported countries).
+      countries: countries,
+      // Generate country `<select/>` options.
+      countrySelectOptions: generateCountrySelectOptions(countries, countryOptionsOrder, _this.props),
+      // `parsedInput` state property holds non-formatted user's input.
+      // The reason is that there's no way of finding out
+      // in which form should `value` be displayed: international or national.
+      // E.g. if `value` is `+78005553535` then it could be input
+      // by a user both as `8 (800) 555-35-35` and `+7 800 555 35 35`.
+      // Hence storing just `value`is not sufficient for correct formatting.
+      // E.g. if a user entered `8 (800) 555-35-35`
+      // then value is `+78005553535` and `parsedInput` is `88005553535`
+      // and if a user entered `+7 800 555 35 35`
+      // then value is `+78005553535` and `parsedInput` is `+78005553535`.
+      parsedInput: generateParsedInput(_value, phoneNumber, _this.props),
+      // `value` property is duplicated in state.
+      // The reason is that `getDerivedStateFromProps()`
+      // needs this `value` to compare to the new `value` property
+      // to find out if `parsedInput` needs updating:
+      // If the `value` property was changed externally
+      // then it won't be equal to `state.value`
+      // in which case `parsedInput` and `country` should be updated.
+      value: _value
+    };
+    return _this;
+  }
+
+  _createClass$4(PhoneNumberInput_, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var onCountryChange = this.props.onCountryChange;
+      var defaultCountry = this.props.defaultCountry;
+      var selectedCountry = this.state.country;
+
+      if (onCountryChange) {
+        if (defaultCountry) {
+          if (!this.isCountrySupportedWithError(defaultCountry)) {
+            defaultCountry = undefined;
+          }
+        }
+
+        if (selectedCountry !== defaultCountry) {
+          onCountryChange(selectedCountry);
+        }
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      var onCountryChange = this.props.onCountryChange;
+      var country = this.state.country; // Call `onCountryChange` when user selects another country.
+
+      if (onCountryChange && country !== prevState.country) {
+        onCountryChange(country);
+      }
+    } // A shorthand for not passing `metadata` as a second argument.
+
+  }, {
+    key: "getInputRef",
+    value: function getInputRef() {
+      var inputRef = this.props.inputRef;
+      return inputRef || this.inputRef;
+    } // `state` holds previous props as `props`, and also:
+    // * `country` — The currently selected country, e.g. `"RU"`.
+    // * `value` — The currently entered phone number (E.164), e.g. `+78005553535`.
+    // * `parsedInput` — The parsed `<input/>` value, e.g. `8005553535`.
+    // (and a couple of other less significant properties)
+
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props5 = this.props,
+          name = _this$props5.name,
+          disabled = _this$props5.disabled,
+          autoComplete = _this$props5.autoComplete,
+          style = _this$props5.style,
+          className = _this$props5.className,
+          inputRef = _this$props5.inputRef,
+          inputComponent = _this$props5.inputComponent,
+          numberInputProps = _this$props5.numberInputProps,
+          smartCaret = _this$props5.smartCaret,
+          CountrySelectComponent = _this$props5.countrySelectComponent,
+          countrySelectProps = _this$props5.countrySelectProps,
+          defaultCountry = _this$props5.defaultCountry,
+          countries = _this$props5.countries,
+          countryOptionsOrder = _this$props5.countryOptionsOrder,
+          labels = _this$props5.labels,
+          flags = _this$props5.flags,
+          flagComponent = _this$props5.flagComponent,
+          flagUrl = _this$props5.flagUrl,
+          addInternationalOption = _this$props5.addInternationalOption,
+          internationalIcon = _this$props5.internationalIcon,
+          displayInitialValueAsLocalNumber = _this$props5.displayInitialValueAsLocalNumber,
+          onCountryChange = _this$props5.onCountryChange,
+          limitMaxLength = _this$props5.limitMaxLength,
+          metadata = _this$props5.metadata,
+          rest = _objectWithoutProperties$5(_this$props5, ["name", "disabled", "autoComplete", "style", "className", "inputRef", "inputComponent", "numberInputProps", "smartCaret", "countrySelectComponent", "countrySelectProps", "defaultCountry", "countries", "countryOptionsOrder", "labels", "flags", "flagComponent", "flagUrl", "addInternationalOption", "internationalIcon", "displayInitialValueAsLocalNumber", "onCountryChange", "limitMaxLength", "metadata"]);
+
+      var _this$state2 = this.state,
+          country = _this$state2.country,
+          countrySelectOptions = _this$state2.countrySelectOptions,
+          parsedInput = _this$state2.parsedInput,
+          isFocused = _this$state2.isFocused;
+      var InputComponent = smartCaret ? InputSmart : InputBasic;
+      return React__default.createElement("div", {
+        style: style,
+        className: classnames(className, 'PhoneInput', {
+          'PhoneInput--focus': isFocused
+        })
+      }, React__default.createElement(CountrySelectComponent, _extends$9({
+        name: name ? "".concat(name, "Country") : undefined,
+        "aria-label": labels.country
+      }, countrySelectProps, {
+        value: country,
+        options: countrySelectOptions,
+        onChange: this.onCountryChange,
+        onFocus: this._onFocus,
+        onBlur: this._onBlur,
+        disabled: disabled,
+        iconComponent: this.CountryIcon
+      })), React__default.createElement(InputComponent, _extends$9({
+        ref: this.getInputRef(),
+        type: "tel",
+        autoComplete: autoComplete
+      }, numberInputProps, rest, {
+        name: name,
+        metadata: metadata,
+        country: country,
+        value: parsedInput || '',
+        onChange: this.onChange,
+        onFocus: this.onFocus,
+        onBlur: this.onBlur,
+        disabled: disabled,
+        inputComponent: inputComponent,
+        className: classnames('PhoneInputInput', numberInputProps && numberInputProps.className, rest.className)
+      })));
+    }
+  }], [{
+    key: "getDerivedStateFromProps",
+    value: function getDerivedStateFromProps(props, state) {
+      var country = state.country,
+          hasUserSelectedACountry = state.hasUserSelectedACountry,
+          value = state.value,
+          _state$props = state.props,
+          prevDefaultCountry = _state$props.defaultCountry,
+          prevValue = _state$props.value,
+          prevReset = _state$props.reset;
+      var metadata = props.metadata,
+          countries = props.countries,
+          newDefaultCountry = props.defaultCountry,
+          newValue = props.value,
+          newReset = props.reset;
+      var newState = {
+        // Emulate `prevProps` via `state.props`.
+        props: props,
+        // If the user has already manually selected a country
+        // then don't override that already selected country
+        // if the `defaultCountry` property changes.
+        // That's what `hasUserSelectedACountry` flag is for.
+        hasUserSelectedACountry: hasUserSelectedACountry
+      }; // Some users requested a way to reset the component
+      // (both number `<input/>` and country `<select/>`).
+      // Whenever `reset` property changes both number `<input/>`
+      // and country `<select/>` are reset.
+      // It's not implemented as some instance `.reset()` method
+      // because `ref` is forwarded to `<input/>`.
+      // It's also not replaced with just resetting `country` on
+      // external `value` reset, because a user could select a country
+      // and then not input any `value`, and so the selected country
+      // would be "stuck", if not using this `reset` property.
+      // https://github.com/catamphetamine/react-phone-number-input/issues/300
+
+      if (newReset !== prevReset) {
+        return _objectSpread$7({}, newState, {
+          parsedInput: undefined,
+          value: undefined,
+          country: newDefaultCountry,
+          hasUserSelectedACountry: undefined
+        });
+      } // If `countries` or `labels` or `addInternationalOption` changed
+      // then re-generate country `<select/>` options.
+
+
+      if (props.countries !== state.props.countries || props.labels !== state.props.labels || props.addInternationalOption !== state.props.addInternationalOption) {
+        // Re-generate country select options.
+        newState.countrySelectOptions = generateCountrySelectOptions(getSupportedCountries(props.countries, metadata), getSupportedCountryOptions(props.countryOptionsOrder, metadata), props);
+      } // If the default country changed.
+      // (e.g. in case of ajax GeoIP detection after page loaded)
+      // then select it but only if the user hasn't already manually
+      // selected a country and no phone number has been entered so far.
+      // Because if the user has already started inputting a phone number
+      // then he's okay with no country being selected at all ("International")
+      // and doesn't want to be disturbed, doesn't want his input to be screwed, etc.
+
+
+      if (newDefaultCountry !== prevDefaultCountry && !hasUserSelectedACountry && !value && !newValue) {
+        return _objectSpread$7({}, newState, {
+          country: isCountrySupportedWithError(newDefaultCountry, metadata) ? newDefaultCountry : prevDefaultCountry // `value` is `undefined`.
+          // `parsedInput` is `undefined` because `value` is `undefined`.
+
+        });
+      } // If a new `value` is set externally.
+      // (e.g. as a result of an ajax API request
+      //  to get user's phone after page loaded)
+      // The first part — `newValue !== prevValue` —
+      // is basically `props.value !== prevProps.value`
+      // so it means "if value property was changed externally".
+      // The second part — `newValue !== value` —
+      // is for ignoring the `getDerivedStateFromProps()` call
+      // which happens in `this.onChange()` right after `this.setState()`.
+      // If this `getDerivedStateFromProps()` call isn't ignored
+      // then the country flag would reset on each input.
+      else if (newValue !== prevValue && newValue !== value) {
+          var phoneNumber = parsePhoneNumber$2(newValue, metadata);
+          var parsedCountry;
+
+          if (phoneNumber) {
+            var _countries = getSupportedCountries(props.countries, metadata);
+
+            if (!_countries || _countries.indexOf(phoneNumber.country) >= 0) {
+              parsedCountry = phoneNumber.country;
+            }
+          }
+
+          if (!newValue) {
+            newState.hasUserSelectedACountry = undefined;
+          }
+
+          return _objectSpread$7({}, newState, {
+            parsedInput: generateParsedInput(newValue, phoneNumber, props),
+            value: newValue,
+            country: newValue ? parsedCountry : newDefaultCountry
+          });
+        } // `defaultCountry` didn't change.
+      // `value` didn't change.
+      // `parsedInput` didn't change, because `value` didn't change.
+      //
+      // Maybe `newState.countrySelectOptions` changed.
+      // In any case, update `prevProps`.
+
+
+      return newState;
+    }
+  }]);
+
+  return PhoneNumberInput_;
+}(React__default.PureComponent); // This wrapper is only to `.forwardRef()` to the `<input/>`.
+
+
+var PhoneNumberInput = React__default.forwardRef(function (props, ref) {
+  return React__default.createElement(PhoneNumberInput_, _extends$9({}, props, {
+    inputRef: ref
+  }));
 });
-
-unwrapExports(inputControl);
-var inputControl_1 = inputControl.getPreSelectedCountry;
-var inputControl_2 = inputControl.getCountrySelectOptions;
-var inputControl_3 = inputControl.parsePhoneNumber;
-var inputControl_4 = inputControl.generateNationalNumberDigits;
-var inputControl_5 = inputControl.migrateParsedInputForNewCountry;
-var inputControl_6 = inputControl.e164;
-var inputControl_7 = inputControl.trimNumber;
-var inputControl_8 = inputControl.getCountryForPartialE164Number;
-var inputControl_9 = inputControl.parseInput;
-var inputControl_10 = inputControl.get_country_from_possibly_incomplete_international_phone_number;
-var inputControl_11 = inputControl.compare_strings;
-var inputControl_12 = inputControl.strip_country_calling_code;
-var inputControl_13 = inputControl.get_national_significant_number_part;
-var inputControl_14 = inputControl.could_number_belong_to_country;
-
-var PhoneInput = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.default = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _class, _class2, _temp, _initialiseProps;
-
-// import InputSmart from './InputSmart'
-
-
-
-
-var _react2 = _interopRequireDefault(e__default);
-
-
-
-var _propTypes2 = _interopRequireDefault(PropTypes$2);
-
-
-
-var _classnames2 = _interopRequireDefault(classnames);
-
-
-
-
-
-
-
-var _InputBasic2 = _interopRequireDefault(InputBasic);
-
-
-
-var _Flag2 = _interopRequireDefault(Flag);
-
-
-
-
-
-
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// `PureComponent` is only available in React >= 15.3.0.
-var PureComponent = _react2.default.PureComponent || _react2.default.Component;
-
-var PhoneNumberInput = (0, reactLifecyclesCompat_es.polyfill)(_class = (_temp = _class2 = function (_PureComponent) {
-	_inherits(PhoneNumberInput, _PureComponent);
-
-	function PhoneNumberInput(props) {
-		_classCallCheck(this, PhoneNumberInput);
-
-		var _this = _possibleConstructorReturn(this, (PhoneNumberInput.__proto__ || Object.getPrototypeOf(PhoneNumberInput)).call(this, props));
-
-		_initialiseProps.call(_this);
-
-		var _this$props = _this.props,
-		    value = _this$props.value,
-		    labels = _this$props.labels,
-		    international = _this$props.international,
-		    metadata = _this$props.metadata;
-		var _this$props2 = _this.props,
-		    country = _this$props2.country,
-		    countries = _this$props2.countries,
-		    countryOptions = _this$props2.countryOptions;
-
-		// Validate `country`.
-
-		if (country) {
-			if (!_this.isCountrySupportedWithError(country)) {
-				country = undefined;
-			}
-		}
-
-		// Validate `countries`.
-		countries = filterCountries(countries, metadata);
-
-		// Validate `countryOptions`.
-		countryOptions = filterCountryOptions(countryOptions, metadata);
-
-		var phoneNumber = (0, inputControl.parsePhoneNumber)(value, metadata);
-
-		var pre_selected_country = (0, inputControl.getPreSelectedCountry)(phoneNumber, country, countries || (0, countries$1.getCountryCodes)(labels).filter(function (_) {
-			return _ === 'ZZ' || metadata.countries[_];
-		}), international, metadata);
-
-		_this.state = {
-			// Workaround for `this.props` inside `getDerivedStateFromProps()`.
-			props: _this.props,
-
-			// The country selected.
-			country: pre_selected_country,
-
-			// `countries` are stored in `this.state` because they're filtered.
-			// For example, a developer might theoretically pass some unsupported
-			// countries as part of the `countries` property, and because of that
-			// the component uses `this.state.countries` (which are filtered)
-			// instead of `this.props.countries`
-			// (which could potentially contain unsupported countries).
-			countries: countries,
-
-			// Generate country `<select/>` options.
-			country_select_options: generateCountrySelectOptions(countries, countryOptions, _this.props),
-
-			// `parsed_input` state property holds non-formatted user's input.
-			// The reason is that there's no way of finding out
-			// in which form should `value` be displayed: international or national.
-			// E.g. if `value` is `+78005553535` then it could be input
-			// by a user both as `8 (800) 555-35-35` and `+7 800 555 35 35`.
-			// Hence storing just `value`is not sufficient for correct formatting.
-			// E.g. if a user entered `8 (800) 555-35-35`
-			// then value is `+78005553535` and `parsed_input` is `88005553535`
-			// and if a user entered `+7 800 555 35 35`
-			// then value is `+78005553535` and `parsed_input` is `+78005553535`.
-			parsed_input: generateParsedInput(value, phoneNumber, _this.props),
-
-			// `value` property is duplicated in state.
-			// The reason is that `getDerivedStateFromProps()`
-			// needs this `value` to compare to the new `value` property
-			// to find out if `parsed_input` needs updating:
-			// If the `value` property was changed externally
-			// then it won't be equal to `state.value`
-			// in which case `parsed_input` and `country` should be updated.
-			value: value
-		};
-		return _this;
-	}
-
-	_createClass(PhoneNumberInput, [{
-		key: 'componentDidMount',
-		value: function componentDidMount() {
-			var onCountryChange = this.props.onCountryChange;
-			var country = this.props.country;
-			var selectedCountry = this.state.country;
-
-
-			if (onCountryChange) {
-				if (!country || !this.isCountrySupportedWithError(country)) {
-					country = undefined;
-				}
-				if (selectedCountry !== country) {
-					onCountryChange(selectedCountry);
-				}
-			}
-		}
-	}, {
-		key: 'componentDidUpdate',
-		value: function componentDidUpdate(prevProps, prevState) {
-			var onCountryChange = this.props.onCountryChange;
-			// Call `onCountryChange` when user selects another country.
-
-			if (onCountryChange && this.state.country !== prevState.country) {
-				onCountryChange(this.state.country);
-			}
-		}
-
-		// A shorthand for not passing `metadata` as a second argument.
-
-
-		// Country `<select/>` `onChange` handler.
-
-
-		// Phone number `<input/>` `onKeyDown` handler.
-
-
-		/**
-   * `<input/>` `onChange()` handler.
-   * Updates `value` property accordingly (so that they are kept in sync).
-   * @param {string?} input — Either a parsed phone number or an empty string. Examples: `""`, `"+"`, `"+123"`, `"123"`.
+PhoneNumberInput.propTypes = {
+  /**
+   * Phone number in `E.164` format.
+   *
+   * Example:
+   *
+   * `"+12223333333"`
    */
-
-
-		// Toggles the `--focus` CSS class.
-
-
-		// Toggles the `--focus` CSS class.
-
-
-		// This `onBlur` interceptor is a workaround for `redux-form`
-		// so that it gets the up-to-date `value` in its `onBlur` handler.
-		// Without this fix it just gets the actual (raw) input field textual value.
-		// E.g. `+7 800 555 35 35` instead of `+78005553535`.
-		//
-		// A developer is not supposed to pass this `onBlur` property manually.
-		// Instead, `redux-form` passes `onBlur` to this component automatically
-		// and this component patches that `onBlur` handler (a hacky way but works).
-		//
-
-
-		// When country `<select/>` is toggled.
-
-
-		// Can be called externally.
-
-	}, {
-		key: 'render',
-		value: function render() {
-			var _props = this.props,
-			    name = _props.name,
-			    disabled = _props.disabled,
-			    disablePhoneInput = _props.disablePhoneInput,
-			    autoComplete = _props.autoComplete,
-			    countrySelectTabIndex = _props.countrySelectTabIndex,
-			    showCountrySelect = _props.showCountrySelect,
-			    style = _props.style,
-			    className = _props.className,
-			    inputClassName = _props.inputClassName,
-			    getInputClassName = _props.getInputClassName,
-			    countrySelectAriaLabel = _props.countrySelectAriaLabel,
-			    countrySelectProperties = _props.countrySelectProperties,
-			    error = _props.error,
-			    indicateInvalid = _props.indicateInvalid,
-			    CountrySelectComponent = _props.countrySelectComponent,
-			    countrySelectProps = _props.countrySelectProps,
-			    InputComponent = _props.inputComponent,
-			    inputComponent = _props.numberInputComponent,
-			    numberInputProps = _props.numberInputProps,
-			    ext = _props.ext,
-			    _ = _props.country,
-			    countries = _props.countries,
-			    countryOptions = _props.countryOptions,
-			    labels = _props.labels,
-			    flags = _props.flags,
-			    flagComponent = _props.flagComponent,
-			    flagsPath = _props.flagsPath,
-			    international = _props.international,
-			    internationalIcon = _props.internationalIcon,
-			    displayInitialValueAsLocalNumber = _props.displayInitialValueAsLocalNumber,
-			    onCountryChange = _props.onCountryChange,
-			    limitMaxLength = _props.limitMaxLength,
-			    metadata = _props.metadata,
-			    phoneNumberInputProps = _objectWithoutProperties(_props, ['name', 'disabled', 'disablePhoneInput', 'autoComplete', 'countrySelectTabIndex', 'showCountrySelect', 'style', 'className', 'inputClassName', 'getInputClassName', 'countrySelectAriaLabel', 'countrySelectProperties', 'error', 'indicateInvalid', 'countrySelectComponent', 'countrySelectProps', 'inputComponent', 'numberInputComponent', 'numberInputProps', 'ext', 'country', 'countries', 'countryOptions', 'labels', 'flags', 'flagComponent', 'flagsPath', 'international', 'internationalIcon', 'displayInitialValueAsLocalNumber', 'onCountryChange', 'limitMaxLength', 'metadata']);
-
-			var _state = this.state,
-			    country = _state.country,
-			    hidePhoneInputField = _state.hidePhoneInputField,
-			    country_select_options = _state.country_select_options,
-			    parsed_input = _state.parsed_input,
-			    isFocused = _state.isFocused;
-
-			// const InputComponent = InputComponent || (smartCaret ? InputSmart : InputBasic)
-
-			// Extract `countrySelectProperties` from `this.props`
-			// also removing them from `phoneNumberInputProps`.
-
-			var _countrySelectProps = {};
-			if (countrySelectProperties) {
-				for (var key in countrySelectProperties) {
-					if (this.props.hasOwnProperty(key)) {
-						_countrySelectProps[countrySelectProperties[key]] = this.props[key];
-						delete phoneNumberInputProps[key];
-					}
-				}
-			}
-
-			// Could use something like `aria-label={labels.phone}` on the `<InputComponent/>`,
-			// however, some users may have already been using this component with one of:
-			// * `<label/>` container
-			// * `aria-labelledby`
-			// * `id` and `<label for/>`
-			// https://developers.google.com/web/fundamentals/accessibility/semantics-aria/aria-labels-and-relationships
-			// Maybe in some future major version update.
-
-			return _react2.default.createElement(
-				'div',
-				{
-					style: style,
-					className: (0, _classnames2.default)('react-phone-number-input', {
-						'react-phone-number-input--focus': isFocused,
-						'react-phone-number-input--invalid': error && indicateInvalid
-					}, className) },
-				_react2.default.createElement(
-					'div',
-					{ className: 'react-phone-number-input__row' },
-					showCountrySelect && _react2.default.createElement(CountrySelectComponent, _extends({}, _countrySelectProps, {
-						ref: this.storeCountrySelectInstance,
-						name: name ? name + '__country' : undefined,
-						'aria-label': countrySelectAriaLabel || labels.country,
-						tabIndex: countrySelectTabIndex
-					}, countrySelectProps, {
-						value: country,
-						options: country_select_options,
-						onChange: this.onCountryChange,
-						onFocus: this._onFocus,
-						onBlur: this._onBlur,
-						disabled: disabled,
-						hidePhoneInputField: this.hidePhoneInputField,
-						focusPhoneInputField: this.focus,
-						className: 'react-phone-number-input__country' })),
-					!hidePhoneInputField && _react2.default.createElement(InputComponent, _extends({
-						type: 'tel',
-						autoComplete: autoComplete
-					}, numberInputProps, phoneNumberInputProps, {
-						ref: this.storePhoneNumberInputInstance,
-						name: name,
-						metadata: metadata,
-						country: country,
-						value: parsed_input || '',
-						onChange: this.onChange,
-						onFocus: this.onFocus,
-						onBlur: this.onBlur,
-						onKeyDown: this.onPhoneNumberKeyDown,
-						disabled: disabled || disablePhoneInput,
-						inputComponent: inputComponent,
-						className: (0, _classnames2.default)('react-phone-number-input__input', 'react-phone-number-input__phone', {
-							'react-phone-number-input__input--disabled': disabled || disablePhoneInput,
-							'react-phone-number-input__input--invalid': error && indicateInvalid
-						}, inputClassName, getInputClassName && getInputClassName({
-							disabled: disabled || disablePhoneInput,
-							invalid: error && indicateInvalid
-						})) })),
-					ext && !hidePhoneInputField && _react2.default.createElement(
-						'label',
-						{ className: 'react-phone-number-input__ext' },
-						labels.ext,
-						_react2.default.cloneElement(ext, {
-							onChange: ext.props.onChange ? function (event) {
-								return ext.props.onChange(parseExtDigits(event));
-							} : undefined,
-							onFocus: this._onFocus,
-							onBlur: this._onBlur,
-							className: (0, _classnames2.default)('react-phone-number-input__input', 'react-phone-number-input__ext-input', {
-								'react-phone-number-input__input--disabled': disabled || disablePhoneInput
-							}, inputClassName, getInputClassName && getInputClassName({
-								disabled: disabled || disablePhoneInput
-							}), ext.props.className)
-						})
-					)
-				),
-				error && indicateInvalid && _react2.default.createElement(
-					'div',
-					{ className: 'react-phone-number-input__error' },
-					error
-				)
-			);
-		}
-	}], [{
-		key: 'getDerivedStateFromProps',
-
-
-		// `state` holds previous props as `props`, and also:
-		// * `country` — The currently selected country, e.g. `"RU"`.
-		// * `value` — The currently entered phone number (E.164), e.g. `+78005553535`.
-		// * `parsed_input` — The parsed `<input/>` value, e.g. `8005553535`.
-		// (and a couple of other less significant properties)
-		value: function getDerivedStateFromProps(props, state) {
-			var country = state.country,
-			    hasUserSelectedACountry = state.hasUserSelectedACountry,
-			    value = state.value,
-			    _state$props = state.props,
-			    old_default_country = _state$props.country,
-			    old_value = _state$props.value;
-			var metadata = props.metadata,
-			    countries = props.countries,
-			    new_default_country = props.country,
-			    new_value = props.value;
-
-
-			var new_state = {
-				// Emulate `prevProps` via `state.props`.
-				props: props,
-				// If the user has already manually selected a country
-				// then don't override that already selected country
-				// if the default `country` property changes.
-				// That's what `hasUserSelectedACountry` flag is for.
-				hasUserSelectedACountry: hasUserSelectedACountry
-
-				// If `countries` or `labels` or `international` changed
-				// then re-generate country `<select/>` options.
-			};if (props.countries !== state.props.countries || props.labels !== state.props.labels || props.international !== state.props.international) {
-				// Re-generate country select options.
-				new_state.country_select_options = generateCountrySelectOptions(filterCountries(props.countries, metadata), filterCountryOptions(props.countryOptions, metadata), props);
-			}
-
-			// If the default country changed.
-			// (e.g. in case of ajax GeoIP detection after page loaded)
-			// then select it but only if the user hasn't already manually
-			// selected a country and no phone number has been entered so far.
-			// Because if the user has already started inputting a phone number
-			// then he's okay with no country being selected at all ("International")
-			// and doesn't want to be disturbed, doesn't want his input to be screwed, etc.
-			if (new_default_country !== old_default_country && !hasUserSelectedACountry && !value && !new_value) {
-				return _extends({}, new_state, {
-					country: isCountrySupportedWithError(new_default_country, metadata) ? new_default_country : old_default_country
-					// `value` is `undefined`.
-					// `parsed_input` is `undefined` because `value` is `undefined`.
-				});
-			}
-			// If a new `value` is set externally.
-			// (e.g. as a result of an ajax API request
-			//  to get user's phone after page loaded)
-			// The first part — `new_value !== old_value` —
-			// is basically `props.value !== prevProps.value`
-			// so it means "if value property was changed externally".
-			// The second part — `new_value !== value` —
-			// is for ignoring the `getDerivedStateFromProps()` call
-			// which happens in `this.onChange()` right after `this.setState()`.
-			// If this `getDerivedStateFromProps()` call isn't ignored
-			// then the country flag would reset on each input.
-			else if (new_value !== old_value && new_value !== value) {
-					var phoneNumber = (0, inputControl.parsePhoneNumber)(new_value, metadata);
-					var parsedCountry = void 0;
-					if (phoneNumber) {
-						var _countries = filterCountries(props.countries, metadata);
-						if (!_countries || _countries.indexOf(phoneNumber.country) >= 0) {
-							parsedCountry = phoneNumber.country;
-						}
-					}
-					return _extends({}, new_state, {
-						parsed_input: generateParsedInput(new_value, phoneNumber, props),
-						value: new_value,
-						country: new_value ? parsedCountry : country
-					});
-				}
-
-			// `country` didn't change.
-			// `value` didn't change.
-			// `parsed_input` didn't change, because `value` didn't change.
-			//
-			// Maybe `new_state.country_select_options` changed.
-			// In any case, update `prevProps`.
-			return new_state;
-		}
-	}]);
-
-	return PhoneNumberInput;
-}(PureComponent), _class2.propTypes = {
-	/**
-  * Phone number in `E.164` format.
-  *
-  * Example:
-  *
-  * `"+12223333333"`
-  */
-	value: _propTypes2.default.string,
-
-	/**
-  * Updates the `value` as the user inputs the phone number.
-  */
-	onChange: _propTypes2.default.func.isRequired,
-
-	/**
-  * Toggles the `--focus` CSS class.
-  * @ignore
-  */
-	onFocus: _propTypes2.default.func,
-
-	/**
-  * `onBlur` is usually passed by `redux-form`.
-  * @ignore
-  */
-	onBlur: _propTypes2.default.func,
-
-	/**
-  * `onKeyDown` handler (e.g. to handle Enter key press).
-  * @ignore
-  */
-	onKeyDown: _propTypes2.default.func,
-
-	/**
-  * Disables both the phone number `<input/>`
-  * and the country `<select/>`.
-  */
-	// (is `false` by default)
-	disabled: _propTypes2.default.bool.isRequired,
-
-	/**
-  * Sets `autoComplete` property for phone number `<input/>`.
-  *
-  * Web browser's "autocomplete" feature
-  * remembers the phone number being input
-  * and can also autofill the `<input/>`
-  * with previously remembered phone numbers.
-  *
-  * https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill
-  *
-  * For example, can be used to turn it off:
-  *
-  * "So when should you use `autocomplete="off"`?
-  *  One example is when you've implemented your own version
-  *  of autocomplete for search. Another example is any form field
-  *  where users will input and submit different kinds of information
-  *  where it would not be useful to have the browser remember
-  *  what was submitted previously".
-  */
-	// (is `"tel"` by default)
-	autoComplete: _propTypes2.default.string.isRequired,
-
-	/**
-  * Set to `true` to show the initial `value` in
-  * "national" format rather than "international".
-  *
-  * For example, if this flag is set to `true`
-  * and the initial `value="+12133734253"` is passed
-  * then the `<input/>` value will be `"(213) 373-4253"`.
-  *
-  * By default, this flag is set to `false`,
-  * meaning that if the initial `value="+12133734253"` is passed
-  * then the `<input/>` value will be `"+1 213 373 4253"`.
-  *
-  * The reason for such default behaviour is that
-  * the newer generation grows up when there are no stationary phones
-  * and therefore everyone inputs phone numbers in international format
-  * in their smartphones so people gradually get more accustomed to
-  * writing phone numbers in international format rather than in local format.
-  * Future people won't be using "national" format, only "international".
-  */
-	// (is `false` by default)
-	displayInitialValueAsLocalNumber: _propTypes2.default.bool.isRequired,
-
-	/**
-  * The country to be selected by default.
-  * For example, can be set after a GeoIP lookup.
-  *
-  * Example: `"US"`.
-  */
-	// A two-letter country code ("ISO 3166-1 alpha-2").
-	country: _propTypes2.default.string,
-
-	/**
-  * If specified, only these countries will be available for selection.
-  *
-  * Example:
-  *
-  * `["RU", "UA", "KZ"]`
-  */
-	countries: _propTypes2.default.arrayOf(_propTypes2.default.string),
-
-	/**
-  * Custom country `<select/>` option names.
-  * Also some labels like "ext" and country `<select/>` `aria-label`.
-  *
-  * Example:
-  *
-  * `{ "ZZ": "Международный", RU: "Россия", US: "США", ... }`
-  *
-  * See the `locales` directory for examples.
-  */
-	labels: PropTypes.labels.isRequired,
-
-	/**
-  * The base URL path for country flag icons.
-  * By default it loads country flag icons from
-  * `flag-icon-css` repo github pages website.
-  * I imagine someone might want to download
-  * those country flag icons and host them
-  * on their own servers instead.
-  * Warning: in future new countries can be added
-  * to the country select which would result in
-  * "Image not found" errors when using custom `flagsPath`
-  * due to the custom-hosted flags bundle being outdated
-  * and missing the new flags.
-  * So if using custom `flagsPath` always check `CHANGELOG.md`
-  * for new country announcements before updating this library.
-  */
-	flagsPath: _propTypes2.default.string.isRequired,
-
-	/**
-  * Custom country flag icon components.
-  * These flags replace the default ones.
-  *
-  * The shape is an object where keys are country codes
-  * and values are flag icon components.
-  * Flag icon components receive the same properties
-  * as `flagComponent` (see below).
-  *
-  * Example:
-  *
-  * `{ "RU": () => <img src="..."/> }`
-  *
-  * Can be used to replace the default flags
-  * with custom ones for certain (or all) countries.
-  *
-  * Can also be used to bundle `<svg/>` flags instead of `<img/>`s:
-  *
-  * By default flag icons are inserted as `<img/>`s
-  * with their `src` pointed to `flag-icon-css` repo github pages website.
-  *
-  * There might be some cases
-  * (e.g. a standalone "native" app, or an "intranet" web application)
-  * when including the full set of `<svg/>` country flags (3 megabytes)
-  * is more appropriate than downloading them individually at runtime only if needed.
-  *
-  * Example:
-  *
-  * `// Uses <svg/> flags (3 megabytes):`
-  *
-  * `import flags from 'react-phone-number-input/flags'`
-  *
-  * `import PhoneInput from 'react-phone-number-input'`
-  *
-  * `<PhoneInput flags={flags} .../>`
-  */
-	flags: _propTypes2.default.objectOf(_propTypes2.default.elementType),
-
-	/**
-  * Country flag icon component.
-  *
-  * Takes properties:
-  *
-  * * country : string — The country code.
-  * * flagsPath : string — The `flagsPath` property (see above).
-  * * flags : object — The `flags` property (see above).
-  */
-	flagComponent: _propTypes2.default.elementType.isRequired,
-
-	/**
-  * Set to `false` to drop the "International" option from country `<select/>`.
-  */
-	international: _propTypes2.default.bool.isRequired,
-
-	/**
-  * Custom "International" country `<select/>` option icon.
-  */
-	internationalIcon: _propTypes2.default.elementType.isRequired,
-
-	/**
-  * Set to `false` to hide country `<select/>`.
-  */
-	// (is `true` by default)
-	showCountrySelect: _propTypes2.default.bool.isRequired,
-
-	/**
-  * HTML `tabindex` attribute for country `<select/>`.
-  */
-	countrySelectTabIndex: _propTypes2.default.number,
-
-	/**
-  * HTML `aria-label` attribute for country `<select/>`.
-  * The default is `.country` of the `labels` property
-  * which is `"Country"` for the default `labels`.
-  */
-	countrySelectAriaLabel: _propTypes2.default.string,
-
-	/**
-  * Can be used to place some countries on top of the list of country `<select/>` options.
-  *
-  * * `"|"` — inserts a separator.
-  * * `"..."` — means "the rest of the countries" (can be omitted).
-  *
-  * Example:
-  *
-  * `["US", "CA", "AU", "|", "..."]`
-  */
-	countryOptions: _propTypes2.default.arrayOf(_propTypes2.default.string),
-
-	/**
-  * `<Phone/>` component CSS style object.
-  */
-	style: _propTypes2.default.object,
-
-	/**
-  * `<Phone/>` component CSS class.
-  */
-	className: _propTypes2.default.string,
-
-	/**
-  * Phone number `<input/>` CSS class.
-  */
-	inputClassName: _propTypes2.default.string,
-
-	/**
-  * Returns phone number `<input/>` CSS class string.
-  * Receives an object of shape `{ disabled : boolean?, invalid : boolean? }`.
-  * @ignore
-  */
-	getInputClassName: _propTypes2.default.func,
-
-	/**
-  * Country `<select/>` component.
-  *
-  * Receives properties:
-  *
-  * * `name : string?` — HTML `name` attribute.
-  * * `value : string?` — The currently selected country code.
-  * * `onChange(value : string?)` — Updates the `value`.
-  * * `onFocus()` — Is used to toggle the `--focus` CSS class.
-  * * `onBlur()` — Is used to toggle the `--focus` CSS class.
-  * * `options : object[]` — The list of all selectable countries (including "International") each being an object of shape `{ value : string?, label : string, icon : React.Component }`.
-  * * `disabled : boolean?` — HTML `disabled` attribute.
-  * * `tabIndex : (number|string)?` — HTML `tabIndex` attribute.
-  * * `className : string` — CSS class name.
-  */
-	//
-	// (deprecated)
-	// * `hidePhoneInputField(hide : boolean)` — Can be called to show/hide phone input field. Takes `hide : boolean` argument. E.g. `react-responsive-ui` `<Select/>` uses this to hide phone number input when country select is expanded.
-	// * `focusPhoneInputField()` — Can be called to manually focus phone input field. E.g. `react-responsive-ui` `<Select/>` uses this to focus phone number input after country selection in a timeout (after the phone input field is no longer hidden).
-	//
-	countrySelectComponent: _propTypes2.default.elementType.isRequired,
-
-	/**
-  * Country `<select/>` component props.
-  */
-	countrySelectProps: _propTypes2.default.object,
-
-	/**
-  * Phone number `<input/>` component.
-  *
-  * Receives properties:
-  *
-  * * `value: string` — The formatted `value`.
-  * * `onChange(event: Event)` — Updates the formatted `value` from `event.target.value`.
-  * * `onFocus()` — Is used to toggle the `--focus` CSS class.
-  * * `onBlur(event: Event)` — Is used to toggle the `--focus` CSS class.
-  * * Other properties like `type="tel"` or `autoComplete="tel"` that should be passed through to the DOM `<input/>`.
-  *
-  * Must also either use `React.forwardRef()` to "forward" `ref` to the `<input/>` or implement `.focus()` method.
-  */
-	numberInputComponent: _propTypes2.default.elementType.isRequired,
-
-	/**
-  * Phone number `<input/>` component props.
-  */
-	numberInputProps: _propTypes2.default.object,
-
-	/**
-  * Phone number `<input/>` component (a higher-order one).
-  *
-  * Receives properties:
-  *
-  * * `value : string` — The parsed phone number. E.g.: `""`, `"+"`, `"+123"`, `"123"`.
-  * * `onChange(value? : string)` — Updates the `value`.
-  * * `onFocus()` — Is used to toggle the `--focus` CSS class.
-  * * `onBlur()` — Is used to toggle the `--focus` CSS class.
-  * * `country : string?` — The currently selected country. `undefined` means "International" (no country selected).
-  * * `metadata : object` — `libphonenumber-js` metadata.
-  * * `inputComponent : elementType` — Phone number `<input/>` component. This is basically the `numberInputComponent` property renamed to `inputComponent`.
-  * * All other properties should be passed through to the underlying `<input/>`.
-  *
-  * Must also either use `React.forwardRef()` to "forward" `ref` to the `<input/>` or implement `.focus()` method.
-  *
-  * @ignore
-  */
-	inputComponent: _propTypes2.default.elementType.isRequired,
-
-	/**
-  * Set to `false` to use `inputComponent={InputBasic}`
-  * instead of `input-format`'s `<ReactInput/>`.
-  */
-	// Is `false` by default.
-	// smartCaret : PropTypes.bool.isRequired,
-
-	/**
-  * Phone number extension `<input/>` element.
-  *
-  * Example:
-  *
-  *	`ext={<input value={...} onChange={...}/>}`
-  */
-	ext: _propTypes2.default.node,
-
-	/**
-  * If set to `true` the phone number input will get trimmed
-  * if it exceeds the maximum length for the country.
-  */
-	limitMaxLength: _propTypes2.default.bool.isRequired,
-
-	/**
-  * An error message to show below the phone number `<input/>`. For example, `"Required"`.
-  */
-	error: _propTypes2.default.string,
-
-	/**
-  * The `error` is shown only when `indicateInvalid` is `true`.
-  * (which is the default).
-  * @deprecated
-  * @ignore
-  */
-	indicateInvalid: _propTypes2.default.bool,
-
-	/**
-  * `libphonenumber-js` metadata.
-  *
-  * Can be used to pass custom `libphonenumber-js` metadata
-  * to reduce the overall bundle size for those who compile "custom" metadata.
-  */
-	metadata: PropTypes.metadata.isRequired,
-
-	/**
-  * Is called every time the selected country changes:
-  * either programmatically or when user selects it manually from the list.
-  */
-	// People have been asking for a way to get the selected country.
-	// @see  https://github.com/catamphetamine/react-phone-number-input/issues/128
-	// For some it's just a "business requirement".
-	// I guess it's about gathering as much info on the user as a website can
-	// without introducing any addional fields that would complicate the form
-	// therefore reducing "conversion" (that's a marketing term).
-	// Assuming that the phone number's country is the user's country
-	// is not 100% correct but in most cases I guess it's valid.
-	onCountryChange: _propTypes2.default.func,
-
-	/**
-  * Disables only the phone number `<input/>`.
-  *
-  * Some users choose to implement a digital keyboard component for phone number input.
-  * In such cases the phone number input field must be disabled in order for the default system keyboard to not show up on focus.
-  * At the same time, country select should not be disabled in order for the user to be able to choose their country.
-  */
-	// (is `false` by default)
-	// https://github.com/catamphetamine/react-phone-number-input/issues/215
-	disablePhoneInput: _propTypes2.default.bool.isRequired
-}, _class2.defaultProps = {
-	/**
-  * Not disabled.
-  */
-	disabled: false,
-	disablePhoneInput: false,
-
-	/**
-  * Show `error` (if passed).
-  * @deprecated
-  */
-	indicateInvalid: true,
-
-	/**
-  * Remember (and autofill) the value as a phone number.
-  */
-	autoComplete: 'tel',
-
-	/**
-  * Flag icon component.
-  */
-	flagComponent: _Flag2.default,
-
-	/**
-  * By default, use icons from `flag-icon-css` github repo.
-  */
-	flagsPath: 'https://lipis.github.io/flag-icon-css/flags/4x3/',
-
-	/**
-  * Default "International" country `<select/>` option icon (globe).
-  */
-	// internationalIcon: InternationalIcon,
-
-	/**
-  * Phone number `<input/>` component.
-  */
-	numberInputComponent: 'input',
-
-	/**
-  * Phone number `<input/>` component (a higher-order one).
-  */
-	inputComponent: _InputBasic2.default,
-
-	/**
-  * Show country `<select/>`.
-  */
-	showCountrySelect: true,
-
-	/**
-  * Don't convert the initially passed phone number `value`
-  * to a national phone number for its country.
-  * The reason is that the newer generation grows up when
-  * there are no stationary phones and therefore everyone inputs
-  * phone numbers with a `+` in their smartphones
-  * so phone numbers written in international form
-  * are gradually being considered more natural than local ones.
-  */
-	displayInitialValueAsLocalNumber: false,
-
-	/**
-  * Set to `false` to use `inputComponent={InputBasic}`
-  * instead of `input-format`'s `<ReactInput/>`.
-  * Is `false` by default.
-  */
-	// smartCaret : false,
-
-	/**
-  * Whether to add the "International" option
-  * to the list of countries.
-  */
-	international: true,
-
-	/**
-  * If set to `true` the phone number input will get trimmed
-  * if it exceeds the maximum length for the country.
-  */
-	limitMaxLength: false
-}, _initialiseProps = function _initialiseProps() {
-	var _this2 = this;
-
-	this.isCountrySupportedWithError = function (country) {
-		var metadata = _this2.props.metadata;
-
-		return isCountrySupportedWithError(country, metadata);
-	};
-
-	this.onCountryChange = function (new_country) {
-		var _props2 = _this2.props,
-		    metadata = _props2.metadata,
-		    onChange = _props2.onChange;
-		var _state2 = _this2.state,
-		    old_parsed_input = _state2.parsed_input,
-		    old_country = _state2.country;
-
-		// After the new `country` has been selected,
-		// if the phone number `<input/>` holds any digits
-		// then migrate those digits for the new `country`.
-
-		var new_parsed_input = (0, inputControl.migrateParsedInputForNewCountry)(old_parsed_input, old_country, new_country, metadata,
-		// Convert to "local" phone number format.
-		true);
-
-		var new_value = (0, inputControl.e164)(new_parsed_input, new_country, metadata);
-
-		// Focus phone number `<input/>` upon country selection.
-		_this2.focus();
-
-		// If the user has already manually selected a country
-		// then don't override that already selected country
-		// if the default `country` property changes.
-		// That's what `hasUserSelectedACountry` flag is for.
-
-		_this2.setState({
-			country: new_country,
-			hasUserSelectedACountry: true,
-			parsed_input: new_parsed_input,
-			value: new_value
-		}, function () {
-			// Update the new `value` property.
-			// Doing it after the `state` has been updated
-			// because `onChange()` will trigger `getDerivedStateFromProps()`
-			// with the new `value` which will be compared to `state.value` there.
-			onChange(new_value);
-		});
-	};
-
-	this.onPhoneNumberKeyDown = function (event) {
-		var onKeyDown = _this2.props.onKeyDown;
-
-		// Actually "Down arrow" key is used for showing "autocomplete" ("autofill") options.
-		// (e.g. previously entered phone numbers for `autoComplete="tel"`)
-		// so can't hijack "Down arrow" keypress here.
-		// // Expand country `<select/>`` on "Down arrow" key press.
-		// if (event.keyCode === 40) {
-		// 	this.country_select.toggle()
-		// }
-
-		if (onKeyDown) {
-			onKeyDown(event);
-		}
-	};
-
-	this.onChange = function (_input) {
-		var _props3 = _this2.props,
-		    onChange = _props3.onChange,
-		    international = _props3.international,
-		    limitMaxLength = _props3.limitMaxLength,
-		    metadata = _props3.metadata;
-
-		var _parseInput = (0, inputControl.parseInput)(_input, _this2.state.parsed_input, _this2.state.country, _this2.state.countries, international, limitMaxLength, metadata),
-		    input = _parseInput.input,
-		    country = _parseInput.country,
-		    value = _parseInput.value;
-
-		_this2.setState({
-			parsed_input: input,
-			value: value,
-			country: country
-		},
-		// Update the new `value` property.
-		// Doing it after the `state` has been updated
-		// because `onChange()` will trigger `getDerivedStateFromProps()`
-		// with the new `value` which will be compared to `state.value` there.
-		function () {
-			return onChange(value);
-		});
-	};
-
-	this._onFocus = function () {
-		return _this2.setState({ isFocused: true });
-	};
-
-	this._onBlur = function () {
-		return _this2.setState({ isFocused: false });
-	};
-
-	this.onFocus = function (event) {
-		var onFocus = _this2.props.onFocus;
-
-		_this2._onFocus();
-		if (onFocus) {
-			onFocus(event);
-		}
-	};
-
-	this.onBlur = function (event) {
-		var onBlur = _this2.props.onBlur;
-		var value = _this2.state.value;
-
-
-		_this2._onBlur();
-
-		if (!onBlur) {
-			return;
-		}
-
-		// `event` is React's `SyntheticEvent`.
-		// Its `.value` is read-only therefore cloning it.
-		var _event = _extends({}, event, {
-			target: _extends({}, event.target, {
-				value: value
-			})
-
-			// For `redux-form` event detection.
-			// https://github.com/erikras/redux-form/blob/v5/src/events/isEvent.js
-		});_event.stopPropagation = event.stopPropagation;
-		_event.preventDefault = event.preventDefault;
-
-		return onBlur(_event);
-	};
-
-	this.hidePhoneInputField = function (hide) {
-		_this2.setState({
-			hidePhoneInputField: hide
-		});
-	};
-
-	this.focus = function () {
-		return _this2.number_input.focus();
-	};
-
-	this.storeCountrySelectInstance = function (_) {
-		return _this2.country_select = _;
-	};
-
-	this.storePhoneNumberInputInstance = function (_) {
-		return _this2.number_input = _;
-	};
-}, _temp)) || _class;
-
-// Generates country `<select/>` options.
-
-
-exports.default = PhoneNumberInput;
-function generateCountrySelectOptions(countries, countryOptions, props) {
-	var labels = props.labels,
-	    international = props.international,
-	    metadata = props.metadata;
-
-
-	var CountrySelectOptionIcon = createCountrySelectOptionIconComponent(props);
-
-	return transformCountryOptions((0, inputControl.getCountrySelectOptions)(countries || (0, countries$1.getCountryCodes)(labels).filter(function (country) {
-		return country === 'ZZ' || isCountrySupported(country, metadata);
-	}), labels, international).map(function (_ref) {
-		var value = _ref.value,
-		    label = _ref.label;
-		return {
-			value: value,
-			label: label,
-			icon: CountrySelectOptionIcon
-		};
-	}), countryOptions);
-}
-
-function createCountrySelectOptionIconComponent(props) {
-	var flags = props.flags,
-	    flagsPath = props.flagsPath,
-	    FlagComponent = props.flagComponent,
-	    InternationalIcon = props.internationalIcon;
-
-
-	return function (_ref2) {
-		var value = _ref2.value;
-		return _react2.default.createElement(
-			'div',
-			{
-				className: (0, _classnames2.default)('react-phone-number-input__icon', {
-					'react-phone-number-input__icon--international': value === undefined
-				}) },
-			value ? _react2.default.createElement(FlagComponent, {
-				country: value,
-				flags: flags,
-				flagsPath: flagsPath }) : _react2.default.createElement(InternationalIcon, null)
-		);
-	};
-}
-
-// Can move some country `<select/>` options
-// to the top of the list, for example.
-// See `countryOptions` property.
-function transformCountryOptions(options, transform) {
-	if (!transform) {
-		return options;
-	}
-
-	var optionsOnTop = [];
-	var optionsOnBottom = [];
-	var appendTo = optionsOnTop;
-
-	var _loop = function _loop() {
-		if (_isArray) {
-			if (_i >= _iterator.length) return 'break';
-			_ref3 = _iterator[_i++];
-		} else {
-			_i = _iterator.next();
-			if (_i.done) return 'break';
-			_ref3 = _i.value;
-		}
-
-		var element = _ref3;
-
-		if (element === '|') {
-			appendTo.push({ divider: true });
-		} else if (element === '...' || element === '…') {
-			appendTo = optionsOnBottom;
-		} else {
-			// Find the position of the option.
-			var index = options.indexOf(options.filter(function (option) {
-				return option.value === element;
-			})[0]);
-			// Get the option.
-			var option = options[index];
-			// Remove the option from its default position.
-			options.splice(index, 1);
-			// Add the option on top.
-			appendTo.push(option);
-		}
-	};
-
-	for (var _iterator = transform, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-		var _ref3;
-
-		var _ret = _loop();
-
-		if (_ret === 'break') break;
-	}
-
-	return optionsOnTop.concat(options).concat(optionsOnBottom);
-}
-
-function generateParsedInput(value, phoneNumber, props) {
-	var displayInitialValueAsLocalNumber = props.displayInitialValueAsLocalNumber;
-
-	// If the `value` (E.164 phone number)
-	// belongs to the currently selected country
-	// and `displayInitialValueAsLocalNumber` property is `true`
-	// then convert `value` (E.164 phone number)
-	// to a local phone number digits.
-	// E.g. '+78005553535' -> '88005553535'.
-
-	if (displayInitialValueAsLocalNumber && phoneNumber && phoneNumber.country) {
-		return (0, inputControl.generateNationalNumberDigits)(phoneNumber);
-	}
-
-	return value;
-}
-
-function isCountrySupported(country, metadata) {
-	return metadata.countries.hasOwnProperty(country);
-}
-
-function isCountrySupportedWithError(country, metadata) {
-	if (isCountrySupported(country, metadata)) {
-		return true;
-	} else {
-		console.error('Country not found: ' + country);
-		return false;
-	}
-}
-
-function isCountryOptionSupportedWithError(countryOption, metadata) {
-	switch (countryOption) {
-		case '|':
-		case '...':
-		case '…':
-			return true;
-		default:
-			return isCountrySupportedWithError(countryOption, metadata);
-	}
-}
-
-function filterCountries(countries, metadata) {
-	if (countries) {
-		countries = countries.filter(function (country) {
-			return isCountrySupportedWithError(country, metadata);
-		});
-		if (countries.length === 0) {
-			countries = undefined;
-		}
-	}
-	return countries;
-}
-
-function filterCountryOptions(countryOptions, metadata) {
-	if (countryOptions) {
-		countryOptions = countryOptions.filter(function (countryOption) {
-			return isCountryOptionSupportedWithError(countryOption, metadata);
-		});
-		if (countryOptions.length === 0) {
-			countryOptions = undefined;
-		}
-	}
-	return countryOptions;
-}
-
-function parseExtDigits(event) {
-	if (event) {
-		if (typeof event === 'string') {
-			event = (0, core.parseDigits)(event);
-		} else if (event.target && event.target.value) {
-			event.target.value = (0, core.parseDigits)(event.target.value);
-		}
-	}
-	return event;
-}
-
-});
-
-unwrapExports(PhoneInput);
-
-var CountrySelectNative_1 = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.default = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _class, _temp2;
-
-
-
-var _react2 = _interopRequireDefault(e__default);
-
-
-
-var _propTypes2 = _interopRequireDefault(PropTypes$2);
-
-
-
-var _classnames2 = _interopRequireDefault(classnames);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var CountrySelectNative = (_temp2 = _class = function (_Component) {
-	_inherits(CountrySelectNative, _Component);
-
-	function CountrySelectNative() {
-		var _ref;
-
-		var _temp, _this, _ret;
-
-		_classCallCheck(this, CountrySelectNative);
-
-		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-			args[_key] = arguments[_key];
-		}
-
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CountrySelectNative.__proto__ || Object.getPrototypeOf(CountrySelectNative)).call.apply(_ref, [this].concat(args))), _this), _this.onChange = function (event) {
-			var onChange = _this.props.onChange;
-
-			var value = event.target.value;
-			onChange(value === 'ZZ' ? undefined : value);
-		}, _temp), _possibleConstructorReturn(_this, _ret);
-	}
-
-	_createClass(CountrySelectNative, [{
-		key: 'render',
-		value: function render() {
-			var _props = this.props,
-			    name = _props.name,
-			    value = _props.value,
-			    options = _props.options,
-			    onFocus = _props.onFocus,
-			    onBlur = _props.onBlur,
-			    disabled = _props.disabled,
-			    tabIndex = _props.tabIndex,
-			    className = _props.className,
-			    SelectArrow = _props.selectArrowComponent;
-
-
-			var selectedOption = void 0;
-			for (var _iterator = options, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-				var _ref2;
-
-				if (_isArray) {
-					if (_i >= _iterator.length) break;
-					_ref2 = _iterator[_i++];
-				} else {
-					_i = _iterator.next();
-					if (_i.done) break;
-					_ref2 = _i.value;
-				}
-
-				var option = _ref2;
-
-				if (!option.divider && option.value === value) {
-					selectedOption = option;
-				}
-			}
-
-			return _react2.default.createElement(
-				'div',
-				{ className: (0, _classnames2.default)(className, 'react-phone-number-input__country--native') },
-				selectedOption && _react2.default.createElement(selectedOption.icon, { value: value }),
-				_react2.default.createElement(
-					'select',
-					{
-						name: name,
-						value: value || 'ZZ',
-						onChange: this.onChange,
-						onFocus: onFocus,
-						onBlur: onBlur,
-						disabled: disabled,
-						tabIndex: tabIndex,
-						'aria-label': this.props['aria-label'],
-						className: 'react-phone-number-input__country-select' },
-					options.map(function (_ref3) {
-						var value = _ref3.value,
-						    label = _ref3.label,
-						    divider = _ref3.divider;
-						return _react2.default.createElement(
-							'option',
-							{
-								key: divider ? '|' : value || 'ZZ',
-								value: divider ? '|' : value || 'ZZ',
-								disabled: divider ? true : false,
-								className: divider ? 'react-phone-number-input__country-select-divider' : undefined },
-							label
-						);
-					})
-				),
-				_react2.default.createElement(SelectArrow, null)
-			);
-		}
-	}]);
-
-	return CountrySelectNative;
-}(e__default.Component), _class.propTypes = {
-	// A two-letter country code.
-	// E.g. "US", "RU", etc.
-	value: _propTypes2.default.string,
-
-	// Updates the `value`.
-	onChange: _propTypes2.default.func.isRequired,
-
-	// `<select/>` options.
-	options: _propTypes2.default.arrayOf(_propTypes2.default.shape({
-		value: _propTypes2.default.string,
-		label: _propTypes2.default.string,
-		divider: _propTypes2.default.bool
-	})).isRequired,
-
-	// HTML `name` attribute.
-	name: _propTypes2.default.string,
-
-	// HTML `disabled` attribute.
-	disabled: _propTypes2.default.bool,
-
-	// HTML `tabIndex` attribute.
-	tabIndex: _propTypes2.default.number,
-
-	// Select arrow component.
-	selectArrowComponent: _propTypes2.default.elementType.isRequired,
-
-	// Toggles the `--focus` CSS class.
-	// https://github.com/catamphetamine/react-phone-number-input/issues/189
-	onFocus: _propTypes2.default.func,
-
-	// Toggles the `--focus` CSS class.
-	// https://github.com/catamphetamine/react-phone-number-input/issues/189
-	onBlur: _propTypes2.default.func
-}, _class.defaultProps = {
-	selectArrowComponent: function selectArrowComponent() {
-		return _react2.default.createElement('div', { className: 'react-phone-number-input__country-select-arrow' });
-	}
-}, _temp2);
-exports.default = CountrySelectNative;
-
-});
-
-unwrapExports(CountrySelectNative_1);
-
-var PhoneInputNative_1 = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.default = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _class, _temp2;
-
-
-
-var _react2 = _interopRequireDefault(e__default);
-
-
-
-var _propTypes2 = _interopRequireDefault(PropTypes$2);
-
-
-
-var _classnames2 = _interopRequireDefault(classnames);
-
-
-
-var _PhoneInput2 = _interopRequireDefault(PhoneInput);
-
-
-
-var _CountrySelectNative2 = _interopRequireDefault(CountrySelectNative_1);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var PhoneInputNative = (_temp2 = _class = function (_Component) {
-	_inherits(PhoneInputNative, _Component);
-
-	function PhoneInputNative() {
-		var _ref;
-
-		var _temp, _this, _ret;
-
-		_classCallCheck(this, PhoneInputNative);
-
-		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-			args[_key] = arguments[_key];
-		}
-
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PhoneInputNative.__proto__ || Object.getPrototypeOf(PhoneInputNative)).call.apply(_ref, [this].concat(args))), _this), _this.storeInputRef = function (ref) {
-			return _this.input = ref;
-		}, _this.focus = function () {
-			return _this.input.focus();
-		}, _temp), _possibleConstructorReturn(_this, _ret);
-	}
-
-	// These two country-select-related properties are
-	// implemented as `defaultProps` instead of passing them
-	// directly to the `<PhoneInput/>` because `<PhoneInputNative/>`
-	// is the default export of this library and therefore people pass
-	// `countrySelectComponent` property to this `<PhoneInputNative/>` component
-	// and when they don't see any changes they might get confused.
-	// https://github.com/catamphetamine/react-phone-number-input/issues/229
-
-
-	_createClass(PhoneInputNative, [{
-		key: 'render',
-		value: function render() {
-			return _react2.default.createElement(_PhoneInput2.default, _extends({ ref: this.storeInputRef }, this.props));
-		}
-
-		// Proxy `.focus()` method.
-
-	}]);
-
-	return PhoneInputNative;
-}(e__default.Component), _class.propTypes = {
-	// (optional)
-	// Replaces the default country select arrow.
-	countrySelectArrowComponent: _propTypes2.default.elementType }, _class.defaultProps = {
-	countrySelectComponent: _CountrySelectNative2.default,
-	countrySelectProperties: COUNTRY_SELECT_PROPERTIES
-}, _temp2);
-exports.default = PhoneInputNative;
-
-
-var COUNTRY_SELECT_PROPERTIES = {
-	countrySelectArrowComponent: 'selectArrowComponent'
+  value: PropTypes$1.string,
+
+  /**
+   * Updates the `value` as the user inputs the phone number.
+   */
+  onChange: PropTypes$1.func.isRequired,
+
+  /**
+   * Toggles the `--focus` CSS class.
+   * @ignore
+   */
+  onFocus: PropTypes$1.func,
+
+  /**
+   * `onBlur` is usually passed by `redux-form`.
+   * @ignore
+   */
+  onBlur: PropTypes$1.func,
+
+  /**
+   * `onKeyDown` handler (e.g. to handle Enter key press).
+   * @ignore
+   */
+  onKeyDown: PropTypes$1.func,
+
+  /**
+   * Set to `true` to disable both the phone number `<input/>`
+   * and the country `<select/>`.
+   */
+  disabled: PropTypes$1.bool,
+
+  /**
+   * Sets `autoComplete` property for phone number `<input/>`.
+   *
+   * Web browser's "autocomplete" feature
+   * remembers the phone number being input
+   * and can also autofill the `<input/>`
+   * with previously remembered phone numbers.
+   *
+   * https://developers.google.com
+   * /web/updates/2015/06/checkout-faster-with-autofill
+   *
+   * For example, can be used to turn it off:
+   *
+   * "So when should you use `autocomplete="off"`?
+   *  One example is when you've implemented your own version
+   *  of autocomplete for search. Another example is any form field
+   *  where users will input and submit different kinds of information
+   *  where it would not be useful to have the browser remember
+   *  what was submitted previously".
+   */
+  // (is `"tel"` by default)
+  autoComplete: PropTypes$1.string.isRequired,
+
+  /**
+   * Set to `true` to show the initial `value` in
+   * "national" format rather than "international".
+   *
+   * For example, if this flag is set to `true`
+   * and the initial `value="+12133734253"` is passed
+   * then the `<input/>` value will be `"(213) 373-4253"`.
+   *
+   * By default, this flag is set to `false`,
+   * meaning that if the initial `value="+12133734253"` is passed
+   * then the `<input/>` value will be `"+1 213 373 4253"`.
+   *
+   * The reason for such default behaviour is that
+   * the newer generation grows up when there are no stationary phones
+   * and therefore everyone inputs phone numbers in international format
+   * in their smartphones so people gradually get more accustomed to
+   * writing phone numbers in international format rather than in local format.
+   * Future people won't be using "national" format, only "international".
+   */
+  // (is `false` by default)
+  displayInitialValueAsLocalNumber: PropTypes$1.bool.isRequired,
+
+  /**
+   * The country to be selected by default.
+   * For example, can be set after a GeoIP lookup.
+   *
+   * Example: `"US"`.
+   */
+  // A two-letter country code ("ISO 3166-1 alpha-2").
+  defaultCountry: PropTypes$1.string,
+
+  /**
+   * If specified, only these countries will be available for selection.
+   *
+   * Example:
+   *
+   * `["RU", "UA", "KZ"]`
+   */
+  countries: PropTypes$1.arrayOf(PropTypes$1.string),
+
+  /**
+   * Custom country `<select/>` option names.
+   * Also some labels like "ext" and country `<select/>` `aria-label`.
+   *
+   * Example:
+   *
+   * `{ "ZZ": "Международный", RU: "Россия", US: "США", ... }`
+   *
+   * See the `locales` directory for examples.
+   */
+  labels: labels.isRequired,
+
+  /**
+   * A URL template of a country flag, where
+   * "{XX}" is a two-letter country code in upper case,
+   * or where "{xx}" is a two-letter country code in lower case.
+   * By default it points to `country-flag-icons` github pages website.
+   * I imagine someone might want to download those country flag icons
+   * and host them on their own servers instead
+   * (all flags are available in the `country-flag-icons` library).
+   * There's a catch though: new countries may be added in future,
+   * so when hosting country flag icons on your own server
+   * one should check the `CHANGELOG.md` every time before updating this library,
+   * otherwise there's a possibility that some new country flag would be missing.
+   */
+  flagUrl: PropTypes$1.string.isRequired,
+
+  /**
+   * Custom country flag icon components.
+   * These flags will be used instead of the default ones.
+   * The the "Flags" section of the readme for more info.
+   *
+   * The shape is an object where keys are country codes
+   * and values are flag icon components.
+   * Flag icon components receive the same properties
+   * as `flagComponent` (see below).
+   *
+   * Example:
+   *
+   * `{ "RU": (props) => <img src="..."/> }`
+   *
+   * Example:
+   *
+   * `import flags from 'country-flag-icons/react/3x2'`
+   *
+   * `import PhoneInput from 'react-phone-number-input'`
+   *
+   * `<PhoneInput flags={flags} .../>`
+   */
+  flags: PropTypes$1.objectOf(PropTypes$1.elementType),
+
+  /**
+   * Country flag icon component.
+   *
+   * Takes properties:
+   *
+   * * `country: string` — The country code.
+   * * `countryName: string` — The country name.
+   * * `flagUrl: string` — The `flagUrl` property (see above).
+   * * `flags: object` — The `flags` property (see above).
+   */
+  flagComponent: PropTypes$1.elementType.isRequired,
+
+  /**
+   * Set to `false` to remove the "International" option from country `<select/>`.
+   */
+  addInternationalOption: PropTypes$1.bool.isRequired,
+
+  /**
+   * "International" icon component.
+   * Should have the same aspect ratio.
+   *
+   * Receives properties:
+   *
+   * * `title: string` — "International" country option label.
+   */
+  internationalIcon: PropTypes$1.elementType.isRequired,
+
+  /**
+   * Can be used to place some countries on top of the list of country `<select/>` options.
+   *
+   * * `"|"` — inserts a separator.
+   * * `"..."` — means "the rest of the countries" (can be omitted, in which case it will automatically be added at the end).
+   *
+   * Example:
+   *
+   * `["US", "CA", "AU", "|", "..."]`
+   */
+  countryOptionsOrder: PropTypes$1.arrayOf(PropTypes$1.string),
+
+  /**
+   * `<Phone/>` component CSS style object.
+   */
+  style: PropTypes$1.object,
+
+  /**
+   * `<Phone/>` component CSS class.
+   */
+  className: PropTypes$1.string,
+
+  /**
+   * Country `<select/>` component.
+   *
+   * Receives properties:
+   *
+   * * `name: string?` — HTML `name` attribute.
+   * * `value: string?` — The currently selected country code.
+   * * `onChange(value: string?)` — Updates the `value`.
+   * * `onFocus()` — Is used to toggle the `--focus` CSS class.
+   * * `onBlur()` — Is used to toggle the `--focus` CSS class.
+   * * `options: object[]` — The list of all selectable countries (including "International") each being an object of shape `{ value: string?, label: string }`.
+   * * `iconComponent: PropTypes.elementType` — React component that renders a country icon: `<Icon country={value}/>`. If `country` is `undefined` then it renders an "International" icon.
+   * * `disabled: boolean?` — HTML `disabled` attribute.
+   * * `tabIndex: (number|string)?` — HTML `tabIndex` attribute.
+   * * `className: string` — CSS class name.
+   */
+  countrySelectComponent: PropTypes$1.elementType.isRequired,
+
+  /**
+   * Country `<select/>` component props.
+   * Along with the usual DOM properties such as `aria-label` and `tabIndex`,
+   * some custom properties are supported, such as `arrowComponent` and `unicodeFlags`.
+   */
+  countrySelectProps: PropTypes$1.object,
+
+  /**
+   * Phone number `<input/>` component.
+   *
+   * Receives properties:
+   *
+   * * `value: string` — The formatted `value`.
+   * * `onChange(event: Event)` — Updates the formatted `value` from `event.target.value`.
+   * * `onFocus()` — Is used to toggle the `--focus` CSS class.
+   * * `onBlur()` — Is used to toggle the `--focus` CSS class.
+   * * Other properties like `type="tel"` or `autoComplete="tel"` that should be passed through to the DOM `<input/>`.
+   *
+   * Must also either use `React.forwardRef()` to "forward" `ref` to the `<input/>` or implement `.focus()` method.
+   */
+  inputComponent: PropTypes$1.elementType.isRequired,
+
+  /**
+   * Phone number `<input/>` component props.
+   */
+  numberInputProps: PropTypes$1.object,
+
+  /**
+   * By default, the caret position is being "intelligently" managed
+   * while a user inputs a phone number.
+   * This "smart" caret behavior can be turned off
+   * by passing `smartCaret={false}` property.
+   * This is just an "escape hatch" for any possible caret position issues.
+   */
+  // Is `true` by default.
+  smartCaret: PropTypes$1.bool.isRequired,
+
+  /**
+   * If set to `true` the phone number input will get trimmed
+   * if it exceeds the maximum length for the country.
+   */
+  limitMaxLength: PropTypes$1.bool.isRequired,
+
+  /**
+   * `libphonenumber-js` metadata.
+   *
+   * Can be used to pass custom `libphonenumber-js` metadata
+   * to reduce the overall bundle size for those who compile "custom" metadata.
+   */
+  metadata: metadata$1.isRequired,
+
+  /**
+   * Is called every time the selected country changes:
+   * either programmatically or when user selects it manually from the list.
+   */
+  // People have been asking for a way to get the selected country.
+  // @see  https://github.com/catamphetamine/react-phone-number-input/issues/128
+  // For some it's just a "business requirement".
+  // I guess it's about gathering as much info on the user as a website can
+  // without introducing any addional fields that would complicate the form
+  // therefore reducing "conversion" (that's a marketing term).
+  // Assuming that the phone number's country is the user's country
+  // is not 100% correct but in most cases I guess it's valid.
+  onCountryChange: PropTypes$1.func
+};
+PhoneNumberInput.defaultProps = {
+  /**
+   * Remember (and autofill) the value as a phone number.
+   */
+  autoComplete: 'tel',
+
+  /**
+   * Flag icon component.
+   */
+  flagComponent: FlagComponent,
+
+  /**
+   * By default, uses icons from `country-flag-icons` github pages website.
+   */
+  // Must be equal to `flagUrl` in `./CountryIcon.js`.
+  flagUrl: 'https://catamphetamine.github.io/country-flag-icons/3x2/{XX}.svg',
+
+  /**
+   * Default "International" country `<select/>` option icon.
+   */
+  internationalIcon: InternationalIcon,
+
+  /**
+   * Phone number `<input/>` component.
+   */
+  inputComponent: 'input',
+
+  /**
+   * Some users requested a way to reset the component:
+   * both number `<input/>` and country `<select/>`.
+   * Whenever `reset` property changes both number `<input/>`
+   * and country `<select/>` are reset.
+   * It's not implemented as some instance `.reset()` method
+   * because `ref` is forwarded to `<input/>`.
+   * It's also not replaced with just resetting `country` on
+   * external `value` reset, because a user could select a country
+   * and then not input any `value`, and so the selected country
+   * would be "stuck", if not using this `reset` property.
+   */
+  // https://github.com/catamphetamine/react-phone-number-input/issues/300
+  reset: PropTypes$1.any,
+
+  /**
+   * Don't convert the initially passed phone number `value`
+   * to a national phone number for its country.
+   * The reason is that the newer generation grows up when
+   * there are no stationary phones and therefore everyone inputs
+   * phone numbers with a `+` in their smartphones
+   * so phone numbers written in international form
+   * are gradually being considered more natural than local ones.
+   */
+  displayInitialValueAsLocalNumber: false,
+
+  /**
+   * Set to `false` to use "basic" caret instead of the "smart" one.
+   */
+  smartCaret: true,
+
+  /**
+   * Whether to add the "International" option
+   * to the list of countries.
+   */
+  addInternationalOption: true,
+
+  /**
+   * If set to `true` the phone number input will get trimmed
+   * if it exceeds the maximum length for the country.
+   */
+  limitMaxLength: false
 };
 
-});
+function generateParsedInput(value, phoneNumber, _ref) {
+  var displayInitialValueAsLocalNumber = _ref.displayInitialValueAsLocalNumber;
 
-unwrapExports(PhoneInputNative_1);
+  // If the `value` (E.164 phone number)
+  // belongs to the currently selected country
+  // and `displayInitialValueAsLocalNumber` property is `true`
+  // then convert `value` (E.164 phone number)
+  // to a local phone number digits.
+  // E.g. '+78005553535' -> '88005553535'.
+  if (displayInitialValueAsLocalNumber && phoneNumber && phoneNumber.country) {
+    return generateNationalNumberDigits(phoneNumber);
+  }
 
-var _default$2 = getCjsExportFromNamespace(_default$1);
-
-var PhoneInputNativeDefaults = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.createPhoneInput = createPhoneInput;
-
-
-
-var _react2 = _interopRequireDefault(e__default);
-
-
-
-var _propTypes2 = _interopRequireDefault(PropTypes$2);
-
-
-
-var _default2 = _interopRequireDefault(_default$2);
-
-
-
-var _InternationalIcon2 = _interopRequireDefault(InternationalIcon_1);
-
-
-
-
-
-var _PhoneInputNative2 = _interopRequireDefault(PhoneInputNative_1);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function createPhoneInput(defaultMetadata) {
-	var _class, _temp2;
-
-	return _temp2 = _class = function (_Component) {
-		_inherits(PhoneInputNativeDefaults, _Component);
-
-		function PhoneInputNativeDefaults() {
-			var _ref;
-
-			var _temp, _this, _ret;
-
-			_classCallCheck(this, PhoneInputNativeDefaults);
-
-			for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-				args[_key] = arguments[_key];
-			}
-
-			return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PhoneInputNativeDefaults.__proto__ || Object.getPrototypeOf(PhoneInputNativeDefaults)).call.apply(_ref, [this].concat(args))), _this), _this.storeInputRef = function (ref) {
-				return _this.input = ref;
-			}, _this.render = function () {
-				return _react2.default.createElement(_PhoneInputNative2.default, _extends({ ref: _this.storeInputRef }, _this.props));
-			}, _this.focus = function () {
-				return _this.input.focus();
-			}, _temp), _possibleConstructorReturn(_this, _ret);
-		}
-
-		return PhoneInputNativeDefaults;
-	}(e__default.Component), _class.propTypes = {
-		metadata: PropTypes.metadata.isRequired,
-		labels: PropTypes.labels.isRequired,
-		internationalIcon: _propTypes2.default.elementType.isRequired
-	}, _class.defaultProps = {
-		metadata: defaultMetadata,
-		labels: _default2.default,
-		internationalIcon: _InternationalIcon2.default
-	}, _temp2;
+  return value;
 }
 
-exports.default = createPhoneInput();
+function generateCountrySelectOptions(countries, countryOptionsOrder, _ref2) {
+  var labels = _ref2.labels,
+      addInternationalOption = _ref2.addInternationalOption,
+      metadata = _ref2.metadata;
+  return sortCountryOptions(getCountrySelectOptions(countries || getCountries(metadata), labels, addInternationalOption), getSupportedCountryOptions(countryOptionsOrder, metadata));
+}
 
-});
+var ext = "ext.";
+var country = "Phone number country";
+var phone = "Phone";
+var AB = "Abkhazia";
+var AC = "Ascension Island";
+var AD = "Andorra";
+var AE = "United Arab Emirates";
+var AF = "Afghanistan";
+var AG = "Antigua and Barbuda";
+var AI = "Anguilla";
+var AL = "Albania";
+var AM = "Armenia";
+var AO = "Angola";
+var AQ = "Antarctica";
+var AR = "Argentina";
+var AS = "American Samoa";
+var AT = "Austria";
+var AU = "Australia";
+var AW = "Aruba";
+var AX = "Åland Islands";
+var AZ = "Azerbaijan";
+var BA = "Bosnia and Herzegovina";
+var BB = "Barbados";
+var BD = "Bangladesh";
+var BE = "Belgium";
+var BF = "Burkina Faso";
+var BG = "Bulgaria";
+var BH = "Bahrain";
+var BI = "Burundi";
+var BJ = "Benin";
+var BL = "Saint Barthélemy";
+var BM = "Bermuda";
+var BN = "Brunei Darussalam";
+var BO = "Bolivia";
+var BQ = "Bonaire, Sint Eustatius and Saba";
+var BR = "Brazil";
+var BS = "Bahamas";
+var BT = "Bhutan";
+var BV = "Bouvet Island";
+var BW = "Botswana";
+var BY = "Belarus";
+var BZ = "Belize";
+var CA = "Canada";
+var CC = "Cocos (Keeling) Islands";
+var CD = "Congo, Democratic Republic of the";
+var CF = "Central African Republic";
+var CG = "Congo";
+var CH = "Switzerland";
+var CI = "Cote d'Ivoire";
+var CK = "Cook Islands";
+var CL = "Chile";
+var CM = "Cameroon";
+var CN = "China";
+var CO = "Colombia";
+var CR = "Costa Rica";
+var CU = "Cuba";
+var CV = "Cape Verde";
+var CW = "Curaçao";
+var CX = "Christmas Island";
+var CY = "Cyprus";
+var CZ = "Czech Republic";
+var DE = "Germany";
+var DJ = "Djibouti";
+var DK = "Denmark";
+var DM = "Dominica";
+var DO = "Dominican Republic";
+var DZ = "Algeria";
+var EC = "Ecuador";
+var EE = "Estonia";
+var EG = "Egypt";
+var EH = "Western Sahara";
+var ER = "Eritrea";
+var ES = "Spain";
+var ET = "Ethiopia";
+var FI = "Finland";
+var FJ = "Fiji";
+var FK = "Falkland Islands";
+var FM = "Federated States of Micronesia";
+var FO = "Faroe Islands";
+var FR = "France";
+var GA = "Gabon";
+var GB = "United Kingdom";
+var GD = "Grenada";
+var GE = "Georgia";
+var GF = "French Guiana";
+var GG = "Guernsey";
+var GH = "Ghana";
+var GI = "Gibraltar";
+var GL = "Greenland";
+var GM = "Gambia";
+var GN = "Guinea";
+var GP = "Guadeloupe";
+var GQ = "Equatorial Guinea";
+var GR = "Greece";
+var GS = "South Georgia and the South Sandwich Islands";
+var GT = "Guatemala";
+var GU = "Guam";
+var GW = "Guinea-Bissau";
+var GY = "Guyana";
+var HK = "Hong Kong";
+var HM = "Heard Island and McDonald Islands";
+var HN = "Honduras";
+var HR = "Croatia";
+var HT = "Haiti";
+var HU = "Hungary";
+var ID = "Indonesia";
+var IE = "Ireland";
+var IL = "Israel";
+var IM = "Isle of Man";
+var IN = "India";
+var IO = "British Indian Ocean Territory";
+var IQ = "Iraq";
+var IR = "Iran";
+var IS = "Iceland";
+var IT = "Italy";
+var JE = "Jersey";
+var JM = "Jamaica";
+var JO = "Jordan";
+var JP = "Japan";
+var KE = "Kenya";
+var KG = "Kyrgyzstan";
+var KH = "Cambodia";
+var KI = "Kiribati";
+var KM = "Comoros";
+var KN = "Saint Kitts and Nevis";
+var KP = "North Korea";
+var KR = "South Korea";
+var KW = "Kuwait";
+var KY = "Cayman Islands";
+var KZ = "Kazakhstan";
+var LA = "Laos";
+var LB = "Lebanon";
+var LC = "Saint Lucia";
+var LI = "Liechtenstein";
+var LK = "Sri Lanka";
+var LR = "Liberia";
+var LS = "Lesotho";
+var LT = "Lithuania";
+var LU = "Luxembourg";
+var LV = "Latvia";
+var LY = "Libya";
+var MA = "Morocco";
+var MC = "Monaco";
+var MD = "Moldova";
+var ME = "Montenegro";
+var MF = "Saint Martin (French Part)";
+var MG = "Madagascar";
+var MH = "Marshall Islands";
+var MK = "North Macedonia";
+var ML = "Mali";
+var MM = "Burma";
+var MN = "Mongolia";
+var MO = "Macao";
+var MP = "Northern Mariana Islands";
+var MQ = "Martinique";
+var MR = "Mauritania";
+var MS = "Montserrat";
+var MT = "Malta";
+var MU = "Mauritius";
+var MV = "Maldives";
+var MW = "Malawi";
+var MX = "Mexico";
+var MY = "Malaysia";
+var MZ = "Mozambique";
+var NA = "Namibia";
+var NC = "New Caledonia";
+var NE = "Niger";
+var NF = "Norfolk Island";
+var NG = "Nigeria";
+var NI = "Nicaragua";
+var NL = "Netherlands";
+var NO = "Norway";
+var NP = "Nepal";
+var NR = "Nauru";
+var NU = "Niue";
+var NZ = "New Zealand";
+var OM = "Oman";
+var OS = "South Ossetia";
+var PA = "Panama";
+var PE = "Peru";
+var PF = "French Polynesia";
+var PG = "Papua New Guinea";
+var PH = "Philippines";
+var PK = "Pakistan";
+var PL = "Poland";
+var PM = "Saint Pierre and Miquelon";
+var PN = "Pitcairn";
+var PR = "Puerto Rico";
+var PS = "Palestine";
+var PT = "Portugal";
+var PW = "Palau";
+var PY = "Paraguay";
+var QA = "Qatar";
+var RE = "Reunion";
+var RO = "Romania";
+var RS = "Serbia";
+var RU = "Russia";
+var RW = "Rwanda";
+var SA = "Saudi Arabia";
+var SB = "Solomon Islands";
+var SC = "Seychelles";
+var SD = "Sudan";
+var SE = "Sweden";
+var SG = "Singapore";
+var SH = "Saint Helena";
+var SI = "Slovenia";
+var SJ = "Svalbard and Jan Mayen";
+var SK = "Slovakia";
+var SL = "Sierra Leone";
+var SM = "San Marino";
+var SN = "Senegal";
+var SO = "Somalia";
+var SR = "Suriname";
+var SS = "South Sudan";
+var ST = "Sao Tome and Principe";
+var SV = "El Salvador";
+var SX = "Sint Maarten";
+var SY = "Syria";
+var SZ = "Swaziland";
+var TA = "Tristan da Cunha";
+var TC = "Turks and Caicos Islands";
+var TD = "Chad";
+var TF = "French Southern Territories";
+var TG = "Togo";
+var TH = "Thailand";
+var TJ = "Tajikistan";
+var TK = "Tokelau";
+var TL = "Timor-Leste";
+var TM = "Turkmenistan";
+var TN = "Tunisia";
+var TO = "Tonga";
+var TR = "Turkey";
+var TT = "Trinidad and Tobago";
+var TV = "Tuvalu";
+var TW = "Taiwan";
+var TZ = "Tanzania";
+var UA = "Ukraine";
+var UG = "Uganda";
+var UM = "United States Minor Outlying Islands";
+var US = "United States";
+var UY = "Uruguay";
+var UZ = "Uzbekistan";
+var VA = "Holy See (Vatican City State)";
+var VC = "Saint Vincent and the Grenadines";
+var VE = "Venezuela";
+var VG = "Virgin Islands, British";
+var VI = "Virgin Islands, U.S.";
+var VN = "Vietnam";
+var VU = "Vanuatu";
+var WF = "Wallis and Futuna";
+var WS = "Samoa";
+var XK = "Kosovo";
+var YE = "Yemen";
+var YT = "Mayotte";
+var ZA = "South Africa";
+var ZM = "Zambia";
+var ZW = "Zimbabwe";
+var ZZ = "International";
+var labels$1 = {
+	ext: ext,
+	country: country,
+	phone: phone,
+	AB: AB,
+	AC: AC,
+	AD: AD,
+	AE: AE,
+	AF: AF,
+	AG: AG,
+	AI: AI,
+	AL: AL,
+	AM: AM,
+	AO: AO,
+	AQ: AQ,
+	AR: AR,
+	AS: AS,
+	AT: AT,
+	AU: AU,
+	AW: AW,
+	AX: AX,
+	AZ: AZ,
+	BA: BA,
+	BB: BB,
+	BD: BD,
+	BE: BE,
+	BF: BF,
+	BG: BG,
+	BH: BH,
+	BI: BI,
+	BJ: BJ,
+	BL: BL,
+	BM: BM,
+	BN: BN,
+	BO: BO,
+	BQ: BQ,
+	BR: BR,
+	BS: BS,
+	BT: BT,
+	BV: BV,
+	BW: BW,
+	BY: BY,
+	BZ: BZ,
+	CA: CA,
+	CC: CC,
+	CD: CD,
+	CF: CF,
+	CG: CG,
+	CH: CH,
+	CI: CI,
+	CK: CK,
+	CL: CL,
+	CM: CM,
+	CN: CN,
+	CO: CO,
+	CR: CR,
+	CU: CU,
+	CV: CV,
+	CW: CW,
+	CX: CX,
+	CY: CY,
+	CZ: CZ,
+	DE: DE,
+	DJ: DJ,
+	DK: DK,
+	DM: DM,
+	DO: DO,
+	DZ: DZ,
+	EC: EC,
+	EE: EE,
+	EG: EG,
+	EH: EH,
+	ER: ER,
+	ES: ES,
+	ET: ET,
+	FI: FI,
+	FJ: FJ,
+	FK: FK,
+	FM: FM,
+	FO: FO,
+	FR: FR,
+	GA: GA,
+	GB: GB,
+	GD: GD,
+	GE: GE,
+	GF: GF,
+	GG: GG,
+	GH: GH,
+	GI: GI,
+	GL: GL,
+	GM: GM,
+	GN: GN,
+	GP: GP,
+	GQ: GQ,
+	GR: GR,
+	GS: GS,
+	GT: GT,
+	GU: GU,
+	GW: GW,
+	GY: GY,
+	HK: HK,
+	HM: HM,
+	HN: HN,
+	HR: HR,
+	HT: HT,
+	HU: HU,
+	ID: ID,
+	IE: IE,
+	IL: IL,
+	IM: IM,
+	IN: IN,
+	IO: IO,
+	IQ: IQ,
+	IR: IR,
+	IS: IS,
+	IT: IT,
+	JE: JE,
+	JM: JM,
+	JO: JO,
+	JP: JP,
+	KE: KE,
+	KG: KG,
+	KH: KH,
+	KI: KI,
+	KM: KM,
+	KN: KN,
+	KP: KP,
+	KR: KR,
+	KW: KW,
+	KY: KY,
+	KZ: KZ,
+	LA: LA,
+	LB: LB,
+	LC: LC,
+	LI: LI,
+	LK: LK,
+	LR: LR,
+	LS: LS,
+	LT: LT,
+	LU: LU,
+	LV: LV,
+	LY: LY,
+	MA: MA,
+	MC: MC,
+	MD: MD,
+	ME: ME,
+	MF: MF,
+	MG: MG,
+	MH: MH,
+	MK: MK,
+	ML: ML,
+	MM: MM,
+	MN: MN,
+	MO: MO,
+	MP: MP,
+	MQ: MQ,
+	MR: MR,
+	MS: MS,
+	MT: MT,
+	MU: MU,
+	MV: MV,
+	MW: MW,
+	MX: MX,
+	MY: MY,
+	MZ: MZ,
+	NA: NA,
+	NC: NC,
+	NE: NE,
+	NF: NF,
+	NG: NG,
+	NI: NI,
+	NL: NL,
+	NO: NO,
+	NP: NP,
+	NR: NR,
+	NU: NU,
+	NZ: NZ,
+	OM: OM,
+	OS: OS,
+	PA: PA,
+	PE: PE,
+	PF: PF,
+	PG: PG,
+	PH: PH,
+	PK: PK,
+	PL: PL,
+	PM: PM,
+	PN: PN,
+	PR: PR,
+	PS: PS,
+	PT: PT,
+	PW: PW,
+	PY: PY,
+	QA: QA,
+	RE: RE,
+	RO: RO,
+	RS: RS,
+	RU: RU,
+	RW: RW,
+	SA: SA,
+	SB: SB,
+	SC: SC,
+	SD: SD,
+	SE: SE,
+	SG: SG,
+	SH: SH,
+	SI: SI,
+	SJ: SJ,
+	SK: SK,
+	SL: SL,
+	SM: SM,
+	SN: SN,
+	SO: SO,
+	SR: SR,
+	SS: SS,
+	ST: ST,
+	SV: SV,
+	SX: SX,
+	SY: SY,
+	SZ: SZ,
+	TA: TA,
+	TC: TC,
+	TD: TD,
+	TF: TF,
+	TG: TG,
+	TH: TH,
+	TJ: TJ,
+	TK: TK,
+	TL: TL,
+	TM: TM,
+	TN: TN,
+	TO: TO,
+	TR: TR,
+	TT: TT,
+	TV: TV,
+	TW: TW,
+	TZ: TZ,
+	UA: UA,
+	UG: UG,
+	UM: UM,
+	US: US,
+	UY: UY,
+	UZ: UZ,
+	VA: VA,
+	VC: VC,
+	VE: VE,
+	VG: VG,
+	VI: VI,
+	VN: VN,
+	VU: VU,
+	WF: WF,
+	WS: WS,
+	XK: XK,
+	YE: YE,
+	YT: YT,
+	ZA: ZA,
+	ZM: ZM,
+	ZW: ZW,
+	ZZ: ZZ
+};
 
-unwrapExports(PhoneInputNativeDefaults);
-var PhoneInputNativeDefaults_1 = PhoneInputNativeDefaults.createPhoneInput;
+/**
+ * Creates Unicode flag from a two-letter ISO country code.
+ * https://stackoverflow.com/questions/24050671/how-to-put-japan-flag-character-in-a-string
+ * @param  {string} country — A two-letter ISO country code (case-insensitive).
+ * @return {string}
+ */
+function getCountryFlag(country) {
+  return getRegionalIndicatorSymbol(country[0]) + getRegionalIndicatorSymbol(country[1]);
+}
+/**
+ * Converts a letter to a Regional Indicator Symbol.
+ * @param  {string} letter
+ * @return {string}
+ */
 
-var _metadataMin = getCjsExportFromNamespace(metadata_min$1);
+function getRegionalIndicatorSymbol(letter) {
+  return String.fromCodePoint(0x1F1E6 - 65 + letter.toUpperCase().charCodeAt(0));
+}
 
-var PhoneInputNativeDefaultMetadata = createCommonjsModule(function (module, exports) {
+function _extends$a() { _extends$a = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$a.apply(this, arguments); }
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+function _objectWithoutProperties$6(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose$5(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
+function _objectWithoutPropertiesLoose$5(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+function CountrySelect(_ref) {
+  var value = _ref.value,
+      onChange = _ref.onChange,
+      options = _ref.options,
+      className = _ref.className,
+      Icon = _ref.iconComponent,
+      getIconAspectRatio = _ref.getIconAspectRatio,
+      Arrow = _ref.arrowComponent,
+      unicodeFlags = _ref.unicodeFlags,
+      rest = _objectWithoutProperties$6(_ref, ["value", "onChange", "options", "className", "iconComponent", "getIconAspectRatio", "arrowComponent", "unicodeFlags"]);
 
+  var onChange_ = React.useCallback(function (event) {
+    var value = event.target.value;
+    onChange(value === 'ZZ' ? undefined : value);
+  }, [onChange]);
+  var selectedOption = React.useMemo(function () {
+    for (var _iterator = options, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+      var _ref2;
 
-var _metadataMin2 = _interopRequireDefault(_metadataMin);
+      if (_isArray) {
+        if (_i >= _iterator.length) break;
+        _ref2 = _iterator[_i++];
+      } else {
+        _i = _iterator.next();
+        if (_i.done) break;
+        _ref2 = _i.value;
+      }
 
+      var option = _ref2;
 
+      if (!option.divider && option.value === value) {
+        return option;
+      }
+    }
+  }, [options, value]); // "ZZ" means "International".
+  // (HTML requires each `<option/>` have some string `value`).
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  return React__default.createElement("div", {
+    className: "PhoneInputCountry"
+  }, React__default.createElement("select", _extends$a({}, rest, {
+    value: value || 'ZZ',
+    onChange: onChange_,
+    className: "PhoneInputCountrySelect"
+  }), options.map(function (_ref3) {
+    var value = _ref3.value,
+        label = _ref3.label,
+        divider = _ref3.divider;
+    return React__default.createElement("option", {
+      key: divider ? '|' : value || 'ZZ',
+      value: divider ? '|' : value || 'ZZ',
+      disabled: divider ? true : false,
+      className: divider ? 'PhoneInputCountrySelectDivider' : undefined
+    }, label);
+  })), unicodeFlags && value && React__default.createElement("div", {
+    className: "PhoneInputCountryIconUnicode"
+  }, getCountryFlag(value)), !(unicodeFlags && value) && React__default.createElement(Icon, {
+    country: value,
+    label: selectedOption && selectedOption.label,
+    aspectRatio: unicodeFlags ? 1 : undefined
+  }), React__default.createElement(Arrow, null));
+}
+CountrySelect.propTypes = {
+  // A two-letter country code.
+  // E.g. "US", "RU", etc.
+  value: PropTypes$1.string,
+  // Updates the `value`.
+  onChange: PropTypes$1.func.isRequired,
+  // `<select/>` options.
+  options: PropTypes$1.arrayOf(PropTypes$1.shape({
+    value: PropTypes$1.string,
+    label: PropTypes$1.string,
+    divider: PropTypes$1.bool
+  })).isRequired,
+  // Country flag component.
+  iconComponent: PropTypes$1.elementType,
+  // Select arrow component.
+  arrowComponent: PropTypes$1.elementType.isRequired,
+  // Set to `true` to render Unicode flag icons instead of SVG images.
+  unicodeFlags: PropTypes$1.bool
+};
+CountrySelect.defaultProps = {
+  // Is "International" icon square?
+  arrowComponent: function arrowComponent() {
+    return React__default.createElement("div", {
+      className: "PhoneInputCountrySelectArrow"
+    });
+  }
+};
 
-// Deprecated.
-// This is a file used in legacy `/index.js` export entry.
-// In some next major version this file will be removed
-// and `/index.js` will be redirected to `/min/index.js`.
+function _extends$b() { _extends$b = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$b.apply(this, arguments); }
+function createPhoneInput(defaultMetadata) {
+  var PhoneInputDefault = React__default.forwardRef(function (props, ref) {
+    return React__default.createElement(PhoneNumberInput, _extends$b({
+      ref: ref
+    }, props));
+  });
+  PhoneInputDefault.propTypes = {
+    metadata: metadata$1.isRequired,
+    labels: labels.isRequired,
+    countrySelectComponent: PropTypes$1.elementType.isRequired
+  };
+  PhoneInputDefault.defaultProps = {
+    metadata: defaultMetadata,
+    labels: labels$1,
+    countrySelectComponent: CountrySelect
+  };
+  return PhoneInputDefault;
+}
+createPhoneInput();
 
-exports.default = (0, PhoneInputNativeDefaults.createPhoneInput)(_metadataMin2.default);
-
-});
-
-var PhoneInput$1 = unwrapExports(PhoneInputNativeDefaultMetadata);
+var PhoneInput = createPhoneInput(metadata);
 
 var defaultMasks = {
   za: '+.. .. ... ....'
@@ -30135,11 +28720,11 @@ var TelInput = function TelInput(props) {
       setValue = _useFormContext.setValue,
       triggerValidation = _useFormContext.triggerValidation;
 
-  return e__default.createElement(InputWrapper, _extends_1({
+  return React__default.createElement(InputWrapper, _extends_1({
     required: required,
     disabled: disabled,
     alertText: alertTextOverride || (errors[name] ? errors[name].message : '')
-  }, otherProps), e__default.createElement(PhoneInput$1, {
+  }, otherProps), React__default.createElement(PhoneInput, {
     id: id,
     onChange: function onChange(value) {
       return setValue(name, value);
@@ -30157,9 +28742,7 @@ var TelInput = function TelInput(props) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return triggerValidation({
-                name: name
-              });
+              return triggerValidation(name);
 
             case 2:
               return _context.abrupt("return", _context.sent);
@@ -30183,7 +28766,57 @@ TelInput.defaultProps = {
   onChange: function onChange() {}
 };
 
-function _objectWithoutPropertiesLoose$1(source, excluded) {
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+var arrayWithHoles = _arrayWithHoles;
+
+function _iterableToArrayLimit(arr, i) {
+  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+    return;
+  }
+
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+var iterableToArrayLimit = _iterableToArrayLimit;
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+var nonIterableRest = _nonIterableRest;
+
+function _slicedToArray$2(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+}
+
+var slicedToArray = _slicedToArray$2;
+
+function _objectWithoutPropertiesLoose$6(source, excluded) {
   if (source == null) return {};
   var target = {};
   var sourceKeys = Object.keys(source);
@@ -30198,9 +28831,9 @@ function _objectWithoutPropertiesLoose$1(source, excluded) {
   return target;
 }
 
-function _objectWithoutProperties$2(source, excluded) {
+function _objectWithoutProperties$7(source, excluded) {
   if (source == null) return {};
-  var target = _objectWithoutPropertiesLoose$1(source, excluded);
+  var target = _objectWithoutPropertiesLoose$6(source, excluded);
   var key, i;
 
   if (Object.getOwnPropertySymbols) {
@@ -30217,8 +28850,8 @@ function _objectWithoutProperties$2(source, excluded) {
   return target;
 }
 
-function _extends$7() {
-  _extends$7 = Object.assign || function (target) {
+function _extends$c() {
+  _extends$c = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
 
@@ -30232,7 +28865,7 @@ function _extends$7() {
     return target;
   };
 
-  return _extends$7.apply(this, arguments);
+  return _extends$c.apply(this, arguments);
 }
 
 function _arrayWithoutHoles(arr) {
@@ -30272,7 +28905,7 @@ function _defineProperty$2(obj, key, value) {
   return obj;
 }
 
-function _objectSpread$7(target) {
+function _objectSpread$8(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i] != null ? arguments[i] : {};
     var ownKeys = Object.keys(source);
@@ -30291,13 +28924,13 @@ function _objectSpread$7(target) {
   return target;
 }
 
-function _classCallCheck$8(instance, Constructor) {
+function _classCallCheck$6(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
 
-function _defineProperties$1(target, props) {
+function _defineProperties$2(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
@@ -30307,29 +28940,29 @@ function _defineProperties$1(target, props) {
   }
 }
 
-function _createClass$7(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties$1(Constructor, staticProps);
+function _createClass$5(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties$2(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties$2(Constructor, staticProps);
   return Constructor;
 }
 
 function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
 
-function _typeof$2(obj) {
+function _typeof$3(obj) {
   if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
-    _typeof$2 = function _typeof(obj) {
+    _typeof$3 = function _typeof(obj) {
       return _typeof2(obj);
     };
   } else {
-    _typeof$2 = function _typeof(obj) {
+    _typeof$3 = function _typeof(obj) {
       return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
     };
   }
 
-  return _typeof$2(obj);
+  return _typeof$3(obj);
 }
 
-function _assertThisInitialized$1(self) {
+function _assertThisInitialized$2(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
@@ -30337,31 +28970,31 @@ function _assertThisInitialized$1(self) {
   return self;
 }
 
-function _possibleConstructorReturn$1(self, call) {
-  if (call && (_typeof$2(call) === "object" || typeof call === "function")) {
+function _possibleConstructorReturn$2(self, call) {
+  if (call && (_typeof$3(call) === "object" || typeof call === "function")) {
     return call;
   }
 
-  return _assertThisInitialized$1(self);
+  return _assertThisInitialized$2(self);
 }
 
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+function _getPrototypeOf$1(o) {
+  _getPrototypeOf$1 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
     return o.__proto__ || Object.getPrototypeOf(o);
   };
-  return _getPrototypeOf(o);
+  return _getPrototypeOf$1(o);
 }
 
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+function _setPrototypeOf$1(o, p) {
+  _setPrototypeOf$1 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
     o.__proto__ = p;
     return o;
   };
 
-  return _setPrototypeOf(o, p);
+  return _setPrototypeOf$1(o, p);
 }
 
-function _inherits$1(subClass, superClass) {
+function _inherits$2(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
   }
@@ -30373,7 +29006,7 @@ function _inherits$1(subClass, superClass) {
       configurable: true
     }
   });
-  if (superClass) _setPrototypeOf(subClass, superClass);
+  if (superClass) _setPrototypeOf$1(subClass, superClass);
 }
 
 function areInputsEqual(newInputs, lastInputs) {
@@ -31904,25 +30537,25 @@ function css() {
 
 var isBrowser$3 = typeof document !== 'undefined';
 
-var EmotionCacheContext = e.createContext( // we're doing this to avoid preconstruct's dead code elimination in this one case
+var EmotionCacheContext = React.createContext( // we're doing this to avoid preconstruct's dead code elimination in this one case
 // because this module is primarily intended for the browser and node
 // but it's also required in react native and similar environments sometimes
 // and we could have a special build just for that
 // but this is much easier and the native packages
 // might use a different theme context in the future anyway
 typeof HTMLElement !== 'undefined' ? createCache() : null);
-var ThemeContext = e.createContext({});
+var ThemeContext = React.createContext({});
 var CacheProvider = EmotionCacheContext.Provider;
 
 var withEmotionCache = function withEmotionCache(func) {
   var render = function render(props, ref) {
-    return e.createElement(EmotionCacheContext.Consumer, null, function (cache) {
+    return React.createElement(EmotionCacheContext.Consumer, null, function (cache) {
       return func(props, cache, ref);
     });
   }; // $FlowFixMe
 
 
-  return e.forwardRef(render);
+  return React.forwardRef(render);
 };
 
 if (!isBrowser$3) {
@@ -31944,17 +30577,17 @@ if (!isBrowser$3) {
     var _proto = BasicProvider.prototype;
 
     _proto.render = function render() {
-      return e.createElement(EmotionCacheContext.Provider, this.state, this.props.children(this.state.value));
+      return React.createElement(EmotionCacheContext.Provider, this.state, this.props.children(this.state.value));
     };
 
     return BasicProvider;
-  }(e.Component);
+  }(React.Component);
 
   withEmotionCache = function withEmotionCache(func) {
     return function (props) {
-      return e.createElement(EmotionCacheContext.Consumer, null, function (context) {
+      return React.createElement(EmotionCacheContext.Consumer, null, function (context) {
         if (context === null) {
-          return e.createElement(BasicProvider, null, function (newContext) {
+          return React.createElement(BasicProvider, null, function (newContext) {
             return func(props, newContext);
           });
         } else {
@@ -32014,7 +30647,7 @@ var render = function render(cache, props, theme, ref) {
 
   newProps.ref = ref;
   newProps.className = className;
-  var ele = e.createElement(type, newProps);
+  var ele = React.createElement(type, newProps);
 
   if (!isBrowser$3 && rules !== undefined) {
     var _ref;
@@ -32027,7 +30660,7 @@ var render = function render(cache, props, theme, ref) {
       next = next.next;
     }
 
-    return e.createElement(e.Fragment, null, e.createElement("style", (_ref = {}, _ref["data-emotion-" + cache.key] = serializedNames, _ref.dangerouslySetInnerHTML = {
+    return React.createElement(React.Fragment, null, React.createElement("style", (_ref = {}, _ref["data-emotion-" + cache.key] = serializedNames, _ref.dangerouslySetInnerHTML = {
       __html: rules
     }, _ref.nonce = cache.sheet.nonce, _ref)), ele);
   }
@@ -32040,7 +30673,7 @@ var Emotion =
 withEmotionCache(function (props, cache, ref) {
   // use Context.read for the theme when it's stable
   if (typeof props.css === 'function') {
-    return e.createElement(ThemeContext.Consumer, null, function (theme) {
+    return React.createElement(ThemeContext.Consumer, null, function (theme) {
       return render(cache, props, theme, ref);
     });
   }
@@ -32058,7 +30691,7 @@ var jsx = function jsx(type, props) {
 
   if (props == null || !hasOwnProperty.call(props, 'css')) {
     // $FlowFixMe
-    return e.createElement.apply(undefined, args);
+    return React.createElement.apply(undefined, args);
   }
 
   if (process.env.NODE_ENV !== 'production' && typeof props.css === 'string' && // check if there is a css declaration
@@ -32104,7 +30737,7 @@ var jsx = function jsx(type, props) {
   } // $FlowFixMe
 
 
-  return e.createElement.apply(null, createElementArgArray);
+  return React.createElement.apply(null, createElementArgArray);
 };
 
 var keyframes = function keyframes() {
@@ -32180,7 +30813,7 @@ function merge(registered, css, className) {
 }
 
 var ClassNames = withEmotionCache(function (props, context) {
-  return e.createElement(ThemeContext.Consumer, null, function (theme) {
+  return React.createElement(ThemeContext.Consumer, null, function (theme) {
     var rules = '';
     var serializedHashes = '';
     var hasRendered = false;
@@ -32236,7 +30869,7 @@ var ClassNames = withEmotionCache(function (props, context) {
     if (!isBrowser$3 && rules.length !== 0) {
       var _ref;
 
-      return e.createElement(e.Fragment, null, e.createElement("style", (_ref = {}, _ref["data-emotion-" + context.key] = serializedHashes.substring(1), _ref.dangerouslySetInnerHTML = {
+      return React.createElement(React.Fragment, null, React.createElement("style", (_ref = {}, _ref["data-emotion-" + context.key] = serializedHashes.substring(1), _ref.dangerouslySetInnerHTML = {
         __html: rules
       }, _ref.nonce = context.sheet.nonce, _ref)), ele);
     }
@@ -32294,7 +30927,7 @@ function classNames(prefix, state, className) {
 
 var cleanValue = function cleanValue(value) {
   if (Array.isArray(value)) return value.filter(Boolean);
-  if (_typeof$2(value) === 'object' && value !== null) return [value];
+  if (_typeof$3(value) === 'object' && value !== null) return [value];
   return [];
 }; // ==============================
 // Scroll Helpers
@@ -32454,11 +31087,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 
 
-var _react2 = _interopRequireDefault(e__default);
+var _react2 = _interopRequireDefault(React__default);
 
 
 
-var _propTypes2 = _interopRequireDefault(PropTypes$2);
+var _propTypes2 = _interopRequireDefault(PropTypes$1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32683,7 +31316,7 @@ var AutosizeInput = function (_Component) {
 	}]);
 
 	return AutosizeInput;
-}(e__default.Component);
+}(React__default.Component);
 
 AutosizeInput.propTypes = {
 	className: _propTypes2.default.string, // className for the outer element
@@ -32906,27 +31539,27 @@ var menuCSS = function menuCSS(_ref2) {
 var MenuPlacer =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(MenuPlacer, _Component);
+  _inherits$2(MenuPlacer, _Component);
 
   function MenuPlacer() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck$8(this, MenuPlacer);
+    _classCallCheck$6(this, MenuPlacer);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(MenuPlacer)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn$2(this, (_getPrototypeOf2 = _getPrototypeOf$1(MenuPlacer)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "state", {
       maxHeight: _this.props.maxMenuHeight,
       placement: null
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getPlacement", function (ref) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "getPlacement", function (ref) {
       var _this$props = _this.props,
           minMenuHeight = _this$props.minMenuHeight,
           maxMenuHeight = _this$props.maxMenuHeight,
@@ -32953,10 +31586,10 @@ function (_Component) {
       _this.setState(state);
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getUpdatedProps", function () {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "getUpdatedProps", function () {
       var menuPlacement = _this.props.menuPlacement;
       var placement = _this.state.placement || coercePlacement(menuPlacement);
-      return _objectSpread$7({}, _this.props, {
+      return _objectSpread$8({}, _this.props, {
         placement: placement,
         maxHeight: _this.state.maxHeight
       });
@@ -32965,7 +31598,7 @@ function (_Component) {
     return _this;
   }
 
-  _createClass$7(MenuPlacer, [{
+  _createClass$5(MenuPlacer, [{
     key: "render",
     value: function render() {
       var children = this.props.children;
@@ -32977,10 +31610,10 @@ function (_Component) {
   }]);
 
   return MenuPlacer;
-}(e.Component);
+}(React.Component);
 
 _defineProperty$2(MenuPlacer, "contextTypes", {
-  getPortalPlacement: PropTypes$2.func
+  getPortalPlacement: PropTypes$1.func
 });
 
 var Menu = function Menu(props) {
@@ -32990,7 +31623,7 @@ var Menu = function Menu(props) {
       getStyles = props.getStyles,
       innerRef = props.innerRef,
       innerProps = props.innerProps;
-  return jsx("div", _extends$7({
+  return jsx("div", _extends$c({
     css: getStyles('menu', props),
     className: cx({
       menu: true
@@ -33053,7 +31686,7 @@ var NoOptionsMessage = function NoOptionsMessage(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$7({
+  return jsx("div", _extends$c({
     css: getStyles('noOptionsMessage', props),
     className: cx({
       'menu-notice': true,
@@ -33070,7 +31703,7 @@ var LoadingMessage = function LoadingMessage(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$7({
+  return jsx("div", _extends$c({
     css: getStyles('loadingMessage', props),
     className: cx({
       'menu-notice': true,
@@ -33099,26 +31732,26 @@ var menuPortalCSS = function menuPortalCSS(_ref6) {
 var MenuPortal =
 /*#__PURE__*/
 function (_Component2) {
-  _inherits$1(MenuPortal, _Component2);
+  _inherits$2(MenuPortal, _Component2);
 
   function MenuPortal() {
     var _getPrototypeOf3;
 
     var _this2;
 
-    _classCallCheck$8(this, MenuPortal);
+    _classCallCheck$6(this, MenuPortal);
 
     for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
       args[_key2] = arguments[_key2];
     }
 
-    _this2 = _possibleConstructorReturn$1(this, (_getPrototypeOf3 = _getPrototypeOf(MenuPortal)).call.apply(_getPrototypeOf3, [this].concat(args)));
+    _this2 = _possibleConstructorReturn$2(this, (_getPrototypeOf3 = _getPrototypeOf$1(MenuPortal)).call.apply(_getPrototypeOf3, [this].concat(args)));
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this2)), "state", {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this2)), "state", {
       placement: null
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this2)), "getPortalPlacement", function (_ref7) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this2)), "getPortalPlacement", function (_ref7) {
       var placement = _ref7.placement;
       var initialPlacement = coercePlacement(_this2.props.menuPlacement); // avoid re-renders if the placement has not changed
 
@@ -33132,7 +31765,7 @@ function (_Component2) {
     return _this2;
   }
 
-  _createClass$7(MenuPortal, [{
+  _createClass$5(MenuPortal, [{
     key: "getChildContext",
     value: function getChildContext() {
       return {
@@ -33174,10 +31807,10 @@ function (_Component2) {
   }]);
 
   return MenuPortal;
-}(e.Component);
+}(React.Component);
 
 _defineProperty$2(MenuPortal, "childContextTypes", {
-  getPortalPlacement: PropTypes$2.func
+  getPortalPlacement: PropTypes$1.func
 });
 
 var isArray = Array.isArray;
@@ -33188,7 +31821,7 @@ function equal(a, b) {
   // fast-deep-equal index.js 2.0.1
   if (a === b) return true;
 
-  if (a && b && _typeof$2(a) == 'object' && _typeof$2(b) == 'object') {
+  if (a && b && _typeof$3(a) == 'object' && _typeof$3(b) == 'object') {
     var arrA = isArray(a),
         arrB = isArray(b),
         i,
@@ -33289,7 +31922,7 @@ var SelectContainer = function SelectContainer(props) {
       innerProps = props.innerProps,
       isDisabled = props.isDisabled,
       isRtl = props.isRtl;
-  return jsx("div", _extends$7({
+  return jsx("div", _extends$c({
     css: getStyles('container', props),
     className: cx({
       '--is-disabled': isDisabled,
@@ -33316,15 +31949,15 @@ var valueContainerCSS = function valueContainerCSS(_ref2) {
 var ValueContainer =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(ValueContainer, _Component);
+  _inherits$2(ValueContainer, _Component);
 
   function ValueContainer() {
-    _classCallCheck$8(this, ValueContainer);
+    _classCallCheck$6(this, ValueContainer);
 
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(ValueContainer).apply(this, arguments));
+    return _possibleConstructorReturn$2(this, _getPrototypeOf$1(ValueContainer).apply(this, arguments));
   }
 
-  _createClass$7(ValueContainer, [{
+  _createClass$5(ValueContainer, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -33346,7 +31979,7 @@ function (_Component) {
   }]);
 
   return ValueContainer;
-}(e.Component); // ==============================
+}(React.Component); // ==============================
 // Indicator Container
 // ==============================
 
@@ -33395,9 +32028,9 @@ var _ref2 = process.env.NODE_ENV === "production" ? {
 // ==============================
 var Svg = function Svg(_ref) {
   var size = _ref.size,
-      props = _objectWithoutProperties$2(_ref, ["size"]);
+      props = _objectWithoutProperties$7(_ref, ["size"]);
 
-  return jsx("svg", _extends$7({
+  return jsx("svg", _extends$c({
     height: size,
     width: size,
     viewBox: "0 0 20 20",
@@ -33408,14 +32041,14 @@ var Svg = function Svg(_ref) {
 };
 
 var CrossIcon = function CrossIcon(props) {
-  return jsx(Svg, _extends$7({
+  return jsx(Svg, _extends$c({
     size: 20
   }, props), jsx("path", {
     d: "M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
   }));
 };
 var DownChevron = function DownChevron(props) {
-  return jsx(Svg, _extends$7({
+  return jsx(Svg, _extends$c({
     size: 20
   }, props), jsx("path", {
     d: "M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
@@ -33448,7 +32081,7 @@ var DropdownIndicator = function DropdownIndicator(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$7({}, innerProps, {
+  return jsx("div", _extends$c({}, innerProps, {
     css: getStyles('dropdownIndicator', props),
     className: cx({
       indicator: true,
@@ -33463,7 +32096,7 @@ var ClearIndicator = function ClearIndicator(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$7({}, innerProps, {
+  return jsx("div", _extends$c({}, innerProps, {
     css: getStyles('clearIndicator', props),
     className: cx({
       indicator: true,
@@ -33493,7 +32126,7 @@ var IndicatorSeparator = function IndicatorSeparator(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("span", _extends$7({}, innerProps, {
+  return jsx("span", _extends$c({}, innerProps, {
     css: getStyles('indicatorSeparator', props),
     className: cx({
       'indicator-separator': true
@@ -33550,7 +32183,7 @@ var LoadingIndicator = function LoadingIndicator(props) {
       getStyles = props.getStyles,
       innerProps = props.innerProps,
       isRtl = props.isRtl;
-  return jsx("div", _extends$7({}, innerProps, {
+  return jsx("div", _extends$c({}, innerProps, {
     css: getStyles('loadingIndicator', props),
     className: cx({
       indicator: true,
@@ -33611,7 +32244,7 @@ var Control = function Control(props) {
       innerRef = props.innerRef,
       innerProps = props.innerProps,
       menuIsOpen = props.menuIsOpen;
-  return jsx("div", _extends$7({
+  return jsx("div", _extends$c({
     ref: innerRef,
     css: getStyles('control', props),
     className: cx({
@@ -33646,7 +32279,7 @@ var Group = function Group(props) {
     className: cx({
       group: true
     }, className)
-  }, jsx(Heading, _extends$7({}, headingProps, {
+  }, jsx(Heading, _extends$c({}, headingProps, {
     selectProps: selectProps,
     theme: theme,
     getStyles: getStyles,
@@ -33675,10 +32308,10 @@ var GroupHeading = function GroupHeading(props) {
       getStyles = props.getStyles,
       theme = props.theme,
       selectProps = props.selectProps,
-      cleanProps = _objectWithoutProperties$2(props, ["className", "cx", "getStyles", "theme", "selectProps"]);
+      cleanProps = _objectWithoutProperties$7(props, ["className", "cx", "getStyles", "theme", "selectProps"]);
 
-  return jsx("div", _extends$7({
-    css: getStyles('groupHeading', _objectSpread$7({
+  return jsx("div", _extends$c({
+    css: getStyles('groupHeading', _objectSpread$8({
       theme: theme
     }, cleanProps)),
     className: cx({
@@ -33714,7 +32347,7 @@ var inputStyle = function inputStyle(isHidden) {
   };
 };
 
-var Input$1 = function Input(_ref2) {
+var Input$2 = function Input(_ref2) {
   var className = _ref2.className,
       cx = _ref2.cx,
       getStyles = _ref2.getStyles,
@@ -33723,13 +32356,13 @@ var Input$1 = function Input(_ref2) {
       isDisabled = _ref2.isDisabled,
       theme = _ref2.theme,
       selectProps = _ref2.selectProps,
-      props = _objectWithoutProperties$2(_ref2, ["className", "cx", "getStyles", "innerRef", "isHidden", "isDisabled", "theme", "selectProps"]);
+      props = _objectWithoutProperties$7(_ref2, ["className", "cx", "getStyles", "innerRef", "isHidden", "isDisabled", "theme", "selectProps"]);
 
   return jsx("div", {
-    css: getStyles('input', _objectSpread$7({
+    css: getStyles('input', _objectSpread$8({
       theme: theme
     }, props))
-  }, jsx(AutosizeInput, _extends$7({
+  }, jsx(AutosizeInput, _extends$c({
     className: cx({
       input: true
     }, className),
@@ -33799,15 +32432,15 @@ var MultiValueLabel = MultiValueGeneric;
 var MultiValueRemove =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(MultiValueRemove, _Component);
+  _inherits$2(MultiValueRemove, _Component);
 
   function MultiValueRemove() {
-    _classCallCheck$8(this, MultiValueRemove);
+    _classCallCheck$6(this, MultiValueRemove);
 
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(MultiValueRemove).apply(this, arguments));
+    return _possibleConstructorReturn$2(this, _getPrototypeOf$1(MultiValueRemove).apply(this, arguments));
   }
 
-  _createClass$7(MultiValueRemove, [{
+  _createClass$5(MultiValueRemove, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -33820,20 +32453,20 @@ function (_Component) {
   }]);
 
   return MultiValueRemove;
-}(e.Component);
+}(React.Component);
 
 var MultiValue =
 /*#__PURE__*/
 function (_Component2) {
-  _inherits$1(MultiValue, _Component2);
+  _inherits$2(MultiValue, _Component2);
 
   function MultiValue() {
-    _classCallCheck$8(this, MultiValue);
+    _classCallCheck$6(this, MultiValue);
 
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(MultiValue).apply(this, arguments));
+    return _possibleConstructorReturn$2(this, _getPrototypeOf$1(MultiValue).apply(this, arguments));
   }
 
-  _createClass$7(MultiValue, [{
+  _createClass$5(MultiValue, [{
     key: "render",
     value: function render() {
       var _this = this;
@@ -33857,7 +32490,7 @@ function (_Component2) {
             emotionCx = _ref5.cx;
         return jsx(Container, {
           data: data,
-          innerProps: _objectSpread$7({}, innerProps, {
+          innerProps: _objectSpread$8({}, innerProps, {
             className: emotionCx(css(getStyles('multiValue', _this.props)), cx({
               'multi-value': true,
               'multi-value--is-disabled': isDisabled
@@ -33874,7 +32507,7 @@ function (_Component2) {
           selectProps: selectProps
         }, children), jsx(Remove, {
           data: data,
-          innerProps: _objectSpread$7({
+          innerProps: _objectSpread$8({
             className: emotionCx(css(getStyles('multiValueRemove', _this.props)), cx({
               'multi-value__remove': true
             }, className))
@@ -33886,7 +32519,7 @@ function (_Component2) {
   }]);
 
   return MultiValue;
-}(e.Component);
+}(React.Component);
 
 _defineProperty$2(MultiValue, "defaultProps", {
   cropWithEllipsis: true
@@ -33927,7 +32560,7 @@ var Option = function Option(props) {
       isSelected = props.isSelected,
       innerRef = props.innerRef,
       innerProps = props.innerProps;
-  return jsx("div", _extends$7({
+  return jsx("div", _extends$c({
     css: getStyles('option', props),
     className: cx({
       option: true,
@@ -33960,7 +32593,7 @@ var Placeholder = function Placeholder(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$7({
+  return jsx("div", _extends$c({
     css: getStyles('placeholder', props),
     className: cx({
       placeholder: true
@@ -33995,7 +32628,7 @@ var SingleValue = function SingleValue(props) {
       getStyles = props.getStyles,
       isDisabled = props.isDisabled,
       innerProps = props.innerProps;
-  return jsx("div", _extends$7({
+  return jsx("div", _extends$c({
     css: getStyles('singleValue', props),
     className: cx({
       'single-value': true,
@@ -34014,7 +32647,7 @@ var components = {
   GroupHeading: GroupHeading,
   IndicatorsContainer: IndicatorsContainer,
   IndicatorSeparator: IndicatorSeparator,
-  Input: Input$1,
+  Input: Input$2,
   LoadingIndicator: LoadingIndicator,
   Menu: Menu,
   MenuList: MenuList,
@@ -34032,7 +32665,7 @@ var components = {
   ValueContainer: ValueContainer
 };
 var defaultComponents = function defaultComponents(props) {
-  return _objectSpread$7({}, components, props.components);
+  return _objectSpread$8({}, components, props.components);
 };
 
 var diacritics = [{
@@ -34306,7 +32939,7 @@ var defaultStringify = function defaultStringify(option) {
 
 var createFilter = function createFilter(config) {
   return function (option, rawInput) {
-    var _ignoreCase$ignoreAcc = _objectSpread$7({
+    var _ignoreCase$ignoreAcc = _objectSpread$8({
       ignoreCase: true,
       ignoreAccents: true,
       stringify: defaultStringify,
@@ -34346,7 +32979,7 @@ var _ref = process.env.NODE_ENV === "production" ? {
 };
 
 var A11yText = function A11yText(props) {
-  return jsx("span", _extends$7({
+  return jsx("span", _extends$c({
     css: _ref
   }, props));
 };
@@ -34354,15 +32987,15 @@ var A11yText = function A11yText(props) {
 var DummyInput =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(DummyInput, _Component);
+  _inherits$2(DummyInput, _Component);
 
   function DummyInput() {
-    _classCallCheck$8(this, DummyInput);
+    _classCallCheck$6(this, DummyInput);
 
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(DummyInput).apply(this, arguments));
+    return _possibleConstructorReturn$2(this, _getPrototypeOf$1(DummyInput).apply(this, arguments));
   }
 
-  _createClass$7(DummyInput, [{
+  _createClass$5(DummyInput, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -34374,9 +33007,9 @@ function (_Component) {
           exit = _this$props.exit,
           innerRef = _this$props.innerRef,
           emotion = _this$props.emotion,
-          props = _objectWithoutProperties$2(_this$props, ["in", "out", "onExited", "appear", "enter", "exit", "innerRef", "emotion"]);
+          props = _objectWithoutProperties$7(_this$props, ["in", "out", "onExited", "appear", "enter", "exit", "innerRef", "emotion"]);
 
-      return jsx("input", _extends$7({
+      return jsx("input", _extends$c({
         ref: innerRef
       }, props, {
         css:
@@ -34404,20 +33037,20 @@ function (_Component) {
   }]);
 
   return DummyInput;
-}(e.Component);
+}(React.Component);
 
 var NodeResolver =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(NodeResolver, _Component);
+  _inherits$2(NodeResolver, _Component);
 
   function NodeResolver() {
-    _classCallCheck$8(this, NodeResolver);
+    _classCallCheck$6(this, NodeResolver);
 
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(NodeResolver).apply(this, arguments));
+    return _possibleConstructorReturn$2(this, _getPrototypeOf$1(NodeResolver).apply(this, arguments));
   }
 
-  _createClass$7(NodeResolver, [{
+  _createClass$5(NodeResolver, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.innerRef(reactDom.findDOMNode(this));
@@ -34435,7 +33068,7 @@ function (_Component) {
   }]);
 
   return NodeResolver;
-}(e.Component);
+}(React.Component);
 
 var STYLE_KEYS = ['boxSizing', 'height', 'overflow', 'paddingRight', 'position'];
 var LOCK_STYLES = {
@@ -34475,24 +33108,24 @@ var activeScrollLocks = 0;
 var ScrollLock =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(ScrollLock, _Component);
+  _inherits$2(ScrollLock, _Component);
 
   function ScrollLock() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck$8(this, ScrollLock);
+    _classCallCheck$6(this, ScrollLock);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(ScrollLock)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn$2(this, (_getPrototypeOf2 = _getPrototypeOf$1(ScrollLock)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "originalStyles", {});
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "originalStyles", {});
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "listenerOptions", {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "listenerOptions", {
       capture: false,
       passive: false
     });
@@ -34500,7 +33133,7 @@ function (_Component) {
     return _this;
   }
 
-  _createClass$7(ScrollLock, [{
+  _createClass$5(ScrollLock, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
@@ -34594,7 +33227,7 @@ function (_Component) {
   }]);
 
   return ScrollLock;
-}(e.Component);
+}(React.Component);
 
 _defineProperty$2(ScrollLock, "defaultProps", {
   accountForScrollbars: true
@@ -34616,26 +33249,26 @@ var _ref$1 = process.env.NODE_ENV === "production" ? {
 var ScrollBlock =
 /*#__PURE__*/
 function (_PureComponent) {
-  _inherits$1(ScrollBlock, _PureComponent);
+  _inherits$2(ScrollBlock, _PureComponent);
 
   function ScrollBlock() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck$8(this, ScrollBlock);
+    _classCallCheck$6(this, ScrollBlock);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(ScrollBlock)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn$2(this, (_getPrototypeOf2 = _getPrototypeOf$1(ScrollBlock)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "state", {
       touchScrollTarget: null
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getScrollTarget", function (ref) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "getScrollTarget", function (ref) {
       if (ref === _this.state.touchScrollTarget) return;
 
       _this.setState({
@@ -34643,7 +33276,7 @@ function (_PureComponent) {
       });
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "blurSelectInput", function () {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "blurSelectInput", function () {
       if (document.activeElement) {
         document.activeElement.blur();
       }
@@ -34652,7 +33285,7 @@ function (_PureComponent) {
     return _this;
   }
 
-  _createClass$7(ScrollBlock, [{
+  _createClass$5(ScrollBlock, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -34686,40 +33319,40 @@ function (_PureComponent) {
   }]);
 
   return ScrollBlock;
-}(e.PureComponent);
+}(React.PureComponent);
 
 var ScrollCaptor =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(ScrollCaptor, _Component);
+  _inherits$2(ScrollCaptor, _Component);
 
   function ScrollCaptor() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck$8(this, ScrollCaptor);
+    _classCallCheck$6(this, ScrollCaptor);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(ScrollCaptor)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn$2(this, (_getPrototypeOf2 = _getPrototypeOf$1(ScrollCaptor)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "isBottom", false);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "isBottom", false);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "isTop", false);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "isTop", false);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "scrollTarget", void 0);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "scrollTarget", void 0);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "touchStart", void 0);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "touchStart", void 0);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "cancelScroll", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "cancelScroll", function (event) {
       event.preventDefault();
       event.stopPropagation();
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "handleEventDelta", function (event, delta) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "handleEventDelta", function (event, delta) {
       var _this$props = _this.props,
           onBottomArrive = _this$props.onBottomArrive,
           onBottomLeave = _this$props.onBottomLeave,
@@ -34769,29 +33402,29 @@ function (_Component) {
       }
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onWheel", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onWheel", function (event) {
       _this.handleEventDelta(event, event.deltaY);
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchStart", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onTouchStart", function (event) {
       // set touch start so we can calculate touchmove delta
       _this.touchStart = event.changedTouches[0].clientY;
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchMove", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onTouchMove", function (event) {
       var deltaY = _this.touchStart - event.changedTouches[0].clientY;
 
       _this.handleEventDelta(event, deltaY);
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getScrollTarget", function (ref) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "getScrollTarget", function (ref) {
       _this.scrollTarget = ref;
     });
 
     return _this;
   }
 
-  _createClass$7(ScrollCaptor, [{
+  _createClass$5(ScrollCaptor, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.startListening(this.scrollTarget);
@@ -34838,39 +33471,39 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return e__default.createElement(NodeResolver, {
+      return React__default.createElement(NodeResolver, {
         innerRef: this.getScrollTarget
       }, this.props.children);
     }
   }]);
 
   return ScrollCaptor;
-}(e.Component);
+}(React.Component);
 
 var ScrollCaptorSwitch =
 /*#__PURE__*/
 function (_Component2) {
-  _inherits$1(ScrollCaptorSwitch, _Component2);
+  _inherits$2(ScrollCaptorSwitch, _Component2);
 
   function ScrollCaptorSwitch() {
-    _classCallCheck$8(this, ScrollCaptorSwitch);
+    _classCallCheck$6(this, ScrollCaptorSwitch);
 
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(ScrollCaptorSwitch).apply(this, arguments));
+    return _possibleConstructorReturn$2(this, _getPrototypeOf$1(ScrollCaptorSwitch).apply(this, arguments));
   }
 
-  _createClass$7(ScrollCaptorSwitch, [{
+  _createClass$5(ScrollCaptorSwitch, [{
     key: "render",
     value: function render() {
       var _this$props2 = this.props,
           isEnabled = _this$props2.isEnabled,
-          props = _objectWithoutProperties$2(_this$props2, ["isEnabled"]);
+          props = _objectWithoutProperties$7(_this$props2, ["isEnabled"]);
 
-      return isEnabled ? e__default.createElement(ScrollCaptor, props) : this.props.children;
+      return isEnabled ? React__default.createElement(ScrollCaptor, props) : this.props.children;
     }
   }]);
 
   return ScrollCaptorSwitch;
-}(e.Component);
+}(React.Component);
 
 _defineProperty$2(ScrollCaptorSwitch, "defaultProps", {
   isEnabled: true
@@ -35052,7 +33685,7 @@ var instanceId = 1;
 var Select =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(Select, _Component);
+  _inherits$2(Select, _Component);
 
   // Misc. Instance Properties
   // ------------------------------
@@ -35064,11 +33697,11 @@ function (_Component) {
   function Select(_props) {
     var _this;
 
-    _classCallCheck$8(this, Select);
+    _classCallCheck$6(this, Select);
 
-    _this = _possibleConstructorReturn$1(this, _getPrototypeOf(Select).call(this, _props));
+    _this = _possibleConstructorReturn$2(this, _getPrototypeOf$1(Select).call(this, _props));
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "state", {
       ariaLiveSelection: '',
       ariaLiveContext: '',
       focusedOption: null,
@@ -35082,76 +33715,76 @@ function (_Component) {
       selectValue: []
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "blockOptionHover", false);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "blockOptionHover", false);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "isComposing", false);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "isComposing", false);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "clearFocusValueOnUpdate", false);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "clearFocusValueOnUpdate", false);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "commonProps", void 0);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "commonProps", void 0);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "components", void 0);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "components", void 0);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "hasGroups", false);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "hasGroups", false);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "initialTouchX", 0);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "initialTouchX", 0);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "initialTouchY", 0);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "initialTouchY", 0);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "inputIsHiddenAfterUpdate", void 0);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "inputIsHiddenAfterUpdate", void 0);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "instancePrefix", '');
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "instancePrefix", '');
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "openAfterFocus", false);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "openAfterFocus", false);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "scrollToFocusedOptionOnUpdate", false);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "scrollToFocusedOptionOnUpdate", false);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "userIsDragging", void 0);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "userIsDragging", void 0);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "controlRef", null);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "controlRef", null);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getControlRef", function (ref) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "getControlRef", function (ref) {
       _this.controlRef = ref;
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "focusedOptionRef", null);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "focusedOptionRef", null);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getFocusedOptionRef", function (ref) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "getFocusedOptionRef", function (ref) {
       _this.focusedOptionRef = ref;
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "menuListRef", null);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "menuListRef", null);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getMenuListRef", function (ref) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "getMenuListRef", function (ref) {
       _this.menuListRef = ref;
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "inputRef", null);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "inputRef", null);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getInputRef", function (ref) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "getInputRef", function (ref) {
       _this.inputRef = ref;
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "cacheComponents", function (components) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "cacheComponents", function (components) {
       _this.components = defaultComponents({
         components: components
       });
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "focus", _this.focusInput);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "focus", _this.focusInput);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "blur", _this.blurInput);
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "blur", _this.blurInput);
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onChange", function (newValue, actionMeta) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onChange", function (newValue, actionMeta) {
       var _this$props = _this.props,
           onChange = _this$props.onChange,
           name = _this$props.name;
-      onChange(newValue, _objectSpread$7({}, actionMeta, {
+      onChange(newValue, _objectSpread$8({}, actionMeta, {
         name: name
       }));
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "setValue", function (newValue) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "setValue", function (newValue) {
       var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'set-value';
       var option = arguments.length > 2 ? arguments[2] : undefined;
       var _this$props2 = _this.props,
@@ -35177,7 +33810,7 @@ function (_Component) {
       });
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "selectOption", function (newValue) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "selectOption", function (newValue) {
       var _this$props3 = _this.props,
           blurInputOnSelect = _this$props3.blurInputOnSelect,
           isMulti = _this$props3.isMulti;
@@ -35245,7 +33878,7 @@ function (_Component) {
       }
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "removeValue", function (removedValue) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "removeValue", function (removedValue) {
       var selectValue = _this.state.selectValue;
 
       var candidate = _this.getOptionValue(removedValue);
@@ -35269,7 +33902,7 @@ function (_Component) {
       _this.focusInput();
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "clearValue", function () {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "clearValue", function () {
       var isMulti = _this.props.isMulti;
 
       _this.onChange(isMulti ? [] : null, {
@@ -35277,7 +33910,7 @@ function (_Component) {
       });
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "popValue", function () {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "popValue", function () {
       var selectValue = _this.state.selectValue;
       var lastSelectedValue = selectValue[selectValue.length - 1];
       var newValue = selectValue.slice(0, selectValue.length - 1);
@@ -35295,26 +33928,26 @@ function (_Component) {
       });
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getOptionLabel", function (data) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "getOptionLabel", function (data) {
       return _this.props.getOptionLabel(data);
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getOptionValue", function (data) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "getOptionValue", function (data) {
       return _this.props.getOptionValue(data);
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getStyles", function (key, props) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "getStyles", function (key, props) {
       var base = defaultStyles[key](props);
       base.boxSizing = 'border-box';
       var custom = _this.props.styles[key];
       return custom ? custom(base, props) : base;
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getElementId", function (element) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "getElementId", function (element) {
       return "".concat(_this.instancePrefix, "-").concat(element);
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getActiveDescendentId", function () {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "getActiveDescendentId", function () {
       var menuIsOpen = _this.props.menuIsOpen;
       var _this$state = _this.state,
           menuOptions = _this$state.menuOptions,
@@ -35325,7 +33958,7 @@ function (_Component) {
       return option && option.key;
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "announceAriaLiveSelection", function (_ref2) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "announceAriaLiveSelection", function (_ref2) {
       var event = _ref2.event,
           context = _ref2.context;
 
@@ -35334,18 +33967,18 @@ function (_Component) {
       });
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "announceAriaLiveContext", function (_ref3) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "announceAriaLiveContext", function (_ref3) {
       var event = _ref3.event,
           context = _ref3.context;
 
       _this.setState({
-        ariaLiveContext: instructionsAriaMessage(event, _objectSpread$7({}, context, {
+        ariaLiveContext: instructionsAriaMessage(event, _objectSpread$8({}, context, {
           label: _this.props['aria-label']
         }))
       });
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuMouseDown", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onMenuMouseDown", function (event) {
       if (event.button !== 0) {
         return;
       }
@@ -35356,11 +33989,11 @@ function (_Component) {
       _this.focusInput();
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuMouseMove", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onMenuMouseMove", function (event) {
       _this.blockOptionHover = false;
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onControlMouseDown", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onControlMouseDown", function (event) {
       var openMenuOnClick = _this.props.openMenuOnClick;
 
       if (!_this.state.isFocused) {
@@ -35386,7 +34019,7 @@ function (_Component) {
       }
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onDropdownIndicatorMouseDown", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onDropdownIndicatorMouseDown", function (event) {
       // ignore mouse events that weren't triggered by the primary button
       if (event && event.type === 'mousedown' && event.button !== 0) {
         return;
@@ -35411,7 +34044,7 @@ function (_Component) {
       event.stopPropagation();
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onClearIndicatorMouseDown", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onClearIndicatorMouseDown", function (event) {
       // ignore mouse events that weren't triggered by the primary button
       if (event && event.type === 'mousedown' && event.button !== 0) {
         return;
@@ -35431,7 +34064,7 @@ function (_Component) {
       }
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onScroll", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onScroll", function (event) {
       if (typeof _this.props.closeMenuOnScroll === 'boolean') {
         if (event.target instanceof HTMLElement && isDocumentElement(event.target)) {
           _this.props.onMenuClose();
@@ -35443,15 +34076,15 @@ function (_Component) {
       }
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onCompositionStart", function () {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onCompositionStart", function () {
       _this.isComposing = true;
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onCompositionEnd", function () {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onCompositionEnd", function () {
       _this.isComposing = false;
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchStart", function (_ref4) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onTouchStart", function (_ref4) {
       var touches = _ref4.touches;
       var touch = touches.item(0);
 
@@ -35464,7 +34097,7 @@ function (_Component) {
       _this.userIsDragging = false;
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchMove", function (_ref5) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onTouchMove", function (_ref5) {
       var touches = _ref5.touches;
       var touch = touches.item(0);
 
@@ -35478,7 +34111,7 @@ function (_Component) {
       _this.userIsDragging = deltaX > moveThreshold || deltaY > moveThreshold;
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchEnd", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onTouchEnd", function (event) {
       if (_this.userIsDragging) return; // close the menu if the user taps outside
       // we're checking on event.target here instead of event.currentTarget, because we want to assert information
       // on events on child elements, not the document (which we've attached this handler to).
@@ -35492,25 +34125,25 @@ function (_Component) {
       _this.initialTouchY = 0;
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onControlTouchEnd", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onControlTouchEnd", function (event) {
       if (_this.userIsDragging) return;
 
       _this.onControlMouseDown(event);
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onClearIndicatorTouchEnd", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onClearIndicatorTouchEnd", function (event) {
       if (_this.userIsDragging) return;
 
       _this.onClearIndicatorMouseDown(event);
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onDropdownIndicatorTouchEnd", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onDropdownIndicatorTouchEnd", function (event) {
       if (_this.userIsDragging) return;
 
       _this.onDropdownIndicatorMouseDown(event);
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "handleInputChange", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "handleInputChange", function (event) {
       var inputValue = event.currentTarget.value;
       _this.inputIsHiddenAfterUpdate = false;
 
@@ -35521,7 +34154,7 @@ function (_Component) {
       _this.onMenuOpen();
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onInputFocus", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onInputFocus", function (event) {
       var _this$props5 = _this.props,
           isSearchable = _this$props5.isSearchable,
           isMulti = _this$props5.isMulti;
@@ -35551,7 +34184,7 @@ function (_Component) {
       _this.openAfterFocus = false;
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onInputBlur", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onInputBlur", function (event) {
       if (_this.menuListRef && _this.menuListRef.contains(document.activeElement)) {
         _this.inputRef.focus();
 
@@ -35574,7 +34207,7 @@ function (_Component) {
       });
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onOptionHover", function (focusedOption) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onOptionHover", function (focusedOption) {
       if (_this.blockOptionHover || _this.state.focusedOption === focusedOption) {
         return;
       }
@@ -35584,7 +34217,7 @@ function (_Component) {
       });
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "shouldHideSelectedOptions", function () {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "shouldHideSelectedOptions", function () {
       var _this$props6 = _this.props,
           hideSelectedOptions = _this$props6.hideSelectedOptions,
           isMulti = _this$props6.isMulti;
@@ -35592,7 +34225,7 @@ function (_Component) {
       return hideSelectedOptions;
     });
 
-    _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onKeyDown", function (event) {
+    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onKeyDown", function (event) {
       var _this$props7 = _this.props,
           isMulti = _this$props7.isMulti,
           backspaceRemovesValue = _this$props7.backspaceRemovesValue,
@@ -35772,7 +34405,7 @@ function (_Component) {
     });
 
     var value = _props.value;
-    _this.cacheComponents = memoizeOne(_this.cacheComponents, exportedEqual).bind(_assertThisInitialized$1(_assertThisInitialized$1(_this)));
+    _this.cacheComponents = memoizeOne(_this.cacheComponents, exportedEqual).bind(_assertThisInitialized$2(_assertThisInitialized$2(_this)));
 
     _this.cacheComponents(_props.components);
 
@@ -35790,7 +34423,7 @@ function (_Component) {
     return _this;
   }
 
-  _createClass$7(Select, [{
+  _createClass$5(Select, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.startListeningComposition();
@@ -36076,7 +34709,7 @@ function (_Component) {
       // overlay it with the default theme.
 
 
-      return _objectSpread$7({}, defaultTheme, this.props.theme);
+      return _objectSpread$8({}, defaultTheme, this.props.theme);
     }
   }, {
     key: "getCommonProps",
@@ -36404,7 +35037,7 @@ function (_Component) {
 
       if (!isSearchable) {
         // use a dummy input to maintain focus/blur functionality
-        return e__default.createElement(DummyInput, {
+        return React__default.createElement(DummyInput, {
           id: id,
           innerRef: this.getInputRef,
           onBlur: this.onInputBlur,
@@ -36427,7 +35060,7 @@ function (_Component) {
           cx = _this$commonProps.cx,
           theme = _this$commonProps.theme,
           selectProps = _this$commonProps.selectProps;
-      return e__default.createElement(Input, _extends$7({
+      return React__default.createElement(Input, _extends$c({
         autoCapitalize: "none",
         autoComplete: "off",
         autoCorrect: "off",
@@ -36473,7 +35106,7 @@ function (_Component) {
           isFocused = _this$state8.isFocused;
 
       if (!this.hasValue() || !controlShouldRenderValue) {
-        return inputValue ? null : e__default.createElement(Placeholder, _extends$7({}, commonProps, {
+        return inputValue ? null : React__default.createElement(Placeholder, _extends$c({}, commonProps, {
           key: "placeholder",
           isDisabled: isDisabled,
           isFocused: isFocused
@@ -36483,7 +35116,7 @@ function (_Component) {
       if (isMulti) {
         var selectValues = selectValue.map(function (opt, index) {
           var isOptionFocused = opt === focusedValue;
-          return e__default.createElement(MultiValue, _extends$7({}, commonProps, {
+          return React__default.createElement(MultiValue, _extends$c({}, commonProps, {
             components: {
               Container: MultiValueContainer,
               Label: MultiValueLabel,
@@ -36516,7 +35149,7 @@ function (_Component) {
       }
 
       var singleValue = selectValue[0];
-      return e__default.createElement(SingleValue, _extends$7({}, commonProps, {
+      return React__default.createElement(SingleValue, _extends$c({}, commonProps, {
         data: singleValue,
         isDisabled: isDisabled
       }), this.formatOptionLabel(singleValue, 'value'));
@@ -36540,7 +35173,7 @@ function (_Component) {
         onTouchEnd: this.onClearIndicatorTouchEnd,
         'aria-hidden': 'true'
       };
-      return e__default.createElement(ClearIndicator, _extends$7({}, commonProps, {
+      return React__default.createElement(ClearIndicator, _extends$c({}, commonProps, {
         innerProps: innerProps,
         isFocused: isFocused
       }));
@@ -36558,7 +35191,7 @@ function (_Component) {
       var innerProps = {
         'aria-hidden': 'true'
       };
-      return e__default.createElement(LoadingIndicator, _extends$7({}, commonProps, {
+      return React__default.createElement(LoadingIndicator, _extends$c({}, commonProps, {
         innerProps: innerProps,
         isDisabled: isDisabled,
         isFocused: isFocused
@@ -36575,7 +35208,7 @@ function (_Component) {
       var commonProps = this.commonProps;
       var isDisabled = this.props.isDisabled;
       var isFocused = this.state.isFocused;
-      return e__default.createElement(IndicatorSeparator, _extends$7({}, commonProps, {
+      return React__default.createElement(IndicatorSeparator, _extends$c({}, commonProps, {
         isDisabled: isDisabled,
         isFocused: isFocused
       }));
@@ -36593,7 +35226,7 @@ function (_Component) {
         onTouchEnd: this.onDropdownIndicatorTouchEnd,
         'aria-hidden': 'true'
       };
-      return e__default.createElement(DropdownIndicator, _extends$7({}, commonProps, {
+      return React__default.createElement(DropdownIndicator, _extends$c({}, commonProps, {
         innerProps: innerProps,
         isDisabled: isDisabled,
         isFocused: isFocused
@@ -36640,7 +35273,7 @@ function (_Component) {
         // focused option changes so we calculate additional props based on that
         var isFocused = focusedOption === props.data;
         props.innerRef = isFocused ? _this5.getFocusedOptionRef : undefined;
-        return e__default.createElement(Option, _extends$7({}, commonProps, props, {
+        return React__default.createElement(Option, _extends$c({}, commonProps, props, {
           isFocused: isFocused
         }), _this5.formatOptionLabel(props.data, 'menu'));
       };
@@ -36651,10 +35284,10 @@ function (_Component) {
         menuUI = menuOptions.render.map(function (item) {
           if (item.type === 'group') {
             var type = item.type,
-                group = _objectWithoutProperties$2(item, ["type"]);
+                group = _objectWithoutProperties$7(item, ["type"]);
 
             var headingId = "".concat(item.key, "-heading");
-            return e__default.createElement(Group, _extends$7({}, commonProps, group, {
+            return React__default.createElement(Group, _extends$c({}, commonProps, group, {
               Heading: GroupHeading,
               headingProps: {
                 id: headingId
@@ -36672,14 +35305,14 @@ function (_Component) {
           inputValue: inputValue
         });
         if (message === null) return null;
-        menuUI = e__default.createElement(LoadingMessage, commonProps, message);
+        menuUI = React__default.createElement(LoadingMessage, commonProps, message);
       } else {
         var _message = noOptionsMessage({
           inputValue: inputValue
         });
 
         if (_message === null) return null;
-        menuUI = e__default.createElement(NoOptionsMessage, commonProps, _message);
+        menuUI = React__default.createElement(NoOptionsMessage, commonProps, _message);
       }
 
       var menuPlacementProps = {
@@ -36689,12 +35322,12 @@ function (_Component) {
         menuPosition: menuPosition,
         menuShouldScrollIntoView: menuShouldScrollIntoView
       };
-      var menuElement = e__default.createElement(MenuPlacer, _extends$7({}, commonProps, menuPlacementProps), function (_ref6) {
+      var menuElement = React__default.createElement(MenuPlacer, _extends$c({}, commonProps, menuPlacementProps), function (_ref6) {
         var ref = _ref6.ref,
             _ref6$placerProps = _ref6.placerProps,
             placement = _ref6$placerProps.placement,
             maxHeight = _ref6$placerProps.maxHeight;
-        return e__default.createElement(Menu, _extends$7({}, commonProps, menuPlacementProps, {
+        return React__default.createElement(Menu, _extends$c({}, commonProps, menuPlacementProps, {
           innerRef: ref,
           innerProps: {
             onMouseDown: _this5.onMenuMouseDown,
@@ -36702,13 +35335,13 @@ function (_Component) {
           },
           isLoading: isLoading,
           placement: placement
-        }), e__default.createElement(ScrollCaptorSwitch, {
+        }), React__default.createElement(ScrollCaptorSwitch, {
           isEnabled: captureMenuScroll,
           onTopArrive: onMenuScrollToTop,
           onBottomArrive: onMenuScrollToBottom
-        }, e__default.createElement(ScrollBlock, {
+        }, React__default.createElement(ScrollBlock, {
           isEnabled: menuShouldBlockScroll
-        }, e__default.createElement(MenuList, _extends$7({}, commonProps, {
+        }, React__default.createElement(MenuList, _extends$c({}, commonProps, {
           innerRef: _this5.getMenuListRef,
           isLoading: isLoading,
           maxHeight: maxHeight
@@ -36717,7 +35350,7 @@ function (_Component) {
       // so we use the same component. the actual portalling logic is forked
       // within the component based on `menuPosition`
 
-      return menuPortalTarget || menuPosition === 'fixed' ? e__default.createElement(MenuPortal, _extends$7({}, commonProps, {
+      return menuPortalTarget || menuPosition === 'fixed' ? React__default.createElement(MenuPortal, _extends$c({}, commonProps, {
         appendTo: menuPortalTarget,
         controlElement: this.controlRef,
         menuPlacement: menuPlacement,
@@ -36742,29 +35375,29 @@ function (_Component) {
           var value = selectValue.map(function (opt) {
             return _this6.getOptionValue(opt);
           }).join(delimiter);
-          return e__default.createElement("input", {
+          return React__default.createElement("input", {
             name: name,
             type: "hidden",
             value: value
           });
         } else {
           var input = selectValue.length > 0 ? selectValue.map(function (opt, i) {
-            return e__default.createElement("input", {
+            return React__default.createElement("input", {
               key: "i-".concat(i),
               name: name,
               type: "hidden",
               value: _this6.getOptionValue(opt)
             });
-          }) : e__default.createElement("input", {
+          }) : React__default.createElement("input", {
             name: name,
             type: "hidden"
           });
-          return e__default.createElement("div", null, input);
+          return React__default.createElement("div", null, input);
         }
       } else {
         var _value = selectValue[0] ? this.getOptionValue(selectValue[0]) : '';
 
-        return e__default.createElement("input", {
+        return React__default.createElement("input", {
           name: name,
           type: "hidden",
           value: _value
@@ -36775,11 +35408,11 @@ function (_Component) {
     key: "renderLiveRegion",
     value: function renderLiveRegion() {
       if (!this.state.isFocused) return null;
-      return e__default.createElement(A11yText, {
+      return React__default.createElement(A11yText, {
         "aria-live": "polite"
-      }, e__default.createElement("p", {
+      }, React__default.createElement("p", {
         id: "aria-selection-event"
-      }, "\xA0", this.state.ariaLiveSelection), e__default.createElement("p", {
+      }, "\xA0", this.state.ariaLiveSelection), React__default.createElement("p", {
         id: "aria-context"
       }, "\xA0", this.constructAriaLiveMessage()));
     }
@@ -36798,7 +35431,7 @@ function (_Component) {
           menuIsOpen = _this$props20.menuIsOpen;
       var isFocused = this.state.isFocused;
       var commonProps = this.commonProps = this.getCommonProps();
-      return e__default.createElement(SelectContainer, _extends$7({}, commonProps, {
+      return React__default.createElement(SelectContainer, _extends$c({}, commonProps, {
         className: className,
         innerProps: {
           id: id,
@@ -36806,7 +35439,7 @@ function (_Component) {
         },
         isDisabled: isDisabled,
         isFocused: isFocused
-      }), this.renderLiveRegion(), e__default.createElement(Control, _extends$7({}, commonProps, {
+      }), this.renderLiveRegion(), React__default.createElement(Control, _extends$c({}, commonProps, {
         innerRef: this.getControlRef,
         innerProps: {
           onMouseDown: this.onControlMouseDown,
@@ -36815,16 +35448,16 @@ function (_Component) {
         isDisabled: isDisabled,
         isFocused: isFocused,
         menuIsOpen: menuIsOpen
-      }), e__default.createElement(ValueContainer, _extends$7({}, commonProps, {
+      }), React__default.createElement(ValueContainer, _extends$c({}, commonProps, {
         isDisabled: isDisabled
-      }), this.renderPlaceholderOrValue(), this.renderInput()), e__default.createElement(IndicatorsContainer, _extends$7({}, commonProps, {
+      }), this.renderPlaceholderOrValue(), this.renderInput()), React__default.createElement(IndicatorsContainer, _extends$c({}, commonProps, {
         isDisabled: isDisabled
       }), this.renderClearIndicator(), this.renderLoadingIndicator(), this.renderIndicatorSeparator(), this.renderDropdownIndicator())), this.renderMenu(), this.renderFormField());
     }
   }]);
 
   return Select;
-}(e.Component);
+}(React.Component);
 
 _defineProperty$2(Select, "defaultProps", defaultProps);
 
@@ -36840,30 +35473,30 @@ var manageState = function manageState(SelectComponent) {
   return _temp = _class =
   /*#__PURE__*/
   function (_Component) {
-    _inherits$1(StateManager, _Component);
+    _inherits$2(StateManager, _Component);
 
     function StateManager() {
       var _getPrototypeOf2;
 
       var _this;
 
-      _classCallCheck$8(this, StateManager);
+      _classCallCheck$6(this, StateManager);
 
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
 
-      _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(StateManager)).call.apply(_getPrototypeOf2, [this].concat(args)));
+      _this = _possibleConstructorReturn$2(this, (_getPrototypeOf2 = _getPrototypeOf$1(StateManager)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-      _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "select", void 0);
+      _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "select", void 0);
 
-      _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+      _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "state", {
         inputValue: _this.props.inputValue !== undefined ? _this.props.inputValue : _this.props.defaultInputValue,
         menuIsOpen: _this.props.menuIsOpen !== undefined ? _this.props.menuIsOpen : _this.props.defaultMenuIsOpen,
         value: _this.props.value !== undefined ? _this.props.value : _this.props.defaultValue
       });
 
-      _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onChange", function (value, actionMeta) {
+      _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onChange", function (value, actionMeta) {
         _this.callProp('onChange', value, actionMeta);
 
         _this.setState({
@@ -36871,7 +35504,7 @@ var manageState = function manageState(SelectComponent) {
         });
       });
 
-      _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onInputChange", function (value, actionMeta) {
+      _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onInputChange", function (value, actionMeta) {
         // TODO: for backwards compatibility, we allow the prop to return a new
         // value, but now inputValue is a controllable prop we probably shouldn't
         var newValue = _this.callProp('onInputChange', value, actionMeta);
@@ -36881,7 +35514,7 @@ var manageState = function manageState(SelectComponent) {
         });
       });
 
-      _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuOpen", function () {
+      _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onMenuOpen", function () {
         _this.callProp('onMenuOpen');
 
         _this.setState({
@@ -36889,7 +35522,7 @@ var manageState = function manageState(SelectComponent) {
         });
       });
 
-      _defineProperty$2(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuClose", function () {
+      _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onMenuClose", function () {
         _this.callProp('onMenuClose');
 
         _this.setState({
@@ -36900,7 +35533,7 @@ var manageState = function manageState(SelectComponent) {
       return _this;
     }
 
-    _createClass$7(StateManager, [{
+    _createClass$5(StateManager, [{
       key: "focus",
       value: function focus() {
         this.select.focus();
@@ -36939,9 +35572,9 @@ var manageState = function manageState(SelectComponent) {
             defaultInputValue = _this$props2.defaultInputValue,
             defaultMenuIsOpen = _this$props2.defaultMenuIsOpen,
             defaultValue = _this$props2.defaultValue,
-            props = _objectWithoutProperties$2(_this$props2, ["defaultInputValue", "defaultMenuIsOpen", "defaultValue"]);
+            props = _objectWithoutProperties$7(_this$props2, ["defaultInputValue", "defaultMenuIsOpen", "defaultValue"]);
 
-        return e__default.createElement(SelectComponent, _extends$7({}, props, {
+        return React__default.createElement(SelectComponent, _extends$c({}, props, {
           ref: function ref(_ref) {
             _this2.select = _ref;
           },
@@ -36957,14 +35590,14 @@ var manageState = function manageState(SelectComponent) {
     }]);
 
     return StateManager;
-  }(e.Component), _defineProperty$2(_class, "defaultProps", defaultProps$1), _temp;
+  }(React.Component), _defineProperty$2(_class, "defaultProps", defaultProps$1), _temp;
 };
 
 var index = manageState(Select);
 
-function ownKeys$7(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$8(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$8(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$7(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$7(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$9(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$8(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$8(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var styleOverride = function styleOverride(_ref) {
   var fontSize = _ref.fontSize,
@@ -36980,7 +35613,7 @@ var styleOverride = function styleOverride(_ref) {
     },
     control: function control(provided, state) {
       var backgroundColor = colors.white;
-      return _objectSpread$8({}, provided, {
+      return _objectSpread$9({}, provided, {
         backgroundColor: backgroundColor,
         border: state.isDisabled && !hasShadow ? "border: 1px solid ".concat(colors.gray.default) : "border: 1px solid ".concat(colors.gray.xlight),
         borderColor: state.isDisabled ? colors.gray.default : colors.gray.xlight,
@@ -37023,11 +35656,11 @@ var styleOverride = function styleOverride(_ref) {
         color = colors.gray.light;
       }
 
-      return _objectSpread$8({}, defaultStyles, {
+      return _objectSpread$9({}, defaultStyles, {
         fontSize: fontSizes.small,
         color: colors.black,
         backgroundColor: color,
-        ':active': _objectSpread$8({}, defaultStyles[':active'], {
+        ':active': _objectSpread$9({}, defaultStyles[':active'], {
           backgroundColor: colors.gray.xlight
         })
       });
@@ -37078,92 +35711,58 @@ var Select$1 = function Select(_ref3) {
     } : '';
   };
 
-  return e__default.createElement(InputWrapper, _extends_1({
+  return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || (errors[name] ? errors[name].message : ''),
     required: required,
     disabled: disabled
-  }, otherProps), e__default.createElement(index, _extends_1({
-    onInputChange: onInputChange,
-    onChange:
-    /*#__PURE__*/
-    function () {
-      var _ref6 = asyncToGenerator(
+  }, otherProps), React__default.createElement(reactHookForm.Controller, {
+    as: React__default.createElement(index, _extends_1({
+      onInputChange: onInputChange,
+      onBlur:
       /*#__PURE__*/
-      regenerator.mark(function _callee(_ref5) {
-        var value, label, values;
+      asyncToGenerator(
+      /*#__PURE__*/
+      regenerator.mark(function _callee() {
         return regenerator.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                value = _ref5.value, label = _ref5.label;
-                setValue(name, value);
-                _context.next = 4;
-                return triggerValidation({
-                  name: name
-                });
+                _context.next = 2;
+                return triggerValidation(name);
 
-              case 4:
-                values = getValues();
-                reset(values);
-                onChange({
-                  value: value,
-                  label: label
-                });
+              case 2:
+                return _context.abrupt("return", _context.sent);
 
-              case 7:
+              case 3:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
-      }));
+      })),
+      placeholder: placeholder,
+      styles: styleOverride({
+        shape: shape,
+        variant: variant,
+        fontSize: fontSize,
+        bordered: bordered,
+        hasShadow: hasShadow
+      }),
+      options: options.length ? options : [],
+      isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
+      isMulti: multiple,
+      required: required
+    }, otherProps)),
+    onChange: function onChange(_ref6) {
+      var _ref7 = slicedToArray(_ref6, 1),
+          selectValue = _ref7[0];
 
-      return function (_x) {
-        return _ref6.apply(this, arguments);
-      };
-    }(),
-    onBlur:
-    /*#__PURE__*/
-    asyncToGenerator(
-    /*#__PURE__*/
-    regenerator.mark(function _callee2() {
-      return regenerator.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.next = 2;
-              return triggerValidation({
-                name: name
-              });
-
-            case 2:
-              return _context2.abrupt("return", _context2.sent);
-
-            case 3:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    })),
-    placeholder: placeholder,
-    styles: styleOverride({
-      shape: shape,
-      variant: variant,
-      fontSize: fontSize,
-      bordered: bordered,
-      hasShadow: hasShadow
-    }),
+      var value = selectValue.value;
+      setValue(name, value);
+    },
     name: name,
-    options: options.length ? options : [],
-    isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
-    isMulti: multiple,
-    required: required,
-    ref: register({
-      name: name
-    }),
-    value: getSelectValue()
-  }, otherProps)));
+    defaultValue: getSelectValue()
+  }));
 };
 
 Select$1.defaultProps = {
@@ -37178,13 +35777,13 @@ Select$1.defaultProps = {
  * Released under the MIT License.
  */
 
-function _classCallCheck$9(instance, Constructor) {
+function _classCallCheck$7(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
 
-function _defineProperties$2(target, props) {
+function _defineProperties$3(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
@@ -37194,9 +35793,9 @@ function _defineProperties$2(target, props) {
   }
 }
 
-function _createClass$8(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties$2(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties$2(Constructor, staticProps);
+function _createClass$6(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties$3(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties$3(Constructor, staticProps);
   return Constructor;
 }
 
@@ -37215,8 +35814,8 @@ function _defineProperty$3(obj, key, value) {
   return obj;
 }
 
-function _extends$8() {
-  _extends$8 = Object.assign || function (target) {
+function _extends$d() {
+  _extends$d = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
 
@@ -37230,10 +35829,10 @@ function _extends$8() {
     return target;
   };
 
-  return _extends$8.apply(this, arguments);
+  return _extends$d.apply(this, arguments);
 }
 
-function _inherits$2(subClass, superClass) {
+function _inherits$3(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
   }
@@ -37245,26 +35844,26 @@ function _inherits$2(subClass, superClass) {
       configurable: true
     }
   });
-  if (superClass) _setPrototypeOf$1(subClass, superClass);
+  if (superClass) _setPrototypeOf$2(subClass, superClass);
 }
 
-function _getPrototypeOf$1(o) {
-  _getPrototypeOf$1 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+function _getPrototypeOf$2(o) {
+  _getPrototypeOf$2 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
     return o.__proto__ || Object.getPrototypeOf(o);
   };
-  return _getPrototypeOf$1(o);
+  return _getPrototypeOf$2(o);
 }
 
-function _setPrototypeOf$1(o, p) {
-  _setPrototypeOf$1 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+function _setPrototypeOf$2(o, p) {
+  _setPrototypeOf$2 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
     o.__proto__ = p;
     return o;
   };
 
-  return _setPrototypeOf$1(o, p);
+  return _setPrototypeOf$2(o, p);
 }
 
-function _assertThisInitialized$2(self) {
+function _assertThisInitialized$3(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
@@ -37272,12 +35871,12 @@ function _assertThisInitialized$2(self) {
   return self;
 }
 
-function _possibleConstructorReturn$2(self, call) {
+function _possibleConstructorReturn$3(self, call) {
   if (call && (typeof call === "object" || typeof call === "function")) {
     return call;
   }
 
-  return _assertThisInitialized$2(self);
+  return _assertThisInitialized$3(self);
 }
 
 function _toConsumableArray$1(arr) {
@@ -37360,8 +35959,6 @@ function getCoordinatesForPosition(triggerBounding, ContentBounding, position, a
       transform = "rotate(135deg)";
       arrowTop = '50%';
       break;
-
-    default:
   }
 
   switch (args[1]) {
@@ -37384,8 +35981,6 @@ function getCoordinatesForPosition(triggerBounding, ContentBounding, position, a
       left = triggerBounding.left - width + triggerBounding.width;
       arrowLeft = "".concat(width - triggerBounding.width / 2, "px");
       break;
-
-    default:
   }
 
   top = args[0] === 'top' ? top - offsetY : top + offsetY;
@@ -37483,24 +36078,24 @@ var POSITION_TYPES = ['top left', 'top center', 'top right', 'right top', 'right
 var Popup =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  _inherits$2(Popup, _React$PureComponent);
+  _inherits$3(Popup, _React$PureComponent);
 
   function Popup(props) {
     var _this;
 
-    _classCallCheck$9(this, Popup);
+    _classCallCheck$7(this, Popup);
 
-    _this = _possibleConstructorReturn$2(this, _getPrototypeOf$1(Popup).call(this, props));
+    _this = _possibleConstructorReturn$3(this, _getPrototypeOf$2(Popup).call(this, props));
 
-    _defineProperty$3(_assertThisInitialized$2(_this), "repositionOnResize", function () {
+    _defineProperty$3(_assertThisInitialized$3(_this), "repositionOnResize", function () {
       _this.setPosition();
     });
 
-    _defineProperty$3(_assertThisInitialized$2(_this), "onEscape", function (e) {
+    _defineProperty$3(_assertThisInitialized$3(_this), "onEscape", function (e) {
       if (e.key === 'Escape') _this.closePopup();
     });
 
-    _defineProperty$3(_assertThisInitialized$2(_this), "lockScroll", function () {
+    _defineProperty$3(_assertThisInitialized$3(_this), "lockScroll", function () {
       var lockScroll = _this.props.lockScroll;
       var modal = _this.state.modal;
       if (modal && lockScroll)
@@ -37508,7 +36103,7 @@ function (_React$PureComponent) {
         document.getElementsByTagName('body')[0].style.overflow = 'hidden';
     });
 
-    _defineProperty$3(_assertThisInitialized$2(_this), "resetScroll", function () {
+    _defineProperty$3(_assertThisInitialized$3(_this), "resetScroll", function () {
       var lockScroll = _this.props.lockScroll;
       var modal = _this.state.modal;
       if (modal && lockScroll)
@@ -37516,13 +36111,13 @@ function (_React$PureComponent) {
         document.getElementsByTagName('body')[0].style.overflow = 'auto';
     });
 
-    _defineProperty$3(_assertThisInitialized$2(_this), "togglePopup", function (e) {
+    _defineProperty$3(_assertThisInitialized$3(_this), "togglePopup", function (e) {
       // https://reactjs.org/docs/events.html#event-pooling
       e.persist();
       if (_this.state.isOpen) _this.closePopup(e);else _this.openPopup(e);
     });
 
-    _defineProperty$3(_assertThisInitialized$2(_this), "openPopup", function (e) {
+    _defineProperty$3(_assertThisInitialized$3(_this), "openPopup", function (e) {
       var _this$props = _this.props,
           disabled = _this$props.disabled,
           onOpen = _this$props.onOpen;
@@ -37539,7 +36134,7 @@ function (_React$PureComponent) {
       });
     });
 
-    _defineProperty$3(_assertThisInitialized$2(_this), "closePopup", function (e) {
+    _defineProperty$3(_assertThisInitialized$3(_this), "closePopup", function (e) {
       var onClose = _this.props.onClose;
       var isOpen = _this.state.isOpen;
       if (!isOpen) return;
@@ -37552,7 +36147,7 @@ function (_React$PureComponent) {
       });
     });
 
-    _defineProperty$3(_assertThisInitialized$2(_this), "onMouseEnter", function () {
+    _defineProperty$3(_assertThisInitialized$3(_this), "onMouseEnter", function () {
       clearTimeout(_this.timeOut);
       var mouseEnterDelay = _this.props.mouseEnterDelay;
       _this.timeOut = setTimeout(function () {
@@ -37560,7 +36155,7 @@ function (_React$PureComponent) {
       }, mouseEnterDelay);
     });
 
-    _defineProperty$3(_assertThisInitialized$2(_this), "onMouseLeave", function () {
+    _defineProperty$3(_assertThisInitialized$3(_this), "onMouseLeave", function () {
       clearTimeout(_this.timeOut);
       var mouseLeaveDelay = _this.props.mouseLeaveDelay;
       _this.timeOut = setTimeout(function () {
@@ -37568,7 +36163,7 @@ function (_React$PureComponent) {
       }, mouseLeaveDelay);
     });
 
-    _defineProperty$3(_assertThisInitialized$2(_this), "getTooltipBoundary", function () {
+    _defineProperty$3(_assertThisInitialized$3(_this), "getTooltipBoundary", function () {
       var keepTooltipInside = _this.props.keepTooltipInside;
       var boundingBox = {
         top: 0,
@@ -37595,7 +36190,7 @@ function (_React$PureComponent) {
       return boundingBox;
     });
 
-    _defineProperty$3(_assertThisInitialized$2(_this), "setPosition", function () {
+    _defineProperty$3(_assertThisInitialized$3(_this), "setPosition", function () {
       var _this$state = _this.state,
           modal = _this$state.modal,
           isOpen = _this$state.isOpen;
@@ -37648,7 +36243,7 @@ function (_React$PureComponent) {
       window.getComputedStyle(_this.TriggerEl, null).getPropertyValue('position') === '') _this.TriggerEl.style.position = 'relative';
     });
 
-    _defineProperty$3(_assertThisInitialized$2(_this), "addWarperAction", function () {
+    _defineProperty$3(_assertThisInitialized$3(_this), "addWarperAction", function () {
       var _this$props3 = _this.props,
           contentStyle = _this$props3.contentStyle,
           className = _this$props3.className,
@@ -37672,7 +36267,7 @@ function (_React$PureComponent) {
       return childrenElementProps;
     });
 
-    _defineProperty$3(_assertThisInitialized$2(_this), "renderTrigger", function () {
+    _defineProperty$3(_assertThisInitialized$3(_this), "renderTrigger", function () {
       var triggerProps = {
         key: 'T',
         ref: _this.setTriggerRef
@@ -37697,16 +36292,14 @@ function (_React$PureComponent) {
           case 'focus':
             triggerProps.onFocus = _this.onMouseEnter;
             break;
-
-          default:
         }
       }
 
-      if (typeof trigger === 'function') return !!trigger && e__default.cloneElement(trigger(isOpen), triggerProps);
-      return !!trigger && e__default.cloneElement(trigger, triggerProps);
+      if (typeof trigger === 'function') return !!trigger && React__default.cloneElement(trigger(isOpen), triggerProps);
+      return !!trigger && React__default.cloneElement(trigger, triggerProps);
     });
 
-    _defineProperty$3(_assertThisInitialized$2(_this), "renderContent", function () {
+    _defineProperty$3(_assertThisInitialized$3(_this), "renderContent", function () {
       var _this$props5 = _this.props,
           arrow = _this$props5.arrow,
           arrowStyle = _this$props5.arrowStyle,
@@ -37714,9 +36307,9 @@ function (_React$PureComponent) {
       var _this$state2 = _this.state,
           modal = _this$state2.modal,
           isOpen = _this$state2.isOpen;
-      return e__default.createElement("div", _extends$8({}, _this.addWarperAction(), {
+      return React__default.createElement("div", _extends$d({}, _this.addWarperAction(), {
         key: "C"
-      }), arrow && !modal && e__default.createElement("div", {
+      }), arrow && !modal && React__default.createElement("div", {
         ref: _this.setArrowRef,
         style: Object.assign({}, styles.popupArrow, arrowStyle)
       }), typeof children === 'function' ? children(_this.closePopup, isOpen) : children);
@@ -37751,7 +36344,7 @@ function (_React$PureComponent) {
     return _this;
   }
 
-  _createClass$8(Popup, [{
+  _createClass$6(Popup, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this$props6 = this.props,
@@ -37821,7 +36414,7 @@ function (_React$PureComponent) {
           isOpen = _this$state3.isOpen;
       var overlay = isOpen && !(on.indexOf('hover') >= 0);
       var ovStyle = modal ? styles.overlay.modal : styles.overlay.tooltip;
-      return [this.renderTrigger(), isOpen && e__default.createElement("div", {
+      return [this.renderTrigger(), isOpen && React__default.createElement("div", {
         key: "H",
         style: {
           position: 'absolute',
@@ -37829,7 +36422,7 @@ function (_React$PureComponent) {
           left: '0px'
         },
         ref: this.setHelperRef
-      }), overlay && e__default.createElement("div", {
+      }), overlay && React__default.createElement("div", {
         key: "O",
         className: "popup-overlay ".concat(className !== '' ? "".concat(className, "-overlay") : ''),
         style: Object.assign({}, ovStyle, overlayStyle),
@@ -37839,7 +36432,7 @@ function (_React$PureComponent) {
   }]);
 
   return Popup;
-}(e__default.PureComponent);
+}(React__default.PureComponent);
 
 _defineProperty$3(Popup, "defaultProps", {
   trigger: null,
@@ -37868,35 +36461,35 @@ _defineProperty$3(Popup, "defaultProps", {
 });
 
 if (process.env.NODE_ENV !== 'production') {
-  var PropTypes$1 = require('prop-types');
+  var PropTypes = require('prop-types');
 
   var TRIGGER_TYPES = ['hover', 'click', 'focus'];
   Popup.propTypes = {
-    arrowStyle: PropTypes$1.object,
-    contentStyle: PropTypes$1.object,
-    overlayStyle: PropTypes$1.object,
-    className: PropTypes$1.string,
-    modal: PropTypes$1.bool,
-    arrow: PropTypes$1.bool,
-    closeOnDocumentClick: PropTypes$1.bool,
-    repositionOnResize: PropTypes$1.bool,
-    disabled: PropTypes$1.bool,
-    closeOnEscape: PropTypes$1.bool,
-    lockScroll: PropTypes$1.bool,
-    offsetX: PropTypes$1.number,
-    offsetY: PropTypes$1.number,
-    mouseEnterDelay: PropTypes$1.number,
-    mouseLeaveDelay: PropTypes$1.number,
-    onOpen: PropTypes$1.func,
-    onClose: PropTypes$1.func,
-    open: PropTypes$1.bool,
-    defaultOpen: PropTypes$1.bool,
-    trigger: PropTypes$1.oneOfType([PropTypes$1.func, PropTypes$1.element]),
+    arrowStyle: PropTypes.object,
+    contentStyle: PropTypes.object,
+    overlayStyle: PropTypes.object,
+    className: PropTypes.string,
+    modal: PropTypes.bool,
+    arrow: PropTypes.bool,
+    closeOnDocumentClick: PropTypes.bool,
+    repositionOnResize: PropTypes.bool,
+    disabled: PropTypes.bool,
+    closeOnEscape: PropTypes.bool,
+    lockScroll: PropTypes.bool,
+    offsetX: PropTypes.number,
+    offsetY: PropTypes.number,
+    mouseEnterDelay: PropTypes.number,
+    mouseLeaveDelay: PropTypes.number,
+    onOpen: PropTypes.func,
+    onClose: PropTypes.func,
+    open: PropTypes.bool,
+    defaultOpen: PropTypes.bool,
+    trigger: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
     // for uncontrolled component we don't need the trigger Element
-    on: PropTypes$1.oneOfType([PropTypes$1.oneOf(TRIGGER_TYPES), PropTypes$1.arrayOf(PropTypes$1.oneOf(TRIGGER_TYPES))]),
-    children: PropTypes$1.oneOfType([PropTypes$1.func, PropTypes$1.element, PropTypes$1.string]).isRequired,
-    position: PropTypes$1.oneOfType([PropTypes$1.oneOf(POSITION_TYPES), PropTypes$1.arrayOf(PropTypes$1.oneOf(POSITION_TYPES))]),
-    keepTooltipInside: PropTypes$1.oneOfType([PropTypes$1.bool, PropTypes$1.string])
+    on: PropTypes.oneOfType([PropTypes.oneOf(TRIGGER_TYPES), PropTypes.arrayOf(PropTypes.oneOf(TRIGGER_TYPES))]),
+    children: PropTypes.oneOfType([PropTypes.func, PropTypes.element, PropTypes.string]).isRequired,
+    position: PropTypes.oneOfType([PropTypes.oneOf(POSITION_TYPES), PropTypes.arrayOf(PropTypes.oneOf(POSITION_TYPES))]),
+    keepTooltipInside: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
   };
 }
 
@@ -37907,7 +36500,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _react = _interopRequireDefault(e__default);
+var _react = _interopRequireDefault(React__default);
 
 var _styledComponents = _interopRequireDefault(styled__default);
 
@@ -37963,7 +36556,7 @@ var SettingsContainer = styled__default.div(_templateObject$f());
 var OverflowMenu = function OverflowMenu(_ref) {
   var position = _ref.position,
       children = _ref.children;
-  return e__default.createElement(Popup, {
+  return React__default.createElement(Popup, {
     contentStyle: {
       width: 'auto',
       padding: '0.5em 2em 0.5em 1em',
@@ -37971,14 +36564,14 @@ var OverflowMenu = function OverflowMenu(_ref) {
       border: 'none',
       animation: '200ms fade-in ease-in'
     },
-    trigger: e__default.createElement(DotsVertical$1, {
+    trigger: React__default.createElement(DotsVertical$1, {
       color: colors.gray.dark
     }),
     position: position || 'left center',
     arrow: false
   }, function (closePopup) {
-    return e__default.createElement(SettingsContainer, null, e__default.Children.map(children, function (child) {
-      return e__default.cloneElement(child, {
+    return React__default.createElement(SettingsContainer, null, React__default.Children.map(children, function (child) {
+      return React__default.cloneElement(child, {
         closePopup: closePopup
       });
     }));
@@ -38045,13 +36638,13 @@ function _templateObject$g() {
   return data;
 }
 var Container$1 = styled__default.div(_templateObject$g(), dist_2('lineHeights.tight'), dist_2('fontSizes.xsmall'), dist_2('fonts[0]'));
-var Input$2 = styled__default.input.attrs({
+var Input$3 = styled__default.input.attrs({
   type: 'checkbox'
 })(_templateObject2$4(), dist_2('space[0]'), dist_2('space[0]'), dist_2('zIndices[1]'));
-var Animate = styled__default.div(_templateObject3$3(), dist_2('colors.secondary'), dist_2('colors.white'), dist_2('zIndices[1]'), Input$2, dist_2('colors.primary'), Input$2, dist_2('colors.white'));
+var Animate = styled__default.div(_templateObject3$3(), dist_2('colors.secondary'), dist_2('colors.white'), dist_2('zIndices[1]'), Input$3, dist_2('colors.primary'), Input$3, dist_2('colors.white'));
 var CheckboxState = styled__default.div(_templateObject4$2(), dist_2('colors.white'), dist_2('fontWeights.bold'), dist_2('space[2]'));
-var CheckboxOff = styled__default(CheckboxState)(_templateObject5$1(), Input$2, Animate);
-var CheckboxOn = styled__default(CheckboxState)(_templateObject6$1(), Input$2, Animate);
+var CheckboxOff = styled__default(CheckboxState)(_templateObject5$1(), Input$3, Animate);
+var CheckboxOn = styled__default(CheckboxState)(_templateObject6$1(), Input$3, Animate);
 
 var Toggle = function Toggle(_ref) {
   var id = _ref.id,
@@ -38068,9 +36661,9 @@ var Toggle = function Toggle(_ref) {
   var _useFormContext = reactHookForm.useFormContext(),
       register = _useFormContext.register;
 
-  return e__default.createElement(Container$1, {
+  return React__default.createElement(Container$1, {
     style: containerStyle
-  }, e__default.createElement(Input$2, _extends_1({
+  }, React__default.createElement(Input$3, _extends_1({
     id: id,
     "aria-label": label,
     "aria-required": required,
@@ -38078,7 +36671,7 @@ var Toggle = function Toggle(_ref) {
     name: name,
     onChange: onChange,
     ref: register
-  }, otherProps)), e__default.createElement(Animate, null, e__default.createElement(CheckboxOff, null, offText), e__default.createElement(CheckboxOn, null, onText)));
+  }, otherProps)), React__default.createElement(Animate, null, React__default.createElement(CheckboxOff, null, offText), React__default.createElement(CheckboxOn, null, onText)));
 };
 
 Toggle.defaultProps = {
@@ -38087,15 +36680,15 @@ Toggle.defaultProps = {
   containerStyle: {}
 };
 Toggle.propTypes = {
-  offText: PropTypes$2.string,
-  onText: PropTypes$2.string,
-  containerStyle: PropTypes$2.object,
-  label: PropTypes$2.string.isRequired
+  offText: PropTypes$1.string,
+  onText: PropTypes$1.string,
+  containerStyle: PropTypes$1.object,
+  label: PropTypes$1.string.isRequired
 };
 
-function ownKeys$8(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$9(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$9(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$8(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$8(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$a(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$9(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$9(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _templateObject$h() {
   var data = taggedTemplateLiteral(["\n  background-position: center;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-image: ", ";\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
@@ -38115,8 +36708,8 @@ var BackgroundImage = styled__default.div(_templateObject$h(), image, styledSyst
 BackgroundImage.defaultProps = {
   theme: theme
 };
-BackgroundImage.propTypes = _objectSpread$9({
-  source: PropTypes$2.string.isRequired
+BackgroundImage.propTypes = _objectSpread$a({
+  source: PropTypes$1.string.isRequired
 }, styledSystem.space.propTypes, {}, styledSystem.background.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.flexbox.propTypes);
 BackgroundImage.displayName = 'BackgroundImage';
 
@@ -38333,12 +36926,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  * - `eventOff` {String}
  */
 
-var checkStatus = function checkStatus(dataEventOff, e) {
+var checkStatus = exports.checkStatus = function checkStatus(dataEventOff, e) {
   var show = this.state.show;
   var id = this.props.id;
 
-  var dataIsCapture = e.currentTarget.getAttribute('data-iscapture');
-  var isCapture = dataIsCapture && dataIsCapture === 'true' || this.props.isCapture;
+  var isCapture = this.isCapture(e.currentTarget);
   var currentItem = e.currentTarget.getAttribute('currentItem');
 
   if (!isCapture) e.stopPropagation();
@@ -38385,6 +36977,7 @@ var customListeners = {
 });
 
 unwrapExports(customEvent);
+var customEvent_1 = customEvent.checkStatus;
 
 var isCapture = createCommonjsModule(function (module, exports) {
 
@@ -38416,6 +37009,134 @@ exports.default = function (target) {
 });
 
 unwrapExports(getEffect);
+
+var bodyMode = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (target) {
+  target.prototype.isBodyMode = function () {
+    return !!this.props.bodyMode;
+  };
+
+  target.prototype.bindBodyListener = function (targetArray) {
+    var _this = this;
+
+    var _state = this.state,
+        event = _state.event,
+        eventOff = _state.eventOff,
+        possibleCustomEvents = _state.possibleCustomEvents,
+        possibleCustomEventsOff = _state.possibleCustomEventsOff;
+
+    var body = getBody();
+
+    var customEvents = findCustomEvents(targetArray, 'data-event');
+    var customEventsOff = findCustomEvents(targetArray, 'data-event-off');
+
+    if (event != null) customEvents[event] = true;
+    if (eventOff != null) customEventsOff[eventOff] = true;
+    possibleCustomEvents.split(' ').forEach(function (event) {
+      return customEvents[event] = true;
+    });
+    possibleCustomEventsOff.split(' ').forEach(function (event) {
+      return customEventsOff[event] = true;
+    });
+
+    this.unbindBodyListener(body);
+
+    var listeners = this.bodyModeListeners = {};
+    if (event == null) {
+      listeners.mouseover = bodyListener.bind(this, this.showTooltip, {});
+      listeners.mousemove = bodyListener.bind(this, this.updateTooltip, { respectEffect: true });
+      listeners.mouseout = bodyListener.bind(this, this.hideTooltip, {});
+    }
+
+    for (var _event in customEvents) {
+      listeners[_event] = bodyListener.bind(this, function (e) {
+        var targetEventOff = e.currentTarget.getAttribute('data-event-off') || eventOff;
+        customEvent.checkStatus.call(_this, targetEventOff, e);
+      }, { customEvent: true });
+    }
+    for (var _event2 in customEventsOff) {
+      listeners[_event2] = bodyListener.bind(this, this.hideTooltip, { customEvent: true });
+    }
+    for (var _event3 in listeners) {
+      body.addEventListener(_event3, listeners[_event3]);
+    }
+  };
+
+  target.prototype.unbindBodyListener = function (body) {
+    body = body || getBody();
+
+    var listeners = this.bodyModeListeners;
+    for (var event in listeners) {
+      body.removeEventListener(event, listeners[event]);
+    }
+  };
+};
+
+
+
+var makeProxy = function makeProxy(e) {
+  var proxy = {};
+  for (var key in e) {
+    if (typeof e[key] === 'function') {
+      proxy[key] = e[key].bind(e);
+    } else {
+      proxy[key] = e[key];
+    }
+  }
+  return proxy;
+}; /**
+    * Util method to get effect
+    */
+
+
+var bodyListener = function bodyListener(callback, options, e) {
+  var _options$respectEffec = options.respectEffect,
+      respectEffect = _options$respectEffec === undefined ? false : _options$respectEffec,
+      _options$customEvent = options.customEvent,
+      customEvent = _options$customEvent === undefined ? false : _options$customEvent;
+  var id = this.props.id;
+
+
+  var tip = e.target.getAttribute('data-tip') || null;
+  var forId = e.target.getAttribute('data-for') || null;
+
+  var target = e.target;
+  if (this.isCustomEvent(target) && !customEvent) {
+    return;
+  }
+
+  var isTargetBelongsToTooltip = id == null && forId == null || forId === id;
+
+  if (tip != null && (!respectEffect || this.getEffect(target) === 'float') && isTargetBelongsToTooltip) {
+    var proxy = makeProxy(e);
+    proxy.currentTarget = target;
+    callback(proxy);
+  }
+};
+
+var findCustomEvents = function findCustomEvents(targetArray, dataAttribute) {
+  var events = {};
+  targetArray.forEach(function (target) {
+    var event = target.getAttribute(dataAttribute);
+    if (event) event.split(' ').forEach(function (event) {
+      return events[event] = true;
+    });
+  });
+
+  return events;
+};
+
+var getBody = function getBody() {
+  return document.getElementsByTagName('body')[0];
+};
+});
+
+unwrapExports(bodyMode);
 
 var trackRemoval = createCommonjsModule(function (module, exports) {
 
@@ -38571,10 +37292,11 @@ exports.default = function (e, target, node, place, desiredPlace, effect, offset
 
   var isNewState = false;
   var newPlace = void 0;
-  if (inside(desiredPlace) && desiredPlace !== place) {
+  var shouldUpdatePlace = desiredPlace !== place;
+  if (inside(desiredPlace) && shouldUpdatePlace) {
     isNewState = true;
     newPlace = desiredPlace;
-  } else if (insideList.length > 0 && outside(desiredPlace) && outside(place)) {
+  } else if (insideList.length > 0 && shouldUpdatePlace && outside(desiredPlace) && outside(place)) {
     isNewState = true;
     newPlace = insideList[0];
   }
@@ -38779,7 +37501,7 @@ exports.default = function (tip, children, getContent, multiline) {
 
 
 
-var _react2 = _interopRequireDefault(e__default);
+var _react2 = _interopRequireDefault(React__default);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 });
@@ -38863,11 +37585,11 @@ var _class, _class2, _temp;
 
 
 
-var _react2 = _interopRequireDefault(e__default);
+var _react2 = _interopRequireDefault(React__default);
 
 
 
-var _propTypes2 = _interopRequireDefault(PropTypes$2);
+var _propTypes2 = _interopRequireDefault(PropTypes$1);
 
 
 
@@ -38892,6 +37614,10 @@ var _isCapture2 = _interopRequireDefault(isCapture);
 
 
 var _getEffect2 = _interopRequireDefault(getEffect);
+
+
+
+var _bodyMode2 = _interopRequireDefault(bodyMode);
 
 
 
@@ -38923,7 +37649,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.default)(_class = (0, _customEvent2.default)(_class = (0, _isCapture2.default)(_class = (0, _getEffect2.default)(_class = (0, _trackRemoval2.default)(_class = (_temp = _class2 = function (_React$Component) {
+var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.default)(_class = (0, _customEvent2.default)(_class = (0, _isCapture2.default)(_class = (0, _getEffect2.default)(_class = (0, _bodyMode2.default)(_class = (0, _trackRemoval2.default)(_class = (_temp = _class2 = function (_React$Component) {
   _inherits(ReactTooltip, _React$Component);
 
   function ReactTooltip(props) {
@@ -38950,6 +37676,8 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
       ariaProps: (0, aria.parseAria)(props), // aria- and role attributes
       isEmptyTip: false,
       disable: false,
+      possibleCustomEvents: props.possibleCustomEvents || '',
+      possibleCustomEventsOff: props.possibleCustomEventsOff || '',
       originTooltip: null,
       isMultiline: false
     };
@@ -38988,6 +37716,7 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
       if (insecure) {
         this.setStyleHeader(); // Set the style to the <link>
       }
+
       this.bindListener(); // Bind listener for tooltip
       this.bindWindowEvents(resizeHide); // Bind global event for static method
     }
@@ -39065,24 +37794,33 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
       var targetArray = this.getTargetArray(id);
 
       targetArray.forEach(function (target) {
-        var isCaptureMode = _this3.isCapture(target);
-        var effect = _this3.getEffect(target);
         if (target.getAttribute('currentItem') === null) {
           target.setAttribute('currentItem', 'false');
         }
         _this3.unbindBasicListener(target);
-
         if (_this3.isCustomEvent(target)) {
-          _this3.customBindListener(target);
-          return;
+          _this3.customUnbindListener(target);
         }
-
-        target.addEventListener('mouseenter', _this3.showTooltip, isCaptureMode);
-        if (effect === 'float') {
-          target.addEventListener('mousemove', _this3.updateTooltip, isCaptureMode);
-        }
-        target.addEventListener('mouseleave', _this3.hideTooltip, isCaptureMode);
       });
+
+      if (this.isBodyMode()) {
+        this.bindBodyListener(targetArray);
+      } else {
+        targetArray.forEach(function (target) {
+          var isCaptureMode = _this3.isCapture(target);
+          var effect = _this3.getEffect(target);
+          if (_this3.isCustomEvent(target)) {
+            _this3.customBindListener(target);
+            return;
+          }
+
+          target.addEventListener('mouseenter', _this3.showTooltip, isCaptureMode);
+          if (effect === 'float') {
+            target.addEventListener('mousemove', _this3.updateTooltip, isCaptureMode);
+          }
+          target.addEventListener('mouseleave', _this3.hideTooltip, isCaptureMode);
+        });
+      }
 
       // Global event to hide tooltip
       if (globalEventOff) {
@@ -39107,11 +37845,15 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
           id = _props3.id,
           globalEventOff = _props3.globalEventOff;
 
-      var targetArray = this.getTargetArray(id);
-      targetArray.forEach(function (target) {
-        _this4.unbindBasicListener(target);
-        if (_this4.isCustomEvent(target)) _this4.customUnbindListener(target);
-      });
+      if (this.isBodyMode()) {
+        this.unbindBodyListener();
+      } else {
+        var targetArray = this.getTargetArray(id);
+        targetArray.forEach(function (target) {
+          _this4.unbindBasicListener(target);
+          if (_this4.isCustomEvent(target)) _this4.customUnbindListener(target);
+        });
+      }
 
       if (globalEventOff) window.removeEventListener(globalEventOff, this.hideTooltip);
       this.unbindRemovalTracker();
@@ -39494,9 +38236,10 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
       if (ReactTooltip.supportedWrappers.indexOf(Wrapper) < 0) {
         Wrapper = ReactTooltip.defaultProps.wrapper;
       }
+      var wrapperClassName = [tooltipClass, extraClass].filter(Boolean).join(' ');
 
       if (html) {
-        return _react2.default.createElement(Wrapper, _extends({ className: tooltipClass + ' ' + extraClass,
+        return _react2.default.createElement(Wrapper, _extends({ className: wrapperClassName,
           id: this.props.id,
           ref: function ref(_ref) {
             return _this8.tooltipRef = _ref;
@@ -39507,7 +38250,7 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
       } else {
         return _react2.default.createElement(
           Wrapper,
-          _extends({ className: tooltipClass + ' ' + extraClass,
+          _extends({ className: wrapperClassName,
             id: this.props.id
           }, ariaProps, {
             ref: function ref(_ref2) {
@@ -39566,13 +38309,16 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
   scrollHide: _propTypes2.default.bool,
   resizeHide: _propTypes2.default.bool,
   wrapper: _propTypes2.default.string,
+  bodyMode: _propTypes2.default.bool,
+  possibleCustomEvents: _propTypes2.default.string,
+  possibleCustomEventsOff: _propTypes2.default.string,
   clickable: _propTypes2.default.bool
 }, _class2.defaultProps = {
   insecure: true,
   resizeHide: true,
   wrapper: 'div',
   clickable: false
-}, _class2.supportedWrappers = ['div', 'span'], _class2.displayName = 'ReactTooltip', _temp)) || _class) || _class) || _class) || _class) || _class) || _class;
+}, _class2.supportedWrappers = ['div', 'span'], _class2.displayName = 'ReactTooltip', _temp)) || _class) || _class) || _class) || _class) || _class) || _class) || _class;
 
 /* export default not fit for standalone, it will exports {default:...} */
 
@@ -39591,7 +38337,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _react = _interopRequireDefault(e__default);
+var _react = _interopRequireDefault(React__default);
 
 var _styledComponents = _interopRequireDefault(styled__default);
 
@@ -39670,19 +38416,19 @@ var Tag = function Tag(_ref) {
   var name = _ref.name,
       value = _ref.value,
       onClose = _ref.onClose;
-  return e__default.createElement("div", null, e__default.createElement(Container$2, null, e__default.createElement("span", null, e__default.createElement(Name, null, name), ": ".concat(value)), onClose && e__default.createElement(CloseButton, {
+  return React__default.createElement("div", null, React__default.createElement(Container$2, null, React__default.createElement("span", null, React__default.createElement(Name, null, name), ": ".concat(value)), onClose && React__default.createElement(CloseButton, {
     type: "button",
     "aria-label": "Close",
     onClick: onClose
-  }, e__default.createElement(Close$1, {
+  }, React__default.createElement(Close$1, {
     color: "inherit"
   }))));
 };
 
 Tag.propTypes = {
-  name: PropTypes$2.string.isRequired,
-  value: PropTypes$2.string.isRequired,
-  onClose: PropTypes$2.func
+  name: PropTypes$1.string.isRequired,
+  value: PropTypes$1.string.isRequired,
+  onClose: PropTypes$1.func
 };
 
 function _templateObject$j() {

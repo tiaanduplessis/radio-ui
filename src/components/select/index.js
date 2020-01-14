@@ -127,27 +127,6 @@ const Select = ({
         name={name}
         defaultValue={getSelectValue()}
       />
-      {/* <ReactSelect
-        onInputChange={onInputChange}
-        onChange={async ({ value, label }) => {
-          setValue(name, value)
-          await triggerValidation(name)
-          const values = getValues()
-          reset(values)
-          onChange({ value, label })
-        }}
-        onBlur={async () => await triggerValidation(name)}
-        placeholder={placeholder}
-        styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
-        name={name}
-        options={options.length ? options : []}
-        isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
-        isMulti={multiple}
-        required={required}
-        ref={register({ name })}
-        value={getSelectValue()}
-        {...otherProps}
-      /> */}
     </InputWrapper>
   )
 }
