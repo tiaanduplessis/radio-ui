@@ -35676,7 +35676,7 @@ var Select$1 = function Select(_ref3) {
       disableEmpty = _ref3.disableEmpty,
       _ref3$options = _ref3.options,
       options = _ref3$options === void 0 ? [] : _ref3$options,
-      onChange = _ref3.onChange,
+      _onChange = _ref3.onChange,
       placeholder = _ref3.placeholder,
       fontSize = _ref3.fontSize,
       bordered = _ref3.bordered,
@@ -35688,12 +35688,10 @@ var Select$1 = function Select(_ref3) {
       otherProps = objectWithoutProperties(_ref3, ["shape", "variant", "hasShadow", "disabled", "disableEmpty", "options", "onChange", "placeholder", "fontSize", "bordered", "multiple", "alertText", "name", "required", "onInputChange"]);
 
   var _useFormContext = reactHookForm.useFormContext(),
-      register = _useFormContext.register,
       errors = _useFormContext.errors,
       setValue = _useFormContext.setValue,
       getValues = _useFormContext.getValues,
-      triggerValidation = _useFormContext.triggerValidation,
-      reset = _useFormContext.reset;
+      triggerValidation = _useFormContext.triggerValidation;
 
   var getLabel = function getLabel() {
     return options.find(function (_ref4) {
@@ -35759,6 +35757,8 @@ var Select$1 = function Select(_ref3) {
 
       var value = selectValue.value;
       setValue(name, value);
+
+      _onChange(selectValue);
     },
     name: name,
     defaultValue: getSelectValue()

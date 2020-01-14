@@ -81,7 +81,7 @@ const Select = ({
   onInputChange,
   ...otherProps
 }) => {
-  const { register, errors, setValue, getValues, triggerValidation, reset } = useFormContext()
+  const { errors, setValue, getValues, triggerValidation } = useFormContext()
 
   const getLabel = () => options.find(({ value }) => {
     const values = getValues()
@@ -123,6 +123,7 @@ const Select = ({
         onChange={([selectValue]) => {
           const { value } = selectValue
           setValue(name, value)
+          onChange(selectValue)
         }}
         name={name}
         defaultValue={getSelectValue()}
