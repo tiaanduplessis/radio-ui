@@ -35756,7 +35756,10 @@ var Select$1 = function Select(_ref3) {
           selectValue = _ref7[0];
 
       var value = selectValue.value;
-      setValue(name, value);
+      setValue(name, multiple ? selectValue.map(function (_ref8) {
+        var itemValue = _ref8.value;
+        return itemValue;
+      }) : value);
 
       _onChange(selectValue);
     },

@@ -122,7 +122,7 @@ const Select = ({
         }
         onChange={([selectValue]) => {
           const { value } = selectValue
-          setValue(name, value)
+          setValue(name, multiple ? selectValue.map(({ value: itemValue }) => itemValue) : value)
           onChange(selectValue)
         }}
         name={name}
