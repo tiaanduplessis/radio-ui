@@ -126,7 +126,7 @@ const Select = ({
           onChange(selectValue)
         }}
         name={name}
-        // defaultValue={getSelectValue()}
+        defaultValue={getSelectValue()}
       />
     </InputWrapper>
   )
