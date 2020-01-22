@@ -35694,12 +35694,13 @@ var Select$1 = function Select(_ref3) {
       triggerValidation = _useFormContext.triggerValidation;
 
   var getLabel = function getLabel() {
-    return options.find(function (_ref4) {
+    console.log('options', options);
+    return options && Array.isArray(options) ? options.find(function (_ref4) {
       var value = _ref4.value;
       var values = getValues();
       console.log('values[name]', values[name], 'value', value);
       return value === values[name];
-    }) || '';
+    }) : '';
   };
 
   var getSelectValue = function getSelectValue() {

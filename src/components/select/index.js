@@ -83,11 +83,14 @@ const Select = ({
 }) => {
   const { errors, setValue, getValues, triggerValidation } = useFormContext()
 
-  const getLabel = () => options.find(({ value }) => {
-    const values = getValues()
-    console.log('values[name]', values[name], 'value', value)
-    return value === values[name]
-  }) || ''
+  const getLabel = () => {
+    console.log('options', options)
+    return options && Array.isArray(options) ? options.find(({ value }) => {
+      const values = getValues()
+      console.log('values[name]', values[name], 'value', value)
+      return value === values[name]
+    }) : ''
+  }
 
   const getSelectValue = () => {
     const values = getValues()
