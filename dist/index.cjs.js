@@ -35691,7 +35691,8 @@ var Select$1 = function Select(_ref3) {
       errors = _useFormContext.errors,
       setValue = _useFormContext.setValue,
       getValues = _useFormContext.getValues,
-      triggerValidation = _useFormContext.triggerValidation; // const getLabel = () => {
+      triggerValidation = _useFormContext.triggerValidation,
+      control = _useFormContext.control; // const getLabel = () => {
   //   console.log('options', options)
   //   return options && Array.isArray(options) ? options.find(({ value }) => {
   //     const values = getValues()
@@ -35769,8 +35770,9 @@ var Select$1 = function Select(_ref3) {
 
       _onChange(selectValue);
     },
-    name: name // defaultValue={getSelectValue()}
-
+    name: name,
+    control: control,
+    defaultValue: getValues()[name]
   }));
 };
 
