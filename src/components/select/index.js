@@ -85,8 +85,9 @@ const Select = ({
 
   const getLabel = () => options.find(({ value }) => {
     const values = getValues()
+    console.log('values[name]', values[name], 'value', value)
     return value === values[name]
-  })
+  }) || ''
 
   const getSelectValue = () => {
     const values = getValues()
