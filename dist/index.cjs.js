@@ -35714,6 +35714,7 @@ var Select$1 = function Select(_ref3) {
   // }
 
 
+  console.log('GetValues: ', getValues()[name]);
   return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || (errors[name] ? errors[name].message : ''),
     required: required,

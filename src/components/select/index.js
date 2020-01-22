@@ -104,7 +104,7 @@ const Select = ({
   //   :
   //   ''
   // }
-
+  console.log('GetValues: ', getValues()[name])
   return (
     <InputWrapper
       alertText={alertTextOverride || (errors[name] ? errors[name].message : '')}
@@ -144,8 +144,8 @@ const Select = ({
 Select.defaultProps = {
   containerStyle: {},
   options: [],
-  onChange: () => {},
-  onInputChange: () => {}
+  onChange: () => { },
+  onInputChange: () => { }
 }
 
 export default Select
