@@ -115,7 +115,7 @@ const Select = ({
             onBlur={async () => await triggerValidation(name)}
             placeholder={placeholder}
             styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
-            options={options.length ? options : []}
+            options={options}
             isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
             isMulti={multiple}
             required={required}
@@ -138,6 +138,7 @@ const Select = ({
 
 Select.defaultProps = {
   containerStyle: {},
+  options: [],
   onChange: () => {},
   onInputChange: () => {}
 }

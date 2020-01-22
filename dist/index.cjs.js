@@ -35748,7 +35748,7 @@ var Select$1 = function Select(_ref3) {
         bordered: bordered,
         hasShadow: hasShadow
       }),
-      options: options.length ? options : [],
+      options: options,
       isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
       isMulti: multiple,
       required: required
@@ -35774,6 +35774,7 @@ var Select$1 = function Select(_ref3) {
 
 Select$1.defaultProps = {
   containerStyle: {},
+  options: [],
   onChange: function onChange() {},
   onInputChange: function onInputChange() {}
 };
