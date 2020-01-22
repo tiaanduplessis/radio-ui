@@ -35772,7 +35772,9 @@ var Select$1 = function Select(_ref3) {
     },
     name: name,
     control: control,
-    defaultValue: getValues()[name]
+    defaultValue: {
+      value: getValues()[name]
+    }
   }));
 };
 

@@ -135,7 +135,7 @@ const Select = ({
         }}
         name={name}
         control={control}
-        defaultValue={getValues()[name]}
+        defaultValue={{ value: getValues()[name] }}
       />
     </InputWrapper>
   )
