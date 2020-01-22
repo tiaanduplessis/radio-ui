@@ -90,6 +90,7 @@ const Select = ({
 
   const getSelectValue = () => {
     const values = getValues()
+    console.log('getSelectValue', values, options.length, getLabel())
     return options.length && getLabel() ? 
     {
       value: values[name],
