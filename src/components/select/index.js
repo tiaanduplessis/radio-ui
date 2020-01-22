@@ -88,6 +88,7 @@ const Select = ({
     return options && Array.isArray(options) ? options.find(({ value }) => {
       const values = getValues()
       console.log('values[name]', values[name], 'value', value)
+      console.log('name', name)
       return value === values[name]
     }) : ''
   }

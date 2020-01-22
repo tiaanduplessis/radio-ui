@@ -35699,6 +35699,7 @@ var Select$1 = function Select(_ref3) {
       var value = _ref4.value;
       var values = getValues();
       console.log('values[name]', values[name], 'value', value);
+      console.log('name', name);
       return value === values[name];
     }) : '';
   };
