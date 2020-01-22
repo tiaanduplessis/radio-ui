@@ -35755,11 +35755,13 @@ var Select$1 = function Select(_ref3) {
       var _ref7 = slicedToArray(_ref6, 1),
           selectValue = _ref7[0];
 
+      console.log('selectValue', selectValue);
       var value = selectValue.value;
       setValue(name, multiple ? selectValue.map(function (_ref8) {
         var itemValue = _ref8.value;
         return itemValue;
       }) : value);
+      console.log('getValues', getValues());
 
       _onChange(selectValue);
     },
