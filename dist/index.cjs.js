@@ -35691,28 +35691,23 @@ var Select$1 = function Select(_ref3) {
       errors = _useFormContext.errors,
       setValue = _useFormContext.setValue,
       getValues = _useFormContext.getValues,
-      triggerValidation = _useFormContext.triggerValidation,
-      control = _useFormContext.control; // const getLabel = () => {
-  //   console.log('options', options)
-  //   return options && Array.isArray(options) ? options.find(({ value }) => {
-  //     const values = getValues()
-  //     console.log('values[name]', values[name], 'value', value)
-  //     console.log('name', name)
-  //     return value === values[name]
-  //   }) : ''
-  // }
-  // const getSelectValue = () => {
-  //   const values = getValues()
-  //   console.log('getSelectValue', values, options.length, getLabel())
-  //   return options.length && getLabel() ? 
-  //   {
-  //     value: values[name],
-  //     label: getLabel().label
-  //   }
-  //   :
-  //   ''
-  // }
+      triggerValidation = _useFormContext.triggerValidation;
 
+  var getLabel = function getLabel() {
+    return options && Array.isArray(options) ? options.find(function (_ref4) {
+      var value = _ref4.value;
+      var values = getValues();
+      return value === values[name];
+    }) : '';
+  };
+
+  var getSelectValue = function getSelectValue() {
+    var values = getValues();
+    return options.length && getLabel() ? {
+      value: values[name],
+      label: getLabel().label
+    } : '';
+  };
 
   return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || (errors[name] ? errors[name].message : ''),
@@ -35756,25 +35751,21 @@ var Select$1 = function Select(_ref3) {
       isMulti: multiple,
       required: required
     }, otherProps)),
-    onChange: function onChange(_ref5) {
-      var _ref6 = slicedToArray(_ref5, 1),
-          selectValue = _ref6[0];
+    onChange: function onChange(_ref6) {
+      var _ref7 = slicedToArray(_ref6, 1),
+          selectValue = _ref7[0];
 
-      console.log('selectValue', selectValue);
       var value = selectValue.value;
-      setValue(name, multiple ? selectValue.map(function (_ref7) {
-        var itemValue = _ref7.value;
+      setValue(name, multiple ? selectValue.map(function (_ref8) {
+        var itemValue = _ref8.value;
         return itemValue;
       }) : value);
-      console.log('getValues', getValues());
 
       _onChange(selectValue);
+
+      return getSelectValue();
     },
-    name: name,
-    control: control,
-    defaultValue: {
-      value: getValues()[name]
-    }
+    name: name
   }));
 };
 

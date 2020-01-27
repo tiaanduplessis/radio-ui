@@ -81,29 +81,25 @@ const Select = ({
   onInputChange,
   ...otherProps
 }) => {
-  const { errors, setValue, getValues, triggerValidation, control } = useFormContext()
+  const { errors, setValue, getValues, triggerValidation } = useFormContext()
 
-  // const getLabel = () => {
-  //   console.log('options', options)
-  //   return options && Array.isArray(options) ? options.find(({ value }) => {
-  //     const values = getValues()
-  //     console.log('values[name]', values[name], 'value', value)
-  //     console.log('name', name)
-  //     return value === values[name]
-  //   }) : ''
-  // }
+  const getLabel = () => {
+    return options && Array.isArray(options) ? options.find(({ value }) => {
+      const values = getValues()
+      return value === values[name]
+    }) : ''
+  }
 
-  // const getSelectValue = () => {
-  //   const values = getValues()
-  //   console.log('getSelectValue', values, options.length, getLabel())
-  //   return options.length && getLabel() ? 
-  //   {
-  //     value: values[name],
-  //     label: getLabel().label
-  //   }
-  //   :
-  //   ''
-  // }
+  const getSelectValue = () => {
+    const values = getValues()
+    return options.length && getLabel() ? 
+    {
+      value: values[name],
+      label: getLabel().label
+    }
+    :
+    ''
+  }
 
   return (
     <InputWrapper
@@ -127,15 +123,12 @@ const Select = ({
           />
         }
         onChange={([selectValue]) => {
-          console.log('selectValue', selectValue)
           const { value } = selectValue
           setValue(name, multiple ? selectValue.map(({ value: itemValue }) => itemValue) : value)
-          console.log('getValues', getValues())
           onChange(selectValue)
+          return getSelectValue()
         }}
         name={name}
-        control={control}
-        defaultValue={{ value: getValues()[name] }}
       />
     </InputWrapper>
   )
