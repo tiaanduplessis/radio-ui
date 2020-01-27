@@ -35716,7 +35716,6 @@ var Select$1 = function Select(_ref3) {
   }, otherProps), React__default.createElement(reactHookForm.Controller, {
     as: React__default.createElement(index, _extends_1({
       onInputChange: onInputChange,
-      value: getValues()[name],
       onBlur:
       /*#__PURE__*/
       asyncToGenerator(

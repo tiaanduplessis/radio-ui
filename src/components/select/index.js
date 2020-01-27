@@ -112,7 +112,6 @@ const Select = ({
         as={
           <ReactSelect
             onInputChange={onInputChange}
-            value={getValues()[name]}
             onBlur={async () => await triggerValidation(name)}
             placeholder={placeholder}
             styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
