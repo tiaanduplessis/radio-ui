@@ -129,7 +129,6 @@ const Select = ({
           // return selectValue
         }}
         name={name}
-        defaultValue={getSelectValue()}
       />
     </InputWrapper>
   )
