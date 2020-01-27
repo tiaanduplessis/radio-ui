@@ -35761,11 +35761,11 @@ var Select$1 = function Select(_ref3) {
         return itemValue;
       }) : value);
 
-      _onChange(selectValue);
+      _onChange(selectValue); // return selectValue
 
-      return getSelectValue();
     },
-    name: name
+    name: name,
+    defaultValue: getSelectValue()
   }));
 };
 
