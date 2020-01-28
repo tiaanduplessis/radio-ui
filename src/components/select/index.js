@@ -123,13 +123,14 @@ const Select = ({
           />
         }
         onChange={([selectValue]) => {
-          const { value } = selectValue
-          setValue(name, multiple ? selectValue.map(({ value: itemValue }) => itemValue) : value)
+          // const { value } = selectValue
+          // setValue(name, multiple ? selectValue.map(({ value: itemValue }) => itemValue) : value)
           onChange(selectValue)
           return { value: selectValue }
         }}
         name={name}
-        defaultValue={{ value: getSelectValue() }}
+        //TODO: look into default value setting
+        // defaultValue={{ value: getSelectValue() }}
       />
     </InputWrapper>
   )
