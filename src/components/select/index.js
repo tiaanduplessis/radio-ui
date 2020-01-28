@@ -126,7 +126,7 @@ const Select = ({
           const { value } = selectValue
           setValue(name, multiple ? selectValue.map(({ value: itemValue }) => itemValue) : value)
           onChange(selectValue)
-          return selectValue
+          return { value: selectValue }
         }}
         name={name}
       />

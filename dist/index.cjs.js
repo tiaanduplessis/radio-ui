@@ -35747,7 +35747,9 @@ var Select$1 = function Select(_ref3) {
 
       _onChange(selectValue);
 
-      return selectValue;
+      return {
+        value: selectValue
+      };
     },
     name: name
   }));
