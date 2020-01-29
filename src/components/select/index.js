@@ -118,13 +118,12 @@ const Select = ({
             options={options}
             isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
             isMulti={multiple}
+            value={getSelectValue()}
             required={required}
             {...otherProps}
           />
         }
         onChange={([selectValue]) => {
-          // const { value } = selectValue
-          // setValue(name, multiple ? selectValue.map(({ value: itemValue }) => itemValue) : value)
           onChange(selectValue)
           return { value: selectValue }
         }}
