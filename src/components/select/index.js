@@ -127,7 +127,6 @@ const Select = ({
           return { value: selectValue }
         }}
         name={name}
-        value={getSelectValue()}
         //TODO: look into default value setting
         // defaultValue={{ value: getSelectValue() }}
       />
