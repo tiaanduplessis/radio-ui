@@ -118,7 +118,6 @@ const Select = ({
             options={options}
             isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
             isMulti={multiple}
-            value={getSelectValue()}
             required={required}
             {...otherProps}
           />
@@ -128,6 +127,7 @@ const Select = ({
           return { value: selectValue }
         }}
         name={name}
+        value={getSelectValue()}
         //TODO: look into default value setting
         // defaultValue={{ value: getSelectValue() }}
       />

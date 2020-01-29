@@ -35749,7 +35749,6 @@ var Select$1 = function Select(_ref3) {
       options: options,
       isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
       isMulti: multiple,
-      value: getSelectValue(),
       required: required
     }, otherProps)),
     onChange: function onChange(_ref6) {
@@ -35762,7 +35761,8 @@ var Select$1 = function Select(_ref3) {
         value: selectValue
       };
     },
-    name: name //TODO: look into default value setting
+    name: name,
+    value: getSelectValue() //TODO: look into default value setting
     // defaultValue={{ value: getSelectValue() }}
 
   }));
