@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, Controller } from 'react-hook-form'
 import DatePicker from 'react-datepicker'
 import styled from 'styled-components'
 
@@ -37,7 +37,9 @@ const DateInput = props => {
   } = props
 
   const { id = otherProps.name, label, inputStyle, name } = otherProps
-  const { register, errors = {} } = useFormContext()
+  const { errors = {}, triggerValidation } = useFormContext()
+
+  const getDateString = dateValue => dateValue instanceof Date ? dateValue.toDateString() : dateValue
 
   return (
     <InputWrapper
@@ -46,17 +48,26 @@ const DateInput = props => {
       alertText={alertTextOverride || (errors[name] ? errors[name].message : '')}
       {...otherProps}
     >
-      <StyledDatePicker
-        onChange={onChange}
-        style={inputStyle}
-        aria-label={label}
-        aria-required={required}
-        id={id}
-        placeholderText={placeholder || label}
-        disabled={disabled}
+      <Controller
+        as={
+          <StyledDatePicker
+            id={id}
+            placeholderText={label}
+            dateFormat={dateFormat}
+            style={inputStyle}
+            aria-label={label}
+            aria-required={required}
+            placeholderText={placeholder || label}
+            disabled={disabled}
+            onBlur={async () => await triggerValidation(name)}
+          />
+        }
+        onChange={([dateValue]) => {
+          const dateString = getDateString(dateValue)
+          onChange(dateString)
+          return { value: dateString }
+        }}
         name={name}
-        ref={register}
-        {...inputProps}
       />
     </InputWrapper>
   )
