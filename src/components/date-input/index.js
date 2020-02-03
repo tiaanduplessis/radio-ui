@@ -2,6 +2,7 @@ import React from 'react'
 import { useFormContext, Controller } from 'react-hook-form'
 import DatePicker from 'react-datepicker'
 import styled from 'styled-components'
+import getErrors from '../../utils/get-errors'
 
 import InputWrapper from '../input-wrapper'
 
@@ -45,7 +46,7 @@ const DateInput = props => {
     <InputWrapper
       required={required}
       disabled={disabled}
-      alertText={alertTextOverride || (errors[name] ? errors[name].message : '')}
+      alertText={alertTextOverride || getErrors(name, errors)}
       {...otherProps}
     >
       <Controller

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
+import getErrors from '../../utils/get-errors'
 import './styles.css'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
@@ -28,7 +29,7 @@ const TelInput = props => {
     <InputWrapper
       required={required}
       disabled={disabled}
-      alertText={alertTextOverride || (errors[name] ? errors[name].message : '')}
+      alertText={alertTextOverride || getErrors(name, errors)}
       {...otherProps}
     >
       <PhoneInput

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
 import { StyledInput } from './styles'
+import getErrors from '../../utils/get-errors'
 import InputWrapper from '../input-wrapper'
 import theme from '../theme'
 import defaultPropTypes from '../../config/prop-types'
@@ -15,21 +16,10 @@ const Input = ({
 }) => {
   const { id = otherProps.name, label, placeholder, inputStyle, name } = otherProps
   const { register, errors, triggerValidation } = useFormContext()
-  const nestedName = name.split('.')
-
-  const getErrors = () => {
-    if (nestedName.length === 1) {
-      return errors[name] && errors[name].message ? errors[name].message  : ''
-    }
-    else {
-      const nestedError = nestedName.reduce((obj, key) => (obj && obj[key] !== undefined) ? obj[key] : undefined, errors)
-      return nestedError ? nestedError.message : ''
-    }
-  }
 
   return (
     <InputWrapper
-      alertText={alertText || (getErrors() || '')}
+      alertText={alertText || getErrors(name, errors)}
       required={required}
       disabled={disabled}
       {...otherProps}

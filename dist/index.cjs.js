@@ -2216,6 +2216,19 @@ var StyledInput$1 = styled__default.input.attrs({
   type: 'text'
 })(_templateObject$a(), dist_2('colors.white'), dist_2('colors.gray[0]'), dist_2('fontSizes.small'), dist_2('space[1]'), dist_2('space[2]'), dist_2('colors.gray[7]'), dist_2('radii.small'), dist_2('colors.transparent'), dist_2('colors.gray.default'), dist_2('colors.gray[4]'));
 
+var getErrors = function getErrors(name, errors) {
+  var nestedName = name.split('.');
+
+  if (nestedName.length === 1) {
+    return errors[name] && errors[name].message ? errors[name].message : '';
+  } else {
+    var nestedError = nestedName.reduce(function (obj, key) {
+      return obj && obj[key] !== undefined ? obj[key] : undefined;
+    }, errors);
+    return nestedError ? nestedError.message : '';
+  }
+};
+
 function _templateObject4$1() {
   var data = taggedTemplateLiteral(["\n  margin-left: ", ";\n  color: ", ";\n  font-weight: ", ";\n"]);
 
@@ -2336,21 +2349,8 @@ var Input = function Input(_ref) {
       errors = _useFormContext.errors,
       triggerValidation = _useFormContext.triggerValidation;
 
-  var nestedName = name.split('.');
-
-  var getErrors = function getErrors() {
-    if (nestedName.length === 1) {
-      return errors[name] && errors[name].message ? errors[name].message : '';
-    } else {
-      var nestedError = nestedName.reduce(function (obj, key) {
-        return obj && obj[key] !== undefined ? obj[key] : undefined;
-      }, errors);
-      return nestedError ? nestedError.message : '';
-    }
-  };
-
   return React__default.createElement(InputWrapper, _extends_1({
-    alertText: alertText || getErrors() || '',
+    alertText: alertText || getErrors(name, errors),
     required: required,
     disabled: disabled
   }, otherProps), React__default.createElement(StyledInput$1, _extends_1({
@@ -12850,7 +12850,7 @@ var DateInput = function DateInput(props) {
   return React__default.createElement(InputWrapper, _extends_1({
     required: required,
     disabled: disabled,
-    alertText: alertTextOverride || (errors[name] ? errors[name].message : '')
+    alertText: alertTextOverride || getErrors(name, errors)
   }, otherProps), React__default.createElement(reactHookForm.Controller, {
     as: React__default.createElement(StyledDatePicker, (_React$createElement = {
       id: id,
@@ -28825,7 +28825,7 @@ var TelInput = function TelInput(props) {
   return React__default.createElement(InputWrapper, _extends_1({
     required: required,
     disabled: disabled,
-    alertText: alertTextOverride || (errors[name] ? errors[name].message : '')
+    alertText: alertTextOverride || getErrors(name, errors)
   }, otherProps), React__default.createElement(PhoneInput, {
     id: id,
     onChange: function onChange(value) {
@@ -35746,7 +35746,7 @@ var Select$1 = function Select(_ref3) {
       triggerValidation = _useFormContext.triggerValidation;
 
   return React__default.createElement(InputWrapper, _extends_1({
-    alertText: alertTextOverride || (errors[name] ? errors[name].message : ''),
+    alertText: alertTextOverride || getErrors(name, errors),
     required: required,
     disabled: disabled
   }, otherProps), React__default.createElement(reactHookForm.Controller, {

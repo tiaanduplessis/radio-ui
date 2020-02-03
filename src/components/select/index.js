@@ -1,6 +1,7 @@
 import React from 'react'
 import { useFormContext, Controller } from 'react-hook-form'
 import ReactSelect from 'react-select'
+import getErrors from '../../utils/get-errors'
 import InputWrapper from '../input-wrapper'
 import { colors, radii, fontSizes, fonts } from '../theme'
 
@@ -103,7 +104,7 @@ const Select = ({
 
   return (
     <InputWrapper
-      alertText={alertTextOverride || (errors[name] ? errors[name].message : '')}
+      alertText={alertTextOverride || getErrors(name, errors)}
       required={required}
       disabled={disabled}
       {...otherProps}
