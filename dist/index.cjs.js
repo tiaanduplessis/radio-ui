@@ -2342,9 +2342,10 @@ var Input = function Input(_ref) {
     if (nestedName.length === 1) {
       return errors[name] && errors[name].message ? errors[name].message : '';
     } else {
-      return nestedName.reduce(function (obj, key) {
+      var nestedError = nestedName.reduce(function (obj, key) {
         return obj && obj[key] !== undefined ? obj[key] : undefined;
-      }, errors).message;
+      }, errors);
+      return nestedError ? nestedError.message : '';
     }
   };
 

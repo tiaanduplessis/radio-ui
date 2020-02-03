@@ -22,7 +22,8 @@ const Input = ({
       return errors[name] && errors[name].message ? errors[name].message  : ''
     }
     else {
-      return nestedName.reduce((obj, key) => (obj && obj[key] !== undefined) ? obj[key] : undefined, errors).message
+      const nestedError = nestedName.reduce((obj, key) => (obj && obj[key] !== undefined) ? obj[key] : undefined, errors)
+      return nestedError ? nestedError.message : ''
     }
   }
 
