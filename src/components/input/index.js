@@ -16,10 +16,9 @@ const Input = ({
   const { id = otherProps.name, label, placeholder, inputStyle, name } = otherProps
   const { register, errors, triggerValidation } = useFormContext()
 
-
   return (
     <InputWrapper
-      alertText={alertText || (errors?.address?.addressLine1?.message || '')}
+      alertText={alertText || (errors?.eval(name)?.message || '')}
       required={required}
       disabled={disabled}
       {...otherProps}
