@@ -18,11 +18,11 @@ const Input = ({
   const nestedName = name.split('.')
 
   const getErrors = () => {
-    if (nestedName.length > 1) {
+    if (nestedName.length === 1) {
       return errors[name] && errors[name].message ? errors[name].message  : ''
     }
     else {
-      return new Function('_', `_.${name}`)(errors)
+      return nestedName.reduce((obj, key) => (obj && obj[key] !== undefined) ? obj[key] : undefined, errors)
     }
   }
 

@@ -2339,10 +2339,12 @@ var Input = function Input(_ref) {
   var nestedName = name.split('.');
 
   var getErrors = function getErrors() {
-    if (nestedName.length > 1) {
+    if (nestedName.length === 1) {
       return errors[name] && errors[name].message ? errors[name].message : '';
     } else {
-      return new Function('_', "_.".concat(name))(errors);
+      return nestedName.reduce(function (obj, key) {
+        return obj && obj[key] !== undefined ? obj[key] : undefined;
+      }, errors);
     }
   };
 
