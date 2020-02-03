@@ -2317,8 +2317,6 @@ var defaultPropTypes = _objectSpread$6({
 }, styledSystem.layout.propTypes, {}, styledSystem.space.propTypes);
 
 var Input = function Input(_ref) {
-  var _errors$eval;
-
   var alertText = _ref.alertText,
       disabled = _ref.disabled,
       onChange = _ref.onChange,
@@ -2338,8 +2336,18 @@ var Input = function Input(_ref) {
       errors = _useFormContext.errors,
       triggerValidation = _useFormContext.triggerValidation;
 
+  var nestedName = name.split('.');
+
+  var getErrors = function getErrors() {
+    if (nestedName.length > 1) {
+      return errors[name] && errors[name].message ? errors[name].message : '';
+    } else {
+      return new Function('_', "_.".concat(name))(errors);
+    }
+  };
+
   return React__default.createElement(InputWrapper, _extends_1({
-    alertText: alertText || (errors === null || errors === void 0 ? void 0 : (_errors$eval = errors.eval(name)) === null || _errors$eval === void 0 ? void 0 : _errors$eval.message) || '',
+    alertText: alertText || getErrors() || '',
     required: required,
     disabled: disabled
   }, otherProps), React__default.createElement(StyledInput$1, _extends_1({

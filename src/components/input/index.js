@@ -15,10 +15,20 @@ const Input = ({
 }) => {
   const { id = otherProps.name, label, placeholder, inputStyle, name } = otherProps
   const { register, errors, triggerValidation } = useFormContext()
+  const nestedName = name.split('.')
+
+  const getErrors = () => {
+    if (nestedName.length > 1) {
+      return errors[name] && errors[name].message ? errors[name].message  : ''
+    }
+    else {
+      return new Function('_', `_.${name}`)(errors)
+    }
+  }
 
   return (
     <InputWrapper
-      alertText={alertText || (errors?.eval(name)?.message || '')}
+      alertText={alertText || (getErrors() || '')}
       required={required}
       disabled={disabled}
       {...otherProps}
