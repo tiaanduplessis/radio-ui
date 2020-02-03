@@ -35743,7 +35743,23 @@ var Select$1 = function Select(_ref3) {
       errors = _useFormContext.errors,
       setValue = _useFormContext.setValue,
       getValues = _useFormContext.getValues,
-      triggerValidation = _useFormContext.triggerValidation;
+      triggerValidation = _useFormContext.triggerValidation; // const getLabel = () => {
+  //   return options && Array.isArray(options) ? options.find(({ value }) => {
+  //     const values = getValues()
+  //     return value === values[name]
+  //   }) : ''
+  // }
+  // const getSelectValue = () => {
+  //   const values = getValues()
+  //   return options.length && getLabel() ? 
+  //   {
+  //     value: values[name],
+  //     label: getLabel().label
+  //   }
+  //   :
+  //   ''
+  // }
+
 
   return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || getErrors(name, errors),
@@ -35787,9 +35803,9 @@ var Select$1 = function Select(_ref3) {
       isMulti: multiple,
       required: required
     }, otherProps)),
-    onChange: function onChange(_ref6) {
-      var _ref7 = slicedToArray(_ref6, 1),
-          selectValue = _ref7[0];
+    onChange: function onChange(_ref5) {
+      var _ref6 = slicedToArray(_ref5, 1),
+          selectValue = _ref6[0];
 
       _onChange(selectValue);
 
