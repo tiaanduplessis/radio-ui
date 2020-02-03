@@ -2344,7 +2344,7 @@ var Input = function Input(_ref) {
     } else {
       return nestedName.reduce(function (obj, key) {
         return obj && obj[key] !== undefined ? obj[key] : undefined;
-      }, errors);
+      }, errors).message;
     }
   };
 
