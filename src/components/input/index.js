@@ -19,7 +19,7 @@ const Input = ({
 
   return (
     <InputWrapper
-      alertText={alertText || (errors?.[name]?.message || '')}
+      alertText={alertText || (errors?.address?.addressLine1?.message || '')}
       required={required}
       disabled={disabled}
       {...otherProps}
