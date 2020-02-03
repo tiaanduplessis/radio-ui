@@ -2317,6 +2317,8 @@ var defaultPropTypes = _objectSpread$6({
 }, styledSystem.layout.propTypes, {}, styledSystem.space.propTypes);
 
 var Input = function Input(_ref) {
+  var _errors$name;
+
   var alertText = _ref.alertText,
       disabled = _ref.disabled,
       onChange = _ref.onChange,
@@ -2337,7 +2339,7 @@ var Input = function Input(_ref) {
       triggerValidation = _useFormContext.triggerValidation;
 
   return React__default.createElement(InputWrapper, _extends_1({
-    alertText: alertText || (errors[name] && errors[name].message ? errors[name].message : ''),
+    alertText: alertText || (errors === null || errors === void 0 ? void 0 : (_errors$name = errors[name]) === null || _errors$name === void 0 ? void 0 : _errors$name.message) || '',
     required: required,
     disabled: disabled
   }, otherProps), React__default.createElement(StyledInput$1, _extends_1({
