@@ -84,23 +84,23 @@ const Select = ({
 }) => {
   const { errors, setValue, getValues, triggerValidation } = useFormContext()
 
-  // const getLabel = () => {
-  //   return options && Array.isArray(options) ? options.find(({ value }) => {
-  //     const values = getValues()
-  //     return value === values[name]
-  //   }) : ''
-  // }
+  const getLabel = () => {
+    return options && Array.isArray(options) ? options.find(({ value }) => {
+      const values = getValues()
+      return value === values[name]
+    }) : ''
+  }
 
-  // const getSelectValue = () => {
-  //   const values = getValues()
-  //   return options.length && getLabel() ? 
-  //   {
-  //     value: values[name],
-  //     label: getLabel().label
-  //   }
-  //   :
-  //   ''
-  // }
+  const getSelectValue = () => {
+    const values = getValues()
+    return options.length && getLabel() ? 
+    {
+      value: values[name],
+      label: getLabel().label
+    }
+    :
+    ''
+  }
 
   return (
     <InputWrapper
@@ -129,7 +129,7 @@ const Select = ({
         }}
         name={name}
         //TODO: look into default value setting
-        // defaultValue={{ value: getSelectValue() }}
+        defaultValue={{ value: getSelectValue() }}
       />
     </InputWrapper>
   )
