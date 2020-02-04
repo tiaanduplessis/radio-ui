@@ -35741,28 +35741,11 @@ var Select$1 = function Select(_ref3) {
 
   var _useFormContext = reactHookForm.useFormContext(),
       errors = _useFormContext.errors,
-      setValue = _useFormContext.setValue,
-      getValues = _useFormContext.getValues,
-      triggerValidation = _useFormContext.triggerValidation,
-      watch = _useFormContext.watch;
+      watch = _useFormContext.watch,
+      triggerValidation = _useFormContext.triggerValidation;
 
-  var getLabel = function getLabel() {
-    return options && Array.isArray(options) ? options.find(function (_ref4) {
-      var value = _ref4.value;
-      var values = getValues();
-      return value === values[name];
-    }) : '';
-  };
+  var currentValue = watch(name);
 
-  var getSelectValue = function getSelectValue() {
-    var values = getValues();
-    return options.length && getLabel() ? {
-      value: values[name],
-      label: getLabel().label
-    } : '';
-  };
-
-  var value = watch(name, getSelectValue());
   return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || getErrors(name, errors),
     required: required,
@@ -35816,8 +35799,7 @@ var Select$1 = function Select(_ref3) {
       };
     },
     name: name //TODO: look into default value setting
-    ,
-    value: getSelectValue()
+
   }));
 };
 
