@@ -2225,7 +2225,7 @@ var getErrors = function getErrors(name, errors) {
     var nestedError = nestedName.reduce(function (obj, key) {
       return obj && obj[key] !== undefined ? obj[key] : undefined;
     }, errors);
-    return nestedError ? nestedError.message : '';
+    return nestedError && nestedError.message ? nestedError.message : '';
   }
 };
 
@@ -2429,7 +2429,7 @@ var TimeInput = function TimeInput(_ref) {
       triggerValidation = _useFormContext.triggerValidation;
 
   return React__default.createElement(InputWrapper, _extends_1({
-    alertText: alertTextOverride || (errors[name] ? errors[name].message : ''),
+    alertText: alertTextOverride || getErrors(name, errors),
     required: required
   }, otherProps), React__default.createElement(StyledInput$2, _extends_1({
     id: id,
@@ -35743,7 +35743,8 @@ var Select$1 = function Select(_ref3) {
       errors = _useFormContext.errors,
       setValue = _useFormContext.setValue,
       getValues = _useFormContext.getValues,
-      triggerValidation = _useFormContext.triggerValidation;
+      triggerValidation = _useFormContext.triggerValidation,
+      watch = _useFormContext.watch;
 
   var getLabel = function getLabel() {
     return options && Array.isArray(options) ? options.find(function (_ref4) {
@@ -35761,6 +35762,7 @@ var Select$1 = function Select(_ref3) {
     } : '';
   };
 
+  var value = watch(name, getSelectValue());
   return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || getErrors(name, errors),
     required: required,
@@ -35809,15 +35811,14 @@ var Select$1 = function Select(_ref3) {
 
       _onChange(selectValue);
 
+      console.log(value);
       return {
         value: selectValue
       };
     },
     name: name //TODO: look into default value setting
-    ,
-    defaultValue: {
-      value: getSelectValue()
-    }
+    // value={}
+
   }));
 };
 

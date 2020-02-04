@@ -3,6 +3,7 @@ import { useFormContext } from 'react-hook-form'
 import { StyledInput } from './styles'
 import InputWrapper from '../input-wrapper'
 import theme from '../theme'
+import getErrors from '../../utils/get-errors'
 import defaultPropTypes from '../../config/prop-types'
 
 const TimeInput = ({
@@ -18,7 +19,7 @@ const TimeInput = ({
 
   return (
     <InputWrapper
-      alertText={alertTextOverride || (errors[name] ? errors[name].message : '')}
+      alertText={alertTextOverride || getErrors(name, errors)}
       required={required}
       {...otherProps}
     >

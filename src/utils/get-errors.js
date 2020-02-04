@@ -6,7 +6,7 @@ const getErrors = (name, errors) => {
   }
   else {
     const nestedError = nestedName.reduce((obj, key) => (obj && obj[key] !== undefined) ? obj[key] : undefined, errors)
-    return nestedError ? nestedError.message : ''
+    return nestedError && nestedError.message ? nestedError.message : ''
   }
 }
 
