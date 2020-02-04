@@ -35811,14 +35811,13 @@ var Select$1 = function Select(_ref3) {
 
       _onChange(selectValue);
 
-      console.log(value);
       return {
         value: selectValue
       };
     },
     name: name //TODO: look into default value setting
-    // value={}
-
+    ,
+    value: getSelectValue()
   }));
 };
 

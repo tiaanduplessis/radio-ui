@@ -127,12 +127,11 @@ const Select = ({
         }
         onChange={([selectValue]) => {
           onChange(selectValue)
-          console.log(value)
           return { value: selectValue }
         }}
         name={name}
         //TODO: look into default value setting
-        // value={}
+        value={getSelectValue()}
       />
     </InputWrapper>
   )
