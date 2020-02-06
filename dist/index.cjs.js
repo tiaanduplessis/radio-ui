@@ -35692,7 +35692,8 @@ var styleOverride = function styleOverride(_ref) {
     },
     indicatorsContainer: function indicatorsContainer(provided, state) {
       return {
-        display: state.isDisabled ? 'none' : 'flex'
+        display: state.isDisabled ? 'none' : 'flex',
+        zIndex: zIndices[5]
       };
     },
     option: function option(defaultStyles, _ref2) {
@@ -36648,7 +36649,7 @@ function _templateObject4$2() {
 }
 
 function _templateObject3$3() {
-  var data = taggedTemplateLiteral(["\n  position: relative;\n  width: 100px;\n  height: 32px;\n  background-color: ", ";\n  transition: background 0.25s ease-out 0s;\n\n  &:before {\n    content: '';\n    display: block;\n    position: absolute;\n    width: 20px;\n    height: 20px;\n    border-radius: 10px;\n    background-color: ", ";\n    top: 6px;\n    left: 6px;\n    transition: left 0.3s ease-out 0s;\n    z-index: ", ";\n  }\n\n  ", ":checked + & {\n    background-color: ", ";\n  }\n\n  ", ":checked + &:before {\n    left: 75px;\n    background-color: ", ";\n  }\n"]);
+  var data = taggedTemplateLiteral(["\n  position: relative;\n  width: 100px;\n  height: 32px;\n  background-color: ", ";\n  transition: background 0.25s ease-out 0s;\n\n  &:before {\n    content: '';\n    display: block;\n    position: absolute;\n    width: 20px;\n    height: 20px;\n    border-radius: 10px;\n    background-color: ", ";\n    top: 6px;\n    left: 6px;\n    transition: left 0.3s ease-out 0s;\n  }\n\n  ", ":checked + & {\n    background-color: ", ";\n  }\n\n  ", ":checked + &:before {\n    left: 75px;\n    background-color: ", ";\n  }\n"]);
 
   _templateObject3$3 = function _templateObject3() {
     return data;
@@ -36680,7 +36681,7 @@ var Container$1 = styled__default.div(_templateObject$g(), dist_2('lineHeights.t
 var Input$3 = styled__default.input.attrs({
   type: 'checkbox'
 })(_templateObject2$4(), dist_2('space[0]'), dist_2('space[0]'), dist_2('zIndices[1]'));
-var Animate = styled__default.div(_templateObject3$3(), dist_2('colors.secondary'), dist_2('colors.white'), dist_2('zIndices[1]'), Input$3, dist_2('colors.primary'), Input$3, dist_2('colors.white'));
+var Animate = styled__default.div(_templateObject3$3(), dist_2('colors.secondary'), dist_2('colors.white'), Input$3, dist_2('colors.primary'), Input$3, dist_2('colors.white'));
 var CheckboxState = styled__default.div(_templateObject4$2(), dist_2('colors.white'), dist_2('fontWeights.bold'), dist_2('space[2]'));
 var CheckboxOff = styled__default(CheckboxState)(_templateObject5$1(), Input$3, Animate);
 var CheckboxOn = styled__default(CheckboxState)(_templateObject6$1(), Input$3, Animate);

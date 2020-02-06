@@ -48,7 +48,6 @@ export const Animate = styled.div`
     top: 6px;
     left: 6px;
     transition: left 0.3s ease-out 0s;
-    z-index: ${byTheme('zIndices[1]')};
   }
 
   ${Input}:checked + & {
