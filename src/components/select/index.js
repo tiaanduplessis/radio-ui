@@ -82,7 +82,7 @@ const Select = ({
   onInputChange,
   ...otherProps
 }) => {
-  const { errors, watch, triggerValidation, setValue } = useFormContext()
+  const { errors, watch, triggerValidation, setValue, register } = useFormContext()
   const currentValue = watch(name)
 
   const getLabel = () => (options && Array.isArray(options) ? options.find(({ value }) => value === currentValue) : '')
@@ -97,11 +97,6 @@ const Select = ({
     ''
   )
 
-  useEffect(() => {
-    const value = currentValue && currentValue.value ? currentValue.value : ''
-    setValue(name, value)
-  }, [currentValue])
-
   return (
     <InputWrapper
       alertText={alertTextOverride || getErrors(name, errors)}
@@ -109,7 +104,26 @@ const Select = ({
       disabled={disabled}
       {...otherProps}
     >
-      <Controller
+      <ReactSelect
+        onInputChange={onInputChange}
+        onBlur={async () => await triggerValidation(name)}
+        placeholder={placeholder}
+        styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
+        options={options}
+        isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
+        isMulti={multiple}
+        required={required}
+        onChange={selectValue => {
+          const { value } = selectValue
+          setValue(name, value)
+          onChange(selectValue)
+        }}
+        name={name}
+        ref={register({ name })}
+        value={getSelectValue()}
+        {...otherProps}
+      />
+      {/* <Controller
         as={
           <ReactSelect
             onInputChange={onInputChange}
@@ -129,7 +143,7 @@ const Select = ({
         }}
         name={name}
         //TODO: look into default value setting
-      />
+      /> */}
     </InputWrapper>
   )
 }

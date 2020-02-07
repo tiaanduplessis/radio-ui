@@ -35743,69 +35743,77 @@ var Select$1 = function Select(_ref3) {
       errors = _useFormContext.errors,
       watch = _useFormContext.watch,
       triggerValidation = _useFormContext.triggerValidation,
-      setValue = _useFormContext.setValue;
+      setValue = _useFormContext.setValue,
+      register = _useFormContext.register;
 
   var currentValue = watch(name);
 
-  React.useEffect(function () {
-    var value = currentValue && currentValue.value ? currentValue.value : '';
-    setValue(name, value);
-  }, [currentValue]);
+  var getLabel = function getLabel() {
+    return options && Array.isArray(options) ? options.find(function (_ref4) {
+      var value = _ref4.value;
+      return value === currentValue;
+    }) : '';
+  };
+
+  var getSelectValue = function getSelectValue() {
+    return options.length && getLabel() ? {
+      value: currentValue,
+      label: getLabel().label
+    } : '';
+  };
+
   return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || getErrors(name, errors),
     required: required,
     disabled: disabled
-  }, otherProps), React__default.createElement(reactHookForm.Controller, {
-    as: React__default.createElement(index, _extends_1({
-      onInputChange: onInputChange,
-      onBlur:
-      /*#__PURE__*/
-      asyncToGenerator(
-      /*#__PURE__*/
-      regenerator.mark(function _callee() {
-        return regenerator.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return triggerValidation(name);
+  }, otherProps), React__default.createElement(index, _extends_1({
+    onInputChange: onInputChange,
+    onBlur:
+    /*#__PURE__*/
+    asyncToGenerator(
+    /*#__PURE__*/
+    regenerator.mark(function _callee() {
+      return regenerator.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return triggerValidation(name);
 
-              case 2:
-                return _context.abrupt("return", _context.sent);
+            case 2:
+              return _context.abrupt("return", _context.sent);
 
-              case 3:
-              case "end":
-                return _context.stop();
-            }
+            case 3:
+            case "end":
+              return _context.stop();
           }
-        }, _callee);
-      })),
-      placeholder: placeholder,
-      styles: styleOverride({
-        shape: shape,
-        variant: variant,
-        fontSize: fontSize,
-        bordered: bordered,
-        hasShadow: hasShadow
-      }),
-      options: options,
-      isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
-      isMulti: multiple,
-      required: required
-    }, otherProps)),
-    onChange: function onChange(_ref6) {
-      var _ref7 = slicedToArray(_ref6, 1),
-          selectValue = _ref7[0];
+        }
+      }, _callee);
+    })),
+    placeholder: placeholder,
+    styles: styleOverride({
+      shape: shape,
+      variant: variant,
+      fontSize: fontSize,
+      bordered: bordered,
+      hasShadow: hasShadow
+    }),
+    options: options,
+    isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
+    isMulti: multiple,
+    required: required,
+    onChange: function onChange(selectValue) {
+      var value = selectValue.value;
+      setValue(name, value);
 
       _onChange(selectValue);
-
-      return {
-        value: selectValue
-      };
     },
-    name: name //TODO: look into default value setting
-
-  }));
+    name: name,
+    ref: register({
+      name: name
+    }),
+    value: getSelectValue()
+  }, otherProps)));
 };
 
 Select$1.defaultProps = {
