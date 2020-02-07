@@ -98,8 +98,8 @@ const Select = ({
   )
 
   useEffect(() => {
-    const { value } = currentValue
-    setValue(name, value || '')
+    const value = currentValue && currentValue.value ? currentValue.value : ''
+    setValue(name, value)
   }, [currentValue])
 
   return (

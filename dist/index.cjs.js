@@ -35748,8 +35748,8 @@ var Select$1 = function Select(_ref3) {
   var currentValue = watch(name);
 
   React.useEffect(function () {
-    var value = currentValue.value;
-    setValue(name, value || '');
+    var value = currentValue && currentValue.value ? currentValue.value : '';
+    setValue(name, value);
   }, [currentValue]);
   return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || getErrors(name, errors),
