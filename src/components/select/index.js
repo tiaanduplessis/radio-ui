@@ -3,7 +3,7 @@ import { useFormContext, Controller } from 'react-hook-form'
 import ReactSelect from 'react-select'
 import getErrors from '../../utils/get-errors'
 import InputWrapper from '../input-wrapper'
-import { colors, radii, fontSizes, fonts, zIndices } from '../theme'
+import { colors, radii, fontSizes, fonts } from '../theme'
 
 const styleOverride = ({ fontSize, width, shape, variant, hasShadow }) => ({
   indicatorSeparator: () => ({
@@ -41,7 +41,6 @@ const styleOverride = ({ fontSize, width, shape, variant, hasShadow }) => ({
   }),
   indicatorsContainer: (provided, state) => ({
     display: state.isDisabled ? 'none' : 'flex',
-    zIndex: zIndices[5]
   }),
   option: (defaultStyles, { isSelected, isFocused }) => {
     let color = colors.white
@@ -108,6 +107,7 @@ const Select = ({
       <Controller
         as={
           <ReactSelect
+            defaultValue={getSelectValue()}
             onInputChange={onInputChange}
             onBlur={async () => await triggerValidation(name)}
             placeholder={placeholder}

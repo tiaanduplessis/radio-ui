@@ -35692,8 +35692,7 @@ var styleOverride = function styleOverride(_ref) {
     },
     indicatorsContainer: function indicatorsContainer(provided, state) {
       return {
-        display: state.isDisabled ? 'none' : 'flex',
-        zIndex: zIndices[5]
+        display: state.isDisabled ? 'none' : 'flex'
       };
     },
     option: function option(defaultStyles, _ref2) {
@@ -35747,12 +35746,27 @@ var Select$1 = function Select(_ref3) {
 
   var currentValue = watch(name);
 
+  var getLabel = function getLabel() {
+    return options && Array.isArray(options) ? options.find(function (_ref4) {
+      var value = _ref4.value;
+      return value === currentValue;
+    }) : '';
+  };
+
+  var getSelectValue = function getSelectValue() {
+    return options.length && getLabel() ? {
+      value: currentValue,
+      label: getLabel().label
+    } : '';
+  };
+
   return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || getErrors(name, errors),
     required: required,
     disabled: disabled
   }, otherProps), React__default.createElement(reactHookForm.Controller, {
     as: React__default.createElement(index, _extends_1({
+      defaultValue: getSelectValue(),
       onInputChange: onInputChange,
       onBlur:
       /*#__PURE__*/
