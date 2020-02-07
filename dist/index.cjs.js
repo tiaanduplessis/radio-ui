@@ -35743,28 +35743,13 @@ var Select$1 = function Select(_ref3) {
       errors = _useFormContext.errors,
       watch = _useFormContext.watch,
       triggerValidation = _useFormContext.triggerValidation,
-      reset = _useFormContext.reset,
-      getValues = _useFormContext.getValues;
+      setValue = _useFormContext.setValue;
 
   var currentValue = watch(name);
 
-  var getLabel = function getLabel() {
-    return options && Array.isArray(options) ? options.find(function (_ref4) {
-      var value = _ref4.value;
-      return value === currentValue;
-    }) : '';
-  };
-
-  var getSelectValue = function getSelectValue() {
-    return options.length && getLabel() ? {
-      value: currentValue,
-      label: getLabel().label
-    } : '';
-  };
-
   React.useEffect(function () {
-    var values = getValues();
-    reset(values);
+    var value = currentValue.value;
+    setValue(name, value);
   }, [currentValue]);
   return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || getErrors(name, errors),
@@ -35819,8 +35804,7 @@ var Select$1 = function Select(_ref3) {
       };
     },
     name: name //TODO: look into default value setting
-    ,
-    defaultValue: getSelectValue()
+
   }));
 };
 

@@ -82,7 +82,7 @@ const Select = ({
   onInputChange,
   ...otherProps
 }) => {
-  const { errors, watch, triggerValidation, reset, getValues } = useFormContext()
+  const { errors, watch, triggerValidation, setValue } = useFormContext()
   const currentValue = watch(name)
 
   const getLabel = () => (options && Array.isArray(options) ? options.find(({ value }) => value === currentValue) : '')
@@ -98,8 +98,8 @@ const Select = ({
   )
 
   useEffect(() => {
-    const values = getValues()
-    reset(values)
+    const { value } = currentValue
+    setValue(name, value)
   }, [currentValue])
 
   return (
@@ -129,7 +129,6 @@ const Select = ({
         }}
         name={name}
         //TODO: look into default value setting
-        defaultValue={getSelectValue()}
       />
     </InputWrapper>
   )
