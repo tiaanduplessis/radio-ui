@@ -35742,7 +35742,9 @@ var Select$1 = function Select(_ref3) {
   var _useFormContext = reactHookForm.useFormContext(),
       errors = _useFormContext.errors,
       watch = _useFormContext.watch,
-      triggerValidation = _useFormContext.triggerValidation;
+      triggerValidation = _useFormContext.triggerValidation,
+      reset = _useFormContext.reset,
+      getValues = _useFormContext.getValues;
 
   var currentValue = watch(name);
 
@@ -35760,13 +35762,16 @@ var Select$1 = function Select(_ref3) {
     } : '';
   };
 
+  React.useEffect(function () {
+    var values = getValues();
+    reset(values);
+  }, [currentValue]);
   return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || getErrors(name, errors),
     required: required,
     disabled: disabled
   }, otherProps), React__default.createElement(reactHookForm.Controller, {
     as: React__default.createElement(index, _extends_1({
-      defaultValue: getSelectValue(),
       onInputChange: onInputChange,
       onBlur:
       /*#__PURE__*/
@@ -35814,7 +35819,8 @@ var Select$1 = function Select(_ref3) {
       };
     },
     name: name //TODO: look into default value setting
-
+    ,
+    defaultValue: getSelectValue()
   }));
 };
 

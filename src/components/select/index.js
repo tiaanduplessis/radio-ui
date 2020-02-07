@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useFormContext, Controller } from 'react-hook-form'
 import ReactSelect from 'react-select'
 import getErrors from '../../utils/get-errors'
@@ -82,7 +82,7 @@ const Select = ({
   onInputChange,
   ...otherProps
 }) => {
-  const { errors, watch, triggerValidation } = useFormContext()
+  const { errors, watch, triggerValidation, reset, getValues } = useFormContext()
   const currentValue = watch(name)
 
   const getLabel = () => (options && Array.isArray(options) ? options.find(({ value }) => value === currentValue) : '')
@@ -97,6 +97,11 @@ const Select = ({
     ''
   )
 
+  useEffect(() => {
+    const values = getValues()
+    reset(values)
+  }, [currentValue])
+
   return (
     <InputWrapper
       alertText={alertTextOverride || getErrors(name, errors)}
@@ -107,7 +112,6 @@ const Select = ({
       <Controller
         as={
           <ReactSelect
-            defaultValue={getSelectValue()}
             onInputChange={onInputChange}
             onBlur={async () => await triggerValidation(name)}
             placeholder={placeholder}
@@ -125,6 +129,7 @@ const Select = ({
         }}
         name={name}
         //TODO: look into default value setting
+        defaultValue={getSelectValue()}
       />
     </InputWrapper>
   )
