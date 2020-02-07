@@ -99,7 +99,7 @@ const Select = ({
 
   useEffect(() => {
     const { value } = currentValue
-    setValue(name, value)
+    setValue(name, value || '')
   }, [currentValue])
 
   return (
