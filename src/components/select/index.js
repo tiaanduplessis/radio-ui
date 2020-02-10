@@ -107,25 +107,24 @@ const Select = ({
       <Controller
         as={
           <ReactSelect
-            onInputChange={onInputChange}
-            onBlur={async () => await triggerValidation(name)}
-            placeholder={placeholder}
-            styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
+            // onInputChange={onInputChange}
+            // onBlur={async () => await triggerValidation(name)}
+            // placeholder={placeholder}
+            // styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
             options={options}
-            isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
-            isMulti={multiple}
-            required={required}
-            {...otherProps}
+            // isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
+            // isMulti={multiple}
+            // required={required}
+            // {...otherProps}
           />
         }
-        control={control}
-        value={getSelectValue()}
         onChange={([selectValue]) => {
           const { value } = selectValue
           onChange(selectValue)
           console.log(value, getSelectValue())
           return { value }
         }}
+        value={getSelectValue()}
         name={name}
       />
     </InputWrapper>

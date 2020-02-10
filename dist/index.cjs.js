@@ -35647,79 +35647,6 @@ var manageState = function manageState(SelectComponent) {
 
 var index = manageState(Select);
 
-function ownKeys$8(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread$9(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$8(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$8(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-var styleOverride = function styleOverride(_ref) {
-  var fontSize = _ref.fontSize,
-      width = _ref.width,
-      shape = _ref.shape,
-      variant = _ref.variant,
-      hasShadow = _ref.hasShadow;
-  return {
-    indicatorSeparator: function indicatorSeparator() {
-      return {
-        display: 'none'
-      };
-    },
-    control: function control(provided, state) {
-      var backgroundColor = colors.white;
-      return _objectSpread$9({}, provided, {
-        backgroundColor: backgroundColor,
-        border: state.isDisabled && !hasShadow ? "border: 1px solid ".concat(colors.gray.default) : "border: 1px solid ".concat(colors.gray.xlight),
-        borderColor: state.isDisabled ? colors.gray.default : colors.gray.xlight,
-        fontFamily: fonts.Montserrat,
-        fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
-        borderRadius: shape === 'rounded' ? radii.full : radii.small,
-        width: width || '100%',
-        boxShadow: hasShadow ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
-        padding: '0 0.8em',
-        overflow: 'hidden'
-      }, variant === 'dark' && {
-        border: "solid 1px ".concat(colors.gray.default)
-      });
-    },
-    placeholder: function placeholder() {
-      return {
-        color: colors.gray.default
-      };
-    },
-    singleValue: function singleValue() {
-      return {
-        color: colors.gray.xxdark
-      };
-    },
-    indicatorsContainer: function indicatorsContainer(provided, state) {
-      return {
-        display: state.isDisabled ? 'none' : 'flex'
-      };
-    },
-    option: function option(defaultStyles, _ref2) {
-      var isSelected = _ref2.isSelected,
-          isFocused = _ref2.isFocused;
-      var color = colors.white;
-
-      if (isFocused) {
-        color = colors.xlight;
-      }
-
-      if (isSelected) {
-        color = colors.gray.light;
-      }
-
-      return _objectSpread$9({}, defaultStyles, {
-        fontSize: fontSizes.small,
-        color: colors.black,
-        backgroundColor: color,
-        ':active': _objectSpread$9({}, defaultStyles[':active'], {
-          backgroundColor: colors.gray.xlight
-        })
-      });
-    }
-  };
-};
-
 var Select$1 = function Select(_ref3) {
   var shape = _ref3.shape,
       variant = _ref3.variant,
@@ -35766,48 +35693,20 @@ var Select$1 = function Select(_ref3) {
     required: required,
     disabled: disabled
   }, otherProps), React__default.createElement(reactHookForm.Controller, {
-    as: React__default.createElement(index, _extends_1({
-      onInputChange: onInputChange,
-      onBlur:
-      /*#__PURE__*/
-      asyncToGenerator(
-      /*#__PURE__*/
-      regenerator.mark(function _callee() {
-        return regenerator.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return triggerValidation(name);
+    as: React__default.createElement(index // onInputChange={onInputChange}
+    // onBlur={async () => await triggerValidation(name)}
+    // placeholder={placeholder}
+    // styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
+    , {
+      options: options // isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
+      // isMulti={multiple}
+      // required={required}
+      // {...otherProps}
 
-              case 2:
-                return _context.abrupt("return", _context.sent);
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      })),
-      placeholder: placeholder,
-      styles: styleOverride({
-        shape: shape,
-        variant: variant,
-        fontSize: fontSize,
-        bordered: bordered,
-        hasShadow: hasShadow
-      }),
-      options: options,
-      isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
-      isMulti: multiple,
-      required: required
-    }, otherProps)),
-    control: control,
-    value: getSelectValue(),
-    onChange: function onChange(_ref6) {
-      var _ref7 = slicedToArray(_ref6, 1),
-          selectValue = _ref7[0];
+    }),
+    onChange: function onChange(_ref5) {
+      var _ref6 = slicedToArray(_ref5, 1),
+          selectValue = _ref6[0];
 
       var value = selectValue.value;
 
@@ -35818,6 +35717,7 @@ var Select$1 = function Select(_ref3) {
         value: value
       };
     },
+    value: getSelectValue(),
     name: name
   }));
 };
@@ -36744,9 +36644,9 @@ Toggle.propTypes = {
   label: PropTypes$1.string.isRequired
 };
 
-function ownKeys$9(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$8(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$a(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$9(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$9(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$9(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$8(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$8(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _templateObject$h() {
   var data = taggedTemplateLiteral(["\n  background-position: center;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-image: ", ";\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
@@ -36766,7 +36666,7 @@ var BackgroundImage = styled__default.div(_templateObject$h(), image, styledSyst
 BackgroundImage.defaultProps = {
   theme: theme
 };
-BackgroundImage.propTypes = _objectSpread$a({
+BackgroundImage.propTypes = _objectSpread$9({
   source: PropTypes$1.string.isRequired
 }, styledSystem.space.propTypes, {}, styledSystem.background.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.flexbox.propTypes);
 BackgroundImage.displayName = 'BackgroundImage';
