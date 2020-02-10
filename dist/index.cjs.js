@@ -35742,9 +35742,7 @@ var Select$1 = function Select(_ref3) {
   var _useFormContext = reactHookForm.useFormContext(),
       errors = _useFormContext.errors,
       watch = _useFormContext.watch,
-      triggerValidation = _useFormContext.triggerValidation,
-      setValue = _useFormContext.setValue,
-      register = _useFormContext.register;
+      triggerValidation = _useFormContext.triggerValidation;
 
   var currentValue = watch(name);
 
@@ -35766,54 +35764,59 @@ var Select$1 = function Select(_ref3) {
     alertText: alertTextOverride || getErrors(name, errors),
     required: required,
     disabled: disabled
-  }, otherProps), React__default.createElement(index, _extends_1({
-    onInputChange: onInputChange,
-    onBlur:
-    /*#__PURE__*/
-    asyncToGenerator(
-    /*#__PURE__*/
-    regenerator.mark(function _callee() {
-      return regenerator.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return triggerValidation(name);
+  }, otherProps), React__default.createElement(reactHookForm.Controller, {
+    as: React__default.createElement(index, _extends_1({
+      onInputChange: onInputChange,
+      onBlur:
+      /*#__PURE__*/
+      asyncToGenerator(
+      /*#__PURE__*/
+      regenerator.mark(function _callee() {
+        return regenerator.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return triggerValidation(name);
 
-            case 2:
-              return _context.abrupt("return", _context.sent);
+              case 2:
+                return _context.abrupt("return", _context.sent);
 
-            case 3:
-            case "end":
-              return _context.stop();
+              case 3:
+              case "end":
+                return _context.stop();
+            }
           }
-        }
-      }, _callee);
-    })),
-    placeholder: placeholder,
-    styles: styleOverride({
-      shape: shape,
-      variant: variant,
-      fontSize: fontSize,
-      bordered: bordered,
-      hasShadow: hasShadow
-    }),
-    options: options,
-    isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
-    isMulti: multiple,
-    required: required,
-    onChange: function onChange(selectValue) {
+        }, _callee);
+      })),
+      placeholder: placeholder,
+      styles: styleOverride({
+        shape: shape,
+        variant: variant,
+        fontSize: fontSize,
+        bordered: bordered,
+        hasShadow: hasShadow
+      }),
+      options: options,
+      isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
+      isMulti: multiple,
+      required: required
+    }, otherProps)),
+    value: getSelectValue(),
+    onChange: function onChange(_ref6) {
+      var _ref7 = slicedToArray(_ref6, 1),
+          selectValue = _ref7[0];
+
       var value = selectValue.value;
-      setValue(name, value);
 
       _onChange(selectValue);
+
+      return {
+        value: value
+      };
     },
-    name: name,
-    ref: register({
-      name: name
-    }),
-    value: getSelectValue()
-  }, otherProps)));
+    name: name
+  }));
 };
 
 Select$1.defaultProps = {

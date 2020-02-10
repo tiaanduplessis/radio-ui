@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useFormContext, Controller } from 'react-hook-form'
 import ReactSelect from 'react-select'
 import getErrors from '../../utils/get-errors'
@@ -82,7 +82,7 @@ const Select = ({
   onInputChange,
   ...otherProps
 }) => {
-  const { errors, watch, triggerValidation, setValue, register } = useFormContext()
+  const { errors, watch, triggerValidation } = useFormContext()
   const currentValue = watch(name)
 
   const getLabel = () => (options && Array.isArray(options) ? options.find(({ value }) => value === currentValue) : '')
@@ -104,26 +104,7 @@ const Select = ({
       disabled={disabled}
       {...otherProps}
     >
-      <ReactSelect
-        onInputChange={onInputChange}
-        onBlur={async () => await triggerValidation(name)}
-        placeholder={placeholder}
-        styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
-        options={options}
-        isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
-        isMulti={multiple}
-        required={required}
-        onChange={selectValue => {
-          const { value } = selectValue
-          setValue(name, value)
-          onChange(selectValue)
-        }}
-        name={name}
-        ref={register({ name })}
-        value={getSelectValue()}
-        {...otherProps}
-      />
-      {/* <Controller
+      <Controller
         as={
           <ReactSelect
             onInputChange={onInputChange}
@@ -137,13 +118,14 @@ const Select = ({
             {...otherProps}
           />
         }
+        value={getSelectValue()}
         onChange={([selectValue]) => {
+          const { value } = selectValue
           onChange(selectValue)
-          return { value: selectValue }
+          return { value }
         }}
         name={name}
-        //TODO: look into default value setting
-      /> */}
+      />
     </InputWrapper>
   )
 }
