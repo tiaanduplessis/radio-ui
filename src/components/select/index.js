@@ -82,7 +82,7 @@ const Select = ({
   onInputChange,
   ...otherProps
 }) => {
-  const { errors, watch, triggerValidation } = useFormContext()
+  const { errors, watch, triggerValidation, control } = useFormContext()
   const currentValue = watch(name)
 
   const getLabel = () => (options && Array.isArray(options) ? options.find(({ value }) => value === currentValue) : '')
@@ -118,6 +118,7 @@ const Select = ({
             {...otherProps}
           />
         }
+        control={control}
         value={getSelectValue()}
         onChange={([selectValue]) => {
           const { value } = selectValue

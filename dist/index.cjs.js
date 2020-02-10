@@ -35742,7 +35742,8 @@ var Select$1 = function Select(_ref3) {
   var _useFormContext = reactHookForm.useFormContext(),
       errors = _useFormContext.errors,
       watch = _useFormContext.watch,
-      triggerValidation = _useFormContext.triggerValidation;
+      triggerValidation = _useFormContext.triggerValidation,
+      control = _useFormContext.control;
 
   var currentValue = watch(name);
 
@@ -35802,6 +35803,7 @@ var Select$1 = function Select(_ref3) {
       isMulti: multiple,
       required: required
     }, otherProps)),
+    control: control,
     value: getSelectValue(),
     onChange: function onChange(_ref6) {
       var _ref7 = slicedToArray(_ref6, 1),
