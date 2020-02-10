@@ -122,6 +122,7 @@ const Select = ({
         onChange={([selectValue]) => {
           const { value } = selectValue
           onChange(selectValue)
+          console.log(value, getSelectValue())
           return { value }
         }}
         name={name}
