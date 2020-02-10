@@ -82,16 +82,16 @@ const Select = ({
   onInputChange,
   ...otherProps
 }) => {
-  const { errors, watch, triggerValidation, control } = useFormContext()
+  const { errors, watch, triggerValidation } = useFormContext()
   const currentValue = watch(name)
 
-  const getLabel = () => (options && Array.isArray(options) ? options.find(({ value }) => value === currentValue) : '')
+  const getLabel = newValue => (options && Array.isArray(options) ? options.find(({ value }) => value === newValue) : '')
 
-  const getSelectValue = () => (
-    options.length && getLabel() ? 
+  const getSelectValue = value => (
+    options.length && getLabel(value) ? 
     {
-      value: currentValue,
-      label: getLabel().label
+      value,
+      label: getLabel(value).label
     }
     :
     ''
@@ -107,24 +107,24 @@ const Select = ({
       <Controller
         as={
           <ReactSelect
-            // onInputChange={onInputChange}
-            // onBlur={async () => await triggerValidation(name)}
-            // placeholder={placeholder}
-            // styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
+            onInputChange={onInputChange}
+            onBlur={async () => await triggerValidation(name)}
+            placeholder={placeholder}
+            styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
             options={options}
-            // isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
-            // isMulti={multiple}
-            // required={required}
-            // {...otherProps}
+            isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
+            isMulti={multiple}
+            required={required}
+            {...otherProps}
           />
         }
         onChange={([selectValue]) => {
           const { value } = selectValue
           onChange(selectValue)
-          console.log(value, getSelectValue())
+          console.log(value, getSelectValue(value))
           return { value }
         }}
-        value={getSelectValue()}
+        value={getSelectValue(currentValue)}
         name={name}
       />
     </InputWrapper>
