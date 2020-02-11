@@ -82,7 +82,7 @@ const Select = ({
   onInputChange,
   ...otherProps
 }) => {
-  const { errors, watch, triggerValidation, setValue } = useFormContext()
+  const { errors, watch, triggerValidation, setValue, register } = useFormContext()
   const currentValue = watch(name)
   console.log(currentValue)
 
@@ -122,6 +122,7 @@ const Select = ({
         isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
         isMulti={multiple}
         required={required}
+        ref={register({ name })}
         {...otherProps}
       />
     </InputWrapper>

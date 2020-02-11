@@ -35743,7 +35743,8 @@ var Select$1 = function Select(_ref3) {
       errors = _useFormContext.errors,
       watch = _useFormContext.watch,
       triggerValidation = _useFormContext.triggerValidation,
-      setValue = _useFormContext.setValue;
+      setValue = _useFormContext.setValue,
+      register = _useFormContext.register;
 
   var currentValue = watch(name);
   console.log(currentValue);
@@ -35834,7 +35835,10 @@ var Select$1 = function Select(_ref3) {
     options: options,
     isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
     isMulti: multiple,
-    required: required
+    required: required,
+    ref: register({
+      name: name
+    })
   }, otherProps)));
 };
 
