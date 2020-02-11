@@ -85,13 +85,13 @@ const Select = ({
   const { errors, watch, triggerValidation } = useFormContext()
   const currentValue = watch(name)
 
-  const getLabel = newValue => (options && Array.isArray(options) ? options.find(({ value }) => value === newValue) : '')
+  const getLabel = () => (options && Array.isArray(options) ? options.find(({ value }) => value === currentValue) : '')
 
-  const getSelectValue = value => (
-    options.length && getLabel(value) ? 
+  const getSelectValue = () => (
+    options.length && getLabel() ? 
     {
-      value,
-      label: getLabel(value).label
+      value: currentValue,
+      label: getLabel().label
     }
     :
     ''
@@ -121,10 +121,10 @@ const Select = ({
         onChange={([selectValue]) => {
           const { value } = selectValue
           onChange(selectValue)
-          console.log(value, getSelectValue(value))
+          console.log(value, getSelectValue())
           return { value }
         }}
-        value={getSelectValue(currentValue)}
+        value={getSelectValue()}
         name={name}
       />
     </InputWrapper>

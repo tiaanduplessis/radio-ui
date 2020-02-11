@@ -35746,17 +35746,17 @@ var Select$1 = function Select(_ref3) {
 
   var currentValue = watch(name);
 
-  var getLabel = function getLabel(newValue) {
+  var getLabel = function getLabel() {
     return options && Array.isArray(options) ? options.find(function (_ref4) {
       var value = _ref4.value;
-      return value === newValue;
+      return value === currentValue;
     }) : '';
   };
 
-  var getSelectValue = function getSelectValue(value) {
-    return options.length && getLabel(value) ? {
-      value: value,
-      label: getLabel(value).label
+  var getSelectValue = function getSelectValue() {
+    return options.length && getLabel() ? {
+      value: currentValue,
+      label: getLabel().label
     } : '';
   };
 
@@ -35810,12 +35810,12 @@ var Select$1 = function Select(_ref3) {
 
       _onChange(selectValue);
 
-      console.log(value, getSelectValue(value));
+      console.log(value, getSelectValue());
       return {
         value: value
       };
     },
-    value: getSelectValue(currentValue),
+    value: getSelectValue(),
     name: name
   }));
 };
