@@ -35820,9 +35820,7 @@ var Select$1 = function Select(_ref3) {
                 value = _ref6.value, label = _ref6.label;
                 setValue(name, value);
                 _context2.next = 4;
-                return triggerValidation({
-                  name: name
-                });
+                return triggerValidation(name);
 
               case 4:
                 values = getValues();

@@ -117,7 +117,7 @@ const Select = ({
         onBlur={async () => await triggerValidation(name)}
         onChange={async ({ value, label }) => {
           setValue(name, value)
-          await triggerValidation({ name })
+          await triggerValidation(name)
           const values = getValues()
           reset(values)
           onChange({ value, label })
