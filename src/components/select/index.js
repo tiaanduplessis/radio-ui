@@ -98,7 +98,13 @@ const Select = ({
   )
 
   return (
-    <Controller
+    <InputWrapper
+      alertText={alertTextOverride || getErrors(name, errors)}
+      required={required}
+      disabled={disabled}
+      {...otherProps}
+    >
+      <Controller
         as={
           <ReactSelect
             onInputChange={onInputChange}
@@ -121,6 +127,7 @@ const Select = ({
         value={getSelectValue()}
         name={name}
       />
+    </InputWrapper>
   )
 }
 
