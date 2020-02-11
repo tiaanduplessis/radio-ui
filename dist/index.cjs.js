@@ -35728,7 +35728,7 @@ var Select$1 = function Select(_ref3) {
       disableEmpty = _ref3.disableEmpty,
       _ref3$options = _ref3.options,
       options = _ref3$options === void 0 ? [] : _ref3$options,
-      _onChange = _ref3.onChange,
+      onChange = _ref3.onChange,
       placeholder = _ref3.placeholder,
       fontSize = _ref3.fontSize,
       bordered = _ref3.bordered,
@@ -35742,9 +35742,11 @@ var Select$1 = function Select(_ref3) {
   var _useFormContext = reactHookForm.useFormContext(),
       errors = _useFormContext.errors,
       watch = _useFormContext.watch,
-      triggerValidation = _useFormContext.triggerValidation;
+      triggerValidation = _useFormContext.triggerValidation,
+      setValue = _useFormContext.setValue;
 
   var currentValue = watch(name);
+  console.log(currentValue);
 
   var getLabel = function getLabel() {
     return options && Array.isArray(options) ? options.find(function (_ref4) {
@@ -35764,58 +35766,75 @@ var Select$1 = function Select(_ref3) {
     alertText: alertTextOverride || getErrors(name, errors),
     required: required,
     disabled: disabled
-  }, otherProps), React__default.createElement(reactHookForm.Controller, {
-    as: React__default.createElement(index, _extends_1({
-      onInputChange: onInputChange,
-      onBlur:
+  }, otherProps), React__default.createElement(index, _extends_1({
+    id: id,
+    name: name,
+    onInputChange: onInputChange,
+    defaultValue: getSelectValue(),
+    onBlur:
+    /*#__PURE__*/
+    asyncToGenerator(
+    /*#__PURE__*/
+    regenerator.mark(function _callee() {
+      return regenerator.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return triggerValidation(name);
+
+            case 2:
+              return _context.abrupt("return", _context.sent);
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    })),
+    onChange:
+    /*#__PURE__*/
+    function () {
+      var _ref6 = asyncToGenerator(
       /*#__PURE__*/
-      asyncToGenerator(
-      /*#__PURE__*/
-      regenerator.mark(function _callee() {
-        return regenerator.wrap(function _callee$(_context) {
+      regenerator.mark(function _callee2(selectValue) {
+        var value;
+        return regenerator.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context.next = 2;
+                value = selectValue.value;
+                onChange(selectValue);
+                setValue(name, value);
+                _context2.next = 5;
                 return triggerValidation(name);
 
-              case 2:
-                return _context.abrupt("return", _context.sent);
-
-              case 3:
+              case 5:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
-      })),
-      placeholder: placeholder,
-      styles: styleOverride({
-        shape: shape,
-        variant: variant,
-        fontSize: fontSize,
-        bordered: bordered,
-        hasShadow: hasShadow
-      }),
-      options: options,
-      isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
-      isMulti: multiple,
-      required: required
-    }, otherProps)),
-    onChange: function onChange(_ref6) {
-      var _ref7 = slicedToArray(_ref6, 1),
-          selectValue = _ref7[0];
+        }, _callee2);
+      }));
 
-      var value = selectValue.value;
-
-      _onChange(selectValue);
-
-      console.log(value, getSelectValue());
-      return value;
-    },
-    value: getSelectValue(),
-    name: name
-  }));
+      return function (_x) {
+        return _ref6.apply(this, arguments);
+      };
+    }(),
+    placeholder: placeholder,
+    styles: styleOverride({
+      shape: shape,
+      variant: variant,
+      fontSize: fontSize,
+      bordered: bordered,
+      hasShadow: hasShadow
+    }),
+    options: options,
+    isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
+    isMulti: multiple,
+    required: required
+  }, otherProps)));
 };
 
 Select$1.defaultProps = {
