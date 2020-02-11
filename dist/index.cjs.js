@@ -35812,7 +35812,7 @@ var Select$1 = function Select(_ref3) {
       var _ref7 = asyncToGenerator(
       /*#__PURE__*/
       regenerator.mark(function _callee2(_ref6) {
-        var value, label;
+        var value, label, values;
         return regenerator.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -35825,14 +35825,14 @@ var Select$1 = function Select(_ref3) {
                 });
 
               case 4:
-                // const values = getValues()
-                // reset(values)
+                values = getValues();
+                reset(values);
                 onChange({
                   value: value,
                   label: label
                 });
 
-              case 5:
+              case 7:
               case "end":
                 return _context2.stop();
             }

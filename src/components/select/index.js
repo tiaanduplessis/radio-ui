@@ -118,8 +118,8 @@ const Select = ({
         onChange={async ({ value, label }) => {
           setValue(name, value)
           await triggerValidation({ name })
-          // const values = getValues()
-          // reset(values)
+          const values = getValues()
+          reset(values)
           onChange({ value, label })
         }}
         ref={register({ name })}
