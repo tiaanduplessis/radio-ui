@@ -113,13 +113,13 @@ const Select = ({
         isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
         isMulti={multiple}
         required={required}
-        defaultValue={getSelectValue()}
+        value={getSelectValue()}
         onBlur={async () => await triggerValidation(name)}
         onChange={async ({ value, label }) => {
           setValue(name, value)
           await triggerValidation({ name })
-          const values = getValues()
-          reset(values)
+          // const values = getValues()
+          // reset(values)
           onChange({ value, label })
         }}
         ref={register({ name })}
