@@ -82,9 +82,8 @@ const Select = ({
   onInputChange,
   ...otherProps
 }) => {
-  const { errors, watch, triggerValidation, setValue, register } = useFormContext()
+  const { errors, watch, triggerValidation, setValue, register, reset, getValues } = useFormContext()
   const currentValue = watch(name)
-  console.log(currentValue)
 
   const getLabel = () => (options && Array.isArray(options) ? options.find(({ value }) => value === currentValue) : '')
 
@@ -108,20 +107,21 @@ const Select = ({
       <ReactSelect
         name={name}
         onInputChange={onInputChange}
-        defaultValue={getSelectValue()}
-        onBlur={async () => await triggerValidation(name)}
-        onChange={async selectValue => {
-          const { value } = selectValue
-          setValue(name, value)
-          await triggerValidation(name)
-          onChange(selectValue)
-        }}
         placeholder={placeholder}
         styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
         options={options}
         isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
         isMulti={multiple}
         required={required}
+        defaultValue={getSelectValue()}
+        onBlur={async () => await triggerValidation(name)}
+        onChange={async ({ value, label }) => {
+          setValue(name, value)
+          await triggerValidation({ name })
+          const values = getValues()
+          reset(values)
+          onChange({ value, label })
+        }}
         ref={register({ name })}
         {...otherProps}
       />

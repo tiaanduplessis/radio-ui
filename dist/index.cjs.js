@@ -35744,10 +35744,11 @@ var Select$1 = function Select(_ref3) {
       watch = _useFormContext.watch,
       triggerValidation = _useFormContext.triggerValidation,
       setValue = _useFormContext.setValue,
-      register = _useFormContext.register;
+      register = _useFormContext.register,
+      reset = _useFormContext.reset,
+      getValues = _useFormContext.getValues;
 
   var currentValue = watch(name);
-  console.log(currentValue);
 
   var getLabel = function getLabel() {
     return options && Array.isArray(options) ? options.find(function (_ref4) {
@@ -35770,6 +35771,18 @@ var Select$1 = function Select(_ref3) {
   }, otherProps), React__default.createElement(index, _extends_1({
     name: name,
     onInputChange: onInputChange,
+    placeholder: placeholder,
+    styles: styleOverride({
+      shape: shape,
+      variant: variant,
+      fontSize: fontSize,
+      bordered: bordered,
+      hasShadow: hasShadow
+    }),
+    options: options,
+    isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
+    isMulti: multiple,
+    required: required,
     defaultValue: getSelectValue(),
     onBlur:
     /*#__PURE__*/
@@ -35796,23 +35809,30 @@ var Select$1 = function Select(_ref3) {
     onChange:
     /*#__PURE__*/
     function () {
-      var _ref6 = asyncToGenerator(
+      var _ref7 = asyncToGenerator(
       /*#__PURE__*/
-      regenerator.mark(function _callee2(selectValue) {
-        var value;
+      regenerator.mark(function _callee2(_ref6) {
+        var value, label, values;
         return regenerator.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                value = selectValue.value;
+                value = _ref6.value, label = _ref6.label;
                 setValue(name, value);
                 _context2.next = 4;
-                return triggerValidation(name);
+                return triggerValidation({
+                  name: name
+                });
 
               case 4:
-                onChange(selectValue);
+                values = getValues();
+                reset(values);
+                onChange({
+                  value: value,
+                  label: label
+                });
 
-              case 5:
+              case 7:
               case "end":
                 return _context2.stop();
             }
@@ -35821,21 +35841,9 @@ var Select$1 = function Select(_ref3) {
       }));
 
       return function (_x) {
-        return _ref6.apply(this, arguments);
+        return _ref7.apply(this, arguments);
       };
     }(),
-    placeholder: placeholder,
-    styles: styleOverride({
-      shape: shape,
-      variant: variant,
-      fontSize: fontSize,
-      bordered: bordered,
-      hasShadow: hasShadow
-    }),
-    options: options,
-    isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
-    isMulti: multiple,
-    required: required,
     ref: register({
       name: name
     })
