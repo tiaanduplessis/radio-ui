@@ -35760,11 +35760,7 @@ var Select$1 = function Select(_ref3) {
     } : '';
   };
 
-  return React__default.createElement(InputWrapper, _extends_1({
-    alertText: alertTextOverride || getErrors(name, errors),
-    required: required,
-    disabled: disabled
-  }, otherProps), React__default.createElement(reactHookForm.Controller, {
+  return React__default.createElement(reactHookForm.Controller, {
     as: React__default.createElement(index, _extends_1({
       onInputChange: onInputChange,
       onBlur:
@@ -35817,7 +35813,7 @@ var Select$1 = function Select(_ref3) {
     },
     value: getSelectValue(),
     name: name
-  }));
+  });
 };
 
 Select$1.defaultProps = {
