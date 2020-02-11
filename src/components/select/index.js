@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFormContext, Controller } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import ReactSelect from 'react-select'
 import getErrors from '../../utils/get-errors'
 import InputWrapper from '../input-wrapper'
@@ -106,16 +106,15 @@ const Select = ({
       {...otherProps}
     >
       <ReactSelect
-        id={id}
         name={name}
         onInputChange={onInputChange}
         defaultValue={getSelectValue()}
         onBlur={async () => await triggerValidation(name)}
         onChange={async selectValue => {
           const { value } = selectValue
-          onChange(selectValue)
           setValue(name, value)
           await triggerValidation(name)
+          onChange(selectValue)
         }}
         placeholder={placeholder}
         styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
@@ -125,28 +124,6 @@ const Select = ({
         required={required}
         {...otherProps}
       />
-      {/* <Controller
-        as={
-          <ReactSelect
-            onInputChange={onInputChange}
-            onBlur={async () => await triggerValidation(name)}
-            placeholder={placeholder}
-            styles={styleOverride({ shape, variant, fontSize, bordered, hasShadow })}
-            options={options}
-            isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
-            isMulti={multiple}
-            required={required}
-            {...otherProps}
-          />
-        }
-        onChange={([selectValue]) => {
-          const { value } = selectValue
-          onChange(selectValue)
-          return { value }
-        }}
-        value={getSelectValue()}
-        name={name}
-      /> */}
     </InputWrapper>
   )
 }

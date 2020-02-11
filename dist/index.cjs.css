@@ -1,3 +1,47 @@
+.react-phone-number-input {
+  border: 1px solid #EEF2F4 !important;
+  border-radius: 0.2em;
+  padding: 0.2em;
+  width: 100% !important;
+}
+
+.react-phone-number-input input {
+  border: none !important;
+  font-family: inherit;
+  font-size: 0.875em;
+}
+
+.react-phone-number-input__icon {
+  border: none;
+}
+
+.react-phone-number-input input::placeholder {
+   color: #9FACB9;
+}
+
+.react-phone-number-input,
+.react-phone-number-input input {
+  height: 38px !important;
+}
+
+.react-phone-number-input input:disabled {
+  border: 1px solid #d0d0d0 !important;
+}
+
+.react-phone-number-input .flag-dropdown.open-dropdown .selected-flag,
+.react-phone-number-input .flag-dropdown:hover .selected-flag,
+.react-phone-number-input .flag-dropdown.open-dropdown,
+.react-phone-number-input > .flag-dropdown,
+.react-phone-number-input .selected-flag {
+  background-color: transparent !important;
+  border: none !important;
+  z-index: inherit !important;
+}
+
+.react-phone-number-input .selected-flag {
+  padding-left: 12px !important;
+}
+
 .react-datepicker-wrapper {
   width: 100% !important;
 }
@@ -51,50 +95,6 @@
 .react-datepicker {
   box-shadow: 0 0 2px 0 rgba(0,0,0,.0625), 0 4px 8px 0 rgba(0, 0, 0, 0.12) !important;
     border: none !important;
-}
-
-.react-phone-number-input {
-  border: 1px solid #EEF2F4 !important;
-  border-radius: 0.2em;
-  padding: 0.2em;
-  width: 100% !important;
-}
-
-.react-phone-number-input input {
-  border: none !important;
-  font-family: inherit;
-  font-size: 0.875em;
-}
-
-.react-phone-number-input__icon {
-  border: none;
-}
-
-.react-phone-number-input input::placeholder {
-   color: #9FACB9;
-}
-
-.react-phone-number-input,
-.react-phone-number-input input {
-  height: 38px !important;
-}
-
-.react-phone-number-input input:disabled {
-  border: 1px solid #d0d0d0 !important;
-}
-
-.react-phone-number-input .flag-dropdown.open-dropdown .selected-flag,
-.react-phone-number-input .flag-dropdown:hover .selected-flag,
-.react-phone-number-input .flag-dropdown.open-dropdown,
-.react-phone-number-input > .flag-dropdown,
-.react-phone-number-input .selected-flag {
-  background-color: transparent !important;
-  border: none !important;
-  z-index: inherit !important;
-}
-
-.react-phone-number-input .selected-flag {
-  padding-left: 12px !important;
 }
 
 /* CSS variables. */

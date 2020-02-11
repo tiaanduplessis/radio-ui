@@ -35767,7 +35767,6 @@ var Select$1 = function Select(_ref3) {
     required: required,
     disabled: disabled
   }, otherProps), React__default.createElement(index, _extends_1({
-    id: id,
     name: name,
     onInputChange: onInputChange,
     defaultValue: getSelectValue(),
@@ -35805,10 +35804,12 @@ var Select$1 = function Select(_ref3) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 value = selectValue.value;
-                onChange(selectValue);
                 setValue(name, value);
-                _context2.next = 5;
+                _context2.next = 4;
                 return triggerValidation(name);
+
+              case 4:
+                onChange(selectValue);
 
               case 5:
               case "end":
