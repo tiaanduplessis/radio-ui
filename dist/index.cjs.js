@@ -35811,9 +35811,7 @@ var Select$1 = function Select(_ref3) {
       _onChange(selectValue);
 
       console.log(value, getSelectValue());
-      return {
-        value: value
-      };
+      return value;
     },
     value: getSelectValue(),
     name: name
