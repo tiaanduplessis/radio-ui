@@ -12821,16 +12821,17 @@ var StyledDatePicker = styled__default(_t)(_templateObject$d(), function (props)
   return props.theme.colors.gray.xdark;
 });
 
-var DateInput = function DateInput(props) {
+var DateInput = function DateInput(_ref) {
   var _React$createElement;
 
-  var disabled = props.disabled,
-      _onChange = props.onChange,
-      placeholder = props.placeholder,
-      inputProps = props.inputProps,
-      required = props.required,
-      alertTextOverride = props.alertText,
-      otherProps = objectWithoutProperties(props, ["disabled", "onChange", "placeholder", "inputProps", "required", "alertText"]);
+  var disabled = _ref.disabled,
+      _onChange = _ref.onChange,
+      placeholder = _ref.placeholder,
+      dateFormat = _ref.dateFormat,
+      inputProps = _ref.inputProps,
+      required = _ref.required,
+      alertTextOverride = _ref.alertText,
+      otherProps = objectWithoutProperties(_ref, ["disabled", "onChange", "placeholder", "dateFormat", "inputProps", "required", "alertText"]);
 
   var _otherProps$id = otherProps.id,
       id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
@@ -12881,9 +12882,9 @@ var DateInput = function DateInput(props) {
         }
       }, _callee);
     }))), _React$createElement)),
-    onChange: function onChange(_ref2) {
-      var _ref3 = slicedToArray(_ref2, 1),
-          dateValue = _ref3[0];
+    onChange: function onChange(_ref3) {
+      var _ref4 = slicedToArray(_ref3, 1),
+          dateValue = _ref4[0];
 
       var dateString = getDateString(dateValue);
 

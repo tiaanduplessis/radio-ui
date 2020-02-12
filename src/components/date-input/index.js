@@ -26,17 +26,16 @@ const StyledDatePicker = styled(DatePicker)`
   }
 `
 
-const DateInput = props => {
-  const {
-    disabled,
-    onChange,
-    placeholder,
-    inputProps,
-    required,
-    alertText: alertTextOverride,
-    ...otherProps
-  } = props
-
+const DateInput = ({
+  disabled,
+  onChange,
+  placeholder,
+  dateFormat,
+  inputProps,
+  required,
+  alertText: alertTextOverride,
+  ...otherProps
+}) => {
   const { id = otherProps.name, label, inputStyle, name } = otherProps
   const { errors = {}, triggerValidation } = useFormContext()
 
