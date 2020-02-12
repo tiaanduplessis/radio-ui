@@ -13,7 +13,7 @@ const styleOverride = ({ fontSize, width, shape, variant, hasShadow }) => ({
     return {
       ...provided,
       backgroundColor: state.isDisabled ? colors.gray[0] : colors.white,
-      border: `border: 1px solid ${colors.gray[0]}`,
+      border: `1px solid ${colors.gray[0]}`,
       borderColor: state.isDisabled ? colors.gray.default : colors.gray.xlight,
       fontFamily: fonts.Montserrat,
       fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,

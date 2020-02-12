@@ -12,7 +12,7 @@ import './styles.css'
 const StyledDatePicker = styled(DatePicker)`
   background-color: ${props =>
     props.disabled ? props.theme.colors.gray[0] : props.theme.colors.white};
-  border: 1px solid ${props.theme.colors.gray[0]};
+  border: ${props => `1px solid ${props.theme.colors.gray[0]}`};
   font-family: inherit;
   font-size: ${props => props.theme.fontSizes.small};
   padding: 0.6em 1em;
