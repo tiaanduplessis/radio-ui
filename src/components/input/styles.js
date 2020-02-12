@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 import { byTheme } from 'styled-funcs'
-import { colors } from '../theme'
 
 export const StyledInput = styled.input.attrs({
   type: 'text',
 })`
-  background-color: ${({ disabled }) => disabled ? colors.gray[0] : colors.white};
+  background-color: ${byTheme('colors.white')};
   border: 1px solid ${byTheme('colors.gray[0]')};
   font-family: inherit;
   font-size: ${byTheme('fontSizes.small')};
@@ -16,8 +15,7 @@ export const StyledInput = styled.input.attrs({
   width: 100%;
 
   &:disabled {
-    background-color: ${byTheme('colors.transparent')};
-    border: 1px solid ${byTheme('colors.gray.default')};
+    background-color: ${byTheme('colors.gray[0]')};
   }
 
   ::placeholder {

@@ -16,12 +16,12 @@ const StyledDatePicker = styled(DatePicker)`
   font-family: inherit;
   font-size: ${props => props.theme.fontSizes.small};
   padding: 0.6em 1em;
-  height: 35px;
+  height: 25px;
   border-radius: ${props => props.theme.radii.small};
   width: 100%;
 
   ::placeholder {
-    color: ${props => props.theme.colors.gray.xdark};
+    color: ${props => props.theme.colors.gray.dark};
   }
 `
 
