@@ -10,15 +10,10 @@ const styleOverride = ({ fontSize, width, shape, variant, hasShadow }) => ({
     display: 'none',
   }),
   control: (provided, state) => {
-    const backgroundColor = colors.white
-
     return {
       ...provided,
-      backgroundColor: backgroundColor,
-      border:
-        state.isDisabled && !hasShadow
-          ? `border: 1px solid ${colors.gray.default}`
-          : `border: 1px solid ${colors.gray.xlight}`,
+      backgroundColor: state.isDisabled ? colors.gray[0] : colors.white,
+      border: `border: 1px solid ${colors.gray[0]}`,
       borderColor: state.isDisabled ? colors.gray.default : colors.gray.xlight,
       fontFamily: fonts.Montserrat,
       fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
