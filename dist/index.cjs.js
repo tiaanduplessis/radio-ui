@@ -2329,7 +2329,7 @@ var defaultPropTypes = _objectSpread$6({
   inputStyle: PropTypes$1.object
 }, styledSystem.layout.propTypes, {}, styledSystem.space.propTypes);
 
-var Input$1 = function Input(_ref) {
+var Input = function Input(_ref) {
   var alertText = _ref.alertText,
       disabled = _ref.disabled,
       onChange = _ref.onChange,
@@ -2388,8 +2388,8 @@ var Input$1 = function Input(_ref) {
   }, inputProps)));
 };
 
-Input$1.propTypes = defaultPropTypes;
-Input$1.defaultProps = {
+Input.propTypes = defaultPropTypes;
+Input.defaultProps = {
   label: '',
   inputStyle: {},
   theme: theme
@@ -2405,6 +2405,72 @@ function _templateObject$c() {
   return data;
 }
 var StyledInputArea = styled__default.textarea(_templateObject$c(), dist_2('colors.white'), dist_2('colors.gray[0]'), dist_2('fontSizes.small'), dist_2('space[1]'), dist_2('space[2]'), dist_2('colors.gray[7]'), dist_2('radii.small'), dist_2('colors.gray[0]'), dist_2('colors.gray[4]'));
+
+var InputArea = function InputArea(_ref) {
+  var alertText = _ref.alertText,
+      disabled = _ref.disabled,
+      onChange = _ref.onChange,
+      inputProps = _ref.inputProps,
+      required = _ref.required,
+      otherProps = objectWithoutProperties(_ref, ["alertText", "disabled", "onChange", "inputProps", "required"]);
+
+  var _otherProps$id = otherProps.id,
+      id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
+      label = otherProps.label,
+      placeholder = otherProps.placeholder,
+      inputStyle = otherProps.inputStyle,
+      name = otherProps.name;
+
+  var _useFormContext = reactHookForm.useFormContext(),
+      register = _useFormContext.register,
+      errors = _useFormContext.errors,
+      triggerValidation = _useFormContext.triggerValidation;
+
+  return React__default.createElement(InputWrapper, _extends_1({
+    alertText: alertText || getErrors(name, errors),
+    required: required,
+    disabled: disabled
+  }, otherProps), React__default.createElement(StyledInputArea, _extends_1({
+    id: id,
+    style: inputStyle,
+    "aria-label": label.toString(),
+    "aria-required": required,
+    placeholder: placeholder || label,
+    disabled: disabled,
+    name: name,
+    onChange: onChange,
+    onBlur:
+    /*#__PURE__*/
+    asyncToGenerator(
+    /*#__PURE__*/
+    regenerator.mark(function _callee() {
+      return regenerator.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return triggerValidation(name);
+
+            case 2:
+              return _context.abrupt("return", _context.sent);
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    })),
+    ref: register
+  }, inputProps)));
+};
+
+InputArea.propTypes = defaultPropTypes;
+InputArea.defaultProps = {
+  label: '',
+  inputStyle: {},
+  theme: theme
+};
 
 function _templateObject$d() {
   var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid ", ";\n  font-family: inherit;\n  font-size: ", ";\n  padding: ", " ", ";\n  height: 35px;\n  color: ", ";\n  border-radius: ", ";\n  width: 100%;\n\n  &:disabled {\n    background-color: ", ";\n    border: 1px solid ", ";\n  }\n\n  ::placeholder {\n    color: ", ";\n  }\n\n  ::-webkit-inner-spin-button,\n  ::-webkit-outer-spin-button {\n    /* stylelint-disable-next-line property-no-vendor-prefix */\n    -webkit-appearance: none;\n    margin: 0;\n  }\n"]);
@@ -26363,7 +26429,7 @@ function isEmptyValue(value) {
 
 });
 
-var Input$2 = unwrapExports(Input_1);
+var Input$1 = unwrapExports(Input_1);
 
 function getInputValuePrefix(country, international, metadata) {
   return country && international ? "+".concat(getCountryCallingCode(country, metadata)) : '';
@@ -26418,7 +26484,7 @@ function createInput(defaultMetadata) {
         template: template
       };
     }, [country, metadata]);
-    return React__default.createElement(Input$2, _extends$6({}, rest, {
+    return React__default.createElement(Input$1, _extends$6({}, rest, {
       ref: ref,
       parse: parsePhoneNumberCharacter,
       format: format
@@ -32414,7 +32480,7 @@ var inputStyle = function inputStyle(isHidden) {
   };
 };
 
-var Input$3 = function Input(_ref2) {
+var Input$2 = function Input(_ref2) {
   var className = _ref2.className,
       cx = _ref2.cx,
       getStyles = _ref2.getStyles,
@@ -32714,7 +32780,7 @@ var components = {
   GroupHeading: GroupHeading,
   IndicatorsContainer: IndicatorsContainer,
   IndicatorSeparator: IndicatorSeparator,
-  Input: Input$3,
+  Input: Input$2,
   LoadingIndicator: LoadingIndicator,
   Menu: Menu,
   MenuList: MenuList,
@@ -36736,13 +36802,13 @@ function _templateObject$h() {
   return data;
 }
 var Container$1 = styled__default.div(_templateObject$h(), dist_2('lineHeights.tight'), dist_2('fontSizes.xsmall'), dist_2('fonts[0]'));
-var Input$4 = styled__default.input.attrs({
+var Input$3 = styled__default.input.attrs({
   type: 'checkbox'
 })(_templateObject2$4(), dist_2('space[0]'), dist_2('space[0]'), dist_2('zIndices[1]'));
-var Animate = styled__default.div(_templateObject3$3(), dist_2('colors.secondary'), dist_2('colors.white'), Input$4, dist_2('colors.primary'), Input$4, dist_2('colors.white'));
+var Animate = styled__default.div(_templateObject3$3(), dist_2('colors.secondary'), dist_2('colors.white'), Input$3, dist_2('colors.primary'), Input$3, dist_2('colors.white'));
 var CheckboxState = styled__default.div(_templateObject4$2(), dist_2('colors.white'), dist_2('fontWeights.bold'), dist_2('space[2]'));
-var CheckboxOff = styled__default(CheckboxState)(_templateObject5$1(), Input$4, Animate);
-var CheckboxOn = styled__default(CheckboxState)(_templateObject6$1(), Input$4, Animate);
+var CheckboxOff = styled__default(CheckboxState)(_templateObject5$1(), Input$3, Animate);
+var CheckboxOn = styled__default(CheckboxState)(_templateObject6$1(), Input$3, Animate);
 
 var Toggle = function Toggle(_ref) {
   var id = _ref.id,
@@ -36761,7 +36827,7 @@ var Toggle = function Toggle(_ref) {
 
   return React__default.createElement(Container$1, {
     style: containerStyle
-  }, React__default.createElement(Input$4, _extends_1({
+  }, React__default.createElement(Input$3, _extends_1({
     id: id,
     "aria-label": label,
     "aria-required": required,
@@ -38549,8 +38615,8 @@ exports.Checkbox = Checkbox;
 exports.DateInput = DateInput;
 exports.Flex = Flex;
 exports.Image = Image;
-exports.Input = Input$1;
-exports.InputArea = Input;
+exports.Input = Input;
+exports.InputArea = InputArea;
 exports.Loader = Loader;
 exports.Normalize = Normalize;
 exports.OverflowMenu = OverflowMenu;

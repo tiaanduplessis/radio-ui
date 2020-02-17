@@ -49,4 +49,4 @@ InputArea.defaultProps = {
   theme: theme,
 }
 
-export default Input
+export default InputArea
