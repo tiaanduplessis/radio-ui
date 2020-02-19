@@ -2222,10 +2222,10 @@ var getErrors = function getErrors(name, errors) {
   if (nestedName.length === 1) {
     return errors[name] && errors[name].message ? errors[name].message : '';
   } else {
-    var nestedError = nestedName.reduce(function (obj, key) {
+    var flattenedError = nestedName.reduce(function (obj, key) {
       return obj && obj[key] !== undefined ? obj[key] : undefined;
     }, errors);
-    return nestedError && nestedError.message ? nestedError.message : '';
+    return flattenedError && flattenedError.message ? flattenedError.message : '';
   }
 };
 

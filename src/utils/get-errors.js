@@ -5,8 +5,8 @@ const getErrors = (name, errors) => {
     return errors[name] && errors[name].message ? errors[name].message  : ''
   }
   else {
-    const nestedError = nestedName.reduce((obj, key) => (obj && obj[key] !== undefined) ? obj[key] : undefined, errors)
-    return nestedError && nestedError.message ? nestedError.message : ''
+    const flattenedError = nestedName.reduce((obj, key) => (obj && obj[key] !== undefined) ? obj[key] : undefined, errors)
+    return flattenedError && flattenedError.message ? flattenedError.message : ''
   }
 }
 
