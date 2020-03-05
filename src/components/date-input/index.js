@@ -64,7 +64,7 @@ const DateInput = ({
         onChange={([dateValue]) => {
           const dateString = getDateString(dateValue)
           onChange(dateString)
-          return { value: dateString }
+          return { value: new Date(dateString).toISOString }
         }}
         name={name}
       />
@@ -74,7 +74,7 @@ const DateInput = ({
 
 DateInput.defaultProps = {
   dateFormat: 'dd/MM/yyyy',
-  onChange: () => {},
+  onChange: () => { },
 }
 
 export default DateInput

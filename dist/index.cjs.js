@@ -12971,7 +12971,7 @@ var DateInput = function DateInput(_ref) {
       _onChange(dateString);
 
       return {
-        value: dateString
+        value: new Date(dateString).toISOString
       };
     },
     name: name
