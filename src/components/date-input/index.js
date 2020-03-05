@@ -38,7 +38,7 @@ const DateInput = ({
   const { id = otherProps.name, label, inputStyle, name } = otherProps
   const { errors = {}, triggerValidation } = useFormContext()
 
-  const getDateString = dateValue => dateValue instanceof Date ? dateValue.toDateString() : dateValue
+  const getDateString = dateValue => dateValue instanceof Date ? dateValue.toISOString() : dateValue
 
   return (
     <InputWrapper
@@ -64,7 +64,7 @@ const DateInput = ({
         onChange={([dateValue]) => {
           const dateString = getDateString(dateValue)
           onChange(dateString)
-          return { value: new Date(dateString).toISOString }
+          return { value: dateString }
         }}
         name={name}
       />
@@ -73,7 +73,7 @@ const DateInput = ({
 }
 
 DateInput.defaultProps = {
-  dateFormat: 'dd/MM/yyyy',
+  dateFormat: 'yyyy/MM/dd',
   onChange: () => { },
 }
 

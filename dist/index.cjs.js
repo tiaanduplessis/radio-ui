@@ -12925,7 +12925,7 @@ var DateInput = function DateInput(_ref) {
       triggerValidation = _useFormContext.triggerValidation;
 
   var getDateString = function getDateString(dateValue) {
-    return dateValue instanceof Date ? dateValue.toDateString() : dateValue;
+    return dateValue instanceof Date ? dateValue.toISOString() : dateValue;
   };
 
   return React__default.createElement(InputWrapper, _extends_1({
@@ -12971,7 +12971,7 @@ var DateInput = function DateInput(_ref) {
       _onChange(dateString);
 
       return {
-        value: new Date(dateString).toISOString
+        value: dateString
       };
     },
     name: name
@@ -12979,7 +12979,7 @@ var DateInput = function DateInput(_ref) {
 };
 
 DateInput.defaultProps = {
-  dateFormat: 'dd/MM/yyyy',
+  dateFormat: 'yyyy/MM/dd',
   onChange: function onChange() {}
 };
 
