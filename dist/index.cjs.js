@@ -12881,7 +12881,7 @@ var DateInput = function DateInput(_ref) {
   var currentValue = watch(name);
 
   var getDateString = function getDateString() {
-    return new Date(currentValue).toDateString();
+    return currentValue ? new Date(currentValue).toDateString() : '';
   };
 
   return React__default.createElement(InputWrapper, _extends_1({
