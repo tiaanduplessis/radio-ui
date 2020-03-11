@@ -37,6 +37,7 @@ const DateInput = ({
 }) => {
   const { id = otherProps.name, label, inputStyle, name } = otherProps
   const { errors, watch, triggerValidation, setValue, register, reset, getValues } = useFormContext()
+  const currentValue = watch(name)
 
   const getDateString = dateValue => dateValue instanceof Date ? dateValue.toDateString() : dateValue
 
@@ -57,12 +58,19 @@ const DateInput = ({
         aria-required={required}
         placeholderText={placeholder || label}
         disabled={disabled}
+        value={getDateString(currentValue)}
         onBlur={async () => await triggerValidation(name)}
-        onChange={value => {
+        onChange={async value => {
           console.log('value', value)
           console.log('dateString', getDateString(value))
+
+          setValue(name, value)
+          await triggerValidation(name)
+          const values = getValues()
+          reset(values)
+          onChange(value)
         }}
-        ref={register}
+        ref={register({ name })}
       />
     </InputWrapper>
   )

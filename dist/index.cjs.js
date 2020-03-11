@@ -12878,6 +12878,8 @@ var DateInput = function DateInput(_ref) {
       reset = _useFormContext.reset,
       getValues = _useFormContext.getValues;
 
+  var currentValue = watch(name);
+
   var getDateString = function getDateString(dateValue) {
     return dateValue instanceof Date ? dateValue.toDateString() : dateValue;
   };
@@ -12894,7 +12896,7 @@ var DateInput = function DateInput(_ref) {
     style: inputStyle,
     "aria-label": label,
     "aria-required": required
-  }, defineProperty(_React$createElement, "placeholderText", placeholder || label), defineProperty(_React$createElement, "disabled", disabled), defineProperty(_React$createElement, "onBlur",
+  }, defineProperty(_React$createElement, "placeholderText", placeholder || label), defineProperty(_React$createElement, "disabled", disabled), defineProperty(_React$createElement, "value", getDateString(currentValue)), defineProperty(_React$createElement, "onBlur",
   /*#__PURE__*/
   asyncToGenerator(
   /*#__PURE__*/
@@ -12915,10 +12917,42 @@ var DateInput = function DateInput(_ref) {
         }
       }
     }, _callee);
-  }))), defineProperty(_React$createElement, "onChange", function onChange(value) {
-    console.log('value', value);
-    console.log('dateString', getDateString(value));
-  }), defineProperty(_React$createElement, "ref", register), _React$createElement)));
+  }))), defineProperty(_React$createElement, "onChange",
+  /*#__PURE__*/
+  function () {
+    var _ref3 = asyncToGenerator(
+    /*#__PURE__*/
+    regenerator.mark(function _callee2(value) {
+      var values;
+      return regenerator.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              console.log('value', value);
+              console.log('dateString', getDateString(value));
+              setValue(name, value);
+              _context2.next = 5;
+              return triggerValidation(name);
+
+            case 5:
+              values = getValues();
+              reset(values);
+              onChange(value);
+
+            case 8:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function (_x) {
+      return _ref3.apply(this, arguments);
+    };
+  }()), defineProperty(_React$createElement, "ref", register({
+    name: name
+  })), _React$createElement)));
 };
 
 DateInput.defaultProps = {
