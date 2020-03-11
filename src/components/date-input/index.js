@@ -58,7 +58,7 @@ const DateInput = ({
         aria-required={required}
         placeholderText={placeholder || label}
         disabled={disabled}
-        value={getDateString(currentValue)}
+        // value={getDateString(currentValue)}
         onBlur={async () => await triggerValidation(name)}
         onChange={async value => {
           setValue(name, value.toISOString())
@@ -67,7 +67,7 @@ const DateInput = ({
           reset(values)
           onChange(value)
         }}
-        ref={register({ name })}
+        ref={register}
       />
     </InputWrapper>
   )

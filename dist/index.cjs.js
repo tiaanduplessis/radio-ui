@@ -12880,10 +12880,6 @@ var DateInput = function DateInput(_ref) {
 
   var currentValue = watch(name);
 
-  var getDateString = function getDateString() {
-    return currentValue instanceof Date ? currentValue.toDateString() : currentValue;
-  };
-
   return React__default.createElement(InputWrapper, _extends_1({
     required: required,
     disabled: disabled,
@@ -12896,7 +12892,7 @@ var DateInput = function DateInput(_ref) {
     style: inputStyle,
     "aria-label": label,
     "aria-required": required
-  }, defineProperty(_React$createElement, "placeholderText", placeholder || label), defineProperty(_React$createElement, "disabled", disabled), defineProperty(_React$createElement, "value", getDateString()), defineProperty(_React$createElement, "onBlur",
+  }, defineProperty(_React$createElement, "placeholderText", placeholder || label), defineProperty(_React$createElement, "disabled", disabled), defineProperty(_React$createElement, "onBlur",
   /*#__PURE__*/
   asyncToGenerator(
   /*#__PURE__*/
@@ -12948,9 +12944,7 @@ var DateInput = function DateInput(_ref) {
     return function (_x) {
       return _ref3.apply(this, arguments);
     };
-  }()), defineProperty(_React$createElement, "ref", register({
-    name: name
-  })), _React$createElement)));
+  }()), defineProperty(_React$createElement, "ref", register), _React$createElement)));
 };
 
 DateInput.defaultProps = {
