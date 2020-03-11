@@ -12880,8 +12880,8 @@ var DateInput = function DateInput(_ref) {
 
   var currentValue = watch(name);
 
-  var getDateString = function getDateString(dateValue) {
-    return dateValue instanceof Date ? dateValue.toDateString() : dateValue;
+  var getDateString = function getDateString() {
+    return currentValue instanceof Date ? currentValue.toDateString() : currentValue;
   };
 
   return React__default.createElement(InputWrapper, _extends_1({
@@ -12896,7 +12896,7 @@ var DateInput = function DateInput(_ref) {
     style: inputStyle,
     "aria-label": label,
     "aria-required": required
-  }, defineProperty(_React$createElement, "placeholderText", placeholder || label), defineProperty(_React$createElement, "disabled", disabled), defineProperty(_React$createElement, "value", getDateString(currentValue)), defineProperty(_React$createElement, "onBlur",
+  }, defineProperty(_React$createElement, "placeholderText", placeholder || label), defineProperty(_React$createElement, "disabled", disabled), defineProperty(_React$createElement, "value", getDateString()), defineProperty(_React$createElement, "onBlur",
   /*#__PURE__*/
   asyncToGenerator(
   /*#__PURE__*/
@@ -12928,18 +12928,16 @@ var DateInput = function DateInput(_ref) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              console.log('value', value);
-              console.log('dateString', getDateString(value));
-              setValue(name, value);
-              _context2.next = 5;
+              setValue(name, value.toISOString());
+              _context2.next = 3;
               return triggerValidation(name);
 
-            case 5:
+            case 3:
               values = getValues();
               reset(values);
               onChange(value);
 
-            case 8:
+            case 6:
             case "end":
               return _context2.stop();
           }

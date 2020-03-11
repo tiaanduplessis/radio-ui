@@ -39,7 +39,7 @@ const DateInput = ({
   const { errors, watch, triggerValidation, setValue, register, reset, getValues } = useFormContext()
   const currentValue = watch(name)
 
-  const getDateString = dateValue => dateValue instanceof Date ? dateValue.toDateString() : dateValue
+  const getDateString = () => currentValue instanceof Date ? currentValue.toDateString() : currentValue
 
   return (
     <InputWrapper
@@ -61,10 +61,7 @@ const DateInput = ({
         value={getDateString(currentValue)}
         onBlur={async () => await triggerValidation(name)}
         onChange={async value => {
-          console.log('value', value)
-          console.log('dateString', getDateString(value))
-
-          setValue(name, value)
+          setValue(name, value.toISOString())
           await triggerValidation(name)
           const values = getValues()
           reset(values)
