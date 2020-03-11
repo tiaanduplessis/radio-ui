@@ -12944,7 +12944,9 @@ var DateInput = function DateInput(_ref) {
     return function (_x) {
       return _ref3.apply(this, arguments);
     };
-  }()), defineProperty(_React$createElement, "ref", register), _React$createElement)));
+  }()), defineProperty(_React$createElement, "ref", register({
+    name: name
+  })), _React$createElement)));
 };
 
 DateInput.defaultProps = {

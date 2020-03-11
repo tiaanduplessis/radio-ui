@@ -67,7 +67,7 @@ const DateInput = ({
           reset(values)
           onChange(value)
         }}
-        ref={register}
+        ref={register({ name })}
       />
     </InputWrapper>
   )
