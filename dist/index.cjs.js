@@ -2554,56 +2554,6 @@ TimeInput.defaultProps = {
   theme: theme
 };
 
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-
-var arrayWithHoles = _arrayWithHoles;
-
-function _iterableToArrayLimit(arr, i) {
-  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
-    return;
-  }
-
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-
-var iterableToArrayLimit = _iterableToArrayLimit;
-
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance");
-}
-
-var nonIterableRest = _nonIterableRest;
-
-function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
-}
-
-var slicedToArray = _slicedToArray;
-
 var classnames = createCommonjsModule(function (module) {
 /*!
   Copyright (c) 2017 Jed Watson.
@@ -12920,60 +12870,60 @@ var DateInput = function DateInput(_ref) {
       name = otherProps.name;
 
   var _useFormContext = reactHookForm.useFormContext(),
-      _useFormContext$error = _useFormContext.errors,
-      errors = _useFormContext$error === void 0 ? {} : _useFormContext$error,
-      triggerValidation = _useFormContext.triggerValidation;
+      errors = _useFormContext.errors,
+      watch = _useFormContext.watch,
+      triggerValidation = _useFormContext.triggerValidation,
+      setValue = _useFormContext.setValue,
+      register = _useFormContext.register,
+      reset = _useFormContext.reset,
+      getValues = _useFormContext.getValues;
 
-  var getDateString = function getDateString(dateValue) {
-    return dateValue instanceof Date ? dateValue.toDateString() : dateValue;
+  var currentValue = watch(name);
+
+  var getDateString = function getDateString() {
+    return currentValue instanceof Date ? currentValue.toDateString() : currentValue;
   };
 
   return React__default.createElement(InputWrapper, _extends_1({
     required: required,
     disabled: disabled,
     alertText: alertTextOverride || getErrors(name, errors)
-  }, otherProps), React__default.createElement(reactHookForm.Controller, {
-    as: React__default.createElement(StyledDatePicker, (_React$createElement = {
-      id: id,
-      placeholderText: label,
-      dateFormat: dateFormat,
-      style: inputStyle,
-      "aria-label": label,
-      "aria-required": required
-    }, defineProperty(_React$createElement, "placeholderText", placeholder || label), defineProperty(_React$createElement, "disabled", disabled), defineProperty(_React$createElement, "onBlur",
-    /*#__PURE__*/
-    asyncToGenerator(
-    /*#__PURE__*/
-    regenerator.mark(function _callee() {
-      return regenerator.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return triggerValidation(name);
+  }, otherProps), React__default.createElement(StyledDatePicker, (_React$createElement = {
+    id: id,
+    name: name,
+    placeholderText: label,
+    dateFormat: dateFormat,
+    style: inputStyle,
+    "aria-label": label,
+    "aria-required": required
+  }, defineProperty(_React$createElement, "placeholderText", placeholder || label), defineProperty(_React$createElement, "disabled", disabled), defineProperty(_React$createElement, "value", getDateString()), defineProperty(_React$createElement, "onBlur",
+  /*#__PURE__*/
+  asyncToGenerator(
+  /*#__PURE__*/
+  regenerator.mark(function _callee() {
+    return regenerator.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return triggerValidation(name);
 
-            case 2:
-              return _context.abrupt("return", _context.sent);
+          case 2:
+            return _context.abrupt("return", _context.sent);
 
-            case 3:
-            case "end":
-              return _context.stop();
-          }
+          case 3:
+          case "end":
+            return _context.stop();
         }
-      }, _callee);
-    }))), _React$createElement)),
-    onChange: function onChange(_ref3) {
-      var _ref4 = slicedToArray(_ref3, 1),
-          dateValue = _ref4[0];
+      }
+    }, _callee);
+  }))), defineProperty(_React$createElement, "onChange", function onChange(_ref3) {
+    var target = _ref3.target;
+    var value = target.value.value;
+    setValue(name, new Date(value).toISOString());
 
-      var dateString = getDateString(dateValue);
-
-      _onChange(dateString);
-
-      return dateString;
-    },
-    name: name
-  }));
+    _onChange(value);
+  }), defineProperty(_React$createElement, "ref", register), _React$createElement)));
 };
 
 DateInput.defaultProps = {
@@ -23534,7 +23484,7 @@ function stripIDDPrefix(number, country, metadata) {
 	return number;
 }
 
-var _slicedToArray$1 = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 // https://www.ietf.org/rfc/rfc3966.txt
 
@@ -23564,7 +23514,7 @@ function parseRFC3966(text) {
 		var part = _ref;
 
 		var _part$split = part.split('='),
-		    _part$split2 = _slicedToArray$1(_part$split, 2),
+		    _part$split2 = _slicedToArray(_part$split, 2),
 		    name = _part$split2[0],
 		    value = _part$split2[1];
 
@@ -24560,11 +24510,11 @@ var _typeof$1 = typeof Symbol === "function" && typeof Symbol.iterator === "symb
 
 var _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _slicedToArray$2 = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+var _slicedToArray$1 = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 function normalizeArguments(args) {
 	var _Array$prototype$slic = Array.prototype.slice.call(args),
-	    _Array$prototype$slic2 = _slicedToArray$2(_Array$prototype$slic, 4),
+	    _Array$prototype$slic2 = _slicedToArray$1(_Array$prototype$slic, 4),
 	    arg_1 = _Array$prototype$slic2[0],
 	    arg_2 = _Array$prototype$slic2[1],
 	    arg_3 = _Array$prototype$slic2[2],

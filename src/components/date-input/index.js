@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFormContext, Controller } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import DatePicker from 'react-datepicker'
 import styled from 'styled-components'
 import getErrors from '../../utils/get-errors'
@@ -36,9 +36,10 @@ const DateInput = ({
   ...otherProps
 }) => {
   const { id = otherProps.name, label, inputStyle, name } = otherProps
-  const { errors = {}, triggerValidation } = useFormContext()
+  const { errors, watch, triggerValidation, setValue, register, reset, getValues } = useFormContext()
+  const currentValue = watch(name)
 
-  const getDateString = dateValue => dateValue instanceof Date ? dateValue.toDateString() : dateValue
+  const getDateString = () => currentValue instanceof Date ? currentValue.toDateString() : currentValue
 
   return (
     <InputWrapper
@@ -47,26 +48,24 @@ const DateInput = ({
       alertText={alertTextOverride || getErrors(name, errors)}
       {...otherProps}
     >
-      <Controller
-        as={
-          <StyledDatePicker
-            id={id}
-            placeholderText={label}
-            dateFormat={dateFormat}
-            style={inputStyle}
-            aria-label={label}
-            aria-required={required}
-            placeholderText={placeholder || label}
-            disabled={disabled}
-            onBlur={async () => await triggerValidation(name)}
-          />
-        }
-        onChange={([dateValue]) => {
-          const dateString = getDateString(dateValue)
-          onChange(dateString)
-          return dateString
-        }}
+      <StyledDatePicker
+        id={id}
         name={name}
+        placeholderText={label}
+        dateFormat={dateFormat}
+        style={inputStyle}
+        aria-label={label}
+        aria-required={required}
+        placeholderText={placeholder || label}
+        disabled={disabled}
+        value={getDateString()}
+        onBlur={async () => await triggerValidation(name)}
+        onChange={({target}) => {
+          const {value} = target.value
+          setValue(name, new Date(value).toISOString())
+          onChange(value)
+        }}
+        ref={register}
       />
     </InputWrapper>
   )
