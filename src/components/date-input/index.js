@@ -37,9 +37,8 @@ const DateInput = ({
 }) => {
   const { id = otherProps.name, label, inputStyle, name } = otherProps
   const { errors, watch, triggerValidation, setValue, register, reset, getValues } = useFormContext()
-  const currentValue = watch(name)
 
-  const getDateString = () => currentValue instanceof Date ? currentValue.toDateString() : currentValue
+  const getDateString = dateValue => dateValue instanceof Date ? dateValue.toDateString() : dateValue
 
   return (
     <InputWrapper
@@ -58,11 +57,10 @@ const DateInput = ({
         aria-required={required}
         placeholderText={placeholder || label}
         disabled={disabled}
-        value={getDateString()}
         onBlur={async () => await triggerValidation(name)}
-        onChange={(value) => {
-          setValue(name, new Date(value).toISOString())
-          onChange(value)
+        onChange={value => {
+          console.log('value', value)
+          console.log('dateString', getDateString(value))
         }}
         ref={register}
       />
@@ -71,8 +69,8 @@ const DateInput = ({
 }
 
 DateInput.defaultProps = {
-  dateFormat: 'yyyy/MM/dd',
-  onChange: () => { },
+  dateFormat: 'dd/MM/yyyy',
+  onChange: () => {},
 }
 
 export default DateInput

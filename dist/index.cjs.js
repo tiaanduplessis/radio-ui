@@ -12855,7 +12855,7 @@ var DateInput = function DateInput(_ref) {
   var _React$createElement;
 
   var disabled = _ref.disabled,
-      _onChange = _ref.onChange,
+      onChange = _ref.onChange,
       placeholder = _ref.placeholder,
       dateFormat = _ref.dateFormat,
       inputProps = _ref.inputProps,
@@ -12878,10 +12878,8 @@ var DateInput = function DateInput(_ref) {
       reset = _useFormContext.reset,
       getValues = _useFormContext.getValues;
 
-  var currentValue = watch(name);
-
-  var getDateString = function getDateString() {
-    return currentValue instanceof Date ? currentValue.toDateString() : currentValue;
+  var getDateString = function getDateString(dateValue) {
+    return dateValue instanceof Date ? dateValue.toDateString() : dateValue;
   };
 
   return React__default.createElement(InputWrapper, _extends_1({
@@ -12896,7 +12894,7 @@ var DateInput = function DateInput(_ref) {
     style: inputStyle,
     "aria-label": label,
     "aria-required": required
-  }, defineProperty(_React$createElement, "placeholderText", placeholder || label), defineProperty(_React$createElement, "disabled", disabled), defineProperty(_React$createElement, "value", getDateString()), defineProperty(_React$createElement, "onBlur",
+  }, defineProperty(_React$createElement, "placeholderText", placeholder || label), defineProperty(_React$createElement, "disabled", disabled), defineProperty(_React$createElement, "onBlur",
   /*#__PURE__*/
   asyncToGenerator(
   /*#__PURE__*/
@@ -12918,14 +12916,13 @@ var DateInput = function DateInput(_ref) {
       }
     }, _callee);
   }))), defineProperty(_React$createElement, "onChange", function onChange(value) {
-    setValue(name, new Date(value).toISOString());
-
-    _onChange(value);
+    console.log('value', value);
+    console.log('dateString', getDateString(value));
   }), defineProperty(_React$createElement, "ref", register), _React$createElement)));
 };
 
 DateInput.defaultProps = {
-  dateFormat: 'yyyy/MM/dd',
+  dateFormat: 'dd/MM/yyyy',
   onChange: function onChange() {}
 };
 
