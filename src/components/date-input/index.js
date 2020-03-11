@@ -64,7 +64,7 @@ const DateInput = ({
         onChange={([dateValue]) => {
           const dateString = getDateString(dateValue)
           onChange(dateString)
-          return { value: dateString }
+          return dateString
         }}
         name={name}
       />

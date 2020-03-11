@@ -12970,9 +12970,7 @@ var DateInput = function DateInput(_ref) {
 
       _onChange(dateString);
 
-      return {
-        value: dateString
-      };
+      return dateString;
     },
     name: name
   }));
