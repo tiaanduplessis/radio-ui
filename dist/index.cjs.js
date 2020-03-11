@@ -12917,9 +12917,7 @@ var DateInput = function DateInput(_ref) {
         }
       }
     }, _callee);
-  }))), defineProperty(_React$createElement, "onChange", function onChange(_ref3) {
-    var target = _ref3.target;
-    var value = target.value.value;
+  }))), defineProperty(_React$createElement, "onChange", function onChange(value) {
     setValue(name, new Date(value).toISOString());
 
     _onChange(value);

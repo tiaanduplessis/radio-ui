@@ -60,8 +60,7 @@ const DateInput = ({
         disabled={disabled}
         value={getDateString()}
         onBlur={async () => await triggerValidation(name)}
-        onChange={({target}) => {
-          const {value} = target.value
+        onChange={(value) => {
           setValue(name, new Date(value).toISOString())
           onChange(value)
         }}
