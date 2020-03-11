@@ -73,8 +73,8 @@ const DateInput = ({
 }
 
 DateInput.defaultProps = {
-  dateFormat: 'dd/MM/yyyy',
-  onChange: () => {},
+  dateFormat: 'yyyy/MM/dd',
+  onChange: () => { },
 }
 
 export default DateInput

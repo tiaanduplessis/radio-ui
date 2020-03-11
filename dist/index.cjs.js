@@ -12979,7 +12979,7 @@ var DateInput = function DateInput(_ref) {
 };
 
 DateInput.defaultProps = {
-  dateFormat: 'dd/MM/yyyy',
+  dateFormat: 'yyyy/MM/dd',
   onChange: function onChange() {}
 };
 
