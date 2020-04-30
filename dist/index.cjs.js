@@ -2219,7 +2219,7 @@ var StyledInput$1 = styled__default.input.attrs({
 var getNestedValueFromString = function getNestedValueFromString() {
   var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var str = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  return str.split('.').reduce(function (newObj, key) {
+  return str.replace(/\[|\]/g, '.').replace('..', '.').split('.').reduce(function (newObj, key) {
     return newObj[key] !== undefined ? newObj[key] : undefined;
   }, obj);
 };
