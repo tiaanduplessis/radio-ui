@@ -2216,17 +2216,16 @@ var StyledInput$1 = styled__default.input.attrs({
   type: 'text'
 })(_templateObject$a(), dist_2('colors.white'), dist_2('colors.gray[0]'), dist_2('fontSizes.small'), dist_2('space[1]'), dist_2('space[2]'), dist_2('colors.gray[7]'), dist_2('radii.small'), dist_2('colors.gray[0]'), dist_2('colors.gray[4]'));
 
-var getErrors = function getErrors(name, errors) {
-  var nestedName = name.split('.');
+var getNestedValueFromString = function getNestedValueFromString() {
+  var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var str = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  return str.replace(/\[|\]/g, '.').replace('..', '.').split('.').reduce(function (newObj, key) {
+    return newObj[key] !== undefined ? newObj[key] : undefined;
+  }, obj);
+};
 
-  if (nestedName.length === 1) {
-    return errors[name] && errors[name].message ? errors[name].message : '';
-  } else {
-    var flattenedError = nestedName.reduce(function (obj, key) {
-      return obj && obj[key] !== undefined ? obj[key] : undefined;
-    }, errors);
-    return flattenedError && flattenedError.message ? flattenedError.message : '';
-  }
+var getErrors = function getErrors(errors, name) {
+  return getNestedValueFromString(errors, "".concat(name, ".message")) || '';
 };
 
 function _templateObject4$1() {
