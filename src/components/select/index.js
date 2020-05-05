@@ -94,7 +94,7 @@ const Select = ({
 
   return (
     <InputWrapper
-      alertText={alertTextOverride || getErrors(name, errors)}
+      alertText={alertTextOverride || getErrors(errors, name)}
       required={required}
       disabled={disabled}
       {...otherProps}

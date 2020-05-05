@@ -29,7 +29,7 @@ const TelInput = props => {
     <InputWrapper
       required={required}
       disabled={disabled}
-      alertText={alertTextOverride || getErrors(name, errors)}
+      alertText={alertTextOverride || getErrors(errors, name)}
       {...otherProps}
     >
       <PhoneInput

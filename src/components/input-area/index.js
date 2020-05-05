@@ -19,7 +19,7 @@ const InputArea = ({
 
   return (
     <InputWrapper
-      alertText={alertText || getErrors(name, errors)}
+      alertText={alertText || getErrors(errors, name)}
       required={required}
       disabled={disabled}
       {...otherProps}

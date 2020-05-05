@@ -2220,7 +2220,7 @@ var getNestedValueFromString = function getNestedValueFromString() {
   var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var str = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
   return str.replace(/\[|\]/g, '.').replace('..', '.').split('.').reduce(function (newObj, key) {
-    return newObj[key] !== undefined ? newObj[key] : undefined;
+    return newObj && newObj[key] !== undefined ? newObj[key] : undefined;
   }, obj);
 };
 
@@ -2349,7 +2349,7 @@ var Input = function Input(_ref) {
       triggerValidation = _useFormContext.triggerValidation;
 
   return React__default.createElement(InputWrapper, _extends_1({
-    alertText: alertText || getErrors(name, errors),
+    alertText: alertText || getErrors(errors, name),
     required: required,
     disabled: disabled
   }, otherProps), React__default.createElement(StyledInput$1, _extends_1({
@@ -2426,7 +2426,7 @@ var InputArea = function InputArea(_ref) {
       triggerValidation = _useFormContext.triggerValidation;
 
   return React__default.createElement(InputWrapper, _extends_1({
-    alertText: alertText || getErrors(name, errors),
+    alertText: alertText || getErrors(errors, name),
     required: required,
     disabled: disabled
   }, otherProps), React__default.createElement(StyledInputArea, _extends_1({
@@ -2508,7 +2508,7 @@ var TimeInput = function TimeInput(_ref) {
       triggerValidation = _useFormContext.triggerValidation;
 
   return React__default.createElement(InputWrapper, _extends_1({
-    alertText: alertTextOverride || getErrors(name, errors),
+    alertText: alertTextOverride || getErrors(errors, name),
     required: required
   }, otherProps), React__default.createElement(StyledInput$2, _extends_1({
     id: id,
@@ -12886,7 +12886,7 @@ var DateInput = function DateInput(_ref) {
   return React__default.createElement(InputWrapper, _extends_1({
     required: required,
     disabled: disabled,
-    alertText: alertTextOverride || getErrors(name, errors)
+    alertText: alertTextOverride || getErrors(errors, name)
   }, otherProps), React__default.createElement(StyledDatePicker, (_React$createElement = {
     id: id,
     name: name,
@@ -28880,7 +28880,7 @@ var TelInput = function TelInput(props) {
   return React__default.createElement(InputWrapper, _extends_1({
     required: required,
     disabled: disabled,
-    alertText: alertTextOverride || getErrors(name, errors)
+    alertText: alertTextOverride || getErrors(errors, name)
   }, otherProps), React__default.createElement(PhoneInput, {
     id: id,
     onChange: function onChange(value) {
@@ -35819,7 +35819,7 @@ var Select$1 = function Select(_ref3) {
   };
 
   return React__default.createElement(InputWrapper, _extends_1({
-    alertText: alertTextOverride || getErrors(name, errors),
+    alertText: alertTextOverride || getErrors(errors, name),
     required: required,
     disabled: disabled
   }, otherProps), React__default.createElement(index, _extends_1({
