@@ -12854,7 +12854,7 @@ var DateInput = function DateInput(_ref) {
   var _React$createElement;
 
   var disabled = _ref.disabled,
-      onChange = _ref.onChange,
+      _onChange = _ref.onChange,
       placeholder = _ref.placeholder,
       dateFormat = _ref.dateFormat,
       inputProps = _ref.inputProps,
@@ -12916,38 +12916,11 @@ var DateInput = function DateInput(_ref) {
         }
       }
     }, _callee);
-  }))), defineProperty(_React$createElement, "onChange",
-  /*#__PURE__*/
-  function () {
-    var _ref3 = asyncToGenerator(
-    /*#__PURE__*/
-    regenerator.mark(function _callee2(value) {
-      var values;
-      return regenerator.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              setValue(name, value.toISOString());
-              _context2.next = 3;
-              return triggerValidation(name);
+  }))), defineProperty(_React$createElement, "onChange", function onChange(value) {
+    setValue(name, value.toISOString());
 
-            case 3:
-              values = getValues();
-              reset(values);
-              onChange(value);
-
-            case 6:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-
-    return function (_x) {
-      return _ref3.apply(this, arguments);
-    };
-  }()), defineProperty(_React$createElement, "ref", register({
+    _onChange(value);
+  }), defineProperty(_React$createElement, "ref", register({
     name: name
   })), _React$createElement)));
 };
