@@ -60,11 +60,8 @@ const DateInput = ({
         disabled={disabled}
         value={getDateString(currentValue)}
         onBlur={async () => await triggerValidation(name)}
-        onChange={async value => {
+        onChange={value => {
           setValue(name, value.toISOString())
-          await triggerValidation(name)
-          const values = getValues()
-          reset(values)
           onChange(value)
         }}
         ref={register({ name })}

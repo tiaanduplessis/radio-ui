@@ -77,7 +77,7 @@ const Select = ({
   onInputChange,
   ...otherProps
 }) => {
-  const { errors, watch, triggerValidation, setValue, register, reset, getValues } = useFormContext()
+  const { errors, watch, triggerValidation, setValue, register } = useFormContext()
   const currentValue = watch(name)
 
   const getLabel = () => (options && Array.isArray(options) ? options.find(({ value }) => value === currentValue) : '')
@@ -110,11 +110,8 @@ const Select = ({
         required={required}
         value={getSelectValue()}
         onBlur={async () => await triggerValidation(name)}
-        onChange={async ({ value, label }) => {
+        onChange={({ value, label }) => {
           setValue(name, value)
-          await triggerValidation(name)
-          const values = getValues()
-          reset(values)
           onChange({ value, label })
         }}
         ref={register({ name })}
