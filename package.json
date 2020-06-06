@@ -24,7 +24,9 @@
     "lint": "yarn lint:js && yarn lint:styles",
     "format": "prettier-eslint --write \"src/**/*.js\"",
     "build": "rollup --config",
-    "test": "jest"
+    "test": "jest",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "files": [
     "dist"
@@ -107,6 +109,8 @@
     "react-tooltip": "3.11.2",
     "reactjs-popup": "1.5.0",
     "styled-funcs": "1.0.1",
-    "styled-system": "5.1.4"
-  }
+    "styled-system": "5.1.4",
+    "snyk": "^1.336.0"
+  },
+  "snyk": true
 }
