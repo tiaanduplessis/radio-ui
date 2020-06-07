@@ -101,7 +101,7 @@
     "styled-components": "^4"
   },
   "dependencies": {
-    "hoist-non-react-statics": "3.3.1",
+    "hoist-non-react-statics": "3.3.2",
     "just-toasty": "1.4.0",
     "react-datepicker": "2.10.1",
     "react-phone-number-input": "3.0.22",
