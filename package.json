@@ -103,7 +103,7 @@
   "dependencies": {
     "hoist-non-react-statics": "3.3.2",
     "just-toasty": "1.4.0",
-    "react-datepicker": "2.10.1",
+    "react-datepicker": "2.16.0",
     "react-phone-number-input": "3.0.22",
     "react-select": "3.1.0",
     "react-tooltip": "3.11.2",
