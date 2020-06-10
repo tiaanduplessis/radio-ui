@@ -12,6 +12,7 @@ const Input = ({
   onChange,
   inputProps,
   required,
+  type,
   ...otherProps
 }) => {
   const { id = otherProps.name, label, placeholder, inputStyle, name } = otherProps
@@ -26,6 +27,7 @@ const Input = ({
     >
       <StyledInput
         id={id}
+        type={type}
         style={inputStyle}
         aria-label={label.toString()}
         aria-required={required}
