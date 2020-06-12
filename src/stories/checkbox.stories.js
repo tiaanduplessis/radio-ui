@@ -2,16 +2,12 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { Checkbox } from '../'
 
-import mdx from '../docs/checkbox.mdx'
+export default {
+  component: Checkbox,
+  title: "Checkbox",
+}
 
-storiesOf('Input | Checkbox', module)
-  .addParameters({
-    component: Checkbox,
-    docs: mdx,
-  })
-  .add('Without label', () => <Checkbox />)
-  .add('With Label', () => <Checkbox>With Label</Checkbox>)
-  .add('Checked', () => <Checkbox checked>With Label</Checkbox>)
-  .add('Disabled', () => <Checkbox disabled>Disabled</Checkbox>)
-
-
+export const Withoutlabel = () => <Checkbox />
+export const WithLabel = () => <Checkbox>With Label</Checkbox>
+export const Checked = () => <Checkbox checked>With Label</Checkbox>
+export const Disabled = () => <Checkbox disabled>Disabled</Checkbox>

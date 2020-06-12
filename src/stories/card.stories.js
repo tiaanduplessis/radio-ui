@@ -1,14 +1,11 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import { Card } from '../'
 
-import mdx from '../docs/card.mdx'
+export default {
+  component: Card,
+  title: 'Card'
+}
 
-storiesOf('Card', module)
-  .addParameters({
-    docs: mdx,
-    component: Card,
-  })
-  .add('Empty', () => <Card />)
-  .add('With title', () => <Card title="Example"></Card>)
+export const Empty = () => <Card />
+export const WithTitle = () => <Card title="Example"></Card>

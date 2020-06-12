@@ -2,14 +2,9 @@ import React from 'react'
 
 import { Tooltip } from '../'
 
-import mdx from '../docs/tooltip.mdx'
-
 export default {
   component: Tooltip,
-  title: 'Tooltip',
-  parameters: {
-    docs: mdx
-  }
+  title: 'Tooltip'
 }
 
 export const Basic = () => (

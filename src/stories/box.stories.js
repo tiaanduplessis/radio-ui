@@ -51,7 +51,7 @@ export const DirectionalPadding = () => (
       </Box>
     <Box m={1} py={3} color="white" bg="primary">
       Padding Y-Axis
-      </Box>
+    </Box>
   </Box>
 )
 
