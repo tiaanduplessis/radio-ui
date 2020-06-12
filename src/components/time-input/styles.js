@@ -5,7 +5,7 @@ import { colors } from '../theme'
 export const StyledInput = styled.input.attrs({
   type: 'time',
 })`
-  background-color: ${({ disabled }) => disabled ? colors.gray[0] : colors.white};
+  background-color: ${({ disabled }) => (disabled ? colors.gray[0] : colors.white)};
   border: 1px solid ${byTheme('colors.gray[0]')};
   font-family: inherit;
   font-size: ${byTheme('fontSizes.small')};

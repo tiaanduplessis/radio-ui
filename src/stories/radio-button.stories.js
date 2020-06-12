@@ -3,7 +3,7 @@ import { RadioButton } from '../'
 
 export default {
   component: RadioButton,
-  title: 'RadioButton'
+  title: 'RadioButton',
 }
 
 export const Withoutlabel = () => <RadioButton />

@@ -3,7 +3,7 @@ import { Button } from '../'
 
 export default {
   component: Button,
-  title: "Button"
+  title: 'Button',
 }
 
 export const Variants = () => (
@@ -11,7 +11,7 @@ export const Variants = () => (
     <Button>Default</Button>
     <Button variant="primary" m={2}>
       Primary
-      </Button>
+    </Button>
     <Button variant="secondary" m={2}>
       Secondary
     </Button>

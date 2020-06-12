@@ -39,7 +39,7 @@ const DateInput = ({
   const { errors, watch, triggerValidation, setValue, register } = useFormContext()
   const currentValue = watch(name)
 
-  const getDateString = () => currentValue ? new Date(currentValue).toDateString() : ''
+  const getDateString = () => (currentValue ? new Date(currentValue).toDateString() : '')
 
   return (
     <InputWrapper

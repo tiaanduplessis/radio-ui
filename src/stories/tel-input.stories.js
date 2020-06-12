@@ -4,15 +4,17 @@ import { TelInput } from '../'
 
 export default {
   component: TelInput,
-  title: 'TelInput'
+  title: 'TelInput',
 }
 
 export const Basic = () => {
   const methods = useForm()
-  const onSubmit = data => { console.log(data) }
+  const onSubmit = data => {
+    console.log(data)
+  }
 
   return (
-    <FormContext {...methods} >
+    <FormContext {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <TelInput id="1" name="1" label="Default" />
       </form>

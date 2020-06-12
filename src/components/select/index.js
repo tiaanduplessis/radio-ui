@@ -9,24 +9,22 @@ const styleOverride = ({ fontSize, width, shape, variant, hasShadow }) => ({
   indicatorSeparator: () => ({
     display: 'none',
   }),
-  control: (provided, state) => {
-    return {
-      ...provided,
-      backgroundColor: state.isDisabled ? colors.gray[0] : colors.white,
-      border: `1px solid ${colors.gray[0]}`,
-      borderColor: state.isDisabled ? colors.gray.default : colors.gray.xlight,
-      fontFamily: fonts.Montserrat,
-      fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
-      borderRadius: shape === 'rounded' ? radii.full : radii.small,
-      width: width || '100%',
-      boxShadow: hasShadow ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
-      padding: '0 0.8em',
-      overflow: 'hidden',
-      ...(variant === 'dark' && {
-        border: `solid 1px ${colors.gray.default}`,
-      }),
-    }
-  },
+  control: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isDisabled ? colors.gray[0] : colors.white,
+    border: `1px solid ${colors.gray[0]}`,
+    borderColor: state.isDisabled ? colors.gray.default : colors.gray.xlight,
+    fontFamily: fonts.Montserrat,
+    fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
+    borderRadius: shape === 'rounded' ? radii.full : radii.small,
+    width: width || '100%',
+    boxShadow: hasShadow ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
+    padding: '0 0.8em',
+    overflow: 'hidden',
+    ...(variant === 'dark' && {
+      border: `solid 1px ${colors.gray.default}`,
+    }),
+  }),
 
   placeholder: () => ({
     color: colors.gray.default,
@@ -80,17 +78,16 @@ const Select = ({
   const { errors, watch, triggerValidation, setValue, register } = useFormContext()
   const currentValue = watch(name)
 
-  const getLabel = () => (options && Array.isArray(options) ? options.find(({ value }) => value === currentValue) : '')
+  const getLabel = () =>
+    options && Array.isArray(options) ? options.find(({ value }) => value === currentValue) : ''
 
-  const getSelectValue = () => (
-    options.length && getLabel() ? 
-    {
-      value: currentValue,
-      label: getLabel().label
-    }
-    :
-    ''
-  )
+  const getSelectValue = () =>
+    options.length && getLabel()
+      ? {
+        value: currentValue,
+        label: getLabel().label,
+      }
+      : ''
 
   return (
     <InputWrapper
@@ -124,8 +121,8 @@ const Select = ({
 Select.defaultProps = {
   containerStyle: {},
   options: [],
-  onChange: () => { },
-  onInputChange: () => { }
+  onChange: () => {},
+  onInputChange: () => {},
 }
 
 export default Select

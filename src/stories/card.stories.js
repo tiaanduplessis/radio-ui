@@ -4,7 +4,7 @@ import { Card } from '../'
 
 export default {
   component: Card,
-  title: 'Card'
+  title: 'Card',
 }
 
 export const Empty = () => <Card />

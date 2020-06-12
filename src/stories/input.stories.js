@@ -4,15 +4,17 @@ import { Input } from '../'
 
 export default {
   component: Input,
-  title: 'Input'
+  title: 'Input',
 }
 
 export const WithoutLabel = () => {
   const methods = useForm()
-  const onSubmit = data => { console.log(data) }
+  const onSubmit = data => {
+    console.log(data)
+  }
 
   return (
-    <FormContext {...methods} >
+    <FormContext {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Input id="1" name="foo" placeholder="Without label" />
       </form>
@@ -22,10 +24,12 @@ export const WithoutLabel = () => {
 
 export const WithLabel = () => () => {
   const methods = useForm()
-  const onSubmit = data => { console.log(data) }
+  const onSubmit = data => {
+    console.log(data)
+  }
 
   return (
-    <FormContext {...methods} >
+    <FormContext {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Input id="2" label="Label" name="bar" />
       </form>
@@ -35,10 +39,12 @@ export const WithLabel = () => () => {
 
 export const WithRequired = () => {
   const methods = useForm()
-  const onSubmit = data => { console.log(data) }
+  const onSubmit = data => {
+    console.log(data)
+  }
 
   return (
-    <FormContext {...methods} >
+    <FormContext {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Input id="2" label="Label" name="baz" required />
       </form>
@@ -48,10 +54,12 @@ export const WithRequired = () => {
 
 export const Disabled = () => {
   const methods = useForm()
-  const onSubmit = data => { console.log(data) }
+  const onSubmit = data => {
+    console.log(data)
+  }
 
   return (
-    <FormContext {...methods} >
+    <FormContext {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Input id="3" label="Disabled" name="bar" disabled />
       </form>
@@ -61,10 +69,12 @@ export const Disabled = () => {
 
 export const WithAlert = () => {
   const methods = useForm()
-  const onSubmit = data => { console.log(data) }
+  const onSubmit = data => {
+    console.log(data)
+  }
 
   return (
-    <FormContext {...methods} >
+    <FormContext {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Input id="4" label="With Alert" name="foo" alertText="Invalid input given" />
       </form>

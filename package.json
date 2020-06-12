@@ -22,7 +22,7 @@
     "lint:js": "eslint --fix src",
     "lint:styles": "stylelint --fix src/**/*.js",
     "lint": "yarn lint:js && yarn lint:styles",
-    "format": "prettier-eslint --write \"src/**/*.js\"",
+    "format": "prettier-eslint --write \"$PWD/src/**/*.js\"",
     "build": "rollup --config",
     "test": "jest",
     "snyk-protect": "snyk protect",

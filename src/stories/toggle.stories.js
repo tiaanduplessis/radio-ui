@@ -4,15 +4,17 @@ import { Toggle } from '../'
 
 export default {
   component: Toggle,
-  title: 'Toggle'
+  title: 'Toggle',
 }
 
 export const Unchecked = () => {
   const methods = useForm()
-  const onSubmit = data => { console.log(data) }
+  const onSubmit = data => {
+    console.log(data)
+  }
 
   return (
-    <FormContext {...methods} >
+    <FormContext {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Toggle label="Closed" />
       </form>
@@ -22,10 +24,12 @@ export const Unchecked = () => {
 
 export const Checked = () => {
   const methods = useForm()
-  const onSubmit = data => { console.log(data) }
+  const onSubmit = data => {
+    console.log(data)
+  }
 
   return (
-    <FormContext {...methods} >
+    <FormContext {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Toggle label="Closed" checked={true} />
       </form>

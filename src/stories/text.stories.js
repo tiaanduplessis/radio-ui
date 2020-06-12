@@ -3,7 +3,7 @@ import { Text } from '../'
 
 export default {
   component: Text,
-  title: "Text"
+  title: 'Text',
 }
 
 export const FontSizes = () => (

@@ -3,7 +3,7 @@ import { OverflowMenu } from '../'
 
 export default {
   component: OverflowMenu,
-  title: 'OverflowMenu'
+  title: 'OverflowMenu',
 }
 
 export const PositionRight = () => (
