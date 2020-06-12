@@ -49,6 +49,20 @@ For all contributors, please be sure to read the
 
 This component library was heavily inspired by the excellent [Priceline.com Design System](https://github.com/pricelinelabs/design-system).
 
+## Publishing
+
+This module uses the [Automated releases for npm packages](https://github.com/marketplace/actions/automated-releases-for-npm-packages) Github action for releasing when pushed to the `master` branch.
+
+### Versioning
+
+- If the string "BREAKING CHANGE" is found anywhere in any of the commit messages or descriptions the major version will be incremented.
+- If a commit message begins with the string "feat" then the minor version will be increased. This works for most common commit metadata for feature additions: "feat: new API" and "feature: new API".
+- All other changes will increment the patch version.
+
+### FAQS
+
+- What is going on with the `package.json` version? See the [Script does not update package.json issue](https://github.com/mikeal/merge-release/issues/12)
+
 ## License
 
 MIT

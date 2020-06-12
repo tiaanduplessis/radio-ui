@@ -78,7 +78,6 @@ export const StyledCardDescription = styled.p`
 
 export const StyledButton = styled.button`
   border: none;
-  outline: none;
   border-radius: 0.6em;
   width: 3.6em;
   height: 3.6em;

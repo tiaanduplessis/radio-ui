@@ -4,6 +4,7 @@ const commonjs = require('rollup-plugin-commonjs')
 const fileSize = require('rollup-plugin-filesize')
 const css = require('rollup-plugin-css-porter')
 const json = require('@rollup/plugin-json')
+const visualizer = require('rollup-plugin-visualizer')
 
 module.exports = {
   input: 'src/index.js',
@@ -28,6 +29,7 @@ module.exports = {
     resolve({
       dedupe: ['react', 'react-dom', 'styled-system', 'styled-components', 'react-hook-form'],
     }),
+    visualizer(),
     fileSize()
   ],
   external: [

@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import useForm, { FormContext } from 'react-hook-form'
+import { FormContext, useForm } from 'react-hook-form'
 import { Select } from '../'
 
 const options = [{ label: 'option 1', value: '1' }, { label: 'option 2', value: '2' }]

@@ -1,12 +1,10 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import useForm, { FormContext } from 'react-hook-form'
-import { DateInput } from '../'
+import { FormContext, useForm } from 'react-hook-form'
+import { TelInput } from '../'
 
-storiesOf('Input | Date Input', module)
-  .addParameters({
-    component: DateInput,
-  })
+storiesOf('Input | Tel Input', module)
+  .addParameters({ component: TelInput })
   .add('Basic', () => {
     const methods = useForm()
     const onSubmit = data => { console.log(data) }
@@ -14,7 +12,7 @@ storiesOf('Input | Date Input', module)
     return (
       <FormContext {...methods} >
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <DateInput id="1" name="1" label="Default" />
+          <TelInput id="1" name="1" label="Default" />
         </form>
       </FormContext>
     )

@@ -7,7 +7,6 @@ export default function createDefaultInputProps({
   onChange,
   alertText,
 }) {
-
   return {
     onBlur,
     value,

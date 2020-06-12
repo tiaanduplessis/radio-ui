@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import useForm, { FormContext } from 'react-hook-form'
+import { FormContext, useForm } from 'react-hook-form'
 import { Toggle } from '../'
 
 import mdx from '../docs/toggle.mdx'
