@@ -31,7 +31,7 @@ const OverflowMenu = ({ position, children }) => (
         {React.Children.map(children, child =>
           React.cloneElement(child, {
             closePopup,
-          })
+          }),
         )}
       </SettingsContainer>
     )}

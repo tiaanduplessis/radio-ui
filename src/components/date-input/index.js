@@ -36,10 +36,10 @@ const DateInput = ({
   ...otherProps
 }) => {
   const { id = otherProps.name, label, inputStyle, name } = otherProps
-  const { errors, watch, triggerValidation, setValue, register, reset, getValues } = useFormContext()
+  const { errors, watch, triggerValidation, setValue, register } = useFormContext()
   const currentValue = watch(name)
 
-  const getDateString = () => currentValue ? new Date(currentValue).toDateString() : ''
+  const getDateString = () => (currentValue ? new Date(currentValue).toDateString() : '')
 
   return (
     <InputWrapper
@@ -51,7 +51,6 @@ const DateInput = ({
       <StyledDatePicker
         id={id}
         name={name}
-        placeholderText={label}
         dateFormat={dateFormat}
         style={inputStyle}
         aria-label={label}

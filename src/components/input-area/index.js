@@ -6,14 +6,7 @@ import InputWrapper from '../input-wrapper'
 import theme from '../theme'
 import defaultPropTypes from '../../config/prop-types'
 
-const InputArea = ({
-  alertText,
-  disabled,
-  onChange,
-  inputProps,
-  required,
-  ...otherProps
-}) => {
+const InputArea = ({ alertText, disabled, onChange, inputProps, required, ...otherProps }) => {
   const { id = otherProps.name, label, placeholder, inputStyle, name } = otherProps
   const { register, errors, triggerValidation } = useFormContext()
 

@@ -3,7 +3,7 @@ import { Tag } from '../'
 
 export default {
   component: Tag,
-  title: 'Tag'
+  title: 'Tag',
 }
 
 export const Basic = () => <Tag name="foo" value="bar" />

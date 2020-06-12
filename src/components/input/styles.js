@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { byTheme } from 'styled-funcs'
 
 export const StyledInput = styled.input.attrs({
-  type: ({ type }) => type ? type : 'text'
+  type: ({ type }) => (type ? type : 'text'),
 })`
   background-color: ${byTheme('colors.white')};
   border: 1px solid ${byTheme('colors.gray[0]')};
