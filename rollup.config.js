@@ -24,6 +24,7 @@ module.exports = {
     commonjs({
       namedExports: {
         'node_modules/react-phone-number-input/modules/libphonenumber/RFC3966.js': ['parseRFC3966', 'formatRFC3966'],
+        'node_modules/react-is/index.js': ['ForwardRef', 'Memo']
         },
     }),
     resolve({
@@ -34,6 +35,7 @@ module.exports = {
   ],
   external: [
     "@lessondesk/material-icons",
+    '@material-ui/core',
     "prop-types",
     "react",
     'react-dom',
