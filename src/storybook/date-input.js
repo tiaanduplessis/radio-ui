@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import useForm, { FormContext } from 'react-hook-form'
+import { useForm, FormContext } from 'react-hook-form'
 import { DateInput } from '../'
 
 storiesOf('Input | Date Input', module)

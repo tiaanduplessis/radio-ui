@@ -1,12 +1,50 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import useForm, { FormContext } from 'react-hook-form'
+import { useForm, FormContext } from 'react-hook-form'
 import { Select } from '../'
+import NewInput from '../components/new-input'
+import NewSelect from '../components/new-select'
 
 const options = [{ label: 'option 1', value: '1' }, { label: 'option 2', value: '2' }]
 
 storiesOf('Input | Select', module)
   .addParameters({ component: Select })
+
+  .add('New Input', () =>  {
+    const methods = useForm({
+      defaultValues: {
+        new: undefined
+      }
+    })
+    const onSubmit = data => { console.log(data) }
+
+    return (
+      <FormContext {...methods} >
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <NewInput name="test" label='Test' placeholder="New" required/>
+        </form>
+      </FormContext>
+    )
+  })
+
+  .add('New', () =>  {
+    const methods = useForm({
+      defaultValues: {
+        new: undefined
+      }
+    })
+    const onSubmit = data => { console.log(data) }
+
+    return (
+      <FormContext {...methods} >
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <NewSelect name="new" label='Test' placeholder="New" options={options} required/>
+        </form>
+      </FormContext>
+    )
+  })
+
+
   .add('Empty', () =>  {
     const methods = useForm()
     const onSubmit = data => { console.log(data) }
