@@ -1,25 +1,14 @@
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-`
-
-const Loader = styled.div`
-  border-radius: 10em;
-  width: 4em;
-  height: 4em;
+const Loader = styled(CircularProgress).attrs({
+  size: '4em'
+})`
   margin: 4em;
-  animation: ${rotate} 1s linear infinite;
-  border-top: 0.4em solid #64afcc;
-  border-right: 0.4em solid #64afcc;
-  border-bottom: 0.4em solid #64afcc;
-  border-left: 0.4em solid transparent;
+
+  circle {
+    color: #64afcc;
+  }
 `
 
 export default Loader

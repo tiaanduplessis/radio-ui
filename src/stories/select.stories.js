@@ -12,7 +12,7 @@ export default {
   title: 'Select',
 }
 
-export const Empty = () => () => {
+export const Empty = () => {
   const methods = useForm()
   const onSubmit = data => {
     console.log(data)

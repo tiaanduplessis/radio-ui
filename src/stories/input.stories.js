@@ -22,7 +22,7 @@ export const WithoutLabel = () => {
   )
 }
 
-export const WithLabel = () => () => {
+export const WithLabel = () => {
   const methods = useForm()
   const onSubmit = data => {
     console.log(data)
