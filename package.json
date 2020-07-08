@@ -88,7 +88,7 @@
     "rollup-plugin-filesize": "6.2.1",
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-visualizer": "^4.0.4",
-    "snyk": "^1.339.2",
+    "snyk": "^1.360.0",
     "storybook-addon-jsx": "7.1.13",
     "storybook-readme": "5.0.8",
     "style-loader": "1.1.2",
