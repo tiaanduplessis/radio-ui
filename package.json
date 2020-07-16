@@ -52,7 +52,7 @@
     "@storybook/addon-storysource": "^5.3.19",
     "@storybook/addon-viewport": "^5.3.19",
     "@storybook/codemod": "5.3.19",
-    "@storybook/preset-create-react-app": "^3.0.1",
+    "@storybook/preset-create-react-app": "^3.1.4",
     "@storybook/react": "5.3.19",
     "@storybook/theming": "5.3.19",
     "babel-eslint": "10.1.0",
@@ -88,7 +88,7 @@
     "rollup-plugin-filesize": "6.2.1",
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-visualizer": "^4.0.4",
-    "snyk": "^1.360.0",
+    "snyk": "^1.361.3",
     "storybook-addon-jsx": "7.1.13",
     "storybook-readme": "5.0.8",
     "style-loader": "1.1.2",
@@ -110,9 +110,6 @@
     "styled-components": "^4"
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/lab": "^4.0.0-alpha.56",
-    "@material-ui/system": "^4.9.14",
     "hoist-non-react-statics": "3.3.2",
     "just-toasty": "1.4.0",
     "react-datepicker": "2.16.0",

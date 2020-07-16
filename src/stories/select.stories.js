@@ -1,6 +1,7 @@
 import React from 'react'
 import { FormContext, useForm } from 'react-hook-form'
 import { Select } from '../'
+import NewSelect from '../components/new-select'
 
 const options = [
   { label: 'option 1', value: '1' },
@@ -10,6 +11,26 @@ const options = [
 export default {
   component: Select,
   title: 'Select',
+}
+
+export const New = () => {
+  const methods = useForm({
+    defaultValues: {
+      sr: '1'
+    }
+  })
+  const onSubmit = data => {
+    console.log(data)
+  }
+
+  return (
+    <FormContext {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <NewSelect name="sr" label='test' placeholder="Empty" options={options} required />
+        <NewSelect name="st" label='test' placeholder="Empty" options={options} required />
+      </form>
+    </FormContext>
+  )
 }
 
 export const Empty = () => {

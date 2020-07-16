@@ -1,10 +1,26 @@
 import React from 'react'
 import { FormContext, useForm } from 'react-hook-form'
 import { Input } from '../'
+import NewInput from '../components/new-input'
 
 export default {
   component: Input,
   title: 'Input',
+}
+
+export const New = () => {
+  const methods = useForm()
+  const onSubmit = data => {
+    console.log(data)
+  }
+
+  return (
+    <FormContext {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <NewInput id="new" label="New" name="new" required />
+      </form>
+    </FormContext>
+  )
 }
 
 export const WithoutLabel = () => {

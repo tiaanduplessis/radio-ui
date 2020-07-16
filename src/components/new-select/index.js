@@ -1,78 +1,92 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useFormContext } from 'react-hook-form'
-import TextField from '@material-ui/core/TextField'
-import Autocomplete from '@material-ui/lab/Autocomplete'
-import styled from 'styled-components'
-import { colors, radii, fontSizes, fonts } from '../theme'
-import getErrors from '../../utils/get-errors'
+import InputField from '../input-field'
+import { StyledContainer, StyledList, StyledListItem } from './styles' 
 
-//TODO: finish new select
+const Select = ({ fullWidth, id, label, name, options, placeholder, disabled, required, onChange }) => {
+  const { register, watch, setValue } = useFormContext()
 
-const StyledInput = styled(TextField).attrs({
-  variant: 'outlined',
-  InputLabelProps: { shrink: true }
-})`
-  label {
-    color: ${colors.black};
-    position: static;
-    font-weight: bold;
+  register({ name }, { required: { value: true, message: 'Required'} })
 
-    .MuiInputLabel-asterisk {
-      color: #ed7470;
+  const selectValue = watch(name)
+
+  const [listOpen, setListOpen] = useState(false)
+  const [inputValue, setInputValue] = useState(options.find(({ value }) => value === selectValue)?.label || '')
+  const [filteredOptions, setFilteredOptions] = useState(options)
+
+  const containerRef = useRef(null)
+  useEffect(() => {
+    const handleClickOutside = e => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        e.preventDefault()
+        e.stopPropagation()
+        setListOpen(false)
+      }
     }
-  }
-`
 
-const customInputProps = { notched: false }
+    document.addEventListener('click', handleClickOutside)
 
-const Select = ({ id, label, name, options, placeholder, disabled, required }) => {
-  const { register, errors, triggerValidation, watch, setValue, getValues } = useFormContext()
-
-  register({ name }, { required: { value: true, message: 'ERROR'} })
-  const currentValue = watch(name)
-
-  const helperText = getErrors(errors, name)
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [containerRef])
 
   useEffect(() => {
-    console.log(getValues())
-    console.log(errors)
-  }, [currentValue])
+    setFilteredOptions(options)
+    setInputValue(filteredOptions.find(({ value }) => value === selectValue)?.label || '')
+  }, [options])
+
+  const handleListItemClicked = ({ value, label }) => {
+    setValue(name, value)
+    setInputValue(label)
+    onChange({ label, value })
+    setListOpen(false)
+  }
+
+  const renderListOptions = ({ label, value }) => (
+    <StyledListItem key={value} onClick={() => handleListItemClicked({ value, label })}>
+      {label}
+    </StyledListItem>
+  )
+
+  const NoOptions = (
+    <StyledListItem center onClick={() => handleListItemClicked({ value: '', label: '' })}>
+      No Options
+    </StyledListItem>
+  )
 
   return (
-    <Autocomplete
-      id={id}
-      options={options}
-      disabled={disabled}
-      getOptionLabel={option => option.label}
-      value={options.find(({ value }) => value === currentValue) || null}
-      onChange={(e, valueOption) => {
-        if (valueOption) {
-          setValue(name, valueOption.value)
-        }
-        else {
-          setValue(name, '')
-        }
-      }}
-      renderInput={params => {
-        const { InputProps } = params
-        
-        return (
-          <StyledInput
-            {...params}
-            name={name}
-            label={label}
-            required={required}
-            placeholder={placeholder || label}
-            InputProps={{ ...InputProps, ...customInputProps }}
-            onBlur={async () => await triggerValidation(name)}
-            helperText={helperText}
-            error={helperText.length}
-          />
-        )
-      }
-      }
-    />
+    <StyledContainer ref={containerRef}>
+      <InputField
+        id={id}
+        name={name}
+        label={label}
+        value={inputValue}
+        required={required}
+        disabled={disabled}
+        fullWidth={fullWidth}
+        placeholder={placeholder}
+        onClick={() => setListOpen(true)}
+        onChange={e => {
+          setInputValue(e.target.value)
+          setFilteredOptions(
+            options.filter(({ label }) => label.toLowerCase().includes(e.target.value.toLowerCase()))
+          )
+          onChange({ label: e.target.value, value: '' })
+        }}
+      />
+      {listOpen && (
+        <StyledList fullWidth={fullWidth}>
+          {filteredOptions.length ? filteredOptions.map(renderListOptions) : NoOptions}
+        </StyledList>
+      )}
+    </StyledContainer>
   )
+}
+
+Select.defaultProps = {
+  options: [],
+  onChange: () => {}
 }
 
 export default Select

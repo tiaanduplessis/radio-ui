@@ -2,9 +2,22 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { useForm, FormContext } from 'react-hook-form'
 import { Input } from '../'
+import NewInput from '../components/new-input'
 
 storiesOf('Input | Input', module)
   .addParameters({ component: Input })
+  .add('New', () => {
+    const methods = useForm()
+    const onSubmit = data => { console.log(data) }
+
+    return (
+      <FormContext {...methods} >
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <NewInput id="new" label="New" name="new" required />
+        </form>
+      </FormContext>
+    )
+  })
   .add('Without label', () => {
     const methods = useForm()
     const onSubmit = data => { console.log(data) }
