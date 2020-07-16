@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form'
 import InputField from '../input-field'
 import { StyledContainer, StyledList, StyledListItem } from './styles' 
 
-const Select = ({ fullWidth, id, label, name, options, placeholder, disabled, required, onChange }) => {
+const Select = ({ fullWidth, id, label, name, options, placeholder, disabled, required, onChange, onInputChange }) => {
   const { register, watch, setValue } = useFormContext()
 
   register({ name }, { required: { value: true, message: 'Required'} })
@@ -72,7 +72,7 @@ const Select = ({ fullWidth, id, label, name, options, placeholder, disabled, re
           setFilteredOptions(
             options.filter(({ label }) => label.toLowerCase().includes(e.target.value.toLowerCase()))
           )
-          onChange({ label: e.target.value, value: '' })
+          onInputChange(e.target.value)
         }}
       />
       {listOpen && (
@@ -86,7 +86,8 @@ const Select = ({ fullWidth, id, label, name, options, placeholder, disabled, re
 
 Select.defaultProps = {
   options: [],
-  onChange: () => {}
+  onChange: () => {},
+  onInputChange: () => {}
 }
 
 export default Select
