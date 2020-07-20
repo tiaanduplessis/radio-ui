@@ -5,20 +5,20 @@ import getErrors from '../../utils/get-errors'
 import { StyledContainer, StyledLabel, StyledAsterisk, StyledAlertText, StyledInput } from './styles'
 
 const InputField = forwardRef(({
-  fullWidth,
   id,
-  label,
   name,
   type,
-  placeholder,
+  label,
+  value,
+  onBlur,
+  onClick,
   disabled,
   required,
-  onClick,
   onChange,
-  onBlur,
-  value
+  fullWidth,
+  placeholder
 }, ref) => {
-  const { errors, triggerValidation } = useFormContext()
+  const { errors } = useFormContext()
 
   const alertText = getErrors(errors, name)
 
@@ -36,16 +36,13 @@ const InputField = forwardRef(({
         ref={ref}
         type={type}
         value={value}
+        onBlur={onBlur}
         onClick={onClick}
         required={required}
         disabled={disabled}
         onChange={onChange}
         name={ref ? name : undefined}
         placeholder={placeholder || label}
-        onBlur={async () => {
-          onBlur()
-          await triggerValidation(name)
-        }}
       />
     </StyledContainer>
   )

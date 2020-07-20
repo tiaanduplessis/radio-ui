@@ -14,11 +14,7 @@ export default {
 }
 
 export const New = () => {
-  const methods = useForm({
-    defaultValues: {
-      sr: '1'
-    }
-  })
+  const methods = useForm()
   const onSubmit = data => {
     console.log(data)
   }

@@ -4,12 +4,13 @@ import InputField from '../input-field'
 
 const Input = props => {
   const { name } = props
-  const { register, errors, setValue } = useFormContext()
+  const { register, setValue, triggerValidation } = useFormContext()
 
   return (
     <InputField
       {...props}
       onChange={e => setValue(name, e.target.value)} //TODO: check if you can find a way to remove this
+      onBlur={async () => await triggerValidation(name)}
       ref={register({ name }, { required: { value: true, message: 'Required'} })}
     />
   )
