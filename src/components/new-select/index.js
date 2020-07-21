@@ -40,12 +40,10 @@ const Select = ({
     const handleClickOutside = e => {
       const validate = async () => await triggerValidation(name)
 
-      if (containerRef.current && !containerRef.current.contains(e.target)) {
+      if (containerRef.current && !containerRef.current.contains(e.target) && listOpen) {
         e.preventDefault()
         e.stopPropagation()
-
-        if (listOpen) validate()
-        
+        validate()
         setListOpen(false)
       }
     }
