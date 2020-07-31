@@ -201,11 +201,12 @@ function _templateObject$2() {
 
   return data;
 }
-var Box = styled__default.div(_templateObject$2(), styledSystem.space, styledSystem.layout, styledSystem.color, styledSystem.flexbox);
+var Box = styled__default.div.attrs(function (props) {
+  return {
+    theme: props.theme || theme
+  };
+})(_templateObject$2(), styledSystem.space, styledSystem.layout, styledSystem.color, styledSystem.flexbox);
 Box.displayName = 'Box';
-Box.defaultProps = {
-  theme: theme
-};
 Box.propTypes = _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, styledSystem.space.propTypes), styledSystem.layout.propTypes), styledSystem.color.propTypes), styledSystem.flexbox.propTypes);
 
 function _objectWithoutPropertiesLoose(source, excluded) {
@@ -293,8 +294,12 @@ var SIZES = {
   default: 'default',
   large: 'large'
 };
-var StyledButton = styled__default.button.attrs({
-  type: 'button'
+var StyledButton = styled__default.button.attrs(function (props) {
+  return {
+    type: 'button',
+    shape: props.shape || SHAPES.square,
+    size: props.size || SIZES.default
+  };
 })(_templateObject$3(), dist_2('fontWeights.bold'), dist_2('fonts[0]'), styledSystem.buttonStyle, function (props) {
   var _isMap;
 
@@ -319,10 +324,6 @@ Button.propTypes = _objectSpread$1(_objectSpread$1(_objectSpread$1({
   shape: PropTypes$1.oneOf(Object.keys(SHAPES)),
   size: PropTypes$1.oneOf(Object.keys(SIZES))
 }, styledSystem.space.propTypes), styledSystem.layout.propTypes), styledSystem.typography.propTypes);
-Button.defaultProps = {
-  shape: SHAPES.square,
-  size: SIZES.default
-};
 Button.SHAPES = SHAPES;
 Button.SIZES = SIZES;
 Button.displayName = 'Button';
@@ -695,10 +696,11 @@ function _templateObject$5() {
 
   return data;
 }
-var Text = styled__default.p(_templateObject$5(), dist_2('colors.gray.xxdark'), styledSystem.typography, styledSystem.space, styledSystem.color);
-Text.defaultProps = {
-  theme: theme
-};
+var Text = styled__default.p.attrs(function (props) {
+  return {
+    theme: props.theme || theme
+  };
+})(_templateObject$5(), dist_2('colors.gray.xxdark'), styledSystem.typography, styledSystem.space, styledSystem.color);
 Text.propTypes = _objectSpread$3(_objectSpread$3(_objectSpread$3({}, styledSystem.typography.propTypes), styledSystem.space.propTypes), styledSystem.color.propTypes);
 Text.displayName = 'Text';
 
@@ -720,8 +722,12 @@ var SHAPES$1 = {
   round: 'round',
   rounded: 'rounded'
 };
-var Image = styled__default.img.attrs({
-  alt: ''
+var Image = styled__default.img.attrs(function (props) {
+  return {
+    alt: '',
+    theme: props.theme || theme,
+    shape: props.shape || SHAPES$1.square
+  };
 })(_templateObject$6(), function (props) {
   var _isMap;
 
@@ -731,10 +737,6 @@ Image.displayName = 'Image';
 Image.propTypes = _objectSpread$4(_objectSpread$4(_objectSpread$4({}, styledSystem.layout.propTypes), styledSystem.shadow.propTypes), {}, {
   shape: PropTypes$1.oneOf(Object.keys(SHAPES$1))
 });
-Image.defaultProps = {
-  theme: theme,
-  shape: SHAPES$1.square
-};
 Image.SHAPES = SHAPES$1;
 
 var reactIs_production_min = createCommonjsModule(function (module, exports) {
@@ -1173,12 +1175,10 @@ var Flex = mapProps(function (_ref) {
   return _objectSpread$5({
     flexWrap: wrap ? 'wrap' : 'no-wrap',
     alignItems: align,
-    justifyContent: justify
+    justifyContent: justify,
+    theme: props.theme || theme
   }, props);
 })(styled__default.div(_templateObject$7(), styledSystem.space, styledSystem.layout, styledSystem.color, styledSystem.alignItems, styledSystem.justifyContent, styledSystem.flexDirection, styledSystem.flexWrap));
-Flex.defaultProps = {
-  theme: theme
-};
 Flex.propTypes = _objectSpread$5(_objectSpread$5(_objectSpread$5(_objectSpread$5(_objectSpread$5(_objectSpread$5(_objectSpread$5({}, styledSystem.space.propTypes), styledSystem.layout.propTypes), styledSystem.color.propTypes), styledSystem.alignItems.propTypes), styledSystem.justifyContent.propTypes), styledSystem.flexWrap.propTypes), styledSystem.flexDirection.propTypes);
 Flex.displayName = 'Flex';
 
@@ -37237,14 +37237,17 @@ var CheckboxOn = styled__default(CheckboxState)(_templateObject6$1(), Input$4, A
 var Toggle = function Toggle(_ref) {
   var id = _ref.id,
       label = _ref.label,
-      offText = _ref.offText,
-      onText = _ref.onText,
-      containerStyle = _ref.containerStyle,
       name = _ref.name,
       required = _ref.required,
       onChange = _ref.onChange,
       disabled = _ref.disabled,
-      otherProps = objectWithoutProperties(_ref, ["id", "label", "offText", "onText", "containerStyle", "name", "required", "onChange", "disabled"]);
+      _ref$onText = _ref.onText,
+      onText = _ref$onText === void 0 ? 'Open' : _ref$onText,
+      _ref$offText = _ref.offText,
+      offText = _ref$offText === void 0 ? 'Closed' : _ref$offText,
+      _ref$containerStyle = _ref.containerStyle,
+      containerStyle = _ref$containerStyle === void 0 ? {} : _ref$containerStyle,
+      otherProps = objectWithoutProperties(_ref, ["id", "label", "name", "required", "onChange", "disabled", "onText", "offText", "containerStyle"]);
 
   var _useFormContext = reactHookForm.useFormContext(),
       register = _useFormContext.register;
@@ -37262,11 +37265,6 @@ var Toggle = function Toggle(_ref) {
   }, otherProps)), /*#__PURE__*/React__default.createElement(Animate, null, /*#__PURE__*/React__default.createElement(CheckboxOff, null, offText), /*#__PURE__*/React__default.createElement(CheckboxOn, null, onText)));
 };
 
-Toggle.defaultProps = {
-  offText: 'Closed',
-  onText: 'Open',
-  containerStyle: {}
-};
 Toggle.propTypes = {
   offText: PropTypes$1.string,
   onText: PropTypes$1.string,
@@ -37292,10 +37290,11 @@ var image = function image(props) {
   return "url(".concat(props.source, ")");
 };
 
-var BackgroundImage = styled__default.div(_templateObject$i(), image, styledSystem.space, styledSystem.background, styledSystem.layout, styledSystem.flexbox);
-BackgroundImage.defaultProps = {
-  theme: theme
-};
+var BackgroundImage = styled__default.div.attrs(function (props) {
+  return {
+    theme: props.theme || theme
+  };
+})(_templateObject$i(), image, styledSystem.space, styledSystem.background, styledSystem.layout, styledSystem.flexbox);
 BackgroundImage.propTypes = _objectSpread$e(_objectSpread$e(_objectSpread$e(_objectSpread$e({
   source: PropTypes$1.string.isRequired
 }, styledSystem.space.propTypes), styledSystem.background.propTypes), styledSystem.layout.propTypes), styledSystem.flexbox.propTypes);

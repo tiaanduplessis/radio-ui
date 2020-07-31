@@ -16,6 +16,7 @@ const Flex = mapProps(({ wrap, align, justify, ...props }) => ({
   flexWrap: wrap ? 'wrap' : 'no-wrap',
   alignItems: align,
   justifyContent: justify,
+  theme: props.theme || theme,
   ...props,
 }))(styled.div`
   display: flex;
@@ -27,10 +28,6 @@ const Flex = mapProps(({ wrap, align, justify, ...props }) => ({
   ${flexDirection}
   ${flexWrap}
 `)
-
-Flex.defaultProps = {
-  theme,
-}
 
 Flex.propTypes = {
   ...space.propTypes,

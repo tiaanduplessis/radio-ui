@@ -5,7 +5,7 @@ import { colors, fontSizes, fontWeights, space, radii } from '../theme'
 export const StyledContainer = styled(Flex).attrs(() => ({
   flexDirection: 'column'
 }))`
-  width: ${({ fullWidth }) => fullWidth ? 'auto' : 'calc(50% - 1em)'};
+  width: ${({ fullWidth }) => fullWidth ? '100%' : 'calc(50% - 1em)'};
   margin-bottom: ${space[3]};
 `
 

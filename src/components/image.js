@@ -11,9 +11,11 @@ const SHAPES = {
   rounded: 'rounded',
 }
 
-const Image = styled.img.attrs({
+const Image = styled.img.attrs(props => ({
   alt: '',
-})`
+  theme: props.theme || theme,
+  shape: props.shape || SHAPES.square,
+}))`
   display: block;
   max-width: 100%;
   height: auto;
@@ -33,11 +35,6 @@ Image.propTypes = {
   ...layout.propTypes,
   ...shadow.propTypes,
   shape: PropTypes.oneOf(Object.keys(SHAPES)),
-}
-
-Image.defaultProps = {
-  theme: theme,
-  shape: SHAPES.square,
 }
 
 Image.SHAPES = SHAPES

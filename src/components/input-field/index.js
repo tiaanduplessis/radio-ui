@@ -7,16 +7,16 @@ import { StyledContainer, StyledLabel, StyledAsterisk, StyledAlertText, StyledIn
 const InputField = forwardRef(({
   id,
   name,
-  type,
-  label,
   value,
-  onBlur,
-  onClick,
   disabled,
   required,
-  onChange,
   fullWidth,
-  placeholder
+  label = '',
+  placeholder,
+  type = 'text',
+  onBlur = () => {},
+  onClick = () => {},
+  onChange = () => {},
 }, ref) => {
   const { errors } = useFormContext()
 
@@ -35,25 +35,17 @@ const InputField = forwardRef(({
         id={id}
         ref={ref}
         type={type}
+        name={name}
         value={value}
         onBlur={onBlur}
         onClick={onClick}
         required={required}
         disabled={disabled}
         onChange={onChange}
-        name={ref ? name : undefined}
         placeholder={placeholder || label}
       />
     </StyledContainer>
   )
 })
-
-InputField.defaultProps = {
-  label: '',
-  type: 'text',
-  onBlur: () => {},
-  onClick: () => {},
-  onChange: () => {}
-}
 
 export default InputField

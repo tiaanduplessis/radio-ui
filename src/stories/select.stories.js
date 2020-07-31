@@ -23,7 +23,6 @@ export const New = () => {
     <FormContext {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <NewSelect name="sr" label='test' placeholder="Empty" options={options} required />
-        <NewSelect name="st" label='test' placeholder="Empty" options={options} required />
       </form>
     </FormContext>
   )

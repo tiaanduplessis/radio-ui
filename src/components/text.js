@@ -4,16 +4,14 @@ import { byTheme } from 'styled-funcs'
 
 import theme from './theme'
 
-const Text = styled.p`
+const Text = styled.p.attrs(props => ({
+  theme: props.theme || theme
+}))`
   color: ${byTheme('colors.gray.xxdark')};
   ${typography}
   ${space}
   ${color}
 `
-
-Text.defaultProps = {
-  theme: theme,
-}
 
 Text.propTypes = {
   ...typography.propTypes,

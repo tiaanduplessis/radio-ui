@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 import { colors, space, radii } from '../theme'
 
-export const StyledContainer = styled.div``
+export const StyledContainer = styled.div`
+  width: ${({ fullWidth }) => fullWidth ? '100%' : 'calc(50% - 1em)'};
+`
 
 export const StyledList = styled.ul`
   position: absolute;
