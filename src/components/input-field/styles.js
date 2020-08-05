@@ -1,35 +1,35 @@
-import styled from 'styled-components'
-import Flex from '../flex'
-import { colors, fontSizes, fontWeights, space, radii } from '../theme'
+import styled from "styled-components";
+import Flex from "../flex";
+import { colors, fontSizes, fontWeights, space, radii } from "../theme";
 
 export const StyledContainer = styled(Flex).attrs(() => ({
-  flexDirection: 'column'
+  flexDirection: "column"
 }))`
-  width: ${({ fullWidth }) => fullWidth ? '100%' : 'calc(50% - 1em)'};
+  width: ${({ fullWidth }) => (fullWidth ? "100%" : "calc(50% - 1em)")};
   margin-bottom: ${space[3]};
-`
+`;
 
 export const StyledLabel = styled.label`
   height: 1em;
-  color: ${colors.gray.xxdark};
-  font-weight: ${fontWeights.bold};
-  font-size: ${fontSizes.xsmall};
   margin-bottom: ${space[1]};
-`
+  color: ${colors.gray.xxdark};
+  font-size: ${fontSizes.xsmall};
+  font-weight: ${fontWeights.bold};
+`;
 
 export const StyledAsterisk = styled.span`
   color: ${colors.red[1]};
   margin-left: ${space[1]};
-`
+`;
 
 export const StyledAlertText = styled.span.attrs({
-  role: 'alert',
+  role: "alert"
 })`
   font-style: italic;
   color: ${colors.red[1]};
   font-size: ${fontSizes.xsmall};
   font-weight: ${fontWeights.bold};
-`
+`;
 
 export const StyledInput = styled.input`
   height: 35px;
@@ -48,4 +48,11 @@ export const StyledInput = styled.input`
   &:disabled {
     background-color: ${colors.gray.xxlight};
   }
-`
+
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-appearance: none;
+    margin: 0;
+  }
+`;

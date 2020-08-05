@@ -1,54 +1,25 @@
-import React from 'react'
-import { useFormContext } from 'react-hook-form'
-import getErrors from '../../utils/get-errors'
-import './styles.css'
-import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
+import React from "react";
+import PrefixedInput from "./prefixed-input";
+import { countries } from "./data";
 
-import InputWrapper from '../input-wrapper'
+const countryCodeToFlag = ({ code, label, value }) => {
+  const flag =
+    typeof String.fromCodePoint !== "undefined"
+      ? code
+          .toUpperCase()
+          .replace(/./g, char =>
+            String.fromCodePoint(char.charCodeAt(0) + 127397)
+          )
+      : code;
 
-const defaultMasks = {
-  za: '+.. .. ... ....',
-}
+  return {
+    label: `${flag} ${value} ${label}`,
+    value
+  };
+};
 
-const TelInput = props => {
-  const {
-    masks,
-    placeholder,
-    defaultCountry = 'ZA',
-    disabled,
-    required,
-    alertText: alertTextOverride,
-    ...otherProps
-  } = props
+const countryOptions = countries.map(countryCodeToFlag);
 
-  const { id = otherProps.name, label, name } = otherProps
-  const { register, errors, setValue, triggerValidation } = useFormContext()
+const TelInput = props => <PrefixedInput {...props} options={countryOptions} />;
 
-  return (
-    <InputWrapper
-      required={required}
-      disabled={disabled}
-      alertText={alertTextOverride || getErrors(errors, name)}
-      {...otherProps}
-    >
-      <PhoneInput
-        id={id}
-        onChange={value => setValue(name, value)}
-        disabled={disabled}
-        name={name}
-        country={defaultCountry}
-        onBlur={async () => await triggerValidation(name)}
-        masks={masks || defaultMasks}
-        placeholder={placeholder || label}
-        ref={register({ name })}
-      />
-    </InputWrapper>
-  )
-}
-
-TelInput.defaultProps = {
-  onChange: () => {},
-}
-
-export default TelInput
+export default TelInput;

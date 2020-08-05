@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 import {
   space,
   layout,
@@ -6,18 +6,18 @@ import {
   alignItems,
   justifyContent,
   flexWrap,
-  flexDirection,
-} from 'styled-system'
-import theme from './theme'
+  flexDirection
+} from "styled-system";
+import theme from "./theme";
 
-import { mapProps } from './utils'
+import { mapProps } from "./utils";
 
 const Flex = mapProps(({ wrap, align, justify, ...props }) => ({
-  flexWrap: wrap ? 'wrap' : 'no-wrap',
+  flexWrap: wrap ? "wrap" : "no-wrap",
   alignItems: align,
   justifyContent: justify,
   theme: props.theme || theme,
-  ...props,
+  ...props
 }))(styled.div`
   display: flex;
   ${space}
@@ -27,7 +27,7 @@ const Flex = mapProps(({ wrap, align, justify, ...props }) => ({
   ${justifyContent}
   ${flexDirection}
   ${flexWrap}
-`)
+`);
 
 Flex.propTypes = {
   ...space.propTypes,
@@ -36,9 +36,9 @@ Flex.propTypes = {
   ...alignItems.propTypes,
   ...justifyContent.propTypes,
   ...flexWrap.propTypes,
-  ...flexDirection.propTypes,
-}
+  ...flexDirection.propTypes
+};
 
-Flex.displayName = 'Flex'
+Flex.displayName = "Flex";
 
-export default Flex
+export default Flex;

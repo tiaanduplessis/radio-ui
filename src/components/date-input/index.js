@@ -1,13 +1,13 @@
-import React from 'react'
-import { useFormContext } from 'react-hook-form'
-import DatePicker from 'react-datepicker'
-import styled from 'styled-components'
-import getErrors from '../../utils/get-errors'
+import React from "react";
+import { useFormContext } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import styled from "styled-components";
+import getErrors from "../../utils/get-errors";
 
-import InputWrapper from '../input-wrapper'
+import InputWrapper from "../input-wrapper";
 
-import 'react-datepicker/dist/react-datepicker.css'
-import './styles.css'
+import "react-datepicker/dist/react-datepicker.css";
+import "./styles.css";
 
 const StyledDatePicker = styled(DatePicker)`
   background-color: ${props =>
@@ -23,7 +23,7 @@ const StyledDatePicker = styled(DatePicker)`
   ::placeholder {
     color: ${props => props.theme.colors.gray.dark};
   }
-`
+`;
 
 const DateInput = ({
   disabled,
@@ -35,11 +35,18 @@ const DateInput = ({
   alertText: alertTextOverride,
   ...otherProps
 }) => {
-  const { id = otherProps.name, label, inputStyle, name } = otherProps
-  const { errors, watch, triggerValidation, setValue, register } = useFormContext()
-  const currentValue = watch(name)
+  const { id = otherProps.name, label, inputStyle, name } = otherProps;
+  const {
+    errors,
+    watch,
+    triggerValidation,
+    setValue,
+    register
+  } = useFormContext();
+  const currentValue = watch(name);
 
-  const getDateString = () => (currentValue ? new Date(currentValue).toDateString() : '')
+  const getDateString = () =>
+    currentValue ? new Date(currentValue).toDateString() : "";
 
   return (
     <InputWrapper
@@ -49,6 +56,7 @@ const DateInput = ({
       {...otherProps}
     >
       <StyledDatePicker
+        {...inputProps}
         id={id}
         name={name}
         dateFormat={dateFormat}
@@ -58,20 +66,20 @@ const DateInput = ({
         placeholderText={placeholder || label}
         disabled={disabled}
         value={getDateString(currentValue)}
-        onBlur={async () => await triggerValidation(name)}
+        onBlur={async () => triggerValidation(name)}
         onChange={value => {
-          setValue(name, value.toISOString())
-          onChange(value)
+          setValue(name, value.toISOString());
+          onChange(value);
         }}
         ref={register({ name })}
       />
     </InputWrapper>
-  )
-}
+  );
+};
 
 DateInput.defaultProps = {
-  dateFormat: 'dd/MM/yyyy',
-  onChange: () => {},
-}
+  dateFormat: "dd/MM/yyyy",
+  onChange: () => {}
+};
 
-export default DateInput
+export default DateInput;
