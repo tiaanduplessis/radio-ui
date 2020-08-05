@@ -1,17 +1,17 @@
-import React from 'react'
-import { FormContext, useForm } from 'react-hook-form'
-import { Input } from '../'
+import React from "react";
+import { FormContext, useForm } from "react-hook-form";
+import { Input } from "../";
 
 export default {
   component: Input,
-  title: 'Input',
-}
+  title: "Input"
+};
 
 export const WithoutLabel = () => {
-  const methods = useForm()
+  const methods = useForm();
   const onSubmit = data => {
-    console.log(data)
-  }
+    console.log(data);
+  };
 
   return (
     <FormContext {...methods}>
@@ -19,14 +19,14 @@ export const WithoutLabel = () => {
         <Input id="1" name="foo" placeholder="Without label" />
       </form>
     </FormContext>
-  )
-}
+  );
+};
 
-export const WithLabel = () => () => {
-  const methods = useForm()
+export const WithLabel = () => {
+  const methods = useForm();
   const onSubmit = data => {
-    console.log(data)
-  }
+    console.log(data);
+  };
 
   return (
     <FormContext {...methods}>
@@ -34,14 +34,14 @@ export const WithLabel = () => () => {
         <Input id="2" label="Label" name="bar" />
       </form>
     </FormContext>
-  )
-}
+  );
+};
 
 export const WithRequired = () => {
-  const methods = useForm()
+  const methods = useForm();
   const onSubmit = data => {
-    console.log(data)
-  }
+    console.log(data);
+  };
 
   return (
     <FormContext {...methods}>
@@ -49,14 +49,14 @@ export const WithRequired = () => {
         <Input id="2" label="Label" name="baz" required />
       </form>
     </FormContext>
-  )
-}
+  );
+};
 
 export const Disabled = () => {
-  const methods = useForm()
+  const methods = useForm();
   const onSubmit = data => {
-    console.log(data)
-  }
+    console.log(data);
+  };
 
   return (
     <FormContext {...methods}>
@@ -64,20 +64,25 @@ export const Disabled = () => {
         <Input id="3" label="Disabled" name="bar" disabled />
       </form>
     </FormContext>
-  )
-}
+  );
+};
 
 export const WithAlert = () => {
-  const methods = useForm()
+  const methods = useForm();
   const onSubmit = data => {
-    console.log(data)
-  }
+    console.log(data);
+  };
 
   return (
     <FormContext {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <Input id="4" label="With Alert" name="foo" alertText="Invalid input given" />
+        <Input
+          id="4"
+          label="With Alert"
+          name="foo"
+          alertText="Invalid input given"
+        />
       </form>
     </FormContext>
-  )
-}
+  );
+};

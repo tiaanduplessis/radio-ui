@@ -17,9 +17,11 @@ const SIZES = {
   large: 'large',
 }
 
-const StyledButton = styled.button.attrs({
+const StyledButton = styled.button.attrs(props => ({
   type: 'button',
-})`
+  shape: props.shape || SHAPES.square,
+  size: props.size || SIZES.default,
+}))`
   font-weight: ${byTheme('fontWeights.bold')};
   font-family: ${byTheme('fonts[0]')};
   min-width: 120px;
@@ -73,11 +75,6 @@ Button.propTypes = {
   ...space.propTypes,
   ...layout.propTypes,
   ...typography.propTypes,
-}
-
-Button.defaultProps = {
-  shape: SHAPES.square,
-  size: SIZES.default,
 }
 
 Button.SHAPES = SHAPES

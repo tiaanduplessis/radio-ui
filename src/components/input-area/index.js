@@ -1,14 +1,27 @@
-import React from 'react'
-import { useFormContext } from 'react-hook-form'
-import { StyledInputArea } from './styles'
-import getErrors from '../../utils/get-errors'
-import InputWrapper from '../input-wrapper'
-import theme from '../theme'
-import defaultPropTypes from '../../config/prop-types'
+import React from "react";
+import { useFormContext } from "react-hook-form";
+import { StyledInputArea } from "./styles";
+import getErrors from "../../utils/get-errors";
+import InputWrapper from "../input-wrapper";
+import theme from "../theme";
+import defaultPropTypes from "../../config/prop-types";
 
-const InputArea = ({ alertText, disabled, onChange, inputProps, required, ...otherProps }) => {
-  const { id = otherProps.name, label, placeholder, inputStyle, name } = otherProps
-  const { register, errors, triggerValidation } = useFormContext()
+const InputArea = ({
+  alertText,
+  disabled,
+  onChange,
+  inputProps,
+  required,
+  ...otherProps
+}) => {
+  const {
+    id = otherProps.name,
+    label,
+    placeholder,
+    inputStyle,
+    name
+  } = otherProps;
+  const { register, errors, triggerValidation } = useFormContext();
 
   return (
     <InputWrapper
@@ -26,20 +39,20 @@ const InputArea = ({ alertText, disabled, onChange, inputProps, required, ...oth
         disabled={disabled}
         name={name}
         onChange={onChange}
-        onBlur={async () => await triggerValidation(name)}
+        onBlur={async () => triggerValidation(name)}
         ref={register}
         {...inputProps}
       />
     </InputWrapper>
-  )
-}
+  );
+};
 
-InputArea.propTypes = defaultPropTypes
+InputArea.propTypes = defaultPropTypes;
 
 InputArea.defaultProps = {
-  label: '',
+  label: "",
   inputStyle: {},
-  theme: theme,
-}
+  theme: theme
+};
 
-export default InputArea
+export default InputArea;

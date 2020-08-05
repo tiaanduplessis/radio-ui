@@ -3,7 +3,9 @@ import { space, color, layout, flexbox } from 'styled-system'
 
 import theme from './theme'
 
-const Box = styled.div`
+const Box = styled.div.attrs(props => ({
+  theme: props.theme || theme
+}))`
   ${space}
   ${layout}
   ${color}
@@ -11,10 +13,6 @@ const Box = styled.div`
 `
 
 Box.displayName = 'Box'
-
-Box.defaultProps = {
-  theme: theme,
-}
 
 Box.propTypes = {
   ...space.propTypes,

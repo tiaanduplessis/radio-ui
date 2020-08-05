@@ -6,13 +6,13 @@ import { Container, Input, Animate, CheckboxOff, CheckboxOn } from './styles'
 const Toggle = ({
   id,
   label,
-  offText,
-  onText,
-  containerStyle,
   name,
   required,
   onChange,
   disabled,
+  onText = 'Open',
+  offText = 'Closed',
+  containerStyle = {},
   ...otherProps
 }) => {
   const { register } = useFormContext()
@@ -34,12 +34,6 @@ const Toggle = ({
       </Animate>
     </Container>
   )
-}
-
-Toggle.defaultProps = {
-  offText: 'Closed',
-  onText: 'Open',
-  containerStyle: {},
 }
 
 Toggle.propTypes = {

@@ -5,7 +5,9 @@ import theme from './theme'
 
 const image = props => `url(${props.source})`
 
-const BackgroundImage = styled.div`
+const BackgroundImage = styled.div.attrs(props => ({
+  theme: props.theme || theme
+}))`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -15,10 +17,6 @@ const BackgroundImage = styled.div`
   ${layout}
   ${flexbox}
 `
-
-BackgroundImage.defaultProps = {
-  theme: theme,
-}
 
 BackgroundImage.propTypes = {
   source: PropTypes.string.isRequired,
