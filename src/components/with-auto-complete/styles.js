@@ -1,11 +1,14 @@
-import styled from "styled-components";
-import { colors, space, radii } from "../theme";
+import styled from 'styled-components'
+import { colors, space, radii } from '../theme'
 
 export const StyledContainer = styled.div`
-  width: ${({ fullWidth }) => (fullWidth ? "100%" : "calc(50% - 1em)")};
-`;
+  position: relative;
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'calc(50% - 1em)')};
+`
 
 export const StyledList = styled.ul`
+  z-index: 99;
+  width: 100%;
   max-height: 18em;
   overflow-y: auto;
   position: absolute;
@@ -13,9 +16,7 @@ export const StyledList = styled.ul`
   background-color: ${colors.white};
   border: 1px solid ${colors.gray.xxlight};
   margin-top: calc(-${space[2]} - ${space[1]});
-  width: ${({ fullWidth }) =>
-    fullWidth ? "calc(100% - 2em)" : "calc(50% - 2em)"};
-`;
+`
 
 export const StyledListItem = styled.li`
   cursor: pointer;
@@ -24,9 +25,9 @@ export const StyledListItem = styled.li`
   &:hover {
     background-color: ${colors.gray.xxlight};
   }
-`;
+`
 
 export const StyledNoOptionsListItem = styled(StyledListItem)`
   text-align: center;
   color: ${colors.gray.dark};
-`;
+`

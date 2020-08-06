@@ -12952,7 +12952,7 @@ var StyledInput$3 = styled__default.input(_templateObject$f(), colors.gray.xxdar
 var StyledInputField = styled__default(InputField).attrs(function () {
   return {
     inputStyle: {
-      padding: "0 0 0 8em"
+      padding: "".concat(space[1], " ").concat(space[2], " ").concat(space[1], " 8em")
     }
   };
 })(_templateObject2$5());
@@ -13028,7 +13028,7 @@ function _templateObject3$4() {
 }
 
 function _templateObject2$6() {
-  var data = taggedTemplateLiteral(["\n  max-height: 18em;\n  overflow-y: auto;\n  position: absolute;\n  border-radius: ", ";\n  background-color: ", ";\n  border: 1px solid ", ";\n  margin-top: calc(-", " - ", ");\n  width: ", ";\n"]);
+  var data = taggedTemplateLiteral(["\n  z-index: 99;\n  width: 100%;\n  max-height: 18em;\n  overflow-y: auto;\n  position: absolute;\n  border-radius: ", ";\n  background-color: ", ";\n  border: 1px solid ", ";\n  margin-top: calc(-", " - ", ");\n"]);
 
   _templateObject2$6 = function _templateObject2() {
     return data;
@@ -13038,7 +13038,7 @@ function _templateObject2$6() {
 }
 
 function _templateObject$g() {
-  var data = taggedTemplateLiteral(["\n  width: ", ";\n"]);
+  var data = taggedTemplateLiteral(["\n  position: relative;\n  width: ", ";\n"]);
 
   _templateObject$g = function _templateObject() {
     return data;
@@ -13048,12 +13048,9 @@ function _templateObject$g() {
 }
 var StyledContainer$1 = styled__default.div(_templateObject$g(), function (_ref) {
   var fullWidth = _ref.fullWidth;
-  return fullWidth ? "100%" : "calc(50% - 1em)";
+  return fullWidth ? '100%' : 'calc(50% - 1em)';
 });
-var StyledList = styled__default.ul(_templateObject2$6(), radii.small, colors.white, colors.gray.xxlight, space[2], space[1], function (_ref2) {
-  var fullWidth = _ref2.fullWidth;
-  return fullWidth ? "calc(100% - 2em)" : "calc(50% - 2em)";
-});
+var StyledList = styled__default.ul(_templateObject2$6(), radii.small, colors.white, colors.gray.xxlight, space[2], space[1]);
 var StyledListItem = styled__default.li(_templateObject3$4(), space[2], space[2], colors.gray.xxlight);
 var StyledNoOptionsListItem = styled__default(StyledListItem)(_templateObject4$3(), colors.gray.dark);
 
