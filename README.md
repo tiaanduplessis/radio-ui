@@ -1,7 +1,5 @@
 # Radio UI
 
-[![radio-retail-code-style](https://img.shields.io/badge/style-radio%20retail-379CC1.svg?style=flat-square)](https://github.com/radio-retail/eslint-config) [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://schoolbus.netlify.com)
-
 > Radio Retail Component Library
 
 ## About

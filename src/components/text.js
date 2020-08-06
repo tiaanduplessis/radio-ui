@@ -1,24 +1,24 @@
-import styled from 'styled-components'
-import { typography, space, color } from 'styled-system'
-import { byTheme } from 'styled-funcs'
+import styled from "styled-components";
+import { typography, space, color } from "styled-system";
+import { byTheme } from "styled-funcs";
 
-import theme from './theme'
+import theme from "./theme";
 
 const Text = styled.p.attrs(props => ({
   theme: props.theme || theme
 }))`
-  color: ${byTheme('colors.gray.xxdark')};
+  color: ${byTheme("colors.gray.xxdark")};
   ${typography}
   ${space}
   ${color}
-`
+`;
 
 Text.propTypes = {
   ...typography.propTypes,
   ...space.propTypes,
-  ...color.propTypes,
-}
+  ...color.propTypes
+};
 
-Text.displayName = 'Text'
+Text.displayName = "Text";
 
-export default Text
+export default Text;

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { colors, fontSizes, space, radii } from '../theme';
-import InputField from '../input-field';
+import styled from "styled-components";
+import { colors, fontSizes, space, radii } from "../theme";
+import InputField from "../input-field";
 
 export const StyledInput = styled.input`
   width: 7em;
@@ -29,10 +29,10 @@ export const StyledInput = styled.input`
     -webkit-appearance: none;
     margin: 0;
   }
-`
+`;
 
 export const StyledInputField = styled(InputField).attrs(() => ({
   inputStyle: {
     padding: `${space[1]} ${space[2]} ${space[1]} 8em`
   }
-}))``
+}))``;

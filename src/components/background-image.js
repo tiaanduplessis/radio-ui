@@ -1,9 +1,9 @@
-import styled from 'styled-components'
-import { background, space, layout, flexbox } from 'styled-system'
-import PropTypes from 'prop-types'
-import theme from './theme'
+import styled from "styled-components";
+import { background, space, layout, flexbox } from "styled-system";
+import PropTypes from "prop-types";
+import theme from "./theme";
 
-const image = props => `url(${props.source})`
+const image = props => `url(${props.source})`;
 
 const BackgroundImage = styled.div.attrs(props => ({
   theme: props.theme || theme
@@ -16,16 +16,16 @@ const BackgroundImage = styled.div.attrs(props => ({
   ${background}
   ${layout}
   ${flexbox}
-`
+`;
 
 BackgroundImage.propTypes = {
   source: PropTypes.string.isRequired,
   ...space.propTypes,
   ...background.propTypes,
   ...layout.propTypes,
-  ...flexbox.propTypes,
-}
+  ...flexbox.propTypes
+};
 
-BackgroundImage.displayName = 'BackgroundImage'
+BackgroundImage.displayName = "BackgroundImage";
 
-export default BackgroundImage
+export default BackgroundImage;

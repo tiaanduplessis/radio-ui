@@ -1,7 +1,7 @@
-import styled from 'styled-components'
-import { space, color, layout, flexbox } from 'styled-system'
+import styled from "styled-components";
+import { space, color, layout, flexbox } from "styled-system";
 
-import theme from './theme'
+import theme from "./theme";
 
 const Box = styled.div.attrs(props => ({
   theme: props.theme || theme
@@ -10,15 +10,15 @@ const Box = styled.div.attrs(props => ({
   ${layout}
   ${color}
   ${flexbox}
-`
+`;
 
-Box.displayName = 'Box'
+Box.displayName = "Box";
 
 Box.propTypes = {
   ...space.propTypes,
   ...layout.propTypes,
   ...color.propTypes,
-  ...flexbox.propTypes,
-}
+  ...flexbox.propTypes
+};
 
-export default Box
+export default Box;
