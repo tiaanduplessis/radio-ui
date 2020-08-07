@@ -33,6 +33,7 @@ export const StyledInput = styled.input`
 
 export const StyledInputField = styled(InputField).attrs(() => ({
   inputStyle: {
-    padding: `${space[1]} ${space[2]} ${space[1]} 8em`
+    alignSelf: "flex-end",
+    width: `calc(100% - 7em - ${space[4]})`
   }
 }))``;

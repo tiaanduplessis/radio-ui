@@ -6,5 +6,4 @@ node_modules
 storybook-build
 dist
 stats.html
-dist
 .eslintcache
