@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { useForm, FormContext } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { Select } from "../";
 
 const options = [
@@ -18,11 +18,11 @@ storiesOf("Input | Select", module)
     };
 
     return (
-      <FormContext {...methods}>
+      <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Select name="1" placeholder="Empty" />
         </form>
-      </FormContext>
+      </FormProvider>
     );
   })
 
@@ -33,11 +33,11 @@ storiesOf("Input | Select", module)
     };
 
     return (
-      <FormContext {...methods}>
+      <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Select options={options} label="Label" name="2" />
         </form>
-      </FormContext>
+      </FormProvider>
     );
   })
 
@@ -48,10 +48,10 @@ storiesOf("Input | Select", module)
     };
 
     return (
-      <FormContext {...methods}>
+      <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Select disabled options={options} />
         </form>
-      </FormContext>
+      </FormProvider>
     );
   });

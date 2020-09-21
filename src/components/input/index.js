@@ -4,14 +4,10 @@ import InputField from "../input-field";
 
 const Input = props => {
   const { name } = props;
-  const { register, triggerValidation } = useFormContext();
+  const { register, trigger } = useFormContext();
 
   return (
-    <InputField
-      {...props}
-      onBlur={async () => triggerValidation(name)}
-      ref={register}
-    />
+    <InputField {...props} onBlur={async () => trigger(name)} ref={register} />
   );
 };
 

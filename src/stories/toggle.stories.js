@@ -1,38 +1,38 @@
-import React from 'react'
-import { FormContext, useForm } from 'react-hook-form'
-import { Toggle } from '../'
+import React from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { Toggle } from "../";
 
 export default {
   component: Toggle,
-  title: 'Toggle',
-}
+  title: "Toggle"
+};
 
 export const Unchecked = () => {
-  const methods = useForm()
+  const methods = useForm();
   const onSubmit = data => {
-    console.log(data)
-  }
+    console.log(data);
+  };
 
   return (
-    <FormContext {...methods}>
+    <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Toggle label="Closed" />
       </form>
-    </FormContext>
-  )
-}
+    </FormProvider>
+  );
+};
 
 export const Checked = () => {
-  const methods = useForm()
+  const methods = useForm();
   const onSubmit = data => {
-    console.log(data)
-  }
+    console.log(data);
+  };
 
   return (
-    <FormContext {...methods}>
+    <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Toggle label="Closed" checked={true} />
       </form>
-    </FormContext>
-  )
-}
+    </FormProvider>
+  );
+};

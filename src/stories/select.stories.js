@@ -1,5 +1,5 @@
 import React from "react";
-import { FormContext, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { Select } from "../";
 
 const options = [
@@ -19,11 +19,11 @@ export const Empty = () => {
   };
 
   return (
-    <FormContext {...methods}>
+    <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Select name="1" placeholder="Empty" />
       </form>
-    </FormContext>
+    </FormProvider>
   );
 };
 
@@ -34,11 +34,11 @@ export const WithOptions = () => {
   };
 
   return (
-    <FormContext {...methods}>
+    <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Select options={options} label="Label" name="2" />
       </form>
-    </FormContext>
+    </FormProvider>
   );
 };
 
@@ -49,10 +49,10 @@ export const Disabled = () => {
   };
 
   return (
-    <FormContext {...methods}>
+    <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Select disabled options={options} name="3" />
       </form>
-    </FormContext>
+    </FormProvider>
   );
 };

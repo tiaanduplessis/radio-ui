@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { useForm, FormContext } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { Input } from "../";
 
 storiesOf("Input | Input", module)
@@ -13,11 +13,11 @@ storiesOf("Input | Input", module)
     };
 
     return (
-      <FormContext {...methods}>
+      <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Input id="1" name="foo" placeholder="Without label" />
         </form>
-      </FormContext>
+      </FormProvider>
     );
   })
 
@@ -28,11 +28,11 @@ storiesOf("Input | Input", module)
     };
 
     return (
-      <FormContext {...methods}>
+      <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Input id="2" label="Label" name="bar" />
         </form>
-      </FormContext>
+      </FormProvider>
     );
   })
 
@@ -43,11 +43,11 @@ storiesOf("Input | Input", module)
     };
 
     return (
-      <FormContext {...methods}>
+      <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Input id="2" label="Label" name="baz" required />
         </form>
-      </FormContext>
+      </FormProvider>
     );
   })
 
@@ -58,11 +58,11 @@ storiesOf("Input | Input", module)
     };
 
     return (
-      <FormContext {...methods}>
+      <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Input id="3" label="Disabled" name="bar" disabled />
         </form>
-      </FormContext>
+      </FormProvider>
     );
   })
 
@@ -73,7 +73,7 @@ storiesOf("Input | Input", module)
     };
 
     return (
-      <FormContext {...methods}>
+      <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Input
             id="4"
@@ -82,6 +82,6 @@ storiesOf("Input | Input", module)
             alertText="Invalid input given"
           />
         </form>
-      </FormContext>
+      </FormProvider>
     );
   });
