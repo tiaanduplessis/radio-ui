@@ -7,7 +7,8 @@ import {
   StyledLabel,
   StyledAsterisk,
   StyledAlertText,
-  StyledInput
+  StyledInput,
+  StyledTextArea
 } from "./styles";
 
 const InputField = forwardRef(
@@ -36,6 +37,23 @@ const InputField = forwardRef(
 
     const alertText = alertTextOverride || getErrors(errors, name);
 
+    const inputProps = {
+      id,
+      ref,
+      type,
+      name,
+      value,
+      onBlur,
+      onClick,
+      required,
+      disabled,
+      onChange,
+      onKeyDown,
+      style: inputStyle,
+      autoComplete: "off",
+      placeholder: placeholder || label
+    };
+
     return (
       <StyledContainer fullWidth={fullWidth} style={containerStyle}>
         <Flex justifyContent="space-between">
@@ -47,21 +65,11 @@ const InputField = forwardRef(
           </StyledLabel>
           {alertText && <StyledAlertText>{alertText}</StyledAlertText>}
         </Flex>
-        <StyledInput
-          id={id}
-          ref={ref}
-          type={type}
-          name={name}
-          value={value}
-          onBlur={onBlur}
-          onClick={onClick}
-          style={inputStyle}
-          required={required}
-          disabled={disabled}
-          onChange={onChange}
-          onKeyDown={onKeyDown}
-          placeholder={placeholder || label}
-        />
+        {type === "textarea" ? (
+          <StyledTextArea {...inputProps} />
+        ) : (
+          <StyledInput {...inputProps} />
+        )}
       </StyledContainer>
     );
   }

@@ -1,6 +1,31 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Flex from "../flex";
 import { colors, fontSizes, fontWeights, space, radii } from "../theme";
+
+const inputStyles = css`
+  outline: none;
+  color: ${colors.gray.xxdark};
+  border-radius: ${radii.small};
+  font-size: ${fontSizes.xsmall};
+  padding: ${space[1]} ${space[2]};
+  background-color: ${colors.white};
+  border: 1px solid ${colors.gray.xxlight};
+
+  ::placeholder {
+    color: ${colors.gray.dark};
+  }
+
+  &:disabled {
+    background-color: ${colors.gray.xxlight};
+  }
+
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-appearance: none;
+    margin: 0;
+  }
+`;
 
 export const StyledContainer = styled(Flex).attrs(() => ({
   flexDirection: "column"
@@ -33,26 +58,12 @@ export const StyledAlertText = styled.span.attrs({
 
 export const StyledInput = styled.input`
   height: 35px;
-  outline: none;
-  color: ${colors.gray.xxdark};
-  border-radius: ${radii.small};
-  font-size: ${fontSizes.xsmall};
-  padding: ${space[1]} ${space[2]};
-  background-color: ${colors.white};
-  border: 1px solid ${colors.gray.xxlight};
+  ${inputStyles}
+`;
 
-  ::placeholder {
-    color: ${colors.gray.dark};
-  }
-
-  &:disabled {
-    background-color: ${colors.gray.xxlight};
-  }
-
-  ::-webkit-inner-spin-button,
-  ::-webkit-outer-spin-button {
-    /* stylelint-disable-next-line property-no-vendor-prefix */
-    -webkit-appearance: none;
-    margin: 0;
-  }
+export const StyledTextArea = styled.textarea`
+  resize: none;
+  min-height: 10em;
+  font-family: inherit;
+  ${inputStyles}
 `;
