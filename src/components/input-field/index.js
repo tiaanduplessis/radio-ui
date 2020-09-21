@@ -29,7 +29,8 @@ const InputField = forwardRef(
       containerStyle = {},
       onChange = () => {},
       onKeyDown = () => {},
-      alertText: alertTextOverride
+      alertText: alertTextOverride,
+      ...props
     },
     ref
   ) => {
@@ -51,7 +52,8 @@ const InputField = forwardRef(
       onKeyDown,
       style: inputStyle,
       autoComplete: "off",
-      placeholder: placeholder || label
+      placeholder: placeholder || label,
+      ...props
     };
 
     return (
