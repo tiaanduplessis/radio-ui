@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import { useFormContext } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 import Flex from "../flex";
-import getErrors from "../../utils/get-errors";
 import {
   StyledContainer,
   StyledLabel,
@@ -19,6 +19,7 @@ const InputField = forwardRef(
       value,
       disabled,
       required,
+      alertText,
       fullWidth,
       label = "",
       placeholder,
@@ -29,14 +30,11 @@ const InputField = forwardRef(
       containerStyle = {},
       onChange = () => {},
       onKeyDown = () => {},
-      alertText: alertTextOverride,
       ...props
     },
     ref
   ) => {
     const { errors } = useFormContext();
-
-    const alertText = alertTextOverride || getErrors(errors, name);
 
     const inputProps = {
       id,
@@ -65,7 +63,13 @@ const InputField = forwardRef(
               <StyledAsterisk aria-label="required">*</StyledAsterisk>
             )}
           </StyledLabel>
-          {alertText && <StyledAlertText>{alertText}</StyledAlertText>}
+          <ErrorMessage
+            errors={errors}
+            name={name}
+            render={({ message }) => (
+              <StyledAlertText>{alertText || message}</StyledAlertText>
+            )}
+          />
         </Flex>
         {type === "textarea" ? (
           <StyledTextArea {...inputProps} />
