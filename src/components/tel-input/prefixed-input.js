@@ -25,7 +25,7 @@ const PrefixedInput = ({
   onChange = () => {},
   onClick = () => {}
 }) => {
-  const { watch, setValue, triggerValidation } = useFormContext();
+  const { watch, setValue, trigger } = useFormContext();
 
   const currentValue = watch(name);
 
@@ -53,7 +53,7 @@ const PrefixedInput = ({
         placeholder={placeholder}
         onKeyDown={preventForbiddenKeys}
         value={currentValue?.replace(optionValue, "")}
-        onBlur={async () => triggerValidation(name)}
+        onBlur={async () => trigger(name)}
         onChange={e => setValue(name, `${optionValue}${e.target.value}`)}
       />
     </>

@@ -78,7 +78,7 @@
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-hook-form": "^4.10.2",
+    "react-hook-form": "^6.8.3",
     "react-scripts": "^3.4.1",
     "react-test-renderer": "16.13.1",
     "rollup": "2.26.3",
@@ -105,10 +105,11 @@
     "prop-types": "^15",
     "react": "^16",
     "react-dom": "^16",
-    "react-hook-form": "^4",
+    "react-hook-form": "^6",
     "styled-components": "^4"
   },
   "dependencies": {
+    "@hookform/error-message": "0.0.4",
     "hoist-non-react-statics": "3.3.2",
     "just-toasty": "1.4.0",
     "react-datepicker": "2.16.0",

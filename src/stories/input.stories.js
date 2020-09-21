@@ -1,5 +1,5 @@
 import React from "react";
-import { FormContext, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { Input } from "../";
 
 export default {
@@ -14,11 +14,11 @@ export const WithoutLabel = () => {
   };
 
   return (
-    <FormContext {...methods}>
+    <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Input id="1" name="foo" placeholder="Without label" />
       </form>
-    </FormContext>
+    </FormProvider>
   );
 };
 
@@ -29,11 +29,11 @@ export const WithLabel = () => {
   };
 
   return (
-    <FormContext {...methods}>
+    <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Input id="2" label="Label" name="bar" />
       </form>
-    </FormContext>
+    </FormProvider>
   );
 };
 
@@ -44,11 +44,11 @@ export const WithRequired = () => {
   };
 
   return (
-    <FormContext {...methods}>
+    <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Input id="2" label="Label" name="baz" required />
       </form>
-    </FormContext>
+    </FormProvider>
   );
 };
 
@@ -59,11 +59,11 @@ export const Disabled = () => {
   };
 
   return (
-    <FormContext {...methods}>
+    <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Input id="3" label="Disabled" name="bar" disabled />
       </form>
-    </FormContext>
+    </FormProvider>
   );
 };
 
@@ -74,7 +74,7 @@ export const WithAlert = () => {
   };
 
   return (
-    <FormContext {...methods}>
+    <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Input
           id="4"
@@ -83,6 +83,6 @@ export const WithAlert = () => {
           alertText="Invalid input given"
         />
       </form>
-    </FormContext>
+    </FormProvider>
   );
 };

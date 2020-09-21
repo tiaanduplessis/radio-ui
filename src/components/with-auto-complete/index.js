@@ -24,7 +24,7 @@ const withAutoComplete = WrappedComponent => {
     onChange = () => {},
     onInputChange = () => {}
   }) => {
-    const { register, watch, setValue, triggerValidation } = useFormContext();
+    const { register, watch, setValue, trigger } = useFormContext();
 
     register({ name });
 
@@ -51,7 +51,7 @@ const withAutoComplete = WrappedComponent => {
 
     useEffect(() => {
       const handleClickOutside = e => {
-        const validate = async () => triggerValidation(name);
+        const validate = async () => trigger(name);
 
         if (
           containerRef.current &&
@@ -70,7 +70,7 @@ const withAutoComplete = WrappedComponent => {
       return () => {
         document.removeEventListener("click", handleClickOutside);
       };
-    }, [containerRef, triggerValidation, name, listOpen]);
+    }, [containerRef, trigger, name, listOpen]);
 
     const handleInputChange = e => {
       setValue(name, "");

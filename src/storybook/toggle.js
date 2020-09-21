@@ -1,36 +1,40 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { useForm, FormContext } from 'react-hook-form'
-import { Toggle } from '../'
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import { useForm, FormProvider } from "react-hook-form";
+import { Toggle } from "../";
 
-import mdx from '../docs/toggle.mdx'
+import mdx from "../docs/toggle.mdx";
 
-storiesOf('Input | Toggle', module)
+storiesOf("Input | Toggle", module)
   .addParameters({
     component: Toggle,
-    docs: mdx,
+    docs: mdx
   })
-  .add('Unchecked', () => {
-    const methods = useForm()
-    const onSubmit = data => { console.log(data) }
+  .add("Unchecked", () => {
+    const methods = useForm();
+    const onSubmit = data => {
+      console.log(data);
+    };
 
     return (
-      <FormContext {...methods} >
+      <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Toggle label="Closed" />
         </form>
-      </FormContext>
-    )
+      </FormProvider>
+    );
   })
-  .add('Checked', () => {
-    const methods = useForm()
-    const onSubmit = data => { console.log(data) }
+  .add("Checked", () => {
+    const methods = useForm();
+    const onSubmit = data => {
+      console.log(data);
+    };
 
     return (
-      <FormContext {...methods} >
+      <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Toggle label="Closed" checked={true} />
         </form>
-      </FormContext>
-    )
-  })
+      </FormProvider>
+    );
+  });

@@ -1,5 +1,5 @@
 import React from "react";
-import { FormContext, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { TelInput } from "../";
 
 export default {
@@ -14,10 +14,10 @@ export const Basic = () => {
   };
 
   return (
-    <FormContext {...methods}>
+    <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <TelInput id="1" name="1" label="Default" />
       </form>
-    </FormContext>
+    </FormProvider>
   );
 };

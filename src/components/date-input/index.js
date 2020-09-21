@@ -36,13 +36,7 @@ const DateInput = ({
   ...otherProps
 }) => {
   const { id = otherProps.name, label, inputStyle, name } = otherProps;
-  const {
-    errors,
-    watch,
-    triggerValidation,
-    setValue,
-    register
-  } = useFormContext();
+  const { errors, watch, trigger, setValue, register } = useFormContext();
   const currentValue = watch(name);
 
   const getDateString = () =>
@@ -66,7 +60,7 @@ const DateInput = ({
         placeholderText={placeholder || label}
         disabled={disabled}
         value={getDateString(currentValue)}
-        onBlur={async () => triggerValidation(name)}
+        onBlur={async () => trigger(name)}
         onChange={value => {
           setValue(name, value.toISOString());
           onChange(value);

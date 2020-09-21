@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { useForm, FormContext } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { TelInput } from "../";
 
 storiesOf("Input | Tel Input", module)
@@ -12,10 +12,10 @@ storiesOf("Input | Tel Input", module)
     };
 
     return (
-      <FormContext {...methods}>
+      <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <TelInput id="1" name="1" label="Default" />
         </form>
-      </FormContext>
+      </FormProvider>
     );
   });

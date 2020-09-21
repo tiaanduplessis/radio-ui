@@ -1,23 +1,23 @@
-import React from 'react'
-import { FormContext, useForm } from 'react-hook-form'
-import { DateInput } from '../'
+import React from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { DateInput } from "../";
 
 export default {
   component: DateInput,
-  title: 'DateInput',
-}
+  title: "DateInput"
+};
 
 export const Basic = () => {
-  const methods = useForm()
+  const methods = useForm();
   const onSubmit = data => {
-    console.log(data)
-  }
+    console.log(data);
+  };
 
   return (
-    <FormContext {...methods}>
+    <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <DateInput id="1" name="1" label="Default" />
       </form>
-    </FormContext>
-  )
-}
+    </FormProvider>
+  );
+};
