@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes } from "styled-components";
 
 const rotate = keyframes`
   from {
@@ -7,18 +7,18 @@ const rotate = keyframes`
   to {
     transform: rotate(360deg);
   }
-`
+`;
 
 const Loader = styled.div`
-  border-radius: 10em;
   width: 4em;
   height: 4em;
   margin: 4em;
-  animation: ${rotate} 1s linear infinite;
+  border-radius: 10em;
   border-top: 0.4em solid #64afcc;
-  border-right: 0.4em solid #64afcc;
+  border-right: 0.4em solid #fff;
   border-bottom: 0.4em solid #64afcc;
-  border-left: 0.4em solid transparent;
-`
+  border-left: 0.4em solid #fff;
+  animation: ${rotate} 1.4s linear infinite;
+`;
 
-export default Loader
+export default Loader;

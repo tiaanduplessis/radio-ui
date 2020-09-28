@@ -9,130 +9,113 @@ import {
 
 const defaultOptions = [];
 
-const withAutoComplete = WrappedComponent => {
-  const AutoComplete = ({
-    id,
+const withAutoComplete = WrappedComponent => props => {
+  const {
     name,
-    label,
-    disabled,
-    required,
     fullWidth,
-    inputStyle,
-    placeholder,
-    containerStyle,
     options = defaultOptions,
     onChange = () => {},
     onInputChange = () => {}
-  }) => {
-    const { register, watch, setValue, trigger } = useFormContext();
+  } = props;
 
-    register({ name });
+  const { register, watch, setValue, trigger } = useFormContext();
 
-    const selectValue = watch(name);
+  register({ name });
 
-    const containerRef = useRef(null);
+  const selectValue = watch(name);
 
-    const [listOpen, setListOpen] = useState(false);
-    const [filteredOptions, setFilteredOptions] = useState(options);
-    const [inputValue, setInputValue] = useState(
+  const containerRef = useRef(null);
+
+  const [listOpen, setListOpen] = useState(false);
+  const [filteredOptions, setFilteredOptions] = useState(options);
+  const [inputValue, setInputValue] = useState(
+    options.find(({ value }) => value === selectValue)?.label || ""
+  );
+
+  const adjustValues = useCallback(() => {
+    setFilteredOptions(options);
+    setInputValue(
       options.find(({ value }) => value === selectValue)?.label || ""
     );
+  }, [options, selectValue]);
 
-    const adjustValues = useCallback(() => {
-      setFilteredOptions(options);
-      setInputValue(
-        options.find(({ value }) => value === selectValue)?.label || ""
-      );
-    }, [options, selectValue]);
+  useEffect(() => {
+    adjustValues();
+  }, [adjustValues]);
 
-    useEffect(() => {
-      adjustValues();
-    }, [adjustValues]);
+  useEffect(() => {
+    const handleClickOutside = e => {
+      const validate = async () => trigger(name);
 
-    useEffect(() => {
-      const handleClickOutside = e => {
-        const validate = async () => trigger(name);
-
-        if (
-          containerRef.current &&
-          !containerRef.current.contains(e.target) &&
-          listOpen
-        ) {
-          e.preventDefault();
-          e.stopPropagation();
-          validate();
-          setListOpen(false);
-        }
-      };
-
-      document.addEventListener("click", handleClickOutside);
-
-      return () => {
-        document.removeEventListener("click", handleClickOutside);
-      };
-    }, [containerRef, trigger, name, listOpen]);
-
-    const handleInputChange = e => {
-      setValue(name, "");
-      setInputValue(e.target.value);
-      setFilteredOptions(
-        options.filter(({ label }) =>
-          label.toLowerCase().includes(e.target.value.toLowerCase())
-        )
-      );
-      onInputChange(e.target.value);
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target) &&
+        listOpen
+      ) {
+        e.preventDefault();
+        e.stopPropagation();
+        validate();
+        setListOpen(false);
+      }
     };
 
-    const handleListItemClicked = ({ value, label }) => {
-      setValue(name, value);
-      adjustValues();
-      onChange({ label, value });
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
     };
+  }, [containerRef, trigger, name, listOpen]);
 
-    const ListOptions = () =>
-      filteredOptions.map(({ label, value }) => (
-        <StyledListItem
-          key={value}
-          onClick={() => handleListItemClicked({ value, label })}
-        >
-          {label}
-        </StyledListItem>
-      ));
-
-    const NoOptions = () => (
-      <StyledNoOptionsListItem
-        onClick={() => handleListItemClicked({ value: "", label: "" })}
-      >
-        No Options
-      </StyledNoOptionsListItem>
+  const handleInputChange = e => {
+    setValue(name, "");
+    setInputValue(e.target.value);
+    setFilteredOptions(
+      options.filter(({ label }) =>
+        label.toLowerCase().includes(e.target.value.toLowerCase())
+      )
     );
-
-    return (
-      <StyledContainer ref={containerRef} fullWidth={fullWidth}>
-        <WrappedComponent
-          id={id}
-          name={name}
-          label={label}
-          options={options}
-          value={inputValue}
-          disabled={disabled}
-          required={required}
-          inputStyle={inputStyle}
-          placeholder={placeholder}
-          onChange={handleInputChange}
-          containerStyle={containerStyle}
-          onClick={() => setListOpen(true)}
-        />
-        {listOpen && (
-          <StyledList fullWidth={fullWidth}>
-            {filteredOptions.length ? <ListOptions /> : <NoOptions />}
-          </StyledList>
-        )}
-      </StyledContainer>
-    );
+    onInputChange(e.target.value);
   };
 
-  return AutoComplete;
+  const handleListItemClicked = ({ value, label }) => {
+    setValue(name, value);
+    adjustValues();
+    onChange({ label, value });
+  };
+
+  const ListOptions = () =>
+    filteredOptions.map(({ label, value }) => (
+      <StyledListItem
+        key={value}
+        onClick={() => handleListItemClicked({ value, label })}
+      >
+        {label}
+      </StyledListItem>
+    ));
+
+  const NoOptions = () => (
+    <StyledNoOptionsListItem
+      onClick={() => handleListItemClicked({ value: "", label: "" })}
+    >
+      No Options
+    </StyledNoOptionsListItem>
+  );
+
+  return (
+    <StyledContainer ref={containerRef} fullWidth={fullWidth}>
+      <WrappedComponent
+        {...props}
+        value={inputValue}
+        onChange={handleInputChange}
+        onClick={() => setListOpen(true)}
+      />
+      {listOpen && (
+        <StyledList fullWidth={fullWidth}>
+          {filteredOptions.length ? <ListOptions /> : <NoOptions />}
+        </StyledList>
+      )}
+    </StyledContainer>
+  );
 };
 
 export default withAutoComplete;

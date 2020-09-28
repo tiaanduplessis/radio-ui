@@ -1,16 +1,16 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import withInputWrapper from "../with-input-wrapper";
-import { StyledInput } from "./styles";
+import { StyledTextArea } from "./styles";
 
-const Input = props => {
-  const { name, placeholder, label, onBlur = () => {}, noRef } = props;
+const TextArea = props => {
+  const { name, placeholder, label, onBlur = () => {} } = props;
   const { register, trigger } = useFormContext();
 
   return (
-    <StyledInput
+    <StyledTextArea
       {...props}
-      ref={noRef ? null : register}
+      ref={register}
       autoComplete="off"
       onBlur={async e => {
         onBlur(e);
@@ -21,4 +21,4 @@ const Input = props => {
   );
 };
 
-export default withInputWrapper(Input);
+export default withInputWrapper(TextArea);
