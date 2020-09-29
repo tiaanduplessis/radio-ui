@@ -9,6 +9,19 @@ import {
 
 const defaultOptions = [];
 
+const ListOptions = ({ filteredOptions, onClick }) =>
+  filteredOptions.map(({ label, value }) => (
+    <StyledListItem key={value} onClick={() => onClick({ value, label })}>
+      {label}
+    </StyledListItem>
+  ));
+
+const NoOptions = ({ onClick }) => (
+  <StyledNoOptionsListItem onClick={() => onClick({ value: "", label: "" })}>
+    No Options
+  </StyledNoOptionsListItem>
+);
+
 const withAutoComplete = WrappedComponent => props => {
   const {
     name,
@@ -83,24 +96,6 @@ const withAutoComplete = WrappedComponent => props => {
     onChange({ label, value });
   };
 
-  const ListOptions = () =>
-    filteredOptions.map(({ label, value }) => (
-      <StyledListItem
-        key={value}
-        onClick={() => handleListItemClicked({ value, label })}
-      >
-        {label}
-      </StyledListItem>
-    ));
-
-  const NoOptions = () => (
-    <StyledNoOptionsListItem
-      onClick={() => handleListItemClicked({ value: "", label: "" })}
-    >
-      No Options
-    </StyledNoOptionsListItem>
-  );
-
   return (
     <StyledContainer ref={containerRef} fullWidth={fullWidth}>
       <WrappedComponent
@@ -111,7 +106,14 @@ const withAutoComplete = WrappedComponent => props => {
       />
       {listOpen && (
         <StyledList fullWidth={fullWidth}>
-          {filteredOptions.length ? <ListOptions /> : <NoOptions />}
+          {filteredOptions.length ? (
+            <ListOptions
+              filteredOptions={filteredOptions}
+              onClick={handleListItemClicked}
+            />
+          ) : (
+            <NoOptions onClick={handleListItemClicked} />
+          )}
         </StyledList>
       )}
     </StyledContainer>
