@@ -1,7 +1,9 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
-import { StyledInput, StyledInputField } from "./styles";
+import Flex from "../flex";
+import withInputWrapper from "../with-input-wrapper";
 import withAutocomplete from "../with-auto-complete";
+import { StyledCodeInput, StyledNumberInput } from "./styles";
 
 const forbiddenKeyCodes = [69, 187, 188, 189, 190];
 
@@ -34,30 +36,33 @@ const PrefixedInput = ({
   ) || { label: value, value: "" };
 
   return (
-    <>
-      <StyledInput
+    <Flex>
+      <StyledCodeInput
         value={optionLabel}
         onClick={onClick}
         onChange={onChange}
         placeholder="Code"
         disabled={disabled}
       />
-      <StyledInputField
+      <StyledNumberInput
         id={id}
-        fullWidth
         name={name}
         type="number"
         label={label}
         required={required}
         disabled={disabled}
-        placeholder={placeholder}
+        placeholder={placeholder || label}
         onKeyDown={preventForbiddenKeys}
         value={currentValue?.replace(optionValue, "")}
         onBlur={async () => trigger(name)}
         onChange={e => setValue(name, `${optionValue}${e.target.value}`)}
       />
-    </>
+    </Flex>
   );
 };
 
-export default withAutocomplete(PrefixedInput);
+const WrappedInput = withInputWrapper(PrefixedInput);
+
+const Input = props => <WrappedInput {...props} fullWidth />;
+
+export default withAutocomplete(Input);
