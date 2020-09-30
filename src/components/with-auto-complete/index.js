@@ -45,6 +45,8 @@ const withAutoComplete = WrappedComponent => props => {
     options.find(({ value }) => value === selectValue)?.label || ""
   );
 
+  const validate = useCallback(async () => trigger(name), [trigger, name]);
+
   const adjustValues = useCallback(() => {
     setFilteredOptions(options);
     setInputValue(
@@ -58,8 +60,6 @@ const withAutoComplete = WrappedComponent => props => {
 
   useEffect(() => {
     const handleClickOutside = e => {
-      const validate = async () => trigger(name);
-
       if (
         containerRef.current &&
         !containerRef.current.contains(e.target) &&
@@ -77,7 +77,7 @@ const withAutoComplete = WrappedComponent => props => {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [containerRef, trigger, name, listOpen]);
+  }, [containerRef, trigger, name, listOpen, validate]);
 
   const handleInputChange = e => {
     setValue(name, "");
@@ -93,7 +93,9 @@ const withAutoComplete = WrappedComponent => props => {
   const handleListItemClicked = ({ value, label }) => {
     setValue(name, value);
     adjustValues();
+    validate();
     onChange({ label, value });
+    setListOpen(false);
   };
 
   return (
