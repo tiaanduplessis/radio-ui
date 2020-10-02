@@ -14,7 +14,8 @@ export const inputStyles = css`
     color: ${colors.gray.dark};
   }
 
-  &:disabled {
+
+  &:disabled, &:read-only {
     background-color: ${colors.gray.xxlight};
   }
 
