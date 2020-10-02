@@ -17,6 +17,7 @@ export const inputStyles = css`
 
   &:disabled, &:read-only {
     background-color: ${colors.gray.xxlight};
+    pointer-events: none;
   }
 
   ::-webkit-inner-spin-button,
