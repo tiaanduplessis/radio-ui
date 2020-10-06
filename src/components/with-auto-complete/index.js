@@ -34,7 +34,7 @@ const withAutoComplete = WrappedComponent => props => {
 
   const { register, watch, setValue, trigger } = useFormContext();
 
-  register({ name }, { required: "test" });
+  register({ name });
 
   const selectValue = watch(name);
 
