@@ -21,7 +21,9 @@ const PrefixedInput = ({
   label,
   value,
   disabled,
+  readOnly,
   required,
+  errorName,
   placeholder,
   options = [],
   onChange = () => {},
@@ -43,6 +45,7 @@ const PrefixedInput = ({
         onChange={onChange}
         placeholder="Code"
         disabled={disabled}
+        readOnly={readOnly}
       />
       <StyledNumberInput
         id={id}
@@ -51,10 +54,11 @@ const PrefixedInput = ({
         label={label}
         required={required}
         disabled={disabled}
+        readOnly={readOnly}
         placeholder={placeholder || label}
         onKeyDown={preventForbiddenKeys}
         value={currentValue?.replace(optionValue, "")}
-        onBlur={async () => trigger(name)}
+        onBlur={async () => trigger(errorName || name)}
         onChange={e => setValue(name, `${optionValue}${e.target.value}`)}
       />
     </Flex>

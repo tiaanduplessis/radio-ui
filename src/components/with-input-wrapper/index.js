@@ -16,7 +16,9 @@ const withInputWrapper = WrappedComponent => props => {
     disabled,
     required,
     alertText,
+    errorName,
     fullWidth,
+    alertStyle,
     label = "",
     containerStyle = {}
   } = props;
@@ -34,9 +36,11 @@ const withInputWrapper = WrappedComponent => props => {
         </StyledLabel>
         <ErrorMessage
           errors={errors}
-          name={name}
+          name={errorName || name}
           render={({ message }) => (
-            <StyledAlertText>{alertText || message}</StyledAlertText>
+            <StyledAlertText style={alertStyle}>
+              {alertText || message}
+            </StyledAlertText>
           )}
         />
       </StyledFlex>

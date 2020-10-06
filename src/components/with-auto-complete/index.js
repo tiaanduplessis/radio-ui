@@ -25,6 +25,7 @@ const NoOptions = ({ onClick }) => (
 const withAutoComplete = WrappedComponent => props => {
   const {
     name,
+    errorName,
     fullWidth,
     options = defaultOptions,
     onChange = () => {},
@@ -33,7 +34,7 @@ const withAutoComplete = WrappedComponent => props => {
 
   const { register, watch, setValue, trigger } = useFormContext();
 
-  register({ name });
+  register({ name }, { required: "test" });
 
   const selectValue = watch(name);
 
@@ -45,7 +46,11 @@ const withAutoComplete = WrappedComponent => props => {
     options.find(({ value }) => value === selectValue)?.label || ""
   );
 
-  const validate = useCallback(async () => trigger(name), [trigger, name]);
+  const validate = useCallback(async () => trigger(errorName || name), [
+    trigger,
+    name,
+    errorName
+  ]);
 
   const adjustValues = useCallback(() => {
     setFilteredOptions(options);
