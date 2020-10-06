@@ -4,7 +4,7 @@ import withInputWrapper from "../with-input-wrapper";
 import { StyledTextArea } from "./styles";
 
 const TextArea = props => {
-  const { name, placeholder, label, onBlur = () => {} } = props;
+  const { name, errorName, placeholder, label, onBlur = () => {} } = props;
   const { register, trigger } = useFormContext();
 
   return (
@@ -14,7 +14,7 @@ const TextArea = props => {
       autoComplete="off"
       onBlur={async e => {
         onBlur(e);
-        await trigger(name);
+        await trigger(errorName || name);
       }}
       placeholder={placeholder || label}
     />
