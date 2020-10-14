@@ -2,13 +2,12 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import styled from "styled-components";
-
-import "react-datepicker/dist/react-datepicker.css";
-import "./styles.css";
-
 import { inputStyles } from "../input-styles";
 
 import withInputWrapper from "../with-input-wrapper";
+
+import "react-datepicker/dist/react-datepicker.css";
+import "./styles.css";
 
 const StyledDatePicker = styled(DatePicker)`
   height: 35px;
