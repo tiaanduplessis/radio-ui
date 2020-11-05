@@ -1,35 +1,11 @@
-const merge = require('webpack-merge');
-
-const maxAssetSize = 1024 * 1024;
-
 module.exports = {
-  webpackFinal: (config) => {
-    return merge(config, {
-      optimization: {
-        splitChunks: {
-          chunks: 'all',
-          minSize: 30 * 1024,
-          maxSize: maxAssetSize,
-        },
-      },
-      performance: {
-        maxAssetSize: maxAssetSize,
-      },
-    });
-  },
-  stories: ['../src/**/*.stories.(js|mdx)'],
+  stories: ["../src/**/*.stories.@(js|md|mdx)"],
   addons: [
-    '@storybook/preset-create-react-app',
-    '@storybook/addon-actions',
-    '@storybook/addon-links',
-    '@storybook/addon-storysource',
-    '@storybook/addon-a11y',
-    {
-      name: '@storybook/addon-docs',
-      options: {
-        configureJSX: true,
-      },
-    },
-    '@storybook/addon-viewport',
-  ],
+    "@storybook/preset-create-react-app",
+    "@storybook/addon-docs/preset",
+    "@storybook/addon-actions/register",
+    "@storybook/addon-viewport/register",
+    "@storybook/addon-a11y/register",
+    "@storybook/addon-knobs/register"
+  ]
 };

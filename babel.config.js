@@ -1,32 +1,33 @@
-module.exports = api => {
-  const isTest = api.env('test')
+const sharedPlugins = [
+  "@babel/plugin-proposal-class-properties",
+  "@babel/plugin-proposal-private-methods",
+  "@babel/plugin-proposal-object-rest-spread",
+  "@babel/plugin-proposal-optional-chaining",
+  "babel-plugin-styled-components"
+];
 
-  if(isTest) {
-    return {
-      presets: [
-        [
-          '@babel/preset-env',
-          {
-            targets: {
-              node: 'current',
-            },
-          },
-        ],
-        "@babel/preset-react"
-      ],
+const runtimePlugins = [
+  ["@babel/plugin-transform-runtime", { version: "7.9.2", helpers: true }]
+];
 
-      plugins: [
-        "require-context-hook",
-        '@babel/plugin-proposal-class-properties',
-        '@babel/plugin-proposal-object-rest-spread'
-      ]
+const setPresets = moduleValue => [
+  ["@babel/preset-react", { modules: moduleValue }],
+  ["@babel/preset-env", { modules: moduleValue }]
+];
+
+module.exports = {
+  env: {
+    development: {
+      presets: setPresets(process.env.BABEL_MODULE || false),
+      plugins: [...sharedPlugins, ...runtimePlugins]
+    },
+    production: {
+      presets: setPresets(false),
+      plugins: [...sharedPlugins, ...runtimePlugins]
+    },
+    test: {
+      presets: setPresets("commonjs"),
+      plugins: [...sharedPlugins]
     }
   }
-
-  return {
-    "presets": ["@radio-retail/babel-preset"],
-    plugins: [
-      "babel-plugin-styled-components"
-    ]
-  }
-}
+};
