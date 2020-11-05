@@ -25,7 +25,6 @@
     "format": "prettier-eslint --write \"$PWD/src/**/*.js\"",
     "build": "rollup --config",
     "test": "jest",
-    "snyk-protect": "snyk protect",
     "prepare": "npm run build"
   },
   "files": [
@@ -88,7 +87,6 @@
     "rollup-plugin-filesize": "6.2.1",
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-visualizer": "^4.1.1",
-    "snyk": "^1.413.3",
     "storybook-addon-jsx": "7.1.13",
     "storybook-readme": "5.0.8",
     "style-loader": "1.2.1",
@@ -118,7 +116,6 @@
     "styled-funcs": "1.0.1",
     "styled-system": "5.1.5"
   },
-  "snyk": true,
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
