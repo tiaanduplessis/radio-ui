@@ -3,9 +3,6 @@ import { useFormContext } from "react-hook-form";
 import withInputWrapper from "../with-input-wrapper";
 import { StyledDatePicker } from "./styles";
 
-import "react-datepicker/dist/react-datepicker.css";
-import "./styles.css";
-
 const DateInput = props => {
   const {
     name,
