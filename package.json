@@ -1,6 +1,6 @@
 {
   "name": "@radio-retail/ui",
-  "version": "0.0.0-dev",
+  "version": "0.0.0",
   "description": "Radio Retail Component Library",
   "main": "lib/index.js",
   "module": "lib-esm/index.js",
