@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useFormContext } from "react-hook-form";
 import Input from "../input";
 
@@ -13,6 +13,16 @@ const TimeInput = props => {
   const getTimeString = () =>
     currentValue ? currentValue.replace("Z", "") : "";
 
+  const handleTimeChange = useCallback(
+    event => {
+      const { value } = event.target;
+
+      setValue(name, `${value}Z`);
+      onChange(event);
+    },
+    [setValue, name, onChange]
+  );
+
   return (
     <Input
       {...props}
@@ -20,13 +30,7 @@ const TimeInput = props => {
       step="1"
       noRef
       value={getTimeString()}
-      onChange={e => {
-        const { target } = e;
-        const { value } = target;
-
-        setValue(name, `${value}Z`);
-        onChange(e);
-      }}
+      onChange={handleTimeChange}
     />
   );
 };
