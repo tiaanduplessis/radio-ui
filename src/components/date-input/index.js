@@ -34,7 +34,9 @@ const DateInput = props => {
         await trigger(errorName || name);
       }}
       onChange={value => {
-        setValue(name, value.toISOString());
+        const offset = value.getTimezoneOffset() * 60 * 1000;
+        const newDate = new Date(value.getTime() - offset);
+        setValue(name, newDate.toISOString());
         onChange(value);
       }}
     />
