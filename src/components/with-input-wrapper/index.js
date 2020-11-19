@@ -13,7 +13,7 @@ const withInputWrapper = WrappedComponent => props => {
   const {
     id,
     name,
-    disabled,
+    readOnly,
     required,
     alertText,
     errorName,
@@ -30,7 +30,7 @@ const withInputWrapper = WrappedComponent => props => {
       <StyledFlex>
         <StyledLabel htmlFor={id}>
           {label}
-          {!disabled && required && (
+          {!readOnly && required && (
             <StyledAsterisk aria-label="required">*</StyledAsterisk>
           )}
         </StyledLabel>
