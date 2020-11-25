@@ -30,7 +30,9 @@
     "build:compile:esm": "rm -rf lib-esm && babel src --out-dir lib-esm --ignore \"src/stories/**/*\"",
     "build:postcss": "cat src/index.css | postcss -u postcss-import > ./lib/index.css && cp ./lib/index.css ./lib-esm/index.css",
     "test": "jest",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "commit": "cz",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "files": [
     "lib",
@@ -46,6 +48,8 @@
     "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "7.11.5",
     "@babel/preset-react": "7.10.4",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@lessondesk/material-icons": "1.0.2",
     "@radio-retail/babel-preset": "1.0.0",
     "@radio-retail/eslint-config": "1.0.0",
@@ -67,9 +71,12 @@
     "babel-loader": "8.1.0",
     "babel-plugin-require-context-hook": "1.0.0",
     "babel-plugin-styled-components": "1.11.1",
+    "commitizen": "^4.2.2",
+    "conventional-changelog-cli": "^2.1.1",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.2",
     "css-loader": "3.4.1",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-import": "2.22.0",
@@ -124,6 +131,7 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged"
     }
   },
@@ -133,5 +141,10 @@
       "prettier --write"
     ],
     "*.css": "stylelint --fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

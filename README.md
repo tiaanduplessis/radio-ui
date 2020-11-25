@@ -1,5 +1,7 @@
 # Radio UI
 
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
 > Radio Retail Component Library
 
 ## About
@@ -9,7 +11,6 @@ Radio UI is a Component Library which provides developers with the easiest possi
 ## Motivation
 
 In order to create a great experience for our users, the component library is intented to be a single source of truth for all stakeholders.
-
 ## Goals
 
 - Create consistency across products.
