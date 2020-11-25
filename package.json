@@ -98,7 +98,7 @@
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-hook-form": "^6.9.2",
-    "react-scripts": "^3.4.3",
+    "react-scripts": "^4.0.1",
     "react-test-renderer": "16.13.1",
     "storybook-addon-jsx": "7.3.5-canary.127.504.0",
     "storybook-readme": "5.0.8",
