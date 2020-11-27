@@ -20,7 +20,7 @@ const DateInput = props => {
   const currentValue = watch(name);
 
   const getDateString = () =>
-    currentValue ? new Date(currentValue).toDateString() : "";
+    currentValue ? new Date(`${currentValue}Z`).toDateString() : "";
 
   return (
     <StyledDatePicker
@@ -36,7 +36,7 @@ const DateInput = props => {
       onChange={value => {
         const offset = value.getTimezoneOffset() * 60 * 1000;
         const newDate = new Date(value.getTime() - offset);
-        setValue(name, newDate.toISOString());
+        setValue(name, newDate.toISOString().replace("Z", ""));
         onChange(value);
       }}
     />

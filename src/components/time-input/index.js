@@ -1,38 +1,6 @@
-import React, { useCallback } from "react";
-import { useFormContext } from "react-hook-form";
+import React from "react";
 import Input from "../input";
 
-const TimeInput = props => {
-  const { name, onChange = () => {} } = props;
-
-  const { watch, setValue, register } = useFormContext();
-
-  register({ name });
-  const currentValue = watch(name);
-
-  const getTimeString = () =>
-    currentValue ? currentValue.replace("Z", "") : "";
-
-  const handleTimeChange = useCallback(
-    event => {
-      const { value } = event.target;
-
-      setValue(name, `${value}Z`);
-      onChange(event);
-    },
-    [setValue, name, onChange]
-  );
-
-  return (
-    <Input
-      {...props}
-      type="time"
-      step="1"
-      noRef
-      value={getTimeString()}
-      onChange={handleTimeChange}
-    />
-  );
-};
+const TimeInput = props => <Input {...props} type="time" step="1" />;
 
 export default TimeInput;
