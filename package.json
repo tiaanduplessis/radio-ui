@@ -64,7 +64,7 @@
     "@storybook/addon-viewport": "^6.1.0-beta.2",
     "@storybook/codemod": "6.1.0-beta.2",
     "@storybook/preset-create-react-app": "^3.1.4",
-    "@storybook/react": "6.1.0-beta.2",
+    "@storybook/react": "6.1.10",
     "@storybook/theming": "6.1.0-beta.2",
     "babel-eslint": "10.1.0",
     "babel-jest": "26.3.0",
